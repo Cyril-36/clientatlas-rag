@@ -11,7 +11,7 @@ import {
 import { readTenantContext, withTenantContext } from "@/lib/database/tenant";
 
 import { expectRejection, expectRowLevelSecurityViolation } from "./helpers/errors";
-import { createTenant, truncateTenantTables, type Tenant } from "./helpers/fixtures";
+import { addMember, createTenant, truncateTenantTables, type Tenant } from "./helpers/fixtures";
 import { mintAccessToken } from "./helpers/tokens";
 
 /**
@@ -129,13 +129,56 @@ describe("tenant reads", () => {
     expect(rows).toEqual([]);
   });
 
-  it("hides another user's profile", async () => {
+  it("hides the profile of a user in another organisation", async () => {
     const rows = await withTenantContext(alpha.claims, (tx) =>
-      tx.select({ id: schema.profiles.id }).from(schema.profiles),
+      tx
+        .select({ id: schema.profiles.id })
+        .from(schema.profiles)
+        .where(eq(schema.profiles.id, beta.userId)),
     );
 
-    expect(rows).toHaveLength(1);
-    expect(rows[0]?.id).toBe(alpha.userId);
+    expect(rows).toEqual([]);
+  });
+
+  it("shows the profile of a colleague in the same organisation", async () => {
+    // Co-member visibility is what makes member management possible. It is
+    // bounded by shared membership, not by being authenticated — the test above
+    // is what stops that widening from becoming "everyone sees everyone".
+    const colleague = await addMember(alpha, "alpha-colleague");
+
+    const seenByAlpha = await withTenantContext(alpha.claims, (tx) =>
+      tx
+        .select({ id: schema.profiles.id })
+        .from(schema.profiles)
+        .where(eq(schema.profiles.id, colleague.userId)),
+    );
+
+    expect(seenByAlpha).toHaveLength(1);
+
+    // And the colleague still cannot see the other tenant.
+    const betaSeenByColleague = await withTenantContext(colleague.claims, (tx) =>
+      tx
+        .select({ id: schema.profiles.id })
+        .from(schema.profiles)
+        .where(eq(schema.profiles.id, beta.userId)),
+    );
+
+    expect(betaSeenByColleague).toEqual([]);
+  });
+
+  it("does not let a colleague edit another member's profile", async () => {
+    const colleague = await addMember(alpha, "alpha-editor-only");
+
+    const updated = await withTenantContext(colleague.claims, (tx) =>
+      tx
+        .update(schema.profiles)
+        .set({ displayName: "renamed by a colleague" })
+        .where(eq(schema.profiles.id, alpha.userId))
+        .returning({ id: schema.profiles.id }),
+    );
+
+    // Seeing a colleague is not permission to edit them.
+    expect(updated).toEqual([]);
   });
 
   it("reports non-membership through the security-definer helper", async () => {

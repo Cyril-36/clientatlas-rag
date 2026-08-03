@@ -16,7 +16,7 @@
     "@clientatlas/contracts": "workspace:*",
     "@clientatlas/database": "workspace:*",
     "@supabase/supabase-js": "^2.112.0",
-    "drizzle-orm": "^0.44.6",
+    "drizzle-orm": "^0.45.2",
     "jose": "^6.1.0",
     "next": "16.3.0",
     "postgres": "^3.4.7",

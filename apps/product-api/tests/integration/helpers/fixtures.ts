@@ -150,6 +150,52 @@ async function purgeDocumentObjects(): Promise<void> {
   }
 }
 
+/**
+ * Adds a second user to an existing organisation, as one of its admins would.
+ *
+ * The membership row is inserted by the existing owner through the ordinary
+ * policies, not by the BYPASSRLS fixture role — so this also exercises the
+ * "an owner or admin adds somebody" branch of `organization_members_insert`.
+ */
+export async function addMember(
+  organization: Tenant,
+  label: string,
+  role: "admin" | "editor" | "viewer" = "editor",
+): Promise<Tenant> {
+  const userId = randomUUID();
+  const email = `${label}-${userId.slice(0, 8)}@example.test`;
+
+  const sql = testSql();
+
+  try {
+    await sql`
+      insert into public.profiles (id, email, display_name)
+      values (${userId}, ${email}, ${label})
+    `;
+  } finally {
+    await sql.end({ timeout: 5 });
+  }
+
+  await withTenantContext(organization.claims, (tx) =>
+    tx.insert(schema.organizationMembers).values({
+      organizationId: organization.organizationId,
+      userId,
+      role,
+    }),
+  );
+
+  const token = await mintAccessToken({ sub: userId, email });
+
+  return {
+    userId,
+    email,
+    claims: { sub: userId, role: "authenticated", email },
+    token,
+    organizationId: organization.organizationId,
+    workspaceId: organization.workspaceId,
+  };
+}
+
 /** Removes every row and object created by the suite. */
 export async function truncateTenantTables(): Promise<void> {
   await purgeDocumentObjects();

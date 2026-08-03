@@ -43,6 +43,13 @@
       "when": 1785794721758,
       "tag": "0005_profile_email_nullable",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1785795447520,
+      "tag": "0006_profiles_comember_visibility",
+      "breakpoints": true
     }
   ]
 }
