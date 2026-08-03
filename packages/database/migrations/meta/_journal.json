@@ -36,6 +36,13 @@
       "when": 1785793141698,
       "tag": "0004_storage_path_helper",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1785794721758,
+      "tag": "0005_profile_email_nullable",
+      "breakpoints": true
     }
   ]
 }

@@ -48,7 +48,12 @@ export const organizationRole = pgEnum("organization_role", ["owner", "admin", "
  */
 export const profiles = pgTable("profiles", {
   id: uuid("id").primaryKey(),
-  email: text("email").notNull(),
+  /**
+   * Nullable because not every Supabase auth method carries one — phone and
+   * anonymous sign-ins do not. Storing a synthesised placeholder to satisfy a
+   * NOT NULL would put a value in the column that is not the user's address.
+   */
+  email: text("email"),
   displayName: text("display_name"),
   ...timestamps,
 });
