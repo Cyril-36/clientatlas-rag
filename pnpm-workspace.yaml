@@ -1,0 +1,12 @@
+packages:
+  - apps/*
+  - packages/*
+
+# esbuild ships a platform binary and must be allowed to run its install script,
+# otherwise Vitest cannot start.
+onlyBuiltDependencies:
+  - esbuild
+
+ignoredBuiltDependencies:
+  - sharp
+  - unrs-resolver

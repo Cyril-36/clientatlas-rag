@@ -1,0 +1,48 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# node build output
+.next/
+out/
+dist/
+build/
+*.tsbuildinfo
+next-env.d.ts
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# secrets and local config
+.env
+.env.*
+!.env.example
+
+# local data — never commit tenant documents or derived artefacts
+data/
+uploads/
+logs/
+*.sqlite
+*.sqlite3
+
+# model caches
+.cache/
+models/
+
+# evaluation output is generated; datasets and expectations are versioned
+evals/reports/*
+!evals/reports/.gitkeep
+
+# os / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json

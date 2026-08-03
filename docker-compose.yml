@@ -1,0 +1,47 @@
+name: clientatlas
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    container_name: clientatlas-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-clientatlas}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-clientatlas}
+      POSTGRES_DB: ${POSTGRES_DB:-clientatlas}
+    ports:
+      # 5433 on the host so a system PostgreSQL on 5432 keeps working, and so a
+      # mistyped connection string fails loudly instead of hitting another database.
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./infrastructure/docker/postgres/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test:
+        ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-clientatlas} -d ${POSTGRES_DB:-clientatlas}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  # Ollama is deliberately NOT part of the default stack.
+  #
+  # On Apple Silicon a Linux container gets no Metal access, so a containerised
+  # Ollama runs CPU-only and is several times slower than the native host
+  # install. macOS developers should run Ollama natively and leave this profile
+  # alone; the services reach it at http://localhost:11434.
+  #
+  # The profile exists for Linux hosts and CI-style environments that have no
+  # native install:  docker compose --profile ollama up -d
+  ollama:
+    profiles: ["ollama"]
+    image: ollama/ollama:latest
+    container_name: clientatlas-ollama
+    restart: unless-stopped
+    ports:
+      - "${OLLAMA_PORT:-11434}:11434"
+    volumes:
+      - ollama-models:/root/.ollama
+
+volumes:
+  postgres-data:
+  ollama-models:
