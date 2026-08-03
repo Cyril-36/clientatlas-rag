@@ -1,3 +1,4 @@
+import { sql } from "drizzle-orm";
 import {
   bigint,
   boolean,
@@ -11,6 +12,7 @@ import {
   unique,
   uniqueIndex,
   uuid,
+  vector,
 } from "drizzle-orm/pg-core";
 
 /**
@@ -41,10 +43,12 @@ export const organizationRole = pgEnum("organization_role", ["owner", "admin", "
 /**
  * One row per authenticated user.
  *
- * `id` mirrors the Supabase `auth.users` identifier. The foreign key to
- * `auth.users` is added when Supabase Auth is wired in; locally there is no
- * `auth` schema to reference, and the integration tests seed these rows the way
- * Supabase's signup trigger would.
+ * `id` mirrors the Supabase `auth.users` identifier, but there is deliberately
+ * no foreign key to it. GoTrue re-runs its own migrations on startup and resets
+ * permissions on the `auth` schema, so the grant needed to declare that
+ * constraint does not survive. The relationship holds anyway: `id` only ever
+ * comes from a cryptographically verified token, and the row is created on the
+ * first authenticated request rather than by a trigger.
  */
 export const profiles = pgTable("profiles", {
   id: uuid("id").primaryKey(),
@@ -194,6 +198,121 @@ export const documentVersions = pgTable(
     uniqueIndex("document_versions_document_number_key").on(table.documentId, table.versionNumber),
     uniqueIndex("document_versions_storage_path_key").on(table.storagePath),
     index("document_versions_checksum_idx").on(table.organizationId, table.checksumSha256),
+  ],
+);
+
+export const ingestionJobStatus = pgEnum("ingestion_job_status", [
+  "queued",
+  "running",
+  "succeeded",
+  "failed",
+]);
+
+/**
+ * The ingestion work queue.
+ *
+ * PostgreSQL rather than Redis. The volume this project will ever see is far
+ * below the point where a dedicated broker earns its operational cost, and
+ * keeping the queue in the same database means a job and the rows it produces
+ * commit or roll back together. Redis becomes worth adding when measurements
+ * say so, not before.
+ */
+export const ingestionJobs = pgTable(
+  "ingestion_jobs",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    organizationId: uuid("organization_id")
+      .notNull()
+      .references(() => organizations.id, { onDelete: "cascade" }),
+    documentId: uuid("document_id").notNull(),
+    documentVersionId: uuid("document_version_id")
+      .notNull()
+      .references(() => documentVersions.id, { onDelete: "cascade" }),
+
+    status: ingestionJobStatus("status").notNull().default("queued"),
+    attempts: integer("attempts").notNull().default(0),
+    maxAttempts: integer("max_attempts").notNull().default(3),
+
+    /** Not eligible to be claimed before this. Carries the retry backoff. */
+    runAfter: timestamp("run_after", { withTimezone: true }).notNull().defaultNow(),
+
+    /** Identifies the worker holding the claim, for diagnosis rather than locking. */
+    claimedBy: text("claimed_by"),
+    claimedAt: timestamp("claimed_at", { withTimezone: true }),
+    /**
+     * Refreshed while work is in progress. A running job whose heartbeat has
+     * gone stale is assumed abandoned — a worker that was killed mid-parse
+     * cannot release its own claim, so something has to.
+     */
+    heartbeatAt: timestamp("heartbeat_at", { withTimezone: true }),
+
+    /** A stable code, never raw parser output, which can contain document text. */
+    failureCode: text("failure_code"),
+    ...timestamps,
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.documentId, table.organizationId],
+      foreignColumns: [documents.id, documents.organizationId],
+      name: "ingestion_jobs_document_org_fk",
+    }).onDelete("cascade"),
+    /**
+     * The claim query's index. Partial, because only queued rows are ever
+     * scanned for work — a full index would grow without bound as succeeded
+     * jobs accumulate, while the interesting set stays small.
+     */
+    index("ingestion_jobs_claimable_idx")
+      .on(table.runAfter)
+      .where(sql`status = 'queued'`),
+    index("ingestion_jobs_heartbeat_idx")
+      .on(table.heartbeatAt)
+      .where(sql`status = 'running'`),
+    index("ingestion_jobs_document_idx").on(table.documentId),
+  ],
+);
+
+/**
+ * One retrievable unit of document text.
+ *
+ * Carries both the embedding and the full-text vector, because retrieval fuses
+ * a keyword search and a vector search over the same rows.
+ */
+export const documentChunks = pgTable(
+  "document_chunks",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    organizationId: uuid("organization_id")
+      .notNull()
+      .references(() => organizations.id, { onDelete: "cascade" }),
+    workspaceId: uuid("workspace_id").notNull(),
+    documentId: uuid("document_id").notNull(),
+    documentVersionId: uuid("document_version_id")
+      .notNull()
+      .references(() => documentVersions.id, { onDelete: "cascade" }),
+
+    /** Position within the version, from 1. Cited back to the user. */
+    ordinal: integer("ordinal").notNull(),
+    content: text("content").notNull(),
+    pageNumber: integer("page_number"),
+    /** Outermost heading first, so a citation can be shown in context. */
+    headingPath: text("heading_path")
+      .array()
+      .notNull()
+      .default(sql`'{}'::text[]`),
+    tokenCount: integer("token_count").notNull(),
+
+    embedding: vector("embedding", { dimensions: 384 }),
+
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.workspaceId, table.organizationId],
+      foreignColumns: [workspaces.id, workspaces.organizationId],
+      name: "document_chunks_workspace_org_fk",
+    }).onDelete("cascade"),
+    uniqueIndex("document_chunks_version_ordinal_key").on(table.documentVersionId, table.ordinal),
+    index("document_chunks_workspace_idx").on(table.workspaceId),
   ],
 );
 
