@@ -9,8 +9,9 @@ export default function Home() {
       </div>
 
       <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
-        Milestone 1 — foundation. Authentication, tenancy and row-level security land in M2. Until
-        then this application stores no tenant data and exposes no tenant routes.
+        Milestone 3 — documents and storage. Tenant isolation is enforced by PostgreSQL row-level
+        security and by policies on object storage. Document upload and retrieval are not yet
+        reachable over HTTP, so this application currently exposes no tenant routes.
       </p>
 
       <a
