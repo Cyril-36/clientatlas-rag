@@ -2,7 +2,10 @@ import process from "node:process";
 import { randomUUID } from "node:crypto";
 
 import * as schema from "@clientatlas/database/schema";
+import { createClient } from "@supabase/supabase-js";
 import postgres from "postgres";
+
+import { DOCUMENTS_BUCKET } from "@/lib/storage/paths";
 
 import type { VerifiedClaims } from "@/lib/auth/claims";
 import { withTenantContext } from "@/lib/database/tenant";
@@ -99,8 +102,58 @@ export async function createTenant(label: string): Promise<Tenant> {
   return { userId, email, claims, token, organizationId, workspaceId };
 }
 
-/** Removes every row created by the suite. Cascades handle the child tables. */
+/**
+ * Empties the documents bucket.
+ *
+ * Truncating the tables does not touch object storage — the two are different
+ * systems, and a cascade in one says nothing about the other. Without this,
+ * every test run left objects behind that no row referenced, and the local
+ * bucket filled with garbage nobody would ever look for.
+ *
+ * Uses the service-role key, which is legitimate here and only here: the point
+ * is to clean up regardless of which tenant owned what. It is the local stack's
+ * well-known demo key and reaches nothing beyond 127.0.0.1.
+ */
+async function purgeDocumentObjects(): Promise<void> {
+  const url = process.env["NEXT_PUBLIC_SUPABASE_URL"];
+  const serviceRoleKey = process.env["SUPABASE_SERVICE_ROLE_KEY"];
+
+  if (!url || !serviceRoleKey) {
+    return;
+  }
+
+  const admin = createClient(url, serviceRoleKey, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+
+  // `list` is not recursive, so walk the prefixes the layout actually uses.
+  const paths: string[] = [];
+
+  const walk = async (prefix: string, depth: number): Promise<void> => {
+    const { data } = await admin.storage.from(DOCUMENTS_BUCKET).list(prefix, { limit: 1000 });
+
+    for (const entry of data ?? []) {
+      const next = prefix ? `${prefix}/${entry.name}` : entry.name;
+
+      if (entry.id === null && depth < 6) {
+        await walk(next, depth + 1);
+      } else if (entry.id !== null) {
+        paths.push(next);
+      }
+    }
+  };
+
+  await walk("", 0);
+
+  if (paths.length > 0) {
+    await admin.storage.from(DOCUMENTS_BUCKET).remove(paths);
+  }
+}
+
+/** Removes every row and object created by the suite. */
 export async function truncateTenantTables(): Promise<void> {
+  await purgeDocumentObjects();
+
   const sql = testSql();
 
   try {
