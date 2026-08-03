@@ -1,10 +1,14 @@
 import {
+  bigint,
   boolean,
+  foreignKey,
   index,
+  integer,
   pgEnum,
   pgTable,
   text,
   timestamp,
+  unique,
   uniqueIndex,
   uuid,
 } from "drizzle-orm/pg-core";
@@ -99,6 +103,92 @@ export const workspaces = pgTable(
   (table) => [
     uniqueIndex("workspaces_org_slug_key").on(table.organizationId, table.slug),
     index("workspaces_org_idx").on(table.organizationId),
+    /**
+     * Redundant on its own — `id` is already unique — but it gives child tables
+     * something to point a *composite* foreign key at. See `documents`.
+     */
+    unique("workspaces_id_org_key").on(table.id, table.organizationId),
+  ],
+);
+
+export const documentStatus = pgEnum("document_status", [
+  "queued",
+  "processing",
+  "ready",
+  "failed",
+]);
+
+export const documents = pgTable(
+  "documents",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    organizationId: uuid("organization_id")
+      .notNull()
+      .references(() => organizations.id, { onDelete: "cascade" }),
+    workspaceId: uuid("workspace_id").notNull(),
+    title: text("title").notNull(),
+    originalFilename: text("original_filename").notNull(),
+    mediaType: text("media_type").notNull(),
+    status: documentStatus("status").notNull().default("queued"),
+    /** Safe diagnostic code when status is `failed`. Never raw parser output. */
+    failureCode: text("failure_code"),
+    ...timestamps,
+  },
+  (table) => [
+    /**
+     * The composite key is the point.
+     *
+     * A plain `workspace_id -> workspaces.id` reference would happily accept
+     * another tenant's workspace; only the RLS policy would object, and only if
+     * the policy is right. Referencing (id, organization_id) together makes a
+     * cross-tenant parent structurally impossible — the database rejects it
+     * before any policy is consulted.
+     */
+    foreignKey({
+      columns: [table.workspaceId, table.organizationId],
+      foreignColumns: [workspaces.id, workspaces.organizationId],
+      name: "documents_workspace_org_fk",
+    }).onDelete("cascade"),
+    index("documents_workspace_idx").on(table.workspaceId),
+    index("documents_org_status_idx").on(table.organizationId, table.status),
+    unique("documents_id_org_key").on(table.id, table.organizationId),
+  ],
+);
+
+/**
+ * An immutable record of one uploaded file.
+ *
+ * Versions are never updated: re-uploading produces a new row, and re-indexing
+ * derives new data from an existing one. There is deliberately no `updated_at`
+ * and no UPDATE policy, so "the bytes behind this citation changed" is not a
+ * state the system can reach.
+ */
+export const documentVersions = pgTable(
+  "document_versions",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    organizationId: uuid("organization_id")
+      .notNull()
+      .references(() => organizations.id, { onDelete: "cascade" }),
+    documentId: uuid("document_id").notNull(),
+    versionNumber: integer("version_number").notNull(),
+    storagePath: text("storage_path").notNull(),
+    byteSize: bigint("byte_size", { mode: "number" }).notNull(),
+    checksumSha256: text("checksum_sha256").notNull(),
+    /** Null until the parser has run. */
+    pageCount: integer("page_count"),
+    uploadedBy: uuid("uploaded_by").references(() => profiles.id, { onDelete: "set null" }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.documentId, table.organizationId],
+      foreignColumns: [documents.id, documents.organizationId],
+      name: "document_versions_document_org_fk",
+    }).onDelete("cascade"),
+    uniqueIndex("document_versions_document_number_key").on(table.documentId, table.versionNumber),
+    uniqueIndex("document_versions_storage_path_key").on(table.storagePath),
+    index("document_versions_checksum_idx").on(table.organizationId, table.checksumSha256),
   ],
 );
 
@@ -106,3 +196,5 @@ export type Profile = typeof profiles.$inferSelect;
 export type Organization = typeof organizations.$inferSelect;
 export type OrganizationMember = typeof organizationMembers.$inferSelect;
 export type Workspace = typeof workspaces.$inferSelect;
+export type Document = typeof documents.$inferSelect;
+export type DocumentVersion = typeof documentVersions.$inferSelect;

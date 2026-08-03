@@ -15,6 +15,27 @@
       "when": 1785790909258,
       "tag": "0001_rls_policies",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1785792124346,
+      "tag": "0002_documents",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1785792134827,
+      "tag": "0003_documents_rls",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1785793141698,
+      "tag": "0004_storage_path_helper",
+      "breakpoints": true
     }
   ]
 }

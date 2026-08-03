@@ -125,5 +125,9 @@ jobs:
       - name: Migrate
         run: pnpm --filter @clientatlas/database run db:migrate
 
-      - name: Cross-tenant integration tests
-        run: pnpm --filter @clientatlas/product-api run test:integration
+      # Row-level tenancy only. The object-storage suite needs the Supabase
+      # Storage service, which means the full local stack — twelve containers
+      # per pull request. Running it here is a known gap, not a decision that
+      # those tests do not matter; they run locally via `test:integration`.
+      - name: Cross-tenant database tests
+        run: pnpm --filter @clientatlas/product-api run test:integration:db

@@ -13,6 +13,8 @@
     "typecheck": "tsc --noEmit",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "node src/migrate.ts",
+    "db:storage-policies": "docker exec -i supabase_db_clientatlas psql -U supabase_admin -d postgres -v ON_ERROR_STOP=1 -f - < ../../supabase/storage-policies.sql",
+    "db:setup": "pnpm run db:migrate && pnpm run db:storage-policies",
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
