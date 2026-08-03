@@ -7,11 +7,12 @@ with every claim traceable to the page it came from, or no answer at all.
 Built to run end to end at zero mandatory cost, with tenant isolation enforced
 by the database rather than by application code.
 
-> **Status: Milestone 1 of 10 — foundation.**
-> The workspace, both services, the local database and CI are in place. There is
-> no authentication, no tenant data and no retrieval yet. This README describes
-> what exists today; sections marked _(Mn)_ describe what the milestone that
-> introduces them will add.
+> **Status: Milestone 2 of 10 — authentication and tenancy.**
+> The workspace, both services, the local database and CI are in place, and
+> tenant isolation is enforced by PostgreSQL row-level security with a
+> 24-test cross-tenant suite proving it. There is no document upload and no
+> retrieval yet. This README describes what exists today; sections marked _(Mn)_
+> describe what the milestone that introduces them will add.
 
 ## Why it is built this way
 
@@ -21,7 +22,12 @@ still exempts the table owner, and migrations run as the owner. User requests
 execute inside a transaction that sets the verified JWT claims transaction-locally
 and switches to a fixed `authenticated` role that is `NOBYPASSRLS`, non-owner
 and unable to migrate. A bug in a route handler is then a bug, not a data
-breach. _(M2)_
+breach.
+
+The runtime credential is also `NOINHERIT` and holds no table grants of its own,
+so a query issued outside the claims helper fails with a permission error rather
+than returning unfiltered rows. Forgetting the helper breaks an endpoint; it
+does not leak a tenant.
 
 **One implementation of the security-critical path.** The Python service is a
 pure model service: it parses bytes, embeds text and generates tokens. It holds
@@ -88,7 +94,11 @@ docker compose up -d postgres
 ```
 
 ```bash
-pnpm install && pnpm --filter @clientatlas/product-api dev
+pnpm install && pnpm --filter @clientatlas/database run db:migrate
+```
+
+```bash
+pnpm --filter @clientatlas/product-api dev
 ```
 
 ```bash
@@ -113,14 +123,17 @@ A compose profile exists for hosts with no native install:
 
 ## Commands
 
-| Command          | Effect                              |
-| ---------------- | ----------------------------------- |
-| `pnpm dev`       | Next.js development server          |
-| `pnpm lint`      | ESLint across the workspace         |
-| `pnpm typecheck` | `tsc --noEmit` across every package |
-| `pnpm test`      | Vitest across every package         |
-| `pnpm build`     | Next.js production build            |
-| `pnpm format`    | Prettier, write                     |
+| Command                                                       | Effect                                            |
+| ------------------------------------------------------------- | ------------------------------------------------- |
+| `pnpm dev`                                                    | Next.js development server                        |
+| `pnpm lint`                                                   | ESLint across the workspace                       |
+| `pnpm typecheck`                                              | `tsc --noEmit` across every package               |
+| `pnpm test`                                                   | Unit tests — no database needed                   |
+| `pnpm build`                                                  | Next.js production build                          |
+| `pnpm format`                                                 | Prettier, write                                   |
+| `pnpm --filter @clientatlas/database run db:generate`         | Generate a migration from the schema              |
+| `pnpm --filter @clientatlas/database run db:migrate`          | Apply migrations as `clientatlas_migration`       |
+| `pnpm --filter @clientatlas/product-api run test:integration` | Cross-tenant isolation suite — needs the database |
 
 From `services/ai`:
 
@@ -147,8 +160,8 @@ Logs never contain document text, prompts, access tokens, JWTs or API keys.
 | Milestone | Scope                                                     | Status  |
 | --------- | --------------------------------------------------------- | ------- |
 | M1        | Monorepo, both services, local database, CI               | Done    |
-| M2        | Supabase Auth, organisations, workspaces, RLS             | Next    |
-| M3        | PDF/DOCX upload, signed URLs, storage policies            | Planned |
+| M2        | Roles, organisations, workspaces, RLS, claims helper      | Done    |
+| M3        | PDF/DOCX upload, signed URLs, storage policies            | Next    |
 | M4        | Job queue, worker, parsing, chunking, embeddings          | Planned |
 | M5        | Hybrid retrieval, streamed answers, citations, abstention | Planned |
 | M6        | Onboarding brief, FAQ, action plan, readiness report      | Planned |

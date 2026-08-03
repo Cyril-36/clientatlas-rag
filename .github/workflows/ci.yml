@@ -72,3 +72,58 @@ jobs:
 
       - name: Test
         run: uv run pytest
+
+  tenancy:
+    name: Tenant isolation
+    runs-on: ubuntu-latest
+
+    # The service container starts before the repository is checked out, so the
+    # bootstrap SQL cannot be mounted the way docker-compose mounts it. It is
+    # applied by hand below, from the same files, in the same order.
+    services:
+      postgres:
+        image: pgvector/pgvector:pg17
+        env:
+          POSTGRES_USER: clientatlas
+          POSTGRES_PASSWORD: clientatlas
+          POSTGRES_DB: clientatlas
+        ports:
+          - 5433:5432
+        options: >-
+          --health-cmd "pg_isready -U clientatlas -d clientatlas"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+
+    env:
+      PGPASSWORD: clientatlas
+      MIGRATION_DATABASE_URL: postgresql://clientatlas_migration:local_migration_only@localhost:5433/clientatlas
+      RUNTIME_DATABASE_URL: postgresql://clientatlas_runtime:local_runtime_only@localhost:5433/clientatlas
+      TEST_DATABASE_URL: postgresql://clientatlas_test:local_test_only@localhost:5433/clientatlas
+      SUPABASE_JWT_SECRET: ci-only-secret-not-used-anywhere-else-0123456789
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Bootstrap extensions and roles
+        run: |
+          psql -h localhost -p 5433 -U clientatlas -d clientatlas -v ON_ERROR_STOP=1 \
+            -f infrastructure/docker/postgres/init/00-extensions.sql
+          psql -h localhost -p 5433 -U clientatlas -d clientatlas -v ON_ERROR_STOP=1 \
+            -f infrastructure/docker/postgres/init/01-roles.sql
+
+      - name: Migrate
+        run: pnpm --filter @clientatlas/database run db:migrate
+
+      - name: Cross-tenant integration tests
+        run: pnpm --filter @clientatlas/product-api run test:integration
