@@ -21,6 +21,7 @@ not a gate.
 from __future__ import annotations
 
 import json
+import sys
 from importlib.util import find_spec
 from pathlib import Path
 from typing import Any
@@ -206,3 +207,33 @@ class TestVectorBaseline:
         recall = recall_1
 
         assert recall >= 0.5, f"recall@5 {recall:.2f} suggests the dataset is mismatched"
+
+
+class TestValidator:
+    """The standalone validator, run over every dataset that exists.
+
+    The same script is handed to whoever builds a dataset, so what they check
+    before delivery and what CI checks on arrival are the same code. A dataset
+    dropped into evals/datasets/ is picked up here automatically — including one
+    this repository has never seen.
+    """
+
+    def test_every_dataset_validates(self) -> None:
+        import subprocess
+
+        root = Path(__file__).resolve().parents[3]
+        datasets = sorted(
+            path.parent for path in (root / "evals" / "datasets").glob("*/corpus.json")
+        )
+
+        assert datasets, "no datasets found"
+
+        for dataset in datasets:
+            result = subprocess.run(
+                [sys.executable, str(root / "evals" / "validate_dataset.py"), str(dataset)],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            assert result.returncode == 0, f"{dataset.name} failed validation:\n{result.stdout}"

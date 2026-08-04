@@ -49,7 +49,9 @@ ignore = ["ANN401"]
 [tool.ruff.lint.per-file-ignores]
 # S101: pytest's assert is the point of the file.
 # T201: the evaluation baseline exists to print numbers for a human to read.
-"tests/*" = ["S101", "T201"]
+# S603: the one subprocess call runs our own validator at a path built from
+#       __file__, with no user input anywhere near it.
+"tests/*" = ["S101", "T201", "S603"]
 
 [tool.mypy]
 python_version = "3.12"
