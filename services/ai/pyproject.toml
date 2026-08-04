@@ -2,7 +2,7 @@
 name = "clientatlas-ai"
 version = "0.1.0"
 description = "ClientAtlas model service: parse, embed, generate. Holds no tenant database access."
-requires-python = ">=3.11,<3.13"
+requires-python = ">=3.12,<3.13"
 dependencies = [
     "fastapi>=0.115.0",
     "uvicorn[standard]>=0.32.0",
@@ -48,10 +48,11 @@ ignore = ["ANN401"]
 
 [tool.ruff.lint.per-file-ignores]
 # S101: pytest's assert is the point of the file.
-"tests/*" = ["S101"]
+# T201: the evaluation baseline exists to print numbers for a human to read.
+"tests/*" = ["S101", "T201"]
 
 [tool.mypy]
-python_version = "3.11"
+python_version = "3.12"
 strict = true
 warn_unreachable = true
 warn_unused_ignores = true
@@ -64,6 +65,11 @@ files = ["app", "tests"]
 [[tool.mypy.overrides]]
 module = ["fitz.*", "sentence_transformers.*"]
 ignore_missing_imports = true
+
+# The floor is 3.12, not 3.11. .python-version, the local venv and CI all run
+# 3.12, and numpy (via the ML extra) ships stubs using 3.12 `type` statements
+# that a 3.11 checker cannot even parse. Claiming 3.11 support that nothing
+# verifies was the weaker position.
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
