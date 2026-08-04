@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Reproducible Vulnerabilities"
 description: "Learn about GitLab, its security processes, and its historical security vulnerabilities"
 ---
@@ -109,11 +108,10 @@ Can you elevate your privileges to an administrator, if the victim of your XSS i
 #### Vulnerability Details
 
 {{% details summary="Click to expand" %}}
-
 > An issue has been discovered in GitLab affecting all versions starting from 15.0 before 15.0.1. Missing validation of input used in quick actions allowed an attacker to exploit XSS by injecting HTML in contact details. This is a high severity issue (`CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:N`, 8.7). It is now mitigated in the latest release and is assigned [CVE-2022-1948](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-1948).
 >
 > Thanks [cryptopone](https://hackerone.com/cryptopone) for reporting this vulnerability through our HackerOne bug bounty program.
-> {{% /details %}}
+{{% /details %}}
 
 #### Remediation
 
@@ -127,7 +125,7 @@ We took multiple steps to holistically address this vulnerability:
 - We escaped the first and last name in the following patch: <https://gitlab.com/gitlab-org/gitlab/-/commit/e61e9b9434e2198c4c1d5cf6b4531eb4323c3575>
 - We made AppSec required approvers of subsequent changes to the affected files in <https://gitlab.com/gitlab-org/gitlab/-/merge_requests/88419>
 - We added SemGrep rules to detect and comment on MRs which might introduce XSS with <https://gitlab.com/gitlab-com/gl-security/product-security/appsec/sast-custom-rules/-/blob/main/appsec-pings/rules.yml#L65-84>
-  {{% /details %}}
+{{% /details %}}
 
 #### Links
 
@@ -193,11 +191,10 @@ Follow the steps to reproduce written by [hashkitten](https://hackerone.com/legi
 #### Vulnerability Details
 
 {{% details summary="Click to expand" %}}
-
 > An issue has been discovered in GitLab CE/EE affecting all versions starting from 12.10 before 14.3.6, all versions starting from 14.4 before 14.4.4, all versions starting from 14.5 before 14.5.2. A regular expression used for handling user input (notes, comments, etc) was susceptible to catastrophic backtracking that could cause a DOS attack. This is a medium severity issue (`CVSS:3.0/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L`, 4.3). It is now mitigated in the latest release and is assigned [CVE-2021-39933](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-39933).
 >
 > Thanks [@hashkitten](https://hackerone.com/hashkitten?type=user) for reporting this vulnerability through our HackerOne bug bounty program.
-> {{% /details %}}
+{{% /details %}}
 
 #### Remediation
 
@@ -209,7 +206,7 @@ Once you've reproduced the bug, have a go at fixing it locally. Then compare you
 - We added timeouts to our rendering pipelines:
   - <https://gitlab.com/gitlab-org/gitlab/-/merge_requests/102819>
   - <https://gitlab.com/gitlab-org/gitlab/-/merge_requests/104779>
-    {{% /details %}}
+{{% /details %}}
 
 #### Links
 
@@ -230,7 +227,7 @@ Contributions must only include information that is already publicly available.
 
 Everyone can contribute to this page - that includes you! You can start by clicking "Open in Web IDE" in the sidebar on the right.
 
-First, find an interesting publicly disclosed vulnerability by looking at our [public and closed vulnerability issue list](https://gitlab.com/gitlab-org/gitlab/-/issues/?sort=updated_desc&state=closed&label_name%5B%5D=bug%3A%3Avulnerability&first_page_size=20) or our [security release blog posts](https://about.gitlab.com/releases/categories/releases/). Choose a vulnerability that was fixed in any release _prior_ to the latest security release.
+First, find an interesting publicly disclosed vulnerability by looking at our [public and closed vulnerability issue list](https://gitlab.com/gitlab-org/gitlab/-/issues/?sort=updated_desc&state=closed&label_name%5B%5D=bug%3A%3Avulnerability&first_page_size=20) or our [security release blog posts](https://about.gitlab.com/releases/categories/releases/). Choose a vulnerability that was fixed in any release *prior* to the latest security release.
 
 Open a Merge Request to this page, mention `@gitlab-com/gl-security/product-security/appsec`. It should include:
 
@@ -257,12 +254,10 @@ On `Free/Premium/Ultimate` installations before `X.Y.Z`, a malicious user could 
 
 {{% details summary="Hint 1 - where to start looking" %}}
 <!--  Something that gets people looking in the right place //-->
-
 {{% /details %}}
 
 {{% details summary="Hint 2" %}}
 <!--  Another hint. Add as many hints as you want, using already public data. //-->
-
 {{% /details %}}
 
 {{% details summary="Just tell me how" %}}
@@ -294,4 +289,5 @@ Then compare your proposed change to our patch(es).
 #### Links
 
 <!--  Links go here //-->
+
 ```

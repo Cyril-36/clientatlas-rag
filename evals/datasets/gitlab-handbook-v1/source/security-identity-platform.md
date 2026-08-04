@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Identity Platform"
 description: "The Identity Platform is a collection of microservices and tools that allow us to fetch IAM/RBAC data using each vendor's API, and use GitOps practices to handle state management for provisioning and deprovisioning users and roles across our tech stack applications that have complex hierarchy and permissions that are not supported by Identity Governance vendors. Each of the concepts were invented to help us standardize our IAM/RBAC architecture as we build homegrown automation."
 ---
@@ -115,21 +114,21 @@ There is no need for a specific role for most of these teams (no IAM difference 
 
 The team manager and department leadership is responsible for naming their functional teams. The Identity team is responsible for parsing the handbook pages or provided organization chart documentation for each team and creating the short hand standardized abbreviation nomenclature.
 
-As our organization structure ebbs and flows, we have 200-250 unique Identity Roles at any given time. See all of the roles in the [policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies) and [manifests](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/manifests) repositories.
+As our organization structure ebbs and flows, we have 200-250 unique Identity Roles at any given time.  See all of the roles in the [policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies) and [manifests](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/manifests) repositories.
 
-| Division/Function   | Identity Roles                                                                                                                                   | Upstream Data Source                                                                                                                                             |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Administrators      | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/black_ops.yml?ref_type=heads)          | Identity Engineering                                                                                                                                             |
-| Executive           | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/business_executive.yml?ref_type=heads) | Identity Engineering                                                                                                                                             |
-| Finance             | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/business_finance.yml?ref_type=heads)   | Managers and Job Titles                                                                                                                                          |
-| Legal               | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/business_legal.yml?ref_type=heads)     | Identity Engineering                                                                                                                                             |
-| Marketing           | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/business_marketing.yml?ref_type=heads) | Department Names                                                                                                                                                 |
-| People              | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/business_people.yml?ref_type=heads)    | [Handbook Page](/handbook/people-group/#how-to-reach-the-right-member-of-the-people-group) and Manager                                                           |
-| Sales               | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/business_sales.yml?ref_type=heads)     | Sales EBA Team and Department/Manager                                                                                                                            |
-| Product Development | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/product_dev.yml?ref_type=heads)        | [DevOps Stages](/handbook/product/categories/#devops-stages) / [YAML](https://gitlab.com/gitlab-com/www-gitlab-com/-/blob/master/data/stages.yml?ref_type=heads) |
-| Product Production  | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/product_prd.yml?ref_type=heads)        | [Handbook Page](/handbook/engineering/infrastructure-platforms/#organization-structure)                                                                          |
-| Security            | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/security.yml?ref_type=heads)           | [Handbook Page](/handbook/security/#division-structure)                                                                                                          |
-| Service Accounts    | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/service_accounts.yml?ref_type=heads)   | Identity Engineering                                                                                                                                             |
+| Division/Function | Identity Roles | Upstream Data Source |
+|-------------------|----------------|----------------------|
+| Administrators | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/black_ops.yml?ref_type=heads) | Identity Engineering |
+| Executive | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/business_executive.yml?ref_type=heads) | Identity Engineering |
+| Finance | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/business_finance.yml?ref_type=heads) | Managers and Job Titles |
+| Legal | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/business_legal.yml?ref_type=heads) | Identity Engineering |
+| Marketing | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/business_marketing.yml?ref_type=heads) | Department Names |
+| People | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/business_people.yml?ref_type=heads) | [Handbook Page](/handbook/people-group/#how-to-reach-the-right-member-of-the-people-group) and Manager |
+| Sales | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/business_sales.yml?ref_type=heads) | Sales EBA Team and Department/Manager |
+| Product Development | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/product_dev.yml?ref_type=heads) | [DevOps Stages](/handbook/product/categories/#devops-stages) / [YAML](https://gitlab.com/gitlab-com/www-gitlab-com/-/blob/master/data/stages.yml?ref_type=heads) |
+| Product Production | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/product_prd.yml?ref_type=heads) | [Handbook Page](/handbook/engineering/infrastructure-platforms/#organization-structure) |
+| Security | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/security.yml?ref_type=heads) | [Handbook Page](/handbook/security/#division-structure) |
+| Service Accounts | [Policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies/-/blob/main/role/policies/service_accounts.yml?ref_type=heads) | Identity Engineering |
 
 ### Identity Organization Units
 
@@ -137,7 +136,7 @@ The goal of creating Identity Roles is to implement role-based access control (R
 
 For less granular permissions or nonsensitive access, we can grant access to an organization unit instead of a long list of roles.
 
-An **Identity Organization Unit (OU)** is a grouping of _two or more_ **Identity Roles** for higher-level groups that are useful for granting access to entire divisions, departments, sub-departments, teams, regional groups or other functional groups. The Identity team is responsible for organization unit conventions with collaborative input from the Director/VP/EBA team members for each respective division.
+An **Identity Organization Unit (OU)** is a grouping of *two or more* **Identity Roles** for higher-level groups that are useful for granting access to entire divisions, departments, sub-departments, teams, regional groups or other functional groups. The Identity team is responsible for organization unit conventions with collaborative input from the Director/VP/EBA team members for each respective division.
 
 A user can only belong to one role, however they can belong to multiple organization units.
 
@@ -181,7 +180,7 @@ Each Identity Role and Identity Organization Unit is defined in a YAML file with
 
 For granular roles, you can specify one or more job titles. If a job title exists in multiple departments, you can specify job titles in a specific department or that report to a specific manager. For less granular roles, you can use a user's manager since one manager usually owns a specific named function. For larger functional teams, multiple managers can be mapped to a single role.
 
-See all of the policies in the [policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies) repository.
+See all of the policies  in the [policies](https://gitlab.com/gitlab-com/gl-security/identity/data-poc/policies) repository.
 
 #### Identity Policy Rulesets
 
@@ -202,18 +201,18 @@ You can use any of the Okta user profile attributes that were imported during th
 ```yaml
 # {accessctl_key}: '{oktaApiKey}'
 email_to_handle:
-  handle: "email"
-  manager: "managerEmail"
+  handle: 'email'
+  manager: 'managerEmail'
 snake_case:
-  cost_center: "costCenter"
-  division: "division"
-  department: "department"
-  management_level: "workday_managementLevel"
-  organization_name: "organization"
-  region: "workday_region"
-  role: "rbac_role"
-  title: "title"
-```
+  cost_center: 'costCenter'
+  division: 'division'
+  department: 'department'
+  management_level: 'workday_managementLevel'
+  organization_name: 'organization'
+  region: 'workday_region'
+  role: 'rbac_role'
+  title: 'title'
+``````
 
 ##### Single Attribute Rule
 
@@ -245,16 +244,16 @@ Since the goal of Identity Groups is to provide granularity, you can define mult
 ```yaml
 # Any user in this specific department with this job title
 dev_eng_leader:
-  - { department: development, title: distinguished_engineer }
-  - { department: development, title: senior_distinguished_engineer }
-  - { department: development, title: engineering_fellow }
-  - { department: development, title: principal_engineer }
-  - { department: development, title: principal_fullstack_engineer }
+  - {department: development, title: distinguished_engineer}
+  - {department: development, title: senior_distinguished_engineer}
+  - {department: development, title: engineering_fellow}
+  - {department: development, title: principal_engineer}
+  - {department: development, title: principal_fullstack_engineer}
 
 # Any user in this department, that is at a specific management level (to accommodate title variations)
 dev_people_leader:
-  - { department: development, management_level: vice_president }
-  - { department: development, management_level: director }
+  - {department: development, management_level: vice_president}
+  - {department: development, management_level: director}
 ```
 
 ##### Organization Unit Rules
@@ -276,10 +275,10 @@ infra_saas_prod_log_viewers:
 
 ```yaml
 infra_saas_extended:
-  - { department: infrastructure, management_level: leader }
-  - { department: infrastructure, management_level: vice_president }
-  - { division: engineering, management_level: leader }
-  - { division: engineering, management_level: vice_president }
+  - {department: infrastructure, management_level: leader}
+  - {department: infrastructure, management_level: vice_president}
+  - {division: engineering, management_level: leader}
+  - {division: engineering, management_level: vice_president}
   - handle: dmurphy
   - handle: klibby
   - role: infra_saas_leaders

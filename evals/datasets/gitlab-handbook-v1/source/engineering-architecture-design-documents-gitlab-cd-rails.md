@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "GitLab CD: Rails"
 status: proposed
 creation-date: "2026-06-04"
@@ -16,7 +15,7 @@ owning-stage: "~devops::deploy"
 toc_hide: true
 ---
 
-This document describes the Rails layer of [GitLab CD](_index.md): the domain model, the API, the persistence and lifecycle of a deployment, and the UI that configures it. Rails owns the _data_ of a deployment — what you're deploying, where, and the immutable record of what happened. It does not run the deployment, and it does not know how the deployment is performed.
+This document describes the Rails layer of [GitLab CD](_index.md): the domain model, the API, the persistence and lifecycle of a deployment, and the UI that configures it. Rails owns the *data* of a deployment — what you're deploying, where, and the immutable record of what happened. It does not run the deployment, and it does not know how the deployment is performed.
 
 That last point is the whole game. GitLab CD has to deploy to Kubernetes today and to Cloud Run, Lambda, or something nobody's invented yet tomorrow — from artifacts built by GitLab CI or pulled from ECR, Artifactory, or a registry we've never heard of. If Rails knows how to talk to Kubernetes, or assumes the artifact came from a GitLab pipeline, we've already lost. So the design keeps Rails ignorant of both, on purpose.
 
@@ -32,8 +31,8 @@ This document covers:
 **Non-requirements** — owned by other teams and other docs, referenced here only at the seam:
 
 - The durable workflow engine. That's [AutoFlow](https://gitlab.com/groups/gitlab-org/-/work_items/21235).
-- The deployment _mechanism_ — the `Starlark` program that performs a deploy, and its config schemas. That's the Deployment Execution team's Deploy Driver.
-- The _data structure_ of the pipeline. Also Deployment Execution.
+- The deployment *mechanism* — the `Starlark` program that performs a deploy, and its config schemas. That's the Deployment Execution team's Deploy Driver.
+- The *data structure* of the pipeline. Also Deployment Execution.
 - The contents of a workload definition — container arguments, memory limits, replica counts, manifests. Those live behind the driver, outside Rails.
 - Authorization and policy. Covered separately in the [GitLab CD auth](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/19551) doc.
 - Secrets. Resolved live by reference at deploy time; never stored or pinned by CD. A later document.
@@ -225,12 +224,12 @@ The graph connects everything into one picture, which is hard to read in a singl
 
 - **Application** — a named group of Services that ship together (a backend, a worker, a frontend). It does not require a GitLab Project; it can be made entirely of external artifacts. Owned by an Organization.
 - **Service** — a single deployable unit of an Application.
-- **Artifact Source** — a generic pointer to where a Service's artifacts come from. The pointer can address any kind of source — a container image, a machine image, and so on — opaquely. A Service has _many_ (a Pod with three containers may pull from three places).
+- **Artifact Source** — a generic pointer to where a Service's artifacts come from. The pointer can address any kind of source — a container image, a machine image, and so on — opaquely. A Service has *many* (a Pod with three containers may pull from three places).
 - **Version** — a specific artifact on a source, pinned by `digest` (immutable identity).
-- **Version Set** — a curated set of `(Version, Service)` pairs, one entry per source. This is _what_ gets deployed — for example, "Payments 2.0 = api@v7 + worker@v3 + web@v9". The same Version is reused across many Version Sets, so the entries are a join.
+- **Version Set** — a curated set of `(Version, Service)` pairs, one entry per source. This is *what* gets deployed — for example, "Payments 2.0 = api@v7 + worker@v3 + web@v9". The same Version is reused across many Version Sets, so the entries are a join.
 - **Environment** — a named deployment target (staging, production-eu, …) with a [tier](#environment-tiers). It binds a Deploy Driver. Owned by an Organization.
 - **Rollout** — promoting a Version Set through one or more Environments. The unit of change and of audit. One Rollout is driven by one AutoFlow workflow that moves the Version Set from environment to environment until done. Detailed [below](#rollouts-are-immutable-change-records).
-- **Rollout Environment** — the Version Set landing in _one_ Environment within a Rollout. Holds that environment's pinned driver binding, its `from` Version Set, and its position in the promotion order.
+- **Rollout Environment** — the Version Set landing in *one* Environment within a Rollout. Holds that environment's pinned driver binding, its `from` Version Set, and its position in the promotion order.
 - **Deployment** — actuating one Service within a Rollout Environment. It carries the M Versions of that Service's M sources (the Pod's M containers). The per-service unit of state and health.
 - **Flow Definition** — the pipeline, a versioned document per Application, authored in the canvas.
 - **Application Link** — an external reference on an Application (runbook, dashboard, docs, and so on), shown on the overview page.
@@ -243,183 +242,183 @@ Sharding key is `organization_id` on every table (see [Tenancy](#tenancy-shardin
 
 **`cd_applications`**
 
-| Column             | Type      | Notes                                                                                     |
-| ------------------ | --------- | ----------------------------------------------------------------------------------------- |
-| `organization_id`  | bigint FK | shard                                                                                     |
-| name               | text      | unique per organization                                                                   |
-| description        | text      |                                                                                           |
-| `last_rollout_iid` | integer   | counter for allocating per-Application Rollout `iid`s (see [Rollout iids](#rollout-iids)) |
+| Column | Type | Notes |
+|---|---|---|
+| `organization_id` | bigint FK | shard |
+| name | text | unique per organization |
+| description | text | |
+| `last_rollout_iid` | integer | counter for allocating per-Application Rollout `iid`s (see [Rollout iids](#rollout-iids)) |
 
 **`cd_application_links`**
 
-| Column            | Type       | Notes                                                                                                              |
-| ----------------- | ---------- | ------------------------------------------------------------------------------------------------------------------ |
-| `organization_id` | bigint FK  | shard                                                                                                              |
-| `application_id`  | bigint FK  | → `cd_applications`                                                                                                |
-| `link_type`       | `smallint` | enum (`runbook`, `dashboard`, `docs`, `repository`, `chat`, `issue_tracker`, `on_call`, `change_request`, `other`) |
-| name              | text       |                                                                                                                    |
-| url               | text       | UNIQUE(`application_id`, `url`); http/https only                                                                   |
+| Column | Type | Notes |
+|---|---|---|
+| `organization_id` | bigint FK | shard |
+| `application_id` | bigint FK | → `cd_applications` |
+| `link_type` | `smallint` | enum (`runbook`, `dashboard`, `docs`, `repository`, `chat`, `issue_tracker`, `on_call`, `change_request`, `other`) |
+| name | text | |
+| url | text | UNIQUE(`application_id`, `url`); http/https only |
 
 **`cd_services`**
 
-| Column            | Type      | Notes                  |
-| ----------------- | --------- | ---------------------- |
-| `organization_id` | bigint FK | shard                  |
-| `application_id`  | bigint FK | → `cd_applications`    |
-| name              | text      | unique per application |
-| description       | text      |                        |
+| Column | Type | Notes |
+|---|---|---|
+| `organization_id` | bigint FK | shard |
+| `application_id` | bigint FK | → `cd_applications` |
+| name | text | unique per application |
+| description | text | |
 
 **`cd_artifact_sources`**
 
-| Column            | Type      | Notes                                     |
-| ----------------- | --------- | ----------------------------------------- |
-| `organization_id` | bigint FK | shard                                     |
-| `service_id`      | bigint FK | → `cd_services`; many per service         |
-| `source_ref`      | text      | opaque, versioned source-pointer identity |
-| `source_config`   | `jsonb`   | opaque; reflected by UI                   |
+| Column | Type | Notes |
+|---|---|---|
+| `organization_id` | bigint FK | shard |
+| `service_id` | bigint FK | → `cd_services`; many per service |
+| `source_ref` | text | opaque, versioned source-pointer identity |
+| `source_config` | `jsonb` | opaque; reflected by UI |
 
 **`cd_versions`**
 
-| Column               | Type      | Notes                       |
-| -------------------- | --------- | --------------------------- |
-| `organization_id`    | bigint FK | shard                       |
-| `artifact_source_id` | bigint FK | → `cd_artifact_sources`     |
-| name                 | text      | unique per source           |
-| digest               | text      | immutable artifact identity |
-| reference            | text      |                             |
+| Column | Type | Notes |
+|---|---|---|
+| `organization_id` | bigint FK | shard |
+| `artifact_source_id` | bigint FK | → `cd_artifact_sources` |
+| name | text | unique per source |
+| digest | text | immutable artifact identity |
+| reference | text | |
 
 **`cd_version_sets`**
 
-| Column            | Type      | Notes                  |
-| ----------------- | --------- | ---------------------- |
-| `organization_id` | bigint FK | shard                  |
-| `application_id`  | bigint FK | → `cd_applications`    |
-| name              | text      | unique per application |
-| description       | text      |                        |
-| `entries_digest`  | text      | dedupe identical sets  |
+| Column | Type | Notes |
+|---|---|---|
+| `organization_id` | bigint FK | shard |
+| `application_id` | bigint FK | → `cd_applications` |
+| name | text | unique per application |
+| description | text | |
+| `entries_digest` | text | dedupe identical sets |
 
 **`cd_version_set_entries`**
 
-| Column               | Type      | Notes                                                                   |
-| -------------------- | --------- | ----------------------------------------------------------------------- |
-| `organization_id`    | bigint FK | shard                                                                   |
-| `version_set_id`     | bigint FK | → `cd_version_sets`                                                     |
-| `version_id`         | bigint FK | → `cd_versions`; the pinned (Version, Service) pair                     |
+| Column | Type | Notes |
+|---|---|---|
+| `organization_id` | bigint FK | shard |
+| `version_set_id` | bigint FK | → `cd_version_sets` |
+| `version_id` | bigint FK | → `cd_versions`; the pinned (Version, Service) pair |
 | `artifact_source_id` | bigint FK | → `cd_artifact_sources`; UNIQUE(`version_set_id`, `artifact_source_id`) |
-| `service_id`         | bigint FK | → `cd_services`; denormalized; per-service grouping                     |
+| `service_id` | bigint FK | → `cd_services`; denormalized; per-service grouping |
 
 **`cd_environments`**
 
-| Column            | Type       | Notes                                                                                                                                                                    |
-| ----------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `organization_id` | bigint FK  | shard                                                                                                                                                                    |
-| name              | text       | unique per organization                                                                                                                                                  |
-| description       | text       |                                                                                                                                                                          |
-| tier              | `smallint` | enum (`development`, `qa`, `staging`, `production`) for Beta; replaced by `tier_id` FK to `cd_environment_tiers` post-Beta — see [Environment tiers](#environment-tiers) |
+| Column | Type | Notes |
+|---|---|---|
+| `organization_id` | bigint FK | shard |
+| name | text | unique per organization |
+| description | text | |
+| tier | `smallint` | enum (`development`, `qa`, `staging`, `production`) for Beta; replaced by `tier_id` FK to `cd_environment_tiers` post-Beta — see [Environment tiers](#environment-tiers) |
 
 **`cd_environment_driver_bindings`**
 
-| Column            | Type      | Notes                                          |
-| ----------------- | --------- | ---------------------------------------------- |
-| `organization_id` | bigint FK | shard                                          |
-| `environment_id`  | bigint FK | → `cd_environments`                            |
-| version           | integer   | UNIQUE(`environment_id`, version); append-only |
-| `driver_ref`      | text      | opaque driver identity, versioned              |
-| `driver_config`   | `jsonb`   | opaque Environment config; reflected by UI     |
+| Column | Type | Notes |
+|---|---|---|
+| `organization_id` | bigint FK | shard |
+| `environment_id` | bigint FK | → `cd_environments` |
+| version | integer | UNIQUE(`environment_id`, version); append-only |
+| `driver_ref` | text | opaque driver identity, versioned |
+| `driver_config` | `jsonb` | opaque Environment config; reflected by UI |
 
 **`cd_rollouts`**
 
-| Column               | Type          | Notes                                                                                              |
-| -------------------- | ------------- | -------------------------------------------------------------------------------------------------- |
-| `iid`                | integer       | user-facing ID; `UNIQUE(application_id, iid)`; per-Application (see [Rollout iids](#rollout-iids)) |
-| `organization_id`    | bigint FK     | shard                                                                                              |
-| `application_id`     | bigint FK     | → `cd_applications`; UNIQUE WHERE active — one active Rollout per Application                      |
-| `version_set_id`     | bigint FK     | → `cd_version_sets`; the _to_ / target (immutable)                                                 |
-| `flow_definition_id` | bigint FK     | → `cd_application_flow_definitions`; pinned pipeline version                                       |
-| `workflow_ref`       | text          | opaque AutoFlow execution handle                                                                   |
-| state                | `smallint`    | denormalized cache; journal is source of truth                                                     |
-| `started_at`         | `timestamptz` |                                                                                                    |
-| `finished_at`        | `timestamptz` |                                                                                                    |
+| Column | Type | Notes |
+|---|---|---|
+| `iid` | integer | user-facing ID; `UNIQUE(application_id, iid)`; per-Application (see [Rollout iids](#rollout-iids)) |
+| `organization_id` | bigint FK | shard |
+| `application_id` | bigint FK | → `cd_applications`; UNIQUE WHERE active — one active Rollout per Application |
+| `version_set_id` | bigint FK | → `cd_version_sets`; the *to* / target (immutable) |
+| `flow_definition_id` | bigint FK | → `cd_application_flow_definitions`; pinned pipeline version |
+| `workflow_ref` | text | opaque AutoFlow execution handle |
+| state | `smallint` | denormalized cache; journal is source of truth |
+| `started_at` | `timestamptz` | |
+| `finished_at` | `timestamptz` | |
 
 **`cd_rollout_environments`**
 
-| Column                    | Type          | Notes                                                                          |
-| ------------------------- | ------------- | ------------------------------------------------------------------------------ |
-| `organization_id`         | bigint FK     | shard                                                                          |
-| `rollout_id`              | bigint FK     | → `cd_rollouts`                                                                |
-| `environment_id`          | bigint FK     | → `cd_environments`; UNIQUE(`rollout_id`, `environment_id`)                    |
-| position                  | integer       | promotion order                                                                |
-| `driver_binding_id`       | bigint FK     | → `cd_environment_driver_bindings`; pinned driver binding for this environment |
-| `previous_version_set_id` | bigint FK     | → `cd_version_sets`; the _from_; NULL only for first-ever to this environment  |
-| state                     | `smallint`    | cache; journal is source of truth                                              |
-| `started_at`              | `timestamptz` |                                                                                |
-| `finished_at`             | `timestamptz` |                                                                                |
+| Column | Type | Notes |
+|---|---|---|
+| `organization_id` | bigint FK | shard |
+| `rollout_id` | bigint FK | → `cd_rollouts` |
+| `environment_id` | bigint FK | → `cd_environments`; UNIQUE(`rollout_id`, `environment_id`) |
+| position | integer | promotion order |
+| `driver_binding_id` | bigint FK | → `cd_environment_driver_bindings`; pinned driver binding for this environment |
+| `previous_version_set_id` | bigint FK | → `cd_version_sets`; the *from*; NULL only for first-ever to this environment |
+| state | `smallint` | cache; journal is source of truth |
+| `started_at` | `timestamptz` | |
+| `finished_at` | `timestamptz` | |
 
 **`cd_deployments`**
 
-| Column                   | Type          | Notes                                                                                            |
-| ------------------------ | ------------- | ------------------------------------------------------------------------------------------------ |
-| `organization_id`        | bigint FK     | shard                                                                                            |
-| `rollout_environment_id` | bigint FK     | → `cd_rollout_environments`                                                                      |
-| `service_id`             | bigint FK     | → `cd_services`; UNIQUE(`rollout_environment_id`, `service_id`); M Versions derived from the set |
-| state                    | `smallint`    | cache; journal is source of truth                                                                |
-| `started_at`             | `timestamptz` |                                                                                                  |
-| `finished_at`            | `timestamptz` |                                                                                                  |
+| Column | Type | Notes |
+|---|---|---|
+| `organization_id` | bigint FK | shard |
+| `rollout_environment_id` | bigint FK | → `cd_rollout_environments` |
+| `service_id` | bigint FK | → `cd_services`; UNIQUE(`rollout_environment_id`, `service_id`); M Versions derived from the set |
+| state | `smallint` | cache; journal is source of truth |
+| `started_at` | `timestamptz` | |
+| `finished_at` | `timestamptz` | |
 
 **`cd_application_flow_definitions`**
 
-| Column            | Type      | Notes                               |
-| ----------------- | --------- | ----------------------------------- |
-| `organization_id` | bigint FK | shard                               |
-| `application_id`  | bigint FK | → `cd_applications`                 |
-| version           | integer   | unique per application; append-only |
-| definition        | text      | pipeline config (driver-invariant)  |
+| Column | Type | Notes |
+|---|---|---|
+| `organization_id` | bigint FK | shard |
+| `application_id` | bigint FK | → `cd_applications` |
+| version | integer | unique per application; append-only |
+| definition | text | pipeline config (driver-invariant) |
 
 **`cd_rollout_transitions`**
 
-| Column            | Type          | Notes                                                                                   |
-| ----------------- | ------------- | --------------------------------------------------------------------------------------- |
-| `organization_id` | bigint FK     | shard                                                                                   |
-| `rollout_id`      | bigint FK     | → `cd_rollouts`                                                                         |
-| `from_state`      | `smallint`    | nullable (creation)                                                                     |
-| `to_state`        | `smallint`    |                                                                                         |
-| event             | text          | verb: start, pause, resume, `request_approval`, approve, reject, complete, fail, cancel |
-| `principal_type`  | text          | user / agent / policy / schedule / system                                               |
-| `principal_id`    | bigint        |                                                                                         |
-| reason            | text          | nullable                                                                                |
-| `triggered_by`    | text          | nullable; upstream cause reference                                                      |
-| `created_at`      | `timestamptz` | append-only                                                                             |
+| Column | Type | Notes |
+|---|---|---|
+| `organization_id` | bigint FK | shard |
+| `rollout_id` | bigint FK | → `cd_rollouts` |
+| `from_state` | `smallint` | nullable (creation) |
+| `to_state` | `smallint` | |
+| event | text | verb: start, pause, resume, `request_approval`, approve, reject, complete, fail, cancel |
+| `principal_type` | text | user / agent / policy / schedule / system |
+| `principal_id` | bigint | |
+| reason | text | nullable |
+| `triggered_by` | text | nullable; upstream cause reference |
+| `created_at` | `timestamptz` | append-only |
 
 **`cd_deployment_transitions`**
 
-| Column            | Type          | Notes              |
-| ----------------- | ------------- | ------------------ |
-| `organization_id` | bigint FK     | shard              |
-| `deployment_id`   | bigint FK     | → `cd_deployments` |
-| `from_state`      | `smallint`    | nullable           |
-| `to_state`        | `smallint`    |                    |
-| event             | text          | verb               |
-| `principal_type`  | text          | polymorphic actor  |
-| `principal_id`    | bigint        |                    |
-| reason            | text          | nullable           |
-| `triggered_by`    | text          | nullable           |
-| `created_at`      | `timestamptz` | append-only        |
+| Column | Type | Notes |
+|---|---|---|
+| `organization_id` | bigint FK | shard |
+| `deployment_id` | bigint FK | → `cd_deployments` |
+| `from_state` | `smallint` | nullable |
+| `to_state` | `smallint` | |
+| event | text | verb |
+| `principal_type` | text | polymorphic actor |
+| `principal_id` | bigint | |
+| reason | text | nullable |
+| `triggered_by` | text | nullable |
+| `created_at` | `timestamptz` | append-only |
 
 **`cd_service_environment_healths`**
 
-| Column            | Type          | Notes                                                   |
-| ----------------- | ------------- | ------------------------------------------------------- |
-| `organization_id` | bigint FK     | shard                                                   |
-| `service_id`      | bigint FK     | → `cd_services`; UNIQUE(`service_id`, `environment_id`) |
-| `environment_id`  | bigint FK     | → `cd_environments`                                     |
-| health            | `smallint`    | latest observed signal; last-write-wins (not history)   |
-| `observed_at`     | `timestamptz` |                                                         |
+| Column | Type | Notes |
+|---|---|---|
+| `organization_id` | bigint FK | shard |
+| `service_id` | bigint FK | → `cd_services`; UNIQUE(`service_id`, `environment_id`) |
+| `environment_id` | bigint FK | → `cd_environments` |
+| health | `smallint` | latest observed signal; last-write-wins (not history) |
+| `observed_at` | `timestamptz` | |
 
 ### Version Sets, entries, and the multi-container case
 
-An Artifact Source is the unit of _independent versioning_, not of physical placement. Take a Pod with three containers, two of them the same image configured differently.
+An Artifact Source is the unit of *independent versioning*, not of physical placement. Take a Pod with three containers, two of them the same image configured differently.
 
-The same image is **one** Artifact Source → one Version → one entry in the Version Set. The driver maps that one source into two (or N) container slots — that mapping is configured ahead of time and lives behind the driver, not in Rails. The only thing that forces a second entry is a slot that's versioned _independently_; that is, by definition, a second source. So the rule is **one Version per source per set** (`UNIQUE(version_set_id, artifact_source_id)`), and how many slots a source lands in is the driver's problem.
+The same image is **one** Artifact Source → one Version → one entry in the Version Set. The driver maps that one source into two (or N) container slots — that mapping is configured ahead of time and lives behind the driver, not in Rails. The only thing that forces a second entry is a slot that's versioned *independently*; that is, by definition, a second source. So the rule is **one Version per source per set** (`UNIQUE(version_set_id, artifact_source_id)`), and how many slots a source lands in is the driver's problem.
 
 ### Environment tiers
 
@@ -439,7 +438,7 @@ When `cd_environment_tiers` ships, we backfill the four default rows for each or
 
 ## The Deploy Driver
 
-A Deploy Driver is the deployment _mechanism_, kept entirely behind an opaque seam. It is three pieces of data:
+A Deploy Driver is the deployment *mechanism*, kept entirely behind an opaque seam. It is three pieces of data:
 
 1. A **`Starlark` deployment workflow** — runs on AutoFlow, performs the deploy. Rails never sees inside it.
 2. An **Environment config schema** — what the driver needs to interact with an environment. For the Argo driver, a cluster agent id.
@@ -475,7 +474,7 @@ For this to work, the schemas carry **UI annotations**. The pipeline config sche
 
 ### The annotation convention
 
-Annotations live in a single custom keyword, **`gitlabUi`**, on any schema node. JSON Schema ignores keywords it doesn't recognize, so the schema stays valid — an annotation-unaware validator validates types and never looks at `gitlabUi`. The split is clean: **JSON Schema carries the type and constraints** (`type`, `enum`, `required`, `if`/`then`) — what Rails validates and stores; **`gitlabUi` carries the `widget`** — which control the form renders. A field is always (type) + (widget): `"type": "integer"` says _what it is_, `gitlabUi.widget: "agent_picker"` says _how to collect it_. Unknown widgets fall back to the default control for the type.
+Annotations live in a single custom keyword, **`gitlabUi`**, on any schema node. JSON Schema ignores keywords it doesn't recognize, so the schema stays valid — an annotation-unaware validator validates types and never looks at `gitlabUi`. The split is clean: **JSON Schema carries the type and constraints** (`type`, `enum`, `required`, `if`/`then`) — what Rails validates and stores; **`gitlabUi` carries the `widget`** — which control the form renders. A field is always (type) + (widget): `"type": "integer"` says *what it is*, `gitlabUi.widget: "agent_picker"` says *how to collect it*. Unknown widgets fall back to the default control for the type.
 
 Display copy — labels, option text, help — is **not** in the gem. The schema carries semantic identifiers: the field name, the `widget`, and `enum` values that are meaningful tokens (`canary`, `blue_green`). Rails owns the human-readable copy and maps those tokens to it. So fixing a label is a frontend change, not a Deployment Execution gem release — the two teams don't cut a gem to fix UI copy. A JSON Schema `description`, where present, is a developer comment; the UI never renders it.
 
@@ -483,14 +482,14 @@ Display copy — labels, option text, help — is **not** in the gem. The schema
 
 The widget vocabulary Rails commits to — deliberately small, exactly enough to render both Argo schemas:
 
-| Kind               | JSON Schema type                           | `gitlabUi.widget`     | UI renders                                                                                                                                  |
-| ------------------ | ------------------------------------------ | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| Reference picker   | underlying scalar (for example, `integer`) | `agent_picker`        | A typed resource picker resolving to the scalar id. Beta ships one target: `agent_picker`. New targets = new widget names, no Rails change. |
-| String input       | `string`                                   | `text` (default)      | Single-line text; the UI supplies label and placeholder.                                                                                    |
-| Number input       | `integer` / `number`                       | `number` (default)    | Numeric input; honors `minimum`/`maximum`.                                                                                                  |
-| Boolean toggle     | `boolean`                                  | `checkbox` (default)  | Checkbox; drives conditional fields.                                                                                                        |
-| Single-select enum | `string` + `enum`                          | `select` (default)    | Dropdown list; `enum` values are tokens, option labels supplied by the UI.                                                                  |
-| Conditional field  | any, gated by JSON Schema `if`/`then`      | inherits field widget | Shows/applies only when its condition holds. Validation and visibility read one source of truth.                                            |
+| Kind | JSON Schema type | `gitlabUi.widget` | UI renders |
+|---|---|---|---|
+| Reference picker | underlying scalar (for example, `integer`) | `agent_picker` | A typed resource picker resolving to the scalar id. Beta ships one target: `agent_picker`. New targets = new widget names, no Rails change. |
+| String input | `string` | `text` (default) | Single-line text; the UI supplies label and placeholder. |
+| Number input | `integer` / `number` | `number` (default) | Numeric input; honors `minimum`/`maximum`. |
+| Boolean toggle | `boolean` | `checkbox` (default) | Checkbox; drives conditional fields. |
+| Single-select enum | `string` + `enum` | `select` (default) | Dropdown list; `enum` values are tokens, option labels supplied by the UI. |
+| Conditional field | any, gated by JSON Schema `if`/`then` | inherits field widget | Shows/applies only when its condition holds. Validation and visibility read one source of truth. |
 
 The only `gitlabUi` property is `widget`. Labels, option text, and help live in the UI, keyed by the field and its `enum` tokens. **Out of scope for Beta:** `secret`-typed fields — secrets are resolved live by reference, never collected into a config blob; they'll get their own widget and resolution path later.
 
@@ -569,15 +568,15 @@ The conditional lives in real JSON Schema: when `use_load_balancing` is `true`, 
 
 The Environment config is collected when configuring an Environment and stored as `driver_config` on a driver binding. The Application-Environment config is collected per (application, environment) pair and embedded as an opaque blob inside the pipeline's deploy node — the pipeline config has a slot for it. Rails carries it through; the driver reads it. For the Argo driver this is also where per-Service source placement lives — the file and path in Git that Argo syncs each Service from. Driver-specific, so it rides in the same opaque blob; Rails doesn't model it.
 
-The **pipeline canvas** is _not_ configured through reflection. The pipeline config data structure is one shape, defined once by Deployment Execution and the same for every pipeline and every driver — so the canvas authors against that fixed structure directly. Reflection is only for the two per-driver config schemas.
+The **pipeline canvas** is *not* configured through reflection. The pipeline config data structure is one shape, defined once by Deployment Execution and the same for every pipeline and every driver — so the canvas authors against that fixed structure directly. Reflection is only for the two per-driver config schemas.
 
 ## Rollouts are immutable change records
 
 Audit, rollback, and reproducibility all fall out of immutable Rollouts. Get the Rollout right and the rest is free.
 
-A Rollout promotes a **Version Set** through one or more **Environments** — staging, then production-eu, then production-us — driven by a single AutoFlow workflow that moves the Version Set from one environment to the next until it's done. The Version Set is the _to_ (`version_set_id`, immutable). Each environment it lands in is a **Rollout Environment**, which records, for that environment:
+A Rollout promotes a **Version Set** through one or more **Environments** — staging, then production-eu, then production-us — driven by a single AutoFlow workflow that moves the Version Set from one environment to the next until it's done. The Version Set is the *to* (`version_set_id`, immutable). Each environment it lands in is a **Rollout Environment**, which records, for that environment:
 
-- `previous_version_set_id` — the _from_, the live set being replaced in that environment. NULL only for the first-ever Rollout to it.
+- `previous_version_set_id` — the *from*, the live set being replaced in that environment. NULL only for the first-ever Rollout to it.
 - `driver_binding_id` — the exact driver + config used there.
 - `position` — where it sits in the promotion order.
 
@@ -595,7 +594,7 @@ A Rollout carries a user-facing `iid` (the `#487` in the UI), sequential per App
 
 ### Rollback is a new Rollout
 
-There is no rollback _state_ and no rollback _entity_. To roll back, you create a new Rollout whose target Version Set is a prior one.
+There is no rollback *state* and no rollback *entity*. To roll back, you create a new Rollout whose target Version Set is a prior one.
 
 An Application goes `VS1 → VS2 → VS3` and VS2 turns out to be the problem. The rollback is a new Rollout targeting VS1; in each environment, its Rollout Environment records `from: VS3, to: VS1`. It's an ordinary Rollout — it pins its pipeline and driver bindings, it can pause, it can require approval, it's audited. "Is this a rollback?" is **derived** (the target is an earlier, previously-live set), not a flag. There is no `cause` enum either — the reasons multiply forever (a user triggers an agent evaluation, which finds a metric, which violates a policy, which requests the rollback). That chain is provenance, and provenance lives in the transition journal.
 
@@ -621,13 +620,13 @@ Rollout:    pending → in_progress ⇄ paused → { completed | failed | cancel
 Deployment: pending → deploying          → { healthy | degraded | failed | cancelled }
 ```
 
-`paused` means _literally not moving_ for a non-approval reason — an operator hold, or a timed pause the driver surfaces. Note: this is not a mirror of the Argo CR's pause. An indefinite Argo pause that our workflow advances programmatically is the workflow _working_ — that's `in_progress`. Only a pause the driver chooses to surface as "halted, will resume" becomes a Rails `paused`.
+`paused` means *literally not moving* for a non-approval reason — an operator hold, or a timed pause the driver surfaces. Note: this is not a mirror of the Argo CR's pause. An indefinite Argo pause that our workflow advances programmatically is the workflow *working* — that's `in_progress`. Only a pause the driver chooses to surface as "halted, will resume" becomes a Rails `paused`.
 
 There is deliberately no `awaiting_approval` state. Approval is not a state — it's a **gate** on forward progress. AutoFlow can suspend almost any step for human-in-the-loop, so gates have to be generic; baking each one in as a state means enumerating transitions out of every approval pseudo-state, and it still can't record who approved or why.
 
 ### The transition journal is the system of record
 
-Every state change, and every _request_ to change state, writes a row to a transition journal — `cd_rollout_transitions` and `cd_deployment_transitions`. Append-only. Immutable. Each row records the `from_state`/`to_state`, the `event` (the verb), the `principal` who acted, a `reason`, and a `triggered_by` link to the upstream cause.
+Every state change, and every *request* to change state, writes a row to a transition journal — `cd_rollout_transitions` and `cd_deployment_transitions`. Append-only. Immutable. Each row records the `from_state`/`to_state`, the `event` (the verb), the `principal` who acted, a `reason`, and a `triggered_by` link to the upstream cause.
 
 A **gate** is a journal event: a `request_approval` row suspends forward progress until an `approve`/`reject` row resolves it. Two rules make this clean:
 
@@ -651,20 +650,20 @@ cancel           in_progress → cancelled      ← never satisfied the gate
 
 The `state` column on the Rollout / Deployment is a denormalized cache of the latest applied `to_state`, kept for fast queries and the one-active-per-Application index. **The journal is the truth.**
 
-And: **events are ephemeral transport; the CD tables are the system of record.** When AutoFlow, a driver, or a policy signals a change over the events platform, Rails _persists_ it as a journal row. The events platform is never replayed for history; CD never depends on an external system to reconstruct its own past.
+And: **events are ephemeral transport; the CD tables are the system of record.** When AutoFlow, a driver, or a policy signals a change over the events platform, Rails *persists* it as a journal row. The events platform is never replayed for history; CD never depends on an external system to reconstruct its own past.
 
 ### How the PRD's states map
 
 The PRD describes a richer set of states. They line up with the operational-state-plus-gate model like this:
 
-| PRD state                      | This model                                                                                |
-| ------------------------------ | ----------------------------------------------------------------------------------------- |
-| Pending / In Progress / Paused | `pending` / `in_progress` / `paused`                                                      |
-| Awaiting Approval              | `in_progress` + an open `request_approval` gate (derived)                                 |
-| Completed / Failed / Canceled  | the matching terminal states                                                              |
-| Pending Rollback Approval      | a **new** rollback Rollout, `pending` + an open approval gate                             |
-| Rolling Back                   | that rollback Rollout, `in_progress`                                                      |
-| Rolled Back                    | that rollback Rollout, `completed` (the original is superseded; "rolled back" is derived) |
+| PRD state | This model |
+|---|---|
+| Pending / In Progress / Paused | `pending` / `in_progress` / `paused` |
+| Awaiting Approval | `in_progress` + an open `request_approval` gate (derived) |
+| Completed / Failed / Canceled | the matching terminal states |
+| Pending Rollback Approval | a **new** rollback Rollout, `pending` + an open approval gate |
+| Rolling Back | that rollback Rollout, `in_progress` |
+| Rolled Back | that rollback Rollout, `completed` (the original is superseded; "rolled back" is derived) |
 
 The desired behavior the PRD asks for is all there — it's just expressed as operational states, generic gates, and rollback-as-a-new-Rollout, rather than a wide state enum. Gates show up wherever AutoFlow suspends: a canary-step approval (gate on an advance), a pause that needs a human to resume (gate on `paused → in_progress`), or a deploy freeze (a policy `hold` is a gate).
 
@@ -674,11 +673,11 @@ Rails creates a Rollout, then asks AutoFlow to run it — `StartWorkflow`, handi
 
 ## Service health
 
-A Deployment is a change record. It reaches a terminal state _at deploy time_ and freezes. It does not track what happens to the service afterward.
+A Deployment is a change record. It reaches a terminal state *at deploy time* and freezes. It does not track what happens to the service afterward.
 
 But services degrade in production for reasons unrelated to a deploy — a dependency fails, load spikes. We keep the **latest health signal** from the environment for each Service in `cd_service_environment_healths`, updated continuously whether or not a Rollout is happening. It's a last-write-wins cache of an observed signal — the cluster is the source of truth, not Rails. It is **not** history and **not** Deployment state.
 
-Viewing health and metrics _over time_ is the problem space of Observability, which we have not tackled yet. When health degrades enough to act, that action is a new Rollout (a rollback or a roll-forward), possibly triggered by an agent or a policy. The old Deployment is never reopened.
+Viewing health and metrics *over time* is the problem space of Observability, which we have not tackled yet. When health degrades enough to act, that action is a new Rollout (a rollback or a roll-forward), possibly triggered by an agent or a policy. The old Deployment is never reopened.
 
 ## How new versions arrive
 
@@ -715,11 +714,11 @@ CD is exposed over GraphQL, at the Organization level: entity reads and writes (
 
 **Retention is compliance-driven.** Rollouts, Deployments, and the two transition journals are the audit trail — the reason invariant #3 exists. Retention is long and policy-driven; we archive rather than purge. A short rotating window would delete exactly the history a regulated customer is required to keep.
 
-When the high-growth tables (`cd_deployments` and the journals) need physical partitioning for scale, the scheme is [LIST by `partition_id`](https://docs.gitlab.com/development/database/partitioning/list/) — GitLab's idiomatic pattern for high-write append-only tables, where archiving is detaching a partition. _Not_ `created_at`: these are read by entity (`rollout_id`, `deployment_id`), not by date, so a time-range partition would force a time predicate the queries don't carry. Partitioning is separate from the `organization_id` sharding key and can be added later without reshaping the model, so it's deferred until volume warrants it.
+When the high-growth tables (`cd_deployments` and the journals) need physical partitioning for scale, the scheme is [LIST by `partition_id`](https://docs.gitlab.com/development/database/partitioning/list/) — GitLab's idiomatic pattern for high-write append-only tables, where archiving is detaching a partition. *Not* `created_at`: these are read by entity (`rollout_id`, `deployment_id`), not by date, so a time-range partition would force a time predicate the queries don't carry. Partitioning is separate from the `organization_id` sharding key and can be added later without reshaping the model, so it's deferred until volume warrants it.
 
 ## Open questions
 
 - **Workflow topology.** Is each per-Service Deployment a separate child workflow, or does one Rollout workflow coordinate them? This is settled enough to build the data model either way, but it affects whether a Deployment needs its own execution handle.
-- **Multiple concurrent gates.** A gate is "the latest unresolved `request_approval`." If a single step ever needs two approvals at once (say a security sign-off _and_ a change-management sign-off), an `approve` becomes ambiguous and we add a correlation id linking each resolution to its request. Not needed if at most one gate is open at a time.
+- **Multiple concurrent gates.** A gate is "the latest unresolved `request_approval`." If a single step ever needs two approvals at once (say a security sign-off *and* a change-management sign-off), an `approve` becomes ambiguous and we add a correlation id linking each resolution to its request. Not needed if at most one gate is open at a time.
 - **Access default.** Open-by-default vs. closed-by-default for CD resources is a product decision (and one Artifact Registry is also working through).
 - **Group ownership.** Deferred. Adding it later means deciding whether group-owned records move with a Group when it transfers between Organizations. If they do, that's a dual sharding key — `group_id` on every table — not the single `organization_id` key here.

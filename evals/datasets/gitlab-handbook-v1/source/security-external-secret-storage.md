@@ -7,11 +7,9 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Setting up external secret storage with Vault
 description: Process outline on how to setup external secrets storage as a secure alternative to environment variables.
 ---
-
 ## Overview
 
 This guide explains how to use HashiCorp Vault as an external secrets manager for your GitLab CI/CD pipelines. Properly managing secrets such as API keys and passwords is critical for maintaining security in your projects.
@@ -180,7 +178,7 @@ For ruby scripts use this:
 # check if running in CI and get variables as required
 if ENV['GITLAB_CI']
   gitlab_token = ENV['GITLAB_TOKEN']
-
+  
   # Read just the gitlab url from config.template
   File.readlines(directory + '/config.template').each do |line|
     if line.strip.match(/^url=(.+)$/) && url_section
@@ -194,7 +192,7 @@ else
   gitlab_token = nil
   gitlab_url = nil
   url_section = false
-
+  
   File.readlines(directory + '/config.ini').each do |line|
     if line.strip.match(/^token=(.+)$/) && url_section
       gitlab_token = $1

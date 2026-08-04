@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Topology Service Transactional Behavior"
 status: accepted
 creation-date: "2025-07-02"
@@ -22,8 +21,8 @@ This document outlines the design goals and architecture of Topology Service imp
 This document does simplify some concepts (intentionally or unintentionally), so it is not reflective of the actual implementation. The API presented should be considered as an example to present the concepts, not the final state.
 
 > Note:
-> The protobuf and database structures used in this document are only for presenting the behavior
-> and does not represent the final data structures used.
+The protobuf and database structures used in this document are only for presenting the behavior
+and does not represent the final data structures used.
 
 ## Essential Concepts
 
@@ -229,11 +228,11 @@ BeginUpdate() → Single transaction → Database constraints + lease exclusivit
 
 1. **Lease Record**: Insert into `claim_leases` with full payload
 2. **Create Claims**: Insert new claims with `status='LEASE_CREATING'` and the lease_uuid
-   - Primary key constraint on (claim_type, claim_value) prevents duplicates
-   - **Constraint**: Creates must reference claims that don't exist in the system
+    - Primary key constraint on (claim_type, claim_value) prevents duplicates
+    - **Constraint**: Creates must reference claims that don't exist in the system
 3. **Mark Destroys**: Update existing claims ONLY if it's not leased (`lease_uuid IS NULL`) AND `creator_id` matches the requesting cell
-   - Conditional update ensures no concurrent operations on same object AND only creator can destroy
-   - **Constraint**: Destroys must reference claims that are committed and not leased, and are owned by the requesting cell
+    - Conditional update ensures no concurrent operations on same object AND only creator can destroy
+    - **Constraint**: Destroys must reference claims that are committed and not leased, and are owned by the requesting cell
 4. **Batch Validation**: The same claim (`claim_type`, `claim_value`) can only have one operation (create or destroy) to avoid irreconcilable state transitions
 5. **Lease Exclusivity**: Only objects not being leased (`lease_uuid IS NULL`) are open for new operations
 6. **Atomic Success/Failure**: If any operation fails, entire transaction automatically rolls back

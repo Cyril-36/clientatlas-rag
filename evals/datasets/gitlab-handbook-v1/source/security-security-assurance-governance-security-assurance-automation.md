@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Security Assurance Automation"
 ---
 
@@ -23,8 +22,8 @@ We provide to the Security Assurance department an ability to automate processes
 
 To work with the Security Assurance Automation team, please create an issue following your team's relevant link below:
 
-| [Risk](https://gitlab.com/gitlab-com/gl-security/security-assurance/governance-and-field-security/governance/security-assurance-automation-subgroup/issue-landing/-/issues/new?issuable_template=risk_request) | [Compliance](https://gitlab.com/gitlab-com/gl-security/security-assurance/governance-and-field-security/governance/security-assurance-automation-subgroup/issue-landing/-/issues/new?issuable_template=compliance_request) | [Field Security](https://gitlab.com/gitlab-com/gl-security/security-assurance/governance-and-field-security/governance/security-assurance-automation-subgroup/issue-landing/-/issues/new?issuable_template=field_security_request) | [Governance](https://gitlab.com/gitlab-com/gl-security/security-assurance/governance-and-field-security/governance/security-assurance-automation-subgroup/issue-landing/-/issues/new?issuable_template=governance_request) | [Any other team](https://gitlab.com/gitlab-com/gl-security/security-assurance/governance-and-field-security/governance/security-assurance-automation-subgroup/issue-landing/-/issues/new?issuable_template=ad-hoc_request) |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Risk](https://gitlab.com/gitlab-com/gl-security/security-assurance/governance-and-field-security/governance/security-assurance-automation-subgroup/issue-landing/-/issues/new?issuable_template=risk_request)| [Compliance](https://gitlab.com/gitlab-com/gl-security/security-assurance/governance-and-field-security/governance/security-assurance-automation-subgroup/issue-landing/-/issues/new?issuable_template=compliance_request)| [Field Security](https://gitlab.com/gitlab-com/gl-security/security-assurance/governance-and-field-security/governance/security-assurance-automation-subgroup/issue-landing/-/issues/new?issuable_template=field_security_request)| [Governance](https://gitlab.com/gitlab-com/gl-security/security-assurance/governance-and-field-security/governance/security-assurance-automation-subgroup/issue-landing/-/issues/new?issuable_template=governance_request)| [Any other team](https://gitlab.com/gitlab-com/gl-security/security-assurance/governance-and-field-security/governance/security-assurance-automation-subgroup/issue-landing/-/issues/new?issuable_template=ad-hoc_request) |
+|-|-|-|-|-|
 
 Work related to the request will be performed within the dedicated issue. If an Epic is needed to track the work (maybe too big for an issue, which are often scoped to be completed within an iteration ie. 2 weeks), the issue will be promoted to an Epic, and the stakeholders will be able to track the work from there.
 
@@ -70,14 +69,14 @@ graph TD;
     style Issue_Completed color:#FFFFFF, fill:#070edf, stroke:#AA00FF
 ```
 
-| Label name         | Meaning                                                                      |
-| ------------------ | ---------------------------------------------------------------------------- |
-| `SAA::Backlog`     | All new issues start with this label                                         |
-| `SAA::Ready`       | Once groomed and reviewed, these issues can be picked up during an iteration |
-| `SAA::In-Progress` | Issues are actively worked on                                                |
-| `SAA::Blocked`     | Work has started but dependencies prevent further progress                   |
-| `SAA::Complete`    | All work has been completed                                                  |
-| `Unplanned`        | These issues weren't planned for the iteration but were picked up            |
+| Label name | Meaning |
+| --- | --- |
+| `SAA::Backlog` | All new issues start with this label |
+| `SAA::Ready` | Once groomed and reviewed, these issues can be picked up during an iteration |
+| `SAA::In-Progress` | Issues are actively worked on |
+| `SAA::Blocked` | Work has started but dependencies prevent further progress |
+| `SAA::Complete` | All work has been completed |
+| `Unplanned` | These issues weren't planned for the iteration but were picked up |
 
 #### Type
 
@@ -85,16 +84,16 @@ We use Type labels to determine what the work is about. Categories are as distin
 
 These categories can be changed or expanded upon depending on work items, the goal always being of accurately capturing what the SAA team member is working on.
 
-| Label name                     | Meaning                                              |
-| ------------------------------ | ---------------------------------------------------- |
-| `SAA-Type::Planning`           | Project Management activities                        |
-| `SAA-Type::Documentation`      | Writing, revamping, improving documentation          |
-| `SAA-Type::Maintenance`        | Issues related to maintenance of current automations |
-| `SAA-Type::Metrics`            | Work related to dashboards, reporting and metrics    |
-| `SAA-Type::Testing`            | QA, writing tests and reviewing code                 |
-| `SAA-Type::API-Integration`    | Integration between systems                          |
-| `SAA-Type::Process-Automation` | Automating manual team processes                     |
-| `SAA-Type::Control-Automation` | Specific automation of control testing               |
+| Label name | Meaning |
+| --- | --- |
+| `SAA-Type::Planning` | Project Management activities |
+| `SAA-Type::Documentation` | Writing, revamping, improving documentation |
+| `SAA-Type::Maintenance` | Issues related to maintenance of current automations |
+| `SAA-Type::Metrics` | Work related to dashboards, reporting and metrics |
+| `SAA-Type::Testing` | QA, writing tests and reviewing code |
+| `SAA-Type::API-Integration` | Integration between systems |
+| `SAA-Type::Process-Automation` | Automating manual team processes |
+| `SAA-Type::Control-Automation` | Specific automation of control testing |
 
 #### Source
 
@@ -102,14 +101,14 @@ We use Source labels to determine where the work item came from. Any additional 
 
 `SAA-Source::Assurance-Automation` is reserved for internal work where no direct external stakeholders/dependencies exist. This label can also be used once v1 of any work has been delivered already.
 
-| Label name                         | Meaning                                             |
-| ---------------------------------- | --------------------------------------------------- |
-| `SAA-Source::Risk`                 | Request from Risk                                   |
-| `SAA-Source::Governance`           | Request from Governance                             |
-| `SAA-Source::Compliance`           | Request from Compliance                             |
-| `SAA-Source::Field-Security`       | Request from Field Security                         |
-| `SAA-Source::Assurance-Automation` | Internal work                                       |
-| `SAA-Source::Ad-Hoc`               | Request from teams not mentioned (leadership, etc.) |
+| Label name | Meaning |
+| --- | --- |
+| `SAA-Source::Risk` | Request from Risk |
+| `SAA-Source::Governance` | Request from Governance |
+| `SAA-Source::Compliance` | Request from Compliance |
+| `SAA-Source::Field-Security` | Request from Field Security |
+| `SAA-Source::Assurance-Automation` | Internal work |
+| `SAA-Source::Ad-Hoc` | Request from teams not mentioned (leadership, etc.)|
 
 ### What does Security Assurance Automation own?
 
@@ -166,13 +165,13 @@ This approach is flexible enough to ensure the team doesn't spend valuable engin
 
 If work takes less than a full business day, weight of 1 will still be used for simplicity purposes.
 
-| Weight | Level of Effort                                                                                                                                                                                                                                |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1      | Basic - Simple, typically sub-issues that can be resolved with minimal effort and have straightforward solutions. They usually don't involve dependencies.                                                                                     |
-| 2      | Intermediate - Issues of moderate complexity that might have a few dependencies (ARs, specialized knowledge, API connections) or require some coordination amongst team members.                                                               |
-| 3      | Advanced - More complex issues that have many dependencies and require coordination across teams to complete. These issues will take more time to reach a solution.                                                                            |
-| 5      | Challenging - Larger issue with some complexity that require specialized knowledge or substantial problem-solving. They might involve architectural designs and decisions. These issues will typically be broken down into smaller sub-issues. |
-| 8      | Complex - Larger, more complex, issues that will require architectural designs and decisions. These issues are intricate, involve complex APIs, or require extensive changes. These issues will be broken down into smaller sub-issues.        |
+| Weight | Level of Effort |
+| -------- | ---------- |
+| 1 | Basic - Simple, typically sub-issues that can be resolved with minimal effort and have straightforward solutions. They usually don't involve dependencies. |
+| 2 | Intermediate - Issues of moderate complexity that might have a few dependencies (ARs, specialized knowledge, API connections) or require some coordination amongst team members. |
+| 3 | Advanced - More complex issues that have many dependencies and require coordination across teams to complete. These issues will take more time to reach a solution. |
+| 5 | Challenging - Larger issue with some complexity that require specialized knowledge or substantial problem-solving. They might involve architectural designs and decisions. These issues will typically be broken down into smaller sub-issues. |
+| 8 | Complex - Larger, more complex, issues that will require architectural designs and decisions. These issues are intricate, involve complex APIs, or require extensive changes. These issues will be broken down into smaller sub-issues. |
 
 ### Design
 
@@ -202,21 +201,21 @@ The `.gitlab-ci.yml` of module repositories will be used to test and package the
 
 Below is a list of libraries we use to assist with standardization:
 
-1. All Projects
-   - GitLab REST API Connection: [python-gitlab](https://python-gitlab.readthedocs.io/en/stable/)
-   - Logging: [loguru](https://loguru.readthedocs.io/en/stable/)
-   - Test Framework: [pytest](https://docs.pytest.org/en/stable/)
-   - Test Coverage: [coverage](https://coverage.readthedocs.io/en/coverage-5.3/)
-     - Test Coverage (Badge): [coverage-badge](https://pypi.org/project/coverage-badge/)
-   - LINT & Code Format: [ruff](https://docs.astral.sh/ruff/configuration/#pyprojecttoml-discovery)
-   - [Pre-Commit Hooks](https://gitlab.com/groups/gitlab-com/gl-security/security-assurance/governance-and-field-security/governance/security-assurance-automation-subgroup/-/wikis/Pre-Commit-Hooks)
-2. Scripts
-   - Dependency Management: [Pipenv](https://pipenv.pypa.io/en/latest/)
-   - CLI: [argparse](https://docs.python.org/3/library/argparse.html)
-3. Modules
-   - Dependency Management: [PDM](https://pdm-project.org/en/latest/)
-     - [PDM](https://pdm-project.org/latest/) has been selected over [Poetry](https://python-poetry.org/) due to PDM's direct support of [PEP 621](https://peps.python.org/pep-0621/), [PEP631](https://peps.python.org/pep-0631/), and [PEP 517](https://peps.python.org/pep-0517/)
-   - CLI: [click](https://click.palletsprojects.com/en/stable/)
+  1) All Projects
+     - GitLab REST API Connection: [python-gitlab](https://python-gitlab.readthedocs.io/en/stable/)
+     - Logging: [loguru](https://loguru.readthedocs.io/en/stable/)
+     - Test Framework: [pytest](https://docs.pytest.org/en/stable/)
+     - Test Coverage: [coverage](https://coverage.readthedocs.io/en/coverage-5.3/)
+        - Test Coverage (Badge): [coverage-badge](https://pypi.org/project/coverage-badge/)
+     - LINT & Code Format: [ruff](https://docs.astral.sh/ruff/configuration/#pyprojecttoml-discovery)
+     - [Pre-Commit Hooks](https://gitlab.com/groups/gitlab-com/gl-security/security-assurance/governance-and-field-security/governance/security-assurance-automation-subgroup/-/wikis/Pre-Commit-Hooks)
+  2) Scripts
+     - Dependency Management: [Pipenv](https://pipenv.pypa.io/en/latest/)
+     - CLI: [argparse](https://docs.python.org/3/library/argparse.html)
+  3) Modules
+     - Dependency Management: [PDM](https://pdm-project.org/en/latest/)
+        - [PDM](https://pdm-project.org/latest/) has been selected over [Poetry](https://python-poetry.org/) due to PDM's direct support of [PEP 621](https://peps.python.org/pep-0621/), [PEP631](https://peps.python.org/pep-0631/), and [PEP 517](https://peps.python.org/pep-0517/)
+     - CLI: [click](https://click.palletsprojects.com/en/stable/)
 
 As `Simple is better than complex.`, this standard definition will remain minimal.
 
@@ -244,18 +243,18 @@ Maturity Model 3: In this advanced stage, the primary objective is achieving a h
 
 Assessing control automation maturity in a `current state` and also a `potential state` can be helpful when considering where we'd like to move control tests and monitoring to state-wise and what the estimated benefit is from a strictly time-saving standpoint. To assess this, a general qualitative and quantitative definition can be used.
 
-When considering `current` vs. `potential`, it's important to bear in mind that control processes and/or control-test processes may require adjustment to enable automation. For example, if a current process has high variability in how it operates with inconsistent workflows and record keeping, this may be something that we are able to account for when manually assessing the design and operation of the control. But, it's a barrier to automating testing into the later maturity stages and keeps manual oversight as a critical step in control monitoring (_on top of the obvious concern that a highly variable process is likely difficult to operate well and introduces significant risk of the control not operating as intended_).
+When considering `current` vs. `potential`, it's important to bear in mind that control processes and/or control-test processes may require adjustment to enable automation. For example, if a current process has high variability in how it operates with inconsistent workflows and record keeping, this may be something that we are able to account for when manually assessing the design and operation of the control. But, it's a barrier to automating testing into the later maturity stages and keeps manual oversight as a critical step in control monitoring (*on top of the obvious concern that a highly variable process is likely difficult to operate well and introduces significant risk of the control not operating as intended*).
 
 ### Control Automation Maturity Scale
 
-| Level | Qualitative Definition                                                                                                                                                                                                                                                                              | Quantitative Definition         | Scalability Potential |
-| ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- | --------------------- |
+| Level | Qualitative Definition                                                                                                                                                                                                                                                                             | Quantitative Definition         | Scalability Potential |
+|-------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------|-----------------------|
 | 1     | The majority of the testing process is manual, including evidence collection.                                                                                                                                                                                                                       | <10% testing workload automated | Low                   |
-| 2     | There is minor automation in place (e.g. most evidence is collected automatically or upon a simple self-service request).                                                                                                                                                                           | ~30% testing workload automated | Low                   |
-| 3     | There is moderate automation in place (e.g evidence is collected and compiled almost entirely through scheduled or self-service automation. Testing decisions are entirely human generated.                                                                                                         | ~60% testing workload automated | Moderate              |
+| 2     | There is minor automation in place (e.g. most evidence is collected automatically or upon a simple self-service request).                                                                                                                                                                            | ~30% testing workload automated | Low                   |
+| 3     | There is moderate automation in place (e.g evidence is collected and compiled almost entirely through scheduled or self-service automation. Testing decisions are entirely human generated.                                                                                                        | ~60% testing workload automated | Moderate              |
 | 4     | The control is automated to the point of decisioning for some components of the control (e.g. evidence is collected and compiled for review automatically. Some of the testing with 100% confidence in compiled evidence is conducted automatically and remaining testing is performed by a human). | ~80% testing workload automated | High                  |
-| 5     | The control is automated entirely up to the point of human review over minor areas (e.g. evidence is collected and compiled with testing results, very few records require manual review and compiled testing provides insight to the reviewer for their consideration).                            | ~90% testing workload automated | Excellent             |
-| 6     | The control is automated to the furthest extent. Alerting is the primary form of notice of control effectiveness. Testing documentation is done in the form of outputted reports vs. compiled tests.                                                                                                | ~95% testing workload automated | Excellent             |
+| 5     | The control is automated entirely up to the point of human review over minor areas (e.g. evidence is collected and compiled with testing results, very few records require manual review and compiled testing provides insight to the reviewer for their consideration).                          | ~90% testing workload automated | Excellent             |
+| 6     | The control is automated to the furthest extent. Alerting is the primary form of notice of control effectiveness. Testing documentation is done in the form of outputted reports vs. compiled tests.                                                                                               | ~95% testing workload automated | Excellent             |
 
 ### How to use the scale?
 
@@ -277,7 +276,7 @@ Potential ratings can and should change (hopefully for the better) through techn
 
 Once current level is assessed - add the scoped label `ControlAutomationPotentialLevel::Level-X` to the epic/issue.
 
-_Note: When assessing potential, try to be realistic but ambitious. If you're rating potential as a 6 because you think that if the entire platform a process is currently operated in were to change, the process could reach a level 6 but otherwise the potential level is a level 3, that may not be an appropriate rating. On the other hand, if you think a potential level is a 6 if the team that operates the control were to moderately adapt their processes, that may be an appropriate rating._
+ *Note: When assessing potential, try to be realistic but ambitious. If you're rating potential as a 6 because you think that if the entire platform a process is currently operated in were to change, the process could reach a level 6 but otherwise the potential level is a level 3, that may not be an appropriate rating. On the other hand, if you think a potential level is a 6 if the team that operates the control were to moderately adapt their processes, that may be an appropriate rating.*
 
 ## <i class="fas fa-id-card" style="color:rgb(110,73,203)" aria-hidden="true"></i> Contact the Team
 

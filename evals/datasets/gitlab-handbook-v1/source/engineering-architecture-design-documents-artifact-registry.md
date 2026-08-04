@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Artifact Registry"
 status: proposed
 creation-date: "2025-12-15"
@@ -75,7 +74,6 @@ Document statuses you can use:
 <!-- vale gitlab.FutureTense = NO -->
 
 <!-- This renders the design document header on the detail page, so don't remove it-->
-
 {{< engineering/design-document-header >}}
 
 <!--

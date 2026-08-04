@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Jessica Ross - CFO - READ ME"
 description: "Learn more about working with Jessica Ross, chief financial officer at GitLab."
 ---
@@ -16,7 +15,7 @@ description: "Learn more about working with Jessica Ross, chief financial office
 
 ## Why I’m at GitLab
 
-I’m drawn to places where values, purpose, and performance come together. Places where the work matters, the people care, and the mission has real impact.
+I’m drawn to places where values, purpose, and performance come together.  Places where the work matters, the people care, and the mission has real impact.
 
 When I spent time with the GitLab management team and Board, I saw a company that is building something enduring: a platform that empowers developers, accelerates innovation, and helps organizations operate with greater transparency, trust, and velocity.
 
@@ -32,13 +31,13 @@ My career has been shaped by building and scaling teams, strengthening fundament
 
 I tend to think long-term, move with intention, and bring structure to ambiguity. I believe finance is at its best when it combines rigor with the art of the possible. When it delivers insight, not just numbers, and acts as a true strategic partner to the business.
 
-You’ll experience me as transparent, collaborative, and direct. I care deeply about ownership. Owning outcomes, decisions, and our collective success, and I work hard to create clarity so teams can move confidently.
+You’ll experience me as transparent, collaborative, and direct. I care deeply about ownership.  Owning outcomes, decisions, and our collective success, and I work hard to create clarity so teams can move confidently.
 
 My goal is to build an environment where people feel trusted, challenged, and supported. An environment where great ideas turn into meaningful impact.
 
 ## My Values
 
-_(in priority order)_
+*(in priority order)*
 
 **Family**
 

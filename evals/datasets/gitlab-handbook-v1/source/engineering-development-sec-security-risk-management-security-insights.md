@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Security Risk Management, Security Insights
 description: "The Security Insights group at GitLab is charged with developing solutions to enable customers to manage their security risks effectively and efficiently."
 ---
@@ -43,13 +42,13 @@ The Security Insights group is structured into three focused swimlanes that each
 
 ## Common Links
 
-- Slack channels:
-  - Main channel: [`#g_srm_security_insights`](hhttps://gitlab.enterprise.slack.com/archives/C07UD442PQ9)
-  - Engineering - All SRM groups: [`#s_srm_eng`](https://gitlab.enterprise.slack.com/archives/C05N5BLDYUT)
+* Slack channels:
+  * Main channel: [`#g_srm_security_insights`](hhttps://gitlab.enterprise.slack.com/archives/C07UD442PQ9)
+  * Engineering - All SRM groups: [`#s_srm_eng`](https://gitlab.enterprise.slack.com/archives/C05N5BLDYUT)
 
 ### Prioritization
 
-We use our Security Insights Priorities page for [17.x](https://about.gitlab.com/direction/security_risk_management/security-insights/17_security_insights_priorities.html) to track what we are doing, and what order to do it in.
+We use our  Security Insights Priorities page for [17.x](https://about.gitlab.com/direction/security_risk_management/security-insights/17_security_insights_priorities.html) to track what we are doing, and what order to do it in.
 
 ### Product Workflow
 
@@ -59,10 +58,10 @@ Additional information can be found on the [Planning page](/handbook/engineering
 
 ### Milestone Planning
 
-- On the second Tuesday of the month the Product Manager kicks off the planning issue. They identify priorities for the milestone and tag engineering managers, and stable counterparts (UX, QA) to review.
-- By the third Tuesday of the month the Engineering Managers have reviewed the planning issue and agreed on the scope for the milestone.
-  - All issues scheduled for the milestone should have the `~Deliverable` label as well as `Health Status: On Track` at the beginning of the milestone. The milestone field should also be set correctly.
-- The planning issue is created in this [epic](https://gitlab.com/groups/gitlab-org/-/epics/12683) for 17.0-17.11.
+* On the second Tuesday of the month the Product Manager kicks off the planning issue. They identify priorities for the milestone and tag engineering managers, and stable counterparts (UX, QA) to review.
+* By the third Tuesday of the month the Engineering Managers have reviewed the planning issue and agreed on the scope for the milestone.
+  * All issues scheduled for the milestone should have the `~Deliverable` label as well as `Health Status: On Track` at the beginning of the milestone. The milestone field should also be set correctly.
+* The planning issue is created in this [epic](https://gitlab.com/groups/gitlab-org/-/epics/12683) for 17.0-17.11.
 
 ### Issue Hygiene
 
@@ -76,21 +75,21 @@ To assess if a description has sufficient details, consider the following prompt
 
 To that end:
 
-- Any decisions made in a discussion/comment thread, are **required** to be reflected in the original issue description.
-  - To be clear - it's okay for details to be discussed in an issue, as long as a summary is reflected in the original description.
-- The **<abbr title="Directly Responsible Individual">DRI</abbr> is responsible** for ensuring the issue description is kept up to date (but may delegate).
-- **Recommendation:** find 5-10 mins per week (perhaps as part of a group sync) to ensure good issue hygiene.
+* Any decisions made in a discussion/comment thread, are **required** to be reflected in the original issue description.
+  * To be clear - it's okay for details to be discussed in an issue, as long as a summary is reflected in the original description.
+* The **<abbr title="Directly Responsible Individual">DRI</abbr> is responsible** for ensuring the issue description is kept up to date (but may delegate).
+* **Recommendation:** find 5-10 mins per week (perhaps as part of a group sync) to ensure good issue hygiene.
 
 #### Estimating Efforts
 
 We need to ensure we have a consistent, reliable, and simple (clearly understood) way to estimate and measure efforts, and that is adapted by **everyone** in the team.
 
-- We utilise the `Time tracking` field and use working time estimations, e.g `3d`, `2w`, `1mo` etc.
-- Estimations should be inclusive of: working days only, review buffer, and any personal adjustments (i.e if a task takes one person a bit longer than the other - that's perfectly fine).
+* We utilise the `Time tracking` field and use working time estimations, e.g `3d`, `2w`, `1mo` etc.
+* Estimations should be inclusive of: working days only, review buffer, and any personal adjustments (i.e if a task takes one person a bit longer than the other - that's perfectly fine).
   It's expected estimations will be **rough**.
-- Estimations are **aspirational** and we should try to stick to them, but team members will **not** be held accountable for missed estimations.
+* Estimations are **aspirational** and we should try to stick to them, but team members will **not** be held accountable for missed estimations.
   Instead, in cases where we underestimated the time to delivery, we want to learn why and how to better estimate following issues.
-- **Remember: it's always better to give higher estimations and negotiate down than vice versa.**
+* **Remember: it's always better to give higher estimations and negotiate down than vice versa.**
 
 #### Milestone Tracking
 
@@ -104,11 +103,11 @@ Every team member has the **responsibility** to suggest improvements to issue hy
 
 All work items should follow a clear three-tier hierarchy to ensure traceability, clarity of ownership, and effective planning.
 
-| Level | Type                                                                                                                           | Lifespan   | Focus                                                           |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------------------------------------------------------- |
-| 1     | [Epic](https://gitlab.com/gitlab-org/gitlab/-/blob/master/.gitlab/issue_templates/Security%20Insights%20-%20Epic.md)           | 1–3 months | **Why** are we doing this, and **what** are we building?        |
-| 2     | [Sub-Epic](https://gitlab.com/gitlab-org/gitlab/-/blob/master/.gitlab/issue_templates/Security%20Insights%20-%20Sub%20Epic.md) | 2–4 weeks  | **How** will we approach it, and **when** will it be delivered? |
-| 3     | [Issue](https://gitlab.com/gitlab-org/gitlab/-/blob/master/.gitlab/issue_templates/Security%20Insights%20-%20Issue.md)         | 1–5 days   | **Who** is responsible, and **where** does the change happen?\* |
+| Level | Type | Lifespan | Focus |
+| ----- | ---- | -------- | ----- |
+| 1 | [Epic](https://gitlab.com/gitlab-org/gitlab/-/blob/master/.gitlab/issue_templates/Security%20Insights%20-%20Epic.md) | 1–3 months | **Why** are we doing this, and **what** are we building? |
+| 2 | [Sub-Epic](https://gitlab.com/gitlab-org/gitlab/-/blob/master/.gitlab/issue_templates/Security%20Insights%20-%20Sub%20Epic.md) | 2–4 weeks | **How** will we approach it, and **when** will it be delivered? |
+| 3 | [Issue](https://gitlab.com/gitlab-org/gitlab/-/blob/master/.gitlab/issue_templates/Security%20Insights%20-%20Issue.md) | 1–5 days | **Who** is responsible, and **where** does the change happen?\* |
 
 \* _Note:_ Ideally, we’d use tasks for this level of granularity. However, tasks don’t currently appear on milestone Kanban boards,
 and we can’t track their status as we do with issues. For now, using issues gives us better visibility and consistency across planning and reporting.
@@ -117,10 +116,10 @@ and we can’t track their status as we do with issues. For now, using issues gi
 
 To keep our workflow predictable and transparent, relationships between issues should always be clear and maintained over time.
 
-- Use parent–child relationships to keep visibility across epics, sub-epics and issues.
-- Add issue links like "blocks" or "is blocked by" to flag dependencies early.
-- Use "relates to" issue links when work is connected but not directly dependent.
-- Keep epic descriptions up to date so they act as the single, reliable overview of everything linked to that initiative.
+* Use parent–child relationships to keep visibility across epics, sub-epics and issues.
+* Add issue links like "blocks" or "is blocked by" to flag dependencies early.
+* Use "relates to" issue links when work is connected but not directly dependent.
+* Keep epic descriptions up to date so they act as the single, reliable overview of everything linked to that initiative.
 
 #### Weekly async issue updates
 
@@ -129,13 +128,12 @@ At the end of every week, each engineer is expected to provide a quick async iss
 ```markdown
 ### Async issue update
 
-- Current status:
-
+* Current status:
 <!--- Please provide a quick summary of the current status (one sentence) -->
 
-- Shipping this milestone: <!-- Not confident | Slightly confident | Very confident -->
+* Shipping this milestone: <!-- Not confident | Slightly confident | Very confident -->
 
-- Scope reduction opportunities: <!-- No | Yes, ... -->
+* Scope reduction opportunities: <!-- No | Yes, ... -->
 
 /health_status <!-- on_track | needs_attention | at_risk -->
 /status <!-- "In dev" | "Blocked" | "In Review" | "Verification" | "Complete" -->
@@ -154,9 +152,9 @@ Raising risk early is important. The more time we have, the more options we have
 Follow these steps when raising or downgrading risk:
 
 1. Update the Health Status in the issue:
-   1. `On Track` - high confidence - there is no indication the work won't get merged by the second Tuesday of the month.
-   1. `Needs Attention` - medium confidence - the issue is blocked or has other factors that need to be discussed.
-   1. `At Risk` - low confidence - the issue is in jeopardy of missing the merge cutoff on the second Tuesday of the month.
+    1. `On Track` - high confidence - there is no indication the work won't get merged by the second Tuesday of the month.
+    1. `Needs Attention` - medium confidence - the issue is blocked or has other factors that need to be discussed.
+    1. `At Risk` - low confidence - the issue is in jeopardy of missing the merge cutoff on the second Tuesday of the month.
 1. Add a comment about why the risk has increased or decreased. Copy the Engineering Manager and Project Manager for awareness.
 
 Note that an issue probably shouldn't go directly from On Track to At Risk. That pattern indicates we have missed an opportunity to discuss earlier. Consider the progression: `On Track -> Needs Attention -> At Risk`.
@@ -176,24 +174,24 @@ Please keep track of the actions you're doing during your rotation and add notes
 
 Triage does not immediately guarantee a change to currently-planned work in a milestone. Triage is the process of determining impact and priority so we can justify changes to scope and milestone commitments.
 
-- Refine the request for help tickets: do we have reproduction steps, does this relate to other scoped or planned work, is this a bug or feature request or an acceptable limitation of the system.
-  - Outcomes could be: updates to our documentation or Handbook pages, validated reproduction of bugs and then creating issues from this.
-- Directly answering support questions.
-- Engaging with Product to agree on priority and scheduling of any work required. Work with Product to define severity and whether to interrupt the rest of the development team.
+* Refine the request for help tickets: do we have reproduction steps, does this relate to other scoped or planned work, is this a bug or feature request or an acceptable limitation of the system.
+  * Outcomes could be: updates to our documentation or Handbook pages, validated reproduction of bugs and then creating issues from this.
+* Directly answering support questions.
+* Engaging with Product to agree on priority and scheduling of any work required. Work with Product to define severity and whether to interrupt the rest of the development team.
 
 When dealing with Slack interactions you are expected to use the following reactions:
 
-- :eyes: - I am actively looking at this
-- :white_check_mark: (or a variant) - This is resolved
+* :eyes: - I am actively looking at this
+* :white_check_mark: (or a variant) - This is resolved
 
 #### Responsibilities - Support
 
 1. Monitor slack channels for questions, support requests, and alerts. The person assigned to the reaction rotation is expected to handle them primarily.
-   If a support engineer requests assistance via Slack and it requires investigation or debugging, they should be directed to raise an issue in [a dedicated project](https://gitlab.com/gitlab-com/sec-sub-department/section-sec-request-for-help).
+If a support engineer requests assistance via Slack and it requires investigation or debugging, they should be directed to raise an issue in [a dedicated project](https://gitlab.com/gitlab-com/sec-sub-department/section-sec-request-for-help).
 
-- [#g_srm_security_insights](https://gitlab.enterprise.slack.com/archives/C07UD442PQ9)
-- [s_srm](https://gitlab.enterprise.slack.com/archives/C07QUBQ98S1)
-- [#sec-section](https://gitlab.slack.com/archives/C02087FTL5V)
+* [#g_srm_security_insights](https://gitlab.enterprise.slack.com/archives/C07UD442PQ9)
+* [s_srm](https://gitlab.enterprise.slack.com/archives/C07QUBQ98S1)
+* [#sec-section](https://gitlab.slack.com/archives/C02087FTL5V)
 
 We utilize a standardized [Request for Help](https://gitlab.com/gitlab-com/request-for-help) process to request formal assistance from our group . This helps with visibility, tracking and review. Please submit a new Request for Help for Security Insights using [this template](https://gitlab.com/gitlab-com/request-for-help/-/issues/new?issuable_template=SupportRequestTemplate-Security-Insights).
 
@@ -204,20 +202,20 @@ We follow these guidelines when submitting MRs for review when the change is wit
 1. Aim to request at least one of the reviews from someone outside our group. This helps avoid a code knowledge silo.
 1. For time-critical reviews, consider using internal reviewers and maintainers.
 1. The initial review should be performed by a member of the team. This helps the team by:
-   - Faster reviews, as the reviewer is already familiar with the domain.
-   - Additional awareness of changes taking place within the domain.
-   - Identifying changes that don't align with what is happening with the domain.
-   - Providing additional confidence from a domain expert to the external maintainer reviewer that the change behaves as expected.
+   * Faster reviews, as the reviewer is already familiar with the domain.
+   * Additional awareness of changes taking place within the domain.
+   * Identifying changes that don't align with what is happening with the domain.
+   * Providing additional confidence from a domain expert to the external maintainer reviewer that the change behaves as expected.
 1. GraphQL merge requests should be reviewed by a frontend engineer as soon as possible. This
    helps to validate the interface, and allows changes to be made before tests are written.
 
 ### Issue Boards
 
-- [Security Insights Milestone Board](https://gitlab.com/groups/gitlab-org/-/boards/1754666?milestone_title=Started&label_name[]=group%3A%3Asecurity%20insights)
-  - Primary board showing the stage of currently planned issues.
+* [Security Insights Milestone Board](https://gitlab.com/groups/gitlab-org/-/boards/1754666?milestone_title=Started&label_name[]=group%3A%3Asecurity%20insights)
+  * Primary board showing the stage of currently planned issues.
 
-- [Security Insights "Who's working on what" board](https://gitlab.com/groups/gitlab-org/-/boards/7145903?milestone_title=Started)
-  - Shows issues assigned to engineers on our team.
+* [Security Insights "Who's working on what" board](https://gitlab.com/groups/gitlab-org/-/boards/7145903?milestone_title=Started)
+  * Shows issues assigned to engineers on our team.
 
 These boards show current status of issues.
 
@@ -231,8 +229,8 @@ We run scheduled E2E tests on both staging and production environments every 4 h
 
 We can monitor test results in the following Slack channels:
 
-- #e2e-run-staging
-- #e2e-run-production
+* #e2e-run-staging
+* #e2e-run-production
 
 For full details of scheduled E2E test pipelines running against live environments see [E2E test pipelines](../../../../testing/end-to-end-pipeline-monitoring#end-to-end-e2e-test-pipelines).
 
@@ -242,16 +240,16 @@ For full details of scheduled E2E test pipelines running against live environmen
 
 Ensure the following before running tests:
 
-- `gdk` is up and running
-- Runner is up and running
-- Set `GITLAB_SIMULATE_SAAS` to 0 inside your `gdk.yml` in the `gitlab-development-kit` directory:
+* `gdk` is up and running
+* Runner is up and running
+* Set `GITLAB_SIMULATE_SAAS` to 0 inside your `gdk.yml` in the `gitlab-development-kit` directory:
 
   ```shell
   env:
     GITLAB_SIMULATE_SAAS: "0"
   ```
 
-- Ensure EE License is set as an environment variable in your .env file.
+* Ensure EE License is set as an environment variable in your .env file.
 
 #### Running QA Tests
 
@@ -259,7 +257,7 @@ Use the following command to run tests locally against your GDK instance:
 
 #### Running against your `gdk`
 
-- With a feature flag enabled:
+* With a feature flag enabled:
 
   ```shell
   WEBDRIVER_HEADLESS=false bundle exec bin/qa Test::Instance::All http://gdk.test:3000/ <filename/path> --enable-feature <feature_flag_name>
@@ -267,13 +265,13 @@ Use the following command to run tests locally against your GDK instance:
 
 You can also run a specific RSpec line using <filename>:<line_number> to target the surrounding example block. See [RSpec best practices](https://docs.gitlab.com/development/testing_guide/best_practices/#rspec) for more details.
 
-- With a feature flag disabled:
+* With a feature flag disabled:
 
   ```shell
   WEBDRIVER_HEADLESS=false bundle exec bin/qa Test::Instance::All http://gdk.test:3000/ <filename/path> --disable-feature <feature_flag_name>
   ```
 
-- Without a feature flag:
+* Without a feature flag:
 
   ```shell
   WEBDRIVER_HEADLESS=false GITLAB_ADMIN_PASSWORD="root_password" GITLAB_QA_ADMIN_ACCESS_TOKEN="api_token_from_gdk" GITLAB_PASSWORD="root_password" QA_LOG_LEVEL=DEBUG QA_GITLAB_URL=http://gdk.test:3000 bundle exec rspec <filename/path>
@@ -312,49 +310,49 @@ See the [related handbook entry](https://docs.gitlab.com/ee/development/ee_featu
 
 ### Troubleshooting common errors and fixes
 
-- For general troubleshooting hints, see [E2E test troubleshooting](https://docs.gitlab.com/development/testing_guide/end_to_end/troubleshooting/).
+* For general troubleshooting hints, see [E2E test troubleshooting](https://docs.gitlab.com/development/testing_guide/end_to_end/troubleshooting/).
 
-- **Error: QA::Resource::Sandbox Fabrication Failed**
-  - Error Message:
+* **Error: QA::Resource::Sandbox Fabrication Failed**
+  * Error Message:
 
     ```plaintext
     Fabrication of QA::Resource::Sandbox using the API failed (400) with `{ "message": "Failed to save group {:visibility_level=[\"public has been restricted by your GitLab administrator\"]}" }`
     ```
 
-  - Solution:
-    - Navigate to GDK Admin Area → General
-    - Under Restricted Visibility Levels, ensure none of the checkboxes are selected.
+  * Solution:
+    * Navigate to GDK Admin Area → General
+    * Under Restricted Visibility Levels, ensure none of the checkboxes are selected.
 
-- **Error: API Client Validation Failed**
-  - Error message:
+* **Error: API Client Validation Failed**
+  * Error message:
 
     ```plaintext
     An error occurred in a `before(:suite)` hook.
     Failure/Error: raise InvalidTokenError, "API client validation failed! Code: #{resp.code}, Err: '#{resp.body}'"
     ```
 
-  - Solution:
-    - Ensure your user verification is complete before running a pipeline.
-    - Check if your API token is valid.
+  * Solution:
+    * Ensure your user verification is complete before running a pipeline.
+    * Check if your API token is valid.
 
-- **Error: Namespace is Not Valid**
-  - Error message:
+* **Error: Namespace is Not Valid**
+  * Error message:
 
     ```plaintext
     QA::Resource::Errors::ResourceFabricationFailedError:
     Fabrication of QA::Resource::Project using the API failed (400) with `{ "message": { "namespace": ["is not valid"] } }`.
     ```
 
-  - Solution:
-    - Reset your GDK by running:
+  * Solution:
+    * Reset your GDK by running:
 
       ```shell
       gdk data-reset
       ```
 
-- **Error: Webpack Module Parse Failed**
-  - Error message:
-
+* **Error: Webpack Module Parse Failed**
+  * Error message:
+  
     ```plaintext
     /.../.../.../gdk/gitlab/node_modules/graphql-ws/dist/client.js 75:56
     Module parse failed: Unexpected token (75:56)
@@ -367,18 +365,18 @@ See the [related handbook entry](https://docs.gitlab.com/ee/development/ee_featu
     |     };
     ```
 
-  - Solution:
-    - Switch from Webpack to Vite
-    - Run `gdk update`
+  * Solution:
+    * Switch from Webpack to Vite
+    * Run `gdk update`
 
 ### Running E2E specs in the MR pipeline
 
 We encourage running the `e2e: test-on-omnibus` downstream [E2E job](https://docs.gitlab.com/ee/development/testing_guide/end_to_end/#testing-code-in-merge-requests) in merge requests at least once and reviewing the results when there are changes in:
 
-- GraphQL (API response, query parameters, schema, etc.)
-- Gemfile (version changes, adding/removing gems)
-- Database schema/query changes
-- Any frontend changes that directly impact the vulnerability report page, MR security widget, pipeline security tab, security policies, configuration, or license compliance page.
+* GraphQL (API response, query parameters, schema, etc.)
+* Gemfile (version changes, adding/removing gems)
+* Database schema/query changes
+* Any frontend changes that directly impact the vulnerability report page, MR security widget, pipeline security tab, security policies, configuration, or license compliance page.
 
 ### Running Govern E2E specs locally against GDK
 
@@ -397,18 +395,18 @@ For any questions, reach out to [#s_developer_experience](https://gitlab.enterpr
 
 ### Resources
 
-- [Testing at GitLab handbook page](../../../../testing)
-- [Testing Code in Merge Requests](https://docs.gitlab.com/development/testing_guide/end_to_end/#testing-code-in-merge-requests)
-- [Running Govern E2E Specs Locally Against GDK](https://gitlab.com/gitlab-org/gitlab/-/tree/master/qa?ref_type=heads#generic-command-for-a-typical-gdk-installation)
-- [Automatic test execution when a feature flag definition changes](https://docs.gitlab.com/development/testing_guide/end_to_end/best_practices/feature_flags/#automatic-test-execution-when-a-feature-flag-definition-changes)
-- [End-to-end test pipelines](https://docs.gitlab.com/development/testing_guide/end_to_end/test_pipelines/)
-- [GitLab team member's guide to using official build infrastructure](https://docs.gitlab.com/omnibus/build/team_member_docs/)
-- [E2E testing overview video](../../../../testing/#-gitlab-end-to-end-testing-overview-video)
+* [Testing at GitLab handbook page](../../../../testing)
+* [Testing Code in Merge Requests](https://docs.gitlab.com/development/testing_guide/end_to_end/#testing-code-in-merge-requests)
+* [Running Govern E2E Specs Locally Against GDK](https://gitlab.com/gitlab-org/gitlab/-/tree/master/qa?ref_type=heads#generic-command-for-a-typical-gdk-installation)
+* [Automatic test execution when a feature flag definition changes](https://docs.gitlab.com/development/testing_guide/end_to_end/best_practices/feature_flags/#automatic-test-execution-when-a-feature-flag-definition-changes)
+* [End-to-end test pipelines](https://docs.gitlab.com/development/testing_guide/end_to_end/test_pipelines/)
+* [GitLab team member's guide to using official build infrastructure](https://docs.gitlab.com/omnibus/build/team_member_docs/)
+* [E2E testing overview video](../../../../testing/#-gitlab-end-to-end-testing-overview-video)
 
 ## Monitoring
 
-- [Error budget report](https://dashboards.gitlab.net/d/stage-groups-detail-security_insights/)
-- [Elastic dashboard](https://log.gprd.gitlab.net/goto/b7baf870-8203-11ed-85ed-e7557b0a598c)
+* [Error budget report](https://dashboards.gitlab.net/d/stage-groups-detail-security_insights/)
+* [Elastic dashboard](https://log.gprd.gitlab.net/goto/b7baf870-8203-11ed-85ed-e7557b0a598c)
 
 We have two Slack alerts which post to our Slack channel when there are unexpected errors in the vulnerability ingestion
 or SBoM ingestion processes respectively. These errors are usually indicative of a bug which is causing ingestion to fail.
@@ -425,13 +423,12 @@ To emulate this locally, follow these steps:
 
 1. Set up an environment variable in `gdk.yml`:
 
-   ```yaml
-   env:
-     GITLAB_SIMULATE_SAAS: "1"
-   ```
+    ```yaml
+    env:
+      GITLAB_SIMULATE_SAAS: "1"
+    ```
 
-   - Please refer to the [Environment variables](https://gitlab-org.gitlab.io/gitlab-development-kit/configuration/#environment-variables) section in the GitLab Development Kit (GDK) configuration page for the steps to set up environment variables.
-
+   * Please refer to the [Environment variables](https://gitlab-org.gitlab.io/gitlab-development-kit/configuration/#environment-variables) section in the GitLab Development Kit (GDK) configuration page for the steps to set up environment variables.
 1. Within the same shell session run `gdk restart`
 1. Admin > Settings > General > "Account and limit", enable "Allow use of licensed EE features"
 
@@ -452,4 +449,4 @@ If a team member creates an issue or finds an issue where we would be open to a 
 
 ### Group discussion
 
-We hold group discussions every other week. We alternate between a milestone kickoff and general discussion format. Everyone is invited to attend, and it's a great forum to ask questions about Vulnerability Management, customer queries, our road map, and what the Security Insights team might be thinking about. You can find the meetings on the [Security Insights calendar](#common-links); take a look at [the agenda](https://docs.google.com/document/d/1nnjYPNKtYzbpdEz16u0U2raDdLcIFY-0ibjxGLltyG0/edit?tab=t.0#heading=h.j80itk3qkjs3) (internal link). We hope to see you there!
+We hold group discussions every other week.  We alternate between a milestone kickoff and general discussion format. Everyone is invited to attend, and it's a great forum to ask questions about Vulnerability Management, customer queries, our road map, and what the Security Insights team might be thinking about. You can find the meetings on the [Security Insights calendar](#common-links); take a look at [the agenda](https://docs.google.com/document/d/1nnjYPNKtYzbpdEz16u0U2raDdLcIFY-0ibjxGLltyG0/edit?tab=t.0#heading=h.j80itk3qkjs3) (internal link). We hope to see you there!

@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: CFO Shadow Program
 ---
 
@@ -19,7 +18,7 @@ In the spirit of [boring solutions](/handbook/values/#boring-solutions), the CFO
 
 ## What to Expect
 
-The CFO Shadow program consists of a 1 or 2 week rotation, depending on the CFO's availability, where the shadow attends nearly all meetings with the CFO on Tuesday, Wednesday, and Thursday typically. If 2 consecutive weeks are available, the CFO shadow can apply to be scheduled for both weeks. Meetings are all-remote, so the program does not require travel, and meetings are conducted in regular business hours in Eastern Standard Time. Shadows should work with their managers to treat the Tues-Thurs of both weeks that they are participating in the program as time away from their day-to-day role so that they are able to focus primarily on the CFO Shadow experience. The days are commonly meeting heavy, so it's useful to plan to use any time at the end of the day to process what you learned, catch up on notes, or complete any small tasks assigned by the CFO.
+The CFO Shadow program consists of a 1 or 2 week rotation, depending on the CFO's availability, where the shadow attends nearly all meetings with the CFO on Tuesday, Wednesday, and Thursday typically. If 2 consecutive weeks are available, the CFO shadow can apply to be scheduled for both weeks. Meetings are all-remote, so the program does not require travel, and meetings are conducted in regular business hours in Eastern Standard Time.  Shadows should work with their managers to treat the Tues-Thurs of both weeks that they are participating in the program as time away from their day-to-day role so that they are able to focus primarily on the CFO Shadow experience. The days are commonly meeting heavy, so it's useful to plan to use any time at the end of the day to process what you learned, catch up on notes, or complete any small tasks assigned by the CFO.
 
 ## Eligibility
 
@@ -41,9 +40,9 @@ Participating in the shadow program is a privilege where you will be exposed to 
 
 ### Create an onboarding and offboarding issue
 
-We currently track onboarding and offboarding in the [cfo-shadow](https://gitlab.com/gitlab-com/Finance-Division/cfo-shadow) project. For questions, reach out to the [Staff EBA to the CFO](/handbook/eba/#e-group-member-ebas) in the `#cfo-shadow` channel
+ We currently track onboarding and offboarding in the [cfo-shadow](https://gitlab.com/gitlab-com/Finance-Division/cfo-shadow) project.  For questions, reach out to the [Staff EBA to the CFO](/handbook/eba/#e-group-member-ebas) in the `#cfo-shadow` channel
 
-At this time, we do not have a "See One, Teach One" [rotational rhythm](/handbook/ceo/shadow#rotation-rhythm) in place, but as a CFO shadow you should be prepared to be a buddy to the following quarter's shadow as described in the onboarding issue.
+ At this time, we do not have a "See One, Teach One" [rotational rhythm](/handbook/ceo/shadow#rotation-rhythm) in place, but as a CFO shadow you should be prepared to be a buddy to the following quarter's shadow as described in the onboarding issue.
 
 ### Consider adding goals
 
@@ -80,7 +79,7 @@ There will be short-term administrative tasks that you'll be asked to perform as
 - The CFO's Staff EBA will ask external people if they are comfortable with the shadows joining prior to the scheduled meeting, and will share a link to the CFO shadow page to provide context.
 - Meeting agendas should be shared with cfo-shadow@gitlab.com, as shadows will be added to this email alias prior to the rotation, and removed at the conclusion of it. For agendas that contain sensitive information, the sensitive information should be removed and the document shared with "View only" access to restrict access to the document's history. Not all agendas will be shared, though, and the CFO Shadows should feel empowered to ask for access if that is the case. Sometimes, the answer will be "no" for sensitive reasons.
 - There will be times where the Shadow will not attend meetings because a participant in the meeting is uncomfortable or prefers more privacy.
-  Shadows will be invited to join most 1:1's as an observer. You will not receive access to these agenda docs. If there are confidential matters to discuss, the shadow will be asked to drop off the Zoom near the end of the call for private discussion.
+Shadows will be invited to join most 1:1's as an observer. You will not receive access to these agenda docs. If there are confidential matters to discuss, the shadow will be asked to drop off the Zoom near the end of the call for private discussion.
 
 ### Shadow's Responsibilities During Meetings
 
@@ -88,13 +87,13 @@ Meetings come in many different formats. Your responsibilities may change slight
 
 Here are the responsibilities shadows have during meetings:
 
-| Meeting type                                                                            | Notes?         | Timekeeping?                    |
-| --------------------------------------------------------------------------------------- | -------------- | ------------------------------- |
-| 1-1                                                                                     | No notes       | No timekeeping unless requested |
-| 1-1 meetings with a GitLab [Board Member](/handbook/board-meetings/#board-of-directors) | No notes       | Timekeeping                     |
-| Internal meeting (CFO not host)                                                         | Notes optional | Timekeeping                     |
-| Investor Calls                                                                          | No notes       | Timekeeping                     |
-| Anything else (unless specified)                                                        | Notes          | Timekeeping                     |
+| Meeting type                     | Notes?         | Timekeeping?   |
+| -------------------------------- | -------------- | -------------- |
+| 1-1                              | No notes | No timekeeping unless requested |
+| 1-1 meetings with a GitLab [Board Member](/handbook/board-meetings/#board-of-directors)      | No notes       | Timekeeping    |
+| Internal meeting (CFO not host)  | Notes optional | Timekeeping    |
+| Investor Calls | No notes | Timekeeping    |
+| Anything else (unless specified) | Notes          | Timekeeping    |
 
 ### Keeping time
 
@@ -123,8 +122,8 @@ Press `Ctrl+C` if you need to cancel the alarm. You may keep the terminal window
 
 Finance team members have a high workload and may not be able to complete a full 3-day rotation. If you are interested in shadowing for the full or part of the weeks listed below, open the MR to add your name to schedule per the instructions on [How to Apply](#how-to-apply), and message the slack channel `#cfo-shadow` with the exact dates you are requesting.
 
-| Start Date         | End Date            | Shadow Name   |
-| ------------------ | ------------------- | ------------- |
-| Tuesday 2025-01-21 | Thursday 2025-01-23 | Stacy Cline   |
+| Start Date | End Date |Shadow Name |
+|----|---------|--------|
+| Tuesday 2025-01-21 | Thursday 2025-01-23 | Stacy Cline |
 | Tuesday 2025-03-18 | Thursday 2025-03-20 | Vikas Agrawal |
-| Tuesday 2025-03-25 | Thursday 2025-03-27 | Available     |
+| Tuesday 2025-03-25 | Thursday 2025-03-27 | Available |

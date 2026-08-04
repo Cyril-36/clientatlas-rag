@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: TaNewKi Tips
 description: New Hires Guide to Starting at GitLab
 ---
@@ -51,12 +50,12 @@ The People Operations team will be your primary guide throughout onboarding and 
 
 - Begin your workday whenever feels comfortable—we embrace [non-linear workdays](/handbook/company/culture/all-remote/non-linear-workday/#find-what-works-for-you). Our welcome email is sent at around 6am local time.
 - Check your personal email for onboarding instructions:
-  1. Go back to the Okta email you received the day before your start date. This email will allow you to activate your Okta account and also links you to the respective laptop setups and the steps to follow:
-     - [Mac OS](/handbook/eta/corporate-it/end-user-services/onboarding101/#laptop-setup-macbook)
-     - [Linux OS](/handbook/eta/corporate-it/end-user-services/onboarding101/#laptop-setup-linux)
-  1. Once you have activated your Okta account and setup your laptop, proceed with checking the welcome email to register your GitLab username (via accessing your GitLab email).
-  1. You will then be able to access your personalized [GitLab onboarding issue](https://gitlab.com/gitlab-com/people-group/people-operations/employment-templates/-/blob/main/.gitlab/issue_templates/onboarding.md).
-  1. You will also receive an invite from 1Password (for secure password management), please be sure to activate your account and store any passwords in your personal vault.
+    1. Go back to the Okta email you received the day before your start date. This email will allow you to activate your Okta account and also links you to the respective laptop setups and the steps to follow:
+        - [Mac OS](/handbook/eta/corporate-it/end-user-services/onboarding101/#laptop-setup-macbook)
+        - [Linux OS](/handbook/eta/corporate-it/end-user-services/onboarding101/#laptop-setup-linux)
+    1. Once you have activated your Okta account and setup your laptop, proceed with checking the welcome email to register your GitLab username (via accessing your GitLab email).
+    1. You will then be able to access your personalized [GitLab onboarding issue](https://gitlab.com/gitlab-com/people-group/people-operations/employment-templates/-/blob/main/.gitlab/issue_templates/onboarding.md).
+    1. You will also receive an invite from 1Password (for secure password management), please be sure to activate your account and store any passwords in your personal vault.
 
 #### Navigating Onboarding
 
@@ -154,7 +153,7 @@ A: Yes! All new team members receive $1,500 USD (or local equivalent) via a [vir
 
 **Q: When will my first paycheck be?**
 
-A: After your date of hire you can check the payroll cut-off dates in our internal handbook to determine your first pay date. **Please note the internal handbook can only be accessed once you have started at GitLab**. If you're hired after the cut-off date, the prorated amount will be included in the following month's paycheck. If you have any questions prior to your start date on the payroll cut off in respect to your start date, please reach out to us via `people_operations@gitlab.com`.
+A: After your date of hire you can check the payroll cut-off dates in our internal handbook to determine your first pay date. **Please note the internal handbook can only be accessed once you have started at GitLab**. If you're hired after the cut-off date, the prorated amount will be included in the following month's paycheck.  If you have any questions prior to your start date on the payroll cut off in respect to your start date, please reach out to us via `people_operations@gitlab.com`.
 
 **Q: How should I handle pre-planned vacations?**
 
@@ -211,14 +210,14 @@ A: [Family & Friends Day](/handbook/company/family-and-friends-day/) is our comp
 1. [Brag Docs](https://jvns.ca/blog/brag-documents/) are a way of tracking the work you've done. It can be a very helpful document when talking with managers, leadership, or when seeking promotions. Here's a [recording](https://youtu.be/oVd3jN76b5c) of an event hosted by the Early Career Team Member Discussion Group to talk about some advice for keeping a brag doc and more.
 1. To manage timezone pains:
 
-   - [Clocker App](https://apps.apple.com/us/app/clocker/id1056643111?mt=12)
+    - [Clocker App](https://apps.apple.com/us/app/clocker/id1056643111?mt=12)
 
-       <img src="/images/people-group/general-onboarding/clocker_app.png" alt="a screenshot of clocker app on mac desktop" width="300"/>
+        <img src="/images/people-group/general-onboarding/clocker_app.png" alt="a screenshot of clocker app on mac desktop" width="300"/>
 
-   - [Find a Time in Google Calendar](https://www.getclockwise.com/blog/google-calendar-find-a-time)
-   - [See Other TimeZone in Google Calendar](https://support.google.com/calendar/answer/37064?hl=en&co=GENIE.Platform%3DDesktop#zippy=%2Csee-other-time-zones)
-   - [Better Team Page](https://leipert-projects.gitlab.io/better-team-page/timezones/) - Okta Sign In Required
-   - [Every Timezone](https://everytimezone.com/)
+    - [Find a Time in Google Calendar](https://www.getclockwise.com/blog/google-calendar-find-a-time)
+    - [See Other TimeZone in Google Calendar](https://support.google.com/calendar/answer/37064?hl=en&co=GENIE.Platform%3DDesktop#zippy=%2Csee-other-time-zones)
+    - [Better Team Page](https://leipert-projects.gitlab.io/better-team-page/timezones/) - Okta Sign In Required
+    - [Every Timezone](https://everytimezone.com/)
 
 ## Acronym Dictionary
 
@@ -226,63 +225,63 @@ As point 23 on our [Communication Handbook page](/handbook/communication/#writin
 
 **Company Wide Acronyms**
 
-| Acronym | Word/Saying/Title                                                                                               |
-| :------ | :-------------------------------------------------------------------------------------------------------------- |
-| AMA     | [Ask Me Anything](/handbook/communication/ask-me-anything/)                                                     |
-| AR      | [Access Request](/handbook/eta/corporate-it/end-user-services/access-requests/access-requests/)                 |
-| DRI     | Directly Responsible Individual                                                                                 |
-| E-Group | Executive Group                                                                                                 |
-| EBA     | Executive Business Administrator                                                                                |
-| IC      | Individual Contributor                                                                                          |
-| IPO     | Initial Public Offering                                                                                         |
-| LGTM    | Looks good to (me/merge)!                                                                                       |
-| KPIs    | Key Performance Indicators                                                                                      |
-| MECC    | [Managing so Everyone Can Contribute](/teamops/)                                                                |
-| MNPI    | Material Non-Public Information                                                                                 |
-| MR      | Merge Request                                                                                                   |
-| MVC     | [Minimal Valuable Change](/handbook/values/#minimal-valuable-change-mvc) (not related to Model-View-Controller) |
-| OKRs    | [Objectives & Key Results](/handbook/company/okrs)                                                              |
-| PTO     | [Paid Time Off](/handbook/people-group/time-off-and-absence/time-off-types/)                                    |
-| SIRT    | [Security Incident Response Team](/handbook/security/security-operations/sirt)                                  |
-| TMRG    | [Team Member Resource Group](/handbook/company/culture/inclusion/#tmrgs---team-member-resource-groups)          |
+| Acronym| Word/Saying/Title |
+|:---------------|:---------------|
+| AMA | [Ask Me Anything](/handbook/communication/ask-me-anything/) |
+| AR | [Access Request](/handbook/eta/corporate-it/end-user-services/access-requests/access-requests/) |
+| DRI | Directly Responsible Individual |
+| E-Group | Executive Group |
+| EBA | Executive Business Administrator |
+| IC | Individual Contributor |
+| IPO | Initial Public Offering |
+| LGTM | Looks good to (me/merge)! |
+| KPIs| Key Performance Indicators |
+| MECC| [Managing so Everyone Can Contribute](/teamops/)|
+| MNPI | Material Non-Public Information  |
+| MR | Merge Request  |
+| MVC| [Minimal Valuable Change](/handbook/values/#minimal-valuable-change-mvc) (not related to Model-View-Controller)|
+| OKRs | [Objectives & Key Results](/handbook/company/okrs) |
+| PTO | [Paid Time Off](/handbook/people-group/time-off-and-absence/time-off-types/) |
+| SIRT | [Security Incident Response Team](/handbook/security/security-operations/sirt) |
+| TMRG | [Team Member Resource Group](/handbook/company/culture/inclusion/#tmrgs---team-member-resource-groups) |
 
 **Customer Success Related Acronyms**
 
-| Acronym | Word/Saying/Title                                                                                                  |
-| :------ | :----------------------------------------------------------------------------------------------------------------- |
-| VSD     | [Value Stream Disovery](/handbook/solutions-architects/sa-practices/value-stream-discovery)                        |
-| VSW     | [Value Stream Workshop](/handbook/solutions-architects/sa-practices/value-stream-discovery/#value-stream-workshop) |
-| L28D    | Short form for "Last 28 days".                                                                                     |
+| Acronym| Word/Saying/Title |
+|:---------------|:---------------|
+| VSD |  [Value Stream Disovery](/handbook/solutions-architects/sa-practices/value-stream-discovery) |
+| VSW |  [Value Stream Workshop](/handbook/solutions-architects/sa-practices/value-stream-discovery/#value-stream-workshop) |
+| L28D |  Short form for "Last 28 days". |
 
 **People Group Related Acronyms**
 
-| Acronym | Word/Saying/Title               |
-| :------ | :------------------------------ |
-| CES     | Candidate Experience Specialist |
-| PBP     | People Business Partner         |
-| POps    | People Operations               |
-| TA      | Talent Acquisition              |
-| TR      | Total Rewards                   |
+| Acronym| Word/Saying/Title |
+|:---------------|:---------------|
+| CES | Candidate Experience Specialist |
+| PBP | People Business Partner |
+| POps | People Operations |
+| TA | Talent Acquisition |
+| TR | Total Rewards |
 
 **Sales/Sales Related Acronyms**
 
-| Acronym | Word/Saying/Title           |
-| :------ | :-------------------------- |
-| ACV     | Annual Contract Value       |
-| ARR     | Annual Recurring Revenue    |
-| ASM     | Area Sales Manager          |
-| ATR     | Available To Renew          |
-| CAC     | Customer Acquisition Cost   |
-| CS      | Customer Success            |
-| FTE     | Full Time Equivalent        |
-| LAM     | Landed Addressable Market   |
-| LTV     | Life Time Value             |
-| MRR     | Monthly Recurring Revenue   |
-| PCV     | ProServe Contract Value     |
-| SA      | Solution Architect          |
-| SAE     | Strategic Account Executive |
-| SQL     | Sales Qualified Lead        |
-| SRE     | Site Reliability Engineer   |
-| CSM     | Customer Success Manager    |
-| TAM     | Total Addressable Market    |
-| TCV     | Total Contract Value        |
+| Acronym| Word/Saying/Title |
+|:---------------|:---------------|
+| ACV | Annual Contract Value |
+| ARR | Annual Recurring Revenue |
+| ASM | Area Sales Manager |
+| ATR | Available To Renew |
+| CAC | Customer Acquisition Cost |
+| CS | Customer Success |
+| FTE | Full Time Equivalent |
+| LAM | Landed Addressable Market |
+| LTV | Life Time Value |
+| MRR | Monthly Recurring Revenue |
+| PCV | ProServe Contract Value |
+| SA | Solution Architect |
+| SAE | Strategic Account Executive |
+| SQL | Sales Qualified Lead |
+| SRE | Site Reliability Engineer |
+| CSM | Customer Success Manager |
+| TAM | Total Addressable Market |
+| TCV | Total Contract Value |

@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Pronoun Guidance and Information"
 description: "Resources for understanding and discussing pronouns and their usage at GitLab."
 ---
@@ -158,7 +157,7 @@ Mistakes happen, and most people will understand that. How you respond when you 
 If you accidentally **use the wrong pronoun** for someone:
 
 1. Correct yourself briefly.
-   - Example: "She—sorry, they mentioned that in the last meeting."
+    - Example: "She—sorry, they mentioned that in the last meeting."
 2. Move on without making it a bigger moment than necessary.
 
 Over-apologizing or drawing out the interaction can make the other person feel uncomfortable or spotlighted.
@@ -206,6 +205,6 @@ These external resources offer more context and deeper learning on pronouns, gen
 - [**Reference:** Pronouns.org](https://pronouns.org/)
 - [**Article:** A Guide To Gender Identity Terms](https://www.npr.org/2021/06/02/996319297/gender-identity-pronouns-expression-guide-lgbtq)
 - [**Article:** 'She/They' and Other Pronouns You Might See on Candidate Profiles](https://www.linkedin.com/business/talent/blog/talent-acquisition/pronouns-you-might-see-on-candidate-profiles)
-- [**Book:** _Gender: A Graphic Guide_](https://introducingbooks.com/ib-title/gender-a-graphic-guide/)
-- [**Book:** _What's Your Pronoun? Beyond He and She_](https://wwnorton.com/books/9781631496042)
-- [**Book:** _A Quick & Easy Guide to They/Them Pronouns_](https://www.onipress.com/titles/project-one-f5w4d-233sh-3ybcx-9w275-dphaz-4h8ew-saabl-kdbm2-bed8a-szjan)
+- [**Book:** *Gender: A Graphic Guide*](https://introducingbooks.com/ib-title/gender-a-graphic-guide/)
+- [**Book:** *What's Your Pronoun? Beyond He and She*](https://wwnorton.com/books/9781631496042)
+- [**Book:** *A Quick & Easy Guide to They/Them Pronouns*](https://www.onipress.com/titles/project-one-f5w4d-233sh-3ybcx-9w275-dphaz-4h8ew-saabl-kdbm2-bed8a-szjan)

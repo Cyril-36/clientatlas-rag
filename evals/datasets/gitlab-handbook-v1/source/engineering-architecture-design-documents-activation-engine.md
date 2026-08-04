@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Activation Engine
 status: proposed
 creation-date: "2025-11-18"
@@ -400,8 +399,8 @@ action: push_code
 category: source_code
 internal_events: true
 extra_trackers:
-  - tracking_class: Gitlab::Tracking::PersonalizationTracking
-    protected_properties: {}
+    - tracking_class: Gitlab::Tracking::PersonalizationTracking
+      protected_properties: {}
 ```
 
 #### Event Flow

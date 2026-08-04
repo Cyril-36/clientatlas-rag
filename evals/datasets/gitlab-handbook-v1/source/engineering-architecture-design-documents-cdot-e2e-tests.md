@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: End-to-End Testing with Playwright in the Customers Portal
 status: accepted
 creation-date: "2026-02-19"
@@ -44,40 +43,40 @@ Implementation is tracked under the parent epic: [&21622 Adopt Playwright as the
 
 ### 🐳 Infrastructure & Setup
 
-| Issue                                                                           | Description                                                                   |
-| ------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [#16795](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16795) | Update GDK and CDot Docker containers to support Playwright E2E tests         |
+| Issue | Description |
+|-------|-------------|
+| [#16795](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16795) | Update GDK and CDot Docker containers to support Playwright E2E tests |
 | [#16796](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16796) | Set up Playwright configuration, environment handling, and base test patterns |
 
 ### 🔁 MR Pipeline Integration
 
-| Issue                                                                           | Description                                                                    |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| Issue | Description |
+|-------|-------------|
 | [#16797](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16797) | Run Playwright E2E jobs in MR pipelines for SaaS and Self-Managed environments |
-| [#16798](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16798) | Integrate Playwright JUnit results into GitLab MR test reporting               |
+| [#16798](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16798) | Integrate Playwright JUnit results into GitLab MR test reporting |
 
 ### ⏰ Staging & Observability
 
-| Issue                                                                           | Description                                                               |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Issue | Description |
+|-------|-------------|
 | [#16799](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16799) | Set up scheduled Playwright E2E test runs against the staging environment |
-| [#16800](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16800) | Implement Slack notifications for Playwright staging test failures        |
+| [#16800](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16800) | Implement Slack notifications for Playwright staging test failures |
 
 ### 📚 Documentation
 
-| Issue                                                                           | Description                                                                 |
-| ------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Issue | Description |
+|-------|-------------|
 | [#16801](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16801) | Document Playwright E2E test writing guidelines for CustomersDot developers |
 
 ### 👥 Coverage Ownership
 
-| Issue                                                                           | Group                                                                                               |
-| ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| [#16802](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16802) | `group::fulfillment platform` — Define critical user workflows and create E2E test coverage plan    |
-| [#16803](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16803) | `group::provision` — Define critical user workflows and create E2E test coverage plan               |
-| [#16804](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16804) | `group::seat management` — Define critical user workflows and create E2E test coverage plan         |
+| Issue | Group |
+|-------|-------|
+| [#16802](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16802) | `group::fulfillment platform` — Define critical user workflows and create E2E test coverage plan |
+| [#16803](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16803) | `group::provision` — Define critical user workflows and create E2E test coverage plan |
+| [#16804](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16804) | `group::seat management` — Define critical user workflows and create E2E test coverage plan |
 | [#16805](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16805) | `group::subscription management` — Define critical user workflows and create E2E test coverage plan |
-| [#16806](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16806) | `group::utilization` — Define critical user workflows and create E2E test coverage plan             |
+| [#16806](https://gitlab.com/gitlab-org/customers-gitlab-com/-/work_items/16806) | `group::utilization` — Define critical user workflows and create E2E test coverage plan |
 
 ## Motivation
 
@@ -201,16 +200,16 @@ Environment variables are centralized in [`playwright/helpers/env.js`](https://g
 
 ```javascript
 export function getEnv() {
-  const isCI = process.env.CI === "true" || process.env.CI_SERVER === "yes";
-  const isHeadless = process.env.HEADLESS !== "false";
-  const baseURL = process.env.CUSTOMER_PORTAL_URL || "http://localhost:5000";
+  const isCI = process.env.CI === 'true' || process.env.CI_SERVER === 'yes';
+  const isHeadless = process.env.HEADLESS !== 'false';
+  const baseURL = process.env.CUSTOMER_PORTAL_URL || 'http://localhost:5000';
   const testUserEmail = process.env.QA_TEST_USER_EMAIL;
   const testUserPassword = process.env.QA_TEST_USER_PASSWORD;
 
   if (!testUserEmail || !testUserPassword) {
     throw new Error(
-      "QA_TEST_USER_EMAIL and QA_TEST_USER_PASSWORD environment variables are required. " +
-        "Make sure that the `qa/docker/prepare_gitlab.rb` script was executed.",
+      'QA_TEST_USER_EMAIL and QA_TEST_USER_PASSWORD environment variables are required. ' +
+        'Make sure that the `qa/docker/prepare_gitlab.rb` script was executed.',
     );
   }
 
@@ -221,7 +220,7 @@ export function getEnv() {
     testUserEmail,
     testUserPassword,
     customerPortalUrl: baseURL,
-    gitlabUrl: process.env.GITLAB_URL || "http://localhost:3000",
+    gitlabUrl: process.env.GITLAB_URL || 'http://localhost:3000',
   };
 }
 ```
@@ -256,7 +255,7 @@ Page objects provide:
 Example test structure:
 
 ```javascript
-test("can complete purchase with existing payment method", async ({ page }) => {
+test('can complete purchase with existing payment method', async ({ page }) => {
   const purchasePage = new PurchasePage(page);
 
   await purchasePage.navigateToPurchase();

@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Security Internship"
 description: "The ultimate goal of this program is to transform an entry-level candidate into an Individual Contributor who could meet the requirements for a Security Engineer."
 ---

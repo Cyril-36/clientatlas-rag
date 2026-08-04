@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Finance
 ---
 
@@ -38,7 +37,7 @@ The GitLab Finance Department includes multiple Teams: Accounting, Financial Pla
 ## Correspondence
 
 - Please use the `#finance` chat channel in Slack for questions that don't seem appropriate for the issue tracker or internal email correspondence.
-- **Accounts Payable**- inquiries which relate to vendor and merchant invoices, or team member's expenses should be sent to our Accounts Payable mailbox - *ap@gitlab.com*. You can also reach the AP team on Slack in the `#accountspayable` or `#expense-reporting-inquiries` chat channels. Invoices that require payment processing should be sent to *ap@gitlab.com*.
+- **Accounts Payable**- inquiries which relate to vendor and merchant invoices, or team member's expenses should be sent to our Accounts Payable mailbox - *ap@gitlab.com*. You can also reach the AP team on Slack in the `#accountspayable` or `#expense-reporting-inquiries` chat channels.  Invoices that require payment processing should be sent to *ap@gitlab.com*.
 - **Billing Operations**- customer billing inquiries should be sent to our Billing mailbox – *billing@gitlab.com*.
 - **Accounts Receivable** - customer payment/remittance inquiries should be sent to our Accounts Receivable mailbox - *AR@gitlab.com*
 - **Payroll**- inquiries which relate to contractor invoices should be sent to our Payroll mailbox - *nonuspayroll@gitlab.com*.
@@ -91,12 +90,12 @@ GitLab's Fiscal Year runs from February 1 to January 31. The fiscal year naming 
 - Q3: August 1 through October 31
 - Q4: November 1 through January 31
 
-| Fiscal Year | Calendar Year            |
-| ----------- | ------------------------ |
-| FY27-Q1     | 2026-02-01 to 2026-04-30 |
-| FY27-Q2     | 2026-05-01 to 2026-07-31 |
-| FY27-Q3     | 2026-08-01 to 2026-10-31 |
-| FY27-Q4     | 2026-11-01 to 2027-01-31 |
+| Fiscal Year | Calendar Year |
+| ----------- | ------------- |
+| FY27-Q1 | 2026-02-01 to 2026-04-30 |
+| FY27-Q2 | 2026-05-01 to 2026-07-31 |
+| FY27-Q3 | 2026-08-01 to 2026-10-31 |
+| FY27-Q4 | 2026-11-01 to 2027-01-31 |
 
 Refer to our [writing style guidelines](/handbook/communication/#writing-style-guidelines) for proper use of date formats.
 
@@ -123,8 +122,8 @@ In many cases, VAT will not be payable on transactions between GitLab BV and EU-
 vendors/contractors, thanks to "Shifted VAT". To make use of this shifted VAT:
 
 - The vendor/contractor writes the phrase "VAT shifted to recipient according to
-  article 44 and 196 of the European VAT Directive" on the invoice along with the
-  VAT-number of GitLab IT BV (NL860316828B01).
+article 44 and 196 of the European VAT Directive" on the invoice along with the
+VAT-number of GitLab IT BV (NL860316828B01).
 - On the vendor's VAT return the revenue from GitLab BV goes to the rubric "Revenue within the EU". It goes without saying that vendors are responsible for their own correct and timely filings.
 - GitLab BV files the VAT on the VAT return, and is generally able to deduct this VAT all as part of the same return.
 
@@ -143,14 +142,14 @@ For example, work to enable a sales partner that will not be incorporated into t
 
 ### Finance Business Partner Alignment
 
-| Function              | Name                                                                    |
-| --------------------- | ----------------------------------------------------------------------- |
-| Customer Support      | [R&D Finance](financial-planning-and-analysis/r-and-d-finance/)         |
-| R & D                 | [R&D Finance](financial-planning-and-analysis/r-and-d-finance/)         |
-| Sales                 | [Sales Finance](financial-planning-and-analysis/sales-finance/)         |
-| Professional Services | [Sales Finance](financial-planning-and-analysis/sales-finance/)         |
-| Marketing             | [Marketing Finance](financial-planning-and-analysis/marketing-finance/) |
-| G & A                 | Ellen Boyd and Jess Smith                                               |
+| Function | Name |
+| -------- | ---- |
+| Customer Support | [R&D Finance](financial-planning-and-analysis/r-and-d-finance/) |
+| R & D | [R&D Finance](financial-planning-and-analysis/r-and-d-finance/) |
+| Sales | [Sales Finance](financial-planning-and-analysis/sales-finance/) |
+| Professional Services | [Sales Finance](financial-planning-and-analysis/sales-finance/) |
+| Marketing | [Marketing Finance](financial-planning-and-analysis/marketing-finance/) |
+| G & A | Ellen Boyd and Jess Smith |
 
 ### Types of Work that the team does
 

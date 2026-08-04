@@ -7,15 +7,12 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "GitLab Data Classification Standard"
 toc_hide: true
 controlled_document: true
 tags:
-
-- security_standard
-- security_standard_caplscsi
-
+  - security_standard
+  - security_standard_caplscsi
 ---
 
 {{< label name="Visibility: Audit" color="#E24329" >}}
@@ -30,11 +27,11 @@ The Data Classification Standard applies to all GitLab team members, contractors
 
 ## Roles &amp; Responsibilities
 
-| Role                             | Responsibility                                                                                                                         |
-| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| GitLab Team Members              | Responsible for adhering to the requirements outlined in this standard                                                                 |
-| Data Owners                      | Responsible for approving exceptions to this standard for their owned data types. These are generally the Business Owners of a system. |
-| Security and Legal (Code Owners) | Responsible for approving significant changes and exceptions to this standard                                                          |
+| Role  | Responsibility |
+|-----------|-----------|
+| GitLab Team Members | Responsible for adhering to the requirements outlined in this standard |
+| Data Owners | Responsible for approving exceptions to this standard for their owned data types. These are generally the Business Owners of a system. |
+| Security and Legal (Code Owners) | Responsible for approving significant changes and exceptions to this standard |
 
 ### GitLab Responsibilities
 
@@ -75,9 +72,7 @@ Examples include:
 - Customer Data (see definition above in the [Data Classification Definitions section](/handbook/security/policies_and_standards/data-classification-standard/#data-classification-definitions))
 
 <!-- markdownlint-disable MD022 -->
-
 ##### REGULATED RED
-
 {style="color: #8B0000" #regulated}
 <!-- markdownlint-enable MD022 -->
 
@@ -101,12 +96,10 @@ Data requiring FedRAMP Moderate or High security controls for federal cloud serv
 - Data requiring compliance with FedRAMP security control baselines
 - Information systems processing federal data under FedRAMP authorizations
 
-Red Data including Regulated Data may not be transmitted from an approved Red data source to any other systems or solutions without first obtaining approval from the Privacy and Security teams. Any Vendors that process Red Data must first undergo a factual and legal analysis that justifies their processing in accordance with our Customer agreements, as well as global privacy and data security laws. For any questions or concerns related to the transmission of Red data between systems, please reach out to # security_help.
+Red Data including Regulated Data may not be transmitted from an approved Red data source to any other systems or solutions without first obtaining approval from the Privacy and Security teams.  Any Vendors that process Red Data must first undergo a factual and legal analysis that justifies their processing in accordance with our Customer agreements, as well as global privacy and data security laws. For any questions or concerns related to the transmission of Red data between systems, please reach out to # security_help.
 
 <!-- markdownlint-disable MD022 -->
-
 #### ORANGE
-
 {style="color: #fd7e14" #orange}
 <!-- markdownlint-enable MD022 -->
 
@@ -132,9 +125,7 @@ Please be aware of how combining data elements could lead to impacting a Team Me
 {{% /alert %}}
 
 <!-- markdownlint-disable MD022 -->
-
 #### YELLOW
-
 {style="color: #ffc107" #yellow}
 <!-- markdownlint-enable MD022 -->
 

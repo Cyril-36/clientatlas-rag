@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Threat Modeling"
 description: "The threat modeling process, and the framework used by the GitLab Security Team."
 ---
@@ -19,7 +18,7 @@ Within the context of GitLab, there are different risks we evaluate. Will my cod
 ## Getting Started
 
 {{% alert title="Note" color="primary" %}}
-With the introduction of a AI supported threat model agent, every engineer can create a threat model from scratch themselves.
+With the introduction of a AI supported threat model agent, every engineer can create a threat model from scratch themselves. 
 For more information consult the [how-to guide to threat modeling](howto.md)
 {{% /alert %}}
 
@@ -27,7 +26,7 @@ Here are a few resources to help get you started in threat modeling:
 
 We've developed an issue template available [here](https://gitlab.com/gitlab-com/gl-security/product-security/appsec/threat-models/-/issues/new?issuable_template=Threat%20Model) (private link) that you can use to create an issue documenting your threat model. It's required that Engineering provide technical documentation when creating a threat model issue. We also request that the application decomposition, use case, external entrypoints, trust levels, data flow diagram as well as the previous security issues (if any) sections are filled out.
 
-The basis of our threat modeling is modeled after [PASTA](https://en.wikipedia.org/wiki/Threat_model#P.A.S.T.A.) It should be noted that a full PASTA threat model is usually not required as it involves 7 steps, and in many cases only the steps 4, 5, and 6 are needed. To make it even easier, you can use [STRIDE](<https://en.wikipedia.org/wiki/STRIDE_(security)>) to help define the threats.
+The basis of our threat modeling is modeled after [PASTA](https://en.wikipedia.org/wiki/Threat_model#P.A.S.T.A.) It should be noted that a full PASTA threat model is usually not required as it involves 7 steps, and in many cases only the steps 4, 5, and 6 are needed. To make it even easier, you can use [STRIDE](https://en.wikipedia.org/wiki/STRIDE_(security)) to help define the threats.
 
 Therefore we've included a beginner-friendly [how-to guide to threat modeling](howto/) which you should read if you're new to threat modeling. It includes a bit more detail about using STRIDE. If you need additional help, please ping the AppSec team or reach out in the `#security_help` Slack channel.
 
@@ -57,11 +56,11 @@ One might ask why we are doing this. Our reasoning involves these important poin
 - Being a secure company with a mature and robust code base is our goal, and this helps with that effort
 - We already have a large code base - instead of trying to rewrite and re-analyze everything from scratch, threat modeling gives us a tool to evaluate new changes to help mitigate future risks. As we triage security issues or introduce new security-related features, we have a tool that will allow us to work off some of the organization and technical debt associated with security and risk is easier-to-digest pieces.
 
-_The overall goal is not to create a rigid structure that must be strictly followed, but an adaptive tool that proactively helps uncover security risks before they occur and even chart out solutions based upon the likelihood of the risk._
+*The overall goal is not to create a rigid structure that must be strictly followed, but an adaptive tool that proactively helps uncover security risks before they occur and even chart out solutions based upon the likelihood of the risk.*
 
 After evaluation of several popular frameworks, we elected to use the [PASTA](https://www.wiley.com/en-us/Risk+Centric+Threat+Modeling%3A+Process+for+Attack+Simulation+and+Threat+Analysis-p-9780470500965#) framework as a base, and with a few minor tweaks for GitLab's environment, we've completed the framework. An overview from the author of the original book can be found [here](https://www.youtube.com/watch?v=hHIgW8ZUi4A).
 
-_We still welcome changes to the framework and deem it to be as much of a living document as the rest of the handbook._
+*We still welcome changes to the framework and deem it to be as much of a living document as the rest of the handbook.*
 
 ### The Framework
 
@@ -71,7 +70,7 @@ There are several other threat modeling frameworks, however others were deemed e
 
 Other threat modeling frameworks examined:
 
-- [STRIDE](<https://en.wikipedia.org/wiki/STRIDE_(security)>). This has been used by Microsoft, and is primarily focused on threats themselves, and tends to lean toward known/existing threats. As they outgrew STRIDE, they developed [SDL](https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool) (that runs on Microsoft Windows) that allows them to define templates and evaluate threats. We do not run Windows, nor does our focus involve the existing templates they have designed for it. As a part of the overall development process within Microsoft, it is still more "code-centric" that we need.
+- [STRIDE](https://en.wikipedia.org/wiki/STRIDE_(security)). This has been used by Microsoft, and is primarily focused on threats themselves, and tends to lean toward known/existing threats. As they outgrew STRIDE, they developed [SDL](https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool) (that runs on Microsoft Windows) that allows them to define templates and evaluate threats. We do not run Windows, nor does our focus involve the existing templates they have designed for it. As a part of the overall development process within Microsoft, it is still more "code-centric" that we need.
 - Evil Personas. The focus of Evil Personas similar to regular Personas, but the emphasis is on threat actors. it does not cover code-centric projects, just perceived threats. Useful, but limited as it assumes a threat is a person or group of people. Most "persona" scenarios are usually built in or added onto other threat models, refer to [this paper on Attack Personas](https://www.cs.ox.ac.uk/files/4007/PID1871807.pdf) for a reference to the more aggressive side of personas in threat modeling.
 - Playing cards. There are several versions of this including [Elevation of Privilege](https://github.com/adamshostack/eop) Extremely useful tool, but better designed for in-person collaborations, and is more aligned with STRIDE in mind. Similar to Attack Trees, it focuses more on the attack end in reference to a chunk of infrastructure or code. This would be a fun thing to do at a future Contribute, but it does not scale well for a Zoom-based culture.
 - [Attack Trees](https://en.wikipedia.org/wiki/Attack_tree). The focus is on attacks only, as a process to map flaws in existing code and systems.
@@ -166,7 +165,7 @@ GitLab's best practices applied to components of the project.
 - Best practices for coding are applied here as well, the "Sec" part of DevSecOps and our integration of this into CI/CD.
 - SAST/DAST policies and scopes. We can "eat our own dogfood" to improve the quality of the changes we implement.
 
-_Applies Stage I & Stage II of PASTA_
+*Applies Stage I & Stage II of PASTA*
 
 ### Evidence Driven threat model
 
@@ -176,7 +175,7 @@ Proof of a threat via numerous indicators as opposed to just theory or conjectur
 - Focus on logs that support attack vector with the greatest motives (e.g. TLS MITM vs Injection-based attacks).
 - Correlate threat intel for foreseeing trends of attacks for target applications that are related to project components.
 
-_Applies Stage III, IV, V of PASTA_
+*Applies Stage III, IV, V of PASTA*
 
 ### Full Risk Based Threat Model
 
@@ -185,7 +184,7 @@ _Applies Stage III, IV, V of PASTA_
 - This includes threat intel, H1 trends, existing logs
 - Substantiate the threats that are defined with real data
 
-_Applies all stages of PASTA_
+*Applies all stages of PASTA*
 
 ## Additional Resources
 

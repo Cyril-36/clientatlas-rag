@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "GitLab Data Exploration and Querying Architecture"
 status: "ongoing"
 creation-date: "2025-04-24"
@@ -16,9 +15,7 @@ coaches: [ "@ahegyi" ]
 dris: [ "@lfarina8", "@nicholasklick" ]
 owning-stage: "~devops::analytics"
 participating-stages: ["~group::optimize", "~devops::plan"]
-
 # Hides this page in the left sidebar. Recommended so we don't pollute it.
-
 toc_hide: true
 ---
 

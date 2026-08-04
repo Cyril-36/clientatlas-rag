@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Yubikey Self-Service Purchasing Guide"
 description: "You can self-service purchase a YubiKey through our centralized ordering portal. YubiKeys cannot be purchased and expensed separately unless pre-approved by IT for countries that we do not support shipping to."
 ---
@@ -27,7 +26,7 @@ If you would like a replacement YubiKey or a new YubiKey for the first time, ver
 1. Open Slack.
 2. Type `/yubikey` in any message or channel.
 3. A self-service order form will open that you can fill out.
-   > This is connected to our centralized ordering portal. Your order is paid for centrally by GitLab and you do not need to submit an expense report.
+    > This is connected to our centralized ordering portal. Your order is paid for centrally by GitLab and you do not need to submit an expense report.
 4. Please allow a few days for vendor processing. An email confirmation is sent to you when your YubiKeys have shipped.
 5. Depending on your country, you will usually receive your YubiKey within 2 weeks.
 

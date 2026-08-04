@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Engineering Career Development"
 ---
 
@@ -116,7 +115,7 @@ An [Acting Manager](/handbook/people-group/promotions-transfers/#acting) is some
 When a team member is pursuing a people manager role (Level Manager+) long term we apply an interim period in the following instances:
 
 | Current level      | Desired level  | Previous Management experience (3+ months) | Application of interim period |
-| ------------------ | -------------- | ------------------------------------------ | ----------------------------- |
+|--------------------|----------------|--------------------------------------------|-------------------------------|
 | Senior             | Manager        | No                                         | Yes                           |
 |                    |                | Yes                                        | Yes                           |
 | Staff              | Manager        | No                                         | Yes                           |
@@ -126,7 +125,7 @@ When a team member is pursuing a people manager role (Level Manager+) long term 
 | Manager/Sr Manager | Director       | No (managing managers)                     | Yes                           |
 |                    |                | Yes (managing managers)                    | No                            |
 
-_Note that `previous management experience` can be management experience in a previous organization, or management experience at GitLab. ["Acting"](/handbook/people-group/promotions-transfers/#acting) role management experience at GitLab can also count towards the 3 month threshold if that acting role was similar in scope and influence as the interim period would have been as evaluated by the hiring manager._
+*Note that `previous management experience` can be management experience in a previous organization, or management experience at GitLab. ["Acting"](/handbook/people-group/promotions-transfers/#acting) role management experience at GitLab can also count towards the 3 month threshold if that acting role was similar in scope and influence as the interim period would have been as evaluated by the hiring manager.*
 
 ##### Exceptions
 
@@ -140,7 +139,7 @@ The set timeline is for interim roles to be 3 months, and we recommend that inte
 
 There might be situations where an interim role does not need to be 3 months but a shorter period. This can happen when either the below success criteria are met before the 3 months pass or the team member has had experience with the new role prior to starting the interim period (for example via an acting role). If this is the case please reach out to your Department Head and People Business Partner to review.
 
-If there is an exceptional case in which the manager feels they need _more than 3 months_ to assess team member readiness in an interim position, they should discuss this with their Department Head and People Business Partner.
+If there is an exceptional case in which the manager feels they need *more than 3 months* to assess team member readiness in an interim position, they should discuss this with their Department Head and People Business Partner.
 
 For acting roles, there is no set timeline for duration. This can be reviewed on a case-by-case basis.
 
@@ -464,7 +463,7 @@ Note that we have a specific section for [Senior Engineer](/job-description-libr
 
 The Senior Engineer role is a critical role where we need the most contributions. It should also be considered a destination role. It is not a given that you will naturally progress into the next role, whether it is Staff or Management. There are different needs and expectations for the next role. Individual growth and progression is supported and encouraged at GitLab, however progression beyond the Senior Engineering role is gated on availability and need. There may not be a need for another Staff or Management position.
 
-Senior engineers typically receive fewer trivial comments on their merge requests. Attention to detail is very important to us. They also receive fewer _major_ comments because they understand the application architecture and select from proven patterns. We also expect senior engineers to come up with simpler solutions to complex problems. Managing complexity is key to their work. [Staff](/job-description-library/engineering/backend-engineer/#staff-backend-engineer) and [Distinguished](/job-description-library/engineering/infrastructure/distinguished-engineer/) positions extend the Senior Engineer role.
+Senior engineers typically receive fewer trivial comments on their merge requests. Attention to detail is very important to us. They also receive fewer *major* comments because they understand the application architecture and select from proven patterns. We also expect senior engineers to come up with simpler solutions to complex problems. Managing complexity is key to their work. [Staff](/job-description-library/engineering/backend-engineer/#staff-backend-engineer) and [Distinguished](/job-description-library/engineering/infrastructure/distinguished-engineer/) positions extend the Senior Engineer role.
 
 ## Promotion
 
@@ -479,7 +478,7 @@ People Operations tracks the [Promotion Rate](/handbook/people-group/people-succ
 The following table outlines some of the possible lateral transfer options at any level of the role, but don't feel limited by this table. Compa Ratio might differ per individual to determine leveling for each of the positions listed.
 
 | Starting Role       | Lateral Options           |
-| ------------------- | ------------------------- |
+|---------------------|---------------------------|
 | Frontend Engineer   | Product Designer          |
 | Product Designer    | Frontend Engineer         |
 | Backend Engineer    | Production Engineer       |
@@ -487,7 +486,7 @@ The following table outlines some of the possible lateral transfer options at an
 | Backend Engineer    | Support Engineer          |
 | Support Engineer    | Backend Engineer          |
 | Support Engineer    | Solutions Architect       |
-| Support Engineer    | Customer Success Manager  |
+| Support Engineer    | Customer Success Manager |
 | Support Engineer    | Implementation Specialist |
 | Automation Engineer | Backend Engineer          |
 | Backend Engineer    | Automation Engineer       |

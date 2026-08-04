@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Artifact Registry ADR 021: Authorization"
 owning-stage: "~devops::package"
 description: "Authorization design for the Artifact Registry"
@@ -76,12 +75,12 @@ This separates concerns cleanly. The auth platform stores role assignments (rela
 
 The Artifact Registry defines four product-specific roles, scoped to the Artifact Registry and distinct from platform roles:
 
-| Role                     | Intended for                                                               |
-| ------------------------ | -------------------------------------------------------------------------- |
-| **Artifact Viewer**      | Consumers who pull artifacts and browse the registry.                      |
-| **Artifact Contributor** | Producers who also publish artifacts (for example, CI jobs).               |
-| **Artifact Manager**     | Repository owners who manage artifacts and repository configuration.       |
-| **Artifact Admin**       | Registry administrators who manage registry-wide configuration and access. |
+| Role | Intended for |
+|---|---|
+| **Artifact Viewer** | Consumers who pull artifacts and browse the registry. |
+| **Artifact Contributor** | Producers who also publish artifacts (for example, CI jobs). |
+| **Artifact Manager** | Repository owners who manage artifacts and repository configuration. |
+| **Artifact Admin** | Registry administrators who manage registry-wide configuration and access. |
 
 These are **user roles**, distinct from the platform **user types** (for example, Organization Administrator or Organization Member). A user type does not imply any Artifact Registry role; the two are assigned independently. See the [roles management work item](https://gitlab.com/gitlab-org/gitlab/-/work_items/593455) for the cross-team alignment behind this distinction.
 
@@ -95,18 +94,18 @@ Custom roles are out of scope for closed beta; see [Custom roles](#custom-roles)
 
 The Artifact Registry defines a fixed set of permissions:
 
-| Permission                   | Description                                                                                                         | Operation type                    |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
-| `read_artifact`              | Browse and download artifacts (files, blobs, manifests, tags)                                                       | Artifact operations (client APIs) |
-| `create_artifact`            | Publish an artifact (Docker push, Maven deploy, npm publish), including re-publishing where the protocol permits it | Artifact operations (client APIs) |
-| `delete_artifact`            | Delete artifacts (images, packages, versions, tags, files)                                                          | Artifact operations (client APIs) |
-| `read_repository`            | List and view repositories, statistics, and virtual-repository upstream lists                                       | Management operations             |
-| `create_repository`          | Create hosted, remote, or virtual repositories                                                                      | Management operations             |
-| `update_repository`          | Update repository settings; test remote connections                                                                 | Management operations             |
-| `delete_repository`          | Delete repositories                                                                                                 | Management operations             |
-| `create_repository_upstream` | Associate a hosted or remote repository as an upstream of a virtual repository                                      | Management operations             |
-| `update_repository_upstream` | Reorder a virtual repository's upstreams                                                                            | Management operations             |
-| `delete_repository_upstream` | Remove a hosted or remote repository from a virtual repository's upstreams                                          | Management operations             |
+| Permission | Description | Operation type |
+|---|---|---|
+| `read_artifact` | Browse and download artifacts (files, blobs, manifests, tags) | Artifact operations (client APIs) |
+| `create_artifact` | Publish an artifact (Docker push, Maven deploy, npm publish), including re-publishing where the protocol permits it | Artifact operations (client APIs) |
+| `delete_artifact` | Delete artifacts (images, packages, versions, tags, files) | Artifact operations (client APIs) |
+| `read_repository` | List and view repositories, statistics, and virtual-repository upstream lists | Management operations |
+| `create_repository` | Create hosted, remote, or virtual repositories | Management operations |
+| `update_repository` | Update repository settings; test remote connections | Management operations |
+| `delete_repository` | Delete repositories | Management operations |
+| `create_repository_upstream` | Associate a hosted or remote repository as an upstream of a virtual repository | Management operations |
+| `update_repository_upstream` | Reorder a virtual repository's upstreams | Management operations |
+| `delete_repository_upstream` | Remove a hosted or remote repository from a virtual repository's upstreams | Management operations |
 
 Permissions follow GitLab's [permission conventions](https://docs.gitlab.com/ee/development/permissions/conventions.html): every permission names an action and a `resource(_subresource)`, and the action is one of `read`, `create`, `update`, or `delete`. Three consequences of applying that convention here:
 
@@ -118,18 +117,18 @@ Permissions follow GitLab's [permission conventions](https://docs.gitlab.com/ee/
 
 Each role maps to a fixed set of permissions, shown below (✓ = the role holds it). A role holds the same permissions wherever it is assigned; what changes is _reach_ — a namespace assignment applies them across the registry, a repository assignment only to that repository.
 
-| Permission                   | Viewer | Contributor | Manager | Admin |
-| ---------------------------- | :----: | :---------: | :-----: | :---: |
-| `read_artifact`              |   ✓    |      ✓      |    ✓    |   ✓   |
-| `create_artifact`            |        |      ✓      |    ✓    |   ✓   |
-| `delete_artifact`            |        |             |    ✓    |   ✓   |
-| `read_repository`            |   ✓    |      ✓      |    ✓    |   ✓   |
-| `create_repository`          |        |             |         |   ✓   |
-| `update_repository`          |        |             |    ✓    |   ✓   |
-| `delete_repository`          |        |             |         |   ✓   |
-| `create_repository_upstream` |        |             |    ✓    |   ✓   |
-| `update_repository_upstream` |        |             |    ✓    |   ✓   |
-| `delete_repository_upstream` |        |             |    ✓    |   ✓   |
+| Permission | Viewer | Contributor | Manager | Admin |
+|---|:---:|:---:|:---:|:---:|
+| `read_artifact` | ✓ | ✓ | ✓ | ✓ |
+| `create_artifact` | | ✓ | ✓ | ✓ |
+| `delete_artifact` | | | ✓ | ✓ |
+| `read_repository` | ✓ | ✓ | ✓ | ✓ |
+| `create_repository` | | | | ✓ |
+| `update_repository` | | | ✓ | ✓ |
+| `delete_repository` | | | | ✓ |
+| `create_repository_upstream` | | | ✓ | ✓ |
+| `update_repository_upstream` | | | ✓ | ✓ |
+| `delete_repository_upstream` | | | ✓ | ✓ |
 
 Each role is an independent permission bucket: it grants exactly the permissions marked in its column, with no hierarchy or inheritance between roles.
 
@@ -149,36 +148,36 @@ Write and management operations always require the corresponding permission from
 
 All namespace-level resources are management operations with fixed permission requirements:
 
-| Resource                               | Operations                                                     | Required permission                                                                      |
-| -------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| Repository listing                     | List all repositories, list by format                          | `read_repository`                                                                        |
-| Registry statistics                    | View storage and download statistics                           | `read_repository`                                                                        |
-| Repository management                  | Create, update, delete hosted, remote, or virtual repositories | `create_repository`, `update_repository`, `delete_repository`                            |
-| Virtual repository upstream listing    | List remote and hosted upstreams                               | `read_repository`                                                                        |
-| Virtual repository upstream management | Associate, reorder, disassociate remote and hosted upstreams   | `create_repository_upstream`, `update_repository_upstream`, `delete_repository_upstream` |
+| Resource | Operations | Required permission |
+|---|---|---|
+| Repository listing | List all repositories, list by format | `read_repository` |
+| Registry statistics | View storage and download statistics | `read_repository` |
+| Repository management | Create, update, delete hosted, remote, or virtual repositories | `create_repository`, `update_repository`, `delete_repository` |
+| Virtual repository upstream listing | List remote and hosted upstreams | `read_repository` |
+| Virtual repository upstream management | Associate, reorder, disassociate remote and hosted upstreams | `create_repository_upstream`, `update_repository_upstream`, `delete_repository_upstream` |
 
 #### Repository-level resources
 
 **Management operations** (fixed permission requirements):
 
-| Resource                               | Operations                                                                                                                      | Required permission                                                                      |
-| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| Repository details                     | View repository details                                                                                                         | `read_repository`                                                                        |
-| Repository configuration               | Update repository settings; test remote connection                                                                              | `update_repository`                                                                      |
-| Repository statistics                  | View storage and download statistics                                                                                            | `read_repository`                                                                        |
-| Repository-upstream associations       | Associate, reorder, disassociate upstreams with virtual repositories                                                            | `create_repository_upstream`, `update_repository_upstream`, `delete_repository_upstream` |
-| Cached artifacts (remote repositories) | View and evict cached rows — served through the artifact endpoints ([ADR-009](009_api_design.md)) on a `kind=remote` repository | `read_artifact`, `delete_artifact`                                                       |
-| Artifacts                              | Browse the artifacts of a repository                                                                                            | `read_artifact`                                                                          |
+| Resource | Operations | Required permission |
+|---|---|---|
+| Repository details | View repository details | `read_repository` |
+| Repository configuration | Update repository settings; test remote connection | `update_repository` |
+| Repository statistics | View storage and download statistics | `read_repository` |
+| Repository-upstream associations | Associate, reorder, disassociate upstreams with virtual repositories | `create_repository_upstream`, `update_repository_upstream`, `delete_repository_upstream` |
+| Cached artifacts (remote repositories) | View and evict cached rows — served through the artifact endpoints ([ADR-009](009_api_design.md)) on a `kind=remote` repository | `read_artifact`, `delete_artifact` |
+| Artifacts | Browse the artifacts of a repository | `read_artifact` |
 
 How listing is authorized — across the namespace and within a repository — is described under [List operations](#list-operations).
 
 **Artifact operations** (default permission buckets):
 
-| Operation                                                                     | Required permission | Default allowed roles                                                   |
-| ----------------------------------------------------------------------------- | ------------------- | ----------------------------------------------------------------------- |
-| Read (browse, download files and blobs, security audits)                      | `read_artifact`     | Artifact Viewer, Artifact Contributor, Artifact Manager, Artifact Admin |
-| Create (publish: Docker push, Maven deploy, npm publish, dist-tag management) | `create_artifact`   | Artifact Contributor, Artifact Manager, Artifact Admin                  |
-| Delete (delete images, packages, versions, tags, files, bulk deletes)         | `delete_artifact`   | Artifact Manager, Artifact Admin                                        |
+| Operation | Required permission | Default allowed roles |
+|---|---|---|
+| Read (browse, download files and blobs, security audits) | `read_artifact` | Artifact Viewer, Artifact Contributor, Artifact Manager, Artifact Admin |
+| Create (publish: Docker push, Maven deploy, npm publish, dist-tag management) | `create_artifact` | Artifact Contributor, Artifact Manager, Artifact Admin |
+| Delete (delete images, packages, versions, tags, files, bulk deletes) | `delete_artifact` | Artifact Manager, Artifact Admin |
 
 Publishing covers re-publishing where the format's protocol permits it (Maven `SNAPSHOT` redeploys, OCI tag re-pushes); immutable artifacts such as a published npm version cannot be overwritten by protocol. There is no separate overwrite permission: preventing overwrites of existing artifacts is an [access-rule](#access-rules) capability (the `overwrite` action), deferred from closed beta.
 

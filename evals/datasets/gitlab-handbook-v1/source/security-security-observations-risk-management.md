@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Unified Security Risk Management (USRM) Program
 ---
 
@@ -21,44 +20,44 @@ The program is designed to support any Security Division recommendations, findin
 
 Coverage includes identified sources:
 
-|  #  | Project                                                                                                                                                                                                                                                                                                                                                         |        Team         | Quarter | Finding Coordinator | Issue Template   |
-| :-: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------------: | ------- | :-----------------: | ---------------- |
-|  1  | [Compliance Observations](https://gitlab.com/gitlab-com/gl-security/security-assurance/security-compliance-commercial-and-dedicated/observation-management/-/issues)                                                                                                                                                                                            |   Sec Compliance    | FY26-Q4 | Observation Manager | Existing or USRM |
-|  2  | [Security Policy Exceptions](https://gitlab.com/gitlab-com/gl-security/security-assurance/governance-and-field-security/governance/security-governance/-/issues?sort=created_date&state=all&label_name%5B%5D=ExceptionRequest&first_page_size=100)                                                                                                              | Security Governance | FY26-Q4 |      @davoudtu      | Existing         |
-|  3  | [Product Risk Register](https://gitlab.com/gitlab-com/gl-security/security-assurance/security-risk-team/storm-risk-register/-/issues/?sort=created_asc&state=opened&label_name%5B%5D=Department%3A%3AProduct%20Security&first_page_size=100)                                                                                                                    |       ProdSec       | FY26-Q4 |      @jrinaudo      | Existing or USRM |
-|  4  | [TPRM Security Notices](https://gitlab.com/gitlab-com/gl-security/security-assurance/security-risk-team/third-party-vendor-security-management/-/issues/?sort=created_date&state=opened&label_name%5B%5D=TPRM%3ASecurity%20Notice&first_page_size=100)                                                                                                          |      Sec Risk       | FY26-Q4 |    Risk Manager     | Existing or USRM |
-|  5  | [Vulnerabilities](https://gitlab.com/groups/gitlab-com/gl-security/product-security/vulnerability-management/-/issues/?sort=created_asc&state=opened&label_name%5B%5D=bug%3A%3Avulnerability&first_page_size=100)                                                                                                                                               |     Vuln Mgmt.      | TBD     |         TBD         | TBD              |
-|  6  | [SIRT Recommendations (~SIRTRec::)](https://gitlab.com/gitlab-com/gl-security/security-operations/leadership/-/wikis/SIRT-Recommendations-Dashboard)                                                                                                                                                                                                            |        SIRT         | FY27-Q1 |     @kylesmith2     | USRM             |
-|  7  | [Red Team Recommendations (~RTRec::)](https://gitlab.com/gitlab-com/gl-security/security-operations/leadership/-/wikis/OffSec-Recommendations-Dashboard)                                                                                                                                                                                                        |      Red Team       | FY26-Q4 |      @madlake       | USRM             |
-|  8  | [AppSec review findings](https://gitlab.com/gitlab-com/gl-security/product-security/appsec/appsec-reviews)                                                                                                                                                                                                                                                      |       AppSec        | TBD     |     @kylesmith2     | TBD              |
-|  9  | [Wiz Findings](https://app.wiz.io/p/production)                                                                                                                                                                                                                                                                                                                 |      InfraSec       | TBD     |         TBD         | TBD              |
-| 10  | [Threat Intel Recommendations (~TIRec::)](https://gitlab.com/gitlab-com/gl-security/security-operations/leadership/-/wikis/OffSec-Recommendations-Dashboard)                                                                                                                                                                                                    |    Threat Intel     | FY26-Q4 |      @madlake       | TBD              |
-| 11  | Signals Engineering (~SET::Signals-Improvement, SET::Detection-New, SET::Signal-Gap)                                                                                                                                                                                                                                                                            | Signals Engineering | TBD     |         TBD         | TBD              |
-| 12  | [GitLab vulnerabilities](https://gitlab.com/gitlab-org/gitlab/-/issues/?sort=created_date&state=opened&label_name%5B%5D=bug%3A%3Avulnerability&first_page_size=100)                                                                                                                                                                                             |   AppSec/Multiple   | TBD     |         TBD         | TBD              |
-| 13  | Corp Sec Recommendations (~corpsec-metric::consult and ~corpsys-gitlab-com)                                                                                                                                                                                                                                                                                     |       CorpSec       | TBD     |         TBD         | TBD              |
-| 14  | Trust and Safety Contributions (~"Trust and Safety contribution")                                                                                                                                                                                                                                                                                               |         T&S         | TBD     |         TBD         | TBD              |
-| 15  | [InfraSec Security Reviews](https://gitlab.com/gitlab-com/gl-security/product-security/infrastructure-security/bau/-/issues/?sort=created_asc&state=all&search=Security+review&first_page_size=100&show=eyJpaWQiOiI0OTYiLCJmdWxsX3BhdGgiOiJnaXRsYWItY29tL2dsLXNlY3VyaXR5L3Byb2R1Y3Qtc2VjdXJpdHkvaW5mcmFzdHJ1Y3R1cmUtc2VjdXJpdHkvYmF1IiwiaWQiOjEzNjYzMDUzOH0%3D) |      InfraSec       | TBD     |         TBD         | USRM             |
+| # | Project | Team | Quarter | Finding Coordinator | Issue Template |
+|:-:| :------ | :--: |-----------| :--: |----------------|
+| 1 | [Compliance Observations](https://gitlab.com/gitlab-com/gl-security/security-assurance/security-compliance-commercial-and-dedicated/observation-management/-/issues) | Sec Compliance | FY26-Q4 | Observation Manager | Existing or USRM |
+| 2 | [Security Policy Exceptions](https://gitlab.com/gitlab-com/gl-security/security-assurance/governance-and-field-security/governance/security-governance/-/issues?sort=created_date&state=all&label_name%5B%5D=ExceptionRequest&first_page_size=100) | Security Governance | FY26-Q4 | @davoudtu | Existing |
+| 3 | [Product Risk Register](https://gitlab.com/gitlab-com/gl-security/security-assurance/security-risk-team/storm-risk-register/-/issues/?sort=created_asc&state=opened&label_name%5B%5D=Department%3A%3AProduct%20Security&first_page_size=100) | ProdSec | FY26-Q4 | @jrinaudo | Existing or USRM |
+| 4 | [TPRM Security Notices](https://gitlab.com/gitlab-com/gl-security/security-assurance/security-risk-team/third-party-vendor-security-management/-/issues/?sort=created_date&state=opened&label_name%5B%5D=TPRM%3ASecurity%20Notice&first_page_size=100) | Sec Risk | FY26-Q4 | Risk Manager |  Existing or USRM |
+| 5 | [Vulnerabilities](https://gitlab.com/groups/gitlab-com/gl-security/product-security/vulnerability-management/-/issues/?sort=created_asc&state=opened&label_name%5B%5D=bug%3A%3Avulnerability&first_page_size=100) | Vuln Mgmt. | TBD | TBD  |  TBD |
+| 6 | [SIRT Recommendations (~SIRTRec::)](https://gitlab.com/gitlab-com/gl-security/security-operations/leadership/-/wikis/SIRT-Recommendations-Dashboard) | SIRT | FY27-Q1 |  @kylesmith2 | USRM |
+| 7 | [Red Team Recommendations (~RTRec::)](https://gitlab.com/gitlab-com/gl-security/security-operations/leadership/-/wikis/OffSec-Recommendations-Dashboard) | Red Team | FY26-Q4 | @madlake | USRM |
+| 8 | [AppSec review findings](https://gitlab.com/gitlab-com/gl-security/product-security/appsec/appsec-reviews) | AppSec | TBD | @kylesmith2 | TBD |
+| 9 | [Wiz Findings](https://app.wiz.io/p/production) | InfraSec | TBD | TBD | TBD |
+| 10 | [Threat Intel Recommendations (~TIRec::)](https://gitlab.com/gitlab-com/gl-security/security-operations/leadership/-/wikis/OffSec-Recommendations-Dashboard) | Threat Intel | FY26-Q4 | @madlake | TBD |
+| 11 | Signals Engineering (~SET::Signals-Improvement, SET::Detection-New, SET::Signal-Gap) | Signals Engineering | TBD | TBD |TBD |
+| 12 | [GitLab vulnerabilities](https://gitlab.com/gitlab-org/gitlab/-/issues/?sort=created_date&state=opened&label_name%5B%5D=bug%3A%3Avulnerability&first_page_size=100) | AppSec/Multiple | TBD |  TBD | TBD |
+| 13 | Corp Sec Recommendations (~corpsec-metric::consult and ~corpsys-gitlab-com) | CorpSec | TBD |   TBD | TBD |
+| 14 | Trust and Safety Contributions (~"Trust and Safety contribution") | T&S | TBD | TBD |  TBD |
+| 15 | [InfraSec Security Reviews](https://gitlab.com/gitlab-com/gl-security/product-security/infrastructure-security/bau/-/issues/?sort=created_asc&state=all&search=Security+review&first_page_size=100&show=eyJpaWQiOiI0OTYiLCJmdWxsX3BhdGgiOiJnaXRsYWItY29tL2dsLXNlY3VyaXR5L3Byb2R1Y3Qtc2VjdXJpdHkvaW5mcmFzdHJ1Y3R1cmUtc2VjdXJpdHkvYmF1IiwiaWQiOjEzNjYzMDUzOH0%3D) | InfraSec | TBD  | TBD  | USRM |
 
 ## Roles and Responsibilities
 
-| Role                | RACI | Responsibility                                                                                                                                                                                                             |
-| ------------------- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Finding Identifier  | C    | Consults with business stakeholders on the security finding, provides expert recommendations, and determines which stakeholders should be involved in remediation. Must validate remediation mitigates finding identified. |
-| Remediation Manager | R    | Responsible for executing the remediation plan, including confirming assignees, setting due dates, and fine-tuning remediation activities to meet requirements identified in the recommendation.                           |
-| Business Risk Owner | A    | Accountable for the overall risk related to the finding. Can make decisions on whether to remediate or accept the risk.                                                                                                    |
-| Security Risk Owner | I    | Informed of the finding identification, remediation plan, and progress.                                                                                                                                                    |
-| Finding Coordinator | R    | Responsible for ensuring the USRM process is followed correctly, monitoring that service level commitments are met, and escalating when necessary.                                                                         |
+| Role            | RACI | Responsibility                                                        |
+|-----------------|------|-----------------------------------------------------------------------|
+| Finding Identifier | C | Consults with business stakeholders on the security finding, provides expert recommendations, and determines which stakeholders should be involved in remediation. Must validate remediation mitigates finding identified. |
+| Remediation Manager | R | Responsible for executing the remediation plan, including confirming assignees, setting due dates, and fine-tuning remediation activities to meet requirements identified in the recommendation. |
+| Business Risk Owner | A | Accountable for the overall risk related to the finding. Can make decisions on whether to remediate or accept the risk. |
+| Security Risk Owner | I | Informed of the finding identification, remediation plan, and progress. |
+| Finding Coordinator | R | Responsible for ensuring the USRM process is followed correctly, monitoring that service level commitments are met, and escalating when necessary. |
 
 ### Authority Matrix
 
 When security findings are identified, the following management levels must be informed based on priority. These managers have authority to intervene if they disagree with the proposed remediation approach or determine an alternative treatment is more appropriate.
 
-| Finding Priority          | Business Risk Owner Authority Level | Security Risk Owner Authority Level             |
-| ------------------------- | ----------------------------------- | ----------------------------------------------- |
-| **Low (Priority 4)**      | Manager level                       | Manager level (from originating security team)  |
-| **Medium (Priority 3)**   | Director level                      | Director level (from originating security team) |
-| **High (Priority 2)**     | VP level                            | VP level (from originating security team)       |
-| **Critical (Priority 1)** | VP level                            | VP level (from originating security team)       |
+| Finding Priority | Business Risk Owner Authority Level | Security Risk Owner Authority Level |
+|---------------|--------------------------------|--------------------------------|
+| **Low (Priority 4)** | Manager level | Manager level (from originating security team) |
+| **Medium (Priority 3)** | Director level | Director level (from originating security team) |
+| **High (Priority 2)** | VP level | VP level (from originating security team) |
+| **Critical (Priority 1)** | VP level | VP level (from originating security team) |
 
 ## Procedure
 
@@ -70,11 +69,11 @@ The USRM workflow can be seen below:
 
 These commitments establish standardized timing expectations for each phase of the process. They ensure consistent response times across all security teams and provide clear expectations to business stakeholders regarding when they can expect actions and responses during the finding lifecycle.
 
-| Phase               | Duration                             |
-| ------------------- | ------------------------------------ |
-| Issue Opened        | -                                    |
-| Remediation Plan    | 4 business days                      |
-| Monitoring Setup    | 2 business day                       |
+| Phase | Duration |
+|-------|----------|
+| Issue Opened | - |
+| Remediation Plan | 4 business days |
+| Monitoring Setup | 2 business day |
 | Remediation/Closure | Based on finding source and priority |
 
 ### Identification
@@ -108,39 +107,39 @@ For additional helpful risk drafting guidance from the Prod Sec department can b
 
 Required labels need to be applied to enable prioritization and reporting and metrics. These labels are as follows:
 
-| Label Category          | Options                                                                                                                      | Usage                                                                                                                                                                                                                    |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Workflow Status**     | `USRM Workflow::Finding Identified`, `USRM Workflow::Remediation Plan`, `USRM Workflow::Monitoring`, `USRM Workflow::Closed` | Process tracking                                                                                                                                                                                                         |
-| **Department**          | `Department:[department-name]`                                                                                               | To identify department that owns the risk for Corporate (-com) findings                                                                                                                                                  |
-| **Group**               | `group:[group-name]`                                                                                                         | To identify product that owns the risk for Product (-org) findings                                                                                                                                                       |
-| **Priority**            | `priority::1`, `priority::2`, `priority::3`, `priority::4`                                                                   | Aligns with GitLab standard priority framework. Use either priority/severity labels OR risk rating labels, not both                                                                                                      |
-| **Severity**            | `severity::1`, `severity::2`, `severity::3`, `severity::4`                                                                   | Aligns with GitLab standard severity framework. Use either priority/severity labels OR risk rating labels, not both                                                                                                      |
-| **Risk Rating**         | `RiskRating::Critical`, `RiskRating::High`,`RiskRating::Moderate`,`RiskRating::Low`                                          | Alternative to severity and priority to rate risks                                                                                                                                                                       |
-| **Risk Treatment**      | `risk-treatment::remediate`, `risk-treatment::accept`                                                                        | Indicates whether risk will be remediated or formally accepted                                                                                                                                                           |
-| **STORM Risk**          | `STORM RISK:#`                                                                                                               | To enable risk mapping reporting - use the issue number from the appropriate item [here](https://gitlab.com/gitlab-com/gl-security/security-assurance/security-risk-team/storm-risk-register/-/work_items/views/1008054) |
-| **Finding Coordinator** | `FindingCoordinator::@team member`                                                                                           | To identify the coordinator responsible for monitoring the finding through the USRM process                                                                                                                              |
+| Label Category | Options | Usage |
+|----------------|---------|-------|
+| **Workflow Status** | `USRM Workflow::Finding Identified`, `USRM Workflow::Remediation Plan`, `USRM Workflow::Monitoring`, `USRM Workflow::Closed` | Process tracking |
+| **Department**|`Department:[department-name]`| To identify department that owns the risk for Corporate (-com) findings |
+| **Group**|`group:[group-name]`| To identify product that owns the risk for Product (-org) findings |
+| **Priority** | `priority::1`, `priority::2`, `priority::3`, `priority::4` | Aligns with GitLab standard priority framework. Use either priority/severity labels OR risk rating labels, not both |
+| **Severity** | `severity::1`, `severity::2`, `severity::3`, `severity::4` | Aligns with GitLab standard severity framework. Use either priority/severity labels OR risk rating labels, not both |
+| **Risk Rating** | `RiskRating::Critical`, `RiskRating::High`,`RiskRating::Moderate`,`RiskRating::Low`| Alternative to severity and priority to rate risks|
+| **Risk Treatment** | `risk-treatment::remediate`, `risk-treatment::accept` | Indicates whether risk will be remediated or formally accepted |
+| **STORM Risk** | `STORM RISK:#` | To enable risk mapping reporting - use the issue number from the appropriate item [here](https://gitlab.com/gitlab-com/gl-security/security-assurance/security-risk-team/storm-risk-register/-/work_items/views/1008054) |
+| **Finding Coordinator** | `FindingCoordinator::@team member` | To identify the coordinator responsible for monitoring the finding through the USRM process |
 
 #### Optional Labels
 
-| Label Category              | Options                                    | Usage                   |
-| --------------------------- | ------------------------------------------ | ----------------------- |
-| **System**                  | `system:[system-name]`                     | For affected systems    |
-| **Fiscal Year and Quarter** | `FY25-Q3`, `FY25-Q4`                       | Planning alignment      |
-| **Escalation**              | `escalated::level-1`, `escalated::level-2` | When escalated          |
-| **Product Group**           | `group::authorization`                     | For action owning group |
+| Label Category | Options | Usage |
+|----------------|---------|-------|
+| **System** | `system:[system-name]` | For affected systems |
+| **Fiscal Year and Quarter** | `FY25-Q3`, `FY25-Q4` | Planning alignment |
+| **Escalation** | `escalated::level-1`, `escalated::level-2` | When escalated |
+| **Product Group** | `group::authorization` | For action owning group |
 
 #### Issue Status & Alert Labels
 
 These labels are applied either automatically by triage bot or manually by the Finding Coordinator to track issues requiring attention:
 
-| Label              | When Applied                                                                                                              | Applied By                   | When to Remove                              |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ------------------------------------------- |
-| `stale`            | No updates for 30 days                                                                                                    | Triage Bot (automatic)       | When issue is updated with progress         |
-| `overdue`          | Issue is past its due date                                                                                                | Triage Bot (automatic)       | When due date is extended or work completed |
-| `Blocked`          | Progress cannot continue due to external dependencies, resource constraints, or technical obstacles beyond team's control | Finding Coordinator (manual) | When blockers are removed                   |
-| `Missing_Labels`   | Required labels are missing from the issue                                                                                | Triage Bot (automatic)       | When all required labels are applied        |
-| `Missing_Assignee` | Issue has no assignee after 48 hours of creation                                                                          | Triage Bot (automatic)       | When assignee is added                      |
-| `missing_duedate`  | Issue older than 7 days without a due date                                                                                | Triage Bot (automatic)       | When due date is set                        |
+| Label | When Applied | Applied By | When to Remove |
+|-------|--------------|------------|----------------|
+| `stale` | No updates for 30 days | Triage Bot (automatic) | When issue is updated with progress |
+| `overdue` | Issue is past its due date | Triage Bot (automatic) | When due date is extended or work completed |
+| `Blocked` | Progress cannot continue due to external dependencies, resource constraints, or technical obstacles beyond team's control | Finding Coordinator (manual) | When blockers are removed |
+| `Missing_Labels` | Required labels are missing from the issue | Triage Bot (automatic) | When all required labels are applied |
+| `Missing_Assignee` | Issue has no assignee after 48 hours of creation | Triage Bot (automatic) | When assignee is added |
+| `missing_duedate` | Issue older than 7 days without a due date | Triage Bot (automatic) | When due date is set |
 
 ### Risk Rating
 
@@ -150,21 +149,21 @@ Many teams (example [SIRT](/handbook/security/security-operations/sirt/severity-
 
 #### Priority Rating (Business Impact and Urgency)
 
-| Priority         | Label         | Criteria                                                                       | Target Resolution    | Notification                                     | Equivalent Mappings                                            |
-| ---------------- | ------------- | ------------------------------------------------------------------------------ | -------------------- | ------------------------------------------------ | -------------------------------------------------------------- |
-| **1 (Critical)** | `priority::1` | Urgent security threat requiring immediate action regardless of team capacity  | 30 days maximum      | Immediate escalation to Security leadership      | StORM Critical (26-30), Vulnerability Critical (CVSS 9.0-10.0) |
-| **2 (High)**     | `priority::2` | High impact security issue that will be addressed soon with dedicated capacity | 60-90 days           | Security management notification within 24 hours | StORM High (21-25), Vulnerability High (CVSS 7.0-8.9)          |
-| **3 (Medium)**   | `priority::3` | Important security improvements that may compete with other priorities         | 90-120 days          | Standard team lead notification                  | StORM Medium (11-20), Vulnerability Medium (CVSS 4.0-6.9)      |
-| **4 (Low)**      | `priority::4` | Security enhancements with no designated timeline                              | No specific timeline | Standard backlog management                      | StORM Low (1-10), Vulnerability Low (CVSS 0.1-3.9)             |
+| Priority | Label | Criteria | Target Resolution | Notification | Equivalent Mappings |
+|----------|-------|----------|-------------------|--------------|-------------------|
+| **1 (Critical)** | `priority::1` | Urgent security threat requiring immediate action regardless of team capacity | 30 days maximum | Immediate escalation to Security leadership | StORM Critical (26-30), Vulnerability Critical (CVSS 9.0-10.0) |
+| **2 (High)** | `priority::2` | High impact security issue that will be addressed soon with dedicated capacity | 60-90 days | Security management notification within 24 hours | StORM High (21-25), Vulnerability High (CVSS 7.0-8.9) |
+| **3 (Medium)** | `priority::3` | Important security improvements that may compete with other priorities | 90-120 days | Standard team lead notification | StORM Medium (11-20), Vulnerability Medium (CVSS 4.0-6.9) |
+| **4 (Low)** | `priority::4` | Security enhancements with no designated timeline | No specific timeline | Standard backlog management | StORM Low (1-10), Vulnerability Low (CVSS 0.1-3.9) |
 
 #### Severity Rating (Technical Impact and Complexity)
 
-| Severity         | Label         | Definition                                                                  | Examples                                                                           | Remediation SLO                      |
-| ---------------- | ------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------ |
-| **1 (Blocker)**  | `severity::1` | Security issue that completely blocks normal operations or causes data loss | System compromise with no workaround, active data breach, critical control failure | Immediate mitigation required        |
-| **2 (Critical)** | `severity::2` | Security issue with significant impact but complex workaround available     | Critical vulnerabilities with limited exploit scenarios, major compliance gaps     | 30 days for Critical vulnerabilities |
-| **3 (Major)**    | `severity::3` | Security issue with moderate impact and reasonable workaround               | Medium vulnerabilities, process improvements, minor compliance issues              | 90 days for vulnerabilities          |
-| **4 (Minor)**    | `severity::4` | Security enhancement or minor issue with minimal impact                     | Best practice improvements, documentation updates, low-priority recommendations    | 180 days for vulnerabilities         |
+| Severity | Label | Definition | Examples | Remediation SLO |
+|----------|-------|------------|----------|-----------------|
+| **1 (Blocker)** | `severity::1` | Security issue that completely blocks normal operations or causes data loss | System compromise with no workaround, active data breach, critical control failure | Immediate mitigation required |
+| **2 (Critical)** | `severity::2` | Security issue with significant impact but complex workaround available | Critical vulnerabilities with limited exploit scenarios, major compliance gaps | 30 days for Critical vulnerabilities |
+| **3 (Major)** | `severity::3` | Security issue with moderate impact and reasonable workaround | Medium vulnerabilities, process improvements, minor compliance issues | 90 days for vulnerabilities |
+| **4 (Minor)** | `severity::4` | Security enhancement or minor issue with minimal impact | Best practice improvements, documentation updates, low-priority recommendations | 180 days for vulnerabilities |
 
 #### Risk Assessment Guidelines
 
@@ -247,11 +246,11 @@ Once approved, apply the `risk-acceptance::active` label and the appropriate ris
 The finding coordinator performs periodic reviews at these intervals:
 
 | Risk Level | Review Frequency |
-| ---------- | ---------------- |
-| Critical   | Every 6 months   |
-| High       | Every 12 months  |
-| Medium     | Every 18 months  |
-| Low        | Every 24 months  |
+|------------|------------------|
+| Critical | Every 6 months |
+| High | Every 12 months |
+| Medium | Every 18 months |
+| Low | Every 24 months |
 
 For each review, the finding coordinator will:
 
@@ -304,7 +303,6 @@ This runbook provides instructions for Finding Coordinators to manage finding is
    - RACI Stakeholders table with specific team members
    - Recommendation
    - Priority & Severity checkboxes selected
-
 3. Apply initial workflow label and verify all [required labels](#required-labels) are present:
 
    - `USRM Workflow::Finding Identified`
@@ -313,7 +311,6 @@ This runbook provides instructions for Finding Coordinators to manage finding is
    - `severity::1-4`
    - `STORM RISK:#`
    - `FindingCoordinator::@team member`
-
 4. Verify all RACI stakeholders are tagged in the issue
 5. Confirm issue is linked to appropriate STORM Risk issue
 6. Verify exit criteria Step 1 is complete
@@ -338,7 +335,6 @@ This runbook provides instructions for Finding Coordinators to manage finding is
    - Remediation step table with owners, due dates, and status OR
    - Linked epic/issue for tracking remediation elsewhere
    - Issue due date is set and aligns with priority-based SLOs
-
 4. Update workflow label to `USRM workflow:Remediation Plan`
 5. Verify exit criteria Step 2 is complete
 
@@ -367,7 +363,6 @@ This runbook provides instructions for Finding Coordinators to manage finding is
    - `Missing_Assignee` label
    - `missing_duedate` label
    - `Missing_Labels` label
-
 5. Address triage bot alerts promptly with assignees
 6. Update STORM Risk issue with progress as needed
 
@@ -393,7 +388,6 @@ This runbook provides instructions for Finding Coordinators to manage finding is
    - Validated remediation is complete
    - Confirmed remediation mitigates the original finding
    - Documented remediation evidence in the issue
-
 3. Confirm all required labels are present
 4. Close the issue
 5. Update related STORM Risk issue to reflect closure
@@ -419,7 +413,6 @@ This runbook provides instructions for Finding Coordinators to manage finding is
    - High: Every 12 months
    - Medium: Every 18 months
    - Low: Every 24 months
-
 2. At each review period:
 
    - Create comment in issue requesting review
@@ -427,7 +420,6 @@ This runbook provides instructions for Finding Coordinators to manage finding is
    - Verify risk conditions, compensating controls still valid
    - Update risk acceptance documentation
    - Assess if remediation is now feasible
-
 3. Issue remains open until remediated or risk no longer exists
 
 **Escalation triggers:**
@@ -441,12 +433,12 @@ This runbook provides instructions for Finding Coordinators to manage finding is
 
 #### USRM Label Reference
 
-| Label                               | When to Apply                                                                                                                                | When to Remove                                                                                            |
-| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `USRM Workflow::Finding Identified` | Security finding has been discovered and documented with all required fields complete (description, recommendation, RACI, priority/severity) | When Remediation Manager begins documenting detailed remediation plan (apply `Remediation Plan` label)    |
-| `USRM Workflow::Remediation Plan`   | Remediation Manager is documenting detailed remediation plan with steps, owners, and due dates                                               | When remediation work begins and issue enters active monitoring (apply `USRM Workflow::Monitoring` label) |
-| `USRM Workflow::Monitoring`         | Remediation work is underway with active progress monitoring - awaiting completion and validation                                            | When Finding Identifier validates remediation complete (apply `USRM Workflow::Closed` label)              |
-| `USRM Workflow::Closed`             | Security finding has been fully remediated and validated as resolved                                                                         | N/A - Terminal state                                                                                      |
+| Label | When to Apply | When to Remove |
+|-------|---------------|----------------|
+| `USRM Workflow::Finding Identified` | Security finding has been discovered and documented with all required fields complete (description, recommendation, RACI, priority/severity) | When Remediation Manager begins documenting detailed remediation plan (apply `Remediation Plan` label) |
+| `USRM Workflow::Remediation Plan` | Remediation Manager is documenting detailed remediation plan with steps, owners, and due dates | When remediation work begins and issue enters active monitoring (apply `USRM Workflow::Monitoring` label) |
+| `USRM Workflow::Monitoring` | Remediation work is underway with active progress monitoring - awaiting completion and validation | When Finding Identifier validates remediation complete (apply `USRM Workflow::Closed` label) |
+| `USRM Workflow::Closed` | Security finding has been fully remediated and validated as resolved | N/A - Terminal state |
 
 ---
 

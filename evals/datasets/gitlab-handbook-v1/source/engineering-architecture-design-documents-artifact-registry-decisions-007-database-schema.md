@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Artifact Registry ADR 007: Database Schema"
 owning-stage: "~devops::package"
 description: "Data tables organization for the registry"
@@ -405,7 +404,6 @@ These tables act in a way as [cascading settings](https://docs.gitlab.com/develo
 The challenge in this part is to adhere to the [OCI Distribution Spec v1.1](https://github.com/opencontainers/distribution-spec/blob/main/spec.md).
 
 <!--TODO This link will not live for long since it's an artifact output-->
-
 The approach was heavily inspired by the [GitLab Container Registry schema](https://gitlab.com/gitlab-org/container-registry/-/jobs/12449560500/artifacts/file/db-DAG.png).
 
 ```mermaid
@@ -1661,13 +1659,13 @@ This approach requires `sha256` to be propagated to `blob_storage_attachments` a
 
 The five critical access patterns behave as follows:
 
-| #   | Operation                                                                      | Frequency   | Partitions hit     |
-| --- | ------------------------------------------------------------------------------ | ----------- | ------------------ |
-| AP1 | Pull artifact (`*_files` → `blob_storage_blobs` via `namespace_id` + `sha256`) | Highest     | 1                  |
-| AP2 | Orphan check (`WHERE namespace_id = ? AND sha256 = ?`)                         | High        | 1                  |
-| AP3 | Dedup upsert (`ON CONFLICT (namespace_id, sha256) DO NOTHING`)                 | Medium-high | 1                  |
-| AP4 | Attachment CRUD (`namespace_id` + `sha256` propagated from blob)               | Medium      | 1                  |
-| AP5 | Storage accounting by Organization (`WHERE namespace_id = ?`, no `sha256`)     | Low         | All 64 (mitigated) |
+| # | Operation | Frequency | Partitions hit |
+| --- | --- | --- | --- |
+| AP1 | Pull artifact (`*_files` → `blob_storage_blobs` via `namespace_id` + `sha256`) | Highest | 1 |
+| AP2 | Orphan check (`WHERE namespace_id = ? AND sha256 = ?`) | High | 1 |
+| AP3 | Dedup upsert (`ON CONFLICT (namespace_id, sha256) DO NOTHING`) | Medium-high | 1 |
+| AP4 | Attachment CRUD (`namespace_id` + `sha256` propagated from blob) | Medium | 1 |
+| AP5 | Storage accounting by Organization (`WHERE namespace_id = ?`, no `sha256`) | Low | All 64 (mitigated) |
 
 **Positive**:
 
@@ -2027,12 +2025,12 @@ erDiagram
 
 Triggers on `blob_storage_blobs` maintain this table: `AFTER INSERT` copies `(namespace_id, sha256, size)` into the shadow table; `AFTER DELETE` removes the matching row. No `AFTER UPDATE` trigger is needed because `blob_storage_blobs` rows are immutable — content-addressable storage means any change to the content produces a new `sha256` and thus a new row (see [ADR-008](008_content_addressable_storage.md)). The primary key `(namespace_id, sha256)` must include the partition key (`namespace_id`) and mirrors the unique key on `blob_storage_blobs`. The table uses the same 64-partition count as other `HASH(namespace_id)` tables. Covering index on `(namespace_id) INCLUDE (size)` enables index-only scans.
 
-| Approach                                      | Timing   | Buffers | Partitions scanned | Write overhead |
-| --------------------------------------------- | -------- | ------- | ------------------ | -------------- |
-| `namespace_statistics` counter (display path) | 0.013 ms | 1       | 0                  | Async flusher  |
-| Shadow table + covering index (Option B)      | 29 ms    | 1,361   | 1                  | Triggers       |
-| Covering index on blobs (Option A)            | 43 ms    | 1,599   | 64                 | None           |
-| Baseline (no changes)                         | 78 ms    | ~3K+    | 64                 | None           |
+| Approach | Timing | Buffers | Partitions scanned | Write overhead |
+| --- | --- | --- | --- | --- |
+| `namespace_statistics` counter (display path) | 0.013 ms | 1 | 0 | Async flusher |
+| Shadow table + covering index (Option B) | 29 ms | 1,361 | 1 | Triggers |
+| Covering index on blobs (Option A) | 43 ms | 1,599 | 64 | None |
+| Baseline (no changes) | 78 ms | ~3K+ | 64 | None |
 
 Both options are purely additive — no changes to `blob_storage_blobs` itself — and can be added or removed independently. They are not mutually exclusive; both are included in the initial schema. It is easier to start with more coverage and drop indexes or auxiliary tables later once production metrics confirm they are not needed.
 
@@ -2093,10 +2091,10 @@ Soft-deleted files continue to contribute to the per-version `size_bytes` until 
 
 Precomputing the column, rather than deriving it at read time, is what lets the version list sort and filter by size. Deriving a single version's size is cheap either way (a bounded few-file join), but once size becomes a sortable or filterable column on the version list, deriving it for every row no longer scales. Validated on a Cloud SQL PostgreSQL 17 instance (`large` profile, ~26K Maven and ~26K npm versions in the deepest namespace):
 
-| Top 50 versions by size                   | Maven   | npm     |
-| ----------------------------------------- | ------- | ------- |
-| derive at read (sum each version's blobs) | 58 ms   | 29 ms   |
-| pre-computed `size_bytes` column + index  | 0.06 ms | 0.08 ms |
+| Top 50 versions by size | Maven | npm |
+| --- | --- | --- |
+| derive at read (sum each version's blobs) | 58 ms | 29 ms |
+| pre-computed `size_bytes` column + index | 0.06 ms | 0.08 ms |
 
 That is three to four orders of magnitude, the deduplicated derive-at-read variant is slower still (~190 ms for Maven), and the gap widens with version count. Since the landing page already sorts repositories by `size_bytes`, the same expectation applies to the version list, so the column is precomputed for parity across scopes.
 
@@ -2383,7 +2381,5 @@ The introduction of the `repositories` parent table adopts a limited version of 
 
 - [ADR-001: Organizations as Anchor Point](001_organizations_as_anchor_point.md) - Why the registry anchors to Organizations
 - [ADR-002: Storage Deduplication Scope](002_storage_deduplication_scope.md) - Detailed decision on deduplication scope
-
 <!-- - [ADR-010: Data Retention](010_data_retention.md) - Retention policies including soft delete and blob cleanup timing -->
-
 - [Package Registry common tables decomposition](https://gitlab.com/groups/gitlab-org/-/work_items/16000) - Details the issues faced when storing common artifact related data in central tables.

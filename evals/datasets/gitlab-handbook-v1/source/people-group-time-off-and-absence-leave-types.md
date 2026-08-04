@@ -7,14 +7,13 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Leave Types
 description: On this page you will find GitLab's leave policies, including GitLab Parental Leave, Emergency Leave, Military Leave, Sick Leave, and Caregiving Sick Leave.
 ---
 
 ## GitLab Parental Leave
 
-_GitLab’s paid Parental Leave is available for any active team member (regardless of gender) who becomes a parent through childbirth or adoption while working at GitLab. The information in this section is specific to GitLab’s 16-week paid Parental Leave. Different countries or US states may provide team members with their own statutory Parental Leave benefits. Please review your [country/state](/handbook/total-rewards/benefits/general-and-entity-benefits/#entity-specific-benefits) Parental Leave benefits for more information on how to apply and tenure requirements (if applicable)._
+*GitLab’s paid Parental Leave is available for any active team member (regardless of gender) who becomes a parent through childbirth or adoption while working at GitLab. The information in this section is specific to GitLab’s 16-week paid Parental Leave. Different countries or US states may provide team members with their own statutory Parental Leave benefits. Please review your [country/state](/handbook/total-rewards/benefits/general-and-entity-benefits/#entity-specific-benefits) Parental Leave benefits for more information on how to apply and tenure requirements (if applicable).*
 
 ### Eligibility, Entitlement and Planning Your Leave
 
@@ -26,11 +25,11 @@ GitLab provides 16 weeks of paid Parental Leave, which must be used prior to the
 - You may take your Parental Leave all at once or split it into up to three segments. Read more [here](/handbook/people-group/time-off-and-absence/time-away-philosophy/#communicating--preparing-for-planned-time-away) about how you should communicate and prepare for planned time away.
 - When calculating leave dates, GitLab uses a 1/7 formula (1 week = 7 days), meaning if you return on a Monday, your leave ends on Sunday.
 - If your Parental Leave falls within the 4 scheduled Family and Friends Days, your parental leave will be extended by 4 days.
-- _**FAQ: What happens with public holidays while I'm on Parental Leave?**_
+- ***FAQ: What happens with public holidays while I'm on Parental Leave?***
   - [GitLab’s Public Holiday](/handbook/people-group/time-off-and-absence/time-off-types/#public-holiday) policy provides each team member with a public holiday balance to use flexibly to celebrate what’s important to them and must be used within that calendar year. Unused public holidays will not rollover to the next calendar year while on parental leave, unless statutorily required by law.
 - Coverage planning: We expect all team members taking parental leave to work with their manager to develop a strong coverage plan before they start their leave (when possible). If you would like support with coverage planning - or other career and transition support - check out [Parentaly](/handbook/total-rewards/benefits/general-and-entity-benefits/#parental-leave-support-parentaly).
 
-_As you prepare for your parental leave, please note the following:_
+*As you prepare for your parental leave, please note the following:*
 
 - **No Work Required During Your Leave:** You are not required to log into any GitLab systems, review or approve compensation documents, or respond to any work-related emails or deadlines.
 - **Automated System Emails:** You may receive automated emails from our systems during your leave. **Please disregard these emails** - they do not require any action from you.
@@ -51,7 +50,7 @@ You may not extend paid parental leave through the use of Paid [Caregiver Sick T
 ### How to Initiate Your Leave
 
 1. **Share when comfortable**: You can share your news with your manager whenever you feel ready, but we recommend communicating 2-3 months before your leave starts for workload planning.
-1. **30-45 days prior to leave**: _remember to review your [location's reporting requirements](/handbook/total-rewards/benefits/general-and-entity-benefits/#entity-specific-benefits)!_
+1. **30-45 days prior to leave**: *remember to review your [location's reporting requirements](/handbook/total-rewards/benefits/general-and-entity-benefits/#entity-specific-benefits)!*
 
 **USA and Canada:** Please submit your Parental Leave request to Tilt (accessed through Okta). Once your request is submitted, it takes 2-5 business days to build your personalized leave plan. You will receive a notification when it is ready. If you have questions about your leave, you should contact Tilt directly at LeaveSupport@ourtilt.com, through the contact form, or text via (970) 449-0178. Team members can also reach out to the Tilt team to schedule a call and a Leave Specialist will send a scheduling link to set up time to chat live.
 
@@ -61,13 +60,13 @@ You may not extend paid parental leave through the use of Paid [Caregiver Sick T
 - **We understand that babies arrive on their own schedule!** If you need to change your leave dates, please contact the Absence Management team to make those edits, as team members cannot edit dates themselves once the request has been approved in Workday.
 - For adoptions where 30-day notice isn't possible, notify your manager as soon as possible and enter the dates into Workday when you can.
 
-_**FAQ: Do I need to submit any paperwork?**_ Yes, and this will vary depending on your location. Details of what is needed will be shared with you by the Absence Management team once they’ve had a chance to review your request and gather all relevant information. However, please be prepared to share proof of birth/relationship and/or adoption within 15 calendar days from the start of your leave. This can include a picture of the crib card, copy of paperwork from the hospital or birth center, or documentation with your child’s date of birth/placement noted. Documentation can be emailed to the Absence Management team at leaves@gitlab.com.
+***FAQ: Do I need to submit any paperwork?***  Yes, and this will vary depending on your location. Details of what is needed will be shared with you by the Absence Management team once they’ve had a chance to review your request and gather all relevant information. However, please be prepared to share proof of birth/relationship and/or adoption within 15 calendar days from the start of your leave. This can include a picture of the crib card, copy of paperwork from the hospital or birth center, or documentation with your child’s date of birth/placement noted. Documentation can be emailed to the Absence Management team at leaves@gitlab.com.
 
 ### Pay While on Parental Leave
 
-Eligible team members will receive 100% of their weekly wages through the GitLab Paid Parental Leave. If you live in a country or US state where a statutory benefit is available, you will be _required_ to apply for statutory leave pay (if eligible), and GitLab will supplement your pay to equal 100% of your weekly wages. You will not receive more than 100% of your wages with statutory leave and Parental Leave combined.
+Eligible team members will receive 100% of their weekly wages through the GitLab Paid Parental Leave. If you live in a country or US state where a statutory benefit is available, you will be *required* to apply for statutory leave pay (if eligible), and GitLab will supplement your pay to equal 100% of your weekly wages. You will not receive more than 100% of your wages with statutory leave and Parental Leave combined.
 
-_**FAQ: I’m in a Sales role and receive commission. How is that impacted while on Parental Leave?**_
+***FAQ: I’m in a Sales role and receive commission. How is that impacted while on Parental Leave?***
 
 - For information about attainment, quota, or commissions while on parental leave, [this policy](https://internal.gitlab.com/handbook/sales/sales-commission/#leave-of-absences) found in the internal handbook may help. If this doesn't answer your questions or you have specific questions about your scenario, please submit a HelpLab ticket to the sales commission team directly, as they administer the Sales Incentives policies that apply for commission eligible team members on LOA.
 
@@ -118,7 +117,7 @@ We realize that advance notice may not always be possible in these circumstances
 
 1. Document in Workday: Enter your emergency leave request through the Workday app or Slack integration:
 
-- Select the day(s) you need > Click "Leaves" > Click "Emergency Leave" > _Optional_: add a comment > Click "Submit"
+- Select the day(s) you need > Click "Leaves" > Click "Emergency Leave" > *Optional*: add a comment > Click "Submit"
 - The Absence Management team will receive notification and contact you within 48 hours to confirm dates and provide additional information.
 
 </details>

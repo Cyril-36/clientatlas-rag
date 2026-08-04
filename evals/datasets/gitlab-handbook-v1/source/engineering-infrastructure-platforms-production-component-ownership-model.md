@@ -7,11 +7,10 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Component Ownership Model"
 ---
 
-**\_A paved path for adding new Infrastructure Components to all GitLab's Platforms**
+**_A paved path for adding new Infrastructure Components to all GitLab's Platforms**
 
 ![Component Ownership Model Diagram](/images/engineering/infrastructure/production/component_ownership_model.png)
 
@@ -123,11 +122,11 @@ Three distinct roles drive the component addition process.
 Each brings specific expertise.
 Each owns different responsibilities.
 
-| Role                      | Team                                          | Responsibilities                                                                                                                                                                                                                                                  |
-| ------------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Component Owner**       | Team introducing and owning the new component | The stage group team or infrastructure team introducing the new component. The team owns it from conception through production. Drives the engagement process forward. Creates the artifacts: Container Images, Terraform modules, Helm charts, design documents. |
-| **Design Reviewer**       | Production Engineering (Staff+ IC)            | Evaluates the design. Asks difficult questions about scale, operations, architecture, and security. Their approval signals that the design can survive production's demands and would be viable in Self-Managed in future.                                        |
-| **Integration Engineers** | Production Engineering                        | Guides the component into GitLab.com's infrastructure. Reviews code against the approved design. Verifies policy compliance. Ensures the implementation matches the promise.                                                                                      |
+| Role                    | Team                                          | Responsibilities                                                                                                                                                                                                                                                  |
+|-------------------------|-----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Component Owner**     | Team introducing and owning the new component | The stage group team or infrastructure team introducing the new component. The team owns it from conception through production. Drives the engagement process forward. Creates the artifacts: Container Images, Terraform modules, Helm charts, design documents. |
+| **Design Reviewer** | Production Engineering (Staff+ IC)            | Evaluates the design. Asks difficult questions about scale, operations, architecture, and security. Their approval signals that the design can survive production's demands and would be viable in Self-Managed in future.                                        |
+| **Integration Engineers**     | Production Engineering                        | Guides the component into GitLab.com's infrastructure. Reviews code against the approved design. Verifies policy compliance. Ensures the implementation matches the promise.                                                                                      |
 
 ## The Vision: Self-service Infrastructure
 
@@ -263,51 +262,53 @@ As the platform provider, the Infrastructure Platforms department will commit to
 1. **Initial Design Review Response**: 10 business days to provide initial feedback on design documents
 
 1. **Integration Review Turnaround**:
-   - Initial review: 2 business days for first pass
-   - Subsequent reviews: 1 business day for re-reviews after changes
+    - Initial review: 2 business days for first pass
+    - Subsequent reviews: 1 business day for re-reviews after changes
 
 1. **Support Response Times**:
-   - Blocking issues: 2 business days
-   - Non-blocking questions: 5 business days
+    - Blocking issues: 2 business days
+    - Non-blocking questions: 5 business days
 
 1. **Platform Availability**:
-   - CI/CD pipeline availability, no upstream blockers: 99.5% uptime
+    - CI/CD pipeline availability, no upstream blockers: 99.5% uptime
 
 #### Component Owner Team SLAs
 
-The Component Owner will commit to the following SLAs. - Component Owners undertake to follow the [Security Department's Vulnerability mitigation and remediation SLAS](/handbook/security/product-security/vulnerability-management/sla/) - For embargoed vulnerabilities: Must comply with coordinated disclosure timelines.
+The Component Owner will commit to the following SLAs.
+    - Component Owners undertake to follow the [Security Department's Vulnerability mitigation and remediation SLAS](/handbook/security/product-security/vulnerability-management/sla/)
+    - For embargoed vulnerabilities: Must comply with coordinated disclosure timelines.
 
 1. **Tooling and Dependency Updates**:
-   - Breaking tool updates (Terraform, Helm major versions): 30 days from Infrastructure Team adoption
-   - Security updates for dependencies: Follow security incident SLAs above
-   - Provider plugin updates: 14 days for critical providers (GCP, Kubernetes)
-   - Note: Renovate will manage the creation of these MRs, and with sufficient test coverage,
-     these updates should low effort. However, if components require manual testing,
-     this will quickly become a burden on component owners.
-     It is highly recommended that proper automated tests are maintained by
-     component owners to reduce dependency upgrade overhead.
+    - Breaking tool updates (Terraform, Helm major versions): 30 days from Infrastructure Team adoption
+    - Security updates for dependencies: Follow security incident SLAs above
+    - Provider plugin updates: 14 days for critical providers (GCP, Kubernetes)
+    - Note: Renovate will manage the creation of these MRs, and with sufficient test coverage,
+      these updates should low effort. However, if components require manual testing,
+      this will quickly become a burden on component owners.
+      It is highly recommended that proper automated tests are maintained by
+      component owners to reduce dependency upgrade overhead.
 
 1. **Policy Compliance Updates**:
-   - Major policy versions: 90 days from release
-   - Minor policy versions: 30 days from release
-   - Security-related policy updates: 14 days
+    - Major policy versions: 90 days from release
+    - Minor policy versions: 30 days from release
+    - Security-related policy updates: 14 days
 
 1. **Operational Response**:
-   - Production incidents (S1/S2): 15-minute response time
-   - Performance degradation: 1 hour response time
-   - Capacity alerts: X business days
+    - Production incidents (S1/S2): 15-minute response time
+    - Performance degradation: 1 hour response time
+    - Capacity alerts: X business days
 
 1. **Documentation Maintenance**:
-   - Runbook updates: Delivered as part of any significant change project
+    - Runbook updates: Delivered as part of any significant change project
 
 1. **On-call Coverage**:
-   - The Component Owner team must provide either a
-     [Tier 1 On-Call](../../infrastructure-platforms/incident-management/on-call/tier-1.md) or
-     [Tier 2 On-Call](../../infrastructure-platforms/incident-management/on-call/tier-2.md).
-     Note: a new 24x5 Pilot On-Call is being considered at present,
-     and this may be used once it is available.
-   - Escalation path configured in PagerDuty, through automation
-   - Handoff procedures documented.
+    - The Component Owner team must provide either a
+      [Tier 1 On-Call](../../infrastructure-platforms/incident-management/on-call/tier-1.md) or
+      [Tier 2 On-Call](../../infrastructure-platforms/incident-management/on-call/tier-2.md).
+      Note: a new 24x5 Pilot On-Call is being considered at present,
+      and this may be used once it is available.
+    - Escalation path configured in PagerDuty, through automation
+    - Handoff procedures documented.
 
 #### Measurement and Reporting
 
@@ -318,9 +319,9 @@ The Component Owner will commit to the following SLAs. - Component Owners undert
 
 #### SLA Exceptions and Escalations
 
-- **Grace periods** may be extended with Infrastructure Platform Leadership approval
+- **Grace periods** may be extended  with Infrastructure Platform Leadership approval
 - **Waivers** require director-level approval from both teams
-- **Non-compliance** triggers escalation to director-level heads after:
+- **Non-compliance** triggers escalation to  director-level heads after:
   - 2 missed SLAs in a quarter
   - Any critical security SLA breach
   - Repeated violations of the same SLA
@@ -419,7 +420,7 @@ such as [Config-Mgmt](https://ops.gitlab.net/gitlab-com/gl-infra/config-mgmt) or
 The review should be assigned to the Integration SRE.
 
 Changes to integrate the module into each successive environment should be carried out in separate MRs,
-so that each change is tested in staging before being rolled out in canary and finally production.
+so that each change is tested in staging before being rolled out in canary and  finally production.
 
 Once the change is ready, the Integration SRE will review the change.
 This will include a review of the Component module, to ensure that:
@@ -672,17 +673,17 @@ For more details, see the [TOS module documentation](https://gitlab-com.gitlab.i
 The table below lists examples of Component Ownership Model modules already in use across GitLab's platforms.
 Each row describes the module, links to its source repository and to a code search showing where and how many times the module is declared in the given callsite, along with the team that owns the module.
 
-| Callsite     | Module                                                                                                                                                       | Description                                                                                                                                                                         | Declarations                                                                                                                                               | Module Owner                   |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| Config-Mgmt  | [gcp-oidc](https://gitlab.com/gitlab-com/gl-security/security-operations/infrastructure-security-public/oidc-modules/-/tree/main/terraform-modules/gcp-oidc) | Establishes OIDC (Workload Identity Federation) between GCP and GitLab, creating the identity pool, provider, and service-account bindings for keyless, token-based authentication. | [1](https://gitlab.com/search?project_id=2916956&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*gcp-oidc&regex=true)                          | Security Operations            |
-| Config-Mgmt  | [gcp-vpc](https://gitlab.com/gitlab-com/gl-infra/terraform-modules/google/vpc)                                                                               | Provisions a VPC network in GCP.                                                                                                                                                    | [1](https://gitlab.com/search?project_id=2916956&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*gcp-vpc&regex=true)                           | Platforms Engineering          |
-| Instrumentor | [cloudflare-waf-rules](https://gitlab.com/gitlab-com/gl-infra/terraform-modules/cloudflare/cloudflare-waf-rules)                                             | Manages Cloudflare Web Application Firewall (WAF) rules.                                                                                                                            | [3](https://gitlab.com/search?project_id=27996746&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*cloudflare-waf-rules&regex=true)             | Platforms Engineering          |
-| Instrumentor | [resource-tagger](https://gitlab.com/gitlab-com/gl-infra/gitlab-dedicated/library/terraform/resource-tagger)                                                 | Applies consistent tags to AWS resources (e.g. for FedRAMP and compliance purposes).                                                                                                | [3](https://gitlab.com/search?project_id=27996746&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*resource-tagger&regex=true)                  | Platforms Engineering          |
-| Instrumentor | [tenant-observability-stack](https://gitlab.com/gitlab-com/gl-infra/terraform-modules/observability/tenant-observability-stack)                              | Deploys observability tools and services into a single-tenant GitLab environment (Dedicated, Cells).                                                                                | [2](https://gitlab.com/search?project_id=27996746&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*tenant-observability-stack&regex=true)       | Platforms Engineering          |
-| Runway       | [gcp-oidc](https://gitlab.com/gitlab-com/gl-security/security-operations/infrastructure-security-public/oidc-modules/-/tree/main/terraform-modules/gcp-oidc) | Establishes OIDC (Workload Identity Federation) between GCP and GitLab, creating the identity pool, provider, and service-account bindings for keyless, token-based authentication. | [2](https://gitlab.com/search?project_id=46229026&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*gcp-oidc&regex=true)                         | Security Operations            |
-| Runway       | [gke-argocd-bootstrap](https://gitlab.com/gitlab-com/gl-infra/terraform-modules/google/gke-argocd-bootstrap)                                                 | Provisions the resources needed to integrate a GKE cluster into Argo CD.                                                                                                            | [1](https://gitlab.com/search?project_id=46229026&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*gke-argocd-bootstrap&regex=true)             | Runway and Observability teams |
-| Runway       | [google-privileged-access-manager](https://gitlab.com/gitlab-com/gl-infra/gitlab-dedicated/library/terraform/google-privileged-access-manager)               | Provisions Google Cloud Privileged Access Manager using GitLab breakglass policies and defaults.                                                                                    | [3](https://gitlab.com/search?project_id=46229026&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*google-privileged-access-manager&regex=true) | Platforms Engineering          |
-| Runway       | [project/gitlab](https://gitlab.com/gitlab-com/gl-infra/terraform-modules/google/project)                                                                    | Provisions a GCP project.                                                                                                                                                           | [2](https://gitlab.com/search?project_id=46229026&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*project%2Fgitlab&regex=true)                 | Platforms Engineering          |
-| Runway       | [project/google](https://gitlab.com/gitlab-com/gl-infra/terraform-modules/google/project)                                                                    | Provisions a GCP project.                                                                                                                                                           | [1](https://gitlab.com/search?project_id=46229026&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*project%2Fgoogle&regex=true)                 | Platforms Engineering          |
-| Runway       | [vault-ephemeral-secret-wrapper](https://gitlab.com/gitlab-com/gl-infra/terraform-modules/vault/vault-ephemeral-secret-wrapper)                              | Fetches Vault ephemeral secrets plus metadata (checksums, validity, versions) for Terraform ephemeral-resource workflows.                                                           | [3](https://gitlab.com/search?project_id=46229026&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*vault-ephemeral-secret-wrapper&regex=true)   | Platforms Engineering          |
-| Runway       | [vpc](https://gitlab.com/gitlab-com/gl-infra/terraform-modules/google/vpc)                                                                                   | Provisions a VPC network in GCP.                                                                                                                                                    | [2](https://gitlab.com/search?project_id=46229026&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*vpc&regex=true)                              | Platforms Engineering          |
+| Callsite | Module | Description | Declarations | Module Owner |
+|----------|--------|-------------|--------------|--------------|
+| Config-Mgmt | [gcp-oidc](https://gitlab.com/gitlab-com/gl-security/security-operations/infrastructure-security-public/oidc-modules/-/tree/main/terraform-modules/gcp-oidc) | Establishes OIDC (Workload Identity Federation) between GCP and GitLab, creating the identity pool, provider, and service-account bindings for keyless, token-based authentication. | [1](https://gitlab.com/search?project_id=2916956&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*gcp-oidc&regex=true) | Security Operations |
+| Config-Mgmt | [gcp-vpc](https://gitlab.com/gitlab-com/gl-infra/terraform-modules/google/vpc) | Provisions a VPC network in GCP. | [1](https://gitlab.com/search?project_id=2916956&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*gcp-vpc&regex=true) | Platforms Engineering |
+| Instrumentor | [cloudflare-waf-rules](https://gitlab.com/gitlab-com/gl-infra/terraform-modules/cloudflare/cloudflare-waf-rules) | Manages Cloudflare Web Application Firewall (WAF) rules. | [3](https://gitlab.com/search?project_id=27996746&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*cloudflare-waf-rules&regex=true) | Platforms Engineering |
+| Instrumentor | [resource-tagger](https://gitlab.com/gitlab-com/gl-infra/gitlab-dedicated/library/terraform/resource-tagger) | Applies consistent tags to AWS resources (e.g. for FedRAMP and compliance purposes). | [3](https://gitlab.com/search?project_id=27996746&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*resource-tagger&regex=true) | Platforms Engineering |
+| Instrumentor | [tenant-observability-stack](https://gitlab.com/gitlab-com/gl-infra/terraform-modules/observability/tenant-observability-stack) | Deploys observability tools and services into a single-tenant GitLab environment (Dedicated, Cells). | [2](https://gitlab.com/search?project_id=27996746&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*tenant-observability-stack&regex=true) | Platforms Engineering |
+| Runway | [gcp-oidc](https://gitlab.com/gitlab-com/gl-security/security-operations/infrastructure-security-public/oidc-modules/-/tree/main/terraform-modules/gcp-oidc) | Establishes OIDC (Workload Identity Federation) between GCP and GitLab, creating the identity pool, provider, and service-account bindings for keyless, token-based authentication. | [2](https://gitlab.com/search?project_id=46229026&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*gcp-oidc&regex=true) | Security Operations |
+| Runway | [gke-argocd-bootstrap](https://gitlab.com/gitlab-com/gl-infra/terraform-modules/google/gke-argocd-bootstrap) | Provisions the resources needed to integrate a GKE cluster into Argo CD. | [1](https://gitlab.com/search?project_id=46229026&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*gke-argocd-bootstrap&regex=true) | Runway and Observability teams |
+| Runway | [google-privileged-access-manager](https://gitlab.com/gitlab-com/gl-infra/gitlab-dedicated/library/terraform/google-privileged-access-manager) | Provisions Google Cloud Privileged Access Manager using GitLab breakglass policies and defaults. | [3](https://gitlab.com/search?project_id=46229026&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*google-privileged-access-manager&regex=true) | Platforms Engineering |
+| Runway | [project/gitlab](https://gitlab.com/gitlab-com/gl-infra/terraform-modules/google/project) | Provisions a GCP project. | [2](https://gitlab.com/search?project_id=46229026&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*project%2Fgitlab&regex=true) | Platforms Engineering |
+| Runway | [project/google](https://gitlab.com/gitlab-com/gl-infra/terraform-modules/google/project) | Provisions a GCP project. | [1](https://gitlab.com/search?project_id=46229026&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*project%2Fgoogle&regex=true) | Platforms Engineering |
+| Runway | [vault-ephemeral-secret-wrapper](https://gitlab.com/gitlab-com/gl-infra/terraform-modules/vault/vault-ephemeral-secret-wrapper) | Fetches Vault ephemeral secrets plus metadata (checksums, validity, versions) for Terraform ephemeral-resource workflows. | [3](https://gitlab.com/search?project_id=46229026&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*vault-ephemeral-secret-wrapper&regex=true) | Platforms Engineering |
+| Runway | [vpc](https://gitlab.com/gitlab-com/gl-infra/terraform-modules/google/vpc) | Provisions a VPC network in GCP. | [2](https://gitlab.com/search?project_id=46229026&repository_ref=main&scope=blobs&search=source%5Cs*%3D%5Cs*.*vpc&regex=true) | Platforms Engineering |

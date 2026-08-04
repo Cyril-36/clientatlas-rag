@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Corporate Security USB Device Encryption Guide
 ---
 
@@ -227,11 +226,11 @@ To use your encrypted USB drive again:
 
 1. Choose a strong passphrase that is:
 
-   - At least 12 characters long
+    - At least 12 characters long
 
-   - A mix of uppercase, lowercase, numbers, and special characters
+    - A mix of uppercase, lowercase, numbers, and special characters
 
-   - Not based on easily guessable personal information
+    - Not based on easily guessable personal information
 
 2. Keep a backup of important data stored on the encrypted drive.
 

@@ -7,15 +7,12 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "GitLab Offboarding Standards"
 description: "Offboarding process and steps on the backend"
 controlled_document: true
 tags:
-
-- security_standard
-- security_standard_ps
-
+  - security_standard
+  - security_standard_ps
 ---
 
 {{< label name="Visibility: Audit" color="#E24329" >}}
@@ -30,10 +27,10 @@ These standards apply to all GitLab team-members, contractors, advisors, and con
 
 ## Roles & Responsibilities
 
-| Role                            | Responsibility                                                                |
-| ------------------------------- | ----------------------------------------------------------------------------- |
-| GitLab Team Members             | Responsible for following the requirements in this document                   |
-| People Operations               | Responsible for implementing and executing this document                      |
+| Role  | Responsibility |
+|-----------|-----------|
+| GitLab Team Members | Responsible for following the requirements in this document |
+| People Operations | Responsible for implementing and executing this document |
 | People Operations (Code Owners) | Responsible for approving significant changes and exceptions to this document |
 
 ## Offboarding Procedure

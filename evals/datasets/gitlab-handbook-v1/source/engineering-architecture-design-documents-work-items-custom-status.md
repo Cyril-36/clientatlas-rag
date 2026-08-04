@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Configurable Work Item Statuses"
 status: ongoing
 creation-date: "2025-02-25"
@@ -23,7 +22,6 @@ toc_hide: true
 <!-- vale gitlab.FutureTense = NO -->
 
 <!-- This renders the design document header on the detail page, so don't remove it-->
-
 {{< engineering/design-document-header >}}
 
 ## Summary
@@ -727,12 +725,12 @@ This section documents key architectural and implementation decisions made durin
 1. We'll [show the default open status as a preselected value on the work item create form](https://gitlab.com/gitlab-org/gitlab/-/issues/526531#note_2457132393).
 1. We'll be implementing work item [status badge and filters in legacy issues list](https://gitlab.com/gitlab-org/gitlab/-/work_items/508015#note_2461199237).
 1. [Expanding support to epics](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/13402#note_2491127675), including the epic detail view, epic list view,
-   and legacy epic board view will be included in Iteration 3 (Fast follow). If the new board experience is available by the time of implementation, we'll skip the legacy board
-   view and focus on the new experience instead.
+and legacy epic board view will be included in Iteration 3 (Fast follow). If the new board experience is available by the time of implementation, we'll skip the legacy board
+view and focus on the new experience instead.
 1. [Backfill Custom Statuses](#backfill-custom-statuses-backup-option) is added as a backup option if later on we determine that migration from system-defined statuses to custom statuses poses more challenges than initially foreseen.
 1. As part of Iteration 2, [we'll only allow the deletion of custom statuses that are not in use](https://gitlab.com/gitlab-org/gitlab/-/issues/535964#note_2558275085).
-   Statuses that have already been assigned to a work item, have an associated status mapping or are set as one of the default statuses (open, closed, duplicate) in a lifecycle
-   can still be updated, but not deleted.
+Statuses that have already been assigned to a work item, have an associated status mapping or are set as one of the default statuses (open, closed, duplicate) in a lifecycle
+can still be updated, but not deleted.
 1. For iteration 2, we will not do any backfilling because we would need to wait for the release after a required stop to finalize the migration. Instead, we will [store the status mappings in the database](https://gitlab.com/gitlab-org/gitlab/-/merge_requests/191822#note_2512770051) when a system-defined lifecycle is converted to a custom lifecycle. Since we also cannot backfill the `work_item_current_statuses` table, we will have fallback logic on the backend so that we return the default status based on state when the associated `CurrentStatus` record is missing.
 1. We won't add support for epics and epic boards in the MVC2 release.
 1. We won't add label to status migration wizard in the MVC2 release.

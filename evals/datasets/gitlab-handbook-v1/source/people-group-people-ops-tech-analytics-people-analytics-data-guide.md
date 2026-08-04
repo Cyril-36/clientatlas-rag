@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Data Guide to People Data Analysis"
 ---
 
@@ -30,28 +29,28 @@ Data pertaining to the worker and employment at GitLab once hired
 
 <details><summary>Click to expand</summary>
 
-| Name                                                                                                                           | Description                                                                                                                                                                                     | Calculation                                                                                                               | Is Sensitive         |
-| ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------- |
-| Team Member                                                                                                                    | A person that worked for GitLab at any point in time, has an employee id in one of our Human Resource Management Systems (HRMS), and is not a temporary (contingent) worker or intern           |                                                                                                                           |                      |
-| Employee ID                                                                                                                    | Unique ID assigned in our HRMS upon hire to track team member's employment with GitLab                                                                                                          |                                                                                                                           | Yes                  |
-| Hire Date                                                                                                                      | The first day of employment with GitLab as a team member                                                                                                                                        |                                                                                                                           |                      |
-| Termination Date                                                                                                               | The first day a team member is no longer employed with GitLab as a team member                                                                                                                  | termination effective date in HRMS + 1 day                                                                                | Yes, if future-dated |
-| [Employee Type](/handbook/people-group/employment-solutions/#team-member-types-at-gitlab)                                      | The employment type for a team member's primary position. We typically exclude "Consultants" and "Interns" from reporting                                                                       |                                                                                                                           |                      |
-| [Company / Entity](/handbook/people-group/employment-solutions/#gitlab-entities-and-branches)                                  | Company used to employ or contract team members that is location-specific. These can be in the form of entities or professional Employer Organizations (PEO)                                    |                                                                                                                           |                      |
-| [Termination Type](/handbook/people-group/offboarding/)                                                                        | Business process reason category associated with the termination business process. Can be either Voluntary or Involuntary                                                                       |                                                                                                                           | Yes                  |
-| [Exit Impact](/handbook/people-group/offboarding/#offboarding:~:text=Regrettable%3A%20The%20team,or%20performance%20concerns.) | If worker is specified as regrettable termination on the termination transaction they are considered a "regrettable" termination. Otherwise they are considered a "non-regrettable" termination |                                                                                                                           | Yes                  |
-| Headcount                                                                                                                      | The count of team members employed at GitLab on a particular date                                                                                                                               |                                                                                                                           |                      |
-| Available Headcount                                                                                                            | The count of team members employed at GitLab on a particular date who do not have any absence recorded for that day                                                                             |                                                                                                                           |                      |
-| Begin Headcount                                                                                                                | Used for Average Headcount calculation. The number of team members active at the beginning of each period in a date range. This is usually the first day of the month.                          |                                                                                                                           |                      |
-| End Headcount                                                                                                                  | Used for Average Headcount calculation. The number of team members active at the end of each period in date range. This is usually the last day of the month.                                   |                                                                                                                           |                      |
-| Average Headcount                                                                                                              | The average number of team members in a specified date range. This is used to standardize rates across business areas.                                                                          | (sum of all Begin Counts in period / # of periods observed + sum of all End Counts in period / # of periods observed) / 2 |                      |
-| Net Growth                                                                                                                     | Metric to show growth based only on the difference between hires and terminations in a selected period                                                                                          | # of Hires in period - # of Terminations in period                                                                        |                      |
-| Turnover / Attrition                                                                                                           | The percentage of team members who leave an organisation over a specific period, typically on a rolling 12 month basis                                                                          | # of Terminations / Average Headcount                                                                                     | Yes, Internal Only   |
-| Retention                                                                                                                      | The percentage of team members that remain with an organisation over a given period.                                                                                                            | 1 - Turnover                                                                                                              | Yes, Internal Only   |
-| Voluntary Turnover                                                                                                             | Portion of turnover that is Voluntary termination type                                                                                                                                          | # of Voluntary Terminations / Average Headcount                                                                           | Yes, Internal Only   |
-| Involuntary Turnover                                                                                                           | Portion of turnover that is Involuntary termination type                                                                                                                                        | # of Involuntary Terminations / Average Headcount                                                                         | Yes, Internal Only   |
-| Regrettable Turnover                                                                                                           | Portion of turnover that is regrettable terminations                                                                                                                                            | # of Regrettable Terminations / Average Headcount                                                                         | Yes, Internal Only   |
-| Non-Regrettable Turnover                                                                                                       | Portion of turnover that is non-regrettable terminations                                                                                                                                        | # of Non-Regrettable Terminations / Average Headcount                                                                     | Yes, Internal Only   |
+| Name | Description | Calculation | Is Sensitive |
+|---|---|---|---|
+| Team Member | A person that worked for GitLab at any point in time, has an employee id in one of our Human Resource Management Systems (HRMS), and is not a temporary (contingent) worker or intern |  |  |
+| Employee ID | Unique ID assigned in our HRMS upon hire to track team member's employment with GitLab |  | Yes |
+| Hire Date | The first day of employment with GitLab as a team member |  |  |
+| Termination Date | The first day a team member is no longer employed with GitLab as a team member | termination effective date in HRMS + 1 day | Yes, if future-dated |
+| [Employee Type](/handbook/people-group/employment-solutions/#team-member-types-at-gitlab) | The employment type for a team member's primary position. We typically exclude "Consultants" and "Interns" from reporting |  |  |
+| [Company / Entity](/handbook/people-group/employment-solutions/#gitlab-entities-and-branches) | Company used to employ or contract team members that is location-specific. These can be in the form of entities or professional Employer Organizations (PEO) |  |  |
+| [Termination Type](/handbook/people-group/offboarding/) | Business process reason category associated with the termination business process. Can be either Voluntary or Involuntary |  | Yes |
+| [Exit Impact](/handbook/people-group/offboarding/#offboarding:~:text=Regrettable%3A%20The%20team,or%20performance%20concerns.) | If worker is specified as regrettable termination on the termination transaction they are considered a "regrettable" termination. Otherwise they are considered a "non-regrettable" termination |  | Yes |
+| Headcount | The count of team members employed at GitLab on a particular date |  |  |
+| Available Headcount | The count of team members employed at GitLab on a particular date who do not have any absence recorded for that day |  |  |
+| Begin Headcount | Used for Average Headcount calculation. The number of team members active at the beginning of each period in a date range. This is usually the first day of the month. |  |  |
+| End Headcount | Used for Average Headcount calculation. The number of team members active at the end of each period in date range. This is usually the last day of the month. |  |  |
+| Average Headcount | The average number of team members in a specified date range. This is used to standardize rates across business areas. | (sum of all Begin Counts in period / # of periods observed + sum of all End Counts in period / # of periods observed) / 2 |  |
+| Net Growth | Metric to show growth based only on the difference between hires and terminations in a selected period | # of Hires in period - # of Terminations in period |  |
+| Turnover / Attrition | The percentage of team members who leave an organisation over a specific period, typically on a rolling 12 month basis | # of Terminations / Average Headcount | Yes, Internal Only |
+| Retention | The percentage of team members that remain with an organisation over a given period. | 1 - Turnover | Yes, Internal Only |
+| Voluntary Turnover | Portion of turnover that is Voluntary termination type | # of Voluntary Terminations / Average Headcount | Yes, Internal Only |
+| Involuntary Turnover | Portion of turnover that is Involuntary termination type | # of Involuntary Terminations / Average Headcount | Yes, Internal Only |
+| Regrettable Turnover | Portion of turnover that is regrettable terminations | # of Regrettable Terminations / Average Headcount | Yes, Internal Only |
+| Non-Regrettable Turnover | Portion of turnover that is non-regrettable terminations | # of Non-Regrettable Terminations / Average Headcount | Yes, Internal Only |
 
 </details>
 
@@ -61,12 +60,12 @@ Data pertaining to the demographics of a worker and how they choose to identify
 
 <details><summary>Click to expand</summary>
 
-| Name                                                                                                            | Description                                                                                                                                                                                                                                                  | Calculation | Is Sensitive |
-| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- | ------------ |
-| [Underrepresented Group (URG)](/handbook/company/culture/inclusion/#examples-of-select-underrepresented-groups) | While there are many types of underrepresented groups (URGs), in reporting URGs are based on ethnicity and we consider any ethnicity that is not White, Asian, or Did Not Identify as URG. This metric is now measured globally instead of country-specific. |             | Yes          |
-| Non-URG                                                                                                         | In reporting, Non-URG is considered White or Asian ethnicities                                                                                                                                                                                               |             | Yes          |
-| Gender                                                                                                          | The gender of the worker which is used in reporting. Can currently be marked as Male, Female or left unindentified                                                                                                                                           |             | Yes          |
-| Gender Identity                                                                                                 | The gender identification of the individual. Examples include transgender, cisgender, genderfluid, genderqueer, non-binary                                                                                                                                   |             | Yes          |
+| Name | Description | Calculation | Is Sensitive |
+|---|---|---|---|
+| [Underrepresented Group (URG)](/handbook/company/culture/inclusion/#examples-of-select-underrepresented-groups) | While there are many types of underrepresented groups (URGs), in reporting URGs are based on ethnicity and we consider any ethnicity that is not White, Asian, or Did Not Identify as URG. This metric is now measured globally instead of country-specific. |  | Yes |
+| Non-URG | In reporting, Non-URG is considered White or Asian ethnicities |  | Yes |
+| Gender | The gender of the worker which is used in reporting. Can currently be marked as Male, Female or left unindentified |  | Yes |
+| Gender Identity | The gender identification of the individual. Examples include transgender, cisgender, genderfluid, genderqueer, non-binary |  | Yes |
 
 </details>
 
@@ -76,25 +75,25 @@ Information related to the position a team member holds at GitLab
 
 <details><summary>Click to Expand</summary>
 
-| Name                                                                                                                              | Description                                                                                                                                                                                                                                                                         | Calculation                                                              | Is Sensitive |
-| --------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------ |
-| Management Level                                                                                                                  | The management level for the job profile.                                                                                                                                                                                                                                           |                                                                          |              |
-| Leadership                                                                                                                        | A grouping of management levels that are director or higher (Director, Vice President, Leader, Chief Executive Officer)                                                                                                                                                             |                                                                          |              |
-| Management                                                                                                                        | A grouping of management levels that are manager or higher (Manager, Director, Vice President, Leader, Chief Executive Officer)                                                                                                                                                     |                                                                          |              |
-| [Job Level](https://docs.google.com/spreadsheets/d/1kcDb-A2uwchPtTNSJON65BdqS9P0KQmNz0fbNMZMt_M/edit?gid=819074618#gid=819074618) | The job level for the job profile.                                                                                                                                                                                                                                                  |                                                                          | Yes          |
-| People Managers                                                                                                                   | Any team members that have direct reports assigned to them in Workday                                                                                                                                                                                                               |                                                                          |              |
-| [Layers](/handbook/company/structure/#layers)                                                                                     | The number of layers between a team member and the CEO where layer 1 is the CEO                                                                                                                                                                                                     |                                                                          |              |
-| Direct Reports                                                                                                                    | The group of team members that report to a people manager                                                                                                                                                                                                                           |                                                                          |              |
-| [Span of Control](/handbook/company/structure/#management-group)                                                                  | The number of direct reports that are assigned to a people manager                                                                                                                                                                                                                  |                                                                          |              |
-| Average Span of Control                                                                                                           | The number of direct reports on average assigned to people managers                                                                                                                                                                                                                 | # of Direct Reports / # of People Managers                               |              |
-| Manager Ratio                                                                                                                     | Percent of team members that are people managers                                                                                                                                                                                                                                    | # of People Managers / Total Team Members                                |              |
-| Range of Span                                                                                                                     | The minimum and maximum span of control as of a particular date                                                                                                                                                                                                                     |                                                                          |              |
-| Compa-Ratio                                                                                                                       | Compa-ratio is a measurement of pay that compares an team member's salary to the median compensation for similar positions within a company or a target market.                                                                                                                     | Divide the team member's salary by the market rate compensation midpoint | Yes          |
-| [Discretionary Bonus](/handbook/incentives/#discretionary-bonuses)                                                                | An additional bonus amount that is awarded at the discretion of the company management. It is separate from standard bonus plans and is not based on specific performance metrics. Discretionary bonuses allow companies flexibility to reward standout team members.               |                                                                          |              |
-| Discretionary Bonus Rate                                                                                                          | Percentage of Team members that receive a discretionary bonus from the population. For KPIs this is reported as a rolling 3 month average.                                                                                                                                          | # of Discretionary Bonuses / Average Headcount                           |              |
-| [Promotion](/handbook/people-group/promotions-transfers/#promotions)                                                              | A promotion is counted if the business process type submitted in our HRMS is "Promote Employee Inbound"                                                                                                                                                                             |                                                                          |              |
-| [Lateral Transfer](/handbook/people-group/promotions-transfers/)                                                                  | A lateral move is counted if the business process category submitted in our HRMS is "Lateral Move" and there was a change in job title                                                                                                                                              |                                                                          |              |
-| [Internal Mobility Rate](/handbook/people-group/promotions-transfers/#internal-mobility)                                          | Internal Mobility Rate refers to the frequency at which team members change positions within an organization, indicating the internal movement and career progression opportunities available to staff, as well as the company's ability to retain talent by offering growth paths. | # Lateral Transfers and Promotions / Average Headcount                   |              |
+| Name | Description | Calculation | Is Sensitive |
+|---|---|---|---|
+| Management Level | The management level for the job profile. |  |  |
+| Leadership | A grouping of management levels that are director or higher (Director, Vice President, Leader, Chief Executive Officer) |  |  |
+| Management | A grouping of management levels that are manager or higher (Manager, Director, Vice President, Leader, Chief Executive Officer) |  |  |
+| [Job Level](https://docs.google.com/spreadsheets/d/1kcDb-A2uwchPtTNSJON65BdqS9P0KQmNz0fbNMZMt_M/edit?gid=819074618#gid=819074618) | The job level for the job profile. |  | Yes |
+| People Managers | Any team members that have direct reports assigned to them in Workday |  |  |
+| [Layers](/handbook/company/structure/#layers) | The number of layers between a team member and the CEO where layer 1 is the CEO |  |  |
+| Direct Reports | The group of team members that report to a people manager |  |  |
+| [Span of Control](/handbook/company/structure/#management-group) | The number of direct reports that are assigned to a people manager |  |  |
+| Average Span of Control | The number of direct reports on average assigned to people managers | # of Direct Reports / # of People Managers |  |
+| Manager Ratio | Percent of team members that are people managers | # of People Managers / Total Team Members | |
+| Range of Span | The minimum and maximum span of control as of a particular date | | |
+| Compa-Ratio | Compa-ratio is a measurement of pay that compares an team member's salary to the median compensation for similar positions within a company or a target market. | Divide the team member's salary by the market rate compensation midpoint | Yes |
+| [Discretionary Bonus](/handbook/incentives/#discretionary-bonuses) | An additional bonus amount that is awarded at the discretion of the company management. It is separate from standard bonus plans and is not based on specific performance metrics. Discretionary bonuses allow companies flexibility to reward standout team members. |  |  |
+| Discretionary Bonus Rate | Percentage of Team members that receive a discretionary bonus from the population. For KPIs this is reported as a rolling 3 month average. | # of Discretionary Bonuses / Average Headcount |  |
+| [Promotion](/handbook/people-group/promotions-transfers/#promotions) | A promotion is counted if the business process type submitted in our HRMS is "Promote Employee Inbound" |  |  |
+| [Lateral Transfer](/handbook/people-group/promotions-transfers/) | A lateral move is counted if the business process category submitted in our HRMS is "Lateral Move" and there was a change in job title |  |  |
+| [Internal Mobility Rate](/handbook/people-group/promotions-transfers/#internal-mobility) | Internal Mobility Rate refers to the frequency at which team members change positions within an organization, indicating the internal movement and career progression opportunities available to staff, as well as the company's ability to retain talent by offering growth paths. | # Lateral Transfers and Promotions / Average Headcount |  |
 
 </details>
 
@@ -104,12 +103,12 @@ Information related to Paid Time Off and Absence
 
 <details><summary>Click to expand</summary>
 
-| Name                    | Description                                                                                                                                                                                                                        | Calculation                                          | Is Sensitive |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ------------ |
-| Paid Time Off (PTO)     | Time off that is submitted and approved in the Absence Management System, does not fall on a weekend, does not exceed 25 days in a single request, and excludes PTO types like Extended Leave, CEO Shadow Program, and Conference. |                                                      |              |
-| Average PTO Days        | Average number of days in period that are PTO days. This calculation normalizes PTO usage for all team members to account for those who have not worked all days in the reporting period.                                          | (# PTO Days Used / # Days Worked) * # Days in Period |              |
-| Full-Cycle Tenure Group | Team members who have worked all days in a reporting period so normalized PTO matches actual PTO used                                                                                                                              |                                                      |              |
-| In/Out Tenure Group     | Team members who have not worked all days in a reporting period so normalized PTO will reflect number of days used for the full period based on actual usage in that period                                                        |                                                      |              |
+| Name | Description | Calculation | Is Sensitive |
+|---|---|---|---|
+| Paid Time Off (PTO) | Time off that is submitted and approved in the Absence Management System, does not fall on a weekend, does not exceed 25 days in a single request, and excludes PTO types like Extended Leave, CEO Shadow Program, and Conference. |  |  |
+| Average PTO Days | Average number of days in period that are PTO days. This calculation normalizes PTO usage for all team members to account for those who have not worked all days in the reporting period. | (# PTO Days Used / # Days Worked) * # Days in Period |  |
+| Full-Cycle Tenure Group | Team members who have worked all days in a reporting period so normalized PTO matches actual PTO used |  |  |
+| In/Out Tenure Group | Team members who have not worked all days in a reporting period so normalized PTO will reflect number of days used for the full period based on actual usage in that period |  |  |
 
 </details>
 
@@ -119,23 +118,23 @@ Data pertaining to the Onboarding process and Recruiting metrics used by Talent 
 
 <details><summary>Click to expand</summary>
 
-| Name                                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                | Calculation                                                                                                                                   | Is Sensitive |
-| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| Onboarding Satisfaction (OSAT) Score | Average rating on a 1-5 scale for all questions in the Week One onboarding survey in Culture Amp. Usually calculated as a rolling 3-month average.                                                                                                                                                                                                                                                                         | (Average of All Month 1 Onboarding Responses + Average of All Month 2 Onboarding Responses + Average of All Month 3 Onboarding Responses) / 3 |              |
-| Starts                               | External applicants who have accepted an offer with GitLab and have a start date scheduled in the HRMS                                                                                                                                                                                                                                                                                                                     |                                                                                                                                               |              |
-| External Applicants                  | Applicants whose source is not "Internal Applicant". They are not employed through GitLab at the time when the application is submitted                                                                                                                                                                                                                                                                                    |                                                                                                                                               |              |
-| Internal Applicants                  | Applicants whose source is "Internal Applicant". They are employed through GitLab at the time when the application is submitted                                                                                                                                                                                                                                                                                            |                                                                                                                                               |              |
-| Time to Hire / Candidate Throughput  | Days between the application submitted date and the date an application moved in the "Hire" stage if they also have an accepted offer.                                                                                                                                                                                                                                                                                     |                                                                                                                                               |              |
-| Verbal Accepted Offer %              | Applications that moved into the Offer stage and accepted / # Moved into the Offer stage and resolved                                                                                                                                                                                                                                                                                                                      | # of Applications moved into Offer Stage and Accepted Offers / # of Applications moved into the Offer Stage and Accepted or Rejected Offers   |              |
-| Written Offer Accept %               | Offers that resolved in a date range. # of accepted offers / # of resolved offers.                                                                                                                                                                                                                                                                                                                                         | # of Applications that Accepted Offers / # of Applications that Accepted or Rejected Offers                                                   |              |
-| Internal Mobility Rate %             | Offers that resolved in a date range. # of accepted offers from internal applicants / # of accepted offers                                                                                                                                                                                                                                                                                                                 | # of Internal Applications that Accepted Offers / # of Applications that Accepted Offers                                                      |              |
-| Source Rate                          | % of applications submitted in a date range that were sourced (Sourcing Strategy is "Prospecting" and Source is not "SocialReferral") and candidate was from a diverse source (based on candidate tags) as a percentage of all sourced applications                                                                                                                                                                        | # of Sourced Applications submitted with Diverse Candidate Tags / # of Sourced Applications                                                   |              |
-| Source Mix                           | % of accepted offers by external sourcing strategies (not internal applicants or acquisitions) with a resolved date in date range                                                                                                                                                                                                                                                                                          | # of External Applications with Accepted Offers in Specific Sourcing Strategy / # of External Applications with Accepted Offers               |              |
-| Conversion Rate                      | # of Applications submitted in a date range and what stages of the recruiting process that have gone through. It is the flow of applications between stages of the recruiting process showing what percent of applications from the previous step move into the next step (ex- if 10 applications were in Initial Interview and 2 made it to Team Interview phase, conversion rate for the Initial Interview would be 20%) | # of Applications in Second Stage / # of Applications in First Stage                                                                          |              |
-| Pending Offers                       | Offers that have been sent but not accepted or rejected                                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                               |              |
-| Time to Fill                         | Days between an Opening opened date and closed date for Openings that closed in a specified date range and list a hired application                                                                                                                                                                                                                                                                                        |                                                                                                                                               |              |
-| Time to Start                        | Days between an Opening opened date and the expected start date for a hired application                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                               |              |
-| Requisition Aging                    | Average days that Openings were open at any point in a date range. This calculation averages days open for all days in the reporting period.                                                                                                                                                                                                                                                                               |                                                                                                                                               |              |
+| Name | Description | Calculation | Is Sensitive |
+|---|---|---|---|
+| Onboarding Satisfaction (OSAT) Score | Average rating on a 1-5 scale for all questions in the Week One onboarding survey in Culture Amp. Usually calculated as a rolling 3-month average. | (Average of All Month 1 Onboarding Responses + Average of All Month 2 Onboarding Responses + Average of All Month 3 Onboarding Responses) / 3 |  |
+| Starts | External applicants who have accepted an offer with GitLab and have a start date scheduled in the HRMS |  |  |
+| External Applicants | Applicants whose source is not "Internal Applicant". They are not employed through GitLab at the time when the application is submitted |  |  |
+| Internal Applicants | Applicants whose source is "Internal Applicant". They are employed through GitLab at the time when the application is submitted |  |  |
+| Time to Hire / Candidate Throughput | Days between the application submitted date and the date an application moved in the "Hire" stage if they also have an accepted offer. |  |  |
+| Verbal Accepted Offer % | Applications that moved into the Offer stage and accepted / # Moved into the Offer stage and resolved | # of Applications moved into Offer Stage and Accepted Offers / # of Applications moved into the Offer Stage and Accepted or Rejected Offers |  |
+| Written Offer Accept % | Offers that resolved in a date range. # of accepted offers / # of resolved offers. | # of Applications that Accepted Offers / # of Applications that Accepted or Rejected Offers |  |
+| Internal Mobility Rate % | Offers that resolved in a date range. # of accepted offers from internal applicants / # of accepted offers | # of Internal Applications that Accepted Offers / # of Applications that Accepted Offers |  |
+| Source Rate | % of applications submitted in a date range that were sourced (Sourcing Strategy is "Prospecting" and Source is not "SocialReferral") and candidate was from a diverse source (based on candidate tags) as a percentage of all sourced applications | # of Sourced Applications submitted with Diverse Candidate Tags / # of Sourced Applications |  |
+| Source Mix | % of accepted offers by external sourcing strategies (not internal applicants or acquisitions) with a resolved date in date range | # of External Applications with Accepted Offers in Specific Sourcing Strategy / # of External Applications with Accepted Offers |  |
+| Conversion Rate | # of Applications submitted in a date range and what stages of the recruiting process that have gone through. It is the flow of applications between stages of the recruiting process showing what percent of applications from the previous step move into the next step (ex- if 10 applications were in Initial Interview and 2 made it to Team Interview phase, conversion rate for the Initial Interview would be 20%) | # of Applications in Second Stage / # of Applications in First Stage |  |
+| Pending Offers | Offers that have been sent but not accepted or rejected |  |  |
+| Time to Fill | Days between an Opening opened date and closed date for Openings that closed in a specified date range and list a hired application |  |  |
+| Time to Start | Days between an Opening opened date and the expected start date for a hired application |  |  |
+| Requisition Aging | Average days that Openings were open at any point in a date range. This calculation averages days open for all days in the reporting period. |  |  |
 
 </details>
 
@@ -145,17 +144,17 @@ Systems used by the People Group
 
 <details><summary>Click to expand</summary>
 
-| Name                                                                                      | Description                                                                                                                                                                | Calculation | Is Sensitive |
-| ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ------------ |
-| [R (Language)](/handbook/enterprise-data/platform/rstudio/)                               | A programming language and software environment used for statistical analysis, graphical representation, and reporting, popular in data analysis and scientific research.  |             |              |
-| [Tableau](/handbook/enterprise-data/platform/tableau/)                                    | Primary data visualization tool at GitLab                                                                                                                                  |             |              |
-| [Workday](/handbook/people-group/)                                                        | Current Human Resource Management Systems (HRMS) and the SSoT for all team member related data on or after 2022-06-16 and SSoT for all Absence data on or after 2024-09-01 |             |              |
-| [Greenhouse](/handbook/hiring/)                                                           | Current Applicant Tracking System (ATS) at GitLab and the SSOT for all recruiting metrics                                                                                  |             |              |
-| Time Off by Deel                                                                          | Current absence management support tool at GitLab integrated with Workday which is the SSoT for Absence.                                                                   |             |              |
-| Sisense (formerly Periscope)                                                              | Former data visualization tool at GitLab                                                                                                                                   |             |              |
-| FiveTran                                                                                  | Fivetran is the automated data movement platform moving data out of Workday and into Snowflake                                                                             |             |              |
-| [SnowFlake](/handbook/enterprise-data/platform/snowflake/)                                | Snowflake is our Enterprise Data Warehouse (EDW) and is the core technology in our Enterprise Data Platform.                                                               |             |              |
-| [Level Up / GitLab University](/handbook/people-group/learning-and-development/level-up/) | Training platform created by Thought Industries for continuing education and career development                                                                            |             |              |
+| Name | Description | Calculation | Is Sensitive |
+|---|---|---|---|
+| [R (Language)](/handbook/enterprise-data/platform/rstudio/)   | A programming language and software environment used for statistical analysis, graphical representation, and reporting, popular in data analysis and scientific research. |  |  |
+| [Tableau](/handbook/enterprise-data/platform/tableau/) | Primary data visualization tool at GitLab |  |  |
+| [Workday](/handbook/people-group/) | Current Human Resource Management Systems (HRMS) and the SSoT for all team member related data on or after 2022-06-16 and SSoT for all Absence data on or after 2024-09-01 |  |  |
+| [Greenhouse](/handbook/hiring/) | Current Applicant Tracking System (ATS) at GitLab and the SSOT for all recruiting metrics |  |  |
+| Time Off by Deel | Current absence management support tool at GitLab integrated with Workday which is the SSoT for Absence. |  |  |
+| Sisense (formerly Periscope) | Former data visualization tool at GitLab |  |  |
+| FiveTran | Fivetran is the automated data movement platform moving data out of Workday and into Snowflake |  |  |
+| [SnowFlake](/handbook/enterprise-data/platform/snowflake/) | Snowflake is our Enterprise Data Warehouse (EDW) and is the core technology in our Enterprise Data Platform. |  |  |
+| [Level Up / GitLab University](/handbook/people-group/learning-and-development/level-up/) | Training platform created by Thought Industries for continuing education and career development |  |  |
 
 </details>
 
@@ -170,26 +169,26 @@ Underneath each model is a clean lineage of dimensions and facts that can also b
 
 ### Prep, dimension and fact tables
 
-| Model Name                  | Table Type | Grain                                                                                | Source           | Status    | Documentation                                                                                      |
-| --------------------------- | ---------- | ------------------------------------------------------------------------------------ | ---------------- | --------- | -------------------------------------------------------------------------------------------------- |
-| prep_team_member            | Staging    | One row per Team Member ID per event                                                 | Workday          | Completed | [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.prep_team_member)            |
-| dim_team                    | Dimension  | One row per Team ID per event                                                        | Workday          | Completed | [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.dim_team)                    |
-| dim_team_member             | Dimension  | One row per Team Member ID per event                                                 | Workday          | Completed | [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.dim_team_member)             |
-| fct_team_member_position    | Fact       | One row per employee_id, team_id, effective_date and date_time_initiated combination | Workday          | Completed | [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.fct_team_member_position)    |
-| fct_team_member_status      | Fact       | One row per employee_id, employment_status and status_effective_date combination     | Workday          | Completed | [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.fct_team_member_status)      |
-| fct_team_status             | Fact       | One row per employee_id and valid_from combination                                   | Workday          | Completed | [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.fct_team_status)             |
-| fct_team_member_absence     | Fact       | One row per Team Member ID, pto_uuid and absence_date combination                    | Time Off By Deel | Completed | [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.fct_team_member_absence)     |
-| fct_team_member_history     | Fact       | One row per Team Member ID and hired date                                            | Workday          | Completed | [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.fct_team_member_history)     |
-| fct_team_member_job_history | Fact       | One row per Team Member ID and `job_profile_workday_id`                              | Workday          | Completed | [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.fct_team_member_job_history) |
-| fct_team_member_locality    | Fact       |                                                                                      | Workday          | Planned   | DBT docs                                                                                           |
-| fct_team_demographic        | Fact       |                                                                                      | Workday          | Planned   | DBT docs                                                                                           |
+|Model Name|Table Type|Grain|Source|Status|Documentation|
+| ------ | ------ | ------ | ------ | ------ | ------ |
+|prep_team_member|Staging|One row per Team Member ID per event|Workday|Completed| [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.prep_team_member) |
+|dim_team|Dimension|One row per Team ID per event|Workday|Completed| [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.dim_team) |
+|dim_team_member|Dimension|One row per Team Member ID per event|Workday|Completed| [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.dim_team_member) |
+|fct_team_member_position|Fact|One row per employee_id, team_id, effective_date and date_time_initiated combination|Workday|Completed| [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.fct_team_member_position) |
+|fct_team_member_status|Fact|One row per employee_id, employment_status and status_effective_date combination|Workday|Completed| [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.fct_team_member_status) |
+|fct_team_status|Fact|One row per employee_id and valid_from combination|Workday|Completed| [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.fct_team_status) |
+|fct_team_member_absence|Fact|One row per Team Member ID, pto_uuid and absence_date combination|Time Off By Deel|Completed|[DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.fct_team_member_absence)|
+|fct_team_member_history|Fact|One row per Team Member ID and hired date|Workday|Completed|[DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.fct_team_member_history)|
+|fct_team_member_job_history|Fact|One row per Team Member ID and `job_profile_workday_id` |Workday|Completed|[DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.fct_team_member_job_history)|
+|fct_team_member_locality|Fact||Workday|Planned| DBT docs |
+|fct_team_demographic|Fact||Workday|Planned| DBT docs |
 
 ### Marts
 
-| Model Name                 | Table Type | Grain                                                             | Status    | Documentation                                                                                     |
-| -------------------------- | ---------- | ----------------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------- |
-| mart_team_member_directory | Mart       | One row per employee ID                                           | Completed | [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.mart_team_member_directory) |
-| mart_team_member_absence   | Mart       | One row per Team Member ID, pto_uuid and absence_date combination | Completed | [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.mart_team_member_absence)   |
+|Model Name|Table Type|Grain|Status|Documentation|
+| ------ | ------ | ------ | ------ | ------ |
+|mart_team_member_directory| Mart | One row per employee ID| Completed | [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.mart_team_member_directory) |
+|mart_team_member_absence| Mart | One row per Team Member ID, pto_uuid and absence_date combination| Completed | [DBT docs](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.mart_team_member_absence) |
 
 ## Model usage
 
@@ -233,7 +232,7 @@ WHERE
 <details>
 <summary markdown="span">Query - Percentage of key talent in the team member population</summary>
 
-_key_talent_status is a masked field, only team members with the analyst_people role in Snowflake can query it_
+*key_talent_status is a masked field, only team members with the analyst_people role in Snowflake can query it*
 
 ```sql
 SELECT
@@ -291,7 +290,7 @@ WHERE
 <details>
 <summary markdown="span">Query - Number of team members per entity</summary>
 
-_Entity is a masked field, only team members with the analyst_people role in Snowflake can query it_
+*Entity is a masked field, only team members with the analyst_people role in Snowflake can query it*
 
 ```sql
 SELECT
@@ -341,7 +340,7 @@ WHERE
 <details>
 <summary markdown="span">Query - Team members with position = backend engineers in France </summary>
 
-_Entity is a masked field, only team members with the `analyst_people` role in Snowflake can query it_
+*Entity is a masked field, only team members with the `analyst_people` role in Snowflake can query it*
 
 ```sql
 SELECT
@@ -365,7 +364,7 @@ The grain of this table is one row per employee_id, employment_status and status
 <details>
 <summary markdown="span"> Number of team members whose departure caused an impact to the company </summary>
 
-_Exit impact is a masked field, only team members with the `analyst_people` role in Snowflake can query it_
+*Exit impact is a masked field, only team members with the `analyst_people` role in Snowflake can query it*
 
 ```sql
 SELECT
@@ -381,7 +380,7 @@ WHERE
 <details>
 <summary markdown="span"> Number of team members whose departure was voluntary </summary>
 
-_Termination type is a masked field, only team members with the `analyst_people` role in Snowflake can query it_
+*Termination type is a masked field, only team members with the `analyst_people` role in Snowflake can query it*
 
 ```sql
 SELECT
@@ -397,7 +396,7 @@ WHERE
 <details>
 <summary markdown="span"> Termination reason provided by team members whose departure was voluntary and caused an exit impact </summary>
 
-_Termination type, termination reason and exit impact are masked fields, only team members with the analyst_people role in Snowflake can query it_
+*Termination type, termination reason and exit impact are masked fields, only team members with the analyst_people role in Snowflake can query it*
 
 ```sql
 SELECT
@@ -419,7 +418,7 @@ This table is a derived fact from `fct_team_member_status` and `fct_team_member_
 <details>
 <summary markdown="span">Query - Active team members with position = backend engineers in France  </summary>
 
-_Entity is a masked field, only team members with the `analyst_people` role in Snowflake can query it_
+*Entity is a masked field, only team members with the `analyst_people` role in Snowflake can query it*
 
 ```sql
 SELECT
@@ -438,7 +437,7 @@ WHERE
 <details>
 <summary markdown="span">Query - Number of resignations (voluntary) per team </summary>
 
-_Termination type and termination reason are masked fields, only team members with the `analyst_people` role in Snowflake can query it_
+*Termination type and termination reason are masked fields, only team members with the `analyst_people` role in Snowflake can query it*
 
 ```sql
 SELECT
@@ -457,7 +456,7 @@ GROUP BY 1;
 
 <summary markdown="span">Query - Number of regresignations (voluntary vs involuntary) per management level </summary>
 
-_Termination type and termination reason are masked fields, only team members with the `analyst_people` role in Snowflake can query it_
+*Termination type and termination reason are masked fields, only team members with the `analyst_people` role in Snowflake can query it*
 
 ```sql
 SELECT
@@ -483,10 +482,10 @@ The grain of this table is one row per `team member ID` and `hired date` combina
 <details>
 <summary markdown="span">Query - Team Roster with Tenure Information </summary>
 
-_Shows all current team members with their length of service, helping managers understand their team composition and recognize long-term employees._
+*Shows all current team members with their length of service, helping managers understand their team composition and recognize long-term employees.*
 
 ```sql
-SELECT
+SELECT 
     t.employee_id,
     e.full_name,
     e.position,
@@ -495,7 +494,7 @@ SELECT
     DATEDIFF('month', t.hire_date, CURRENT_DATE()) AS tenure_months,
     ROUND(DATEDIFF('year', t.hire_date, CURRENT_DATE()), 1) AS tenure_years
 FROM "PROD".common.fct_team_member_history t
-JOIN PROD.COMMON_MART_PEOPLE.MART_TEAM_MEMBER_DIRECTORY e
+JOIN PROD.COMMON_MART_PEOPLE.MART_TEAM_MEMBER_DIRECTORY e 
     ON t.employee_id = e.employee_id AND is_current= TRUE -- Team member's current information
 WHERE e.team_manager_name = 'MANAGER_FULL_NAME'           -- Replace with preferred full name of the people manager
   AND t.term_date IS NULL                                 -- Only current team members
@@ -548,7 +547,7 @@ FROM "PROD".common.fct_team_member_job_history
 GROUP BY job_family
 ORDER BY retention_rate DESC
 )
-SELECT *
+SELECT * 
 FROM retention_by_job_family
 WHERE NOT active_team_members = 0 --Excluded deprecated job families
 ```
@@ -565,7 +564,7 @@ The table includes information from **Time Off By Deel**, . The grain of this ta
 
 This table is a derived mart from `fct_team_member_absence` and `dim_team_member`. Sensitive columns are masked and only visible by team members with the `analyst_people` role assigned in Snowflake. This table will be a replacement of the workspace table `wk_pto`.This table is a [hybrid SCD (Type 0 + Type 2)](/handbook/enterprise-data/platform/edw/#slowly-changing-dimensions--snapshots).
 
-The grain of this table is one row per `team member ID` per `pto_uuid` and `absence_date` combination.
+ The grain of this table is one row per `team member ID` per `pto_uuid` and `absence_date` combination.
 
 <details>
 <summary markdown="span">Query - Absence days for an team member by quarter for the year 2024</summary>
@@ -663,12 +662,12 @@ Legacy models are models we will be transitioning from at some point but are sti
 <details>
 <summary markdown="span">Click to expand</summary>
 
-| Database | Schema    | Table Name                                                                                                                    | Data Grain                                         | Description                                                                                                                                                                                                                                                                                                | Notes                                                    |
-| -------- | --------- | ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| prod     | legacy    | [employee_directory_analysis](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.employee_directory_analysis)         | `employee_id` by `date_actual`                     | Gives the current state of the team members at GitLab at any point of time. This is the model to use for headcount, team size, or any people-related analysis for team members. This has current and past team members, as well as their department, division, and cost center and hire/termination dates. |                                                          |
-| prep     | sensitive | [employee_directory_intermediate](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.employee_directory_intermediate) | `employee_id` by `date_actual`                     | INCLUDES SENSITIVE INFORMATION. The master collection of all info about GitLab team members for their latest position.                                                                                                                                                                                     |                                                          |
-| prep     | sensitive | [workday_terminations](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.workday_terminations)                       | `employee_id`                                      | Provides the termination reason, and exit impact to allow the People Analytics team to accurately report on termination data                                                                                                                                                                               |                                                          |
-| prep     | workday   | [blended_directory_source](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.blended_directory_source)               | `employee_id` by `uploaded_at` and `source_system` | Daily upload of team member data used for downstream models.                                                                                                                                                                                                                                               | Helpful source for auditing any data issues in Snowflake |
+| Database | Schema | Table Name | Data Grain | Description | Notes |
+| --- | --- | --- | --- | --- | --- |
+| prod | legacy | [employee_directory_analysis](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.employee_directory_analysis) | `employee_id` by `date_actual` | Gives the current state of the team members at GitLab at any point of time. This is the model to use for headcount, team size, or any people-related analysis for team members. This has current and past team members, as well as their department, division, and cost center and hire/termination dates. | |
+| prep | sensitive | [employee_directory_intermediate](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.employee_directory_intermediate) | `employee_id` by `date_actual` | INCLUDES SENSITIVE INFORMATION. The master collection of all info about GitLab team members for their latest position. | |
+| prep | sensitive | [workday_terminations](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.workday_terminations) | `employee_id` | Provides the termination reason, and exit impact to allow the People Analytics team to accurately report on termination data | |
+| prep | workday | [blended_directory_source](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.blended_directory_source) | `employee_id` by `uploaded_at` and `source_system` | Daily upload of team member data used for downstream models. | Helpful source for auditing any data issues in Snowflake |
 
 </details>
 
@@ -677,10 +676,10 @@ Legacy models are models we will be transitioning from at some point but are sti
 <details>
 <summary markdown="span">Click to expand</summary>
 
-| Database | Schema           | Table Name                                                                                                                              | Data Grain                                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Notes |
-| -------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
-| prod     | workspace_people | [rpt_hires](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.rpt_hires)                                                       | `application_id`                                      | This is a report specifically for talent acquisition and counts accepted offers as hires.                                                                                                                                                                                                                                                                                                                                                                                     |       |
-| prep     | greenhouse       | [greenhouse_application_stages_source](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.greenhouse_application_stages_source) | `application_id` by `stage_id` and `stage_entered_on` | This table is Historical activity of all stages an application can be in Each row represents a stage that an application can be in, and the timestamp that the application entered and exited the stage Things to note: This table contains a row for each stage that an application can be in (taken from the job that the application is on). Thus, there may be rows for stages that an application has yet to reach, or will not reach (if the application was rejected). |       |
-| prep     | sensitive        | [greenhouse_recruiting_xf](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.greenhouse_recruiting_xf)                         | `application_id`                                      | This is shows all applications submitted and ties in offer data, greenhouse department (the associated division), and source data to be in 1 place.                                                                                                                                                                                                                                                                                                                           |       |
+| Database | Schema | Table Name | Data Grain | Description | Notes |
+| --- | --- | --- | --- | --- | --- |
+| prod | workspace_people | [rpt_hires](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.rpt_hires) | `application_id` | This is a report specifically for talent acquisition and counts accepted offers as hires. |  |
+| prep | greenhouse | [greenhouse_application_stages_source](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.greenhouse_application_stages_source) | `application_id` by `stage_id` and `stage_entered_on` | This table is Historical activity of all stages an application can be in Each row represents a stage that an application can be in, and the timestamp that the application entered and exited the stage Things to note: This table contains a row for each stage that an application can be in (taken from the job that the application is on). Thus, there may be rows for stages that an application has yet to reach, or will not reach (if the application was rejected). |  |
+| prep | sensitive | [greenhouse_recruiting_xf](https://dbt.gitlabdata.com/#!/model/model.gitlab_snowflake.greenhouse_recruiting_xf) | `application_id` | This is shows all applications submitted and ties in offer data, greenhouse department (the associated division), and source data to be in 1 place. |  |
 
 </details>

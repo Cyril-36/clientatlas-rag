@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Phishing Program"
 ---
 
@@ -48,7 +47,7 @@ The phishing simulation email from ProofPoint will appear as though it is origin
 
 #### How should I respond to the phishing simulation?
 
-Just like with any suspected phishing or malicious email, follow the [handbook process](#what-to-do-if-you-suspect-an-email-is-a-phishing-attack) for reporting suspected phishing emails. The preference for reporting phishing emails is Option 1 via PhishArm.
+Just like with any suspected phishing or malicious email, follow the [handbook process](#what-to-do-if-you-suspect-an-email-is-a-phishing-attack) for reporting suspected phishing emails.  The preference for reporting phishing emails is Option 1 via PhishArm.
 
 ![PhishArm icon](/images/security/security-assurance/governance/PhishArm.png)
 
@@ -62,15 +61,15 @@ Our phishing partner, ProofPoint, curates and hosts the training modules which w
 
 ![Training assignment](/images/security/security-assurance/GitLabSecurityPhishingTraining.png)
 
-If the training is not completed within 1 week, a reminder will be sent from ProofPoint. If required, the Security Governance team will communicate incomplete assigned training modules to managers for assistance with completion. Demonstration of completed training supports compliance with the Phishing program and will strengthen our regulatory requirements.
+If the training is not completed within 1 week, a reminder will be sent from ProofPoint. If required, the Security Governance team will communicate incomplete assigned training modules to managers for assistance with completion.  Demonstration of completed training supports compliance with the Phishing program and will strengthen our regulatory requirements.
 
 ### Simulation Result Outcomes
 
-| Action                                                          | Outcome                   |
-| --------------------------------------------------------------- | ------------------------- |
-| Submitted email via PhishArm or directly to phishing@gitlab.com | No further action.        |
-| Did nothing with the email                                      | No further action.        |
-| Clicked on the link                                             | Training will be assigned |
+| Action                                 | Outcome |
+| -------------------------------------- | ------- |
+| Submitted email via PhishArm or directly to phishing@gitlab.com | No further action. |
+| Did nothing with the email             | No further action.   |
+| Clicked on the link                    | Training will be assigned  |
 
 #### Phishing Simulation and Training Metrics
 
@@ -78,64 +77,64 @@ The Security Governance team will initiate and track the quarterly phishing simu
 
 ### Questions and Answers
 
-_I clicked the link in the email, what do I do?_
+*I clicked the link in the email, what do I do?*
 
 - Please complete the required training module you have been assigned as soon as possible. Knowing this is a phishing simulated email, please avoid discussing with anyone else or feel compelled to post a screenshot of the email received in Slack as it may skew the results of the phishing exercise.
 
-_I didn't click the link in the email, what do I do?_
+*I didn't click the link in the email, what do I do?*
 
 - Please forward the email via the <img alt="PhishArm button" src="/images/security/security-assurance/governance/PhishArm.png" height="32" width=32> or as an attachment to phishing@gitlab.com using these [instructions](#what-to-do-if-you-suspect-an-email-is-a-phishing-attack). Knowing this is a phishing simulation, please avoid discussing with anyone else or feel compelled to post a screenshot of the email received in Slack as it may skew the results of the phishing exercise.
 
-_I got assigned training without clicking the link in the email, what do I do?_
+*I got assigned training without clicking the link in the email, what do I do?*
 
-- Please reach out to Security Governance @sec-governance to report and review the steps that were taken prior to receiving the training to identify if this should be considered a false positive. There are ways that the link can get triggered even if not directly clicked in the phishing email. Security Governance can help troubleshoot what might have happened.
+- Please reach out to Security Governance @sec-governance to report and review the steps that were taken prior to receiving the training to identify if this should be considered a false positive.  There are ways that the link can get triggered even if not directly clicked in the phishing email.  Security Governance can help troubleshoot what might have happened.
 
-_NOTE_
+*NOTE*
 
 - If the link provided in the phishing email is **NOT** clicked, but copy/pasted, that could also trigger the 'click', please refrain from trying to decipher the link.
 - If Option 3 is used to report an email, this could also trigger the 'click' as the tracking image could be cached by the ATP and proxy services.
 
 Feel free to complete the assigned training and consider it as taking an extra step to stay secure!
 
-_I use a physical Yubikey for multifactor authentication, why did I still fail the phishing simulation?_
+*I use a physical Yubikey for multifactor authentication, why did I still fail the phishing simulation?*
 
-- While a physical Yubikey or other token device used will prevent you from fully being phished, not all GitLab systems support these devices. As this simulation exercise is for training and awareness, the goal is to test how GitLab team-members respond to these emails.
+- While a physical Yubikey or other token device used will prevent you from fully being phished, not all GitLab systems support these devices.  As this simulation exercise is for training and awareness, the goal is to test how GitLab team-members respond to these emails.
 
-_I thought the Red Team was conducting the phishing exercises?_
+*I thought the Red Team was conducting the phishing exercises?*
 
-- Correct! The Red Team was conducting our phishing exercises with a tool they built but unfortunately Google began identifying the exercises as malicious and were shutting them down quicker with each attempt. This caused the phishing exercises to not be beneficial along with no results to work with.
+- Correct! The Red Team was conducting our phishing exercises with a tool they built but unfortunately Google began identifying the exercises as malicious and were shutting them down quicker with each attempt.  This caused the phishing exercises to not be beneficial along with no results to work with.
 
-_Why are we using an external vendor?_
+*Why are we using an external vendor?*
 
 - Due to our internally created solution being identified as malicious by Google, we needed to utilize an external solution that would be able to provide a consistent process and reliable results, which resulted in our partnership with ProofPoint.
 
-_Who decides who receives these phishing simulations?_
+*Who decides who receives these phishing simulations?*
 
 - All GitLab team members, contractors and others with access to production data will be included in the quarterly campaigns with the exception of any individuals on extended leave at the time the campaign is launched.
 
-_How often will I receive these?_
+*How often will I receive these?*
 
 - At a minimum, one phishing simulation campaign will take place each fiscal quarter. Prior to the phishing campaign's start, a general notification to the GitLab organization will be posted to the `#whats-happening-at-gitlab` Slack channel. However, for maximum efficacy, the exact content, date, time and team members receiving the email will not be communicated. Campaigns may contain various versions of the simulated email that will be delivered at random times throughout the 1-week campaign.
 
-_I don't want to be included, how do I remove myself?_
+*I don't want to be included, how do I remove myself?*
 
 - All GitLab team members have the responsibility to help keep themselves, team members, customers and the company secure. As such, team members can not opt out.
 
-_Is this an invasion of privacy?_
+*Is this an invasion of privacy?*
 
 - The phishing program is covered by the [Employee Privacy Policy](/handbook/legal/privacy/employee-privacy-policy/).
 
-_Will I be publicly shamed?_
+*Will I be publicly shamed?*
 
-- No, we will never post or create metrics which will associate a team member success or failure with a phishing simulation exercise. We will generate non-identifying metrics to be shared internally and public-facing.
+- No, we will never post or create metrics which will associate a team member success or failure with a phishing simulation exercise.  We will generate non-identifying metrics to be shared internally and public-facing.
 
-_I never fall for the phishing simulations received, why am I still receiving these simulation emails?_
+*I never fall for the phishing simulations received, why am I still receiving these simulation emails?*
 
-- Unfortunately, phishing emails continue to improve in deception and the ability to look genuine. By receiving phishing simulations your ability to spot the real thing is an invaluable skill to help protect yourself, team members, GitLab, and the customer.
+- Unfortunately, phishing emails continue to improve in deception and the ability to look genuine.  By receiving phishing simulations your ability to spot the real thing is an invaluable skill to help protect yourself, team members, GitLab, and the customer.
 
-_How can I provide Feedback on my experience?_
+*How can I provide Feedback on my experience?*
 
-- All feedback is welcome and encouraged in [this issue](https://gitlab.com/gitlab-com/gl-security/security-assurance/governance/phishing/-/issues/10). The only way to continuously improve on our program is via feedback.
+- All feedback is welcome and encouraged in [this issue](https://gitlab.com/gitlab-com/gl-security/security-assurance/governance/phishing/-/issues/10).  The only way to continuously improve on our program is via feedback.
 
 ## How to identify a basic phishing attack
 
@@ -155,19 +154,19 @@ Some examples or methods used to trick users into entering sensitive data into
 phishing forms include:
 
 - Using HTTP(S) with a hostname that begins with the name of a trusted
-  site but ends with a malicious site.
+site but ends with a malicious site.
 
 ![Malicious Domain](/images/security/security-assurance/malicious-domain.png)
 
 - Using a username or password inside the request that corresponds to the name
-  of a trusted domain and assuming the viewer won't view the whole URL.
+of a trusted domain and assuming the viewer won't view the whole URL.
 
 ![Trick Username](/images/security/security-assurance/username-password.png)
 
 - Using a data URI scheme instead of HTTP(S) is a particularly devious means of
-  tricking users. Data schemes allow the embedding of an entire web page inside
-  the URI itself. Data schemes will not show the typical green lock in the address
-  bar of a browser that is customarily associated with a verified SSL connection.
+tricking users. Data schemes allow the embedding of an entire web page inside
+the URI itself. Data schemes will not show the typical green lock in the address
+bar of a browser that is customarily associated with a verified SSL connection.
 
 ![Data Scheme](/images/security/security-assurance/data-scheme.png)
 
@@ -189,7 +188,7 @@ should never enter sensitive data into that website.
 
 ### What to do if you suspect an email is a phishing attack
 
-If you think an email is suspicious, it may be a phishing attempt targeted at you or GitLab, or it may be a security test. Please report the email to Security by using the _**PhishArm**_ button in Gmail - instructions & a GIF are in the section
+If you think an email is suspicious, it may be a phishing attempt targeted at you or GitLab, or it may be a security test. Please report the email to Security by using the ***PhishArm*** button in Gmail - instructions & a GIF are in the section
 below.
 
 If you are on a mobile device and using the Gmail app, the PhishArm button is toward the bottom of your Gmail app, in the available add-ons section.

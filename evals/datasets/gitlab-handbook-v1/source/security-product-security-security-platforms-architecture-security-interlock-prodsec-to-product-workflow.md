@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "ProdSec to Product Process"
 description: "How ProdSecEng collaborates with Product and Engineering to ship security capabilities into the GitLab product"
 ---
@@ -191,12 +190,12 @@ Tools were categorised into one of the following. These categories are still ref
 
 ProdSecEng provided different levels of support based on tool criticality. These commitments are still referenced for tools being maintained during the transition:
 
-| Criticality  | SLO (Response Time) | RTO (Recovery Time) | Example                                               |
-| ------------ | ------------------- | ------------------- | ----------------------------------------------------- |
-| **Critical** | < 4 business hours  | < 12 business hours | Tools blocking security releases or incident response |
-| **High**     | < 1 business day    | < 2 business days   | Tools supporting daily security operations            |
-| **Medium**   | < 3 business days   | < 2 weeks           | Tools used weekly or monthly                          |
-| **Low**      | Best effort         | Best effort         | Experimental or rarely-used tools                     |
+| Criticality | SLO (Response Time) | RTO (Recovery Time) | Example |
+|-------------|---------------------|---------------------|---------|
+| **Critical** | < 4 business hours | < 12 business hours | Tools blocking security releases or incident response |
+| **High** | < 1 business day | < 2 business days | Tools supporting daily security operations |
+| **Medium** | < 3 business days | < 2 weeks | Tools used weekly or monthly |
+| **Low** | Best effort | Best effort | Experimental or rarely-used tools |
 
 Notes:
 

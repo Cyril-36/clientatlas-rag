@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 stage: core platform
 group: Tenant Scale
 title: 'Cells: HTTP Routing Service'
@@ -33,38 +32,38 @@ For example:
 
 1. **Technology.**
 
-   We decide what technology the routing service is written in.
-   The choice is dependent on the best performing language, and the expected way and place of deployment of the routing layer.
-   If it is required to make the service multi-cloud it might be required to deploy it to the CDN provider.
-   Then the service needs to be written using a technology compatible with the CDN provider.
+    We decide what technology the routing service is written in.
+    The choice is dependent on the best performing language, and the expected way and place of deployment of the routing layer.
+    If it is required to make the service multi-cloud it might be required to deploy it to the CDN provider.
+    Then the service needs to be written using a technology compatible with the CDN provider.
 
-   [ADR 001](decisions/001_routing_technology.md)
+    [ADR 001](decisions/001_routing_technology.md)
 
 1. **Cell discovery.**
 
-   The routing service needs to be able to discover and monitor the health of all Cells.
+    The routing service needs to be able to discover and monitor the health of all Cells.
 
 1. **User can use single domain to interact with many Cells.**
 
-   The routing service will intelligently route all requests to Cells based on the resource being
-   accessed versus the Cell containing the data.
+    The routing service will intelligently route all requests to Cells based on the resource being
+    accessed versus the Cell containing the data.
 
 1. **Router endpoints classification.**
 
-   The stateless routing service will fetch and cache information about endpoints from one of the Cells.
-   We need to implement a protocol that will allow us to accurately describe the incoming request (its fingerprint), so it can be classified by one of the Cells, and the results of that can be cached.
-   We also need to implement a mechanism for negative cache and cache eviction.
+    The stateless routing service will fetch and cache information about endpoints from one of the Cells.
+    We need to implement a protocol that will allow us to accurately describe the incoming request (its fingerprint), so it can be classified by one of the Cells, and the results of that can be cached.
+    We also need to implement a mechanism for negative cache and cache eviction.
 
 1. **GraphQL and other ambiguous endpoints.**
 
-   Most endpoints have a unique classification key: the Organization, which directly or indirectly (via a Group or Project) can be used to classify endpoints.
-   Some endpoints are ambiguous in their usage (they don't encode the classification key), or the classification key is stored deep in the payload.
-   In these cases, we need to decide how to handle endpoints like `/api/graphql`.
+    Most endpoints have a unique classification key: the Organization, which directly or indirectly (via a Group or Project) can be used to classify endpoints.
+    Some endpoints are ambiguous in their usage (they don't encode the classification key), or the classification key is stored deep in the payload.
+    In these cases, we need to decide how to handle endpoints like `/api/graphql`.
 
 1. **Small.**
 
-   The routing service is configuration- and rules-driven and does not implement any business logic. The
-   project should stay minimal and handle only routing concerns.
+    The routing service is configuration- and rules-driven and does not implement any business logic. The
+    project should stay minimal and handle only routing concerns.
 
 ## Requirements
 
@@ -261,38 +260,38 @@ The routing rules JSON structure describes all matchers:
 
 ```json
 {
-  "rules": [
-    {
-      "cookies": {
-        "<cookie_name>": {
-          "match_regex": "<regex_match>"
-        },
-        "<cookie_name2>": {
-          "match_regex": "<regex_match>"
-        }
-      },
-      "headers": {
-        "<header_name>": {
-          "match_regex": "<regex_match>"
-        },
-        "<header_name2>": {
-          "match_regex": "<regex_match>"
-        }
-      },
-      "method": ["<list_of_accepted_methods>"],
+    "rules": [
+        {
+            "cookies": {
+                "<cookie_name>": {
+                    "match_regex": "<regex_match>"
+                },
+                "<cookie_name2>": {
+                    "match_regex": "<regex_match>"
+                }
+            },
+            "headers": {
+                "<header_name>": {
+                    "match_regex": "<regex_match>"
+                },
+                "<header_name2>": {
+                    "match_regex": "<regex_match>"
+                },
+            },
+            "method": ["<list_of_accepted_methods>"],
 
-      "action": "classify",
-      "classify": {
-        "type": "session_prefix|...",
-        "value": "string_build_from_regex_matchers"
-      },
+            "action": "classify",
+            "classify": {
+                "type": "session_prefix|...",
+                "value": "string_build_from_regex_matchers"
+            },
 
-      "action": "proxy",
-      "proxy": {
-        "address": "cell1.gitlab.com"
-      }
-    }
-  ]
+            "action": "proxy",
+            "proxy": {
+                "address": "cell1.gitlab.com"
+            }
+        }
+    ]
 }
 ```
 
@@ -300,32 +299,32 @@ Example of the routing rules that makes routing decision based session cookie, a
 
 ```json
 {
-  "rules": [
-    {
-      "cookies": {
-        "_gitlab_session": {
-          "match_regex": "^(?<cell_name>cell.*:)" // accept `_gitlab_session` that are prefixed with `cell1:`
+    "rules": [
+        {
+            "cookies": {
+                "_gitlab_session": {
+                    "match_regex": "^(?<cell_name>cell.*:)" // accept `_gitlab_session` that are prefixed with `cell1:`
+                }
+            },
+            "action": "classify",
+            "classify": {
+                "type": "session_prefix",
+                "value": "${cell_name}"
+            }
+        },
+        {
+            "headers": {
+                "GITLAB_TOKEN": {
+                    "match_regex": "^(?<cell_name>cell.*:)" // accept `_gitlab_session` that are prefixed with `cell1:`
+                }
+            },
+            "action": "classify",
+            "classify": {
+                "type": "token_prefix",
+                "value": "${cell_name}"
+            }
         }
-      },
-      "action": "classify",
-      "classify": {
-        "type": "session_prefix",
-        "value": "${cell_name}"
-      }
-    },
-    {
-      "headers": {
-        "GITLAB_TOKEN": {
-          "match_regex": "^(?<cell_name>cell.*:)" // accept `_gitlab_session` that are prefixed with `cell1:`
-        }
-      },
-      "action": "classify",
-      "classify": {
-        "type": "token_prefix",
-        "value": "${cell_name}"
-      }
-    }
-  ]
+    ]
 }
 ```
 
@@ -434,7 +433,7 @@ We will use the existing [deployment mechanism](https://gitlab.com/gitlab-org/ce
 #### Prerequisites
 
 - Before processing with rollout steps, make sure you clearly defined the
-  timeline.
+timeline.
 - Schedule the change
 - Add a new Change Lock entry to the [configuration](https://gitlab.com/gitlab-com/gl-infra/change-lock/-/blob/f1c2a4e197fc5c0c1ca4aae18e7480a904212f80/config/changelock.yml) file. Use the `http-router` Change Lock tag for this entry.
 

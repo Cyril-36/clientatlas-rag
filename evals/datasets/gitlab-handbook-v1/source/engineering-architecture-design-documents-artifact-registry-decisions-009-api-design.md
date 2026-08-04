@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Artifact Registry ADR 009: API Design"
 owning-stage: "~devops::package"
 description: "Decision on the API endpoints organization for the registry"
@@ -101,8 +100,8 @@ Management APIs use GitLab [REST API authentication](https://docs.gitlab.com/api
 
 **Repository Management:**
 
-- `GET    /api/v1/:slug/repositories` - List all repositories (hosted, virtual, and remote across all formats). Supports filtering by format and repository type
-- `POST   /api/v1/:slug/repositories` - Create a repository
+- `GET    /api/v1/:slug/repositories`                  - List all repositories (hosted, virtual, and remote across all formats). Supports filtering by format and repository type
+- `POST   /api/v1/:slug/repositories`                  - Create a repository
 - `GET    /api/v1/:slug/repositories/:repository_name` - Get repository details
 - `PATCH  /api/v1/:slug/repositories/:repository_name` - Update a repository
 - `DELETE /api/v1/:slug/repositories/:repository_name` - Delete a repository
@@ -115,15 +114,15 @@ The repository detail response is polymorphic — its shape varies by format and
 
 **Statistics:**
 
-- `GET /api/v1/:slug/statistics` - Get aggregate storage and download statistics
+- `GET /api/v1/:slug/statistics`         - Get aggregate storage and download statistics
 - `GET /api/v1/:slug/:format/statistics` - Get storage and download statistics for a specific format
 
 **Lifecycle Policies:**
 
-- `GET    /api/v1/:slug/lifecycle_policy` - Get the lifecycle policy
-- `PATCH  /api/v1/:slug/lifecycle_policy` - Update the lifecycle policy
-- `GET    /api/v1/:slug/lifecycle_policy/rules` - Get lifecycle policy rules
-- `POST   /api/v1/:slug/lifecycle_policy/rules` - Create a lifecycle policy rule
+- `GET    /api/v1/:slug/lifecycle_policy`                - Get the lifecycle policy
+- `PATCH  /api/v1/:slug/lifecycle_policy`                - Update the lifecycle policy
+- `GET    /api/v1/:slug/lifecycle_policy/rules`          - Get lifecycle policy rules
+- `POST   /api/v1/:slug/lifecycle_policy/rules`          - Create a lifecycle policy rule
 - `GET    /api/v1/:slug/lifecycle_policy/rules/:rule_id` - Get a lifecycle policy rule
 - `PATCH  /api/v1/:slug/lifecycle_policy/rules/:rule_id` - Update a lifecycle policy rule
 - `DELETE /api/v1/:slug/lifecycle_policy/rules/:rule_id` - Delete a lifecycle policy rule
@@ -134,8 +133,8 @@ The repository detail response is polymorphic — its shape varies by format and
 
 Upstreams are stored in per-format-family tables (`container_virtual_repository_upstreams`, shared by `docker` and `oci`, plus `maven_virtual_repository_upstreams` and `npm_virtual_repository_upstreams`) with format-specific upstream rules. Since remote and hosted repositories are standalone entities, virtual repository upstreams are references to existing repositories. The upstream type (hosted or remote) is determined by the referenced repository's `kind`.
 
-- `GET    /api/v1/:slug/repositories/:repository_name/:format/upstream_repositories` - List upstream repositories (hosted and remote) for a virtual repository, ordered by resolution priority
-- `POST   /api/v1/:slug/repositories/:repository_name/:format/upstream_repositories` - Associate a repository (hosted or remote) as an upstream of a virtual repository. Accepts `upstream_repository_id`
+- `GET    /api/v1/:slug/repositories/:repository_name/:format/upstream_repositories`     - List upstream repositories (hosted and remote) for a virtual repository, ordered by resolution priority
+- `POST   /api/v1/:slug/repositories/:repository_name/:format/upstream_repositories`     - Associate a repository (hosted or remote) as an upstream of a virtual repository. Accepts `upstream_repository_id`
 - `GET    /api/v1/:slug/repositories/:repository_name/:format/upstream_repositories/:id` - Get an upstream repository association
 - `PATCH  /api/v1/:slug/repositories/:repository_name/:format/upstream_repositories/:id` - Update association position. Only the `position` field can be updated
 - `DELETE /api/v1/:slug/repositories/:repository_name/:format/upstream_repositories/:id` - Disassociate an upstream from a virtual repository
@@ -146,16 +145,16 @@ Upstreams are stored in per-format-family tables (`container_virtual_repository_
 
 **Statistics:**
 
-- `GET    /api/v1/:slug/repositories/:repository_name/statistics` - Get repository storage and download statistics
+- `GET    /api/v1/:slug/repositories/:repository_name/statistics`  - Get repository storage and download statistics
 
 **Lifecycle Policies:**
 
 Repository-level lifecycle policies use per-format-family tables (`container_repository_lifecycle_policy_settings`, etc.) that override the namespace-level defaults.
 
-- `GET    /api/v1/:slug/repositories/:repository_name/:format/lifecycle_policy` - Get the lifecycle policy for the repository
-- `PATCH  /api/v1/:slug/repositories/:repository_name/:format/lifecycle_policy` - Update the lifecycle policy for the repository
-- `GET    /api/v1/:slug/repositories/:repository_name/:format/lifecycle_policy/rules` - Get the lifecycle policy rules for the repository
-- `POST   /api/v1/:slug/repositories/:repository_name/:format/lifecycle_policy/rules` - Create a lifecycle policy rule for the repository
+- `GET    /api/v1/:slug/repositories/:repository_name/:format/lifecycle_policy`                - Get the lifecycle policy for the repository
+- `PATCH  /api/v1/:slug/repositories/:repository_name/:format/lifecycle_policy`                - Update the lifecycle policy for the repository
+- `GET    /api/v1/:slug/repositories/:repository_name/:format/lifecycle_policy/rules`          - Get the lifecycle policy rules for the repository
+- `POST   /api/v1/:slug/repositories/:repository_name/:format/lifecycle_policy/rules`          - Create a lifecycle policy rule for the repository
 - `GET    /api/v1/:slug/repositories/:repository_name/:format/lifecycle_policy/rules/:rule_id` - Get a lifecycle policy rule
 - `PATCH  /api/v1/:slug/repositories/:repository_name/:format/lifecycle_policy/rules/:rule_id` - Update a lifecycle policy rule
 - `DELETE /api/v1/:slug/repositories/:repository_name/:format/lifecycle_policy/rules/:rule_id` - Delete a lifecycle policy rule
@@ -176,53 +175,53 @@ Verb semantics on a remote repository describe the cached row, not the upstream:
 
 For container-family repositories, artifacts are called "images". The `:format` segment in these routes is the repository's format, `docker` or `oci`:
 
-- `GET    /api/v1/:slug/repositories/:repository_name/:format/images` - List images in a repository
-- `GET    /api/v1/:slug/repositories/:repository_name/:format/images/:image_id` - Get image details
-- `GET    /api/v1/:slug/repositories/:repository_name/:format/images/:image_id/manifests` - List manifests for the given image
-- `GET    /api/v1/:slug/repositories/:repository_name/:format/images/:image_id/blobs` - List blobs for the given image
+- `GET    /api/v1/:slug/repositories/:repository_name/:format/images`                      - List images in a repository
+- `GET    /api/v1/:slug/repositories/:repository_name/:format/images/:image_id`            - Get image details
+- `GET    /api/v1/:slug/repositories/:repository_name/:format/images/:image_id/manifests`  - List manifests for the given image
+- `GET    /api/v1/:slug/repositories/:repository_name/:format/images/:image_id/blobs`      - List blobs for the given image
 - `GET    /api/v1/:slug/repositories/:repository_name/:format/images/:image_id/statistics` - Get image storage, usage, and download statistics
-- `DELETE /api/v1/:slug/repositories/:repository_name/:format/images/:image_id` - Delete an image (soft or hard delete)
-- `DELETE /api/v1/:slug/repositories/:repository_name/:format/images` - Delete images in bulk
+- `DELETE /api/v1/:slug/repositories/:repository_name/:format/images/:image_id`            - Delete an image (soft or hard delete)
+- `DELETE /api/v1/:slug/repositories/:repository_name/:format/images`                      - Delete images in bulk
 - `PATCH  /api/v1/:slug/repositories/:repository_name/:format/images/:image_id/quarantine` - Quarantine the given image
 
 **Container-family-specific - Image Tags:**
 
-- `GET    /api/v1/:slug/repositories/:repository_name/:format/images/:image_id/tags` - List tags for the given image
+- `GET    /api/v1/:slug/repositories/:repository_name/:format/images/:image_id/tags`                 - List tags for the given image
 - `GET    /api/v1/:slug/repositories/:repository_name/:format/images/:image_id/tags/:tag/statistics` - Get tag storage, usage, and download statistics
-- `DELETE /api/v1/:slug/repositories/:repository_name/:format/images/:image_id/tags/:tag` - Delete an image tag
-- `DELETE /api/v1/:slug/repositories/:repository_name/:format/images/:image_id/tags` - Delete a set of image tags
+- `DELETE /api/v1/:slug/repositories/:repository_name/:format/images/:image_id/tags/:tag`            - Delete an image tag
+- `DELETE /api/v1/:slug/repositories/:repository_name/:format/images/:image_id/tags`                 - Delete a set of image tags
 
 **Maven/NPM-specific - Packages:**
 
-- `GET    /api/v1/:slug/repositories/:repository_name/:format/packages` - List packages in a repository
-- `GET    /api/v1/:slug/repositories/:repository_name/:format/packages/:package_id` - Get package details
-- `GET    /api/v1/:slug/repositories/:repository_name/:format/packages/:package_id/statistics` - Get package storage, usage, and download statistics
-- `DELETE /api/v1/:slug/repositories/:repository_name/:format/packages/:package_id` - Delete a package (soft or hard delete)
-- `DELETE /api/v1/:slug/repositories/:repository_name/:format/packages` - Delete packages in bulk
-- `PATCH  /api/v1/:slug/repositories/:repository_name/:format/packages/:package_id/quarantine` - Quarantine the given package
-- `GET    /api/v1/:slug/repositories/:repository_name/:format/packages/:package_id/versions` - List versions for the given package
+- `GET    /api/v1/:slug/repositories/:repository_name/:format/packages`                         - List packages in a repository
+- `GET    /api/v1/:slug/repositories/:repository_name/:format/packages/:package_id`             - Get package details
+- `GET    /api/v1/:slug/repositories/:repository_name/:format/packages/:package_id/statistics`  - Get package storage, usage, and download statistics
+- `DELETE /api/v1/:slug/repositories/:repository_name/:format/packages/:package_id`             - Delete a package (soft or hard delete)
+- `DELETE /api/v1/:slug/repositories/:repository_name/:format/packages`                         - Delete packages in bulk
+- `PATCH  /api/v1/:slug/repositories/:repository_name/:format/packages/:package_id/quarantine`  - Quarantine the given package
+- `GET    /api/v1/:slug/repositories/:repository_name/:format/packages/:package_id/versions`    - List versions for the given package
 
 **Maven/NPM-specific - Package Versions:**
 
-- `GET    /api/v1/:slug/repositories/:repository_name/:format/versions/:version_id` - Get version details
+- `GET    /api/v1/:slug/repositories/:repository_name/:format/versions/:version_id`            - Get version details
 - `GET    /api/v1/:slug/repositories/:repository_name/:format/versions/:version_id/statistics` - Get package version storage, usage, and download statistics
-- `DELETE /api/v1/:slug/repositories/:repository_name/:format/versions/:version_id` - Delete a version (soft or hard delete)
-- `DELETE /api/v1/:slug/repositories/:repository_name/:format/versions` - Delete versions in bulk
-- `GET    /api/v1/:slug/repositories/:repository_name/:format/versions/:version_id/files` - List files for the given version
+- `DELETE /api/v1/:slug/repositories/:repository_name/:format/versions/:version_id`            - Delete a version (soft or hard delete)
+- `DELETE /api/v1/:slug/repositories/:repository_name/:format/versions`                        - Delete versions in bulk
+- `GET    /api/v1/:slug/repositories/:repository_name/:format/versions/:version_id/files`      - List files for the given version
 
 **Maven/NPM-specific - Package Files:**
 
-- `GET    /api/v1/:slug/repositories/:repository_name/:format/files/:file_id` - Get file details
+- `GET    /api/v1/:slug/repositories/:repository_name/:format/files/:file_id`          - Get file details
 - `GET    /api/v1/:slug/repositories/:repository_name/:format/files/:file_id/download` - Download a file
-- `DELETE /api/v1/:slug/repositories/:repository_name/:format/files/:file_id` - Delete a file (soft or hard delete)
-- `DELETE /api/v1/:slug/repositories/:repository_name/:format/files` - Delete files in bulk
+- `DELETE /api/v1/:slug/repositories/:repository_name/:format/files/:file_id`          - Delete a file (soft or hard delete)
+- `DELETE /api/v1/:slug/repositories/:repository_name/:format/files`                   - Delete files in bulk
 
 **NPM-specific - Distribution Tags:**
 
 - `GET    /api/v1/:slug/repositories/:repository_name/npm/packages/:package_id/tags` - List tags for the given package
-- `GET    /api/v1/:slug/repositories/:repository_name/npm/tags/:tag_id` - Get tag details
-- `GET    /api/v1/:slug/repositories/:repository_name/npm/tags/:tag_id/statistics` - Get tag storage, usage, and download statistics
-- `DELETE /api/v1/:slug/repositories/:repository_name/npm/tags/:tag_id` - Delete a tag
+- `GET    /api/v1/:slug/repositories/:repository_name/npm/tags/:tag_id`              - Get tag details
+- `GET    /api/v1/:slug/repositories/:repository_name/npm/tags/:tag_id/statistics`   - Get tag storage, usage, and download statistics
+- `DELETE /api/v1/:slug/repositories/:repository_name/npm/tags/:tag_id`              - Delete a tag
 
 ### Artifact Management Client APIs
 
@@ -234,24 +233,24 @@ Implements [OCI Distribution Spec v1.1](https://github.com/opencontainers/distri
 
 The literal `container` path segment below is fixed at the protocol level: one set of `/v2` endpoints serves repositories of both the `docker` and `oci` formats. It is a router-injected literal, not the repository's `format` value (see [Management APIs](#management-apis)).
 
-- `GET    /v2/` - Check API version and registry implementation (OCI-mandated, not scoped to a slug)
-- `GET    /v2/:slug/container/:repository_name/:image_name/manifests/:reference` - Get manifest (reference can be tag or digest)
-- `HEAD   /v2/:slug/container/:repository_name/:image_name/manifests/:reference` - Check manifest existence
-- `PUT    /v2/:slug/container/:repository_name/:image_name/manifests/:reference` - Upload manifest (not available for remote and virtual repositories)
-- `DELETE /v2/:slug/container/:repository_name/:image_name/manifests/:reference` - Delete manifest (by digest or tag reference, not available for remote and virtual repositories)
-- `DELETE /v2/:slug/container/:repository_name/:image_name/manifests/:tag` - Delete a specific tag (not available for remote and virtual repositories)
-- `GET    /v2/:slug/container/:repository_name/:image_name/blobs/:digest` - Download blob
-- `HEAD   /v2/:slug/container/:repository_name/:image_name/blobs/:digest` - Check blob existence
-- `DELETE /v2/:slug/container/:repository_name/:image_name/blobs/:digest` - Delete blob (not available for remote and virtual repositories)
-- `POST   /v2/:slug/container/:repository_name/:image_name/blobs/uploads/` - Initiate blob upload (not available for remote and virtual repositories)
-- `PATCH  /v2/:slug/container/:repository_name/:image_name/blobs/uploads/:uuid` - Upload blob chunk (not available for remote and virtual repositories)
-- `GET    /v2/:slug/container/:repository_name/:image_name/blobs/uploads/:uuid` - Get blob upload status (for resumable uploads, not available for remote and virtual repositories)
-- `PUT    /v2/:slug/container/:repository_name/:image_name/blobs/uploads/:uuid?digest=:digest` - Complete blob upload (not available for remote and virtual repositories)
-- `DELETE /v2/:slug/container/:repository_name/:image_name/blobs/uploads/:uuid` - Cancel blob upload (not available for remote and virtual repositories)
-- `POST   /v2/:slug/container/:repository_name/:image_name/blobs/uploads/?digest=:digest` - Upload complete blob in single request (not available for remote and virtual repositories)
-- `GET    /v2/:slug/container/:repository_name/:image_name/tags/list` - List all tags in repository
-- `GET    /v2/:slug/container/:repository_name/:image_name/tags/list?n=100&last=tag_name` - Paginated tag listing
-- `GET    /v2/:slug/container/:repository_name/:image_name/referrers/:digest` - List artifacts/attestations referencing a manifest
+- `GET    /v2/`                                                                                   - Check API version and registry implementation (OCI-mandated, not scoped to a slug)
+- `GET    /v2/:slug/container/:repository_name/:image_name/manifests/:reference`                  - Get manifest (reference can be tag or digest)
+- `HEAD   /v2/:slug/container/:repository_name/:image_name/manifests/:reference`                  - Check manifest existence
+- `PUT    /v2/:slug/container/:repository_name/:image_name/manifests/:reference`                  - Upload manifest (not available for remote and virtual repositories)
+- `DELETE /v2/:slug/container/:repository_name/:image_name/manifests/:reference`                  - Delete manifest (by digest or tag reference, not available for remote and virtual repositories)
+- `DELETE /v2/:slug/container/:repository_name/:image_name/manifests/:tag`                        - Delete a specific tag (not available for remote and virtual repositories)
+- `GET    /v2/:slug/container/:repository_name/:image_name/blobs/:digest`                         - Download blob
+- `HEAD   /v2/:slug/container/:repository_name/:image_name/blobs/:digest`                         - Check blob existence
+- `DELETE /v2/:slug/container/:repository_name/:image_name/blobs/:digest`                         - Delete blob (not available for remote and virtual repositories)
+- `POST   /v2/:slug/container/:repository_name/:image_name/blobs/uploads/`                        - Initiate blob upload (not available for remote and virtual repositories)
+- `PATCH  /v2/:slug/container/:repository_name/:image_name/blobs/uploads/:uuid`                   - Upload blob chunk (not available for remote and virtual repositories)
+- `GET    /v2/:slug/container/:repository_name/:image_name/blobs/uploads/:uuid`                   - Get blob upload status (for resumable uploads, not available for remote and virtual repositories)
+- `PUT    /v2/:slug/container/:repository_name/:image_name/blobs/uploads/:uuid?digest=:digest`    - Complete blob upload (not available for remote and virtual repositories)
+- `DELETE /v2/:slug/container/:repository_name/:image_name/blobs/uploads/:uuid`                   - Cancel blob upload (not available for remote and virtual repositories)
+- `POST   /v2/:slug/container/:repository_name/:image_name/blobs/uploads/?digest=:digest`         - Upload complete blob in single request (not available for remote and virtual repositories)
+- `GET    /v2/:slug/container/:repository_name/:image_name/tags/list`                             - List all tags in repository
+- `GET    /v2/:slug/container/:repository_name/:image_name/tags/list?n=100&last=tag_name`         - Paginated tag listing
+- `GET    /v2/:slug/container/:repository_name/:image_name/referrers/:digest`                     - List artifacts/attestations referencing a manifest
 - `GET    /v2/:slug/container/:repository_name/:image_name/referrers/:digest?artifactType=<type>` - Filter referrers by artifact type
 
 **Note:** The OCI-mandated `GET /v2/` endpoint does not include a `/:slug` prefix, which means the [Cells](../../cells/) router cannot determine which Cell should handle the request from the path alone. Any Cell can serve `GET /v2/` because it is a stateless version probe (`200 OK` to indicate OCI compliance, otherwise `401 Unauthorized`); no slug or routing context is needed. All other client requests carry a `/:slug` segment that the Cells router uses to determine the target Cell — clients obtain credentials client-side via [`glab`](https://gitlab.com/gitlab-org/cli) (see [ADR-020](020_authentication_flow.md)) and present a Bearer token from the start, so the OCI `401 WWW-Authenticate` redirect challenge is not used. `GET /v2/_catalog` (Docker Registry HTTP API V2) is not part of the OCI Distribution Spec and will not be implemented.
@@ -283,17 +282,17 @@ https://artifact-registry.gitlab.com/acme-engineering/maven/my-repo
 
 Implements [NPM Registry API](https://github.com/npm/registry/blob/main/docs/REGISTRY-API.md). Authentication: Bearer token.
 
-- `GET    /:slug/npm/:repository_name/:package_name` - Get package metadata
-- `PUT    /:slug/npm/:repository_name/:package_name` - Publish a package (not available for remote and virtual repositories)
-- `PUT    /:slug/npm/:repository_name/:package_name/-rev/:rev` - Unpublish a single version, step 1: replace the package document with the version removed (not available for remote and virtual repositories)
-- `DELETE /:slug/npm/:repository_name/:package_name/-/:file_name/-rev/:rev` - Unpublish a single version, step 2: delete the version tarball (not available for remote and virtual repositories)
-- `DELETE /:slug/npm/:repository_name/:package_name/-rev/:rev` - Unpublish the entire package (`npm unpublish <pkg> --force`, not available for remote and virtual repositories)
-- `GET    /:slug/npm/:repository_name/:package_name/-/:file_name` - Download a package file
-- `GET    /:slug/npm/:repository_name/-/package/:package_name/dist-tags` - List dist-tags for a package
-- `PUT    /:slug/npm/:repository_name/-/package/:package_name/dist-tags/:tag` - Create or update a dist-tag (not available for remote and virtual repositories)
-- `DELETE /:slug/npm/:repository_name/-/package/:package_name/dist-tags/:tag` - Delete a dist-tag (not available for remote and virtual repositories)
-- `POST   /:slug/npm/:repository_name/-/npm/v1/security/audits/quick` - Quick security audit
-- `POST   /:slug/npm/:repository_name/-/npm/v1/security/advisories/bulk` - Bulk security advisories
+- `GET    /:slug/npm/:repository_name/:package_name`                                 - Get package metadata
+- `PUT    /:slug/npm/:repository_name/:package_name`                                 - Publish a package (not available for remote and virtual repositories)
+- `PUT    /:slug/npm/:repository_name/:package_name/-rev/:rev`                       - Unpublish a single version, step 1: replace the package document with the version removed (not available for remote and virtual repositories)
+- `DELETE /:slug/npm/:repository_name/:package_name/-/:file_name/-rev/:rev`          - Unpublish a single version, step 2: delete the version tarball (not available for remote and virtual repositories)
+- `DELETE /:slug/npm/:repository_name/:package_name/-rev/:rev`                       - Unpublish the entire package (`npm unpublish <pkg> --force`, not available for remote and virtual repositories)
+- `GET    /:slug/npm/:repository_name/:package_name/-/:file_name`                    - Download a package file
+- `GET    /:slug/npm/:repository_name/-/package/:package_name/dist-tags`             - List dist-tags for a package
+- `PUT    /:slug/npm/:repository_name/-/package/:package_name/dist-tags/:tag`        - Create or update a dist-tag (not available for remote and virtual repositories)
+- `DELETE /:slug/npm/:repository_name/-/package/:package_name/dist-tags/:tag`        - Delete a dist-tag (not available for remote and virtual repositories)
+- `POST   /:slug/npm/:repository_name/-/npm/v1/security/audits/quick`                - Quick security audit
+- `POST   /:slug/npm/:repository_name/-/npm/v1/security/advisories/bulk`             - Bulk security advisories
 
 ##### Client configuration example
 

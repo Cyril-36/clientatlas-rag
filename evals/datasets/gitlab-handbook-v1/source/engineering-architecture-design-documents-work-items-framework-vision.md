@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Work Item Framework Engineering Vision"
 status: proposed
 creation-date: "2026-02-13"

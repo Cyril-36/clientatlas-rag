@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Migrate audit event streaming to NATS-based event delivery
 description: Design document for migrating audit event streaming from Sidekiq/Redis to a NATS JetStream-based delivery pipeline to eliminate Redis OOM incidents and reduce pgbouncer pressure.
 status: proposed
@@ -110,16 +109,16 @@ flowchart TD
 
 Based on current volume (~65-75M events/day, peak ~10k/sec) and batch size 100:
 
-| Metric                                     | Current                                             | After                                                               |
-| ------------------------------------------ | --------------------------------------------------- | ------------------------------------------------------------------- |
-| Sidekiq jobs enqueued per day              | ~65-75M                                             | ~650-750K (consumer cron triggers only)                             |
-| NATS publish volume                        | n/a (Redis-backed Sidekiq queue)                    | ~65-75M/day (~750/sec), one publish per streamed event, disk-backed |
-| Peak Sidekiq enqueue rate                  | ~10k/sec                                            | ~100/sec                                                            |
-| Pgbouncer acquisitions for dispatch        | ~10k/sec at peak                                    | ~100/sec at peak (destination lookups only)                         |
-| Redis memory pressure from audit streaming | Unbounded, OOM-prone (events and payloads in Redis) | Minimal (cron entries only, payloads move to NATS disk)             |
-| Catchall-b Redis dependency                | Critical path for all streaming                     | Eliminated for streaming dispatch                                   |
-| Streaming-only events handling             | In-job payload via Sidekiq                          | In-message payload via NATS                                         |
-| Consumer-side Postgres dependency          | Required per event                                  | Required per group per batch for destination config only            |
+| Metric | Current | After |
+| --- | --- | --- |
+| Sidekiq jobs enqueued per day | ~65-75M | ~650-750K (consumer cron triggers only) |
+| NATS publish volume | n/a (Redis-backed Sidekiq queue) | ~65-75M/day (~750/sec), one publish per streamed event, disk-backed |
+| Peak Sidekiq enqueue rate | ~10k/sec | ~100/sec |
+| Pgbouncer acquisitions for dispatch | ~10k/sec at peak | ~100/sec at peak (destination lookups only) |
+| Redis memory pressure from audit streaming | Unbounded, OOM-prone (events and payloads in Redis) | Minimal (cron entries only, payloads move to NATS disk) |
+| Catchall-b Redis dependency | Critical path for all streaming | Eliminated for streaming dispatch |
+| Streaming-only events handling | In-job payload via Sidekiq | In-message payload via NATS |
+| Consumer-side Postgres dependency | Required per event | Required per group per batch for destination config only |
 
 ## Design and implementation details
 
@@ -226,7 +225,7 @@ Every event carries the stable ID described in Event ID generation above. This I
 
 The load-bearing one is customer-side dedup. At-least-once delivery means a customer can receive the same event more than once (a consumer that POSTs successfully then crashes before acking NATS gets the message redelivered). The stable ID is what lets the customer recognize and drop the duplicate. This is not new behavior introduced by NATS: the current Sidekiq path is also at-least-once and has the same redelivery-to-customer property. The migration inherits the need for a stable ID rather than creating it.
 
-As an optimization, the same ID is set as the NATS message ID so NATS can drop duplicate _publishes_ within a dedup window (for example, a publish that succeeds on the NATS side but whose ack back to Rails is lost, triggering a re-publish). A 2-minute window covers realistic publish-retry timing. This is distinct from the customer-side dedup above: NATS publish-dedup reduces the duplicate rate but the system is correct without it, whereas customer-side dedup on the stable ID is what makes at-least-once delivery tolerable.
+As an optimization, the same ID is set as the NATS message ID so NATS can drop duplicate *publishes* within a dedup window (for example, a publish that succeeds on the NATS side but whose ack back to Rails is lost, triggering a re-publish). A 2-minute window covers realistic publish-retry timing. This is distinct from the customer-side dedup above: NATS publish-dedup reduces the duplicate rate but the system is correct without it, whereas customer-side dedup on the stable ID is what makes at-least-once delivery tolerable.
 
 ### Storage and security considerations
 
@@ -402,11 +401,11 @@ Key properties:
 
 Batched delivery changes the wire format per destination type:
 
-| Destination       | Change       | Detail                                                                                                                                                                            |
-| ----------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GCP Cloud Logging | Non-breaking | The Logging API accepts multiple `entries` natively. The batch maps to a multi-entry write.                                                                                       |
-| HTTP              | Breaking     | The body becomes an array of events (each element self-describes its event type, already present in the body), and the per-request `X-Gitlab-Audit-Event-Type` header is dropped. |
-| AWS S3            | Breaking     | Multiple events are written per object (with a revised object-naming scheme) instead of one object per event.                                                                     |
+| Destination | Change | Detail |
+| --- | --- | --- |
+| GCP Cloud Logging | Non-breaking | The Logging API accepts multiple `entries` natively. The batch maps to a multi-entry write. |
+| HTTP | Breaking | The body becomes an array of events (each element self-describes its event type, already present in the body), and the per-request `X-Gitlab-Audit-Event-Type` header is dropped. |
+| AWS S3 | Breaking | Multiple events are written per object (with a revised object-naming scheme) instead of one object per event. |
 
 Because the HTTP and S3 changes are breaking, affected customers are notified before their group is enabled on the NATS path, and the change is gated per-group via the `audit_event_streaming_via_nats` flag (see Goal 4, "Preserve customer contract"). GCP Cloud Logging destinations require no customer action.
 
@@ -451,14 +450,14 @@ The consumer is validated against real production load before it ever delivers t
 
 ### Failure modes and mitigations
 
-| Failure                        | Behavior                                                                  | Mitigation                                         |
-| ------------------------------ | ------------------------------------------------------------------------- | -------------------------------------------------- |
-| NATS publish times out         | `EnqueueService` catches, logs, falls back to Sidekiq enqueue             | No event loss → degrades to current behavior       |
-| NATS cluster unavailable       | All publishes fall back to Sidekiq → behaves as current system            | Sidekiq path retained as permanent fallback        |
-| Consumer process crashed       | Unacked messages redelivered by NATS after ack_wait                       | Standard at-least-once redelivery                  |
-| Consumer falls behind          | NATS stream depth grows → alert fires → consumer scaled up                | Monitored via NATS pending message count           |
-| Customer destination broken    | Per-destination circuit breaker trips → events skipped for breaker window | Existing breaker behavior, no change               |
-| Duplicate delivery to customer | NATS dedup window catches most cases → customer dedups by Event ID        | Documented in customer-facing audit streaming docs |
+| Failure | Behavior | Mitigation |
+| --- | --- | --- |
+| NATS publish times out | `EnqueueService` catches, logs, falls back to Sidekiq enqueue | No event loss → degrades to current behavior |
+| NATS cluster unavailable | All publishes fall back to Sidekiq → behaves as current system | Sidekiq path retained as permanent fallback |
+| Consumer process crashed | Unacked messages redelivered by NATS after ack_wait | Standard at-least-once redelivery |
+| Consumer falls behind | NATS stream depth grows → alert fires → consumer scaled up | Monitored via NATS pending message count |
+| Customer destination broken | Per-destination circuit breaker trips → events skipped for breaker window | Existing breaker behavior, no change |
+| Duplicate delivery to customer | NATS dedup window catches most cases → customer dedups by Event ID | Documented in customer-facing audit streaming docs |
 
 ### Observability
 
@@ -560,17 +559,17 @@ Rejected. ClickHouse is a good fit for analytics on audit events (querying histo
 
 The following require input from participating teams before implementation can begin:
 
-1. **NATS GSTG/GPRD deployment timeline.** NATS is currently deployed in a dedicated Orbit cluster. A monolith-serving deployment in the GSTG/GPRD clusters is required. _(Owner: NATS infrastructure team / Platform Insights)_
+1. **NATS GSTG/GPRD deployment timeline.** NATS is currently deployed in a dedicated Orbit cluster. A monolith-serving deployment in the GSTG/GPRD clusters is required. *(Owner: NATS infrastructure team / Platform Insights)*
 
-2. **Publish timeout and retry policy.** Specific timeout value (50-100ms?) and retry count for synchronous publishes. _(Owner: NATS infrastructure team)_
+2. **Publish timeout and retry policy.** Specific timeout value (50-100ms?) and retry count for synchronous publishes. *(Owner: NATS infrastructure team)*
 
-3. **Partition count, drainer count, and per-drainer dispatch concurrency.** Subject partition count (proposed: 256) is set once and generously, since re-partitioning changes group-to-partition mapping and is disruptive. Drainer count and per-drainer dispatch concurrency multiply to peak delivery concurrency, which must meet or exceed the current Sidekiq peak (~4.2K concurrent, 7-day max; mean ~1.1K), though batching means the real requirement is lower, confirmed under load in Phase 3. Batch size and the 1-minute cron cadence are also tuned here. _(Owner: SSCS:Compliance, validated with infra during Phase 3 shadow mode)_
+3. **Partition count, drainer count, and per-drainer dispatch concurrency.** Subject partition count (proposed: 256) is set once and generously, since re-partitioning changes group-to-partition mapping and is disruptive. Drainer count and per-drainer dispatch concurrency multiply to peak delivery concurrency, which must meet or exceed the current Sidekiq peak (~4.2K concurrent, 7-day max; mean ~1.1K), though batching means the real requirement is lower, confirmed under load in Phase 3. Batch size and the 1-minute cron cadence are also tuned here. *(Owner: SSCS:Compliance, validated with infra during Phase 3 shadow mode)*
 
-4. **Self-Managed migration timeline.** When and how SM customers move to the NATS path, which depends on NATS becoming part of the SM bundle. _(Owner: Distribution, Platform Insights)_
+4. **Self-Managed migration timeline.** When and how SM customers move to the NATS path, which depends on NATS becoming part of the SM bundle. *(Owner: Distribution, Platform Insights)*
 
-5. **Payload size in NATS messages.** The design carries full audit event payloads in NATS messages to support both DB-saved and streaming-only events uniformly. Average payload size is ~2KB; at 750/sec sustained this is ~130 GB/day in NATS storage with 24h retention. Confirm with NATS infrastructure team that this storage profile is acceptable. _(Owner: NATS infrastructure team)_
+5. **Payload size in NATS messages.** The design carries full audit event payloads in NATS messages to support both DB-saved and streaming-only events uniformly. Average payload size is ~2KB; at 750/sec sustained this is ~130 GB/day in NATS storage with 24h retention. Confirm with NATS infrastructure team that this storage profile is acceptable. *(Owner: NATS infrastructure team)*
 
-6. **Two-stream repartitioning design (deferred, revisit after shadow-mode validation).** If the single partitioned stream with per-partition cron drainers does not keep up under production shadow testing, the alternative is a two-stream design: a `raw_events` ingestion stream (short retention, one event per message, producer stays trivial) and a `grouped_events` stream partitioned by `hash(top_level_group_id) % N`, where each grouped message is an _array_ of events. The array-per-message shape means the dispatch consumer acks once per batch instead of once per event, collapsing dispatch-side ack and fetch overhead, and grouping happens once in the repartitioning step rather than on every dispatch run. The repartitioning and batching consumer could run on Data Insights Platform infrastructure rather than as a new GitLab-operated process, preserving the "no new process type" property. This is deliberately deferred: it adds a stream, a repartitioning hop, and a process to operate, and we want production data from shadow mode on whether the simpler design suffices before taking that on. _(Owner: SSCS:Compliance, Platform Insights / DIP)_
+6. **Two-stream repartitioning design (deferred, revisit after shadow-mode validation).** If the single partitioned stream with per-partition cron drainers does not keep up under production shadow testing, the alternative is a two-stream design: a `raw_events` ingestion stream (short retention, one event per message, producer stays trivial) and a `grouped_events` stream partitioned by `hash(top_level_group_id) % N`, where each grouped message is an *array* of events. The array-per-message shape means the dispatch consumer acks once per batch instead of once per event, collapsing dispatch-side ack and fetch overhead, and grouping happens once in the repartitioning step rather than on every dispatch run. The repartitioning and batching consumer could run on Data Insights Platform infrastructure rather than as a new GitLab-operated process, preserving the "no new process type" property. This is deliberately deferred: it adds a stream, a repartitioning hop, and a process to operate, and we want production data from shadow mode on whether the simpler design suffices before taking that on. *(Owner: SSCS:Compliance, Platform Insights / DIP)*
 
 ### Risks and unknowns
 

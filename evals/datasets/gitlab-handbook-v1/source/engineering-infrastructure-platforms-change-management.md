@@ -7,13 +7,12 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Change Management"
 ---
 
 ## Purpose
 
-**Change Management** has _traditionally_ referred to the processes, procedures, tools and techniques applied in IT environments to carefully manage changes in an operational environment: change tickets and plans, approvals, change review meetings, scheduling, and other _red tape_.
+**Change Management** has *traditionally* referred to the processes, procedures, tools and techniques applied in IT environments to carefully manage changes in an operational environment: change tickets and plans, approvals, change review meetings, scheduling, and other *red tape*.
 
 In our context, **Change Management** refers to the guidelines we apply to manage changes in the operational environment with the aim of doing so (in order of highest to lowest priority) **safely**, **effectively** and **efficiently**. In some cases, this will require the use of elements from traditional change management; in most cases, we aim to build automation that removes those traditional aspects of change management to increase our speed in a safe manner.
 
@@ -21,16 +20,16 @@ Our overriding objective is maximize changes that avoid traditional aspects of c
 
 ## Scope
 
-**Changes** are defined as modifications to the operational environment, including configuration changes, adding or removing components or services to the environment and cloud infrastructure changes. Our [Staging environment](/handbook/engineering/infrastructure-platforms/environments/#staging) is crucial to our GitLab.com release process. Therefore, Staging should be considered within scope for Change Management, as part of GitLab's operational environment. Application deployments, while technically being changes, are excluded from the change management process, as are most, but not all, [feature flag toggles](https://docs.gitlab.com/ee/development/feature_flags/controls.html#process).
+**Changes** are defined as modifications to the operational environment, including configuration changes, adding or removing components or services to the environment and cloud infrastructure changes. Our [Staging environment](/handbook/engineering/infrastructure-platforms/environments/#staging) is crucial to our GitLab.com release process.  Therefore, Staging should be considered within scope for Change Management, as part of GitLab's operational environment. Application deployments, while technically being changes, are excluded from the change management process, as are most, but not all, [feature flag toggles](https://docs.gitlab.com/ee/development/feature_flags/controls.html#process).
 
 Changes that need to be performed during the resolution of an Incident fall under [Incident Management](/handbook/engineering/infrastructure-platforms/incident-management/).
 
 ## Roles and Responsibilities
 
-| Role                                    | Responsibility                                                                 |
-| --------------------------------------- | ------------------------------------------------------------------------------ |
-| GitLab Team Members                     | Responsible for following the requirements in this procedure                   |
-| Infrastructure Team                     | Responsible for implementing and executing this procedures                     |
+| Role  | Responsibility |
+|-----------|-----------|
+| GitLab Team Members | Responsible for following the requirements in this procedure |
+| Infrastructure Team | Responsible for implementing and executing this procedures |
 | Infrastructure Management (Code Owners) | Responsible for approving significant changes and exceptions to this procedure |
 
 ## Does my change need a change request?
@@ -90,9 +89,9 @@ A new change should be declared if the change is retried on a later date.
 
 ## Change Criticalities
 
-`C1` and `C2` change requests will automatically have the labels, `~blocks deploys` and `~blocks feature-flags` applied. When these critical change requests are labeled `change::in-progress`, they will block deploys, feature flag changes, and potentially other operations. Take particular care to have good time estimates for such operations, and ideally have points/controls where they can be safely stopped if they unexpectedly run unacceptably long. Remove the `~blocks deploys` and/or `~blocks feature-flags` if the proposed change will not be negatively impacted by said operations.
+`C1` and `C2` change requests will automatically have the labels, `~blocks deploys` and `~blocks feature-flags` applied.  When these critical change requests are labeled `change::in-progress`, they will block deploys, feature flag changes, and potentially other operations.  Take particular care to have good time estimates for such operations, and ideally have points/controls where they can be safely stopped if they unexpectedly run unacceptably long.  Remove the `~blocks deploys` and/or `~blocks feature-flags` if the proposed change will not be negatively impacted by said operations.
 
-In particular for long running Rails console tasks, it _may_ be acceptable to initiate them as a `C2` for approvals/awareness and then downgrade to a C3 while running. However consider carefully the implications of long running code over multiple deployments and the risks of mismatched code/data storage over time; such a label downgrade should ideally have at least 2 sets of eyes (SREs/devs) assess the code being exercised for safety, and management approval is recommended for visibility.
+In particular for long running Rails console tasks, it *may* be acceptable to initiate them as a `C2` for approvals/awareness and then downgrade to a C3 while running.  However consider carefully the implications of long running code over multiple deployments and the risks of mismatched code/data storage over time; such a label downgrade should ideally have at least 2 sets of eyes (SREs/devs) assess the code being exercised for safety, and management approval is recommended for visibility.
 
 ### Criticality 1
 
@@ -119,9 +118,9 @@ These are changes with high impact or high risk. If a change is going to cause d
    - **Database model changes** (migrations, schema changes, data model modifications, etc.) are application-layer changes and must be committed to the monolith repository and approved by a database maintainer. The approver of the original merge request or [another database maintainer](https://gitlab-org.gitlab.io/gitlab-roulette/?mode=show&visible=maintainer%7Cdatabase) should review the usage of that code in the CR.
 1. Have the change approved by Infrastructure Platform Leadership (EM+ or Staff+ ICs in Infrastructure Platforms) by obtaining the `platform_leadership_approved` label on the Change Request issue. Mention `@gitlab-org/saas-platforms/change-review-leadership` to request approval. The reviewer should be from a different team than the change author. Review the [Platform Leadership Review Guidelines](platform-leadership-review/) before approving.
 1. Identify the Engineer On-Call (EOC) scheduled for the time of the change and make them aware of the change plan as soon as it is scheduled.
-   (The source is [incident.io](https://app.incident.io/gitlab/on-call/schedules/01K5YWAGZ7YCQGAG7ATQ9XQWHW), if you don't have access try [getting assistance](/handbook/engineering/infrastructure-platforms/))
+(The source is [incident.io](https://app.incident.io/gitlab/on-call/schedules/01K5YWAGZ7YCQGAG7ATQ9XQWHW), if you don't have access try [getting assistance](/handbook/engineering/infrastructure-platforms/))
 1. Mention `@release-managers` in slack or `@gitlab-org/release/managers` in the issue to make sure you can pause deployments or migrations as needed by the change.
-1. Announce the start of the plan execution in the `#production` Slack channel directly notifying the EOC using the `@sre-oncall` alias to ensure there are no ongoing incidents that could impact the timing of the change. Once confirmed the EOC will apply the `eoc_approved` label and the change can proceed.
+1. Announce the start of the plan execution in the `#production` Slack channel directly notifying the EOC using the `@sre-oncall` alias to ensure there are no ongoing incidents that could impact the timing of the change.  Once confirmed the EOC will apply the `eoc_approved` label and the change can proceed.
 1. Join The "Situation Room" zoom channel with the EOC and obtain verbal approval to start the plan execution.
 
 The EOC must be engaged for the entire execution of the change.
@@ -154,7 +153,7 @@ These are changes that are not expected to cause downtime in Production, but whi
    - **Database model changes** (migrations, schema changes, data model modifications, etc.) are application-layer changes and must be committed to the monolith repository and approved by a database maintainer. The approver of the original merge request or [another database maintainer](https://gitlab-org.gitlab.io/gitlab-roulette/?mode=show&visible=maintainer%7Cdatabase) should review the usage of that code in the CR.
 1. Have the change approved by Platform Leadership (Staff+ SREs, Principal Engineers, or Senior Staff Engineers) by obtaining the `platform_leadership_approved` label on the Change Request issue. Mention `@gitlab-org/saas-platforms/change-review-leadership` to request approval. The reviewer should be from a different team than the change author. Review the [Platform Leadership Review Guidelines](platform-leadership-review/) before approving.
 1. Identify the Engineer On-Call (EOC) scheduled for the time of the change and review the plan with them.
-   (The source is [incident.io](https://app.incident.io/gitlab/on-call/schedules/01K5YWAGZ7YCQGAG7ATQ9XQWHW), if you don't have access try [getting assistance](/handbook/engineering/infrastructure-platforms/))
+(The source is [incident.io](https://app.incident.io/gitlab/on-call/schedules/01K5YWAGZ7YCQGAG7ATQ9XQWHW), if you don't have access try [getting assistance](/handbook/engineering/infrastructure-platforms/))
 1. Announce the start of the plan execution in the `#production` Slack channel directly notifying the EOC using the `@sre-oncall` alias and have the change approved by the EOC by obtaining the `eoc_approved` label on the Change Request issue.
 
 ### Criticality 3
@@ -176,11 +175,11 @@ These are changes with either no or very-low risk of negative impact, but where 
 
 ### Criticality 4
 
-These are changes that are exceedingly low risk and commonly executed, or which are fully automated. Often these will be changes that are mainly being recorded for visibility rather than as a substantial control measure.
+These are changes that are exceedingly low risk and commonly executed, or which are fully automated.  Often these will be changes that are mainly being recorded for visibility rather than as a substantial control measure.
 
 **Examples of Criticality 4:**
 
-1. Any invocation of an existing code pathway which ultimately will perform any mutate operation on live data. This is distinguished from diagnostic investigation operations which should typically be limited to read-only operations. It is ostensibly left to the discretion of the engineer whether or not a peer should be included to co-observe the invocation of such diagnostics.
+1. Any invocation of an existing code pathway which ultimately will perform any mutate operation on live data.  This is distinguished from diagnostic investigation operations which should typically be limited to read-only operations.  It is ostensibly left to the discretion of the engineer whether or not a peer should be included to co-observe the invocation of such diagnostics.
 
 #### Approval
 
@@ -233,7 +232,7 @@ Fill each of the items under the `Change Reviewer checklist` based on the change
 
 ## Communication Channels
 
-Information is a key asset during any change. Properly managing the flow of information to its intended destination is critical in keeping interested stakeholders apprised of developments in a timely fashion. The awareness that a change is happening is critical in helping stakeholders plan for said changes.
+Information is a key asset during any change.  Properly managing the flow of information to its intended destination is critical in keeping interested stakeholders apprised of developments in a timely fashion. The awareness that a change is happening is critical in helping stakeholders plan for said changes.
 
 This flow is determined by:
 
@@ -253,7 +252,7 @@ To improve communication the following are recommendations for high criticality 
   - eStaff
   - Support staff
   - Employees at large
-- After the maintenance is complete leave handoff notes to the next oncall team members. Including items like:
+- After the maintenance is complete leave handoff notes to the next oncall team members.  Including items like:
   - state / success of the maintenance
   - any alerts that can have been silenced and may go handoff
   - links to specific graphs to watch for areas of concern
@@ -279,7 +278,7 @@ Steps:
     - They might propose that we communicate in the customer's channel about the specifics of the change. If that is the case draft a msg, agree on its content with the CSM and share it in the relevant customer Slack channels (in sync with the CSM).
   - Share information and a link to the Issue in `#whats-happening-at-gitlab` Slack channel, mentioning `@release-managers`, `@db-team` and `@dbre` for visibility and engagement.
 - Shortly after that, the communication or change issue should be linked to a simple post in status.io (by clicking in "new maintenance"). We should engage with the CMOC to Share that maintenance in status.io, via all the possible channels (mail, tweet, slack, etc). From there customers will be able to ask questions and comment on it.
-  [The company official way to communicate downtime to customers is via status.io].
+[The company official way to communicate downtime to customers is via status.io].
 - From this point, when the upcoming change is already public, we should:
   - Check the Communication Issue periodically, to see if we have question/comments from our customers, to address them timely.
   - Remind customers about the upcoming change 2 weeks, 1 week, 3 days and 1 day before the change time, via status.io.
@@ -296,16 +295,16 @@ There are 2 types of PCLs: **Soft** and **Hard**.
 
 ### What is restricted during a PCL?
 
-| Activity                                                            | Soft PCL                           | Hard PCL                            |
-| ------------------------------------------------------------------- | ---------------------------------- | ----------------------------------- |
-| **Infrastructure changes (C2+)**                                    | ❌ BLOCKED                         | ❌ BLOCKED                          |
-| **Infrastructure changes (C3, C4)**                                 | ✅ ALLOWED                         | ❌ BLOCKED                          |
-| **Code deployments to canary**                                      | ✅ ALLOWED                         | ❌ BLOCKED                          |
-| **Code deployments to production (without post-deploy migrations)** | ✅ ALLOWED (with EOC coordination) | ❌ BLOCKED                          |
-| **Code deployments to production (with post-deploy migrations)**    | ❌ BLOCKED (emergency only)        | ❌ BLOCKED                          |
-| **Feature flag toggles (no change issue required)**                 | ✅ ALLOWED                         | ❌ BLOCKED                          |
-| **Feature flag toggles (change issue required)**                    | Follow change management process   | ❌ BLOCKED                          |
-| **S1/S2 incident response changes**                                 | ✅ ALLOWED (with approvals)        | ✅ ALLOWED (with IM & EOC approval) |
+| Activity | Soft PCL | Hard PCL |
+|----------|----------|----------|
+| **Infrastructure changes (C2+)** | ❌ BLOCKED | ❌ BLOCKED |
+| **Infrastructure changes (C3, C4)** | ✅ ALLOWED | ❌ BLOCKED |
+| **Code deployments to canary** | ✅ ALLOWED | ❌ BLOCKED |
+| **Code deployments to production (without post-deploy migrations)** | ✅ ALLOWED (with EOC coordination) | ❌ BLOCKED |
+| **Code deployments to production (with post-deploy migrations)** | ❌ BLOCKED (emergency only) | ❌ BLOCKED |
+| **Feature flag toggles (no change issue required)** | ✅ ALLOWED | ❌ BLOCKED |
+| **Feature flag toggles (change issue required)** | Follow change management process | ❌ BLOCKED |
+| **S1/S2 incident response changes** | ✅ ALLOWED (with approvals) | ✅ ALLOWED (with IM & EOC approval) |
 
 ### Soft PCL
 
@@ -361,13 +360,13 @@ Production Change Locks (PCLs) can be either **planned** (for recurring events l
 
 #### Roles and responsibilities
 
-| Team                       | Role                      | Responsibilities                                                                                                             |
-| -------------------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| **Production Engineering** | Responsible & Accountable | Creates change lock issues and entries; ensures adherence to change locks                                                    |
-| **Software Delivery**      | Consulted & Accountable   | Provides input on dates and feasibility based on release activities; ensures adherence and enforces in auto-deploy processes |
-| **Engineering**            | Informed                  | Tracks change locks for development and planning purposes                                                                    |
-| **Product**                | Informed                  | Tracks change locks for planning purposes                                                                                    |
-| **Security**               | Informed                  | Tracks change locks for security purposes                                                                                    |
+| Team | Role | Responsibilities |
+|------|------|------------------|
+| **Production Engineering** | Responsible & Accountable | Creates change lock issues and entries; ensures adherence to change locks |
+| **Software Delivery** | Consulted & Accountable | Provides input on dates and feasibility based on release activities; ensures adherence and enforces in auto-deploy processes |
+| **Engineering** | Informed | Tracks change locks for development and planning purposes |
+| **Product** | Informed | Tracks change locks for planning purposes |
+| **Security** | Informed | Tracks change locks for security purposes |
 
 #### Declaring a planned PCL
 
@@ -412,13 +411,13 @@ For unplanned PCLs (such as during critical incidents or unexpected events):
 
 The following dates are currently scheduled PCLs. Times for the dates below begin at 09:00 UTC and end the next day at 09:00 UTC, unless specified otherwise.
 
-| Dates                                                                                                        | Type | Reason                                        |
-| ------------------------------------------------------------------------------------------------------------ | ---- | --------------------------------------------- |
-| Recurring: [Monthly release date](/handbook/engineering/releases/monthly-releases/#monthly-release-schedule) | Soft | Release day                                   |
-| Recurring: [Scheduled Family and Friends Days](/handbook/company/family-and-friends-day/)                    | Soft | Family and Friends Days                       |
-| Recurring: Saturday 01:00 UTC -> Sunday 21:00 UTC                                                            | Soft | Weekend                                       |
-| Recurring: US Thanksgiving week (Wednesday 22:00 UTC to Monday 02:00 UTC)                                    | Hard | Thanksgiving, Black Friday, and Cyber Monday  |
-| Recurring: End of year holidays (December 20 23:00 UTC to January 5 09:00 UTC)                               | Hard | Year-end holidays (reduced team availability) |
+| Dates                       | Type       | Reason                        |
+|-----------------------------|------------|-------------------------------|
+| Recurring: [Monthly release date](/handbook/engineering/releases/monthly-releases/#monthly-release-schedule)      | Soft       | Release day                   |
+| Recurring: [Scheduled Family and Friends Days](/handbook/company/family-and-friends-day/)         | Soft       | Family and Friends Days                   |
+| Recurring: Saturday 01:00 UTC -> Sunday 21:00 UTC | Soft       | Weekend                   |
+| Recurring: US Thanksgiving week (Wednesday 22:00 UTC to Monday 02:00 UTC) | Hard | Thanksgiving, Black Friday, and Cyber Monday |
+| Recurring: End of year holidays (December 20 23:00 UTC to January 5 09:00 UTC) | Hard | Year-end holidays (reduced team availability) |
 
 ## Feature Flags and the Change Management Process
 
@@ -441,30 +440,30 @@ Additionally, during an incident investigation, knowing which high-risk features
 
 ## Questions
 
-- **Does _production_ above include _canary_?**
+- **Does *production* above include *canary*?**
 
-  Yes.
+    Yes.
 
 - **Does this apply only to production environment?**
 
-  Yes. Only production environment. This means you can still make changes and deployments to environments other than production.
+    Yes. Only production environment. This means you can still make changes and deployments to environments other than production.
 
 - **What is the exact scope of the changes that are enforced under PCL? (infrastructure, software, handbook...etc)**
 
-  Any production change to and/or supporting gitlab.com SaaS Product. For example, configuration changes, setup of new libraries, introducing new code, toggling feature flags.
+    Any production change to and/or supporting gitlab.com SaaS Product. For example, configuration changes, setup of new libraries, introducing new code, toggling feature flags.
 
 - **What if I still want to make a change during the PCL period?**
 
-  Product Group Development code changes will require Development VP approval
-  All other changes, including all underlying cloud and infrastructure changes will require Infrastructure & Quality VP approval.
+    Product Group Development code changes will require Development VP approval
+    All other changes, including all underlying cloud and infrastructure changes will require Infrastructure & Quality VP approval.
 
 - **Does this apply to our monthly release?**
 
-  No. If the [monthly release](/handbook/engineering/releases/) falls under PCL period, additional coordination is necessary to ensure uninterrupted monthly release.
+    No. If the [monthly release](/handbook/engineering/releases/) falls under PCL period, additional coordination is necessary to ensure uninterrupted monthly release.
 
 - **We have a question that is not answered here?**
 
-  Please raise an issue to [Infrastructure team's queue](https://gitlab.com/gitlab-com/gl-infra/reliability/-/issues) and we will be happy to get back to you as soon as we can.
+    Please raise an issue to [Infrastructure team's queue](https://gitlab.com/gitlab-com/gl-infra/reliability/-/issues) and we will be happy to get back to you as soon as we can.
 
 ## Exceptions
 

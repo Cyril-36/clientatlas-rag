@@ -7,15 +7,12 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "GitLab Token Management Standard"
 description: "This is the GitLab Token Management Standard. It defines approved GitLab token usage, and distribution for the purposes of providing authentication and authorization within various systems and subsystems used by GitLab."
 toc_hide: true
 tags:
-
-- security_standard
-- security_standard_caplscsi
-
+  - security_standard
+  - security_standard_caplscsi
 ---
 
 ## Purpose
@@ -34,12 +31,12 @@ This is required for coding best practices as well as account and authenticator 
 
 ## Roles & Responsibilities
 
-| Role                                                                 | Responsibility                                                                                                                                                                                                 |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GitLab Team Members                                                  | Responsible for adhering to the requirements outlined in this standard                                                                                                                                         |
-| Security Management and Cryptographic Officer                        | Responsible for approving changes and exceptions to this standard                                                                                                                                              |
-| DRI for Token(s)                                                     | Reviews and approval authority for all Owner, and Maintainer role assignments                                                                                                                                  |
-| Management                                                           | Review and approval authority for all Group and Project memberships                                                                                                                                            |
+| Role | Responsibility |
+| ---- | -------------- |
+| GitLab Team Members | Responsible for adhering to the requirements outlined in this standard |
+| Security Management and Cryptographic Officer | Responsible for approving changes and exceptions to this standard |
+| DRI for Token(s) | Reviews and approval authority for all Owner, and Maintainer role assignments |
+| Management | Review and approval authority for all Group and Project memberships |
 | Group Owners, Group Maintainers, Project Owners, Project Maintainers | Group and Project account management, and token management duties including but not limited to creating, revoking, and monitoring the use and distribution of Group, Project, Deploy, and Runner Token objects |
 
 ### GitLab Responsibilities
@@ -64,21 +61,21 @@ GitLab customers are responsible for managing their own accounts and tokens, sho
 
 ### Token and Account Management
 
-1. Due to the nature of the GitLab application, and the ability of a malicious actor that has access to a GitLab instance to cause damage to information contained in the instance, account type definitions are necessary. A GitLab instance has both privileged and non-privileged accounts within the application. This privilege level is independent of the general system wide account privilege level. GitLab application accounts are of the "Development" account type. To further differentiate within the "Development" account type there are privileged and non-privileged accounts. ((AC-2(a), AC-2(7) `*`). Roles associated with tokens:
-   | Role | Privilege state |
-   | ---- | --------------- |
-   | Site Administrator [`**`](#references) | Privileged |
-   | Developers [`***`](#references) | Both privileged and non-privileged, depending on specific roles |
-   | Group Owner | Privileged |
-   | Group Maintainer | Privileged |
-   | Project Owner | Privileged |
-   | Project Maintainer | Privileged |
-   | Group Developer | Non-privileged |
-   | Group Reporter | Non-privileged |
-   | Group Guest | Non-privileged |
-   | Project Developer | Non-privileged |
-   | Project Reporter | Non-privileged |
-   | Project Guest | Non-privileged |
+1. Due to the nature of the GitLab application, and the ability of a malicious actor that has access to a GitLab instance to cause damage to information contained in the instance, account type definitions are necessary. A GitLab instance has both privileged and non-privileged accounts within the application. This privilege level is independent of the general system wide account privilege level. GitLab application accounts are of the "Development" account type. To further differentiate within the "Development" account type there are privileged and non-privileged accounts. ((AC-2(a), AC-2(7) `*`).  Roles associated with tokens:
+| Role | Privilege state |
+| ---- | --------------- |
+| Site Administrator [`**`](#references) | Privileged |
+| Developers [`***`](#references) | Both privileged and non-privileged, depending on specific roles |
+| Group Owner | Privileged |
+| Group Maintainer | Privileged |
+| Project Owner | Privileged |
+| Project Maintainer | Privileged |
+| Group Developer | Non-privileged |
+| Group Reporter | Non-privileged |
+| Group Guest | Non-privileged |
+| Project Developer | Non-privileged |
+| Project Reporter | Non-privileged |
+| Project Guest | Non-privileged |
 1. All assignments of the Group Owner, Group Maintainer, Project Owner, Project Maintainer roles must be limited, documented, and approved by the Site Administrator ([AC-2(i), AC-5, IA-4 `*`](#references)).
 1. All Impersonation tokens must be approved by the Site Administrator ([AC-5 `*`](#references)).
 1. All Group and Project membership must be approved by the respective Group and Project Owners ([AC-5 `*`](#references)). All existing Group and Project memberships will be reviewed semiannually, and membership that is no longer appropriate will be removed ([AC-2(j), AC-2(7) `*`](#references)).
@@ -101,14 +98,14 @@ GitLab customers are responsible for managing their own accounts and tokens, sho
 1. Tokens will be created with the minimum role and scope necessary to perform the desired task(s) ([AC-6 `*`](#references)).
 1. Tokens will never be created with the Maintainer or Owner role ([AC-6 `*`](#references)).
 1. Tokens will be created with the shortest reasonable expiration time to accomplish the desired task, but in all cases shall have expiration date not to exceed: ([AC-2(3) `*`](#references))
-   - Personal Access Tokens - 30 days
-   - Group Tokens – 1 year
-   - Project Tokens – 1 year
-   - Deploy tokens – 72 hours
-   - Deploy keys – 72 hours
-   - Impersonation Tokens – 24 hours
-   - Runner Tokens – 1 year
-   - Runner Registration Keys – 72 hours
+    - Personal Access Tokens - 30 days
+    - Group Tokens – 1 year
+    - Project Tokens – 1 year
+    - Deploy tokens – 72 hours
+    - Deploy keys – 72 hours
+    - Impersonation Tokens – 24 hours
+    - Runner Tokens – 1 year
+    - Runner Registration Keys – 72 hours
 1. The "random" part of a token (excluding prefixes and other additions) will be generated using a [FIPS-certified and cryptographically-approved algorithm](/handbook/security/policies_and_standards/cryptographic-standard/).
 
 ### Token Storage
@@ -131,17 +128,17 @@ GitLab customers are responsible for managing their own accounts and tokens, sho
 ### Token Use
 
 1. Any code developed to use tokens must include documentation which contains the following:
-   - A methodology for the periodic replacement of the token.
-   - The required scope (permissions) for a replacement token.
-   - Identify what task the token is intended to perform (application, process, function call name).
+    - A methodology for the periodic replacement of the token.
+    - The required scope (permissions) for a replacement token.
+    - Identify what task the token is intended to perform (application, process, function call name).
 1. Token use must be logged by the code triggering the token authentication ([AC-6(9) `*`](#references)). Log events will include at a minimum:
-   - Successful or unsuccessful token authentication.
-   - What object, process or function the token accessed.
-   - Any changes performed by the token.
-   - Data access, changes or deletions performed by the token.
-   - Date and time.
-   - The object, function or process that utilized the token.
-   - What account activated the token usage.
+    - Successful or unsuccessful token authentication.
+    - What object, process or function the token accessed.
+    - Any changes performed by the token.
+    - Data access, changes or deletions performed by the token.
+    - Date and time.
+    - The object, function or process that utilized the token.
+    - What account activated the token usage.
 1. GitLab team members given possession of tokens will maintain control and protection of those tokens and notify Account Managers if it is believed that a token is corrupted or has been compromised in some way.
 1. Production and development environments require the use of different tokens. Tokens will not be shared between environments.
 

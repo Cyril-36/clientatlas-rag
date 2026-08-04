@@ -7,10 +7,9 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Navan Purchasing Card
 decription: >-
-This page contains GitLab's Navan Purchasing Card guidelines and procedures.
+  This page contains GitLab's Navan Purchasing Card guidelines and procedures.
 ---
 
 ## 1. POLICY
@@ -29,15 +28,15 @@ This page contains GitLab's Navan Purchasing Card guidelines and procedures.
 - To bypass the GitLab Procurement process.
 - For any charges above 5,000 USD annually; as they must submit through Zip for procurement processing.
 - For any items already noted as not permissible per the Expense policy (ie. software).
-- For the additional items noted as "non-permissible" and should be personally expensed that are listed below in section 4.
+- For the additional items noted as "non-permissible" and should be personally expensed that are listed  below in section 4.
 
 To ensure good financial management and sound corporate governance, cards are only provided to team members under their name, and with the request/approval of the Direct Manager and Director, Accounts Payable's final approval. These approvals are documented in an issue for tracking purposes. Purchasing cards or card numbers are not to be shared among other GitLab team members.
 
 ## 2. General Guidelines
 
 - All card charges require a receipt, with exception of US team members in which receipts are required for
-  anything over $50. Receipts must be uploaded into Navan within 30 days of the transaction date.
-- If a card holder is missing a receipt, a [Missing Receipt Affidavit](https://docs.google.com/spreadsheets/d/179q0Wos-CemLCe1uxgMpZ80JukSC4KYx8JICFgHzN0I/edit?usp=sharing) will need to be completed and attached to the expense. Note: Missing Receipt Affidavit should be attached as a PDF.
+anything over $50. Receipts must be uploaded into Navan within 30 days of the transaction date.
+- If a card holder is missing a receipt, a [Missing Receipt Affidavit](https://docs.google.com/spreadsheets/d/179q0Wos-CemLCe1uxgMpZ80JukSC4KYx8JICFgHzN0I/edit?usp=sharing) will need to be completed and attached to the expense.  Note: Missing Receipt Affidavit should be attached as a PDF.
 - Ensure to use the appropriate Expense type for proper allocation. If the expense type is not on the list, you may use the "Other" category and add any supporting details in the description field.
 - If applicable, add expense tags under "Classifications" to the related purchase. Common expense tag examples include company wide events, marketing campaigns and professional service engagements.
 - Non-Permissible items will be flagged upon charge. Please ensure to use the card for permissible items only.
@@ -57,7 +56,7 @@ To ensure good financial management and sound corporate governance, cards are on
 - Gifts can be purchased for significant life events up to $125 USD.
 - Managers are able to send gifts and flowers on behalf of their team members in acknowledgment of significant life events such as well wishes ahead of surgery, or the loss of a loved one. Baby gifts are not reimbursable as GitLab already sends them a gift.
 - Managers can facilitate the ordering of flowers or gifts for delivery.
-- Executive Business Assistants are permitted to purchase gifts for team member significant life events on behalf of their managers. An email or Slack pre-approval from their manager must be attached to the expense to be reimbursed.
+- Executive Business Assistants are permitted to purchase gifts for team member significant life events on behalf of their managers.  An email or Slack pre-approval from their manager must be attached to the expense to be reimbursed.
 - Gift cards for team members are not allowed for these gifts.
 - Please reference the [Gift Handbook Page](/handbook/people-group/celebrations).
 - Note that these Expenses are tracked by department, thus whoever submits these expenses must be in the same department as the team member receiving the gift.
@@ -147,7 +146,7 @@ Any purchase over $5,000 USD (or equivalent local currency) are not permissible.
 ## 5. Out of Policy Transactions
 
 - Expenses flagged as "Out of Policy" in Navan may mean that the expense requires additional review due to requiring certain attachments (ie an approved issue) and approvals.
-  Upon review, if more clarification is needed for a certain expense, the AP team will contact the team member via Navan to ask for justification of the transaction before approving or rejecting the expense.
+Upon review, if more clarification is needed for a certain expense, the AP team will contact the team member via Navan to ask for justification of the transaction before approving or rejecting the expense.
 - Any exception to the policy is granted or denied at the discretion of the AP Admins. If the Admins determine that additional input is required, they will escalate the request to the team member's manager to make a final decision. Exception approvals can be granted within the Navan tool or via a HelpLab ticket.
 - Card members can be granted a higher limit than the allotted monthly $10K USD (or local currency) limit with an approved issue.
 - If any charges/expenses are rejected, the cardholder is responsible to reimburse GitLab.

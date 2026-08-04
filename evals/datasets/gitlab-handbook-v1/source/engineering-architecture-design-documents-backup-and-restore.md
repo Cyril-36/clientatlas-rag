@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Backup and Restore GitLab"
 status: ongoing
 creation-date: "2024-06-04"
@@ -186,7 +185,7 @@ The Backup Manifest will be used as the SSOT to specify what data is part of a B
 
 As we rely on the Backup Manifest, we primarily support listing and restoring data that was created by triggering the Unified Backup tool. This gives us the control and the foundation to build the necessary features and improvements for a Consistent Backup.
 
-The tool will _not_ rely on Cloud Provider specific scheduled backups functionality. To achieve regular scheduled backups, the tool will need to be invoked by an external service like a Cronjob.
+The tool will *not* rely on Cloud Provider specific scheduled backups functionality. To achieve regular scheduled backups, the tool will need to be invoked by an external service like a Cronjob.
 
 Multiple backups may be supported to run simultaneously (unless there is a specific Cloud Provider limitation). A backup could include all supported data-types or specific ones only.
 
@@ -208,11 +207,11 @@ See [#future-iterations] for information regarding scheduling backups.
 For GitLab installations hosted on Google Cloud Platform (GCP) we will support the following application data types
 and their corresponding backup mechanism:
 
-| Data Type            | GCP Service Component                | GCP backup mechanism                                            |
-| -------------------- | ------------------------------------ | --------------------------------------------------------------- |
-| PostgreSQL Databases | Cloud SQL for PostgreSQL             | On-demand database snapshots                                    |
-| Blob/Files           | Cloud Storage (Object Storage)       | On-demand regional data transfer using Storage Transfer Service |
-| Repositories         | Compute Engine with Persistent disks | On-demand disk snapshots                                        |
+| Data Type               | GCP Service Component                | GCP backup mechanism                                            |
+|-------------------------|--------------------------------------|-----------------------------------------------------------------|
+| PostgreSQL Databases    | Cloud SQL for PostgreSQL             | On-demand database snapshots                                    |
+| Blob/Files              | Cloud Storage (Object Storage)       | On-demand regional data transfer using Storage Transfer Service |
+| Repositories            | Compute Engine with Persistent disks | On-demand disk snapshots                                        |
 
 As we proceed with the implementation we will consider implementation details on how to use their APIs, including the differences between synchronous and asynchronous operations, support for Batching / Parallelization, Cloud Logging the use of Pub/Sub notifications, etc.
 
@@ -251,12 +250,12 @@ During the implementation phase we will investigate how to support and expose ad
 
 ###### Blobs
 
-_Backup_
+*Backup*
 
 GCP backups currently use [the Storage Transfer Service](https://cloud.google.com/storage-transfer/docs/overview).
 Storage Transfer Service jobs are created that copy from the individual buckets (Uploads, LFS, etc) to one bucket, under the path `/backups/$BACKUP_ID/$TARGET`.
 
-_Restore_
+*Restore*
 
 - Restores should create Storage Transfer Service jobs that copy from the backup bucket path, to the individual buckets.
 - We will not create or configure the buckets, that is out of scope for the tool.

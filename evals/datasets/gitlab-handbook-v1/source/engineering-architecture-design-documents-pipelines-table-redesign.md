@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Pipelines Table Redesign and GraphQL Migration
 status: proposed
 creation-date: "2025-04-04"
@@ -16,7 +15,7 @@ coaches: ["@jivanvl"]
 dris: ["@bsandlin", "@pburdette", "@jivanvl"]
 owning-stage: "~devops::verify"
 participating-stages:
-["~group::pipeline execution", "~group::pipeline authoring"]
+    ["~group::pipeline execution", "~group::pipeline authoring"]
 toc_hide: true
 ---
 
@@ -74,13 +73,13 @@ The implementation strategy includes several elements to mitigate potential busi
 
 Based on preliminary estimates:
 
-| Investment                                                                                  | Return                                                    |
-| ------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| Engineering effort: Partial allocation over ~4-5 milestones (approx 30% of engineers' time) | 30-40% reduction in CI/CD-related server resources        |
-| Product design effort: Partial allocation over ~2 milestones                                | Measurable improvement in pipeline interaction efficiency |
-| QA and validation effort: Partial allocation over ~1-2 milestones                           | Reduction in CI/CD-related support tickets                |
-|                                                                                             | Improved user satisfaction scores                         |
-|                                                                                             | Foundation for future real-time capabilities              |
+| Investment                                                                                      | Return                                                    |
+| ----------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| Engineering effort: Partial allocation over ~4-5 milestones (approx 30% of engineers' time)     | 30-40% reduction in CI/CD-related server resources        |
+| Product design effort: Partial allocation over ~2 milestones                                    | Measurable improvement in pipeline interaction efficiency |
+| QA and validation effort: Partial allocation over ~1-2 milestones                               | Reduction in CI/CD-related support tickets                |
+|                                                                                                 | Improved user satisfaction scores                         |
+|                                                                                                 | Foundation for future real-time capabilities              |
 
 ## Motivation
 
@@ -125,12 +124,12 @@ These previous efforts highlighted the need for pipeline table improvements but 
 
 The redesign also provides an opportunity to address several long-standing UX issues in a coordinated effort:
 
-|                                     High (Weight 3)                                      |                                      Medium (Weight 2)                                       |                                           Low (Weight 1)                                            |
-| :--------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------: |
-| [#321517](https://gitlab.com/gitlab-org/gitlab/-/issues/321517)<br>Improve table layout  |    [#432373](https://gitlab.com/gitlab-org/gitlab/-/issues/432373)<br>Add created-at time    |       [#435814](https://gitlab.com/gitlab-org/gitlab/-/issues/435814)<br>Add missing tooltips       |
-| [#327900](https://gitlab.com/gitlab-org/gitlab/-/issues/327900)<br>Improve mini-graph UX |  [#329513](https://gitlab.com/gitlab-org/gitlab/-/issues/329513)<br>Reevaluate tab headings  |       [#354074](https://gitlab.com/gitlab-org/gitlab/-/issues/354074)<br>Add skeleton loader        |
-|                                                                                          | [#300256](https://gitlab.com/gitlab-org/gitlab/-/issues/300256)<br>Improve "Triggered by me" | [#365616](https://gitlab.com/gitlab-org/gitlab/-/issues/365616)<br>Align buttons with design system |
-|                                                                                          | [#339651](https://gitlab.com/gitlab-org/gitlab/-/issues/339651)<br>Add configuration options |                                                                                                     |
+| High (Weight 3) | Medium (Weight 2) | Low (Weight 1) |
+|:---------------:|:-----------------:|:--------------:|
+| [#321517](https://gitlab.com/gitlab-org/gitlab/-/issues/321517)<br>Improve table layout | [#432373](https://gitlab.com/gitlab-org/gitlab/-/issues/432373)<br>Add created-at time | [#435814](https://gitlab.com/gitlab-org/gitlab/-/issues/435814)<br>Add missing tooltips |
+| [#327900](https://gitlab.com/gitlab-org/gitlab/-/issues/327900)<br>Improve mini-graph UX | [#329513](https://gitlab.com/gitlab-org/gitlab/-/issues/329513)<br>Reevaluate tab headings | [#354074](https://gitlab.com/gitlab-org/gitlab/-/issues/354074)<br>Add skeleton loader |
+| | [#300256](https://gitlab.com/gitlab-org/gitlab/-/issues/300256)<br>Improve "Triggered by me" | [#365616](https://gitlab.com/gitlab-org/gitlab/-/issues/365616)<br>Align buttons with design system |
+| | [#339651](https://gitlab.com/gitlab-org/gitlab/-/issues/339651)<br>Add configuration options | |
 
 Our user research indicates that pipeline performance and usability issues are consistently reported as significant pain points by users, yet addressing them has been repeatedly deprioritized in favor of new feature development.
 
@@ -311,11 +310,13 @@ The user preference will be controlled with a GraphQL mutation:
 
 ```graphql
 mutation updateUsePipelinesListView($usePipelinesListView: Boolean) {
-  userPreferencesUpdate(input: { usePipelinesListView: $usePipelinesListView }) {
-    userPreferences {
-      usePipelinesListView
+    userPreferencesUpdate(
+        input: { usePipelinesListView: $usePipelinesListView }
+    ) {
+        userPreferences {
+            usePipelinesListView
+        }
     }
-  }
 }
 ```
 
@@ -451,31 +452,31 @@ We'll define a common fragment for all list queries to ensure consistency:
 ```graphql
 # fragments/pipeline_list_fields.fragment.graphql
 fragment PipelineListFields on Pipeline {
-  id
-  iid
-  detailedStatus {
-    ...CiIcon
-  }
-  createdAt
-  finishedAt
-  user {
     id
-    name
-    avatarUrl
-    webUrl
-  }
-  commit {
-    id
-    shortId
-    webUrl
-  }
-  mergeRequest {
-    id
-    webUrl
-    reference
-  }
-  retryable
-  cancelable
+    iid
+    detailedStatus {
+        ...CiIcon
+    }
+    createdAt
+    finishedAt
+    user {
+        id
+        name
+        avatarUrl
+        webUrl
+    }
+    commit {
+        id
+        shortId
+        webUrl
+    }
+    mergeRequest {
+        id
+        webUrl
+        reference
+    }
+    retryable
+    cancelable
 }
 ```
 
@@ -486,24 +487,24 @@ Then we'll implement three specific queries for each context where the Pipelines
 ```graphql
 # queries/project_pipelines.query.graphql
 query getProjectPipelines(
-  $projectPath: ID!
-  $first: Int
-  $after: String
-  $filters: PipelineFilterInput
+    $projectPath: ID!
+    $first: Int
+    $after: String
+    $filters: PipelineFilterInput
 ) {
-  project(fullPath: $projectPath) {
-    id
-    pipelines(first: $first, after: $after, filters: $filters) {
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-      nodes {
-        ...PipelineListFields
-        # Project-specific fields will be added here
-      }
+    project(fullPath: $projectPath) {
+        id
+        pipelines(first: $first, after: $after, filters: $filters) {
+            pageInfo {
+                hasNextPage
+                endCursor
+            }
+            nodes {
+                ...PipelineListFields
+                # Project-specific fields will be added here
+            }
+        }
     }
-  }
 }
 ```
 
@@ -512,27 +513,27 @@ query getProjectPipelines(
 ```graphql
 # queries/merge_request_pipelines.query.graphql
 query getMergeRequestPipelines(
-  $projectPath: ID!
-  $mergeRequestIid: ID!
-  $first: Int
-  $after: String
+    $projectPath: ID!
+    $mergeRequestIid: ID!
+    $first: Int
+    $after: String
 ) {
-  project(fullPath: $projectPath) {
-    id
-    mergeRequest(iid: $mergeRequestIid) {
-      id
-      pipelines(first: $first, after: $after) {
-        pageInfo {
-          hasNextPage
-          endCursor
+    project(fullPath: $projectPath) {
+        id
+        mergeRequest(iid: $mergeRequestIid) {
+            id
+            pipelines(first: $first, after: $after) {
+                pageInfo {
+                    hasNextPage
+                    endCursor
+                }
+                nodes {
+                    ...PipelineListFields
+                    # MR-specific fields will be added here
+                }
+            }
         }
-        nodes {
-          ...PipelineListFields
-          # MR-specific fields will be added here
-        }
-      }
     }
-  }
 }
 ```
 
@@ -540,23 +541,28 @@ query getMergeRequestPipelines(
 
 ```graphql
 # queries/commit_pipelines.query.graphql
-query getCommitPipelines($projectPath: ID!, $sha: String!, $first: Int, $after: String) {
-  project(fullPath: $projectPath) {
-    id
-    commit(sha: $sha) {
-      id
-      pipelines(first: $first, after: $after) {
-        pageInfo {
-          hasNextPage
-          endCursor
+query getCommitPipelines(
+    $projectPath: ID!
+    $sha: String!
+    $first: Int
+    $after: String
+) {
+    project(fullPath: $projectPath) {
+        id
+        commit(sha: $sha) {
+            id
+            pipelines(first: $first, after: $after) {
+                pageInfo {
+                    hasNextPage
+                    endCursor
+                }
+                nodes {
+                    ...PipelineListFields
+                    # Commit-specific fields will be added here
+                }
+            }
         }
-        nodes {
-          ...PipelineListFields
-          # Commit-specific fields will be added here
-        }
-      }
     }
-  }
 }
 ```
 

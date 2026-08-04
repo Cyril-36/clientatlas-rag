@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Optimize Group"
 ---
 
@@ -29,12 +28,12 @@ title: "Optimize Group"
 
 Our priorities should follow [overall guidance for Product](/handbook/product/product-processes/). This should be reflected in the priority label on each issue. **Engineers are the DRI for assigning priority labels** to the issues they work on, ensuring visibility into the relative importance of work across the team.
 
-| Priority    | Description                                                                                                                                                                                              | Probability of shipping in milestone |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-| priority::1 | **Urgent**: top priority for achieving in the given milestone. These issues are the most important goals for a release and should be worked on first; some may be time-critical or unblock dependencies. | ~100%                                |
-| priority::2 | **High**: important issues that have significant positive impact to the business or technical debt. Important, but not time-critical or blocking others.                                                 | ~75%                                 |
-| priority::3 | **Normal**: incremental improvements to existing features. These are important iterations, but deemed non-critical.                                                                                      | ~50%                                 |
-| priority::4 | **Low**: stretch issues that are acceptable to postpone into a future release.                                                                                                                           | ~25%                                 |
+| Priority | Description | Probability of shipping in milestone |
+| ------ | ------ | ------ |
+| priority::1 | **Urgent**: top priority for achieving in the given milestone. These issues are the most important goals for a release and should be worked on first; some may be time-critical or unblock dependencies. | ~100% |
+| priority::2 | **High**: important issues that have significant positive impact to the business or technical debt. Important, but not time-critical or blocking others.  | ~75% |
+| priority::3 | **Normal**: incremental improvements to existing features. These are important iterations, but deemed non-critical. | ~50% |
+| priority::4 | **Low**: stretch issues that are acceptable to postpone into a future release. | ~25% |
 
 As a general guideline, we try to plan each release in this way:
 
@@ -178,14 +177,14 @@ Issues without a weight should be assigned the "workflow::planning breakdown" la
 
 When estimating development work, please assign an issue an appropriate weight:
 
-| Weight | Description (Engineering)                                                                                                                                                                                                                                                                                   |
-| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1      | The simplest possible change. We are confident there will be no side effects.                                                                                                                                                                                                                               |
-| 2      | A simple change (minimal code changes), where we understand all of the requirements.                                                                                                                                                                                                                        |
-| 3      | A simple change, but the code footprint is bigger (e.g. lots of different files, or tests affected). The requirements are clear.                                                                                                                                                                            |
-| 5      | A more complex change that will impact multiple areas of the codebase, there may also be some refactoring involved. Requirements are understood but you feel there are likely to be some gaps along the way. We should challenge ourselves to break this issue in to smaller pieces.                        |
-| 8      | A complex change, that will involve much of the codebase or will require lots of input from others to determine the requirements. These issues will often need further investigation or discovery before being `~workflow::ready for development` and we will likely benefit from multiple, smaller issues. |
-| 13     | A significant change that may have dependencies (other teams or third-parties) and we likely still don't understand all of the requirements. It's unlikely we would commit to this in a milestone, and the preference would be to further clarify requirements and/or break in to smaller Issues.           |
+| Weight | Description (Engineering) |
+| ------ | ------ |
+| 1 | The simplest possible change. We are confident there will be no side effects. |
+| 2 | A simple change (minimal code changes), where we understand all of the requirements. |
+| 3 | A simple change, but the code footprint is bigger (e.g. lots of different files, or tests affected). The requirements are clear. |
+| 5 | A more complex change that will impact multiple areas of the codebase, there may also be some refactoring involved. Requirements are understood but you feel there are likely to be some gaps along the way. We should challenge ourselves to break this issue in to smaller pieces. |
+| 8 | A complex change, that will involve much of the codebase or will require lots of input from others to determine the requirements. These issues will often need further investigation or discovery before being `~workflow::ready for development` and we will likely benefit from multiple, smaller issues. |
+| 13 | A significant change that may have dependencies (other teams or third-parties) and we likely still don't understand all of the requirements. It's unlikely we would commit to this in a milestone, and the preference would be to further clarify requirements and/or break in to smaller Issues. |
 
 As part of estimation, if you feel the issue is in an appropriate state for an engineer to start working on it, please add the ~"workflow::ready for development" label. Alternatively, if there are still requirements to be defined or questions to be answered that you feel an engineer won't be able to easily resolve, please add the ~"workflow::blocked" label. Issues with the `workflow::blocked` label will appear in their own column on our planning board, making it clear that they need further attention. When applying the `workflow::blocked` label, please make sure to leave a comment and ping the DRI on the blocked issue and/or link the blocking issue to raise visibility.
 
@@ -212,14 +211,14 @@ The following is an example of an implementation approach from [https://gitlab.c
 
 1. Add new field to `ee/app/services/ee/groups/update_service.rb:117`
 1. Update `ee/app/services/ee/namespace_settings/update_service.rb` to support more than just one setting
-1. _(if feature flag enabled)_ Update the `Projects::CreateService` and `Groups::CreateService` to update newly created projects and sub-groups with the main groups setting
-1. _(if feature flag enabled)_ Update the Groups API to show the settings value
+1. *(if feature flag enabled)* Update the `Projects::CreateService` and `Groups::CreateService` to update newly created projects and sub-groups with the main groups setting
+1. *(if feature flag enabled)* Update the Groups API to show the settings value
 1. Tests tests and more tests :muscle:
 1. Create a seed script to generate data
 
 ~frontend
 
-1. _(if feature flag enabled)_ Add new `Merge request approvals` section to Groups general settings
+1. *(if feature flag enabled)* Add new `Merge request approvals` section to Groups general settings
 1. Create new Vue app to render the contents of the section
 1. Create new setting and submission process to save the value
 1. Tests tests and more tests :muscle:
@@ -383,9 +382,9 @@ The following roles and responsibilities are associated with feature flags we ow
 
 Although we have a bias for asynchronous communication, synchronous meetings are necessary and should adhere to our [communication guidelines](/handbook/communication/#video-calls). Some regular meetings that take place in Optimize are:
 
-| Frequency | Meeting             | DRI                  | Possible topics                                                                  |
-| --------- | ------------------- | -------------------- | -------------------------------------------------------------------------------- |
-| Weekly    | Group-level meeting | Engineering Managers | Ensure current release is on track by walking the board, unblock specific issues |
+| Frequency | Meeting                              | DRI         | Possible topics                                                                                        |
+|-----------|--------------------------------------|-------------|--------------------------------------------------------------------------------------------------------|
+| Weekly    | Group-level meeting                  | Engineering Managers | Ensure current release is on track by walking the board, unblock specific issues                       |
 
 For one-off, topic specific meetings, please always consider recording these calls and sharing them (or taking notes in a [publicly available document](https://docs.google.com/document/d/1kE8udlwjAiMjZW4p1yARUPNmBgHYReK4Ks5xOJW6Tdw/edit)).
 

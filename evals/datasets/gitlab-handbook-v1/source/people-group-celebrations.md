@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "New Hires, Celebrations and Significant Life Events"
 description: "Review different ways GitLab celebrates its team members."
 ---

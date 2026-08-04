@@ -7,24 +7,23 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Release & Deploy group"
 description: "The Release & Deploy group enables GitLab Engineering to deliver features in a safe, scalable and efficient fashion to both GitLab.com, GitLab Dedicated and self-managed customers."
 ---
 
 ## Common Links
 
-|                                |                                                                                                      |
-| ------------------------------ | ---------------------------------------------------------------------------------------------------- |
-| **Workflow**                   | [Team workflow](#how-we-work)                                                                        |
-| **GitLab.com**                 | `@gitlab-org/delivery`                                                                               |
-| **Issue Tracker**              | [**Delivery**](https://gitlab.com/gitlab-com/gl-infra/delivery)                                      |
-| **Slack Channels**             | [#g_release_and_deploy](https://gitlab.slack.com/archives/g_release_and_deploy) / `@delivery-team`   |
-| **Delivery Handbook**          | [Team training](/handbook/engineering/infrastructure-platforms/gitlab-delivery/delivery/training/)   |
-| **Delivery Metrics**           | [Metrics](/handbook/engineering/infrastructure-platforms/gitlab-delivery/delivery/metrics/)          |
-| Deployment and Release process | [Deployments and Releases](/handbook/engineering/deployments-and-releases/)                          |
-| Release Tools Project          | [Release tools](/handbook/engineering/infrastructure-platforms/release-tools)                        |
-| Release Manager Runbooks       | [release/docs/runbooks](https://gitlab.com/gitlab-org/release/docs/-/blob/master/runbooks/README.md) |
+|   |   |
+|---|---|
+| **Workflow** | [Team workflow](#how-we-work) |
+| **GitLab.com** | `@gitlab-org/delivery` |
+| **Issue Tracker** | [**Delivery**](https://gitlab.com/gitlab-com/gl-infra/delivery) |
+| **Slack Channels** | [#g_release_and_deploy](https://gitlab.slack.com/archives/g_release_and_deploy) / `@delivery-team` |
+| **Delivery Handbook** | [Team training](/handbook/engineering/infrastructure-platforms/gitlab-delivery/delivery/training/) |
+| **Delivery Metrics** | [Metrics](/handbook/engineering/infrastructure-platforms/gitlab-delivery/delivery/metrics/) |
+| Deployment and Release process | [Deployments and Releases](/handbook/engineering/deployments-and-releases/) |
+| Release Tools Project | [Release tools](/handbook/engineering/infrastructure-platforms/release-tools) |
+| Release Manager Runbooks | [release/docs/runbooks](https://gitlab.com/gitlab-org/release/docs/-/blob/master/runbooks/README.md) |
 
 ## Mission
 
@@ -112,11 +111,11 @@ The group regularly works on the following tasks, in the order of priority:
 
 ### Software Delivery Engineering Leadership
 
-| Name           | Role                                        |
-| -------------- | ------------------------------------------- |
-| Michele Bursi  | Senior Engineering Manager, GitLab Delivery |
-| Martin Brümmer | Senior Product Manager, GitLab Delivery     |
-| Dave Smith     | Engineering Manager - Release & Deploy      |
+| Name | Role |
+|------|------|
+| Michele Bursi  | Senior Engineering Manager, GitLab Delivery    |
+| Martin Brümmer | Senior Product Manager, GitLab Delivery        |
+| Dave Smith     | Engineering Manager - Release & Deploy         |
 
 ### Team Members
 
@@ -149,7 +148,7 @@ Release Managers are members of the Release & Deploy group but during their time
 4. Hot patch process: Release Managers, working with EOCs, will manage the hot patch process. Hot patch capabilities are provided by the Releases team with heavy dependence on Deployments capabilities due to the shortened process and therefore reduced pipeline jobs.
 5. Deployment blockers: Release Managers are responsible for identifying, and reporting on deployment blockers in order to provide the teams with data needed to plan improvements.
 6. Release Manager dashboards: Release Managers own <https://dashboards.gitlab.net/d/delivery-release_management/delivery-release-management?orgId=1> plus have the freedom to create any additional dashboards that they think would be useful for release management. The data needed for dashboards will be made available from a centralized place, owned by Deployments.
-7. Escalation of Deployment Blockers. When facing deployment blockers in any environment of more than 2 hours without a clear path to resolution, [escalate](/handbook/engineering/infrastructure-platforms/gitlab-delivery/delivery/#release-management-escalation) to the `Release Management Escalation` Schedule in PagerDuty to help coordinate and unblock deployments.
+7. Escalation of Deployment Blockers.  When facing deployment blockers in any environment of more than 2 hours without a clear path to resolution, [escalate](/handbook/engineering/infrastructure-platforms/gitlab-delivery/delivery/#release-management-escalation) to the `Release Management Escalation` Schedule in PagerDuty to help coordinate and unblock deployments.
 
 ### The primary customers of Releases work are
 
@@ -188,12 +187,12 @@ Release Managers are members of the Release & Deploy group but during their time
 
 ### Reaching our Team
 
-| Reason                                         | Contact                 | Via         |
-| ---------------------------------------------- | ----------------------- | ----------- |
-| S1/P1 Deployment/Release related issues        | `@release-managers`     | Slack       |
-| Any Priority Deployment/Release related issues | `@gitlab-org/delivery`  | GitLab      |
-| Release Managers                               | release-management team | incident.io |
-| Release and Deploy team                        | release-and-deploy team | incident.io |
+| Reason | Contact | Via |
+| ------ | ------- | --- |
+| S1/P1 Deployment/Release related issues | `@release-managers` | Slack |
+| Any Priority Deployment/Release related issues | `@gitlab-org/delivery` | GitLab |
+| Release Managers | release-management team | incident.io |
+| Release and Deploy team | release-and-deploy team | incident.io |
 
 Release Managers have a weekday follow-the-sun rotation and can be reached via the `@release-managers` handle on Slack. For weekend support or other escalations please use the Release Management Escalation steps below to reach Delivery Leaders.
 
@@ -215,8 +214,8 @@ Epics describe the work and allows for general discussions, while the issue boar
 Each project should have a project-label applied to all epics and issues to allow issue boards to show a full project view.
 
 Issues should primarily be created in the [delivery issue tracker](https://gitlab.com/gitlab-com/gl-infra/delivery) for
-visibility and prioritization. Repositories that Delivery maintain should have
-their own issue trackers disabled. The purpose of this is to ensure a single
+visibility and prioritization.  Repositories that Delivery maintain should have
+their own issue trackers disabled.  The purpose of this is to ensure a single
 source of truth for work to be prioritized and visible within the team.
 
 ### Epics
@@ -232,9 +231,9 @@ Working epic should always have:
 1. Status YYYY-MM-DD to indicate what is being worked on, why, and planned next steps. The DRI is responsible for updating the epic status every Wednesday. Note, this must be the last heading in the epic to support automated epic summary updates
 1. Start date and estimated due date
 1. Labels:
-   - ![Release & Deploy group label](/images/engineering/infrastructure/team/delivery/group-delivery-label.png)
-   - Label used as part of the project scope (eg. `kubernetes`, `security-release`). The DRI should create a suitable project scope label and add it to the [Delivery-triage rules](https://gitlab.com/gitlab-com/gl-infra/triage-ops) if needed.
-   - Epic status label using the 'workflow-infra::triage', 'workflow-infra::proposal', 'workflow-infra::in-progress', 'workflow-infra::done'
+    - ![Release & Deploy group label](/images/engineering/infrastructure/team/delivery/group-delivery-label.png)
+    - Label used as part of the project scope (eg. `kubernetes`, `security-release`). The DRI should create a suitable project scope label and add it to the [Delivery-triage rules](https://gitlab.com/gitlab-com/gl-infra/triage-ops) if needed.
+    - Epic status label using the 'workflow-infra::triage', 'workflow-infra::proposal', 'workflow-infra::in-progress', 'workflow-infra::done'
 
 In cases where the work is tracked in a project in a different group outside of our canonical project location, we will create two epics for the same topic and state in the epic description which one is the working epic.
 
@@ -278,15 +277,15 @@ There are three other workflow labels of importance omitted from the diagram abo
 
 1. `workflow-infra::Cancelled`:
 
-   - Work in the issue is being abandoned due to external factors or decision to not resolve the issue. After applying this label, issue will be closed.
+    - Work in the issue is being abandoned due to external factors or decision to not resolve the issue. After applying this label, issue will be closed.
 
 1. `workflow-infra::Stalled`
 
-   - Work is not abandoned but other work has higher priority. After applying this label, team Engineering Manager is mentioned in the issue to either change the priority or find more help.
+    - Work is not abandoned but other work has higher priority. After applying this label, team Engineering Manager is mentioned in the issue to either change the priority or find more help.
 
 1. `workflow-infra::Blocked`
 
-   - Work is blocked due external dependencies or other external factors. After applying this label, issue will be regularly triaged by the team until the label can be removed.
+    - Work is blocked due external dependencies or other external factors. After applying this label, issue will be regularly triaged by the team until the label can be removed.
 
 Label `workflow-infra::Done` is applied to signify completion of work, but its sole purpose is to ensure that issues are closed when the work is completed, ensuring issue hygiene.
 
@@ -294,12 +293,12 @@ Label `workflow-infra::Done` is applied to signify completion of work, but its s
 
 The Release & Deploy group uses priority labels to indicate order under which work is next to be picked up. Meaning attached to priorities can be seen below:
 
-| Priority level | Definition                                                                                                                                                             |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Delivery::P1   | Issue is blocking other team-members, or blocking other work. Needs to be addressed immediately, even if it means postponing current work.                             |
-| Delivery::P2   | Issue has a large impact, contributes towards current OKRs or will create additional work. Work should start as soon as possible after completing ongoing task.        |
-| Delivery::P3   | Issue should be completed once other urgent work is done.                                                                                                              |
-| Delivery::P4   | **Default priority**. A nice-to-have improvement, non-blocking technical debt, or a discussion issue. Issue might be completed in future or work completely abandoned. |
+| Priority level  | Definition |
+| --------------- | ---------- |
+| Delivery::P1 | Issue is blocking other team-members, or blocking other work. Needs to be addressed immediately, even if it means postponing current work. |
+| Delivery::P2 | Issue has a large impact, contributes towards current OKRs or will create additional work. Work should start as soon as possible after completing ongoing task. |
+| Delivery::P3 | Issue should be completed once other urgent work is done. |
+| Delivery::P4 | **Default priority**. A nice-to-have improvement, non-blocking technical debt, or a discussion issue. Issue might be completed in future or work completely abandoned. |
 
 The group uses priority labels differently to the [general issue triage priority definition](/handbook/product-development/how-we-work/issue-triage/#priority) in order to avoid ambiguity that comes with difference in timelines between Stage teams and Infrastructure teams. We have different timelines (release brings different expectations for Delivery), different DRI's (no PM for Delivery), and different importance (Blocked release means that no one can ship anything).
 
@@ -307,11 +306,11 @@ The group uses priority labels differently to the [general issue triage priority
 
 Incidents may optionally have a `Delivery impact:*` label to indicate the impact the incident has when active. This label is intended to help with prioritizing between multiple incidents.
 
-| **Impact label**   | **Definition**                                                                                                               |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| **Impact label** | **Definition** |
+| ----- | ---------- |
 | Delivery impact::1 | Deployments and/or scheduled releases are fully blocked by this incident. Action should be taken to resolve this immediately |
-| Delivery impact::2 | Deployments and/or scheduled releases will soon become blocked. Resolve as soon as possible                                  |
-| Delivery impact::3 | Deployments and releases are not currently blocked but there is some impact on the delivery process                          |
+| Delivery impact::2 | Deployments and/or scheduled releases will soon become blocked. Resolve as soon as possible |
+| Delivery impact::3 | Deployments and releases are not currently blocked but there is some impact on the delivery process |
 
 #### Other Labels
 
@@ -331,7 +330,7 @@ Incidents impacting Delivery may optionally include an [impact label](#delivery-
 In addition to the Epics, Issue Boards, Labels, and Workflow practices common to the entire team, the Delivery:Deployments team adopts a few extra approaches to improve its communication and better share knowledge and decisions within the team.
 
 - Each Epic should contain a `Decision Log`: this helps to keep a single, centralized SSOT where all decisions taken during project work are listed. For completeness, we should report the date of the decision,
-  who was involved in the discussion and decision, and the outcome of the decision.
+who was involved in the discussion and decision, and the outcome of the decision.
 
   For simplicity, you can use the snippet below to add Decision Log to Epics Description:
 
@@ -349,8 +348,8 @@ In addition to the Epics, Issue Boards, Labels, and Workflow practices common to
   ```
 
 - Each Issue should contain a `Progress Thread` as a comment: this helps make the work visible in an async environment and shares knowledge while the work progresses.
-  Comments within the progress thread should highlight the progress achieved, the intermediate steps/results we got, assumptions, discoveries, and blockers we face.
-  This approach allows people from the team and outside of the team to build a clear idea and eventually contribute with comments and suggestions.
+Comments within the progress thread should highlight the progress achieved, the intermediate steps/results we got, assumptions, discoveries, and blockers we face.
+This approach allows people from the team and outside of the team to build a clear idea and eventually contribute with comments and suggestions.
 
 ### Choosing something to work on
 

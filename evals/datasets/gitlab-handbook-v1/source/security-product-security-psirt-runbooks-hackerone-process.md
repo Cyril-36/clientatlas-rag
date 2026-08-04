@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "HackerOne Process"
 ---
 
@@ -75,7 +74,7 @@ GitLab's HackerOne process manages vulnerability reports through a structured wo
 
 ## HackerOne Report Lifecycle Timeline
 
-TBD
+ TBD
 
 ## Step-by-Step Triage and Remediation Procedure
 
@@ -117,11 +116,11 @@ We usually trust the HackerOne Triage Team and don't necessarily validate the re
 #### GitLab Team
 
 - When beginning work on a report, the security team member should assign the
-  report to themselves immediately.
+report to themselves immediately.
 - Medium/Low reports have their triage automated. PSIRT engineers should refer to [PSIRT Security Engineer Procedures for Medium/Low severity issues](#psirt-security-engineer-procedures-for-mediumlow-severity-issues) for special handling.
 - It is OK to take a report that you will not work on immediately, especially
-  if it is a duplicate or related to another report you are familiar with, just
-  be sure to get it reassigned if you won't be able to meet the estimated triage time.
+if it is a duplicate or related to another report you are familiar with, just
+be sure to get it reassigned if you won't be able to meet the estimated triage time.
 - When starting a triage work cycle, team members should prioritize as follows:
   1. Identify, triage, and [escalate any New severity::1/priority::1](/handbook/security/product-security/psirt/runbooks/handling-s1p1/) issues first, from any queue.
   1. Close duplicate and invalid reports.
@@ -129,10 +128,9 @@ We usually trust the HackerOne Triage Team and don't necessarily validate the re
   1. Triage the `GitLab Team` queue.
 
   If a reporter has questions about the order of report responses, `06 - Duplicates/Invalid Reports Triaged First` common response may be used.
-
 - Review the validation performed by the HackerOne triage team
 - Communicate with the reporter and investigate, using the
-  following guidelines as necessary:
+following guidelines as necessary:
   - [Request clarification](#if-a-report-is-unclear), from either the reporter or the triage team
   - Verify the report yourself
 - When a report contains externally-hosted static content for reproduction (for example some HTML file triggering a CSRF or a vulnerability exploiting a `postMessage` issue), follow the instructions in [this project](https://gitlab.com/gitlab-com/gl-security/product-security/appsec/vuln-repro-static-pages) to re-host it internally
@@ -150,14 +148,14 @@ We usually trust the HackerOne Triage Team and don't necessarily validate the re
     that an issue does not already exist in GitLab. If it is a duplicate:
     - Change the state of the report to "Duplicate".
     - If the issue was previously reported in H1, include the report id, as it can
-      impact the reporter's reputation
+        impact the reporter's reputation
     - Fill in the `01 - Duplicate` common response. Include the link to the GitLab issue.
     - The team member may use their discretion if the reporter asks to be added as a contributor to the original H1 report;
-      however, the default is to not add because the corresponding GitLab issue will
-      be made public 90 days after the patch is released. If it is decided to add the
-      duplicate reporter, ensure that the report does not have reporter sensitive information before allowing access.
-      `05 - Duplicate Follow Up, No Adding Contributors/Future Public Release` common response
-      can be used when denying the request to add as a contributor.
+        however, the default is to not add because the corresponding GitLab issue will
+        be made public 90 days after the patch is released. If it is decided to add the
+        duplicate reporter, ensure that the report does not have reporter sensitive information before allowing access.
+        `05 - Duplicate Follow Up, No Adding Contributors/Future Public Release` common response
+        can be used when denying the request to add as a contributor.
     - If the new report makes us realize we have mishandled a previous report (e.g. closed as informative but it was a valid bug) we reopen the original and award the new report a bounty to thank the reporter for putting the mishandled issue back on our radar
       - The bounty we award as a thank you should be $100 for low severity reports and equivalent to the initial bounty we pay on triage for the higher severities
       - If we realize our mistake late in the process and we have already rewarded the new report, the bounty should be raised to the amounts above or left as is if it's already higher
@@ -165,7 +163,7 @@ We usually trust the HackerOne Triage Team and don't necessarily validate the re
       - If the new report demonstrates new and higher impact, we calculate the CVSS score and award to the new reporter the difference between the new severity and what was awarded to the original report
 - If the report relates to information disclosure, follow the [triaging exposed secrets](#triaging-exposed-secrets) process.
 - If the report is valid, in-scope, original, and requires action, security-related documentation change, or if the report needs further investigation by
-  the responsible engineering team:
+the responsible engineering team:
   - [Calculate the CVSS score](https://gitlab-com.gitlab.io/gl-security/product-security/appsec/cvss-calculator/) and post the resulting vector string (e.g.: `AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:L`) as an internal comment on the report, this will be used later when requesting a CVE ID
   - Verify and/or set the appropriate Severity in H1, using the CVSS previously calculated
     - Optionally explain the CVSS to the researcher, mention that CVSS scores are validated by a peer, and link to our Awards process to avoid inefficient misunderstandings relating to severity and payouts
@@ -216,7 +214,6 @@ For future reports that involve "vulnerability chaining" with previously disclos
 
 ```markdown
 ### Appsec Triage checklist
-
 - [ ] Mitigate the incident if possible
   - [ ] If the exposed secret is a Agent Token:
     - [ ] Validate if the token is a valid one by following the steps [here](https://gitlab.com/gitlab-com/gl-security/security-research/verify-kas-token#testing-kas-token-for-validity) and gather the output for the SIRT incident.
@@ -224,6 +221,8 @@ For future reports that involve "vulnerability chaining" with previously disclos
   - [ ] If the exposed secret is a Personal Access Token:
     - [ ] Using the API, gather the output of [`/api/v4/user`](https://docs.gitlab.com/ee/api/users.html#for-normal-users-1) and [`/api/v4/personal_access_tokens/self`](https://docs.gitlab.com/ee/api/personal_access_tokens.html#using-a-request-header) for the SIRT incident.
     - [ ] [Revoke the token](https://docs.gitlab.com/ee/api/personal_access_tokens.html#using-a-request-header-1) and reach out to the owner of the token through Slack DM.
+
+
 
   - [ ] Post a comment in `#security-revocation-self-service` using [this message template](https://internal.gitlab.com/handbook/security/security_operations/sirt/runbooks/exposed_secrets/#general-revocation-template-for-secrets)
   - [ ] If the information was leaked in an issue, make the Issue confidential and leave an internal note explaining why it's been made confidential.
@@ -267,9 +266,9 @@ Exposure of information and secrets is handled a little differently to vulnerabi
 
     - [Revoke the token](https://docs.gitlab.com/ee/api/personal_access_tokens.html#using-a-request-header-1) and reach out to the owner of the token through Slack DM.
 
-      ```bash
-      curl --request DELETE -H "Authorization: Bearer LEAKED_TOKEN" https://gitlab.com/api/v4/personal_access_tokens/self
-      ```
+        ```bash
+        curl --request DELETE -H "Authorization: Bearer LEAKED_TOKEN" https://gitlab.com/api/v4/personal_access_tokens/self
+        ```
 
   - Post a comment in `#security-revocation-self-service` using [this message template](https://gitlab.com/gitlab-com/gl-security/security-operations/sirt/runbooks/-/blob/main/misc/exposed_secrets.md#general-revocation-template-for-secrets)
   - If the information was leaked in an issue, make the Issue confidential and leave an internal note explaining why it's been made confidential.
@@ -376,7 +375,7 @@ DNS record takeovers typically require multiple teams in order to triage. The wo
 - We import the HackerOne report to the infrastructure repository with `/h1 import $REPORT infrastructure`
 - Engage SIRT with `/security` in Slack. This will allow SIRT to perform their investigatory duties related to this type of attack.
 - Engage `@sre-oncall` in Slack. This notifies the SRE (but does not initiate a PagerDuty ping) on-call of a situation requiring their attention.
-  Remediation of this vulnerability typically involves deleting the dangling CNAME record. For issues involving MX record takeovers we typically work with our MX SaaS vendor, Mailgun to obtain control of the record. More information on MX record takeovers can be found [here](https://gitlab.com/gitlab-com/gl-security/product-security/appsec/appsec-team/-/issues/334).
+Remediation of this vulnerability typically involves deleting the dangling CNAME record. For issues involving MX record takeovers we typically work with our MX SaaS vendor, Mailgun to obtain control of the record. More information on MX record takeovers can be found [here](https://gitlab.com/gitlab-com/gl-security/product-security/appsec/appsec-team/-/issues/334).
 
 ### Awards
 
@@ -406,13 +405,13 @@ Reward credits do not have a monetary value, and can also be used to plant trees
 Discussion and remediation of vulnerabilities can sometimes take longer than we would prefer. Even so, frequent communication with reporters is far better than leaving reporters in the dark, even if our progress is slow. Therefore:
 
 - Once the corresponding GitLab issue has been assigned a milestone, an
-  automated process will add a comment to the H1 report with the planned
-  fix date. If the issue has not been assigned to a milestone within **1 week**
-  of the product manager being @ mentioned on the issue, follow up with
-  the product management team.
+automated process will add a comment to the H1 report with the planned
+fix date. If the issue has not been assigned to a milestone within **1 week**
+of the product manager being @ mentioned on the issue, follow up with
+the product management team.
 - In the case where fixes are not as clear or discussion is still
-  on-going as to whether a patch will be created at all, reporters should
-  be notified of updates at least **monthly**.
+on-going as to whether a patch will be created at all, reporters should
+be notified of updates at least **monthly**.
 - In any case, no report should go "stale" where updates are not provided within the last month.
 
 ### SLA exceptions
@@ -427,7 +426,7 @@ After 90 days, follow the [process for disclosing security issues](/handbook/sec
 Once this has occurred, the HackerOne issue can also be publicly disclosed on
 a case-by-case basis, following the same process to remove sensitive information.
 We should not disclose, or request to disclose, a HackerOne issue while the GitLab issue
-remains confidential.
+ remains confidential.
 
 Comments made by GitLab Security Bot (`@gitlab-securitybot`) can be redacted by PSIRT team members using the `/h1 redact <comment_url>` Slack command.
 
@@ -564,11 +563,11 @@ GitLab reporters with 3 or more valid reports are eligible for a 1-year Ultimate
 1. Validate that the three reports have not been used to obtain a previous license.
 1. If the reports are not valid, respond to the reporter on H1 explaining the reason the license is not being issued.
 1. If the reports are valid, please login using your Zendesk Global account (one can be requested [here](../../../../support/internal-support/_index.md#requesting-a-zendesk-light-agent-account) if you do not have one) and then navigate to [Submit a request](https://gitlab-internal.zendesk.com/hc/en-us/requests/new?ticket_form_id=22783840298780) form:
-   - For `Choose the reason why you are reaching out to us today` keep the **L&R Internal Request** default option
-   - For `What category of request?` first select **Other** then select **Hacker One Reporter license**
-   - For `What expiration date should be used?` select the date that's one calendar year away from the requested date
-   - For `What is the contact's name?` use the reporter's full name if available, otherwise their H1 handle
-   - For `What is the contact's email?` use the reporter's `[username]@wearehackerone.com` email address
+    - For `Choose the reason why you are reaching out to us today` keep the **L&R Internal Request** default option
+    - For `What category of request?` first select **Other** then select **Hacker One Reporter license**
+    - For `What expiration date should be used?` select the date that's one calendar year away from the requested date
+    - For `What is the contact's name?` use the reporter's full name if available, otherwise their H1 handle
+    - For `What is the contact's email?` use the reporter's `[username]@wearehackerone.com` email address
 1. Enter the associated license information in the [H1 License Award sheet](https://docs.google.com/spreadsheets/d/1qJZ9jfIvQuSU5u4odj4Db_CRKJ_GHegtSZQvJx36FUE/edit)
 1. Reply to the report on H1 use the `20 - Ultimate License Creation` template.
 

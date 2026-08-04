@@ -7,14 +7,11 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Access Review Procedure"
 controlled_document: true
 tags:
-
-- security_standard
-- security_standard_acia
-
+  - security_standard
+  - security_standard_acia
 ---
 
 {{< label name="Visibility: Audit" color="#E24329" >}}
@@ -50,15 +47,15 @@ Systems that fall outside of the threshold of the above in-scope system factors.
 
 ## Roles & Responsibilities
 
-|                    Role                     |                                                                                                        Responsibility                                                                                                        |
-| :-----------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|          Security Compliance Team           |                   _Execution of Full Entitlement Review, Privileged Access, Terminated User Reviews<br><br>_ Creation of observations and oversight of remediation activities for any identified findings                    |
-|             IT Compliance Team              |       _Execution of Full Entitlement Review, Privileged Access, Terminated User Reviews for SOX in-scope systems<br><br>_ Creation of observations and oversight of remediation activities for any identified findings       |
-|                System Owners                | _Validation of privileged entitlements<br><br>_ Validation of user entitlements<br><br>_Timely evidence support <br><br>_ Execution of remediation plans for identified observations<br><br>* Execution of access removal(s) |
-|            System Administrators            | _Validation of privileged entitlements<br><br>_ Validation of user entitlements<br><br>_Timely evidence support <br><br>_ Execution of remediation plans for identified observations<br><br>* Execution of access removal(s) |
-|                  Managers                   |                                                               _Support validation of privileged entitlements<br><br>_ Support validation of user entitlements                                                                |
-|                IT Operations                |                                                                                               * Execution of access removal(s)                                                                                               |
-| Security Assurance Management (Code Owners) |                                                                        Responsible for approving significant changes and exceptions to this procedure                                                                        |
+| Role | Responsibility |
+| :---: | :---: |
+| Security Compliance Team | *Execution of Full Entitlement Review, Privileged Access, Terminated User Reviews<br><br>* Creation of observations and oversight of remediation activities for any identified findings|
+| IT Compliance Team | *Execution of Full Entitlement Review, Privileged Access, Terminated User Reviews for SOX in-scope systems<br><br>* Creation of observations and oversight of remediation activities for any identified findings|
+| System Owners | *Validation of privileged entitlements<br><br>* Validation of user entitlements<br><br>*Timely evidence support <br><br>* Execution of remediation plans for identified observations<br><br>* Execution of access removal(s)|
+| System Administrators | *Validation of privileged entitlements<br><br>* Validation of user entitlements<br><br>*Timely evidence support <br><br>* Execution of remediation plans for identified observations<br><br>* Execution of access removal(s)|
+| Managers | *Support validation of privileged entitlements<br><br>* Support validation of user entitlements|
+| IT Operations | * Execution of access removal(s)|
+| Security Assurance Management (Code Owners) | Responsible for approving significant changes and exceptions to this procedure |
 
 ## What is Lumos and why do I have an Okta tile for it?
 
@@ -84,12 +81,12 @@ If you have any questions or require assistance with completing an access review
 
 ### Access Review Cadence
 
-| System Type                                                                                                      | Review Frequency     | Review Scope                                |
-| ---------------------------------------------------------------------------------------------------------------- | -------------------- | ------------------------------------------- |
-| **Red Data Systems**                                                                                             | Annual               | All users with access to Red data systems   |
-| **[SOX In-Scope Applications](https://gitlab.com/groups/gitlab-com/internal-audit/-/wikis/IT-General-Controls)** | Quarterly            | All users - entitlement reviews             |
-| **PCI In-Scope Applications**                                                                                    | Bi-Annual (6 months) | All entitlements/Account inactivity reviews |
-| **[External Certification Systems](/handbook/security/security-assurance/security-compliance/certifications/)**  | Quarterly            | Entitlement Reviews                         |
+| System Type | Review Frequency | Review Scope |
+|-------------|------------------|--------------|
+| **Red Data Systems** | Annual | All users with access to Red data systems |
+| **[SOX In-Scope Applications](https://gitlab.com/groups/gitlab-com/internal-audit/-/wikis/IT-General-Controls)** | Quarterly | All users - entitlement reviews |
+| **PCI In-Scope Applications** | Bi-Annual (6 months) | All entitlements/Account inactivity reviews |
+| **[External Certification Systems](/handbook/security/security-assurance/security-compliance/certifications/)** | Quarterly | Entitlement Reviews |
 
 ### Access Removals
 
@@ -118,7 +115,7 @@ It may not be necessary to perform a lookback in all cases, for example:
 
 - A person transferred between non-conflicting departments, continued to support their previous role during transition, and the access review is a chance to remove the access now that the transition is complete
 - A role is being removed as the access granted by that role is duplicative to access granted as part of another role that will remain
-- A user no longer uses the access that they have to a system but the access isn't a risk for the user to have and could be reinstated by opening an Access Request if a need for the access ever arises again
+- A user no longer uses the access that they have to a system but the access isn't a risk for the user to have and could be reinstated by opening  an Access Request if a need for the access ever arises again
 - A team of 4 users have the same access to a system but usage is minimal. To free up licenses and maintain an environment of least privilege, access for 3 of the users is requested for removal.
 
 The most simple method to perform a lookback for users is to review their last login date/time and validate it was not after the date access was no longer appropriate. If a last login shows the account did authenticate after the access was inappropriate, a full review should be performed to determine any activity from the account during that time to validate no risk. If a last login is not available, other validations should be performed to confirm the account was not used inappropriately after termination, including reviews of key transactions or similar reviews.
@@ -131,14 +128,14 @@ For any accounts that are requested for modification or removal, validation they
 
 ### Access Review Notification Reminders
 
-Security Compliance managed access reviews required for audit evidence have a deadline of 10 business days from the launch of the review in Lumos. Automated reminders will be used based on number of days out from the due date:
+Security Compliance managed access reviews required for audit evidence have a deadline of 10 business days from the launch of the review in Lumos.  Automated reminders will be used based on number of days out from the due date:
 
-| Days until Due Date |                 Notification                 |                        Who is Notified                        |
-| :-----------------: | :------------------------------------------: | :-----------------------------------------------------------: |
-|          5          |                Lumos "nudge"                 |                           Reviewer                            |
-|          3          |                  Slack ping                  |                           Reviewer                            |
-|          2          | Lumos "nudge" & <br/>Slack ping the Reviewer | Reviewer, Reviewer's Manager, and Security Compliance Manager |
-|          0          |              Escalated to CISO               |                             CISO                              |
+|  Days until Due Date | Notification | Who is Notified |
+| :---: | :---: | :---: |
+|  5 | Lumos "nudge" | Reviewer |
+|  3 | Slack ping | Reviewer |
+|  2 | Lumos "nudge" & <br/>Slack ping the Reviewer | Reviewer, Reviewer's Manager, and Security Compliance Manager |
+|  0 | Escalated to CISO | CISO |
 
 {-If an access review is not completed within 10 days, identified access will be removed.-}
 
@@ -146,7 +143,7 @@ Security Compliance managed access reviews required for audit evidence have a de
 
 #### Access List Generation
 
-Based on how the system access is maintained will determine the method of account and related permissions export for access review. This will most likely fall to the business or technical owner identified in the [Tech Stack Applications](https://gitlab.com/gitlab-com/www-gitlab-com/-/blob/master/data/tech_stack.yml).
+Based on how the system access is maintained will determine the method of account and related permissions export for access review.  This will most likely fall to the business or technical owner identified in the [Tech Stack Applications](https://gitlab.com/gitlab-com/www-gitlab-com/-/blob/master/data/tech_stack.yml).
 
 - A system owned by Infrastructure will require an issue opened in the [Infrastructure Project](https://gitlab.com/gitlab-com/gl-infra/infrastructure) for access listing export request
 

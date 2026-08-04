@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "GitLab Secrets Manager"
 status: ongoing
 creation-date: "2023-08-07"
@@ -141,8 +140,8 @@ execution, until we can build multi-tenancy extensions into OpenBao.
 
 Technically there are two approaches to make OpenBao visible:
 
-1.  Directly, making the API address listen globally to the public internet.
-2.  With GitLab Rails proxying requests on behalf of callers.
+ 1. Directly, making the API address listen globally to the public internet.
+ 2. With GitLab Rails proxying requests on behalf of callers.
 
 In particular, with the latter, while we have the option of replacing the
 backend secret store with a different provider in the future, we incur
@@ -167,7 +166,7 @@ advanced features such as Transit for other solutions inside GitLab Rails.
 
 Within OpenBao, we'll use two authentication engines:
 
-1.  [JWT](https://openbao.org/docs/auth/jwt/), to authenticate Rails to OpenBao
+ 1. [JWT](https://openbao.org/docs/auth/jwt/), to authenticate Rails to OpenBao
     and created pipeline jobs to OpenBao. All of these JWTs will be issued
     by GitLab Rails, using GitLab [OIDC ID Tokens](https://docs.gitlab.com/ee/ci/secrets/id_token_authentication.html)
     supported by the existing [HashiCorp Vault Runner integration](https://docs.gitlab.com/ee/ci/secrets/hashicorp_vault.html).
@@ -252,9 +251,9 @@ Here, an execution of a pipeline can, in the restriction of a set of branch
 or environment match patterns (for example, `main`, `*`, or `release/*`), can get
 secrets from:
 
-1.  A project,
-1.  The (user) owner of a project or equivalently,
-1.  The hierarchical groups up to and including the organization owner of a
+ 1. A project,
+ 1. The (user) owner of a project or equivalently,
+ 1. The hierarchical groups up to and including the organization owner of a
     project, or a parent group (prior to the introduction of organizations).
 
 That is, if a secret is to be used by multiple projects, it should be
@@ -311,8 +310,8 @@ the ACL policies.
 
 ```yaml
 openbao:
-  url: "https://openbao.example.com:8200" # External URL for runners
-  internal_host: "http://openbao-internal:8200" # Internal URL for Rails (optional)
+  url: "https://openbao.example.com:8200"         # External URL for runners
+  internal_host: "http://openbao-internal:8200"   # Internal URL for Rails (optional)
 ```
 
 Fallback behavior: When internal_host is not configured, Rails will use the standard URL for all connections.
@@ -666,11 +665,13 @@ would be equivalent to the following JSON:
 
 ```json
 {
-  "path": {
-    "secrets/kv/data/explicit/+": {
-      "capabilities": ["list"]
+    "path": {
+        "secrets/kv/data/explicit/+": {
+            "capabilities": [
+                "list"
+            ]
+        }
     }
-  }
 }
 ```
 
@@ -683,9 +684,9 @@ GitLab Secrets Manager will initially only support static secrets, stored in
 a KVv2 engine. Some improvements to OpenBao can be added to static secrets,
 such as:
 
-1.  Using leases, to support one-time use secrets. These could be written by
+ 1. Using leases, to support one-time use secrets. These could be written by
     another workflow and removed on use.
-1.  Supporting automatic deletion of secrets: a given expiration date could be
+ 1. Supporting automatic deletion of secrets: a given expiration date could be
     strictly enforced, preventing use of the secret and requiring rotation of
     even long-lived manual secrets.
 
@@ -697,9 +698,9 @@ static values and ensures compromise of values require time-limited use and
 prevent persistence. We can build several improvement to OpenBao to help the
 adoption of dynamic secrets:
 
-1.  Add a plugin registry to allow custom, external plugins or allow
+ 1. Add a plugin registry to allow custom, external plugins or allow
     containerized execution of plugins.
-1.  Create additional backend-pluggable plugin types beyond database: this
+ 1. Create additional backend-pluggable plugin types beyond database: this
     could allow various access-token providers to be more easily created by
     exposing common APIs in a standardized format.
 
@@ -1082,16 +1083,16 @@ Kubernetes Deployment:
 
 ```yaml
 openbao:
-  url: "https://secrets-manager.example.com" # External load balancer for runners
-  internal_host: "http://secrets-manager-internal.example.net" # Kubernetes service for rails
+  url: "https://secrets-manager.example.com"                     # External load balancer for runners
+  internal_host: "http://secrets-manager-internal.example.net"   # Kubernetes service for rails
 ```
 
 GitLab.com Production:
 
 ```yaml
 openbao:
-  url: "https://secrets.gitlab.com" # Public endpoint
-  internal_host: "http://secrets-manager-internal.gitlab.net" # Internal cluster
+  url: "https://secrets.gitlab.com"                            # Public endpoint
+  internal_host: "http://secrets-manager-internal.gitlab.net"  # Internal cluster
 ```
 
 ### Backup and Restore
@@ -1151,15 +1152,15 @@ DRIs:
 
 <!-- vale gitlab.Spelling = NO -->
 
-| Role                   | Who                                     |
-| ---------------------- | --------------------------------------- |
-| Author                 | Erick Bajao, Senior Engineer            |
-| Co-Author              | Alex Scheel, Staff Engineer             |
-| Recommender            | Fabio Pitino, Principal Engineer        |
-| Product Leadership     | Jocelyn Eillis , Product Manager        |
-| Engineering Leadership | Scott Hampton, Engineering Manager      |
-| Lead Engineer          | Erick Bajao, Senior Backend Engineer    |
-| Senior Engineer        | Maxime Orefice, Senior Backend Engineer |
-| Engineer               | Shabini Rajadas, Backend Engineer       |
+| Role                | Who                                            |
+|---------------------|------------------------------------------------|
+| Author              | Erick Bajao, Senior Engineer                   |
+| Co-Author           | Alex Scheel, Staff Engineer                    |
+| Recommender         | Fabio Pitino, Principal Engineer               |
+| Product Leadership  | Jocelyn Eillis , Product Manager               |
+| Engineering Leadership | Scott Hampton, Engineering Manager          |
+| Lead Engineer       | Erick Bajao, Senior Backend Engineer           |
+| Senior Engineer     | Maxime Orefice, Senior Backend Engineer        |
+| Engineer            | Shabini Rajadas, Backend Engineer              |
 
 <!-- vale gitlab.Spelling = YES -->

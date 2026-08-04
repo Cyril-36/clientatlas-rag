@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Adaptive Insights"
 description: "Discover how GitLab uses Adaptive Insights to plan, budget, and forecast GitLab's planning cycles"
 ---
@@ -56,37 +55,37 @@ In its current state, the revenue model sheet is a static sheet that users input
 
 - Bookings
 
-  Bookings data is built from a model that Sales Finance owns and is inputted into the model several times a month. The input of bookings data occurs during a reforecast or plan and when actuals are reconciled with the Sales Ops team.
+    Bookings data is built from a model that Sales Finance owns and is inputted into the model several times a month. The input of bookings data occurs during a reforecast or plan and when actuals are reconciled with the Sales Ops team.
 
 - ARR
 
-  Each month on the fourth business day of the month, the Corporate Finance team records ending ARR for the month in closing. In turn, this becomes the beginning ARR amount for the month in progress. For example, if GitLab's ARR was $1M at the end of month 1, then the beginning ARR would be $1M at the beginning of month 2. The month in progress builds upon the beginning ARR amount and several other inputs to forecast ending ARR. Those inputs are 'New and Growth Booked Net ARR', 'Booking Timing Adjustments', and 'Trueups'. GitLab also includes an input that results in a deviation within the forecasted model. These inputs are the basis of GitLab's Booking to ARR to Revenue forecast walk
+    Each month on the fourth business day of the month, the Corporate Finance team records ending ARR for the month in closing. In turn, this becomes the beginning ARR amount for the month in progress. For example, if GitLab's ARR was $1M at the end of month 1, then the beginning ARR would be $1M at the beginning of month 2. The month in progress builds upon the beginning ARR amount and several other inputs to forecast ending ARR. Those inputs are 'New and Growth Booked Net ARR', 'Booking Timing Adjustments', and 'Trueups'. GitLab also includes an input that results in a deviation within the forecasted model. These inputs are the basis of GitLab's Booking to ARR to Revenue forecast walk
 
-  `Beginning ARR + New Booked Net ARR + Growth Booked Net ARR + Booking Timing Adjustments + (-1*Trueups) + Deviation Amount = Exit ARR`
+    `Beginning ARR + New Booked Net ARR + Growth Booked Net ARR + Booking Timing Adjustments + (-1*Trueups) + Deviation Amount = Exit ARR`
 
-  With the walk, GitLab can determine it's Delta ARR value. Delta ARR is the difference between Exit ARR from the prior period and the Exit ARR from the current period.
+    With the walk, GitLab can determine it's Delta ARR value. Delta ARR is the difference between Exit ARR from the prior period and the Exit ARR from the current period.
 
-  `Exit ARR (Current Period) - Exit ARR (Prior Period) = Delta ARR`
+    `Exit ARR (Current Period) - Exit ARR (Prior Period) = Delta ARR`
 
 - Revenue
 
-  GitLab's revenue forecast is comprised of several models, which are noted below.
+    GitLab's revenue forecast is comprised of several models, which are noted below.
 
 - Professional Services model
 
-  This model is owned by Sales Finance and forecasted the expected recognized revenue GitLab expects to obtain during a time period for all of GitLab's Professional Services offerings. The result of the expected recognized revenue is fed into the Bookings to ARR to Revenue model and recorded under GL account 4002, 4010.
+    This model is owned by Sales Finance and forecasted the expected recognized revenue GitLab expects to obtain during a time period for all of GitLab's Professional Services offerings. The result of the expected recognized revenue is fed into the Bookings to ARR to Revenue model and recorded under GL account 4002, 4010.
 
 - GitLab.com model
 
-  This model is owned by R&D Finance and forecasted the expected recognized revenue GitLab expects to obtain during a time period for all of GitLab's SaaS offerings. The result of the expected recognized revenue is fed into the Bookings to ARR to Revenue model and recorded under GL account 4007.
+    This model is owned by R&D Finance and forecasted the expected recognized revenue GitLab expects to obtain during a time period for all of GitLab's SaaS offerings. The result of the expected recognized revenue is fed into the Bookings to ARR to Revenue model and recorded under GL account 4007.
 
 - Bookings to ARR to Revenue model
 
-  The bookings to ARR to Revenue model compiles the Exit MRR (Exit ARR / 12) amount, GitLab.com amount, and Professional Services amount to forecast out the expected recurring revenue for a specific time period. GitLab backs out the gitlab.com amount (recorded in GL account 4007) to forecast subscriptions account GL account 4001. GitLab does this by taking (Exit MRR - GitLab.com MRR) which results in the amount for GL account 4001. In a majority of cases, Exit MRR should always be less than or equal to recognized revenue.
+    The bookings to ARR to Revenue model compiles the Exit MRR (Exit ARR / 12) amount, GitLab.com amount, and Professional Services amount to forecast out the expected recurring revenue for a specific time period. GitLab backs out the gitlab.com amount (recorded in GL account 4007) to forecast subscriptions account GL account 4001. GitLab does this by taking (Exit MRR - GitLab.com MRR) which results in the amount for GL account 4001. In a majority of cases, Exit MRR should always be less than or equal to recognized revenue.
 
 - Template
 
-  The revenue model template can be found by searching the title `Bookings to ARR to Revenue Walk [Template]` in Google Drive or reaching out to the Corporate FP&A partner. The template puts together the build from Bookings to Revenue in a walk that is easily understandable and traceable.
+    The revenue model template can be found by searching the title `Bookings to ARR to Revenue Walk [Template]` in Google Drive or reaching out to the Corporate FP&A partner. The template puts together the build from Bookings to Revenue in a walk that is easily understandable and traceable.
 
 ### Currencies
 
@@ -129,23 +128,23 @@ In each forecast version, actuals for expenses from the previous period are reco
 There are 4 Expense Types each with different calculations in Adaptive: (Column: EXPENSE_TYPE)
 
 1. Pre_paid One Time – This is a one time pre paid expense.
-   1. Event start date drives when the expense will hit the Income Statement.
-   1. Expense is spread based on the contracted amount divided by contracted months.
-   1. This calculated expense drives the GL Account selected in the "GL_EXPENSE_ACCOUNTS" column.
+    1. Event start date drives when the expense will hit the Income Statement.
+    1. Expense is spread based on the contracted amount divided by contracted months.
+    1. This calculated expense drives the GL Account selected in the "GL_EXPENSE_ACCOUNTS" column.
 1. Pre_paid Amortization – This is a prepaid amortization expense. This calculation takes into account:
-   1. Event start date drives when the expense will hit the Income Statement.
-   1. Expense is spread based on the contracted amount divided by contracted months
-   1. This calculated expense drives the GL Account selected in the "GL_EXPENSE_ACCOUNTS" column.
-   1. Chances of Renewal – based on a %.
-   1. Start Month Uplift – Takes into account any uplift that is expected to occur during the initial contract period and factors this into the renewal months.
-   1. Monthly Growth Factor- based on a % of uplift that is expected to occur on the Start Month Uplift. (This is based on month over month uplift)
+    1. Event start date drives when the expense will hit the Income Statement.
+    1. Expense is spread based on the contracted amount divided by contracted months
+    1. This calculated expense drives the GL Account selected in the "GL_EXPENSE_ACCOUNTS" column.
+    1. Chances of Renewal – based on a %.
+    1. Start Month Uplift – Takes into account any uplift that is expected to occur during the initial contract period and factors this into the renewal months.
+    1. Monthly Growth Factor- based on a % of uplift that is expected to occur on the Start Month Uplift. (This is based on month over month uplift)
 1. Per User – This calculates a per user expense. This calculation takes into account:
-   1. This calculated expense drives the GL Account selected in the "GL_EXPENSE_ACCOUNTS" column.
-   1. Per User Cost (Column)
-   1. Number of users (entered in timespan) per month.
+    1. This calculated expense drives the GL Account selected in the "GL_EXPENSE_ACCOUNTS" column.
+    1. Per User Cost (Column)
+    1. Number of users (entered in timespan) per month.
 1. Periodic_Expense – This is a sporadic expense.
-   1. This calculated expense drives the GL Account selected in the "GL_EXPENSE_ACCOUNTS" column.
-   1. Expense (entered in timespan) on any given month.
+    1. This calculated expense drives the GL Account selected in the "GL_EXPENSE_ACCOUNTS" column.
+    1. Expense (entered in timespan) on any given month.
 
 #### Travel & Entertainment
 
@@ -216,7 +215,7 @@ For headcount moves due to team members leaving GitLab.
 ### Promotions (same job family), salary increases, new hiring managers/etc
 
 1. When a team member gets promoted into the same job family, has a salary change, a new hiring manager, etc., the new information is overwritten on the existing entry field for that headcount in the Active Personnel sheet. The intention is to keep the Active Personnel sheet list as concise as possible.
-   - E.g. A Financial Analyst is promoted to a Senior Financial Analyst - overwrite the Job Title field with the new role name and update any other relevant fields.
+    - E.g. A Financial Analyst is promoted to a Senior Financial Analyst - overwrite the Job Title field with the new role name and update any other relevant fields.
 
 #### Internal Transfer
 
@@ -228,7 +227,7 @@ For headcount moves when a team member is transferred between departments and th
 
 ### Internal hire (no backfill)
 
-For internal headcount moves when there is an unknown candidate and no new position - e.g. 1 Manager role promotion available to replace 1 of 3 Analysts roles - no visibility of who will get promoted and the analyst position will not be backfilled. This process is required in order for the talent acquisition team to be able to create a record in Greenhouse using a GHP ID that will be generated from the placeholder entry.
+For internal headcount moves when there is an unknown candidate and no new position - e.g. 1 Manager role promotion available to replace 1 of 3 Analysts roles -  no visibility of who will get promoted and the analyst position will not be backfilled. This process is required in order for the talent acquisition team to be able to create a record in Greenhouse using a GHP ID that will be generated from the placeholder entry.
 
 1. On the Planned Personnel sheet, create an entry/row for the internal movement placeholder. Enter the headcount Name as "TBH", the Hire Status as "Placeholder" and ensure no salary information is included. This will ensure that the calculations do not flow into the Income Statement for this $0 placeholder entry.
 1. Once the successful team member has been identified, update their record - overwrite the job title, salary information etc. and then delete the internal movement TBH entry from the Planned Personnel sheet.

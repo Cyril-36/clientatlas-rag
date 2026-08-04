@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Product Security Engineering"
 description: "Product Security Engineering Team Charter"
 ---
@@ -56,12 +55,12 @@ ProdSecEng sources work from:
 
 ### Out of scope
 
-| Area                                                            | DRI                                                                                                 |
-| --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| Application security standards, reviews, or testing             | [AppSec](/handbook/security/product-security/security-platforms-architecture/application-security/) |
-| Infrastructure, cloud, or data security tooling or architecture | [InfraSec](/handbook/security/product-security/infrastructure-security/)                            |
-| Vulnerability management, disclosure, and triage                | [Vulnerability Operations](/handbook/security/product-security/vulnerability-management/)           |
-| Building or accepting new custom internal tooling               | See Transition: custom tooling above                                                                |
+| Area | DRI |
+|------|-----|
+| Application security standards, reviews, or testing | [AppSec](/handbook/security/product-security/security-platforms-architecture/application-security/) |
+| Infrastructure, cloud, or data security tooling or architecture | [InfraSec](/handbook/security/product-security/infrastructure-security/) |
+| Vulnerability management, disclosure, and triage | [Vulnerability Operations](/handbook/security/product-security/vulnerability-management/) |
+| Building or accepting new custom internal tooling | See Transition: custom tooling above |
 
 ## Team values
 
@@ -81,12 +80,12 @@ ProdSecEng plans work using [Product Milestones](/handbook/product/product-proce
 
 We use GitLab's standard [priority scoped labels](/handbook/product-development/how-we-work/issue-triage/#priority):
 
-| Priority         | Intention                                                       | Target resolution |
-| ---------------- | --------------------------------------------------------------- | ----------------- |
-| `~"priority::1"` | Address as soon as possible, regardless of capacity constraints | 30 days           |
-| `~"priority::2"` | Address soon; capacity allocated in the next few milestones     | 60–90 days        |
-| `~"priority::3"` | Address when possible; may be displaced by higher-priority work | 90–120 days       |
-| `~"priority::4"` | No timeline designated                                          | Best effort       |
+| Priority | Intention | Target resolution |
+|----------|-----------|-------------------|
+| `~"priority::1"` | Address as soon as possible, regardless of capacity constraints | 30 days |
+| `~"priority::2"` | Address soon; capacity allocated in the next few milestones | 60–90 days |
+| `~"priority::3"` | Address when possible; may be displaced by higher-priority work | 90–120 days |
+| `~"priority::4"` | No timeline designated | Best effort |
 
 Priority is set during milestone planning by the EM, informed by risk ratings, company-wide priorities, cross-team requests, and team needs.
 
@@ -94,14 +93,14 @@ Priority is set during milestone planning by the EM, informed by risk ratings, c
 
 We use the standard [modified Fibonacci scale](https://docs.gitlab.com/tutorials/scrum_events/standups_retrospectives_velocity/#deciding-the-value-of-story-points) for issue weight:
 
-| Weight | Complexity                                                           | Approximate time |
-| ------ | -------------------------------------------------------------------- | ---------------- |
-| 1      | Trivial; no side effects expected                                    | 1 day            |
-| 2      | Small; requirements are clear and testing is straightforward         | 1–2 days         |
-| 3      | Moderate; larger code footprint, clear requirements                  | 2–3 days         |
-| 5      | Complex; requirements understood but gaps likely along the way       | 3–5 days         |
-| 8      | Very complex; significant investigation and research before starting | 5–10 days        |
-| 13+    | Split required; break into smaller issues                            | N/A              |
+| Weight | Complexity | Approximate time |
+|--------|-----------|------------------|
+| 1 | Trivial; no side effects expected | 1 day |
+| 2 | Small; requirements are clear and testing is straightforward | 1–2 days |
+| 3 | Moderate; larger code footprint, clear requirements | 2–3 days |
+| 5 | Complex; requirements understood but gaps likely along the way | 3–5 days |
+| 8 | Very complex; significant investigation and research before starting | 5–10 days |
+| 13+ | Split required; break into smaller issues | N/A |
 
 This generally means about 20 weight of work items per milestone per team member, reduced for leave, holidays, and growth & development time. We plan 60–80% of capacity in advance; the rest is reserved for unplanned, reactive work.
 
@@ -121,39 +120,39 @@ ProdSecEng tracks metrics through labeled merge requests and issues.
 
 These labels apply to our current product-focused mission:
 
-| **Category**                      | **Label**                               | **Description**                                                                                                    |
-| --------------------------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| **Product Security Requirements** | `~ProdSecEngMetric::ProdSecRequirement` | Functionality within the product required by GitLab Product Security teams                                         |
-| **Defense in Depth**              | `~ProdSecEngMetric::Defense in Depth`   | Modifications to existing non-vulnerable functionality to be more resilient if an "earlier" security control fails |
-| **Paved Roads**                   | `~ProdSecEngMetric::Paved Road`         | New tools, methods, or checks that give GitLab's contributors an easier way to perform an activity securely        |
-| **Pending**                       | `~ProdSecEngMetric::Pending`            | Work type isn't clear yet, but we don't want to block progress                                                     |
-| **Internal**                      | `~ProdSecEngMetric::Internal`           | Team tasks such as processes and planning                                                                          |
+| **Category** | **Label** | **Description** |
+| --- | --- | --- |
+| **Product Security Requirements** | `~ProdSecEngMetric::ProdSecRequirement` | Functionality within the product required by GitLab Product Security teams |
+| **Defense in Depth** | `~ProdSecEngMetric::Defense in Depth` | Modifications to existing non-vulnerable functionality to be more resilient if an "earlier" security control fails |
+| **Paved Roads** | `~ProdSecEngMetric::Paved Road` | New tools, methods, or checks that give GitLab's contributors an easier way to perform an activity securely |
+| **Pending** | `~ProdSecEngMetric::Pending` | Work type isn't clear yet, but we don't want to block progress |
+| **Internal** | `~ProdSecEngMetric::Internal` | Team tasks such as processes and planning |
 
 ### Winding-down metric labels
 
 These labels were designed for ProdSecEng's previous custom tooling mission. They'll be retired once existing tooling transitions are complete:
 
-| **Category**            | **Label**                                | **Description**                                                                                    |
-| ----------------------- | ---------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| **Tooling Integration** | `~ProdSecEngMetric::Tooling Integration` | Work done as part of integrating functionality from custom in-house tooling into GitLab products   |
-| **Custom Tooling**      | `~ProdSecEngMetric::Custom Tooling`      | Work to build, maintain, or augment custom tooling needed to satisfy Product Security requirements |
-| **Sunsetting**          | `~ProdSecEngMetric::Sunsetting`          | Issues representing specific features or functionality required to deprecate a custom tool         |
+| **Category** | **Label** | **Description** |
+| --- | --- | --- |
+| **Tooling Integration** | `~ProdSecEngMetric::Tooling Integration` | Work done as part of integrating functionality from custom in-house tooling into GitLab products |
+| **Custom Tooling** | `~ProdSecEngMetric::Custom Tooling` | Work to build, maintain, or augment custom tooling needed to satisfy Product Security requirements |
+| **Sunsetting** | `~ProdSecEngMetric::Sunsetting` | Issues representing specific features or functionality required to deprecate a custom tool |
 
 ### Strategic KPIs
 
-| **Metric**                                          | **How it's calculated**                                                                                  | **Status**   |
-| --------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ------------ |
-| **Product Security Team Requirements Delivered**    | Count of merged MRs with `~ProdSecEngMetric::ProdSecRequirement` label                                   | Active       |
-| **Security Enhancements and Paved Roads Delivered** | Count of merged MRs with `~ProdSecEngMetric::Defense in Depth` or `~ProdSecEngMetric::Paved Road` labels | Active       |
-| **Custom Tool Value Integrated Into Product**       | Percentage of distinct value propositions in custom tools contributed to the product                     | Winding down |
+| **Metric** | **How it's calculated** | **Status** |
+| --- | --- | --- |
+| **Product Security Team Requirements Delivered** | Count of merged MRs with `~ProdSecEngMetric::ProdSecRequirement` label | Active |
+| **Security Enhancements and Paved Roads Delivered** | Count of merged MRs with `~ProdSecEngMetric::Defense in Depth` or `~ProdSecEngMetric::Paved Road` labels | Active |
+| **Custom Tool Value Integrated Into Product** | Percentage of distinct value propositions in custom tools contributed to the product | Winding down |
 
 ### Operational KPIs
 
-| **Metric**                        | **How it's calculated**                                                                                                 | **Status** |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ---------- |
-| **Backlog Health and Refinement** | Count of candidate issues refined, issues in `Ready for Development` status, refinement participation across milestones | Active     |
-| **Milestone Predictability**      | Actual vs. planned work completed in each milestone (measured by weight and metric labels)                              | Active     |
-| **Metric Label Coverage**         | Percentage of merged MRs and closed issues with appropriate `~ProdSecEngMetric::*` labels                               | Active     |
+| **Metric** | **How it's calculated** | **Status** |
+| --- | --- | --- |
+| **Backlog Health and Refinement** | Count of candidate issues refined, issues in `Ready for Development` status, refinement participation across milestones | Active |
+| **Milestone Predictability** | Actual vs. planned work completed in each milestone (measured by weight and metric labels) | Active |
+| **Metric Label Coverage** | Percentage of merged MRs and closed issues with appropriate `~ProdSecEngMetric::*` labels | Active |
 
 ## Communication
 

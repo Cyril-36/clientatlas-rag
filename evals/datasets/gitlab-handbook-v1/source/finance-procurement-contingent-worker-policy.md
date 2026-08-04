@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Contingent Worker Policy
 ---
 
@@ -155,7 +154,7 @@ Varies by jurisdiction and agency policies
 - Manage **payroll or benefits** for individual workers
 - Exercise **disciplinary authority** over individuals
 
-**Independent Contractor** (option not preferred, used by exception only)
+ **Independent Contractor** (option not preferred, used by exception only)
 
 **Definition:** Self-employed individuals providing services under direct contract with GitLab.
 
@@ -232,14 +231,13 @@ Varies by jurisdiction and agency policies
 **What GitLab CAN Do:**
 
 - **For GitLab-paid partners:**
-
+  
   - Set **project scope** and deliverables
   - Define **quality standards** and requirements
   - Provide **technical specifications**
   - Request **progress updates**
   - Approve **project milestones**
   - Require **certifications or qualifications**
-
 - **For Customer-paid partners:**
   - Provide **product training** and certification
   - Set **partnership standards** and requirements
@@ -266,7 +264,7 @@ Varies by jurisdiction and agency policies
 GitLab will only contract with contingent workers in India, the Philippines, and jurisdictions where GitLab has an entity. Contingent workers identified outside of these countries are considered not in policy. All contingent workers who need access to GitLab resources (Okta and core GitLab applications) will be required to use a GitLab provided laptop running either MacOS or ChromeOS.
 
 | Entity / PEO             | Country                  |
-| ------------------------ | ------------------------ |
+|--------------------------|--------------------------|
 | GitLab Israel Ltd.       | Israel                   |
 | GitLab Inc               | United States of America |
 | GitLab Federal, LLC      | United States of America |
@@ -303,7 +301,7 @@ If there is a need to extend the engagement of a staff augmentation worker beyon
 
 1. Request budget approval for extension to your FP&A Business Partner
 1. Provide justification for the extension, including the project or task that the worker will be completing.
-1. Once approval is obtained, then submit a Change Request in Zip to the existing Agreement/PO which is when Procurement would be notified to review.
+1. Once approval is obtained, then submit a Change Request in Zip to the existing Agreement/PO which is when Procurement would be notified to review.  
 
 Refer to Section 7 outlining the duration of relationship.
 
@@ -315,7 +313,7 @@ Contingent workers must have a completed or verfied background screening before 
 
 GitLab’s minimum background screening standards include a criminal records search and/or an extended global sanctions search where allowed by local laws and regulations. GitLab may also complete screening on prior employment history, identity verification, work authorization, SSN trace, and various other searches as needed based on the contingent worker's location and assignment.
 
-If GitLab has completed an assessment on a contingent worker's employer in accordance with our [Third Party Risk Management](/handbook/security/security-assurance/security-risk/third-party-risk-management/) (TPRM) program and has received favorable results, additional verification of a background screening may not be required. If the security team identifies any discrepancies in an employer's background screening policy, GitLab may complete a background screening for the contingent worker or request the employer complete an additional background screening in accordance with our standards. A current list of sub-processors and professional services providers that meet this criteria can be located on this [handbook page](https://about.gitlab.com/privacy/subprocessors/).
+If GitLab has completed an assessment on a contingent worker's employer in accordance with our  [Third Party Risk Management](/handbook/security/security-assurance/security-risk/third-party-risk-management/) (TPRM) program and has received favorable results, additional verification of a background screening may not be required. If the security team identifies any discrepancies in an employer's background screening policy, GitLab may complete a background screening for the contingent worker or request the employer complete an additional background screening in accordance with our standards. A current list of sub-processors and professional services providers that meet this criteria can be located on this [handbook page](https://about.gitlab.com/privacy/subprocessors/).
 
 Contingent worker's returning to service at GitLab within 90 days of completion of their contract and contingent workers that receive a contract extension will not require an additional background screening or re-verification of background screening results.
 

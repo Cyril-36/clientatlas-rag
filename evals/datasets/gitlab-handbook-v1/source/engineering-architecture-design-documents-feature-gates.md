@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Feature Gates - A framework for feature rollout and access control"
 status: accepted
 creation-date: "2025-06-25"
@@ -112,47 +111,47 @@ In the gate-driven development workflow, all features would start at the **Disco
 
 The following chart explains the Feature Gates development workflow:
 
-```mermaid
-flowchart TD
-  Start([Start: New Feature]) --> Discovery[Discovery]
-
-  Discovery --> Decision{Feature<br/>Complexity?}
-
-  Decision -->|Complex| Experiment[Experiment]
-  Decision -->|Simple| Public[Public Availability]
-
-  Experiment --> Beta[Beta]
-  Beta --> Public
-
-  Public --> End([End: Released])
-
-  %% Styling
-  style Start fill:#f9f,stroke:#333,stroke-width:2px
-  style Discovery fill:#663399,color:#fff,stroke:#333,stroke-width:2px
-  style Experiment fill:#7d3f98,color:#fff,stroke:#333,stroke-width:2px
-  style Beta fill:#8b4f9f,color:#fff,stroke:#333,stroke-width:2px
-  style Public fill:#9966cc,color:#fff,stroke:#333,stroke-width:2px
-  style End fill:#9f9,stroke:#333,stroke-width:2px
-  style Decision fill:#ffd700,stroke:#333,stroke-width:2px
-
-  %% Notes
-  Discovery -.-> DiscNote[1.New stage introduced by Feature Gates workflow.<br/>2.Every feature begins here.<br/>3.Only available within predefined workflows for a safe rollout mechanism.<br/> 4.Gates are off]
-
-  Experiment -.-> ExpNote[1.More gradual rollout.<br/>2.Opt-in mechanism.<br/>3.Preview of upcoming functionality is the core of development stages support policy.]
-
-  Beta -.-> BetaNote[1.Wider testing phase with expanded user access.<br/>2.Opt-in mechanism.<br/>3.Final testing before release.]
-
-  Public -.-> PubNote[1.Feature gate defaulted to ON.<br/>2.Available to all users.]
-
-  Decision -.-> DecNote[Simple features can jump directly to Public Availability.]
-
-  %% Style notes
-  style DiscNote fill:#f9f9f9,stroke:#666,stroke-width:1px,stroke-dasharray: 5 5
-  style ExpNote fill:#e6f3ff,stroke:#4169e1,stroke-width:1px,stroke-dasharray: 5 5
-  style BetaNote fill:#f9f9f9,stroke:#666,stroke-width:1px,stroke-dasharray: 5 5
-  style PubNote fill:#f9f9f9,stroke:#666,stroke-width:1px,stroke-dasharray: 5 5
-  style DecNote fill:#ffebcd,stroke:#666,stroke-width:1px,stroke-dasharray: 5 5
-```
+  ```mermaid
+  flowchart TD
+    Start([Start: New Feature]) --> Discovery[Discovery]
+    
+    Discovery --> Decision{Feature<br/>Complexity?}
+    
+    Decision -->|Complex| Experiment[Experiment]
+    Decision -->|Simple| Public[Public Availability]
+    
+    Experiment --> Beta[Beta]
+    Beta --> Public
+    
+    Public --> End([End: Released])
+    
+    %% Styling
+    style Start fill:#f9f,stroke:#333,stroke-width:2px
+    style Discovery fill:#663399,color:#fff,stroke:#333,stroke-width:2px
+    style Experiment fill:#7d3f98,color:#fff,stroke:#333,stroke-width:2px
+    style Beta fill:#8b4f9f,color:#fff,stroke:#333,stroke-width:2px
+    style Public fill:#9966cc,color:#fff,stroke:#333,stroke-width:2px
+    style End fill:#9f9,stroke:#333,stroke-width:2px
+    style Decision fill:#ffd700,stroke:#333,stroke-width:2px
+    
+    %% Notes
+    Discovery -.-> DiscNote[1.New stage introduced by Feature Gates workflow.<br/>2.Every feature begins here.<br/>3.Only available within predefined workflows for a safe rollout mechanism.<br/> 4.Gates are off]
+    
+    Experiment -.-> ExpNote[1.More gradual rollout.<br/>2.Opt-in mechanism.<br/>3.Preview of upcoming functionality is the core of development stages support policy.]
+    
+    Beta -.-> BetaNote[1.Wider testing phase with expanded user access.<br/>2.Opt-in mechanism.<br/>3.Final testing before release.]
+    
+    Public -.-> PubNote[1.Feature gate defaulted to ON.<br/>2.Available to all users.]
+    
+    Decision -.-> DecNote[Simple features can jump directly to Public Availability.]
+    
+    %% Style notes
+    style DiscNote fill:#f9f9f9,stroke:#666,stroke-width:1px,stroke-dasharray: 5 5
+    style ExpNote fill:#e6f3ff,stroke:#4169e1,stroke-width:1px,stroke-dasharray: 5 5
+    style BetaNote fill:#f9f9f9,stroke:#666,stroke-width:1px,stroke-dasharray: 5 5
+    style PubNote fill:#f9f9f9,stroke:#666,stroke-width:1px,stroke-dasharray: 5 5
+    style DecNote fill:#ffebcd,stroke:#666,stroke-width:1px,stroke-dasharray: 5 5
+  ```
 
 #### Monthly Release Alignment and Configuration Snapshots
 
@@ -189,7 +188,7 @@ When the **monthly release** is prepared, all code merged behind feature gates i
 2. These settings are stored in the **control plane**.
 3. The merged code for the gated feature is deployed as per deployment pipelines to designated environments.
 4. When a user accesses the GitLab application instance, the application's **Feature Gate SDK** makes a call to the **Local Gate Proxy**, fetching the state of the gate given the platform and environment context. The local proxy will fetch from **Control Plane** as required. Note that self-managed instances will fallback to packaged defaults instead.
-5. The **Feature Gate SDK** uses the information received from the **Local Gate Proxy** to evaluate the gate state locally and cache it.
+5. The **Feature Gate SDK** uses the information received from  the **Local Gate Proxy** to evaluate the gate state locally and cache it.
 6. The application instance then decides whether to show the feature to that specific user using the **Feature Gate SDK**.
 
 ### Progressive & Guarded Rollouts
@@ -319,23 +318,23 @@ sequenceDiagram
 
 ### Integrated Incident Response & Monitoring
 
-The Feature Gates framework establishes a **feature-centric observability and incident response layer** across GitLab SaaS platforms. It connects **feature behavior**, **configuration**, and **system health**, allowing incidents, triage, and rollbacks to be driven by _feature context_ rather than isolated system metrics.
+The Feature Gates framework establishes a **feature-centric observability and incident response layer** across GitLab SaaS platforms. It connects **feature behavior**, **configuration**, and **system health**, allowing incidents, triage, and rollbacks to be driven by *feature context* rather than isolated system metrics.
 
 **Observability Strategy** - Currently each GitLab SaaS platform operates an independent observability stack to meet the platform's **privacy**, **compliance**, and **scalability** requirements. The framework layers on top of these existing stacks, implementing a **federated observability model** that connects feature-level insight across cells/tenants through **standardized metadata** and **alert routing**, not raw telemetry.
 
-| Platform       | Observability Setup                      | Data Control   |
-| -------------- | ---------------------------------------- | -------------- |
-| **GitLab.com** | Central multi-tenant observability stack | GitLab-managed |
-| **Dedicated**  | One observability stack per tenant       | GitLab-managed |
+| Platform                      | Observability Setup                                                | Data Control                  |
+| ----------------------------- | ------------------------------------------------------------------ | ----------------------------- |
+| **GitLab.com**                | Central multi-tenant observability stack                           | GitLab-managed                |
+| **Dedicated**                 | One observability stack per tenant                                 | GitLab-managed                |
 
 **Federated Aggregation Model** - Feature gate operates through local telemetry storage per tenant/cell and aggregates metadata on a control plane level:
 
-| Layer                                   | What It Holds                                                                                    | Who Uses It                           | Purpose                                                                  |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------- | ------------------------------------------------------------------------ |
-| **Local Observability (Cell / Tenant)** | Full metrics, traces, logs collected on a tenant/Cell-level                                      | GitLab SRE & Feature Engineers        | Deep debugging and performance insight                                   |
-| **Alertmanager Routing**                | Structured, rule-based alerts enriched with feature-gate metadata (ID, version, stage, severity) | GitLab GitLab SRE & Feature Engineers | Primary signal channel for real-time health and incident detection       |
-| **Local Gate Proxy**                    | configuration health metadata                                                                    | GitLab Engineering / Product          | Provides periodic summaries for long-term trends                         |
-| **Control Plane**                       | Aggregated alert metadata, gate configurations, version history, correlation summaries           | GitLab Engineering / Product          | Global visibility, automated rollback, and cross-environment correlation |
+| Layer                                    | What It Holds                                                                                       | Who Uses It                    | Purpose                                                                    |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------ | -------------------------------------------------------------------------- |
+| **Local Observability (Cell / Tenant)**  | Full metrics, traces, logs collected on a tenant/Cell-level                                         | GitLab SRE & Feature Engineers       | Deep debugging and performance insight                                     |
+| **Alertmanager Routing**                 | Structured, rule-based alerts enriched with feature-gate metadata (ID, version, stage, severity)    | GitLab GitLab SRE & Feature Engineers       | Primary signal channel for real-time health and incident detection         |
+| **Local Gate Proxy**                     | configuration health metadata                                                                       | GitLab Engineering  / Product  | Provides periodic summaries for long-term trends                           |
+| **Control Plane**                        | Aggregated alert metadata, gate configurations, version history, correlation summaries              | GitLab Engineering / Product   | Global visibility, automated rollback, and cross-environment correlation   |
 
 To ensure a **secure aggregation path** the framework enforces the following:
 
@@ -378,14 +377,13 @@ To ensure a **secure aggregation path** the framework enforces the following:
   - **Problem Detection (High-Fidelity Signal):** The local Observability stack triggers **High-Fidelity Rollback Signals (HFRS)** for breached composite SLOs. These HFRS prevent false positives by requiring a **sustained breach** across two tiers of metrics:
     - **Tier 1: Feature SLOs** (e.g., specific error rates).
     - **Tier 2: Platform Guardrails(Normalised)** (e.g., sustained CPU saturation of Cell A).
-      The signals are enriched with gate metadata for confident attribution.
+    The signals are enriched with gate metadata for confident attribution.
 
   - **Alert Routing:** Alertmanager delivers these highly-filtered alerts to the **Control Plane** (via a webhook). The system **avoids querying raw metrics per request**, ensuring the entire incident response mechanism is fast and does not overload the central stack.
 
   - **Global Correlation and Guarded Rollback:** The Control Plane keeps the state of these high-fidelity alerts and correlates them to determine the exact feature gate version that caused the issue. These HFRS signals are the primary input for the **Guarded Rollback** logic, which triggers:
     - **Targeted Rollback:** Incremental reversion of only the problematic gate to its last stable step using configurations snapshots, avoiding global over-correction.
     - **Incident Workflow:** Routing alerts via existing logic (using feature categories for Slack channels and severities for SRE paging), ensuring **real-time, feature-centric monitoring** without centralizing raw metrics.
-
 - **Error Correlation & Diagnostics** - In addition to **contextual gate state tags**, Feature gates uses the following mechanisms to establish consistent, lightweight correlation primitives across all telemetry types:
 
   | Mechanism                   | Description                                                                                  |
@@ -413,7 +411,7 @@ To ensure a **secure aggregation path** the framework enforces the following:
 
     > "Correlated error trend across Dedicated tenants - gate `ai_code_suggestions` v1.4 auto-paused globally."
 
-  This new automated path does not burden the on-call, but shifts the responsibility left.
+   This new automated path does not burden the on-call, but shifts the responsibility left.
 
 - **Metadata Export Governance** - For Dedicated tenants that operate under strict privacy controls and therefore, can restrict or disable outbound metadata export, the progressive rollout would be suspended. In such cases, the control plane continues to deliver signed configuration bundles but does not automatically promote or roll back feature gates without telemetry confirmation. Instead, rollout advancement requires explicit human approval through Switchboard where customer tenant admins review and authorize configuration changes. These manual approvals are versioned, signed, and fully auditable within the control plane, ensuring traceable and compliant feature changes. This guarantees operational safety and regulatory adherence while maintaining full tenant control over rollout timing and exposure in telemetry-silent environments.
 
@@ -431,7 +429,7 @@ The Feature Gates framework would simplify the testing process for features unde
 - **Environment Scoping** - Feature gate changes are scoped to individual environments (e.g., staging, CI test environments, pre-production), based on explicit configuration by engineers. When setting up a feature gate, engineers specify which environment the gate should apply to-either through configuration files, environment variables, or management UI. This ensures that enabling or disabling a gate for testing in one environment does not impact production or other parallel environments, providing safe and isolated testing and rollout.
 
 - **Ad-Hoc Test Environments namespaces** - Using the feature gates SDK, engineers can programmatically create dedicated, temporary test environment namespaces (or contexts) for automated tests. Each test or test suite generates a unique namespace, allowing it to define and manipulate feature gate states in complete isolation from production and other tests. These namespaces are managed logically within the feature gate service and do not require any additional physical infrastructure.
-
+  
   During the test run, only the specific test runner or CI process has access to its ephemeral namespace, ensuring that gate state changes are scoped exclusively to that test and invisible to others. After the test completes, the namespace and its gate state are automatically cleaned up, preventing state leakage or cross-test contamination.
 
 #### Integration with GitLab's Testing Approach
@@ -451,7 +449,7 @@ The Feature Gates testing methodology is designed to fit seamlessly into and imp
   - **Traceability:** Test reports capture the exact feature gate configuration and environment context used for each test, which is critical for debugging failures by connecting them to specific gate states.
 
 - **Staging** - The framework resolves the long-standing problem of contamination in shared environments like Staging, which is crucial for **End-to-End (E2E) testing** using **Cohort-Based Testing**. This method relies on **user identity/cohort membership** to achieve both reliable isolation and comprehensive test coverage.
-
+  
   - **Test Isolation and Reliability** - The framework enables the feature based on the identity of the user running the test:
 
     - **Test User:** During test setup, the automated test would be configured to use a **test user** that is explicitly tagged in the Feature Gate system with a unique, staging-exclusive cohort ID (e.g., `staging-team-A-exp1`).
@@ -485,7 +483,7 @@ Gates are automatically checked every release cycle for expiration. In the initi
 - Once MR is approved and merged, the team can delete gate from the system.
 - Escalation: leadership of the stage → department → VP
 - Department leadership can approve extensions due to priority changes or incidents
-
+  
 #### Gate Ownership
 
 Using feature category, feature gate ownership (e.g. group & stage) can be deducted using the handbook as a SSoT . In case feature groups change function or get dissolved, groups need to take a deliberate action on what to do with a feature category and respective gates accordingly: transition it to another group, put it in maintenance mode (with a new group owning), or remove it entirely.
@@ -496,36 +494,36 @@ Using feature category, feature gate ownership (e.g. group & stage) can be deduc
 
 - Example of roles and access level for environment:
 
-  | Role                 | Permissions                                                       |
-  | -------------------- | ----------------------------------------------------------------- |
-  | **Developer**        | Create and edit gates in _dev/staging_                            |
-  | **Feature groups**   | Toggle gates in _production_ and manage rollout percentages       |
-  | **Admin / Security** | Manage roles, audit logs, and gate ownership                      |
-  | **Observer**         | Read-only access to gate status and metrics, e.g. Release Manager |
-
-  | Environment | Restrictions                 |
-  | ----------- | ---------------------------- |
-  | Dev         | All devs can create & toggle |
-  | Staging     | Anyone can toggle            |
-  | Production  | Feature groups can toggle    |
+  | Role                                         | Permissions                                                            |
+  | -------------------------------------------- | ---------------------------------------------------------------------- |
+  | **Developer**                                | Create and edit gates in *dev/staging*                                 |
+  | **Feature groups**                           | Toggle gates in *production* and manage rollout percentages            |
+  | **Admin / Security**                         | Manage roles, audit logs, and gate ownership                           |
+  | **Observer**                                 | Read-only access to gate status and metrics, e.g. Release Manager      |
+  
+  | Environment | Restrictions                          |
+  | ----------- | ------------------------------------- |
+  | Dev         | All devs can create & toggle          |
+  | Staging     | Anyone can toggle                     |
+  | Production  | Feature groups can toggle             |
 
 - Example of operational workflows and the different roles:
 
   - Standard Gate Lifecycle
-    1. **Creation**: Feature developer creates via Feature Gate platform
-    2. **Review**: Product Manager approves rollout plan
-    3. **Deployment**: Automated deployment through CI/CD
-    4. **Activation**: Automated rollout based on rules
-    5. **Monitoring**: Automated alerts for gate state changes
-    6. **Cleanup**: Scheduled cleanup with Product Manager and EM confirmation
+      1. **Creation**: Feature developer creates via Feature Gate platform
+      2. **Review**: Product Manager approves rollout plan
+      3. **Deployment**: Automated deployment through CI/CD
+      4. **Activation**: Automated rollout based on rules
+      5. **Monitoring**: Automated alerts for gate state changes
+      6. **Cleanup**: Scheduled cleanup with Product Manager and EM confirmation
 
   - Emergency Procedures
-    1. **Incident Detection**: SRE/Infra/RM identifies gate-related issues
-    2. **Immediate Response**: Emergency rollback manual or automated using rules
-    3. **Escalation**: Product Manager notified for business impact assessment
-    4. **Resolution**: Coordinated fix with Feature developer, EM, SRE and Release Manager
-
-- Logging feature gate state change would eliminate the need for rollout issues.
+      1. **Incident Detection**: SRE/Infra/RM identifies gate-related issues
+      2. **Immediate Response**: Emergency rollback manual or automated using rules
+      3. **Escalation**: Product Manager notified for business impact assessment
+      4. **Resolution**: Coordinated fix with Feature developer, EM, SRE and Release Manager
+  
+- Logging feature gate state change would eliminate the need for rollout issues.  
 
 ### Cell-architecture Support
 
@@ -640,11 +638,9 @@ The new [feature development workflow](https://docs.gitlab.com/policy/developmen
   Feature enablement will follow one of two paths, determined by the primary **actor** or scope of the feature (Project/Group-scoped vs. User-scoped):
 
   - **Path 1: Hierarchical (for Project/Group-Scoped Features)**
-
     > Switchboard (Instance Admin) → Feature Availability → GitLab Instance → Admin Panel (Feature Gates) → Organisation Settings → Group Settings / Project Settings
 
   - **Path 2: User-Driven (for Global/User-Scoped Features)**
-
     > Switchboard (Instance Admin) → Feature Availability → GitLab Instance → Admin Panel (Feature Gates) → Organisation Settings / User Settings
 
   - Since **Switchboard** serves as the primary connection between GitLab tenant operators and GitLab Dedicated tenant instances, it would be the logical place to manage feature availability at the instance level using a **two-tier enablement model**:
@@ -669,9 +665,9 @@ The new [feature development workflow](https://docs.gitlab.com/policy/developmen
 #### General Development Guidelines
 
 - Flags belonging to Feature gates will be removed after 100 % rollout and pre-defined stability period to accommodate for adoption period per platform.
-
+  
 - It's up to the development team to define what is the correct actor for each feature, it could be a user, a project, a group, an organization, or the whole instance. This will enable us to develop a set of cascading controls where from the instance admin, down to the single user, a given feature preview could be enabled or not.
-
+  
 - A "Feature Preview" is an admin page in the GitLab application, where the instance administrator can see available features and their state (e.g. GA, beta, or experiment) and select what they want to enable and for which actors.
 
 #### Dependencies
@@ -690,25 +686,25 @@ The new [feature development workflow](https://docs.gitlab.com/policy/developmen
 
 - In this workflow, the feature gate acts as a simple control to enable a feature.
 
-- **Workflow:**
-  1. In the first rollout, the gate will be OFF.
-  2. When the development team is ready to validate the feature, they will enable it selectively for themselves and their PM.
-  3. The feature may or may not require adjustments. When ready, they will enable it for all GitLab team members.
-  4. The feature may or may not require adjustments. When ready, they will enable a gradual rollout that will safely increase the functionality exposure to our users.
-  5. When the feature hits a full rollout and is stable for a while, it can be defaulted to ON and later the gate is removed from the codebase. Effectively moving the feature to the Public Availability stage.
+- **Workflow:**  
+    1. In the first rollout, the gate will be OFF.
+    2. When the development team is ready to validate the feature, they will enable it selectively for themselves and their PM.
+    3. The feature may or may not require adjustments. When ready, they will enable it for all GitLab team members.
+    4. The feature may or may not require adjustments. When ready, they will enable a gradual rollout that will safely increase the functionality exposure to our users.
+    5. When the feature hits a full rollout and is stable for a while, it can be defaulted to ON and later the gate is removed from the codebase. Effectively moving the feature to the Public Availability stage.
 
 #### Scenario 2: A new feature with Experiment and Beta - Multi-tenant SaaS
 
 - Some features require a longer development time and benefit from early feedback from interested users without affecting the stability of customers not interested in these features.
 
 - **Workflow:**
-  1. In the first rollout, the gate will be **OFF**.
-  2. When the development team is ready to validate the feature, they will enable it selectively for themselves and their PM.
-  3. The feature may or may not require adjustments. When ready, they will enable it for all GitLab team members.
-  4. As we work on improving the new feature, the development team and their PM will decide when the feature should be moved to the **Experimental stage**.
-  5. When the feature is set to **Experimental**, it will show up in the **Feature Preview** panel according to the decision made in the hierarchy of controls (instance admin > organization > group > user).
-  6. Customers can opt-in and provide feedback according to the outlined [process](https://docs.gitlab.com/policy/development_stages_support).
-  7. As the team keeps working on the feature and the feedback, it will move to **Beta** and later to **Public Availability**.
+    1. In the first rollout, the gate will be **OFF**.
+    2. When the development team is ready to validate the feature, they will enable it selectively for themselves and their PM.
+    3. The feature may or may not require adjustments. When ready, they will enable it for all GitLab team members.
+    4. As we work on improving the new feature, the development team and their PM will decide when the feature should be moved to the **Experimental stage**.
+    5. When the feature is set to **Experimental**, it will show up in the **Feature Preview** panel according to the decision made in the hierarchy of controls (instance admin > organization > group > user).
+    6. Customers can opt-in and provide feedback according to the outlined [process](https://docs.gitlab.com/policy/development_stages_support).
+    7. As the team keeps working on the feature and the feedback, it will move to **Beta** and later to **Public Availability**.
 
 #### Scenario 3: A new feature with Beta - Dedicated
 
@@ -745,7 +741,7 @@ The following steps are primarily owned by the **Feature Development Team** and 
   - When MR is merged, The feature code is deployed to Staging and Production (Canary/Main). The gate remains OFF for all external users.
   - End-to-End tests run as part of the auto-deploy pipelines and against the deployed code (typically on Staging) validating the complete application flow.
   - If feature team and their PM are satisfied, they enable the gate for themselves for validation on Production.
-  - Once the feature matches the team's dogfooding criteria, the feature team enables it for all **GitLab team members** and start dogfooding and improving feature based on received feedback.
+  - Once the feature matches the team's dogfooding criteria, the feature team enables it for all **GitLab team members**  and start dogfooding and improving feature based on received feedback.
 
 - **Releasing: Beta Launch**
 

@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Finance Mentorship Program
 ---
 
@@ -31,14 +30,14 @@ All program communications will be sent through the slack channel [#finance-ment
 
 ### Program Timeline
 
-| Phase                          | Timeline                    |
-| ------------------------------ | --------------------------- |
-| Call for Mentors and Mentees   | 5 April - 30 April 2021     |
-| Pairing process                | 3 May - 7 May 2021          |
-| Mentor program kickoff meeting | Tuesday 10th May 2021       |
-| Mentorship period              | 10th May - 10th August 2021 |
-| Mid-program feedback survey    | 1st July 2021               |
-| End of program feedback survey | 10th August 2021            |
+| Phase                             | Timeline                      |
+| -------                           | -------                       |
+| Call for Mentors and Mentees      | 5 April - 30 April 2021       |
+| Pairing process                   | 3 May - 7 May 2021      |
+| Mentor program kickoff meeting    | Tuesday 10th May 2021        |
+| Mentorship period                 | 10th May - 10th August 2021     |
+| Mid-program feedback survey       | 1st July 2021                |
+| End of program feedback survey    | 10th August 2021             |
 
 ### Engagement Criteria
 
@@ -53,7 +52,7 @@ The program will last for up to 3-months if both the mentor and the mentee remai
 
 Mentees identify, at minimum, one development goal that they'd like to discuss with their mentor.
 
-_**How to identify a goal?**_
+***How to identify a goal?***
 
 - Themes from 360 feedback
 - A skill that you'd like to improve
@@ -62,23 +61,23 @@ _**How to identify a goal?**_
 
 ### Program Participants
 
-| Mentor                      | Mentee              |
-| --------------------------- | ------------------- |
-| Daniel Parker               | Dillon Wheeler      |
-| Melody Maradiaga            | Sylwia Szepietowska |
-| Bryan Wise                  | Mark Quitevis       |
-| Dale Brown                  | Nicole Ann Precilla |
-| Andrew Murray               | Michelle Cooper     |
-| Igor Groenewegen-Mackintosh | Sindhu Srivastava   |
-| Sindhu Tatimatla            | Naomi Khan          |
-| Craig Mestel                | Erica de longpre    |
-| Israel Weeks                | Karuna Singh        |
-| Brian Robins                | Courtney Cote       |
-| Aleshia Hansen              | Alex Westbrook      |
-| Paul Armstrong              | Melody Maradiaga    |
-| Justin Stark                | Wendy Lam           |
-| Dennis van Rooijen          | Harley Devlin       |
-| Rob Parker                  | Daniel Parker       |
+| Mentor | Mentee |
+| ------- | ------- |
+| Daniel Parker | Dillon Wheeler |
+| Melody Maradiaga | Sylwia Szepietowska |
+| Bryan Wise | Mark Quitevis |
+| Dale Brown | Nicole Ann Precilla |
+| Andrew Murray | Michelle Cooper |
+| Igor Groenewegen-Mackintosh | Sindhu Srivastava |
+| Sindhu Tatimatla | Naomi Khan |
+| Craig Mestel | Erica de longpre |
+| Israel Weeks | Karuna Singh |
+| Brian Robins | Courtney Cote |
+| Aleshia Hansen | Alex Westbrook |
+| Paul Armstrong | Melody Maradiaga |
+| Justin Stark | Wendy Lam |
+| Dennis van Rooijen | Harley Devlin |
+| Rob Parker | Daniel Parker |
 
 ### Success Metrics
 

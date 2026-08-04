@@ -7,11 +7,10 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: 360 Feedback
 description: >-
-360 Feedback is an opportunity where managers, direct reports, and cross
-functional team members will give feedback to each other.
+  360 Feedback is an opportunity where managers, direct reports, and cross
+  functional team members will give feedback to each other.
 ---
 
 ## 360 Feedback
@@ -27,7 +26,7 @@ functional team members will give feedback to each other.
 - Providing comprehensive insights from peers, stakeholders, and direct reports who observe different aspects of performance
 - Identifying blind spots that may not surface in regular one-on-one conversations or be clear through other feedback channels
 - Supporting targeted development by highlighting specific strengths to leverage and areas for growth
-  -Creating more meaningful career conversations grounded in diverse perspectives
+-Creating more meaningful career conversations grounded in diverse perspectives
 - Building self-awareness through feedback from various working relationships
 - Uncovering hidden strengths that may not be visible in day-to-day manager interactions
 
@@ -56,7 +55,7 @@ Below are a few key points to think through when determining in which situations
 - Development areas are already clear and you have an actionable plan underway
 - You already have a good understanding of your growth areas through regular feedback
 - Direct, transparent feedback would be more productive for continued development
-  Remember that 360 feedback represents a single, anonymous point in time and should supplement, not replace, ongoing feedback conversations throughout the year.
+Remember that 360 feedback represents a single, anonymous point in time and should supplement, not replace, ongoing feedback conversations throughout the year.
 
 ## How It Works
 
@@ -153,10 +152,10 @@ The high level recommended process is as follows:
 - - If applicable update the IGP in Workday based on the 360 findings and development actions.
 
 - **After the meeting**: periodically (quarterly) in 1:1s, review progress against the development goals and offer support as needed
-  Some general guidance and tips for the conversations can be found below:
+Some general guidance and tips for the conversations can be found below:
 - - No surprises. Team members should not hear about positive feedback or performance in need of improvement for the first time at the 360 feedback meeting. - Team members should have regular 1:1s where this is discussed. However, if new information is uncovered during the 360 Feedback process, you should discuss that new data.
 - - The overall aim is providing meaningful feedback. Don't allow the feedback meeting (document and conversation) to (d)evolve into a "todo" list.
-    Managers should send the results within 48 hours of the feedback cycle closing so they can prepare and come to the meeting with questions and discussion points.
+Managers should send the results within 48 hours of the feedback cycle closing so they can prepare and come to the meeting with questions and discussion points.
 - - Make sure you (Manager) are also prepared for the discussion, write down some notes and key points you want to make. What are the major themes coming out of the feedback?
 - - Make time to talk about the future career development and development opportunities. This should be a conversation - remember to be an active listener. As a manager, you can help your team member process and understand the feedback, helping to avoid over/under reactions or defensiveness. Ask questions such as:
 - - Is there is feedback that you received that is surprising or upsetting to you?
@@ -172,4 +171,4 @@ The high level recommended process is as follows:
 If there are areas that were indicated over the 360s that need immediate improvement, are not aligned with our values or go against our Code of Business Conduct and Ethics for Directors, Officers, Employees and Contractors, please reach out to our [Team Member Relations Specialist](/handbook/people-group) via teammemberrelations@gitlab.com.
 
 - **Action Plans**
-  Once feedback has been delivered, we recommend the manager and team member agree on a resulting action plan which can be captured in the Individual Growth Plan for ongoing reference and accountability.
+Once feedback has been delivered, we recommend the manager and team member agree on a resulting action plan which can be captured in the Individual Growth Plan for ongoing reference and accountability.

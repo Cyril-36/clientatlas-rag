@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "GitLab People Operations Team"
 ---
 
@@ -55,10 +54,10 @@ ServiceNow is a SaaS Enterprise Service Management Platform that enables organiz
 
 #### Methods of Engagement
 
-| Interaction Type                                                            | Communication Mechanism                                                                                                                               |
-| --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Internal**: Inquiry is from a current GitLab team member                  | [HelpLab](/handbook/business-technology/enterprise-applications/guides/helplab-guide/#how-do-i-use-helplab) or via email people_operations@gitlab.com |
-| **External**: Inquiry is from a former GitLab team member or External party | people_operations@gitlab.com                                                                                                                          |
+| Interaction Type | Communication Mechanism |
+| ----- | ----- |
+| **Internal**: Inquiry is from a current GitLab team member | [HelpLab](/handbook/business-technology/enterprise-applications/guides/helplab-guide/#how-do-i-use-helplab) or via email people_operations@gitlab.com |
+| **External**: Inquiry is from a former GitLab team member or External party | people_operations@gitlab.com |
 
 GitLab remains a [Handbook First](/handbook/about/handbook-usage/#why-handbook-first) organization. However, in instances where the answer to a people-related question is not apparent, the next port of call would be People Operations.
 
@@ -70,11 +69,11 @@ People Operations works on a tiered model which categorizes inbound queries and 
 
 On occasion team member interactions i.e. ≤ 1% require the direct input of a Subject Matter Expert (SME), calling for complete hand-off to a Center of Expertise (COE) - in such instances the interaction will be categorized as a Tier 03 with the responding generalist initiating the hand-off in a period ≤ 24 hours.
 
-| Tier        | Query Type                                                                       | Resolution Time |
-| ----------- | -------------------------------------------------------------------------------- | --------------- |
-| **Tier 01** | First Line Resolution e.g. Administrative Support or Transactional Requests      | ≤ 24 Hours      |
-| **Tier 02** | Semi-Complex Resolution e.g. Root Cause Analysis or Solution Finding             | ≤ 72 Hours      |
-| **Tier 03** | Center of Expertise Hand-Off e.g. Policy Exception or Significant Process Change | ≤ 24 Hours      |
+| Tier | Query Type | Resolution Time |
+| --- | --- | --- |
+| **Tier 01** | First Line Resolution e.g. Administrative Support or Transactional Requests | ≤ 24 Hours |
+| **Tier 02** | Semi-Complex Resolution e.g. Root Cause Analysis or Solution Finding | ≤ 72 Hours |
+| **Tier 03** | Center of Expertise Hand-Off e.g. Policy Exception or Significant Process Change | ≤ 24 Hours |
 
 ### Team Member Satisfaction
 

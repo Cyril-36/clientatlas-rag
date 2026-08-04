@@ -7,15 +7,12 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "GitLab Internal Acceptable Use Policy"
 description: "This policy specifies requirements related to the use of GitLab computing resources and data assets"
 controlled_document: true
 tags:
-
-- security_policy
-- security_policy_caplscsi
-
+  - security_policy
+  - security_policy_caplscsi
 ---
 
 {{< label name="Visibility: Audit" color="#E24329" >}}
@@ -32,10 +29,10 @@ This policy applies to all GitLab Team Members, contractors, advisors, and contr
 
 ## Roles & Responsibilities
 
-| Role                                        | Responsibility                                                                 |
-| ------------------------------------------- | ------------------------------------------------------------------------------ |
-| GitLab Team Members                         | Responsible for following the requirements in this procedure                   |
-| Security, Legal and PeopleOps               | Responsible for implementing and executing this procedure                      |
+| Role  | Responsibility |
+|-----------|-----------|
+| GitLab Team Members | Responsible for following the requirements in this procedure |
+| Security, Legal and PeopleOps | Responsible for implementing and executing this procedure |
 | Security, Legal and PeopleOps (Code Owners) | Responsible for approving significant changes and exceptions to this procedure |
 
 ## Procedure
@@ -116,7 +113,7 @@ Prohibited system and network activities include, but are not limited to, the fo
 - Attempting to uninstall security controls without prior approval from a Security manager
 - Circumventing user authentication or security of any computer host, network, or account used by GitLab.
 - Tunneling between network segments or security zones (e.g., `gprd`, `gstg`, `ops`, `ci`, `ngrok`), except when troubleshooting issues for the benefit of GitLab.
-- Given the potential sensitivity of the data contained in screenshot images, the use of tools that capture and share screenshots to hosted sites online is prohibited without the explicit approval of the Security and Legal Departments. Screenshots should be stored locally or within Google drive folders associated with your GitLab.com account. Access to these drives and files should be managed in accordance with our [Access Management policy](/handbook/security/security-and-technology-policies/access-management-policy/), and handled according to our [Data Classification Standard](/handbook/security/policies_and_standards/data-classification-standard/). Tools such as [Lightshot](https://app.prntscr.com/en/index.html), where upload functionality cannot be disabled and could result in inadvertent uploads, should not be used.
+- Given the potential sensitivity of the data contained in screenshot images, the use of tools that capture and share screenshots to hosted sites online is prohibited without the explicit approval of the Security and Legal Departments.  Screenshots should be stored locally or within Google drive folders associated with your GitLab.com account. Access to these drives and files should be managed in accordance with our [Access Management policy](/handbook/security/security-and-technology-policies/access-management-policy/), and handled according to our [Data Classification Standard](/handbook/security/policies_and_standards/data-classification-standard/). Tools such as [Lightshot](https://app.prntscr.com/en/index.html), where upload functionality cannot be disabled and could result in inadvertent uploads, should not be used.
 - The use of high risk remote administration tools, such as TeamViewer and AnyDesk, which are [commonly used by attackers](https://attack.mitre.org/techniques/T1219/) to gain and remotely control systems.
 - Tools that emulate another operating system or create compatibility layers such as [WINE](https://www.winehq.org/)
 - The use of torrent or other P2P software on GitLab computing assets.
@@ -131,7 +128,7 @@ In addition to following the [Team Member Social Media Policy](/handbook/marketi
 
 ### Return of GitLab-Owned Assets
 
-All GitLab-owned computing resources must be [returned](/handbook/people-group/offboarding/#returning-property-to-gitlab) upon separation from the company. Notwithstanding anything contrary in the [Laptop Buy Back Policy](/handbook/eta/corporate-it/end-user-services/laptop-management/laptop-offboarding-returns/#laptop-buybacks) or the [Offboarding Tasks](/handbook/people-group/offboarding/#managing-the-offboarding-tasks), Team Members must return any GitLab-Owned Assets -- irrespective of their valuation -- if they are specifically requested to do so either during their tenure with GitLab or upon offboarding. In cases of investigation, misconduct, termination for cause or any violation of [GitLab's Code of Business Conduct & Ethics](https://ir.gitlab.com/governance/governance-documents/default.aspx), a team member has no right to retain GitLab-owned computing equipment.
+All GitLab-owned computing resources must be [returned](/handbook/people-group/offboarding/#returning-property-to-gitlab) upon separation from the company.  Notwithstanding anything contrary in the [Laptop Buy Back Policy](/handbook/eta/corporate-it/end-user-services/laptop-management/laptop-offboarding-returns/#laptop-buybacks) or the [Offboarding Tasks](/handbook/people-group/offboarding/#managing-the-offboarding-tasks), Team Members must return any GitLab-Owned Assets -- irrespective of their valuation -- if they are specifically requested to do so either during their tenure with GitLab or upon offboarding. In cases of investigation, misconduct, termination for cause or any violation of [GitLab's Code of Business Conduct & Ethics](https://ir.gitlab.com/governance/governance-documents/default.aspx), a team member has no right to retain GitLab-owned computing equipment.
 
 ### Bring-Your-Own-Device (BYOD)
 

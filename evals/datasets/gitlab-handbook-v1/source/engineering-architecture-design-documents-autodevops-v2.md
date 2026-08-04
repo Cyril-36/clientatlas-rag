@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "AutoDevOps v2"
 status: ongoing
 creation-date: "2025-12-12"
@@ -45,7 +44,7 @@ Primary objectives are:
 3. **Increase AutoDevOps adoption**: Transform AutoDevOps from a niche feature into a continuous improvement assistant
    that adds value to all projects, not just those without CI configuration.
 4. **Reduce CI/CD learning curve:** Lower the barrier to entry for users unfamiliar with CI/CD concepts by providing
-   intelligent guidance, best practice recommendations, and auto-generated configurations that serve as educational templates.
+intelligent guidance, best practice recommendations, and auto-generated configurations that serve as educational templates.
 
 Expected business impact:
 
@@ -203,7 +202,7 @@ graph TB
         IDE["IDE<br/>(WebIDE/VSCode)"]
         Chat[Duo Agentic Chat]
     end
-
+    
     subgraph AI["AI Components"]
         Flow["Flow: Build CI Config<br/>(Orchestrates workflow)"]
         Agent["CI Pipeline Agent<br/>(Domain expertise)"]
@@ -211,7 +210,7 @@ graph TB
 
     Docs["CI/CD Documentation<br/>(Best practices & guidelines)"]
     LSP["CI Language Service<br/>(Syntax, validation, autocomplete)"]
-
+    
     Button -->|triggers| Flow
     Flow -->|uses| Agent
     Agent -->|references| Docs
@@ -220,7 +219,7 @@ graph TB
     Chat -->|uses| Agent
 
     Flow -->|provides context to| Agent
-
+    
     style Button fill:#e1f5ff
     style Chat fill:#e1f5ff
     style IDE fill:#e1f5ff

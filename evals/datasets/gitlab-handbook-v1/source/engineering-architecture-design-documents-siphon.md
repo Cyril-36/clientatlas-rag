@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Siphon"
 status: ongoing
 creation-date: "2024-11-20"
@@ -185,7 +184,7 @@ An example JSON representation of one "package" which might be pushed to the que
           "name": "title",
           "string_value": "My issue"
         }
-      ]
+      ],
     },
     {
       "operation": "DELETE",
@@ -295,8 +294,8 @@ We plan to implement a detection and retry mechanism into these applications to 
 
 1. When the application starts, request all database table schemas.
 1. When an event package is received from the pub-sub system for a specific table, compare the received column list.
-   - When the column list differs, request the table schema again (retry with backoff)
-   - When the column list matches, continue.
+    - When the column list differs, request the table schema again (retry with backoff)
+    - When the column list matches, continue.
 1. Build an `INSERT INTO` statement with the column values.
 1. Invoke the `INSERT INTO` statement.
 1. Mark the event/item as processed for the pub-sub system.

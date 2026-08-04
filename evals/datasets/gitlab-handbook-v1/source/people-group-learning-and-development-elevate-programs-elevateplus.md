@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Elevate+
 
 ---
@@ -69,7 +68,7 @@ When the program begins, you'll be added to a Slack group that includes all memb
 
 It's a requirement to make up missed sessions within each month to ensure that you're learning each new skill and moving through the program in the appropriate order. Please make every effort to attend live sessions as scheduled. Please reach out to your Learning and Development team for any questions.
 
-We're committed to working with you to find a solution that let's you successfully complete Elevate+. If you must miss one live session for personal reasons, you need approval from your manager. Additional missed sessions will result in an incomplete Elevate+ status.
+We're committed to working with you to find a solution that lets you successfully complete Elevate+. If you must miss one live session for personal reasons, you need approval from your manager. Additional missed sessions will result in an incomplete Elevate+ status.
 
 ### When I complete this program will I earn a certificate?
 

@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Security Policies v2: Database-First Policy Management"
 status: proposed
 creation-date: "2025-09-08"
@@ -244,14 +243,14 @@ flowchart TB
     class v2_b1,v2_b2,v2_b3,v2_b4,v2_b5,v2_b6,v2_scale1,v2_scale2,v2_scale3,v2_scale4 benefit_style
 ```
 
-| Aspect               | Policies v1                              | Policies v2                           |
-| -------------------- | ---------------------------------------- | ------------------------------------- |
-| **Data Storage**     | Multiple repositories, single YAML files | Centralized database, atomic policies |
-| **User Interface**   | MR creation and approval                 | Direct UI editing                     |
-| **Permissions**      | Repository-based access                  | Dedicated RBAC roles                  |
-| **Change Detection** | Complex file parsing logic               | Simple database change tracking       |
-| **Scalability**      | Limited by repository sync               | Background processing with SLO        |
-| **Visibility**       | Fragmented across repositories           | Organization-wide dashboard           |
+| Aspect | Policies v1 | Policies v2 |
+|--------|-------------|-------------|
+| **Data Storage** | Multiple repositories, single YAML files | Centralized database, atomic policies |
+| **User Interface** | MR creation and approval | Direct UI editing |
+| **Permissions** | Repository-based access | Dedicated RBAC roles |
+| **Change Detection** | Complex file parsing logic | Simple database change tracking |
+| **Scalability** | Limited by repository sync | Background processing with SLO |
+| **Visibility** | Fragmented across repositories | Organization-wide dashboard |
 
 ### Policy Management Workflows
 
@@ -758,13 +757,13 @@ These SLOs assume standard infrastructure configurations and are subject to adju
 
 #### RBAC Model
 
-| Role                   | Create Templates     | Edit Templates     | Apply Policies      | View Audit Logs |
-| ---------------------- | -------------------- | ------------------ | ------------------- | --------------- |
-| **Organization Admin** | ✅                   | ✅                 | ✅                  | ✅              |
-| **Policy Admin**       | ✅ (with permission) | ✅ (scoped)        | ✅ (scoped)         | ✅ (scoped)     |
-| **Group Owner**        | ✅ (group level)     | ✅ (own templates) | ✅ (owned scope)    | ❌              |
-| **Project Maintainer** | ❌                   | ❌                 | ✅ (owned projects) | ❌              |
-| **Developer**          | ❌                   | ❌                 | ❌                  | ❌              |
+| Role | Create Templates | Edit Templates | Apply Policies | View Audit Logs |
+|------|------------------|----------------|----------------|-----------------|
+| **Organization Admin** | ✅ | ✅ | ✅ | ✅ |
+| **Policy Admin** | ✅ (with permission) | ✅ (scoped) | ✅ (scoped) | ✅ (scoped) |
+| **Group Owner** | ✅ (group level) | ✅ (own templates) | ✅ (owned scope) | ❌ |
+| **Project Maintainer** | ❌ | ❌ | ✅ (owned projects) | ❌ |
+| **Developer** | ❌ | ❌ | ❌ | ❌ |
 
 #### Permission Validation
 

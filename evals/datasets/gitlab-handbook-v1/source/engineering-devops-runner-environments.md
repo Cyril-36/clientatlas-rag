@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Environments Group
 description: "The Environments group is responsible for the Environments in the Deploy stage of the DevOps lifecycle."
 ---
@@ -202,7 +201,7 @@ Issues falling out of the mentioned types will be marked with `~environments::pa
 The weights we use are:
 
 | Weight     | Extra investigation | Surprises    | Collaboration |
-| ---------- | ------------------- | ------------ | ------------- |
+| ---------- | ------------------- | ------------ | --------      |
 | 1: Trivial | not expected        | not expected | not required  |
 | 2: Small   | possible            | possible     | possible      |
 | 3: Medium  | likely              | likely       | likely        |
@@ -272,43 +271,43 @@ Goals:
 - Effectively track and label bug related issues.
 - Ensure bug Due Dates are not missed due to a lack of DRIs on sub issues.
 - Ensure the team is aware that help is needed in a specific area on a bug
-  that already has an overall DRI.
+    that already has an overall DRI.
 
 Context:
 
 - Single part bug issues
   - Some bugs only require a single cohesive effort to resolve. For example an
-    isolated backend fix that requires no database or frontend changes. In
-    these cases, the DRI of the bug issue is the person doing the work, and
-    all work is tracked in the bug report issue.
+      isolated backend fix that requires no database or frontend changes. In
+      these cases, the DRI of the bug issue is the person doing the work, and
+      all work is tracked in the bug report issue.
 
 - Multi-part bug issues
   - In other cases, a bug issue may result in work across frontend, backend,
-    and database. This can result multiple engineers working separately as
-    DRIs of individual issues that all contributing to solving the bug.
-    Multiple issues are needed.
+      and database. This can result multiple engineers working separately as
+      DRIs of individual issues that all contributing to solving the bug.
+      Multiple issues are needed.
 
 Problem:
 
 - Without a clear structure of issues for multi-part bugs, it's difficult for
-  the team to know how to help and how to plan. This difficulty can negatively
-  impact our say-do ratio.
+    the team to know how to help and how to plan. This difficulty can negatively
+    impact our say-do ratio.
 
 Best practices for managing multi-part bug issues:
 
 - The original bug issue should be promoted to an epic.
 - The original DRI becomes the overall bug epic DRI (note this on the epic).
 - New sub issues representing each part of the work should be created on the
-  epic.
+    epic.
 - The new issues should be noted as blocking the epic.
 - Except for severity and priority, Labels should be copied over.
 - Due dates should keep in mind the due date of the epic, which is based on
-  severity and priority.
+    severity and priority.
 - Deliverable labels should be applied if the epic is deliverable.
 - DRI can use the Milestone Planning issue and/or reach out to relevant team
-  members to ask if there's availability within the Due Date. cc your
-  engineering manager so they can give a high level thumbs up/thumbs down
-  regarding the change in priority.
+    members to ask if there's availability within the Due Date. cc your
+    engineering manager so they can give a high level thumbs up/thumbs down
+    regarding the change in priority.
 
 ##### Bug resolution process
 
@@ -349,7 +348,7 @@ Our team keeps track of their commitment with `say-do` ratios, two metrics are i
 - Say-do **only** applies to `~Deliverable` issues.
 - By the 17th of the month the `~Deliverable` label is applied to the upcoming milestone issues by the EM.
 - We aim roughly to assign one `~Deliverable` for each engineer, this may change milestone by milestone.
-- Any issue that has the `~Deliverable` label at that point is considered as _promised to be delivered_ and is part of our say-do ratio.
+- Any issue that has the `~Deliverable` label at that point is considered as *promised to be delivered* and is part of our say-do ratio.
 - If at any time during the milestone a `~Deliverable` label is removed or the issue is removed from the milestone that issue does **not** count anymore in the `reprioritized say-do` metric, but still does count for `say-do`.
 
 We aim to achieve 100% `re-prioritized say-do` and at least 80% `say-do`.
@@ -379,7 +378,7 @@ As team members and domain experts, both the MR author and initial reviewer are 
 - Implementation reasoning;
 - Links to relevant references.
 
-Providing context helps streamline the review process and invites a broader pool of maintainers to our domain ([example](https://gitlab.com/gitlab-org/gitlab/-/merge_requests/147280#note_1819842941)).
+Providing context helps streamline the review process and invites a broader pool of maintainers to our domain  ([example](https://gitlab.com/gitlab-org/gitlab/-/merge_requests/147280#note_1819842941)).
 
 ### Handling Deferred UX
 
@@ -442,7 +441,7 @@ The Environments group uses [GitLab QA](https://gitlab.com/gitlab-org/gitlab-qa)
 
 ### gitlab-agent QA bot
 
-In [`feed_alerts_configure`](https://gitlab.slack.com/archives/C025U6U6HA9) we have a bot that runs tests at [this project](https://gitlab.com/gitlab-org/configure/k8s-agent-qa/-/pipelines)
+In [`feed_alerts_configure`](https://gitlab.slack.com/archives/C025U6U6HA9) we have a bot that  runs tests at [this project](https://gitlab.com/gitlab-org/configure/k8s-agent-qa/-/pipelines)
 
 If this bot alerts of a failed pipeline, we should treat these the same as a broken master branch.
 

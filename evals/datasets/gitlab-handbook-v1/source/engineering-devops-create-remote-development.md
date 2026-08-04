@@ -7,11 +7,10 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: 'Create:Remote Development Group'
 description: >-
-The Remote Development Group is part of the Create Stage. We focus on two categories:
-Workspace and the Web IDE.
+  The Remote Development Group is part of the Create Stage. We focus on two categories:
+  Workspace and the Web IDE.
 ---
 
 ## Overview
@@ -40,10 +39,10 @@ The following people are permanent members of the Remote Development Engineering
 
 <span id="-team-category-dris" data-message="alias anchor for old links"></span>
 
-| Category   | DRI                                        |
-| ---------- | ------------------------------------------ |
-| Workspaces | {{< member-by-name "Vishal Tak" >}}        |
-| Web IDE    | {{< member-by-name "Enrique Alcántara" >}} |
+| Category                 | DRI                                     |
+|--------------------------|-----------------------------------------|
+| Workspaces                | {{< member-by-name "Vishal Tak" >}}     |
+| Web IDE                  | {{< member-by-name "Enrique Alcántara" >}} |
 
 ### 📚 Architecture Design Document
 
@@ -107,13 +106,13 @@ Please note that sync meeting schedules are flexible and can be moved to accommo
 
 The table below briefly outlines the objectives and key details of regular team meetings:
 
-| Meeting Title                    | What                                                                                                       |
-| -------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| High Level Planning              | Set overall direction and validate higher-priority issues/epics to be worked on in the upcoming releases.  |
-| Iteration Planning Meeting (IPM) | Review scheduled issues; estimate work for next milestones.                                                |
-| Remote Development Retro Call    | Review feedback from async retro, identify action items and next steps to improve efficiency.              |
-| Engineering Sync                 | Discuss engineering topics and brainstorming. Cancelled if no topics. Alternates APAC/AMER friendly times. |
-| Remote Development Pairing       | Pairing sessions for engineers. Cancelled if no topics.                                                    |
+| Meeting Title                       | What                                                                                                       |
+|-------------------------------------|------------------------------------------------------------------------------------------------------------|
+| High Level Planning                 | Set overall direction and validate higher-priority issues/epics to be worked on in the upcoming releases.  |
+| Iteration Planning Meeting (IPM)    | Review scheduled issues; estimate work for next milestones.                                                |
+| Remote Development Retro Call       | Review feedback from async retro, identify action items and next steps to improve efficiency.              |
+| Engineering Sync                    | Discuss engineering topics and brainstorming. Cancelled if no topics. Alternates APAC/AMER friendly times. |
+| Remote Development Pairing          | Pairing sessions for engineers. Cancelled if no topics.                                                    |
 
 ## 📦 Group Processes
 
@@ -135,7 +134,7 @@ If a task is too large, has too many unknowns, or requires proof of concept (POC
    - **Purpose:** Research, investigate, and document or breakdown the necessary work. Please make sure to **define the core question or problem** you're investigating.
    - **Weight:** Default to 3 for investigations, POCs, or breakdown tasks. If a different weight is needed, discuss it with PM/EM/Team stakeholders.
    - **Label:** Assign the ~spike label to the issue.
-   - **Updates:** Investigations are capped at **3 working days of focused effort**.
+   - **Updates:**  Investigations are capped at **3 working days of focused effort**.
      - On Day 3 or sooner, investigator shares findings and proposed next steps. Consider using a sync meeting to align with key stakeholders and make a decision. If a meeting is not feasible, a short recorded video summarizing findings is acceptable.
    - Depending on the feedback from the updates, we can decide to allocate more time to these investigations or settle for something that works based on the information we have.
 
@@ -262,15 +261,15 @@ The **Iteration Planning Meeting** is a collaborative session where the team rev
 1. Select Create New.
 1. Select Multiple Choice
 1. Fill out creation Options:
-   1. Create Question: Weight for: **_Add link to issue here._**
-   1. Question Type: Multiple Choice.
-   1. Enter choices below: **0 1 2 3 5 8** (each number on a separate line)
-   1. Choose audience: Select **_remote_development_async_ipm_** channel.
-   1. Make sure "Send polly as direct message" is **_unchecked_**.
-   1. Select Settings Button.
-   1. Responses: Select **_Non-anonymous_**.
-   1. Results: Select **_Show after close_**.
-   1. Select Submit to save changes.
+    1. Create Question: Weight for: **_Add link to issue here._**
+    1. Question Type: Multiple Choice.
+    1. Enter choices below: **0 1 2 3 5 8** (each number on a separate line)
+    1. Choose audience: Select **_remote_development_async_ipm_** channel.
+    1. Make sure "Send polly as direct message" is **_unchecked_**.
+    1. Select Settings Button.
+    1. Responses: Select **_Non-anonymous_**.
+    1. Results: Select **_Show after close_**.
+    1. Select Submit to save changes.
 1. Send Polly.
 
 **Optional Steps: Template Creation**
@@ -369,8 +368,8 @@ In such cases where we have pending or follow up tasks for future releases such 
 
 1. **References:** Link the issue to the original issue that spawned it.
 1. **Label:** Assign these labels:
-   - `~due-date-followup`
-   - `~refined`
+    - `~due-date-followup`
+    - `~refined`
 1. **Milestone:** Assign it a specific milestone - i.e Drop column (17.5) -> Followup remove ignore rule (17.6).
 1. **Due Date:** Assign a due date 1 week into the assigned milestone. To see the dates for the milestone, you can click "Preview" after adding the Milestone, then open the milestone link in a new tab, and find its date range at the top of the page.
 1. **Epic:** Assign it to the [WebIDE | Technical Debt/Friction](https://gitlab.com/groups/gitlab-org/-/epics/14656) or [Workspaces Technical Debt Work](https://gitlab.com/groups/gitlab-org/-/epics/11041) epic.
@@ -426,15 +425,13 @@ the first line of the issue should have the format: `MR: <...>`:
 
    ```markdown
    MR:
-
-   - <MR link with trailing +>
-   - <MR link with trailing +>
+     - <MR link with trailing +>
+     - <MR link with trailing +>
    ```
 
    Each description line of the MR's in this list should be `Issue: <Issue link with trailing +>`. **Please note:** If breaking out an issue's implementation
    into multiple MR's unexpectedly increases the scope of the work, please consider creating a new weighted and prioritized issue to
    capture the extra scope. This is important in order to accurately reflect scope increases, and their impact on reporting and velocity.
-
 1. If there is _NO MR_ associated with this issue, the first line should be: `MR: No MR`.
    However, this should be rare, because most issues should have some sort of committed deliverable, even if it is only
    a documentation addition or update. If it is an issue which represents a larger piece of work split across smaller issues,
@@ -550,17 +547,17 @@ Each milestone, we designate an Availability Champion who owns operational healt
 When an alert appears in the channel, the Availability Champion should:
 
 1. Assess Customer Impact (during working hours)
-   - Check: Does this affect workspace creation, access, or core features?
-   - If YES, Create P1 issue
-   - If NO, but frequent enough to burn through our budget, Create P2 issue
+    - Check: Does this affect workspace creation, access, or core features?
+    - If YES, Create P1 issue
+    - If NO, but frequent enough to burn through our budget, Create P2 issue
 1. Create Issue Using Template - https://gitlab.com/gitlab-com/create-stage/remote-development/-/blob/main/.gitlab/issue_templates/workspace-availability.md
 1. Start Investigation for P1s
-   - Post a reply in the alert thread in #f_worksapces_alerts that you're investigating
-   - Begin root cause analysis
-   - Update issue with findings
-   - Note:
-     - For P2s, Tag the EM for scheduling during regular milestone planning
-     - For non issues, simply ✅ the alert so everyone can know you've seen it
+    - Post a reply in the alert thread in #f_worksapces_alerts that you're investigating
+    - Begin root cause analysis
+    - Update issue with findings
+    - Note:
+      - For P2s, Tag the EM for scheduling during regular milestone planning
+      - For non issues, simply ✅ the alert so everyone can know you've seen it
 
 #### Weekly Review
 
@@ -588,10 +585,10 @@ Ideally we should automate as much of the [Planning Process](#-planning-process)
 
 We have the following automation goals for this Workflow. Unless otherwise noted, these rules are all defined in the [triage-ops `policies/groups/gitlab-org/ide/remote-development-workflow.yml` config files](https://gitlab.com/gitlab-org/quality/triage-ops/-/tree/master/policies/groups/gitlab-org/remote-development).
 
-| ID                           | Goal                                                      | Automation                                                                                                                                          | Link(s) to implementation |
-| ---------------------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| <a id="automation-01">01</a> | Warn when no epic is assigned                             | Issues in `~"Category:(Web IDE \| Workspace)"` but with no epic assigned should get a warning comment                                               | TODO: implement           |
-| <a id="automation-02">02</a> | Assign missing milestone to issues                        | Issues in `~"Category:(Web IDE \| Workspace)"` should be assigned to the `%"Backlog"` if no milestone is assigned                                   | TODO: implement           |
-| <a id="automation-03">03</a> | Flag stretch issues in a milestone                        | Issues that have been assigned the active milestone for example, 16.x, 17.x and don't have a ~refined label and weight should be marked as ~Stretch | TODO: implement           |
-| <a id="automation-04">04</a> | Sync Workspace workflow and GitLab workflow labels        | Unstarted issues with `~"refined"` assigned should get `~"workflow::ready for development"` assigned.                                               | TODO: implement           |
-| <a id="automation-05">05</a> | Ensure all issues with an assignee have a weight assigned | All refined issues that are not bugs with an assignee but no weight should get a reminder note to either add a weight estimate.                     | TODO: implement           |
+| ID | Goal | Automation | Link(s) to implementation |
+| --- | --- | --- | --- |
+| <a id="automation-01">01</a> | Warn when no epic is assigned | Issues in `~"Category:(Web IDE \| Workspace)"` but with no epic assigned should get a warning comment | TODO: implement |
+| <a id="automation-02">02</a> | Assign missing milestone to issues | Issues in `~"Category:(Web IDE \| Workspace)"` should be assigned to the `%"Backlog"` if no milestone is assigned | TODO: implement |
+| <a id="automation-03">03</a> | Flag stretch issues in a milestone | Issues that have been assigned the active milestone for example, 16.x, 17.x and don't have a ~refined label and weight should be marked as ~Stretch | TODO: implement |
+| <a id="automation-04">04</a> | Sync Workspace workflow and GitLab workflow labels | Unstarted issues with `~"refined"` assigned should get `~"workflow::ready for development"` assigned. | TODO: implement |
+| <a id="automation-05">05</a> | Ensure all issues with an assignee have a weight assigned | All refined issues that are not bugs with an assignee but no weight should get a reminder note to either add a weight estimate. | TODO: implement |

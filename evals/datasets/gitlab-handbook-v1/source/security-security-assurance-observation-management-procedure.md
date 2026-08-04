@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Observation Management Procedure"
 description: "This procedure details the remediation process for observations."
 ---
@@ -24,11 +23,11 @@ Tier 3 risks or observations identified at the information system or business pr
 
 ## Roles and Responsibilities
 
-| Role                             | Responsibility                                                                                                                                                                                                                                  |
-| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Finding Coordinator              | Responsible for being the observation DRI through the observation lifecycle including verifying and fine tuning recommended remediation plans in order to meet legal and regulatory requirements.                                               |
-| Remediation Owner                | Validates observation, confirms assignee, due date, finalizes remediation plan and conducts remediation activity based on defined [remediation SLA's](/handbook/security/security-assurance/observation-management-procedure/#remediation-sla). |
-| Managers to Executive Leadership | Responsible for escalation as necessary and resource allocation for remediation activity.                                                                                                                                                       |
+| Role | Responsibility  |
+| ---- | ------ |
+| Finding Coordinator | Responsible for being the observation DRI through the observation lifecycle including verifying and fine tuning recommended remediation plans in order to meet legal and regulatory requirements. |
+| Remediation Owner | Validates observation, confirms assignee, due date, finalizes remediation plan and conducts remediation activity based on defined [remediation SLA's](/handbook/security/security-assurance/observation-management-procedure/#remediation-sla). |
+| Managers to Executive Leadership | Responsible for escalation as necessary and resource allocation for remediation activity. |
 
 ## Procedure
 
@@ -42,23 +41,23 @@ Please refer to the [USRM handbook page for workflow and required labels](/handb
 
 Labels in this set are used to categorize issues for metrics and reporting and cross-team collaboration.
 
-| Label                                         | Description                                                                                                                                                      |
-| --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Department::***                               | Department that is responsible for remediation                                                                                                                   |
-| RiskRating:: Critical                         | Risk rating for security compliance observations - Critical                                                                                                      |
-| RiskRating:: High                             | Risk rating for security compliance observations - High                                                                                                          |
-| RiskRating:: Moderate                         | Risk rating for security compliance observations - Moderate                                                                                                      |
-| RiskRating::Low                               | Risk rating for security compliance observations - Low                                                                                                           |
-| Finding Coordinator::***                      | GitLab team member managing the observation through the lifecycle.                                                                                               |
-| Blocked:: Awaiting Remediation Owner Input    | This flag indicates the observation manager is waiting for a response from the remediation owner.                                                                |
-| Blocked:: Awaiting Observation Manager Input  | This flags the issue for the observation manager on the SecAssurance team                                                                                        |
-| Blocked:: New tool implementation in progress | This flags the issue for pending completion of the new tool                                                                                                      |
-| Upgraded::StORM-Managed                       | This label will be leverage when the observation has been upgraded to a tier 2 risk and will be managed in the StORM program                                     |
+| Label | Description |
+| ------ | ------ |
+| Department::***   | Department that is responsible for remediation  |
+| RiskRating:: Critical| Risk rating for security compliance observations - Critical|
+| RiskRating:: High| Risk rating for security compliance observations - High|
+| RiskRating:: Moderate| Risk rating for security compliance observations - Moderate|
+| RiskRating::Low | Risk rating for security compliance observations - Low|
+| Finding Coordinator::*** | GitLab team member managing the observation through the lifecycle. |
+| Blocked:: Awaiting Remediation Owner Input    | This flag indicates the observation manager is waiting for a response from the remediation owner.   |
+| Blocked:: Awaiting Observation Manager Input  | This flags the issue for the observation manager on the SecAssurance team                                                                                       |
+| Blocked:: New tool implementation in progress | This flags the issue for pending completion of the new tool                                                                                                     |
+| Upgraded::StORM-Managed                       | This label will be leverage when the observation has been upgraded to a tier 2 risk and will be managed in the StORM program                                    |
 | Upgraded::StORM-Shared                        | This label will be leveraged when the observation has been upgraded to a tier 2 risk and remediation is shared by the Security Risk and Security Compliance team |
-| NIST CSF Function:***                         | Identifies observations within the NIST CSF function                                                                                                             |
-| NIST CSF Category:***                         | Identifies observations within the NIST CSF category                                                                                                             |
-| seccomp program:***                           | Identifies which program or external certification is affected by the observation                                                                                |
-| system::***                                   | Identifies what system is impacted by the observation                                                                                                            |
+| NIST CSF Function:*** | Identifies observations within the NIST CSF function|
+| NIST CSF Category:*** | Identifies observations within the NIST CSF category|
+| seccomp program:***| Identifies which program or external certification is affected by the observation|
+| system::***| Identifies what system is impacted by the observation|
 
 ### Identifying Observations
 
@@ -80,34 +79,34 @@ Tier 3 information system risk ratings are based on the formula below.
 
 At GitLab, observations will be rated based on the likelihood the observation has recurring and/or the frequency that the control has seen observations.
 
-| Qualitative <br> Score | Scoring Guidelines                                                                                                                                                                      |
-| :--------------------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|         **4**          | **Persistent/Systemic:** The control has recurring observations across multiple years OR the observation stems from a fundamental design flaw in the control.                           |
-|         **3**          | **Frequent:** The control has generated multiple observations within the current assessment period (12 months).                                                                         |
-|         **2**          | **Occasional:** Inadequate management oversight led to this observation, with potential for recurrence. This is the only observation for this control in the current assessment period. |
-|         **1**          | **Rare:** Isolated incident due to atypical circumstances. Unlikely to recur once addressed.                                                                                            |
+| Qualitative <br> Score |  Scoring Guidelines |
+| :--------------------: |  ------------------ |
+| **4** | **Persistent/Systemic:** The control has recurring observations across multiple years OR the observation stems from a fundamental design flaw in the control. |
+| **3** | **Frequent:** The control has generated multiple observations within the current assessment period (12 months). |
+| **2** | **Occasional:** Inadequate management oversight led to this observation, with potential for recurrence. This is the only observation for this control in the current assessment period.  |
+| **1** | **Rare:** Isolated incident due to atypical circumstances. Unlikely to recur once addressed. |
 
 #### Determine the impact of the observation
 
-_Note: When audit impact and remediation effort scores differ, use the higher score to ensure adequate attention and resources._
+*Note: When audit impact and remediation effort scores differ, use the higher score to ensure adequate attention and resources.*
 
-| Qualitative Score | External Audit Impact                                            | Remediation Effort                                                                                             |
-| ----------------- | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| 4                 | **Critical**: _Will_ result in a documented audit finding        | **Executive-level**: Requires C-suite sponsorship and cross-departmental coordination                          |
-| 3                 | **High**: _Likely_ to result in a documented audit finding       | **Director-level**: Requires director sponsorship and dedicated resources                                      |
-| 2                 | **Medium**: _Not Likely_ to result in a documented audit finding | **Manager-level**: Requires management oversight, process updates, and coordination within the department      |
-| 1                 | **Low**: _Would not_ result in audit finding                     | **Individual Contributor-level**: Simple reinforcement of existing processes or minor procedural clarification |
+| Qualitative Score | External Audit Impact | Remediation Effort |
+|---|---|---|
+| 4 | **Critical**: *Will* result in a documented audit finding | **Executive-level**: Requires C-suite sponsorship and cross-departmental coordination |
+| 3 | **High**: *Likely* to result in a documented audit finding | **Director-level**: Requires director sponsorship and dedicated resources|
+| 2 | **Medium**: *Not Likely* to result in a documented audit finding | **Manager-level**: Requires management oversight, process updates, and coordination within the department |
+| 1 | **Low**: *Would not* result in audit finding | **Individual Contributor-level**: Simple reinforcement of existing processes or minor procedural clarification |
 
 #### Determining Risk Rating
 
 Once the likelihood and impact scores are determined, the following table can be used to determine the risk rating for the observation:
 
-| Risk Rating | Risk Score Range |
-| :---------: | :--------------: |
-|  Critical   |        16        |
-|    High     |      12-15       |
-|   Medium    |       4-11       |
-|     Low     |       1-3        |
+|Risk Rating|Risk Score Range|
+|:---------:|:--------------:|
+|Critical|16|
+|High|12-15|
+|Medium|4-11|
+|Low|1-3|
 
 ### Observation Remediation
 
@@ -120,11 +119,11 @@ It is the responsibility of the Finding Coordinator to track the milestones, wor
 Observation remediation SLA's are determined by the risk rating of the individual observation. The following table shows the SLA for each risk rating unless otherwise defined by the agreed upon remediation plan.
 
 | Risk Rating | Remediation SLA |
-| :---------: | :-------------: |
-|  Critical   |    3 months     |
-|    High     |    6 months     |
-|   Medium    |    12 months    |
-|     Low     |    18 months    |
+| :---: | :---: |
+| Critical | 3 months|
+| High | 6 months|
+| Medium | 12 months|
+| Low | 18 months|
 
 ### Criteria for Upgrading Observations To Tier 2 Risks
 
@@ -173,12 +172,12 @@ Detailed write up:
 
 1. Open an observation following the [Observation Intake runbook](https://gitlab.com/gitlab-com/gl-security/security-assurance/security-compliance-commercial-and-dedicated/observation-management/-/blob/master/runbooks/1_Observation%20Intake%20and%20Management.md?ref_type=heads) (internal only).
 1. If the observation meets the criteria for being upgraded, tag the [StORM DRI](/handbook/security/security-assurance/security-risk/#storm) and apply label ~upgraded::storm-managed if an ELC or ~upgraded:storm-shared if added to an observation epic.
-   1. Definitions of labels:
-      1. `Upgraded::StORM-Managed` : StORM risk managers are solely responsible for tracking remediation activities
-      1. `Upgraded::StORM-Shared` : Remediation of the observation and risk is shared by the StORM risk managers and the observation manager. The StORM risk manager may track remediation activities spanning multiple systems via a common initiative, while the observation manager would be responsible for remediation of the specific system. See the [collaborative remediation](#collaborative-remediation) section for more details.
+    1. Definitions of labels:
+        1. `Upgraded::StORM-Managed` : StORM risk managers are solely responsible for tracking remediation activities
+        1. `Upgraded::StORM-Shared` : Remediation of the observation and risk is shared by the StORM risk managers and the observation manager. The StORM risk manager may track remediation activities spanning multiple systems via a common initiative, while the observation manager would be responsible for remediation of the specific system. See the [collaborative remediation](#collaborative-remediation) section for more details.
 1. When the Security Risk team is tagged, someone on that team will determine if there is a risk represented for the observation meeting the criteria.
-   1. If there is an existing risk, they will map the observation to the risk and leave a comment in the GitLab issues for transparency.
-   1. If there is not an existing risk, they will open a new risk following the [StORM Risk Intake runbook](https://gitlab.com/gitlab-com/gl-security/security-assurance/security-risk-team/storm/-/blob/master/runbooks/storm-risk-intake-gl.md?ref_type=heads) (internal only).
+    1. If there is an existing risk, they will map the observation to the risk and leave a comment in the GitLab issues for transparency.
+    1. If there is not an existing risk, they will open a new risk following the [StORM Risk Intake runbook](https://gitlab.com/gitlab-com/gl-security/security-assurance/security-risk-team/storm/-/blob/master/runbooks/storm-risk-intake-gl.md?ref_type=heads) (internal only).
 1. An entity level control, the observation will be entirely managed by the StORM program at the tier 2 risk level, represented by the `Upgraded::StORM-Managed` label.
 1. If the Observation is not an entity level control, Security Compliance will work with Security Risk for collaborative remediation with the remediation owner(s).
 
@@ -190,13 +189,13 @@ Security Compliance and Security Risk should look for opportunities to remediate
 
 Defined below are status labels that will aide in the process of managing remediation of observations.
 
-| Label                                           | Definition                                                                                                                                                      |
-| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Blocked:: Awaiting Remediation Owner Input`    | This flags indicates the observation manager is waiting for response from the remediation owner.                                                                |
-| `Blocked:: Awaiting Observation Manager Input`  | This flags the issue for the observation manager on the SecAssurance team                                                                                       |
-| `Blocked:: New tool implementation in progress` | This flags the issue for pending completion of the new tool                                                                                                     |
-| `Upgraded::StORM-Managed`                       | This label will be leverage when the observation has been upgraded to a tier 2 risk and will be managed in the StORM program                                    |
-| `Upgraded::StORM-Shared`                        | This label will be leverage when the observation has been upgraded to a tier 2 risk and remediation is shared by the Security Risk and Security Compliance team |
+| Label| Definition|
+|--|--|
+|`Blocked:: Awaiting Remediation Owner Input`| This flags indicates the observation manager is waiting for response from the remediation owner. |
+|`Blocked:: Awaiting Observation Manager Input`| This flags the issue for the observation manager on the SecAssurance team|
+|`Blocked:: New tool implementation in progress` |This flags the issue for pending completion of the new tool|
+|`Upgraded::StORM-Managed` | This label will be leverage when the observation has been upgraded to a tier 2 risk and will be managed in the StORM program|
+|`Upgraded::StORM-Shared` | This label will be leverage when the observation has been upgraded to a tier 2 risk and remediation is shared by the Security Risk and Security Compliance team|
 
 </details>
 

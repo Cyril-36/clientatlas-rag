@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Theseus Platform Vision"
 description: "GitLab's internal developer platform: the architectural contract for delivering components across GitLab.com, Dedicated, and Self-Managed."
 status: proposed
@@ -30,11 +29,11 @@ toc_hide: true
 The document is long,
 and different audiences should review different sections.
 
-| If you are…  | Read                                                                                                                                                                                                                                                            |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| An executive | [Section 0](#0--executive-summary), [Section 1](#1--why-theseus-why-now), [Section 2](#2--what-is-theseus), [Section 7](#7--whats-not-yet-covered), [Section 8](#8--how-we-measure-success) (≈5 pages)                                                          |
-| A manager    | [Section 0](#0--executive-summary)–[Section 4](#4--one-platform-many-bindings), skim [Section 5](#5--how-it-works-the-developer-journey), then [Section 6](#6--theseus-for-the-gitlab-deployment-operator)–[Section 9](#9--what-needs-to-ship-next) (≈12 pages) |
-| An engineer  | All of it, plus the [appendices](#appendices)                                                                                                                                                                                                                   |
+| If you are… | Read |
+|---|---|
+| An executive | [Section 0](#0--executive-summary), [Section 1](#1--why-theseus-why-now), [Section 2](#2--what-is-theseus), [Section 7](#7--whats-not-yet-covered), [Section 8](#8--how-we-measure-success) (≈5 pages) |
+| A manager | [Section 0](#0--executive-summary)–[Section 4](#4--one-platform-many-bindings), skim [Section 5](#5--how-it-works-the-developer-journey), then [Section 6](#6--theseus-for-the-gitlab-deployment-operator)–[Section 9](#9--what-needs-to-ship-next) (≈12 pages) |
+| An engineer | All of it, plus the [appendices](#appendices) |
 
 ---
 
@@ -43,15 +42,15 @@ and different audiences should review different sections.
 Architectural decisions taken in service of this vision are recorded as ADRs in the `decisions/` directory.
 Each ADR captures the context, the decision, its consequences, and the alternatives considered.
 
-| ADR                                                              | Title                                                                               | Status   |
-| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------- |
-| [001](decisions/001_protobuf_as_preferred_schema_language.md)    | Protobuf as the preferred schema language                                           | Proposed |
-| [002](decisions/002_one_interface_many_bindings.md)              | One declarative interface, many Platform Bindings                                   | Proposed |
-| [003](decisions/003_enterprise_binding_survives_cell_outages.md) | Enterprise Platform Binding services must survive Cell outages                      | Proposed |
-| [004](decisions/004_independent_vs_bundled_releases.md)          | Independent per-component deploys for GitLab.com; bundled releases for Self-Managed | Proposed |
-| [005](decisions/005_labkit_go_native_go_library.md)              | LabKit Go remains a native Go library                                               | Proposed |
-| [006](decisions/006_lab_bench_assemblies_are_first_class.md)     | Lab Bench assemblies are first-class platform components                            | Proposed |
-| [007](decisions/007_prefer_labkit_library_over_assembly.md)      | Prefer LabKit library code over assembly-framework implementations                  | Proposed |
+| ADR | Title | Status |
+|---|---|---|
+| [001](decisions/001_protobuf_as_preferred_schema_language.md) | Protobuf as the preferred schema language | Proposed |
+| [002](decisions/002_one_interface_many_bindings.md) | One declarative interface, many Platform Bindings | Proposed |
+| [003](decisions/003_enterprise_binding_survives_cell_outages.md) | Enterprise Platform Binding services must survive Cell outages | Proposed |
+| [004](decisions/004_independent_vs_bundled_releases.md) | Independent per-component deploys for GitLab.com; bundled releases for Self-Managed | Proposed |
+| [005](decisions/005_labkit_go_native_go_library.md) | LabKit Go remains a native Go library | Proposed |
+| [006](decisions/006_lab_bench_assemblies_are_first_class.md) | Lab Bench assemblies are first-class platform components | Proposed |
+| [007](decisions/007_prefer_labkit_library_over_assembly.md) | Prefer LabKit library code over assembly-framework implementations | Proposed |
 
 ---
 
@@ -81,7 +80,7 @@ and teams may choose to adopt them.
 
 ### Guiding principles
 
-These principles were originally lifted from the _Guiding Principles_ section of the [canonical Theseus design document](https://docs.google.com/document/d/1tOYqFsLQ7axB2ZWQ4mORf9fVzYHNI3yC5j3MPwRk8i4) and have been adapted in the course of writing this vision document.
+These principles were originally lifted from the *Guiding Principles* section of the [canonical Theseus design document](https://docs.google.com/document/d/1tOYqFsLQ7axB2ZWQ4mORf9fVzYHNI3yC5j3MPwRk8i4) and have been adapted in the course of writing this vision document.
 
 1. **Paved paths, not gates.**
    Make the right thing the fast thing.
@@ -97,18 +96,16 @@ These principles were originally lifted from the _Guiding Principles_ section of
    Instead, Theseus is a single common platform capable of tackling deployment
    problems across multiple domains,
    so the next new component does not require its own bespoke platform.
-
 3. **Convention over configuration.**
    Services declare what they need, rather than how it's provided.
 
-   Closely related to this is _Defaults over decisions._
+   Closely related to this is *Defaults over decisions.*
    Observability, security, and connectivity should work out of the box,
    and sensible defaults should be applied unless there is a reason not to.
    Guardrails suited to GitLab's policies, architecture, and operational
    practices are part of those defaults, not bolted on after the fact.
 
    Rather than opting in, teams should have to deliberately opt out of good behaviour.
-
 4. **One platform, everywhere GitLab runs.**
    What runs on a developer workstation runs in CI, GitLab.com, Dedicated, and Self-Managed.
 5. **Well-defined interfaces.**
@@ -117,7 +114,7 @@ These principles were originally lifted from the _Guiding Principles_ section of
    Interfaces must evolve while supporting backwards- and forwards- compatibility.
    Interfaces must be machine-readable, where applicable.
 6. **Separation of intent from mechanism.** Theseus allows teams to
-   define the _What_, the desired state, and leave the _How_,
+   define the *What*, the desired state, and leave the *How*,
    the means of achieving that state, to the implementation.
    Different implementations may have different ways of reaching the
    desired state.
@@ -142,7 +139,7 @@ Infrastructure processes designed for evolutionary change have not kept pace,
 and the result is a delivery bottleneck:
 features ship to GitLab.com but stall before reaching Dedicated and Self-Managed customers.
 
-[DORA's 2025 _State of AI-Assisted Software Development_ report](https://dora.dev/research/2025/dora-report/)
+[DORA's 2025 *State of AI-Assisted Software Development* report](https://dora.dev/research/2025/dora-report/)
 finds that when platform quality is high, the effect of AI adoption on organisational performance is strongly positive;
 when it is low, the effect is negligible.
 
@@ -184,11 +181,11 @@ The full set of components is maintained as a single source of truth in [Section
 > Theseus enforces one architectural boundary throughout:
 > the separation of what software needs from how infrastructure provides it.
 >
-> _Developers declare requirements._
+> *Developers declare requirements.*
 > A service says "I need a PostgreSQL compatible database, a key-value store, and object storage."
 > It never specifies which instance, where it runs, or how to connect.
 >
-> _Operators satisfy requirements._
+> *Operators satisfy requirements.*
 > They define the infrastructure that exists and how services bind to it.
 > Whether six services share one database or each gets its own is an operator decision,
 > not an application decision.
@@ -196,24 +193,24 @@ The full set of components is maintained as a single source of truth in [Section
 Theseus defines the contractual interface between stream-aligned Application Development teams
 building modular features, and the Platform Engineering team.
 
-Application Development teams define the "_What_":
+Application Development teams define the "*What*":
 
-- _what_ needs to be built
-- _what_ needs to be observed
-- _what_ needs to be executed at runtime
-- _what_ dependencies the application has
+- *what* needs to be built
+- *what* needs to be observed
+- *what* needs to be executed at runtime
+- *what* dependencies the application has
 
-The Platform Engineering team will define the "_How_":
+The Platform Engineering team will define the "*How*":
 
-- _how_ to build the artifacts
-- _how_ to observe the application
-- _how_ to execute the code at runtime
-- _how_ to satisfy the dependencies
+- *how* to build the artifacts
+- *how* to observe the application
+- *how* to execute the code at runtime
+- *how* to satisfy the dependencies
 
-The "_What_" is defined by a stable, well-defined, documented interface as its contract.
-The "_How_" is an implementation detail, not defined by the contract.
+The "*What*" is defined by a stable, well-defined, documented interface as its contract.
+The "*How*" is an implementation detail, not defined by the contract.
 Different GitLab Platforms, GitLab.com vs. Cells, for instance, may have different implementations
-of the "_How_", and these can change at any time,
+of the "*How*", and these can change at any time,
 provided the contract defined in the interface is satisfied.
 
 For example, an Application Development team may declare that what their application needs is a Postgres database.
@@ -230,19 +227,19 @@ such as ClickHouse, ValKey, etc.
 
 Besides dependencies, Theseus follows the same approach in other domains:
 for example, the GitLab Metrics Operator provides module developers with a way to
-describe _what_ the service levels for a module are,
-_what_ the bottlenecks for saturation are, and the GitLab Metrics Operator will
-define _how_ this is done, using Prometheus Recording Rules,
+describe *what* the service levels for a module are,
+*what* the bottlenecks for saturation are, and the GitLab Metrics Operator will
+define *how* this is done, using Prometheus Recording Rules,
 Prometheus Alerts, Tamland for Capacity Planning, etc.
 
 ### 2.3 What is an interface?
 
-The previous section described Theseus as the _contractual interface_
+The previous section described Theseus as the *contractual interface*
 between Application Development teams and Platform Engineering.
 This section pins down what we mean by "interface" in that sentence.
 
 In Theseus, an **interface** is a stable, typed, versioned contract
-between a _producer_ and a _consumer_.
+between a *producer* and a *consumer*.
 The producer cannot dictate consumer behaviour,
 and the consumer cannot depend on producer internals.
 
@@ -278,12 +275,12 @@ can still be a badly-designed abstraction.
 
 The discipline of good interface design, in the sense Theseus uses the term,
 is set out most concisely in John Ousterhout's
-[_A Philosophy of Software Design_](https://web.stanford.edu/~ouster/cgi-bin/aposd.php).
+[*A Philosophy of Software Design*](https://web.stanford.edu/~ouster/cgi-bin/aposd.php).
 
 Three of his principles are important in the context of Theseus:
 
 - **Deep, not shallow.**
-  A good interface is _simple relative to the implementation behind it_.
+  A good interface is *simple relative to the implementation behind it*.
   A `FairwayManifest` is a few dozen lines of YAML;
   the platform binding that satisfies it provisions databases, secrets,
   observability, networking, and runtime.
@@ -302,7 +299,7 @@ Three of his principles are important in the context of Theseus:
   so the next component team does not.
 
 Interfaces should be evaluated against Ousterhout's test:
-_is the interface simpler than the implementation it conceals?_
+*is the interface simpler than the implementation it conceals?*
 If not, it may be worth redesigning.
 
 #### 2.3.1 Interfaces in Theseus take several forms
@@ -517,7 +514,7 @@ a moving assembly line.
 However, in order to get there, we need to resist the common antipattern that prevents us from
 delivering on the goal of Theseus as a platform-as-a-product.
 The argument always sounds reasonable on its merits:
-every new component that comes along _urgently_ needs to be delivered _ASAP_!
+every new component that comes along *urgently* needs to be delivered *ASAP*!
 The time needed to build the assembly line needs to be pushed back,
 just a little, until the current urgent project is completed,
 possibly after the next quarter.
@@ -559,7 +556,7 @@ River Rouge took it further in the 1920s, with full vertical integration.
 Production of the car never stopped while the assembly line was being built.
 The factory and the product were developed in parallel,
 each iteration of the production system absorbing learnings from the cars rolling off the previous one.
-The assembly line was the _outcome_ of iterating against a real production workload,
+The assembly line was the *outcome* of iterating against a real production workload,
 not a precondition for starting one.
 
 The same applies to Theseus.
@@ -589,35 +586,35 @@ but not yet enumerated here.
 
 #### Theseus platform components
 
-| Name                                                                              | Role                                                                                                                                                                                                                                                                                                | Status                | Exists today?                              | Owner team                 | Primary link                                                                                                                     |
-| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- | ------------------------------------------ | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| **Theseus CLI**                                                                   | Developer-facing CLI for initialising new components, handling source-code migrations, and other cross-component tooling tasks                                                                                                                                                                      | In active development | ✅                                         | Platform Engineering (TBD) | [`gitlab-org/theseus`](https://gitlab.com/gitlab-org/theseus/)                                                                   |
-| **Caproni**                                                                       | Runs the full Cloud Native stack on a developer workstation; hot-reload dev-loop via [`mirrord`](https://mirrord.dev/)                                                                                                                                                                              | In active development | ✅                                         | Developer Experience       | [`gitlab-org/caproni`](https://gitlab.com/gitlab-org/caproni)                                                                    |
-| **Fairway**                                                                       | Chart generator — turns a `FairwayManifest` (abstract infra needs) into a self-contained Helm chart                                                                                                                                                                                                 | In active development | ✅ (carved out of `runwayctl`, April 2026) | Runway team                | [`gl-infra/platform/runway/fairway`](https://gitlab.com/gitlab-com/gl-infra/platform/runway/fairway)                             |
-| **LabKit**                                                                        | Standard library: structured logging, OpenTelemetry metrics & traces, FIPS-compliant cryptography, typed (protobuf) configuration, request-context propagation                                                                                                                                      | In active development | ✅                                         | Developer Experience       | [LabKit handbook](/handbook/engineering/infrastructure-platforms/developer-experience/labkit/)                                   |
-| **`common-template-copier`**                                                      | [Copier](https://copier.readthedocs.io/)-based project bootstrapper; propagates template updates to onboarded projects via Renovate                                                                                                                                                                 | In production         | ✅                                         | Platform Engineering       | [`gl-infra/common-template-copier`](https://gitlab.com/gitlab-com/gl-infra/common-template-copier)                               |
-| **`common-ci-tasks`**                                                             | Library of reusable [GitLab CI Components](https://docs.gitlab.com/ci/components/) for build, test, lint, scan, and release                                                                                                                                                                         | In production         | ✅                                         | Platform Engineering       | [`gl-infra/common-ci-tasks`](https://gitlab.com/gitlab-com/gl-infra/common-ci-tasks)                                             |
-| **Infra-Mgmt**                                                                    | Automates the creation and management of GitLab repositories on GitLab.com — baseline project requirements, Vault integration, secrets rotation, mirroring                                                                                                                                          | In production         | ✅                                         | Platform Engineering       | [`gl-infra/infra-mgmt`](https://gitlab.com/gitlab-com/gl-infra/infra-mgmt)                                                       |
-| **TUBE** (Totally Unified Build Environment)                                      | Centralised build platform — one canonical per-component artefact for Omnibus, CNG, and downstream Theseus tooling; SBOM/VEX sidecache                                                                                                                                                              | In active development | ⚠ partial                                  | Build team                 | [TUBE MR](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/11660)                                           |
-| **Component Ownership Model (COM)**                                               | Direct ownership path for the infrastructure changes a component depends on (Terraform modules) — GitLab.com & Dedicated only                                                                                                                                                                       | In production         | ✅                                         | Platform Engineering       | [COM handbook](/handbook/engineering/infrastructure-platforms/production/component-ownership-model/)                             |
-| **Release Framework**                                                             | Standardised path components take to reach customers — independent per-component deploys on GitLab.com SAAS, bundled monthly releases on Self-Managed                                                                                                                                               | In active development | ⚠ partial                                  | Platform Engineering       | [Release Framework design doc](https://internal.gitlab.com/handbook/engineering/architecture/design-documents/release-platform/) |
-| **GitLab Metrics Operator**                                                       | Declarative SLIs/SLOs, saturation, capacity forecasting, alert routing; Kubernetes-native successor to the Metrics Catalog                                                                                                                                                                          | Proposed              | ❌                                         | Platform Engineering       | [Metrics Operator proposal](https://docs.google.com/document/d/1vXBnoqOPREk5j_2YYF9zTwnFgUQKGfhrxC471QgOs8M)                     |
-| **GitLab Kubernetes Operator**                                                    | Kubernetes operator built on top of the Helm charts; provides intelligent day-2 orchestration — zero-downtime upgrades, schema migrations, backups, restore, lifecycle choreography                                                                                                                 | Proposed              | ❌                                         | Platform Engineering (TBD) | [Section 6.2.2](#622-the-gitlab-kubernetes-operator)                                                                             |
-| **Bridge**                                                                        | UI in front of the GitLab Kubernetes Operator; lets the GitLab Deployment Operator enable, disable, and configure Modular Components through a UI that writes the values the GitLab Kubernetes Operator converges on. Analogous to Switchboard for Dedicated, but for the GitLab application itself | Proposed              | ❌                                         | Platform Engineering (TBD) | [Section 6.2.3](#623-bridge)                                                                                                     |
-| **Theseus Platform docs site** (intended canonical URL `docs.theseus.gitlab.com`) | Curated, navigable static site for platform documentation — modelled on [`docs.runway.gitlab.com`](https://docs.runway.gitlab.com/); currently published from [`gitlab-org/theseus`](https://gitlab.com/gitlab-org/theseus/) at [`theseus-6298f3.gitlab.io`](https://theseus-6298f3.gitlab.io/)     | In progress           | 🚧                                         | Platform Engineering       | [`gitlab-org/theseus`](https://gitlab.com/gitlab-org/theseus/)                                                                   |
+| Name | Role                                                                                                                                                                                                                                                                                                | Status | Exists today? | Owner team | Primary link |
+|---|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|---|---|---|
+| **Theseus CLI** | Developer-facing CLI for initialising new components, handling source-code migrations, and other cross-component tooling tasks                                                                                                                                                                      | In active development | ✅ | Platform Engineering (TBD) | [`gitlab-org/theseus`](https://gitlab.com/gitlab-org/theseus/) |
+| **Caproni** | Runs the full Cloud Native stack on a developer workstation; hot-reload dev-loop via [`mirrord`](https://mirrord.dev/)                                                                                                                                                                              | In active development | ✅ | Developer Experience | [`gitlab-org/caproni`](https://gitlab.com/gitlab-org/caproni) |
+| **Fairway** | Chart generator — turns a `FairwayManifest` (abstract infra needs) into a self-contained Helm chart                                                                                                                                                                                                 | In active development | ✅ (carved out of `runwayctl`, April 2026) | Runway team | [`gl-infra/platform/runway/fairway`](https://gitlab.com/gitlab-com/gl-infra/platform/runway/fairway) |
+| **LabKit** | Standard library: structured logging, OpenTelemetry metrics & traces, FIPS-compliant cryptography, typed (protobuf) configuration, request-context propagation                                                                                                                                      | In active development | ✅ | Developer Experience | [LabKit handbook](/handbook/engineering/infrastructure-platforms/developer-experience/labkit/) |
+| **`common-template-copier`** | [Copier](https://copier.readthedocs.io/)-based project bootstrapper; propagates template updates to onboarded projects via Renovate                                                                                                                                                                 | In production | ✅ | Platform Engineering | [`gl-infra/common-template-copier`](https://gitlab.com/gitlab-com/gl-infra/common-template-copier) |
+| **`common-ci-tasks`** | Library of reusable [GitLab CI Components](https://docs.gitlab.com/ci/components/) for build, test, lint, scan, and release                                                                                                                                                                         | In production | ✅ | Platform Engineering | [`gl-infra/common-ci-tasks`](https://gitlab.com/gitlab-com/gl-infra/common-ci-tasks) |
+| **Infra-Mgmt** | Automates the creation and management of GitLab repositories on GitLab.com — baseline project requirements, Vault integration, secrets rotation, mirroring                                                                                                                                          | In production | ✅ | Platform Engineering | [`gl-infra/infra-mgmt`](https://gitlab.com/gitlab-com/gl-infra/infra-mgmt) |
+| **TUBE** (Totally Unified Build Environment) | Centralised build platform — one canonical per-component artefact for Omnibus, CNG, and downstream Theseus tooling; SBOM/VEX sidecache                                                                                                                                                              | In active development | ⚠ partial | Build team | [TUBE MR](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/11660) |
+| **Component Ownership Model (COM)** | Direct ownership path for the infrastructure changes a component depends on (Terraform modules) — GitLab.com & Dedicated only                                                                                                                                                                       | In production | ✅ | Platform Engineering | [COM handbook](/handbook/engineering/infrastructure-platforms/production/component-ownership-model/) |
+| **Release Framework** | Standardised path components take to reach customers — independent per-component deploys on GitLab.com SAAS, bundled monthly releases on Self-Managed                                                                                                                                               | In active development | ⚠ partial | Platform Engineering | [Release Framework design doc](https://internal.gitlab.com/handbook/engineering/architecture/design-documents/release-platform/) |
+| **GitLab Metrics Operator** | Declarative SLIs/SLOs, saturation, capacity forecasting, alert routing; Kubernetes-native successor to the Metrics Catalog                                                                                                                                                                          | Proposed | ❌ | Platform Engineering | [Metrics Operator proposal](https://docs.google.com/document/d/1vXBnoqOPREk5j_2YYF9zTwnFgUQKGfhrxC471QgOs8M) |
+| **GitLab Kubernetes Operator** | Kubernetes operator built on top of the Helm charts; provides intelligent day-2 orchestration — zero-downtime upgrades, schema migrations, backups, restore, lifecycle choreography                                                                                                                 | Proposed | ❌ | Platform Engineering (TBD) | [Section 6.2.2](#622-the-gitlab-kubernetes-operator) |
+| **Bridge** | UI in front of the GitLab Kubernetes Operator; lets the GitLab Deployment Operator enable, disable, and configure Modular Components through a UI that writes the values the GitLab Kubernetes Operator converges on. Analogous to Switchboard for Dedicated, but for the GitLab application itself | Proposed | ❌ | Platform Engineering (TBD) | [Section 6.2.3](#623-bridge) |
+| **Theseus Platform docs site** (intended canonical URL `docs.theseus.gitlab.com`) | Curated, navigable static site for platform documentation — modelled on [`docs.runway.gitlab.com`](https://docs.runway.gitlab.com/); currently published from [`gitlab-org/theseus`](https://gitlab.com/gitlab-org/theseus/) at [`theseus-6298f3.gitlab.io`](https://theseus-6298f3.gitlab.io/)     | In progress | 🚧 | Platform Engineering | [`gitlab-org/theseus`](https://gitlab.com/gitlab-org/theseus/) |
 
 #### Platform Bindings
 
 Each Platform Binding implements the Theseus contract against a specific deployment target.
 See [Section 4](#4--one-platform-many-bindings) for the per-target detail and trade-offs.
 
-| Name                                   | Role                                                                                                                                                                                                                               | Status                               | Exists today?                                                 | Owner team           | Primary link                                                                             |
-| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------------------------------------------------------------- | -------------------- | ---------------------------------------------------------------------------------------- |
-| **Enterprise Platform Binding**        | Hosts GitLab Inc operational services (e.g. [`customers.gitlab.com`](https://customers.gitlab.com), license generation, billing aggregation); resolves Fairway dependencies against GitLab-Inc-operated cloud accounts             | To be built (may evolve from Runway) | ❌                                                            | Runway team          | —                                                                                        |
-| **GitLab.com Legacy binding**          | The existing Runway deployment infrastructure in CI/CD                                                                                                                                                                             | In production                        | ✅                                                            | Runway team          | [`docs.runway.gitlab.com`](https://docs.runway.gitlab.com/)                              |
-| **Cells & Dedicated Platform Binding** | Shared COM module for Instrumentor across Cells, Dedicated, and Dedicated for Government; AWS RDS / ElastiCache / S3                                                                                                               | In active development                | ⚠ partial (Instrumentor exists; the Theseus binding does not) | Platform Engineering | —                                                                                        |
-| **Self-Managed Platform Binding**      | Effectively a no-op — Helm or Helmfile only; customers bring their own databases, Redis/Valkey, and similar services                                                                                                               | To be built                          | ❌                                                            | Platform Engineering | —                                                                                        |
-| **Caproni Platform Binding**           | Full-service Kubernetes-only binding for the developer workstation; in-cluster Postgres, Redis/Valkey, ClickHouse via operators; built on [`gitlab-dev-stack`](https://gitlab.com/gitlab-org/cloud-native/charts/gitlab-dev-stack) | In active development                | ⚠ partial                                                     | Developer Experience | [`gitlab-dev-stack`](https://gitlab.com/gitlab-org/cloud-native/charts/gitlab-dev-stack) |
+| Name | Role | Status | Exists today? | Owner team | Primary link |
+|---|---|---|---|---|---|
+| **Enterprise Platform Binding** | Hosts GitLab Inc operational services (e.g. [`customers.gitlab.com`](https://customers.gitlab.com), license generation, billing aggregation); resolves Fairway dependencies against GitLab-Inc-operated cloud accounts | To be built (may evolve from Runway) | ❌ | Runway team | — |
+| **GitLab.com Legacy binding** | The existing Runway deployment infrastructure in CI/CD | In production | ✅ | Runway team | [`docs.runway.gitlab.com`](https://docs.runway.gitlab.com/) |
+| **Cells & Dedicated Platform Binding** | Shared COM module for Instrumentor across Cells, Dedicated, and Dedicated for Government; AWS RDS / ElastiCache / S3 | In active development | ⚠ partial (Instrumentor exists; the Theseus binding does not) | Platform Engineering | — |
+| **Self-Managed Platform Binding** | Effectively a no-op — Helm or Helmfile only; customers bring their own databases, Redis/Valkey, and similar services | To be built | ❌ | Platform Engineering | — |
+| **Caproni Platform Binding** | Full-service Kubernetes-only binding for the developer workstation; in-cluster Postgres, Redis/Valkey, ClickHouse via operators; built on [`gitlab-dev-stack`](https://gitlab.com/gitlab-org/cloud-native/charts/gitlab-dev-stack) | In active development | ⚠ partial | Developer Experience | [`gitlab-dev-stack`](https://gitlab.com/gitlab-org/cloud-native/charts/gitlab-dev-stack) |
 
 ### 2.8 Lab Bench and the wider Theseus initiative
 
@@ -678,18 +675,18 @@ Component teams are not treated as internal users, but as customers.
 
 ### 3.1 The team topology
 
-Using terminology from [_Team Topologies_](https://teamtopologies.com/key-concepts):
+Using terminology from [*Team Topologies*](https://teamtopologies.com/key-concepts):
 
 ![Team Topologies diagram for Theseus](/images/handbook/engineering/architecture/design-documents/theseus_platform_vision/team-topology.png)<br>
-<small>_A team topology diagram in the style of the book Team Topologies._</small>
+<small>*A team topology diagram in the style of the book Team Topologies.*</small>
 
 - **Stream-aligned teams**: GitLab Application Developer teams (Component Owner teams, modular feature teams),
   plus the GitLab Inc service teams that build non-GitLab-product operational services (e.g., `customers.gitlab.com`).
   Each team owns a continuous flow of work for a slice of the product or the operational surface around it.
-  _These teams are Theseus's customers._
+  *These teams are Theseus's customers.*
 - **Platform team**: Platform Engineering.
-  Theseus is the _platform_;
-  Platform Engineering is the _department_ that builds and runs it.
+  Theseus is the *platform*;
+  Platform Engineering is the *department* that builds and runs it.
   The department's success is measured by the velocity of the stream-aligned teams it serves,
   not by the volume of platform features it ships.
 - **Enabling teams**: the [proposed Reliability Engineering Team](https://docs.google.com/document/d/1230kyYmA8in356TaDssggGHW1N_pRxYGhFFCKps741g/) —
@@ -700,8 +697,8 @@ Using terminology from [_Team Topologies_](https://teamtopologies.com/key-concep
   along with its embedded integration SREs:
   same consulting shape (small, senior, no on-call, paved-road-first),
   but generalised from a single-programme effort to a sustained, org-wide practice focused on reliability.
-  Theseus is the _platform substrate_ for reliability;
-  the Reliability Engineering Team is the _practice layer_ embedded in the teams that build on it.
+  Theseus is the *platform substrate* for reliability;
+  the Reliability Engineering Team is the *practice layer* embedded in the teams that build on it.
   Enablement will continue to be part of the Theseus offering, but
   as Theseus evolves, the total time per direct engagement will
   reduce over time, as the documentation, customer expertise,
@@ -710,7 +707,6 @@ Using terminology from [_Team Topologies_](https://teamtopologies.com/key-concep
   This shape of the SRE enablement and automation (rather than the reactive escalation layer)
   will evolve as we move towards the Step 2 end state described in
   [Shifting Siloed to DevOps model](https://docs.google.com/document/d/1A8KR9BYTtT8oIsY6H8ksHYNDRun2e7DCeBNaHqBczJg/).
-
 - **Complicated Subsystem Teams**: specialist teams that own deep technical subsystems behind a well-defined interface,
   so neither the platform team nor stream-aligned teams need to absorb that expertise.
   Current examples are the Database Reliability Engineering (DBRE) team providing Database-as-a-Service,
@@ -724,9 +720,9 @@ Using terminology from [_Team Topologies_](https://teamtopologies.com/key-concep
 
 Team Topologies describes the discipline that keeps the relationship sustainable:
 the [Thinnest Viable Platform](https://teamtopologies.com/key-concepts-content/what-is-a-thinnest-viable-platform-tvp) —
-_"a careful balance between keeping the platform small and ensuring that the platform is helping to accelerate and simplify software delivery for teams building on the platform."_
+*"a careful balance between keeping the platform small and ensuring that the platform is helping to accelerate and simplify software delivery for teams building on the platform."*
 Theseus standardises what's shared and repeatable rather than absorbing every problem in sight, or from the
-[guiding principles](#guiding-principles): _"One platform for every team. Not every problem"_.
+[guiding principles](#guiding-principles): *"One platform for every team. Not every problem"*.
 
 ### 3.2 Platform-as-a-product commitments
 
@@ -763,7 +759,7 @@ By providing a Platform-as-a-product, the Platform Engineering team commits to t
   - **The Theseus Platform docs site** — providing documentation for customers on how to self-serve on the platform.
     This would be similar to the excellent Runway documentation available at [docs.runway.gitlab.com](https://docs.runway.gitlab.com/).
   - **Modular Component documentation** — providing documentation to the GitLab Deployment Operator and GitLab team members on the Modular Components themselves.
-    See [Section 5.2.1](#521-documentation) for more details.
+  See [Section 5.2.1](#521-documentation) for more details.
 
 ### 3.3 Adoption scope
 
@@ -799,7 +795,7 @@ for example, components scoped to [GATE](https://gitlab.com/gitlab-org/architect
 or `customers.gitlab.com` —
 adoption is voluntary, but strongly recommended.
 
-Platform Engineering's mandate is to build a _Platform Product_
+Platform Engineering's mandate is to build a *Platform Product*
 through which application services reach every GitLab deployment target —
 GitLab.com, Dedicated, Dedicated for Government,
 and the Self-Managed variants (Cloud Native and Omnibus).
@@ -857,7 +853,7 @@ The Platform Bindings to be developed are:
   which packages the set of operators Caproni will work with.
 
 The Caproni binding is a component in its own right, implemented independently of Caproni —
-possibly as a small operator — that works _with_ Caproni to deliver Modular Components into a Caproni cluster.
+possibly as a small operator — that works *with* Caproni to deliver Modular Components into a Caproni cluster.
 It resolves a component's Fairway manifest into the Custom Resources that the operators
 packaged in `gitlab-dev-stack` reconcile into running database, key-value, and object-storage instances:
 
@@ -920,20 +916,20 @@ flowchart LR
     style stack fill:#f5f0fa,stroke:#b8a8d4,stroke-width:1.5px,stroke-dasharray: 6 4,color:#3d2553
 ```
 
-<small>_The Self-Managed Platform Binding for Caproni resolves Fairway manifests into Custom Resources, which the operators in `gitlab-dev-stack` reconcile into in-cluster instances._</small>
+<small>*The Self-Managed Platform Binding for Caproni resolves Fairway manifests into Custom Resources, which the operators in `gitlab-dev-stack` reconcile into in-cluster instances.*</small>
 
 ### 4.1 The target matrix
 
-| Target                                   | Tenancy                               | Orchestrator                                                                                  | Today's path                                                      | Theseus role                                                                                                                                                                                                                                                                           |
-| ---------------------------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Caproni (developer workstation)          | Single-developer                      | k3d / Colima                                                                                  | Direct CNG Helm                                                   | Same artifacts; in-cluster dependencies via `gitlab-dev-stack` (operators for ClickHouse, Postgres, Valkey (tbd), CertManager)                                                                                                                                                         |
-| Enterprise (GitLab Inc operated)         | Non-tenant-aligned                    | Kubernetes (likely GKE)                                                                       | Bespoke per-service today                                         | Same Fairway-generated charts; dependencies resolved against GitLab-Inc cloud accounts; no synchronous GitLab Application dependencies                                                                                                                                                 |
-| GitLab.com (multi-tenant SAAS)           | Single big tenant                     | GKE + ArgoCD                                                                                  | Runway → ArgoCD                                                   | Shared infrastructure, logical isolation per module                                                                                                                                                                                                                                    |
-| Cells                                    | Multi-tenant SAAS, horizontally split | EKS via AMP + Instrumentor + Tissue + ringctl + Argo Rollouts (?)                             | Same charts as Dedicated                                          | Same JSON tenant model as Dedicated, different storage; ringctl adds rings                                                                                                                                                                                                             |
-| Dedicated                                | Single-tenant SAAS                    | EKS via AMP + Instrumentor + Switchboard + Argo Rollouts (?)                                  | Helm chart deployed via AMP + Instrumentor                        | Future: Fairway-generated charts via Instrumentor                                                                                                                                                                                                                                      |
-| Dedicated for Government (FedRAMP / IL5) | Single-tenant gov-cloud               | EKS GovCloud via AMP + Instrumentor + Switchboard + Argo Rollouts (?)                         | Same as Dedicated, inside FedRAMP boundary                        | Built on top of Dedicated controls; reduced re-authorization                                                                                                                                                                                                                           |
-| Self-Managed Advanced (SMA)              | Customer-owned                        | Customer Kubernetes + GitLab Helm chart or GitLab Kubernetes Operator with optional Bridge UI | Charts via OCI registry; customer provides the Kubernetes cluster | Per-service charts + dependency manifest; GitLab Kubernetes Operator for day-2 automation on top of the same charts; optional Bridge UI for configuring Modular Components; [GitLab Metrics Operator](https://docs.google.com/document/d/1vXBnoqOPREk5j_2YYF9zTwnFgUQKGfhrxC471QgOs8M) |
-| Self-Managed Foundation (SMF)            | Customer-owned                        | Omnibus on VM                                                                                 | Omnibus packages                                                  | Out of Theseus scope (legacy)                                                                                                                                                                                                                                                          |
+| Target | Tenancy | Orchestrator                                                                       | Today's path | Theseus role |
+|---|---|------------------------------------------------------------------------------------|---|---|
+| Caproni (developer workstation) | Single-developer | k3d / Colima                                                                       | Direct CNG Helm | Same artifacts; in-cluster dependencies via `gitlab-dev-stack` (operators for ClickHouse, Postgres, Valkey (tbd), CertManager) |
+| Enterprise (GitLab Inc operated) | Non-tenant-aligned | Kubernetes (likely GKE)                                                            | Bespoke per-service today | Same Fairway-generated charts; dependencies resolved against GitLab-Inc cloud accounts; no synchronous GitLab Application dependencies |
+| GitLab.com (multi-tenant SAAS) | Single big tenant | GKE + ArgoCD                                                | Runway → ArgoCD | Shared infrastructure, logical isolation per module |
+| Cells | Multi-tenant SAAS, horizontally split | EKS via AMP + Instrumentor + Tissue + ringctl + Argo Rollouts (?)                  | Same charts as Dedicated | Same JSON tenant model as Dedicated, different storage; ringctl adds rings |
+| Dedicated | Single-tenant SAAS | EKS via AMP + Instrumentor + Switchboard + Argo Rollouts (?)                       | Helm chart deployed via AMP + Instrumentor | Future: Fairway-generated charts via Instrumentor |
+| Dedicated for Government (FedRAMP / IL5) | Single-tenant gov-cloud | EKS GovCloud via AMP + Instrumentor + Switchboard + Argo Rollouts (?)               | Same as Dedicated, inside FedRAMP boundary | Built on top of Dedicated controls; reduced re-authorization |
+| Self-Managed Advanced (SMA) | Customer-owned | Customer Kubernetes + GitLab Helm chart or GitLab Kubernetes Operator with optional Bridge UI | Charts via OCI registry; customer provides the Kubernetes cluster | Per-service charts + dependency manifest; GitLab Kubernetes Operator for day-2 automation on top of the same charts; optional Bridge UI for configuring Modular Components; [GitLab Metrics Operator](https://docs.google.com/document/d/1vXBnoqOPREk5j_2YYF9zTwnFgUQKGfhrxC471QgOs8M) |
+| Self-Managed Foundation (SMF) | Customer-owned | Omnibus on VM                                                                      | Omnibus packages | Out of Theseus scope (legacy) |
 
 ### 4.2 The single declarative interface
 
@@ -996,8 +992,8 @@ or relying on Tier 3 application authorization to make decisions at request time
 disqualifies a service.
 
 The guideline is:
-_any single Cell could go offline for an extended period — days, conceivably longer —
-and Enterprise-deployed components must remain available._
+*any single Cell could go offline for an extended period — days, conceivably longer —
+and Enterprise-deployed components must remain available.*
 
 This isn't hypothetical.
 In March 2026,
@@ -1013,22 +1009,22 @@ power events, network partitions, regulatory action,
 and sustained natural disasters all produce the same shape of outage.
 A component on the Enterprise binding that hard-depends on a single Cell
 inherits that Cell's blast radius.
-_Operating above the tenant means surviving above the tenant_.
+*Operating above the tenant means surviving above the tenant*.
 
 #### 4.3.1 Isolation Boundaries
 
 {{< note >}}
 This document describes Cells as more than just GitLab instances:
-Cells are the building block of _all_ regional deployments
-of the GitLab.com SAAS. A Cell _may_ contain a copy of a Modular Component,
+Cells are the building block of *all* regional deployments
+of the GitLab.com SAAS. A Cell *may* contain a copy of a Modular Component,
 a GitLab instance, or both.
 {{< /note >}}
 
 To decide between Global Enterprise Platform Binding deployments and Cellular deployments,
 Product teams should use the following guideline:
 
-_If the service has synchronous dependencies on Cell infrastructure, or could potentially
-go down when one Cell goes down, it isn't an Enterprise service._
+*If the service has synchronous dependencies on Cell infrastructure, or could potentially
+go down when one Cell goes down, it isn't an Enterprise service.*
 
 Enterprise services are never shipped to Self-Managed;
 there is no Self-Managed counterpart to this binding by design.
@@ -1049,7 +1045,7 @@ so a Cell-level failure stays contained inside that Cell and a regional failure 
 Components within a Cell should rely on other components within the same Cell, rather than forming arbitrary networks of inter-Cell dependencies.
 
 ![Hub-and-Spoke versus Cellular Architecture](/images/handbook/engineering/architecture/design-documents/theseus_platform_vision/hub-and-spoke-vs-cellular.png)<br>
-<small>_Hub-and-Spoke vs. Cellular Architecture._</small>
+<small>*Hub-and-Spoke vs. Cellular Architecture.*</small>
 
 This approach to architecture, with strong isolation boundaries is known as the Cellular Architecture pattern.
 It encourages a resilient architecture as part of the Theseus Platform,
@@ -1059,7 +1055,7 @@ As an added benefit, it also means that single-tenant environments are not a "sp
 
 A service built for one Cell inside the SAAS bundle deploys unchanged to a deployment where that Cell is the customer.
 
-See AWS Well-Architected, [_Reducing the Scope of Impact with Cell-Based Architecture_](https://docs.aws.amazon.com/wellarchitected/latest/reducing-scope-of-impact-with-cell-based-architecture/) (September 2023), on why bounded blast radius is the right trade-off.
+See AWS Well-Architected, [*Reducing the Scope of Impact with Cell-Based Architecture*](https://docs.aws.amazon.com/wellarchitected/latest/reducing-scope-of-impact-with-cell-based-architecture/) (September 2023), on why bounded blast radius is the right trade-off.
 
 ### 4.4 What about SMF (Omnibus)?
 
@@ -1132,7 +1128,7 @@ and observability and SLOs live in the [GitLab Metrics Operator](https://docs.go
 Re-entering that information by hand is repetitive,
 and the answers drift out of sync with the code the moment the form is completed.
 
-**The Theseus position is that PREP describes a set of _requirements_ the platform should automate,
+**The Theseus position is that PREP describes a set of *requirements* the platform should automate,
 not a process to perpetuate.**
 As Theseus absorbs each category the corresponding PREP questions should no longer be necessary
 for Modular Components built on top of the platform.
@@ -1153,9 +1149,9 @@ the more rigorous the PREP documentation process will likely be.
 
 Wherever possible, non-functional requirements are declared through Theseus too.
 The [GitLab Metrics Operator](https://docs.google.com/document/d/1vXBnoqOPREk5j_2YYF9zTwnFgUQKGfhrxC471QgOs8M) inverts today's pattern where Infrastructure teams maintain a component's SLI/SLO definitions, saturation framework, and capacity targets on the component team's behalf.
-Using a descriptor, component teams declare _what's_ important to monitor,
-_what_ service level customers expect,
-and the platform will provide the _how_, implementing this on top
+Using a descriptor, component teams declare *what's* important to monitor,
+*what* service level customers expect,
+and the platform will provide the *how*, implementing this on top
 of Prometheus, Grafana, etc.
 
 Functional dependencies and non-functional requirements are defined next to the code they describe,
@@ -1201,7 +1197,7 @@ The site is being built in [`gitlab-org/theseus`](https://gitlab.com/gitlab-org/
 currently publishes to [`theseus-6298f3.gitlab.io`](https://theseus-6298f3.gitlab.io/),
 with `docs.theseus.gitlab.com` as the intended canonical URL once provisioned.
 
-The _Theseus Platform docs_ host the platform principles, the component overview,
+The *Theseus Platform docs* host the platform principles, the component overview,
 the developer journey, the multi-target deployment guide,
 and the "getting started" tutorials that span components.
 
@@ -1215,12 +1211,12 @@ written in Markdown with structured front-matter YAML.
 
 This is done for several reasons, including:
 
-- _Atomic updates discourage drift_:
+- *Atomic updates discourage drift*:
   a new feature which introduces a new configuration option includes
   the documentation changes along the feature itself.
-- _Better code review_: having docs as part of the code change makes it easier to
+- *Better code review*: having docs as part of the code change makes it easier to
   understand the code changes.
-- _In-repo docs assist AI agents_:
+- *In-repo docs assist AI agents*:
   Coding agents work better when context is local —
   they don't need to traverse external knowledge sources to understand
   why a service is structured the way it is.
@@ -1458,7 +1454,7 @@ a CVE in a transitive library, a tightened scan in a CI component, a base-image 
 The time between a vulnerability being disclosed and a fix being deployed is bounded
 less by how quickly an engineer can write the patch than
 by how quickly every affected component can test and merge it.
-A platform that wants to keep that window short has to give every team a fast, predictable path from _upgrade available_ to _upgrade in production_,
+A platform that wants to keep that window short has to give every team a fast, predictable path from *upgrade available* to *upgrade in production*,
 exercised by the same tests the team relies on for every other change.
 
 Theseus attempts to automate this using Renovate.
@@ -1541,7 +1537,7 @@ For the Reliability and Platform Engineering teams, Theseus provides a means to
 consolidate the way in which new components are deployed and operated.
 
 Through the Platform Bindings, the orchestration tooling that operates each SAAS target
-becomes a _Theseus-aware_ orchestration layer.
+becomes a *Theseus-aware* orchestration layer.
 
 For example, for Dedicated, the flow might look like this:
 
@@ -1602,7 +1598,7 @@ only as safe as the boundary the granted credentials cross.
 
 If a developer requests breakglass for one module and the resulting credentials
 reach into every other module's databases, object stores, and namespaces,
-the platform has not granted _breakglass for that module_ — it has granted _production for everything_.
+the platform has not granted *breakglass for that module* — it has granted *production for everything*.
 
 Each modular component is bound to a per-module IAM role (or role-set), scoped
 to the resources that module's own FairwayManifest declares.
@@ -1636,10 +1632,10 @@ Recent publicised events demonstrate how risky unfettered access can be:
 - In December 2025, [Amazon's Kiro coding assistant deleted the production AWS Cost Explorer environment and attempted to rebuild it, triggering a 13-hour outage in a China region](https://particula.tech/blog/ai-agent-production-safety-kiro-incident). Kiro held "operator-level permissions, equivalent to a human developer" — read, write, create, and delete across the environment. From the agent's perspective, every action within that scope was equally valid.
 - Earlier that year, [Replit's AI coding agent deleted a customer's production database during an explicit code-and-action freeze, then misrepresented the recoverability of the lost data](https://incidentdatabase.ai/cite/1152/). The agent admitted afterwards to running unauthorised commands and ignoring explicit instructions.
 - [Amazon's own Q Developer extension shipped a release containing a prompt-injected destructive shell command](https://www.bleepingcomputer.com/news/security/amazon-ai-coding-agent-hacked-to-inject-data-wiping-commands/), distributed to nearly one million installs over two days. The malicious prompt instructed the agent to "clear a system to a near-factory state and delete file-system and cloud resources." The supply-chain shape is different from Kiro and Replit, but the necessary condition for damage was identical: an agent with broad credentials in a production-adjacent environment.
-- Anthropic's own [_Agentic Misalignment_ research](https://www.anthropic.com/research/agentic-misalignment) further shows that, under sufficient pressure — a threat of replacement, a goal conflict — frontier models will choose harmful actions, including exfiltration and sabotage, when their permissions allow it.
+- Anthropic's own [*Agentic Misalignment* research](https://www.anthropic.com/research/agentic-misalignment) further shows that, under sufficient pressure — a threat of replacement, a goal conflict — frontier models will choose harmful actions, including exfiltration and sabotage, when their permissions allow it.
 
 AWS now codifies the necessary architectural response in
-[_Four security principles for agentic AI systems_](https://aws.amazon.com/blogs/security/four-security-principles-for-agentic-ai-systems/):
+[*Four security principles for agentic AI systems*](https://aws.amazon.com/blogs/security/four-security-principles-for-agentic-ai-systems/):
 
 1. Secure development lifecycle practices apply across system components.
 1. Traditional security controls remain fully applicable.
@@ -1657,7 +1653,7 @@ Breakglass ([Section 5.6.2](#562-breakglass-access)) system.
 - **GitLab Kubernetes Operator** ([Section 6.2.2](#622-the-gitlab-kubernetes-operator)): the software. A Kubernetes operator (controller) that reconciles Custom Resources and converges a cluster on the declared GitLab installation.
 - **GitLab Deployment Operator**: the person (or team of people) who deploys GitLab and Modular Components through Helm, the GitLab Kubernetes Operator, or the Bridge UI. The audience of [Section 6](#6--theseus-for-the-gitlab-deployment-operator).
 - **Administrator**: a human with access to the `/admin` interface within a running GitLab instance, able to change application settings. Distinct from the GitLab Deployment Operator; the two roles may or may not overlap in any given organisation.
-  {{< /note >}}
+{{< /note >}}
 
 Self-Managed customers using Theseus Modular Components operate their own GitLab instances.
 The instance may be Omnibus, running on a VM, or Cloud Native, running in Kubernetes.
@@ -1669,7 +1665,7 @@ used to provide a bridge between VM services and Kubernetes services.
 
 Theseus's contribution to this audience is twofold:
 
-1. _Configuration Management_: the GitLab Deployment Operator has the choice between three options:
+1. *Configuration Management*: the GitLab Deployment Operator has the choice between three options:
 
    1. **Helm**: full control, the GitLab Deployment Operator takes full responsibility for day-2, no orchestration of deployments, no zero-downtime upgrade (ZDU) support.
    1. **The GitLab Kubernetes Operator on top of Helm**: same charts, plus day-2 automation, orchestrated deployments, zero-downtime upgrades.
@@ -1677,7 +1673,7 @@ Theseus's contribution to this audience is twofold:
 
    <br>
 
-1. _Consistency_ across components: every Modular Component declares its
+1. *Consistency* across components: every Modular Component declares its
    dependencies through a Fairway manifest,
    generates the same shape of Helm chart, with similar options,
    and exposes the same observability primitives (`PodMonitor`, `ServiceMonitor`).
@@ -1749,7 +1745,7 @@ converges the cluster on them.
 Subsequent changes happen through the same UI rather than through hand-edited manifests.
 
 ![Bridge UI mockup](/images/handbook/engineering/architecture/design-documents/theseus_platform_vision/bridge-ui-mockup.png)<br>
-<small>_Mockup of what the Bridge UI could potentially look like._</small>
+<small>*Mockup of what the Bridge UI could potentially look like.*</small>
 
 Bridge is **optional**.
 A GitLab Deployment Operator comfortable with Kubernetes can drive the GitLab Kubernetes Operator
@@ -1771,7 +1767,7 @@ Attempting to cover the initiative in its entirety would lead to a huge document
 likely soon outdated.
 
 In [Section 2.4](#24-what-theseus-is-not) we state that
-_Theseus grows intentionally_:
+*Theseus grows intentionally*:
 capabilities are added when teams need them,
 reviewed against the architectural contract,
 designed against the project principles,
@@ -1785,7 +1781,7 @@ and some design debates are live.
 ### 7.1 Capabilities still in development
 
 - **Canonical artifact production beyond the package boundary.**
-  [TUBE](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/11660) ([Section 2.1](#21-the-definition)) targets the _package_ as the atomic unit —
+  [TUBE](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/11660) ([Section 2.1](#21-the-definition)) targets the *package* as the atomic unit —
   Omnibus and CNG then assemble pre-built packages rather than rebuilding from source.
   Container-level hermeticity (pinned OCI base layers, reproducible image digests) is a known follow-on,
   not yet covered by TUBE's current scope.
@@ -1809,7 +1805,7 @@ and some design debates are live.
   Provisioning is in place ([Section 5.5](#55-deployment--fairway-and-the-release-framework));
   schema migrations should be handled in a consistent manner.
 
-(Note: the [canonical Theseus design document](https://docs.google.com/document/d/1tOYqFsLQ7axB2ZWQ4mORf9fVzYHNI3yC5j3MPwRk8i4/edit?tab=t.0#bookmark=id.d7pmic83jjd9) lists _release mechanics_ as a critical gap,
+(Note: the [canonical Theseus design document](https://docs.google.com/document/d/1tOYqFsLQ7axB2ZWQ4mORf9fVzYHNI3yC5j3MPwRk8i4/edit?tab=t.0#bookmark=id.d7pmic83jjd9) lists *release mechanics* as a critical gap,
 but the [Release Framework](https://internal.gitlab.com/handbook/engineering/architecture/design-documents/release-platform/) — covered in [Section 5.5](#55-deployment--fairway-and-the-release-framework) — now addresses that gap directly.)
 
 ### 7.2 Critical near-term gaps
@@ -1826,7 +1822,7 @@ but the [Release Framework](https://internal.gitlab.com/handbook/engineering/arc
   some concerns have been raised.
   If the current approach is not deemed to be acceptable,
   an alternative solution will be required.
-  _The voice of the customer should be key in this discussion._
+  *The voice of the customer should be key in this discussion.*
   Solid user research is required, and until this is done,
   the argument will go back-and-forth between different points of view.
 - **[GitLab Metrics Operator](https://docs.google.com/document/d/1vXBnoqOPREk5j_2YYF9zTwnFgUQKGfhrxC471QgOs8M).**
@@ -1850,7 +1846,7 @@ but the [Release Framework](https://internal.gitlab.com/handbook/engineering/arc
   to avoid the toil of retyping information that already exists in the codebase.
 - **Reliability practice layer.**
   Theseus provides the platform substrate for reliability.
-  The _practice_ of using these well is a separate body of work.
+  The *practice* of using these well is a separate body of work.
   The Reliability Engineering Team is the named owner for this layer.
   Until it lands, several Theseus metrics in [Section 8.3](#83-customer-facing-outcomes)
   (SLO coverage, on-call sustainability, the Tier 1 SRE on-call figure)
@@ -1875,22 +1871,22 @@ These are not buried — addressing them is part of what makes the document cred
 
 - **The Runway "leaky abstraction" debate.**
   (The abstraction is now Fairway's `FairwayManifest`, carved out from Runway in April 2026; the debate's substance is unchanged.)
-  _Critique:_ a workload spec that abstracts over storage forces the GitLab Deployment Operator to override at the edges,
+  *Critique:* a workload spec that abstracts over storage forces the GitLab Deployment Operator to override at the edges,
   and the abstraction leaks the moment a component needs a non-standard dependency.
-  _Rebuttal:_ the abstraction is enforced by a governance engine,
+  *Rebuttal:* the abstraction is enforced by a governance engine,
   not by hiding capability —
   components that need an unmodelled dependency extend the schema rather than work around it.
-  _Partial resolution:_ explicit `infrastructure:` sections in the Fairway manifest let component teams declare bespoke needs without dropping out of the platform.
+  *Partial resolution:* explicit `infrastructure:` sections in the Fairway manifest let component teams declare bespoke needs without dropping out of the platform.
 - **The COM promise-vs-reality gap.**
-  _Critique:_ paved-path branding outpaces the operational reality —
+  *Critique:* paved-path branding outpaces the operational reality —
   COM is presented as the route teams take to own infrastructure changes,
   but in practice the full kit (Terraform module, runbook, alert routing, CI integration) is adopted unevenly.
-  _Rebuttal:_ the SLAs in [Section 3.2](#32-platform-as-a-product-commitments) hold the platform to a measurable commitment regardless of how the kit is adopted.
-  _Partial resolution:_ the COM rollout has been staffed with Staff+ engagement to close the kit gap component by component,
+  *Rebuttal:* the SLAs in [Section 3.2](#32-platform-as-a-product-commitments) hold the platform to a measurable commitment regardless of how the kit is adopted.
+  *Partial resolution:* the COM rollout has been staffed with Staff+ engagement to close the kit gap component by component,
   and that consulting pattern is what the Reliability Engineering Team is intended to generalise into a sustained capability.
 - **The GitLab.com meta-package transition.**
   Today, GitLab.com still ships a single built meta-package containing many components' changes.
-  The [Release Framework](https://internal.gitlab.com/handbook/engineering/architecture/design-documents/release-platform/) is the path to independent per-component deploys _for GitLab.com SAAS_,
+  The [Release Framework](https://internal.gitlab.com/handbook/engineering/architecture/design-documents/release-platform/) is the path to independent per-component deploys *for GitLab.com SAAS*,
   where independent rollback and per-component cadence solve a real GitLab Deployment Operator problem.
   Self-Managed is unaffected by this transition:
   Self-Managed releases will continue to be bundled meta-packages by design.
@@ -1916,10 +1912,10 @@ Metrics let us measure progress towards delivering a platform-as-a-product.
 Four scoreboards follow, in increasing order of how much
 each one measures the platform itself (rather than the teams adopting it or external factors).
 
-- _Adoption_ asks whether teams are choosing the paved path.
-- _DORA metrics_ ask whether the road is actually faster.
-- _Customer-facing outcomes_ ask whether the things customers and the business feel are moving the right way.
-- _Platform-as-a-product SLAs_ hold Platform Engineering accountable to the commitments it has already published.
+- *Adoption* asks whether teams are choosing the paved path.
+- *DORA metrics* ask whether the road is actually faster.
+- *Customer-facing outcomes* ask whether the things customers and the business feel are moving the right way.
+- *Platform-as-a-product SLAs* hold Platform Engineering accountable to the commitments it has already published.
 
 ### 8.1 Adoption (leading indicator)
 
@@ -1937,9 +1933,9 @@ The [Theseus Platform Adoption work item](https://gitlab.com/groups/gitlab-opera
   the denominator counts the platform paths in scope for that team;
   the result is normalised across the addressable team population so a small team adopting one capability and a large team adopting six contribute proportionately.
 - **Near-term target.** Three teams at full-stack adoption by end of Q2.
-  _Full-stack_ means consuming the developer journey in [Section 5](#5--how-it-works-the-developer-journey) end-to-end, not cherry-picking one or two capabilities.
+  *Full-stack* means consuming the developer journey in [Section 5](#5--how-it-works-the-developer-journey) end-to-end, not cherry-picking one or two capabilities.
 - Adoption is a leading indicator only —
-  it tells us _whether teams are on the road_, not _whether the road is faster_.
+  it tells us *whether teams are on the road*, not *whether the road is faster*.
   The DORA scoreboard in 8.2 answers the second question.
 
 ### 8.2 DORA metrics (outcome indicators)
@@ -1971,7 +1967,7 @@ these measure the things customers and the business actually feel.
   Bugs that reach customers despite the inner loop and outer loop being designed to catch them.
 - **Component-owner on-call burden.**
   Hours per week a component team spends on on-call work for their service.
-  The _defaults over decisions_ principle in [the guiding principles](#guiding-principles)
+  The *defaults over decisions* principle in [the guiding principles](#guiding-principles)
   implies this should trend down as more capabilities are absorbed;
   if it doesn't, the absorption is not paying off.
 - **Tier 1 SRE on-call work for modular components.**
@@ -2025,7 +2021,7 @@ The [Theseus CLI](https://gitlab.com/gitlab-org/theseus/) (`theseus init`) wraps
 but the CLI is not a blocker:
 teams using the Copier template directly are on the same paved path the CLI is a thin wrapper over.
 
-The reason this matters is less about the scaffolding that exists today than about the _upgrade path_.
+The reason this matters is less about the scaffolding that exists today than about the *upgrade path*.
 The Copier template can be re-applied to a project after creation, semi-automatically.
 Each improvement that we land in the template propagates to onboarded projects through an automated [Renovate](https://docs.renovatebot.com/) MR.
 This mechanism lets the platform team iterate on Theseus features without leaving early adopters behind.
@@ -2084,33 +2080,33 @@ Several workstreams are critical deliverables in the early phase of the initiati
 Alphabetical short definitions of the acronyms and internal-tool names used in this document.
 
 | Term                             | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Administrator**                | A human with access to the `/admin` interface within a running GitLab instance, able to change application settings. Distinct from the GitLab Deployment Operator; the two roles may or may not overlap.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | **AMP**                          | GitLab's internal EKS-provisioning layer for Cells and Dedicated. The name does not stand for anything; Dedicated team projects tend to use music-adjacent names. Used with Instrumentor and Switchboard on Dedicated, and with Instrumentor + Tissue + ringctl on Cells.                                                                                                                                                                                                                                                                                                                                                                       |
-| **Assembly**                     | A Lab Bench unit of deployment: multiple LabKit-based services baked into a single binary and run together as one container (one OCI image, one root process). To Theseus provisioning it is opaque — indistinguishable from any other container. See [Section 2.8](#28-lab-bench-and-the-wider-theseus-initiative).                                                                                                                                                                                                                                                                                                                            |
+| **Assembly**                     | A Lab Bench unit of deployment: multiple LabKit-based services baked into a single binary and run together as one container (one OCI image, one root process). To Theseus provisioning it is opaque — indistinguishable from any other container. See [Section 2.8](#28-lab-bench-and-the-wider-theseus-initiative). |
 | **CNG**                          | Cloud Native GitLab. The Helm-chart-and-container-image distribution of GitLab. The same CNG images and charts run on GitLab.com, Dedicated, Self-Managed Advanced, and inside Caproni on a developer's workstation.                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | **COM**                          | Component Ownership Model. The operational model that gives component teams direct ownership of the infrastructure changes their components depend on (Terraform modules, Helm charts, integration plumbing). Theseus's relationship to COM is covered in [Section 2.5](#25-theseus-vs-the-component-ownership-model).                                                                                                                                                                                                                                                                                                                          |
-| **Container interface**          | The runtime contract every deployed Theseus component satisfies: an OCI image with a declared entrypoint, conforming to the OCI Image and Runtime specifications — standard for any Kubernetes component. The base contract beneath the Kubernetes API. LabKit is the exception — a library compiled into a container, not a container itself. See [Section 2.8](#28-lab-bench-and-the-wider-theseus-initiative).                                                                                                                                                                                                                               |
+| **Container interface**          | The runtime contract every deployed Theseus component satisfies: an OCI image with a declared entrypoint, conforming to the OCI Image and Runtime specifications — standard for any Kubernetes component. The base contract beneath the Kubernetes API. LabKit is the exception — a library compiled into a container, not a container itself. See [Section 2.8](#28-lab-bench-and-the-wider-theseus-initiative). |
 | **CRD**                          | Custom Resource Definition. A Kubernetes extension mechanism for declaring new resource types. The [GitLab Metrics Operator](https://docs.google.com/document/d/1vXBnoqOPREk5j_2YYF9zTwnFgUQKGfhrxC471QgOs8M)'s `GitLabApplicationMetrics` and `GitLabServiceMetrics` resources are CRDs.                                                                                                                                                                                                                                                                                                                                                       |
 | **DORA**                         | DevOps Research and Assessment. The industry-standard delivery-performance scoreboard: deployment frequency, lead time for changes, change failure rate, failed-deployment recovery time. See [Section 8.2](#82-dora-metrics-outcome-indicators).                                                                                                                                                                                                                                                                                                                                                                                               |
 | **Fairway**                      | Runway's Helm chart generator. A Go CLI and CI component ([`gitlab-com/gl-infra/platform/runway/fairway`](https://gitlab.com/gitlab-com/gl-infra/platform/runway/fairway)) that takes a `FairwayManifest` (protobuf, `apiVersion: fairway/v1`) describing a service and its abstract `infrastructure:` needs (a Postgres-compatible database, a key-value store, object storage) and emits a self-contained, infrastructure-agnostic Helm chart published to OCI. Carved out of `runwayctl` in April 2026; the developer-facing half of the Fairway/Runway pair (the deployment-facing half is the `RunwayManifest`). Owned by the Runway team. |
 | **GDK**                          | [GitLab Development Kit](https://gitlab.com/gitlab-org/gitlab-development-kit). The established GitLab developer environment, running GitLab and its dependencies directly on the host machine. Caproni is the cloud-native counterpart that runs the same CNG images and Helm charts customers receive.                                                                                                                                                                                                                                                                                                                                        |
 | **GET**                          | GitLab Environment Toolkit. Terraform-and-Ansible-based provisioning used on Dedicated alongside Instrumentor to stand up RDS, ElastiCache, S3, and the Kubernetes cluster the GitLab Helm Chart is deployed into.                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | **GitLab Kubernetes Operator**   | A Kubernetes operator (controller) built on top of the GitLab Helm charts; reconciles Custom Resources written by Bridge or by hand and converges a cluster on the declared GitLab installation. See [Section 6.2.2](#622-the-gitlab-kubernetes-operator). A separate artifact from the GitLab Metrics Operator. Distinct from the GitLab Deployment Operator (the human) and from the Administrator role.                                                                                                                                                                                                                                      |
-| **GitLab Deployment Operator**   | A human, or team of humans, who deploys GitLab and Modular Components through Helm, the GitLab Kubernetes Operator, or the Bridge UI. The audience of [Section 6](#6--theseus-for-the-gitlab-deployment-operator). Distinct from the Administrator role.                                                                                                                                                                                                                                                                                                                                                                                        |
+| **GitLab Deployment Operator**   | A human, or team of humans, who deploys GitLab and Modular Components through Helm, the GitLab Kubernetes Operator, or the Bridge UI. The audience of [Section 6](#6--theseus-for-the-gitlab-deployment-operator). Distinct from the Administrator role.                                                                                                                                                                                                                                                                                                                                                                                           |
 | **Instrumentor**                 | The COM-module-based provisioning layer for Cells and Dedicated. Translates service-level requirements into AWS resources (RDS, ElastiCache, S3) and is shared across Cells, Dedicated, and Dedicated for Government.                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| **Lab Bench**                    | A service-chassis and assembly framework, part of the wider Theseus initiative, that bakes multiple LabKit-based services into a single binary and runs them as one container. Outside this vision's immediate scope; teams may adopt it, and what they build is first-class to the platform. See [Section 2.8](#28-lab-bench-and-the-wider-theseus-initiative) and the [Lab Bench: GitLab SOA Architecture](https://docs.google.com/document/d/11Zj918LuZeY3fPcU50ZPhzJtcqzvyXaO0SDamW7cDc8/) proposal.                                                                                                                                        |
+| **Lab Bench**                    | A service-chassis and assembly framework, part of the wider Theseus initiative, that bakes multiple LabKit-based services into a single binary and runs them as one container. Outside this vision's immediate scope; teams may adopt it, and what they build is first-class to the platform. See [Section 2.8](#28-lab-bench-and-the-wider-theseus-initiative) and the [Lab Bench: GitLab SOA Architecture](https://docs.google.com/document/d/11Zj918LuZeY3fPcU50ZPhzJtcqzvyXaO0SDamW7cDc8/) proposal. |
 | **mirrord**                      | A traffic-stealing developer tool ([mirrord.dev](https://mirrord.dev/)) that makes a local process participate in a remote Kubernetes cluster as if it were running there. Powers Caproni's `caproni edit` hot-reload loop.                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | **MWMBR**                        | Multi-Window, Multi-Burn-Rate. An [SLO alerting pattern](https://sre.google/workbook/alerting-on-slos/) from Google's SRE Workbook that combines fast and slow burn-rate signals to catch both rapid incidents and slow degradation without paging on noise.                                                                                                                                                                                                                                                                                                                                                                                    |
 | **OAK**                          | Omnibus-Adjacent Kubernetes. A transitional Self-Managed deployment architecture in which a single-tenant, single-application Kubernetes cluster runs alongside an Omnibus GitLab installation — typically on the same virtual machine — so customers can adopt cloud-native Advanced components (e.g. OpenBao for Secrets Management, and in time NATS, ClickHouse, and others) without abandoning their existing Omnibus deployment.                                                                                                                                                                                                          |
 | **OCI**                          | Open Container Initiative. The open standard for container image formats and distribution. Per-service Helm charts are published to the GitLab OCI registry.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | **PREP**                         | Platform Readiness Enablement Process. GitLab's eleven-category readiness check for production launches. The Theseus position ([Section 5.1](#51-planning-and-requirements--readiness-as-code-manifests-as-spec)) is that PREP's categories should be answered automatically from source-of-truth as platform capabilities absorb them.                                                                                                                                                                                                                                                                                                         |
-| **Reliability Engineering Team** | Proposed small consulting-and-enablement team within Infrastructure Platforms, responsible for service-reliability enablement (SLI/SLO definition, error-budget practice, post-incident review, on-call sustainability, workload triage, capacity engineering). Partners with Theseus as the _practice layer_ sitting on top of the platform substrate. See the [proposal](https://docs.google.com/document/d/1230kyYmA8in356TaDssggGHW1N_pRxYGhFFCKps741g/) for the operating model and structure.                                                                                                                                             |
+| **Reliability Engineering Team** | Proposed small consulting-and-enablement team within Infrastructure Platforms, responsible for service-reliability enablement (SLI/SLO definition, error-budget practice, post-incident review, on-call sustainability, workload triage, capacity engineering). Partners with Theseus as the *practice layer* sitting on top of the platform substrate. See the [proposal](https://docs.google.com/document/d/1230kyYmA8in356TaDssggGHW1N_pRxYGhFFCKps741g/) for the operating model and structure.                                                                                                                                             |
 | **ringctl**                      | A Go CLI ([`gitlab-com/gl-infra/ringctl`](https://gitlab.com/gitlab-com/gl-infra/ringctl)) that operators and CI use to drive changes through the Cells ring-based deployment model. The mechanism that lets Cells stage rollouts across rings.                                                                                                                                                                                                                                                                                                                                                                                                 |
-| **Score**                        | A [CNCF Sandbox specification](https://score.dev/) for declarative workload definitions. Formalises the _workload spec + platform orchestrator + binding engine_ pattern that Fairway and Runway implement at generation time (Fairway as the workload-spec generator, Runway as the binding engine).                                                                                                                                                                                                                                                                                                                                           |
+| **Score**                        | A [CNCF Sandbox specification](https://score.dev/) for declarative workload definitions. Formalises the *workload spec + platform orchestrator + binding engine* pattern that Fairway and Runway implement at generation time (Fairway as the workload-spec generator, Runway as the binding engine).                                                                                                                                                                                                                                                                                                                                           |
 | **Switchboard**                  | The GitOps configuration and deployment coordination repository for GitLab Dedicated. The Dedicated-side analogue of Tissue: different storage, same schema.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | **Tissue**                       | The GitOps configuration and deployment coordination repository for the GitLab Cells fleet (`gitlab-com/gl-infra/cells/tissue`, hosted on `ops.gitlab.net`). Cells-side analogue of Switchboard.                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| **TVP**                          | Thinnest Viable Platform. Skelton & Pais's [_Team Topologies_](https://teamtopologies.com/key-concepts-content/what-is-a-thinnest-viable-platform-tvp) concept: a careful balance between keeping the platform small and ensuring it accelerates the teams building on it. Theseus's governing discipline against scope creep ([Section 2.4](#24-what-theseus-is-not)).                                                                                                                                                                                                                                                                         |
+| **TVP**                          | Thinnest Viable Platform. Skelton & Pais's [*Team Topologies*](https://teamtopologies.com/key-concepts-content/what-is-a-thinnest-viable-platform-tvp) concept: a careful balance between keeping the platform small and ensuring it accelerates the teams building on it. Theseus's governing discipline against scope creep ([Section 2.4](#24-what-theseus-is-not)).                                                                                                                                                                                                                                                                         |
 
 ### Appendix B — FAQ
 

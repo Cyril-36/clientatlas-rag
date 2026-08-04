@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "AI Panel"
 status: ongoing
 creation-date: "2025-11-21"
@@ -261,10 +260,10 @@ Here's how we would refactor `navigation_rail.vue` to extract Duo Chat navigatio
 </template>
 
 <script>
-import DuoChatNavigationContainer from "./duo_chat_navigation_container.vue";
+import DuoChatNavigationContainer from './duo_chat_navigation_container.vue';
 
 export default {
-  name: "NavigationRail",
+  name: 'NavigationRail',
   components: {
     DuoChatNavigationContainer,
   },
@@ -307,12 +306,12 @@ export default {
 </template>
 
 <script>
-import { duoChatGlobalState } from "~/super_sidebar/constants";
-import { CHAT_MODES } from "ee/ai/tanuki_bot/constants";
-import NewChatButton from "./new_chat_button.vue";
+import { duoChatGlobalState } from '~/super_sidebar/constants';
+import { CHAT_MODES } from 'ee/ai/tanuki_bot/constants';
+import NewChatButton from './new_chat_button.vue';
 
 export default {
-  name: "DuoChatNavigationContainer",
+  name: 'DuoChatNavigationContainer',
   components: {
     NewChatButton,
   },
@@ -320,7 +319,7 @@ export default {
     activeTab: { type: String, default: null },
     isExpanded: { type: Boolean, default: true },
     isChatDisabled: { type: Boolean, default: false },
-    chatDisabledTooltip: { type: String, default: "" },
+    chatDisabledTooltip: { type: String, default: '' },
     projectId: { type: String, default: null },
     namespaceId: { type: String, default: null },
   },
@@ -511,13 +510,13 @@ query GetAiPanelState {
 Then configure the Apollo Client with type definitions and resolvers in `init_duo_panel.js`:
 
 ```javascript
-import aiPanelStateTypeDefs from "./graphql/typedefs/ai_panel_state.typedefs.graphql";
-import getAiPanelStateQuery from "./graphql/queries/get_ai_panel_state.query.graphql";
+import aiPanelStateTypeDefs from './graphql/typedefs/ai_panel_state.typedefs.graphql';
+import getAiPanelStateQuery from './graphql/queries/get_ai_panel_state.query.graphql';
 
 const resolvers = {
   Query: {
     aiPanelState: () => ({
-      __typename: "AiPanelState",
+      __typename: 'AiPanelState',
     }),
   },
 };
@@ -534,7 +533,7 @@ apolloProvider.defaultClient.cache.writeQuery({
   query: getAiPanelStateQuery,
   data: {
     aiPanelState: {
-      __typename: "AiPanelState",
+      __typename: 'AiPanelState',
       selectedAgent: null,
       userPreferences: null,
     },
@@ -559,10 +558,10 @@ Sub-applications can then read and write this shared state using Vue Apollo's co
 
 ```vue
 <script>
-import getAiPanelStateQuery from "./graphql/queries/get_ai_panel_state.query.graphql";
+import getAiPanelStateQuery from './graphql/queries/get_ai_panel_state.query.graphql';
 
 export default {
-  name: "AgentSelector",
+  name: 'AgentSelector',
   apollo: {
     aiPanelState: {
       query: getAiPanelStateQuery,
@@ -579,7 +578,7 @@ export default {
         query: getAiPanelStateQuery,
         data: {
           aiPanelState: {
-            __typename: "AiPanelState",
+            __typename: 'AiPanelState',
             selectedAgent: agent,
           },
         },
@@ -662,7 +661,7 @@ For example, the `chatConfiguration` in `init_duo_panel.js` determines which cha
 const chatConfiguration = {
   agenticComponent: parseBoolean(agenticAvailable)
     ? DuoAgenticChat
-    : agenticUnavailableMessage || __("Chat is not available."),
+    : agenticUnavailableMessage || __('Chat is not available.'),
   classicComponent: DuoChat,
   // ...
 };
@@ -719,7 +718,7 @@ return {
   component: this.currentChatComponent,
   props: {
     mode: chatMode,
-    ...this.chatConfiguration.defaultProps, // Contains context props
+    ...this.chatConfiguration.defaultProps  // Contains context props
   },
 };
 ```
@@ -841,20 +840,20 @@ Watch `window.location` for changes to detect in-app navigation. When the URL ch
 const contextPatterns = [
   {
     pattern: /\/merge_requests\/(\d+)/,
-    extract: (match) => ({ type: "merge_request", iid: match[1] }),
+    extract: (match) => ({ type: 'merge_request', iid: match[1] })
   },
   {
     pattern: /\/issues\/(\d+)/,
-    extract: (match) => ({ type: "issue", iid: match[1] }),
+    extract: (match) => ({ type: 'issue', iid: match[1] })
   },
   {
     pattern: /\/pipelines\/(\d+)/,
-    extract: (match) => ({ type: "pipeline", id: match[1] }),
+    extract: (match) => ({ type: 'pipeline', id: match[1] })
   },
   {
     pattern: /\/blob\/([^\/]+)\/(.+)/,
-    extract: (match) => ({ type: "file", ref: match[1], path: match[2] }),
-  },
+    extract: (match) => ({ type: 'file', ref: match[1], path: match[2] })
+  }
   // Add patterns incrementally for high-value routes
 ];
 ```
@@ -878,22 +877,20 @@ Any Vue app can dispatch context updates via browser events:
 
 ```javascript
 // In work item drawer wrapper (or any other Vue app)
-window.dispatchEvent(
-  new CustomEvent("ai-panel:context-update", {
-    detail: {
-      resourceId: workItemId,
-      resourceType: "work_item",
-      subContext: "drawer_view",
-    },
-  }),
-);
+window.dispatchEvent(new CustomEvent('ai-panel:context-update', {
+  detail: {
+    resourceId: workItemId,
+    resourceType: 'work_item',
+    subContext: 'drawer_view',
+  }
+}));
 ```
 
 The AI panel listens for these events and updates its own Apollo cache:
 
 ```javascript
 // In AI panel initialization (init_duo_panel.js)
-window.addEventListener("ai-panel:context-update", (event) => {
+window.addEventListener('ai-panel:context-update', (event) => {
   const context = event.detail;
 
   // Update AI panel's Apollo cache
@@ -901,7 +898,7 @@ window.addEventListener("ai-panel:context-update", (event) => {
     query: getAiPanelContextQuery,
     data: {
       aiPanelContext: {
-        __typename: "AiPanelContext",
+        __typename: 'AiPanelContext',
         ...getCurrentContext(), // Preserve existing context
         ...context, // Merge in new context
       },

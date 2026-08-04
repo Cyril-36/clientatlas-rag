@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Organizational Change Management
 ---
 
@@ -90,16 +89,16 @@ Successful change management requires participation from everyone. While roles a
 
 Our comprehensive framework guides teams through change with eight distinct phases, each building on the previous to ensure sustainable adoption and success.
 
-| Phase              | Core Purpose                           | Objective                                                   | Sample Key Actions                                                                                                                                                                                |
-| ------------------ | -------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **01/Align**       | Clarify vision, spark urgency          | Establish purpose & why, urgency, and sponsorship           | • Identify the why behind the change<br>• Craft problem/opportunity statement with clear business rationale<br>• Secure executive sponsor and clarify their specific role                         |
-| **02/Analyze**     | Surface reality informed with data     | Uncover current-state facts, risks, and readiness           | • Collect quantitative metrics on current performance<br>• Conduct readiness assessment to gauge team receptiveness<br>• Map impacts across systems, processes, and roles                         |
-| **03/Plan**        | Map destination milestones and metrics | Define future state, success metrics, and roadmap           | • Create detailed description of the future state with specific behaviors<br>• Set OKRs/KPIs that will indicate successful change adoption<br>• Outline phased milestones with clear deliverables |
-| **04/Prepare**     | Equip teams, remove barriers           | Equip teams and remove implementation barriers              | • Develop role-specific training and enablement materials<br>• Identify and train change champions across teams<br>• Establish support channels (Slack, office hours, etc.)                       |
-| **05/Communicate** | Tell the story, invite dialogue        | Broadcast narrative, invite dialogue, maintain transparency | • Implement BRIDGE communication framework<br>• Conduct AMA (Ask Me Anything) sessions at key milestones<br>• Create targeted messages for different stakeholder groups                           |
-| **06/Activate**    | Launch change, secure early wins       | Execute rollout, capture quick wins                         | • Implement pilot program or phased release<br>• Conduct regular stand-ups to address emerging issues<br>• Recognize and celebrate early adoption and successes                                   |
-| **07/Monitor**     | Track signals, measure momentum        | Track metrics and sentiment to sustain momentum             | • Review performance dashboards on regular cadence<br>• Conduct pulse surveys to gauge adoption and sentiment<br>• Report progress to stakeholders transparently                                  |
-| **08/Adapt**       | Embed change, continue to iterate      | Integrate improvements permanently and continue to iterate  | • Update handbook and standard operating procedures<br>• Integrate change metrics into regular business reviews<br>• Create feedback loops for ongoing refinement                                 |
+| Phase | Core Purpose | Objective | Sample Key Actions |
+|-------|-------------|-----------|-------------------|
+| **01/Align** | Clarify vision, spark urgency | Establish purpose & why, urgency, and sponsorship | • Identify the why behind the change<br>• Craft problem/opportunity statement with clear business rationale<br>• Secure executive sponsor and clarify their specific role |
+| **02/Analyze** | Surface reality informed with data | Uncover current-state facts, risks, and readiness | • Collect quantitative metrics on current performance<br>• Conduct readiness assessment to gauge team receptiveness<br>• Map impacts across systems, processes, and roles |
+| **03/Plan** | Map destination milestones and metrics | Define future state, success metrics, and roadmap | • Create detailed description of the future state with specific behaviors<br>• Set OKRs/KPIs that will indicate successful change adoption<br>• Outline phased milestones with clear deliverables |
+| **04/Prepare** | Equip teams, remove barriers | Equip teams and remove implementation barriers | • Develop role-specific training and enablement materials<br>• Identify and train change champions across teams<br>• Establish support channels (Slack, office hours, etc.) |
+| **05/Communicate** | Tell the story, invite dialogue | Broadcast narrative, invite dialogue, maintain transparency | • Implement BRIDGE communication framework<br>• Conduct AMA (Ask Me Anything) sessions at key milestones<br>• Create targeted messages for different stakeholder groups |
+| **06/Activate** | Launch change, secure early wins | Execute rollout, capture quick wins | • Implement pilot program or phased release<br>• Conduct regular stand-ups to address emerging issues<br>• Recognize and celebrate early adoption and successes |
+| **07/Monitor** | Track signals, measure momentum | Track metrics and sentiment to sustain momentum | • Review performance dashboards on regular cadence<br>• Conduct pulse surveys to gauge adoption and sentiment<br>• Report progress to stakeholders transparently |
+| **08/Adapt** | Embed change, continue to iterate | Integrate improvements permanently and continue to iterate | • Update handbook and standard operating procedures<br>• Integrate change metrics into regular business reviews<br>• Create feedback loops for ongoing refinement |
 
 ### Key Framework Notes
 

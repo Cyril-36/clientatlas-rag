@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Identity Infrastructure Management"
 description: "The CorpSec Identity team, among others, is also focused on our top-level cloud provider infrastructure organization-level management for GCP, AWS and Azure in collaboration with the Infrastructure Security team. We handle all GCP, AWS and Azure access requests and are the maintainers of HackyStack that powers the GitLab Sandbox Cloud. Each team that deploys infrastructure resources is responsible for managing their own infrastructure workloads using industry best practices within the security boundaries defined by Security."
 ---
@@ -72,19 +71,19 @@ Each team that deploys infrastructure resources is responsible for managing thei
 
 There are 11 AWS organizations in total. Previously referenced "AWS Billing Org" and "AWS Systems Org" do not exist.
 
-| Organization       | Purpose                                                                                                      | Data Classification |
-| ------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------- |
-| **Sandbox**        | Self-service individual accounts for team member experimentation. One account per user.                      | GREEN               |
-| **Services**       | Shared workload accounts for internal tools and services. One account per workload.                          | ORANGE              |
-| **Marketplace**    | GitLab Distribution Team. Marketplace listing and distribution infrastructure.                               | ORANGE              |
-| **Training**       | Product training and hands-on lab environments.                                                              | GREEN               |
-| **Dedicated Dev**  | Development environments for GitLab Dedicated. One account per user.                                         | YELLOW              |
-| **Dedicated Prod** | Production environments for GitLab Dedicated. Control plane accounts and one account per tenant environment. | RED                 |
-| **Cells Dev**      | Development environments for GitLab Cells.                                                                   | YELLOW              |
-| **Cells Prod**     | Production environments for GitLab Cells.                                                                    | RED                 |
-| **FedRAMP Dev**    | FedRAMP development environments. Exact org name may differ.                                                 | YELLOW              |
-| **FedRAMP Prod**   | FedRAMP production environments. Exact org name may differ.                                                  | RED                 |
-| **RedOps**         | Red Team operations. Restricted access — intentionally isolated from other organizations.                    | Restricted          |
+| Organization | Purpose | Data Classification |
+|---|---|---|
+| **Sandbox** | Self-service individual accounts for team member experimentation. One account per user. | GREEN |
+| **Services** | Shared workload accounts for internal tools and services. One account per workload. | ORANGE |
+| **Marketplace** | GitLab Distribution Team. Marketplace listing and distribution infrastructure. | ORANGE |
+| **Training** | Product training and hands-on lab environments. | GREEN |
+| **Dedicated Dev** | Development environments for GitLab Dedicated. One account per user. | YELLOW |
+| **Dedicated Prod** | Production environments for GitLab Dedicated. Control plane accounts and one account per tenant environment. | RED |
+| **Cells Dev** | Development environments for GitLab Cells. | YELLOW |
+| **Cells Prod** | Production environments for GitLab Cells. | RED |
+| **FedRAMP Dev** | FedRAMP development environments. Exact org name may differ. | YELLOW |
+| **FedRAMP Prod** | FedRAMP production environments. Exact org name may differ. | RED |
+| **RedOps** | Red Team operations. Restricted access — intentionally isolated from other organizations. | Restricted |
 
 ```mermaid
 graph TB
@@ -122,14 +121,14 @@ There are 6 known GCP organizations. This list is best-effort as the billing tea
 
 > **Note**: The Dedicated and Cells teams are [transitioning away from GCP](https://gitlab.com/gitlab-com/gl-infra/gitlab-dedicated/team/-/work_items/11211). These GCP organizations may be decommissioned in the near-to-midterm future.
 
-| Organization       | Domain                                      | Purpose                                                                                                                            | Data Classification |
-| ------------------ | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
-| **gitlab.com**     | `gitlab.com`                                | Primary GCP organization. Contains SaaS production infrastructure, Sandbox Cloud (as a folder/realm), Services Cloud, and billing. | RED                 |
-| **gitlab.systems** | `gitlab.systems`                            | Compliance-specific applications requiring complete separation from the rest of infrastructure. Owned by CorpSec Identity.         | ORANGE              |
-| **Dedicated Dev**  | `gitlab-private.org` (Org ID: 407309174171) | Development environments for GitLab Dedicated.                                                                                     | YELLOW              |
-| **Dedicated Prod** | `gitlab-dedicated.com`                      | Production environments for GitLab Dedicated.                                                                                      | RED                 |
-| **Cells Dev**      | `gitlab-cells.dev`                          | Development environments for GitLab Cells.                                                                                         | YELLOW              |
-| **Cells Prod**     | `gitlab-cells.com`                          | Production environments for GitLab Cells.                                                                                          | RED                 |
+| Organization | Domain | Purpose | Data Classification |
+|---|---|---|---|
+| **gitlab.com** | `gitlab.com` | Primary GCP organization. Contains SaaS production infrastructure, Sandbox Cloud (as a folder/realm), Services Cloud, and billing. | RED |
+| **gitlab.systems** | `gitlab.systems` | Compliance-specific applications requiring complete separation from the rest of infrastructure. Owned by CorpSec Identity. | ORANGE |
+| **Dedicated Dev** | `gitlab-private.org` (Org ID: 407309174171) | Development environments for GitLab Dedicated. | YELLOW |
+| **Dedicated Prod** | `gitlab-dedicated.com` | Production environments for GitLab Dedicated. | RED |
+| **Cells Dev** | `gitlab-cells.dev` | Development environments for GitLab Cells. | YELLOW |
+| **Cells Prod** | `gitlab-cells.com` | Production environments for GitLab Cells. | RED |
 
 ```mermaid
 graph TB

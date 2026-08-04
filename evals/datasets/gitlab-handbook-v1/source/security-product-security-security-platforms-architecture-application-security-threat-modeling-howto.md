@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Threat Modeling HowTo"
 description: "A howto for the threat modeling process at GitLab."
 ---
@@ -28,7 +27,7 @@ For the impatient let's have the maybe shortest possible threat modeling guide:
 - Document the threats and map them back to your feature. Create follow-up issues with directly responsible individuals and due dates.
 
 {{% alert title="Note" color="primary" %}}
-We recommend using the [Threat Model Agent](#threat-model-agent) for creating Threat Models that cover our requirements and guide you through the whole process, whether it be creating a new threat model or checking if a threat model is complete and valid.
+We recommend using the [Threat Model Agent](#threat-model-agent) for creating Threat Models that cover our requirements and guide you through the whole process, whether it be creating a new threat model or checking if a threat model is complete and valid. 
 {{% /alert %}}
 
 ## What is Threat Modeling
@@ -47,11 +46,11 @@ The [formal framework that GitLab uses is called PASTA](_index.md). This guide h
 
 ## When and where to start
 
-You might wonder: "When should I start to do some threat modeling on the feature I'm planning to implement?". It's really not obvious but luckily it's never too late and never too early to create a threat model for any given feature which is currently being developed or used. Also, like everything in security, it's more of a process than a fixed, eternal state. A threat model needs to be adopted and refined if the feature changes or even if the feature stays the same but it's being used in a different context or environment. So yes, this is some kind of "extra" work in a sense that a proper threat model just doesn't create itself. But those extra steps will pay off soon enough by yielding more insights about the "_what could possibly go wrong_" moments which are also known as **threats**. Even tough it's never too late it will pay off even more if you start the process early and keep the threat model up to date for any additions and changes to the feature. This is also due to the fact that the fixing of insecure design decisions might be rather complex and even [disruptive](https://gitlab.com/gitlab-com/gl-infra/delivery/-/issues/1518)(internal link).
+You might wonder: "When should I start to do some threat modeling on the feature I'm planning to implement?". It's really not obvious but luckily it's never too late and never too early to create a threat model for any given feature which is currently being developed or used. Also, like everything in security, it's more of a process than a fixed, eternal state. A threat model needs to be adopted and refined if the feature changes or even if the feature stays the same but it's being used in a different context or environment. So yes, this is some kind of "extra" work in a sense that a proper threat model just doesn't create itself. But those extra steps will pay off soon enough by yielding more insights about the "*what could possibly go wrong*" moments which are also known as **threats**. Even tough it's never too late it will pay off even more if you start the process early and keep the threat model up to date for any additions and changes to the feature. This is also due to the fact that the fixing of insecure design decisions might be rather complex and even [disruptive](https://gitlab.com/gitlab-com/gl-infra/delivery/-/issues/1518)(internal link).
 
 ## Tools: 🔨and🧠
 
-Most threat modeling frameworks rely on some diagrams to be drawn and there's a lot of quite heavy tooling around this. Such tools would take some data flow diagram (DFD) and automatically map certain threats to certain components based on what they are. This can be really useful in some cases, but at GitLab we need some more flexibility as the features we're looking at often would not really fit well into the strict schematics of e.g. [STRIDE](<https://en.wikipedia.org/wiki/STRIDE_(security)>) based threat modeling and thus the output might not yield much meaningful threats.
+Most threat modeling frameworks rely on some diagrams to be drawn and there's a lot of quite heavy tooling around this. Such tools would take some data flow diagram (DFD) and automatically map certain threats to certain components based on what they are. This can be really useful in some cases, but at GitLab we need some more flexibility as the features we're looking at often would not really fit well into the strict schematics of e.g. [STRIDE](https://en.wikipedia.org/wiki/STRIDE_(security)) based threat modeling and thus the output might not yield much meaningful threats.
 
 ### Drawing diagrams
 
@@ -136,11 +135,11 @@ If you identify potential for abuse in any of these areas, loop in the Trust and
 
 Signals Engineering is responsible for building threat detections to identify attempted or successful exploitation of GitLab environments - including GitLab SaaS platforms, cloud environments, and corporate systems and applications. If there are cyber threat risks identified during threat modeling exercises, coordinating findings with Signals Engineering can help mitigate known risks through proactive threat detections built by the Signals Engineering team.
 
-Particular risks worth reaching out to Signals Engineering about include:
+Particular risks worth reaching out to Signals Engineering about include: 
 
-- Fundamental changes to major infrastructure or features for GitLab.com
+- Fundamental changes to major infrastructure or features for GitLab.com 
 - A new class of features/functionality within GitLab (such as Duo Agent Platform)
-- A new GitLab feature running on a new infrastructure stack/technology
+- A new GitLab feature running on a new infrastructure stack/technology 
 - New GitLab features introducing external integrations/attack surfaces
 
 If you identify risks worth reaching out to Signals Engineering about, reach out via internal Slack (`#security_help` and tag `@signals_engineering`), or submit a [new detection backlog issue](https://gitlab.com/gitlab-com/gl-security/security-operations/signal-engineering/detection-backlog/-/work_items/new?related_item_id=undefined&type=ISSUE&initialCreationContext=list-route&description_template=New_Detection_Template) (internal link).
@@ -157,11 +156,11 @@ The threat model will be added to [the AppSec Threat Models repository](https://
 
 Consider creating an issue with a living description which summarises the threat model each time its updated, and links off to issues for each threat, like so:
 
-| Threat                                                           | Comments                                                                                                                                                                  | Test / Issue                                                           |
-| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| Unencrypted communication between `agentk` and `kas`             |                                                                                                                                                                           | ✅ grpc communication is done over TLS encrypted Websockets (see #123) |
-| `agentk` might be able to impersonate another cluster's `agentk` |                                                                                                                                                                           | Issue #124 to review authorization                                     |
-| Attacks on `gitaly` level                                        | `agentk` has indirect access to `gitaly` via `kas`, this might be abused for injections or [IDOR](https://en.wikipedia.org/wiki/Insecure_direct_object_reference) attacks | Issue #125 - check data flows from `agentk` towards `gitaly`           |
+| Threat                                                       | Comments                                                     | Test / Issue                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Unencrypted communication between `agentk` and `kas`         |                                                              | ✅ grpc communication is done over TLS encrypted Websockets (see #123) |
+| `agentk` might be able to impersonate another cluster's `agentk` |                                                              | Issue #124 to review authorization                                   |
+| Attacks on `gitaly` level                                    | `agentk` has indirect access to `gitaly` via `kas`, this might be abused for injections or [IDOR](https://en.wikipedia.org/wiki/Insecure_direct_object_reference) attacks | Issue #125 - check data flows from `agentk` towards `gitaly`        |
 
 Each threat should have an Issue created where a proposal to avoid, prevent, detect, or recover from the threat is discussed by the team. These issues should have an Assignee and a Milestone or Due Date. Initially the Assignee should be the Project Manager, who will prioritise and re-assign the issue as appropriate. The Application Security engineer's role is to help create that proposal, to help the team understand and address the issue, and to review how the threat is mitigated pre-merge.
 
@@ -198,7 +197,7 @@ The agent is currently only enabled inside the [threat-models repository](https:
 
 ### Starting a Session
 
-Start the conversation by choosing the Threat Model Agent in the [threat-models repository](https://gitlab.com/gitlab-com/gl-security/product-security/appsec/threat-models) and by describing your goal, for example:
+Start the conversation by choosing the Threat Model Agent  in the [threat-models repository](https://gitlab.com/gitlab-com/gl-security/product-security/appsec/threat-models) and by describing your goal, for example:
 
 - "I want to create a new threat model for feature X."
 - "Please review this existing threat model: "

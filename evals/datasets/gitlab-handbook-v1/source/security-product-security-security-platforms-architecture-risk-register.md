@@ -7,12 +7,11 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Product Security Risk Register"
 description: "The Product Security Risk Register (PSRR) is driven by and follows the STORM process from our Security Risk Team."
 ---
 
-The Product Security Risk Register (PSRR) is a centralized framework for identifying, evaluating, prioritizing, mitigating, and monitoring systemic security risks in GitLab's product. PSRR is driven by and follows the [STORM process](/handbook/security/security-assurance/security-risk/storm-program/) and [Unified Security Risk Management (USRM)](/handbook/security/security-observations-risk-management/) methodology from our [Security Risk Team](/handbook/security/security-assurance/security-risk/).
+The Product Security Risk Register (PSRR) is a centralized framework for identifying, evaluating, prioritizing, mitigating, and monitoring systemic security risks in GitLab's product.  PSRR is driven by and follows the [STORM process](/handbook/security/security-assurance/security-risk/storm-program/) and [Unified Security Risk Management (USRM)](/handbook/security/security-observations-risk-management/) methodology from our [Security Risk Team](/handbook/security/security-assurance/security-risk/).
 
 ## Objectives
 
@@ -61,10 +60,10 @@ Security can act as a risk owner to drive risk reduction, even for efforts that 
 
 PSRR follows the [USRM roles and Authority Matrix](/handbook/security/security-observations-risk-management/#authority-matrix). The two key roles for PSRR risks are:
 
-| Role                    | Responsibility                                                                                                                    |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Role | Responsibility |
+|------|----------------|
 | **Business risk owner** | DRI for the driving risk reduction and defining treatment plan. Risk acceptance approval authority follows USRM Authority Matrix. |
-| **Security risk owner** | Security team member accountable for validating the risk treatment plan and implementing risk monitoring.                         |
+| **Security risk owner** | Security team member accountable for validating the risk treatment plan and implementing risk monitoring. |
 
 ### PSRR-Specific Responsibilities
 
@@ -79,13 +78,13 @@ The SPA team is additionally responsible for these activities:
 
 PSRR follows the USRM workflow with product security-specific stages:
 
-| Stage                  | Entry Criteria                                              | Key Activities                                                                                                                                           | Exit Criteria                                   |
-| ---------------------- | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| **Finding Identified** | Risk discovered through assessment, incident, or escalation | - Score risk using STORM methodology<br> - Apply risk rating and scope labels <br>- Identify Business risk owner and Security risk owner                 | Risk scored with owner identified               |
-| **Remediation plan**   | Business risk owner acknowledged risk                       | - Select risk response <br>- Define KRIs and milestones<br>- Set target dates<br>- Obtain approvals (if needed)<br>- Apply health labels                 | Treatment plan approved with dates              |
-| **Monitoring**         | Treatment plan approved, resources allocated                | - Execute treatment activities <br>- Onboard Technical Program Manager (if needed) <br>- Update epic status <br>- Update health labels based on progress | Remediation activities completed                |
-| **Monitored**          | Risk response is "Monitor" - no active remediation planned  | - Track KRIs monthly<br>- Review risk score quarterly<br>- Assess for priority changes<br>- Update if new incidents occur                                | Risk priority increases OR risk accepted/closed |
-| **Closed**             | Remediation validated or risk eliminated                    | - Security risk owner validates effectiveness<br>- Document outcome<br>- Close issue                                                                     | Risk within tolerance or eliminated             |
+| Stage | Entry Criteria | Key Activities | Exit Criteria |
+|-------|---------------|----------------|---------------|
+| **Finding Identified** | Risk discovered through assessment, incident, or escalation | - Score risk using STORM methodology<br> - Apply risk rating and scope labels <br>- Identify Business risk owner and Security risk owner | Risk scored with owner identified |
+| **Remediation plan** | Business risk owner acknowledged risk | - Select risk response <br>- Define KRIs and milestones<br>- Set target dates<br>- Obtain approvals (if needed)<br>- Apply health labels | Treatment plan approved with dates |
+| **Monitoring** | Treatment plan approved, resources allocated | - Execute treatment activities <br>- Onboard Technical Program Manager (if needed) <br>- Update epic status <br>- Update health labels based on progress | Remediation activities completed |
+| **Monitored** | Risk response is "Monitor" - no active remediation planned | - Track KRIs monthly<br>- Review risk score quarterly<br>- Assess for priority changes<br>- Update if new incidents occur | Risk priority increases OR risk accepted/closed |
+| **Closed** | Remediation validated or risk eliminated | - Security risk owner validates effectiveness<br>- Document outcome<br>- Close issue | Risk within tolerance or eliminated |
 
 ## PSRR Risk Scoring
 
@@ -118,11 +117,11 @@ Count total evidence items across all severities:
 - Vulnerabilities
 
 | Total Count | Modifier |
-| ----------- | -------- |
-| ≥10 items   | +2       |
-| ≥5 items    | +1       |
-| 1-4 items   | 0        |
-| 0 items     | -1       |
+|------------|----------|
+| ≥10 items | +2 |
+| ≥5 items | +1 |
+| 1-4 items | 0 |
+| 0 items | -1 |
 
 **Application:** `final_likelihood = max(1, min(6, base_likelihood + modified))`
 
@@ -138,11 +137,11 @@ Calculate weighted score using severity-based points:
 - Observations High: 2 point each
 
 | Weighted Score | Modifier |
-| -------------- | -------- |
-| ≥10 points     | +2       |
-| ≥5 items       | +1       |
-| 1-4 points     | 0        |
-| 0 points       | -1       |
+|---------------|----------|
+| ≥10 points | +2 |
+| ≥5 items | +1 |
+| 1-4 points | 0 |
+| 0 points | -1 |
 
 **Application:** `final_impact = max(1, min(5, base_impact + impact_mod))`
 
@@ -162,12 +161,12 @@ KRIs are reviewed during monthly PSRR reviews, see health KRI definitions.
 
 ### Quick Decision Guide: Which KRI Type to Use?
 
-| Your Situation                             | Primary KRI                                                        | Example Metrics                                                                                                                                                              | Thresholds                                                                                                                            |
-| ------------------------------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| **"New risk, zero incidents"**             | **Implementation:** Measure control adoption (Leading)             | **Control:** 45% of images with SLSA provenance<br>**Exposure:** 550 images without attestation<br>**Trend:** +50 unprotected images this quarter                            | **Green:** Coverage ≥95% OR trending down ≥20%/quarter<br>**Yellow:** Coverage 75-94% OR flat<br>**Red:** Coverage <75% OR increasing |
-| **"High incident frequency (≥5/quarter)"** | **Effectiveness:** <br>Incidents (Lagging) + Predictive (Bayesian) | **Historical:** 30 leaks in 6 months, avg 500 unscoped secrets<br>**Current:** 650 unscoped secrets<br>**Predicted:** 6.5 leaks this month<br>**Actual:** 5 leaks last month | **Green:** Predicted ≤ baseline AND incidents decreasing<br>**Yellow:** Predicted 1.5-2x baseline<br>**Red:** Predicted >2x baseline  |
-| **"Rare but severe attack"**               | **Implementation:** <br>Measure exposure (Leading)                 | **Exposure:** 23% of traffic on HTTP/1 protocol<br>**Critical:** 2 authentication endpoints on HTTP/1<br>**Trend:** -5% reduction from last quarter                          | **Green:** Trending down ≥20%/quarter<br>**Yellow:** Flat or <20% decrease<br>**Red:** Increasing                                     |
-| **"I don't have inventory"**               | **Define alternative collection:**<br>Sampling or Experimentation  | **Sampling:** Audit 10% of repos (50 of 500) for exposed secrets → 8% found secrets<br>**Experimentation:** Red team test of 5 critical endpoints → 2 bypassable             | **Green:** Sample shows <5% issues<br>**Yellow:** Sample shows 5-15% issues<br>**Red:** Sample shows >15% issues                      |
+| Your Situation | Primary KRI | Example Metrics | Thresholds |
+|----------------|----------|-----------------|------------|
+| **"New risk, zero incidents"** | **Implementation:** Measure control adoption (Leading) | **Control:** 45% of images with SLSA provenance<br>**Exposure:** 550 images without attestation<br>**Trend:** +50 unprotected images this quarter | **Green:** Coverage ≥95% OR trending down ≥20%/quarter<br>**Yellow:** Coverage 75-94% OR flat<br>**Red:** Coverage <75% OR increasing |
+| **"High incident frequency (≥5/quarter)"** | **Effectiveness:** <br>Incidents (Lagging) + Predictive (Bayesian) | **Historical:** 30 leaks in 6 months, avg 500 unscoped secrets<br>**Current:** 650 unscoped secrets<br>**Predicted:** 6.5 leaks this month<br>**Actual:** 5 leaks last month | **Green:** Predicted ≤ baseline AND incidents decreasing<br>**Yellow:** Predicted 1.5-2x baseline<br>**Red:** Predicted >2x baseline |
+| **"Rare but severe attack"** | **Implementation:** <br>Measure exposure (Leading) | **Exposure:** 23% of traffic on HTTP/1 protocol<br>**Critical:** 2 authentication endpoints on HTTP/1<br>**Trend:** -5% reduction from last quarter | **Green:** Trending down ≥20%/quarter<br>**Yellow:** Flat or <20% decrease<br>**Red:** Increasing |
+| **"I don't have inventory"** | **Define alternative collection:**<br>Sampling or Experimentation | **Sampling:** Audit 10% of repos (50 of 500) for exposed secrets → 8% found secrets<br>**Experimentation:** Red team test of 5 critical endpoints → 2 bypassable | **Green:** Sample shows <5% issues<br>**Yellow:** Sample shows 5-15% issues<br>**Red:** Sample shows >15% issues |
 
 **Note:** Most risks should use multiple KRI types.
 
@@ -243,11 +242,11 @@ Refer to [USRM labels](/handbook/security/security-observations-risk-management/
 
 All three health labels are required for each PSRR risk:
 
-| Health Domain  | Labels                                 | Red                                | Yellow                                  | Green                                |
-| -------------- | -------------------------------------- | ---------------------------------- | --------------------------------------- | ------------------------------------ |
-| Owner          | `health-owner::red\|yellow\|green`     | No Business risk owner assigned    | Assigned but inactive/needs replacement | Regular syncs (≥quarterly)           |
-| Treatment Plan | `health-treatment::red\|yellow\|green` | No treatment plan or missing dates | Defined but delayed >1 quarter          | On track, delays ≤1 quarter          |
-| KRI            | `health-kri::red\|yellow\|green`       | Undefined or untracked             | Defined, provides partial context       | Defined, linked to impact/likelihood |
+| Health Domain | Labels | Red | Yellow | Green |
+|---------------|--------|-----|--------|-------|
+| Owner | `health-owner::red\|yellow\|green` | No Business risk owner assigned | Assigned but inactive/needs replacement | Regular syncs (≥quarterly) |
+| Treatment Plan | `health-treatment::red\|yellow\|green` | No treatment plan or missing dates | Defined but delayed >1 quarter | On track, delays ≤1 quarter |
+| KRI | `health-kri::red\|yellow\|green` | Undefined or untracked | Defined, provides partial context | Defined, linked to impact/likelihood |
 
 ### Optional Labels
 

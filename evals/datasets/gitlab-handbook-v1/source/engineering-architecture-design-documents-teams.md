@@ -7,13 +7,9 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 # This is the title of your design document. Keep it short, simple, and descriptive. A
-
 # good title can help communicate what the design document is and should be considered
-
 # as part of any review.
-
 title: Teams
 status: proposed
 creation-date: "2025-12-09"
@@ -21,9 +17,7 @@ authors: [ "@lohrc" ]
 dris: [ "@lohrc" ]
 owning-stage: "~devops::tenant scale"
 participating-stages: []
-
 # Hides this page in the left sidebar. Recommended so we don't pollute it.
-
 toc_hide: true
 ---
 
@@ -88,7 +82,7 @@ Research across the DevOps landscape reveals that access management inefficienci
 
 These evolved approaches demonstrate industry recognition that traditional access control models are insufficient for modern enterprise DevOps requirements. GitLab's current dual-purpose group model increasingly appears dated compared to these specialized solutions, potentially limiting enterprise adoption and competitive positioning.
 
-_Detailed competitive analysis including specific platform implementations and feature comparisons is available in the [DevOps Access Control Research Report](https://drive.google.com/drive/folders/1WeMK7PYvFhGtWqYFY8VPMUOxUVfay3vr?ths=true) for internal reference._
+*Detailed competitive analysis including specific platform implementations and feature comparisons is available in the [DevOps Access Control Research Report](https://drive.google.com/drive/folders/1WeMK7PYvFhGtWqYFY8VPMUOxUVfay3vr?ths=true) for internal reference.*
 
 ### Goals
 
@@ -244,7 +238,7 @@ The existing roles system addresses permission granularity through up to 40+ spe
 - Just-in-time access patterns for sensitive operations
 - Challenge: Implementation complexity and learning curve for traditional organizational models
 
-_Detailed analysis of specific platform implementations is available in the [DevOps Access Control Research Report](https://drive.google.com/drive/folders/1WeMK7PYvFhGtWqYFY8VPMUOxUVfay3vr?ths=true) for comprehensive competitive insights._
+*Detailed analysis of specific platform implementations is available in the [DevOps Access Control Research Report](https://drive.google.com/drive/folders/1WeMK7PYvFhGtWqYFY8VPMUOxUVfay3vr?ths=true) for comprehensive competitive insights.*
 
 ### Engineering Feasibility and Technical Considerations
 

@@ -7,12 +7,9 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: GitLab Password Guidelines
 ---
-
 <!-- markdownlint-disable MD051 -->
-
 ## Passwords at GitLab
 
 Passwords are one of the primary mechanisms that protect GitLab information systems and other resources from unauthorized use. GitLab's [password standard](/handbook/security/policies_and_standards/password-standard) is based, in part, on the recommendations by [NIST 800-63B](https://pages.nist.gov/800-63-3/sp800-63b.html).
@@ -23,7 +20,7 @@ The password standard sets the requirements for constructing secure passwords an
 1Password is a password manager that can be used in two different ways - as a standalone application (by purchasing a standalone license) or as a hosted service (by subscribing). GitLab uses 1Password for Business which is a hosted service.
 
 **Important:** Any personal Passwords stored in your GitLab vault will be inaccessible upon separation with GitLab. Please use the complimentary 1Passsword Families membership subscription that comes with your business account to store any personal passwords. This account will stay with you even in the event that you stop working with GitLab.
-For more information on how to redeem your free subscription, please follow the steps outlined in [this article](https://support.1password.com/link-family/).
+ For more information on how to redeem your free subscription, please follow the steps outlined in [this article](https://support.1password.com/link-family/).
 
 Ideally you memorize one strong password - hence the name - and let 1Password generate and manage strong, unique passwords
 for every site for which you have a login.
@@ -41,7 +38,7 @@ For your Okta password and other passwords that you won't store in Okta, use [1P
   disclosed to someone else, it should be changed immediately.
 - Post a message in Compass app in slack or email it-help@gitlab.com, if you forget your Master Password.
 - Consider using a generated Master Password. Most human-created passwords
-  are easy to guess. Let 1Password create a strong Master Password. But: you _will_
+  are easy to guess. Let 1Password create a strong Master Password. But: you *will*
   need to memorize this Master Password.
 - Do not let your password manager store the **master password**. It is okay to
   store the username.
@@ -64,36 +61,36 @@ using throughout.
 ### 1Password guidelines
 
 1. If you install the macOS application, install 1Password via this link
-   [1Password](https://1password.com/downloads/mac)
+[1Password](https://1password.com/downloads/mac)
 1. If you have a YubiKey, it can be added as a 2-factor
-   method to your 1Password account for convenience.
+method to your 1Password account for convenience.
 1. When traveling, consider using 1Password in "Travel Mode", see more on that [below](#travel-mode).
 1. Do not share credentials via email, issue comments, chat etc. This includes
    email addresses to login and API keys. Use 1Password vaults for this and if sharing a one-off password, the built-in "Share" feature.
 1. If you do not have access to a vault create an
-   [access request issue](https://gitlab.com/gitlab-com/team-member-epics/access-requests/-/issues/new).
+  [access request issue](https://gitlab.com/gitlab-com/team-member-epics/access-requests/-/issues/new).
 1. Use Watchtower to find passwords that need to be changed. Watchtower tells
-   users about password breaches and other security problems on the websites they
-   have saved in 1Password Teams, so users can take action. This is not something
-   account administrators can review for team members, so it is up to you to enable!
-   Enable Watchtower by going to your 1Password app and then to **Preferences > Watchtower**.
+users about password breaches and other security problems on the websites they
+have saved in 1Password Teams, so users can take action. This is not something
+account administrators can review for team members, so it is up to you to enable!
+Enable Watchtower by going to your 1Password app and then to **Preferences > Watchtower**.
 1. Use the "Security Audit"
-   functionality of 1Password to meet the [password standard](/handbook/security/policies_and_standards/password-standard).
-   It will report reused passwords, weak passwords, accounts that
-   are missing 2-factor authorization, and so forth that can then be fixed.
+functionality of 1Password to meet the [password standard](/handbook/security/policies_and_standards/password-standard).
+It will report reused passwords, weak passwords, accounts that
+are missing 2-factor authorization, and so forth that can then be fixed.
 1. Do not copy passwords from inside a 1Password vault to a personal password
-   vault or other password store. 1Password should be the only password
-   vault used for teams. Team passwords should not be duplicated or placed in
-   personal password vaults where they can potentially be exposed to compromise.
+vault or other password store. 1Password should be the only password
+vault used for teams. Team passwords should not be duplicated or placed in
+personal password vaults where they can potentially be exposed to compromise.
 1. When asked security questions (what is your favorite pet, etc.) do not answer
-   truthfully since that is easy to research. Make up an answer and write both the
-   question and answer in 1Password. Consider using the Password Generator function
-   in 1Password for this.
+truthfully since that is easy to research. Make up an answer and write both the
+question and answer in 1Password. Consider using the Password Generator function
+in 1Password for this.
 1. During offboarding, your 1Password account is deleted, which includes the
-   **Employee** vault in the GitLab team account. If you want to keep your personal
-   passwords, please copy/move them to your **Primary** vault which you will have
-   if you signed up for an [individual account](#1password-for-your-private-passwords) before
-   joining the GitLab Team account.
+**Employee** vault in the GitLab team account. If you want to keep your personal
+passwords, please copy/move them to your **Primary** vault which you will have
+if you signed up for an [individual account](#1password-for-your-private-passwords) before
+joining the GitLab Team account.
 1. **Deprecated** When documenting the location of shared credentials in the handbook refer to the items with NAME_OF_SITE credentials in VAULT_NAME. For example:
    "for access please see the AOL credentials in the Luddite vault".
    - Deprecation note: This is for existing accounts only. New accounts should
@@ -105,7 +102,7 @@ using throughout.
 1Password for Teams stores all **Vaults** on the 1Password servers and allows
 for sharing between multiple people on the same team. Every GitLab team member who needs access to a shared vault should consult their departments for any shared vault information.
 
-Each member of the team has a vault called **Employee** which _only you can see_, and allows you to store personal credentials _within the GitLab team's account_.
+Each member of the team has a vault called **Employee** which *only you can see*, and allows you to store personal credentials *within the GitLab team's account*.
 
 To really get the full benefit of 1Password, you'll need to hook our Business
 account up to one of the native apps.
@@ -120,7 +117,7 @@ version. If you use 1Password 6 without a 1Password.com account, make note of
 1. Download and install the 1Password [macOS app](https://1password.com/downloads/mac).
 1. Launch the app.
 1. Click "Sign in to your 1Password account" button. If there is no such button
-   please follow the instructions for [updating 1Password](/handbook/security/corporate/systems/1password/setup/).
+please follow the instructions for [updating 1Password](/handbook/security/corporate/systems/1password/setup/).
 
 Now you'll need the **Emergency Kit** PDF that 1Password told you to save when
 you registered your **Business** account. Note: Store the Emergency Kit safely.
@@ -145,7 +142,7 @@ If you printed the PDF:
 1. For **Team URL** enter **gitlab.1password.com**
 1. For **Account Key** enter the Account Key from your Emergency Kit
 1. For **Email Address** enter your `@gitlab.com` email
-1. For **Master Password** enter the password to your **Teams** account (_not_
+1. For **Master Password** enter the password to your **Teams** account (*not*
    the password you created above when you chose "I'm a new user")
 
 After the Team is added, you should see some notifications about vaults being
@@ -166,9 +163,9 @@ Click the **Vault Selector** in the upper-left corner of the window:
 </div>
 <br>
 
-GitLab team members have access to a **Employee** vault by default, which is your _hosted, private_ vault that is part of the GitLab 1Password for Teams account. Since the Employee vault is part of the
+GitLab team members have access to a **Employee** vault by default, which is your *hosted, private* vault that is part of the GitLab 1Password for Teams account. Since the Employee vault is part of the
 GitLab Business account, it should be thought of as company property (like the
-@gitlab.com email account), however the vault _cannot_ be viewed by anyone
+@gitlab.com email account), however the vault *cannot* be viewed by anyone
 else on the team, including admins. If you choose to store truly personal
 information in the Employee vault, it opens up the possibility that you would
 be separated from this information if you offboard. Such truly personal
@@ -181,7 +178,7 @@ People may request access to other vaults such as shared vaults that their teams
 ### Browser extension
 
 Go to [Browser extensions](https://1password.com/downloads/mac#browsers) and
-install the extension for whatever browser you're using. You _should not_ need a
+install the extension for whatever browser you're using. You *should not* need a
 beta version here.
 
 With the extension installed, you should be able to go to a site that you have
@@ -236,7 +233,7 @@ unencrypted.
 Example for configuring [glab](https://gitlab.com/gitlab-org/cli) with 1Password CLI (requires 1password version 8 or higher):
 
 - Store your access token in 1Password. In the entry for your GitLab account, create a new section `pat`
-  and add a field `api`. Insert the value of your PAT into the newly created field `api`.
+ and add a field `api`. Insert the value of your PAT into the newly created field `api`.
 
 <div style="text-align:center;">
   <img src="/images/security/1pass-pat-setup.png" alt="Save login" width="600"/>
@@ -426,17 +423,17 @@ To configure Docker to use `osxkeychain` for secure credential storage, follow t
 
 1. Install the `docker-credential-osxkeychain` helper via Homebrew:
 
-   ```sh
-   brew install docker-credential-helper
-   ```
+    ```sh
+    brew install docker-credential-helper
+    ```
 
 1. Configure `~/.docker/config.json` to [use `osxkeychain` as your Docker credstore](https://docs.docker.com/reference/cli/docker/login/#credential-stores):
 
-   ```json
-   {
-     "credsStore": "osxkeychain"
-   }
-   ```
+    ```json
+    {
+        "credsStore": "osxkeychain"
+    }
+    ```
 
 1. Log in using `docker login registry.gitlab.com`, and enter your email and password (PAT) when prompted.
 1. Validate that the credentials were not saved as base64-encoded text in `~/.docker/config.json`.
@@ -457,11 +454,11 @@ To configure Docker to use `pass` for secure credential storage, follow these st
 1. Initialize `pass` with `pass init <gpg-key-id>`.
 1. Configure `~/.docker/config.json` to [use `pass` as a credstore](https://docs.docker.com/reference/cli/docker/login/#credential-stores):
 
-   ```json
-   {
-     "credsStore": "pass"
-   }
-   ```
+    ```json
+    {
+        "credsStore": "pass"
+    }
+    ```
 
 1. Log in using `docker login registry.gitlab.com`, and enter your email and password (a valid [token](https://docs.gitlab.com/ee/user/packages/container_registry/authenticate_with_container_registry.html)) when prompted.
 1. Validate that the credentials were not saved as base64-encoded text in `~/.docker/config.json`.

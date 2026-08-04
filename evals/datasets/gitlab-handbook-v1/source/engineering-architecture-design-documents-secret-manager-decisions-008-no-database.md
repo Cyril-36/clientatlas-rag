@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 owning-stage: "~sec::govern"
 title: 'GitLab Secrets Manager ADR 008: Redesigning secrets manager without a Rails database table'
 toc_hide: true
@@ -301,25 +300,24 @@ Some metadata fields could include:
 - `scopes`, to indicate the known scopes of a secret. This could be a list
   such as:
 
-  ```json
-  [
-     {
-        "id": "<uuid>",
-        "environments": [...],
-        "branches": [...],
-        "combined": [...],
-        "stages": [...]
-     },
-     { ... }
-  ]
-  ```
+   ```json
+   [
+      {
+         "id": "<uuid>",
+         "environments": [...],
+         "branches": [...],
+         "combined": [...],
+         "stages": [...]
+      },
+      { ... }
+   ]
+   ```
 
-  to allow mapping from a single metadata name to an identifier per scope.
-  Then, the actual (static) secret value could be at a path such as
-  `.../secrets/kv/data/explicit/<name>/id/<uuid>` and the runner could fetch
-  this value based on the desired match criteria. Similarly a scheme could be
-  designed for dynamic secret engines, such as `explicit-<name>-id-<uuid>`.
-
+   to allow mapping from a single metadata name to an identifier per scope.
+   Then, the actual (static) secret value could be at a path such as
+   `.../secrets/kv/data/explicit/<name>/id/<uuid>` and the runner could fetch
+   this value based on the desired match criteria. Similarly a scheme could be
+   designed for dynamic secret engines, such as `explicit-<name>-id-<uuid>`.
 - `creator`, for the identifier of the author of this secret.
 - ... &c
 
@@ -407,9 +405,9 @@ still want to allow MemDB users to have support for glob based groups.
 
 **Complexity**: complex
 **Impact**: necessary performance improvement at scale to reduce the number
-of Rails->OpenBao queries.
+            of Rails->OpenBao queries.
 **MVC**: not strictly necessary if we don't allow globs in environments,
-branches.
+         branches.
 **GA**: likely required if customers have complex environments names
 
 #### Long-term

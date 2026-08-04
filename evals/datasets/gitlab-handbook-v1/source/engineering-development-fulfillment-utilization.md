@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Fulfillment Utilization Team
 description: "The Utilization Team in the Fulfillment Sub-department at GitLab"
 ---
@@ -72,12 +71,12 @@ An example template to use in these updates looks like:
 ```markdown
 # BE Weekly Update YYYY-MM-DD
 
-- **Timeline Confidence**: :thumbsup:
-- **% Complete**: X% (Y weight closed / Z total weight)
-- **Blockers**: None
-- **Accomplishments**:
-  - 3 MRs created
-  - 1 issue closed
+* **Timeline Confidence**: :thumbsup:
+* **% Complete**: X% (Y weight closed / Z total weight)
+* **Blockers**: None
+* **Accomplishments**:
+  * 3 MRs created
+  * 1 issue closed
 
 cc/ @alex_martin @csouthard
 ```
@@ -95,13 +94,14 @@ Initially we are using the following formula for `% Complete`, rounded down to t
 The Engineering Manager will report before the end of each week on milestone progress in the current milestone planning issue on the following topics:
 
 ```markdown
+
 **Total Weight Closed** XX
 
 **Total Weight Open** XX (XX in dev)
 
 **Deliverable Weight Closed** XX
 
-**Deliverable Weight Open** X (XX in dev; X blocked)
+**Deliverable Weight Open** X (XX in dev;  X blocked)
 
 **Blocked Issues** X issue(s) (X weight) link, description
 ```
@@ -130,14 +130,14 @@ When going out of office, please be sure to [clearly communicate](/handbook/peop
 
 ### Key dates
 
-| Date                                            | Event                                                                                                                                                                          |
-| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| The Monday of the week the milestone ends       | **PM** creates a Planning Issue and pings the EM(s) in the Planning Issue for review & preliminary weighting.<br><br> **EM and PM** calculate capacity, add to Planning Issue. |
-| Monday to Friday of the week the milestone ends | **EM** & **ICs** add weights to issues in the backend and frontend build boards.                                                                                               |
-| The Friday the milestone ends                   | **PM** adds ~Deliverable labels to issues.                                                                                                                                     |
-| The Friday the milestone ends                   | Last day of milestone<br><br> **PM** adjusts current and upcoming issues to reflect slippage from the current milestone. ~Deliverable labels are adjusted as necessary.        |
-| Team Sync Closest to the Next Milestone         | **PM** reviews the upcoming milestone plan with the team.                                                                                                                      |
-| The third Thursday of the month                 | Release                                                                                                                                                                        |
+| Date | Event |
+| ------ | ------ |
+| The Monday of the week the milestone ends |**PM** creates a Planning Issue and pings the EM(s) in the Planning Issue for review & preliminary weighting.<br><br> **EM and PM** calculate capacity, add to Planning Issue.|
+| Monday to Friday of the week the milestone ends |**EM** & **ICs** add weights to issues in the backend and frontend build boards.|
+| The Friday the milestone ends | **PM** adds ~Deliverable labels to issues.|
+| The Friday the milestone ends |Last day of milestone<br><br> **PM** adjusts current and upcoming issues to reflect slippage from the current milestone. ~Deliverable labels are adjusted as necessary.|
+| Team Sync Closest to the Next Milestone | **PM** reviews the upcoming milestone plan with the team. |
+| The third Thursday of the month | Release |
 
 ### How We Prioritize Issues
 
@@ -177,11 +177,11 @@ If issues require input around various type of developer tooling or testing stra
 1. Does the issue have the expected behavior described well enough for anyone to understand?
 1. Does the issue explicitly define who the stakeholders are (e.g. BE, FE, PM, UX and/or Tech Writer)? In case the stakeholders aren't very clear (especially when it's not FE nor BE), mention both the PM and EM when you ask for clarification?
 1. Does the issue have a proposal in the description?
-   - _If so_:
-   1. Does the proposal address the problem statement?
-   1. Are there any unintended side effects of the implementation?
-   - _If not_:
-   1. Create a proposal during the estimation steps or summarize the prevailing proposal.
+    - *If so*:
+    1. Does the proposal address the problem statement?
+    1. Are there any unintended side effects of the implementation?
+    - *If not*:
+    1. Create a proposal during the estimation steps or summarize the prevailing proposal.
 1. Does the issue have proper labeling matching the job to be done? (e.g. bug, feature, performance)
 
 Anyone on the team can contribute to answering the questions in this checklist, but the final decisions are up to the PM and EM.
@@ -245,9 +245,9 @@ Links to previous examples. Discussions on prior art. Notice examples of the sim
 1. Update associated issues to be linked, marking as blocked where appropriate.
 1. Add a weight based on our definition ([see below](#estimation))
 1. Update the `~workflow::*` label to the appropriate status, e.g.
-   - `~"workflow::design"` if further design refinement is needed, and let the designer know.
-   - `~"workflow::ready for development"` when refinement is completed and a weight has been applied, signaling that it's ready for implementation and the issue can now be prioritized.
-   - `~"workflow::planning breakdown"` if extensive investigation and/or research is needed, the status does not move, and the PM and EMs should be informed. An issue remains in this workflow status while collaborating with others to clarify minor aspects of the issue.
+    - `~"workflow::design"` if further design refinement is needed, and let the designer know.
+    - `~"workflow::ready for development"` when refinement is completed and a weight has been applied, signaling that it's ready for implementation and the issue can now be prioritized.
+    - `~"workflow::planning breakdown"` if extensive investigation and/or research is needed, the status does not move, and the PM and EMs should be informed. An issue remains in this workflow status while collaborating with others to clarify minor aspects of the issue.
 1. Unassign themselves from the issue when they are done refining and weighing the issue.
 
 #### Splitting issues
@@ -271,18 +271,18 @@ If that passage of time is significant, e.g. 1 year, we should re-evaluate the i
 
 Much like [Martin Fowler's technical debt quadrant](https://martinfowler.com/bliki/TechnicalDebtQuadrant.html), we'll repurpose the [Eisenhower Method](https://en.wikipedia.org/wiki/Time_management#The_Eisenhower_Method) to help guide our thinking as we categorize and prioritize our maintenance issues. We use a two-axis framework, `urgency` and `importance`, to prioritize maintenance issues (refactoring, intentional or unintentional technical debt, etc). It's a framework for decision making.
 
-#### `urgency`: "_Will we need it soon?_"
+#### `urgency`: "*Will we need it soon?*"
 
 Range: not-urgent or urgent
 
-We can also quantify _urgency_ in a number of ways. One method is based on customer impact. For instance, we can use the number of errors(5xx's code errors; user facing exceptions), error-budget(higher impact leads to higher urgency), or the number of customers impacted by the issue. Other non-customer based urgency could include the timeline for driven changes such as package or gem upgrades.
+We can also quantify *urgency* in a number of ways. One method is based on customer impact. For instance, we can use the number of errors(5xx's code errors; user facing exceptions), error-budget(higher impact leads to higher urgency), or the number of customers impacted by the issue. Other non-customer based urgency could include the timeline for driven changes such as package or gem upgrades.
 
 Defining questions:
 
 1. "What will happen if we don't fix this issue in the next one milestone?"
 1. "Does the business need still exist? Is this still actively being used by our customers?"
 
-#### `importance`: "_How bad is it?_"
+#### `importance`: "*How bad is it?*"
 
 Range: not-important or important
 
@@ -311,7 +311,7 @@ For each milestone, we should allocate (at a minimum) maintenance issues equal t
 
 #### Labels and How We Use Them
 
-We have many labels that can be applied to an issue or a merge request. Besides the issue workflow labels, here are the minimum basic labels to apply to issues _and_ merge requests:
+We have many labels that can be applied to an issue or a merge request. Besides the issue workflow labels, here are the minimum basic labels to apply to issues *and* merge requests:
 
 - Type (`type::feature`, `type::bug`, or `type::maintenance`)
 - Stage that owns the area (`section::fulfillment`)
@@ -374,7 +374,7 @@ Throughout the estimation process, consider the following GitLab sub-values:
 
 #### Spikes
 
-We use [spikes](/handbook/product/product-processes/#spikes) _during the milestone_ to produce a [design document](https://www.industrialempathy.com/posts/design-docs-at-google/) or similar artifact that is useful for planning and execution of feature or other complex work. This can simply be, but not limited to, an issue containing a summary of the discussions on the topic, answers to questions from the spike description, links to any Proof of Concept MRs produced, a road map or other detailed outline. They are assigned like other work and take up capacity from the milestone.
+We use [spikes](/handbook/product/product-processes/#spikes) *during the milestone* to produce a [design document](https://www.industrialempathy.com/posts/design-docs-at-google/) or similar artifact that is useful for planning and execution of feature or other complex work. This can simply be, but not limited to, an issue containing a summary of the discussions on the topic, answers to questions from the spike description, links to any Proof of Concept MRs produced, a road map or other detailed outline. They are assigned like other work and take up capacity from the milestone.
 
 Spikes are typically considered a `Deliverable` issue and we use [this template](https://gitlab.com/gitlab-org/customers-gitlab-com/-/blob/main/.gitlab/issue_templates/spike_template.md) (internal only) to create new spike issues.
 
@@ -424,16 +424,16 @@ The following lists are links to Sentry and other tools where we proactively ide
 
 ### Potential list of places to check
 
-| Subject                 | Link                                                                                                                                                                          | Notes                                                                                                             |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| CustomersDot syncing    | [Sentry](https://sentry.gitlab.net/gitlab/customersgitlabcom/?query=is%3Aunresolved+UpdateGitlabPlanInfoWorker)                                                               | `UpdateGitlabPlanInfoWorker` class is used to sync data between CustomersDot and GitLab                           |
-| GitLab Subscriptions    | [Sentry](https://sentry.gitlab.net/gitlab/gitlabcom/?query=is%3Aunresolved+subscription)                                                                                      | Results could be refined by controller, e.g. `SubscriptionsController`                                            |
-| Billing errors          | [Sentry](https://sentry.gitlab.net/gitlab/gitlabcom/?query=is%3Aunresolved+billing)                                                                                           | Results could be further refined by controller, e.g. `Groups::BillingsController`, `Projects::BillingsController` |
-| Rails logs              | [Kibana](https://log.gprd.gitlab.net/goto/c97cd8d278b9cae18c8588c85a82a2d6)                                                                                                   | Utilization feature category Rails logs for the last 7 days                                                       |
-| Sidekiq logs            | [Kibana](https://log.gprd.gitlab.net/goto/7fe39288bc23a368ddbec6ed369c3ab2)                                                                                                   | Utilization feature category Sidekiq logs for the last 7 days                                                     |
-| Billable Member API     | [Grafana dashboard](https://dashboards.gitlab.net/d/api-rails-controller/api-rails-controller?orgId=1)                                                                        | -                                                                                                                 |
-| CustomersDot Bug Issues | [Issues](https://gitlab.com/gitlab-org/customers-gitlab-com/-/issues?label_name[]=type::bug&label_name%5B%5D=group%3A%3Autilization&scope=all&sort=created_date&state=opened) | -                                                                                                                 |
-| GitLab Bug Issues       | [Issues](https://gitlab.com/gitlab-org/gitlab/-/issues?label_name[]=type::bug&label_name%5B%5D=group%3A%3Autilization&scope=all&sort=created_date&state=opened)               | -                                                                                                                 |
+| Subject | Link | Notes |
+| - | - | - |
+| CustomersDot syncing | [Sentry](https://sentry.gitlab.net/gitlab/customersgitlabcom/?query=is%3Aunresolved+UpdateGitlabPlanInfoWorker) | `UpdateGitlabPlanInfoWorker` class is used to sync data between CustomersDot and GitLab |
+| GitLab Subscriptions | [Sentry](https://sentry.gitlab.net/gitlab/gitlabcom/?query=is%3Aunresolved+subscription) | Results could be refined by controller, e.g. `SubscriptionsController` |
+| Billing errors | [Sentry](https://sentry.gitlab.net/gitlab/gitlabcom/?query=is%3Aunresolved+billing) | Results could be further refined by controller, e.g. `Groups::BillingsController`, `Projects::BillingsController` |
+| Rails logs | [Kibana](https://log.gprd.gitlab.net/goto/c97cd8d278b9cae18c8588c85a82a2d6) | Utilization feature category Rails logs for the last 7 days |
+| Sidekiq logs | [Kibana](https://log.gprd.gitlab.net/goto/7fe39288bc23a368ddbec6ed369c3ab2) | Utilization feature category Sidekiq logs for the last 7 days |
+| Billable Member API | [Grafana dashboard](https://dashboards.gitlab.net/d/api-rails-controller/api-rails-controller?orgId=1) | - |
+| CustomersDot Bug Issues | [Issues](https://gitlab.com/gitlab-org/customers-gitlab-com/-/issues?label_name[]=type::bug&label_name%5B%5D=group%3A%3Autilization&scope=all&sort=created_date&state=opened) | - |
+| GitLab Bug Issues | [Issues](https://gitlab.com/gitlab-org/gitlab/-/issues?label_name[]=type::bug&label_name%5B%5D=group%3A%3Autilization&scope=all&sort=created_date&state=opened) | - |
 
 ### Creating an issue direct from Sentry
 
@@ -445,11 +445,11 @@ See links in the right sidebar:
 
 ![''](/images/engineering/development/fulfillment/utilization/sentry_issue_creator.png)
 
-Although both links look the same, the first link is for creating an issue _in the security repo_, the **second should be for the project** (CustomersDot/GitLab) accordingly.
+Although both links look the same, the first link is for creating an issue *in the security repo*, the **second should be for the project** (CustomersDot/GitLab) accordingly.
 
 ## Support Requests
 
-Fulfillment has a new [collaborative process with the Support team](https://gitlab.com/gitlab-com/fulfilment-sub-department/section-fulfilment-request-for-help#how-to-submit-a-request-for-help-to-the-fulfilment-section-development-team) to track and manage requests for help. We have a specialized, scoped label, `~"Help group::Utilization"`. [Issues](https://gitlab.com/gitlab-com/fulfilment-sub-department/section-fulfilment-request-for-help/-/issues) are generated in the same project.
+Fulfillment has a new [collaborative process with the Support team](https://gitlab.com/gitlab-com/fulfilment-sub-department/section-fulfilment-request-for-help#how-to-submit-a-request-for-help-to-the-fulfilment-section-development-team) to track and manage requests for help. We have a specialized, scoped label, `~"Help group::Utilization"`.  [Issues](https://gitlab.com/gitlab-com/fulfilment-sub-department/section-fulfilment-request-for-help/-/issues) are generated in the same project.
 
 Other boards where previous requests are tracked:
 
@@ -508,10 +508,10 @@ we have used for our retrospectives and working groups.
    1. We can use the [Utilization team project](https://gitlab.com/fulfillment-group/utilization-group/team-project), the following [issue template](https://gitlab.com/fulfillment-group/utilization-group/team-project/-/blob/main/.gitlab/issue_templates/architecture_review.md), and [Epic](https://gitlab.com/groups/fulfillment-group/utilization-group/-/epics/2)
    1. Find a Reviewer (Issue author and DRI)
       1. Optionally, find a person to chair the review. They would facilitate
-         the process (review meeting scheduling; note taking; managing the clock and discussion).
-         For smaller reviews, the reviewer also acts as the chair.
+      the process (review meeting scheduling; note taking; managing the clock and discussion).
+      For smaller reviews, the reviewer also acts as the chair.
    1. Summarize the [concern, feature, proposal, etc]. Limit this to 1 paragraph, but address the problem in its entirety.
-      The topic should be agreed upon between the team and the reviewer.
+   The topic should be agreed upon between the team and the reviewer.
 1. The team asynchronously contributes to the issue to provide additional detail that documents the [concern, feature, proposal, etc] identified in the issue description.
    1. Summarize the problem space. Definitions, terms, what is the key motivation for addressing this topic.
    1. List those directly affected by the current problem or future revision. Bring in a stable counterpart (e.g. Support, Sales, cross-stage DRI) to further understand the impact.

@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Accounting and Reporting"
 ---
 
@@ -28,13 +27,13 @@ For order approval and invoicing process please view the [Billing Ops page.](fin
 **Invoicing: One Time Events**
 
 1. Send the below information via email to ar@gitlab.com
-   - Company name
-   - Company AP email
-   - Address
-   - Billing contact name
-   - Billing contact email
-   - Charge amount
-   - Event name and subject
+    - Company name
+    - Company AP email
+    - Address
+    - Billing contact name
+    - Billing contact email
+    - Charge amount
+    - Event name and subject
 
 **Amendments to Subscriptions** <a name="Amendments"></a>
 
@@ -125,7 +124,7 @@ Transactions from the Swag Shop are remitted to the Comerica checking account da
 - This report contains swag shop revenue and tax data to be recorded in NetSuite.
 
 1. In portal used for swag download the orders report which should include cost for swag sold.
-1. Record the revenue, tax, cost and cash received. At times cost maybe estimated using a historical average.
+1. Record the revenue, tax, cost and cash received.  At times cost maybe estimated using a historical average.
 1. Record the tax collected in the Ava Tax Portal.
 1. Create a journal entry in NetSuite under the GitLab Inc subsidiary, using the last day of the month as the entry date.
 
@@ -139,43 +138,43 @@ Transactions from the Swag Shop are remitted to the Comerica checking account da
 **Credit card customer**
 
 Follow this procedure if the customer paid by credit card.
-You may recall from the invoicing process that there was still a balance due when saving the invoice. The following steps will record the payment and remove the balance due.
+You may recall from the invoicing process that there was still a balance due when saving the invoice.  The following steps will record the payment and remove the balance due.
 
 1. Login to Stripe dashboard and click on Payments under Transactions (left hand side). You will see a listing of the latest Stripe transactions listed by amount, Recurly transaction, name, date, and time. There is also an option to filter the report by clicking on XXX at the top left. Click on XXX to export to excel. This will give you a workbook area and also a breakdown of the fees which we will work on later.
 1. In NetSuite, click on the "Transactions" tab on the left.
-   - Click on the orange "OPEN INVOICES " tab. This will bring up all open invoices listed by date, invoice #, customer, etc.
-1. Match invoice #s between the Stripe dashboard and NetSuite. If you click on a transaction in the Stripe dashboard, it will take you to a screen that shows more detail, including the invoice # being paid. You can work your way from the bottom up.
+    - Click on the orange "OPEN INVOICES " tab. This will bring up all open invoices listed by date, invoice #, customer, etc.
+1. Match invoice #s  between the Stripe dashboard and NetSuite. If you click on a transaction in the Stripe dashboard, it will take you to a screen that shows more detail, including the invoice # being paid. You can work your way from the bottom up.
 1. In NetSuite, click "Receive Payment" on the matched payment and invoice.
 1. Receiving the payment
-   - Enter the payment date, which is the payment date from Stripe dashboard.
-   - Payment method = Credit Card.
-   - Reference no. = "Recurly Transaction ID:" found under Metadata in Stripe dashboard.
-   - Deposit to = Stripe.
-   - NetSuite will auto-fill the payment amount with the entire balance due. No need to change this unless the payment amount from Stripe is different.
-   - Click on "Save and Close".
-   - Repeat the above for all the remaining invoices that were paid by credit card.
+    - Enter the payment date, which is the payment date from Stripe dashboard.
+    - Payment method = Credit Card.
+    - Reference no. = "Recurly Transaction ID:" found under Metadata in Stripe dashboard.
+    - Deposit to = Stripe.
+    - NetSuite will auto-fill the payment amount with the entire balance due. No need to change this unless the payment amount from Stripe is different.
+    - Click on "Save and Close".
+    - Repeat the above for all the remaining invoices that were paid by credit card.
 
 1. Post a journal entry to record Stripe Fees.
-   - In NetSuite, click on the "+" sign. Under "Other", select "Journal Entry".
-   - It is okay to leave the journal date as long as it is within the month the fees were incurred. If not, change it to the last day of the month.
-   - NetSuite will auto fill the journal number. Do not change.
-   - Account #1 Entry
-     - Fill the "Account #1" entry with "Credit Card Transaction fees".
-     - Fill the "Debits" entry with the value from the Stripe report that was exported. The value will be the sum of "Column I" in the Stripe report, which is the fee amount. Be sure to only sum the rows which you just posted payments for.
-     - Leave the "Credits" entry empty.
-     - Fill the "Description" entry with "To record credit card transaction fees for period (enter the date range for the transactions posted)".
-     - Leave the "Name" entry empty.
-     - Fill the "Class" entry with "Sales".
-   - Account #2 Entry
-     - Fill the "Account #2" entry with "Stripe".
-     - Leave the "Debits" entry empty.
-     - The "Credits" entry will autofill. This should be the same amount as the "Debits" entry for Account #1.
-     - The "Description" entry will autofill. This should be the same as the "Description" entry for Account #1.
-     - Leave the "Name" entry blank.
-     - Leave the "Class" entry blank.
-     - Click "Save".
+    - In NetSuite, click on the "+" sign. Under "Other", select "Journal Entry".
+    - It is okay to leave the journal date as long as it is within the month the fees were incurred. If not, change it to the last day of the month.
+    - NetSuite will auto fill the journal number. Do not change.
+    - Account #1 Entry
+      - Fill the "Account #1" entry with "Credit Card Transaction fees".
+      - Fill the "Debits" entry with the value from the Stripe report that was exported. The value will be the sum of "Column I" in the Stripe report, which is the fee amount. Be sure to only sum the rows which you just posted payments for.
+      - Leave the "Credits" entry empty.
+      - Fill the "Description" entry with "To record credit card transaction fees for period (enter the date range for the transactions posted)".
+      - Leave the "Name" entry empty.
+      - Fill the "Class" entry with "Sales".
+    - Account #2 Entry
+      - Fill the "Account #2" entry with "Stripe".
+      - Leave the "Debits" entry empty.
+      - The "Credits" entry will autofill. This should be the same amount as the "Debits" entry for Account #1.
+      - The "Description" entry will autofill. This should be the same as the "Description" entry for Account #1.
+      - Leave the "Name" entry blank.
+      - Leave the "Class" entry blank.
+      - Click "Save".
 
-This transaction transfers the payment obligation from the customer to Stripe. The payment obligation from Stripe is removed when Stripe transfers the funds to GitLab's bank account.
+This transaction transfers the payment obligation from the customer to Stripe.  The payment obligation from Stripe is removed when Stripe transfers  the funds to GitLab's bank account.
 
 **Posting a payment from Stripe when a transfer is received from Stripe**
 
@@ -253,13 +252,13 @@ If you are a GitLab recurring vendor and did not receive an onboarding email fro
 
 **Entering a Bill (invoice) in NetSuite**
 
-Please note the below steps reference how to manually enter bills into NetSuite. Effective 2019-11-01 all AP invoices were processed through Tipalti. Effective 2021-06-01 (Coupa Phase I) and 2021-12-13 (Coupa Phase II), AP invoices will be processed in Coupa. These systems will automatically record the transaction into NetSuite after the invoice has been approved by the corresponding business partner in the respective system.
+Please note the below steps reference how to manually enter bills into NetSuite.  Effective 2019-11-01 all AP invoices were processed through Tipalti. Effective 2021-06-01 (Coupa Phase I) and 2021-12-13 (Coupa Phase II), AP invoices will be processed in Coupa. These systems will automatically record the transaction into NetSuite after the invoice has been approved by the corresponding business partner in the respective system.
 
 1. On the NetSuite home page, click the "+" icon near the global search bar at the top of the screen and select "Bill."
 1. Select the appropriate vendor record. If adding a new vendor, follow the bullets below before proceeding, otherwise skip to step 3.
-   - Enter the company name, email address, applicable subsidiary, physical address, payment terms, primary currency, and Tax ID. (Note that the address field is located under the "Address" tab, while the Tax ID, primary currency, and payment terms fields are located under the "Financial" tab)
-   - Enter the banking information in the "Comments" field then click "Save."
-   - Go to the "+" icon at the top of the vendor record and select "Bill" from the dropdown box.
+    - Enter the company name, email address, applicable subsidiary, physical address, payment terms, primary currency, and Tax ID. (Note that the address field is located under the "Address" tab, while the Tax ID, primary currency, and payment terms fields are located under the "Financial" tab)
+    - Enter the banking information in the "Comments" field then click "Save."
+    - Go to the "+" icon at the top of the vendor record and select "Bill" from the dropdown box.
 1. Enter Bill date. The due date should auto-fill based on payment terms entered during vendor setup. If not, select the correct due date and update the vendor record after the bill has been entered and saved.
 1. Enter Bill number.
 1. Go to the "Expense and Items" tab below to enter the expense details.
@@ -346,15 +345,15 @@ The invoice rejection process in Coupa allows the Accounts Payable team to make 
 
 #### Manually Entering a Bill (invoice) in NetSuite
 
-Please note the below steps reference how to manually enter bills into NetSuite. Effective 2019-11-01 all AP invoices should be getting processed through Tipalti and Effective 2021-06-01 we will begin to process in Coupa as well. These 2 systems will automatically record the transaction into NetSuite after the invoice has been approved by the corresponding business partner in the respective system.
+Please note the below steps reference how to manually enter bills into NetSuite.  Effective 2019-11-01 all AP invoices should be getting processed through Tipalti and Effective 2021-06-01 we will begin to process in Coupa as well. These 2 systems will automatically record the transaction into NetSuite after the invoice has been approved by the corresponding business partner in the respective system.
 
 1. On the NetSuite home page, click the "+" icon near the global search bar at the top of the screen and select "Bill."
 1. Select the appropriate vendor record.
-   > **If adding a new vendor, follow the bullets below before proceeding, otherwise skip to step 3**
-   >
-   > - Enter the company name, email address, applicable subsidiary, physical address, payment terms, primary currency, and Tax ID. (Note that the address field is located under the "Address" tab, while the Tax ID, primary currency, and payment terms fields are located under the "Financial" tab)
-   > - Enter the banking information in the "Comments" field then click "Save."
-   > - Go to the "+" icon at the top of the vendor record and select "Bill" from the dropdown box.
+    >**If adding a new vendor, follow the bullets below before proceeding, otherwise skip to step 3**
+    >
+    > - Enter the company name, email address, applicable subsidiary, physical address, payment terms, primary currency, and Tax ID. (Note that the address field is located under the "Address" tab, while the Tax ID, primary currency, and payment terms fields are located under the "Financial" tab)
+    > - Enter the banking information in the "Comments" field then click "Save."
+    > - Go to the "+" icon at the top of the vendor record and select "Bill" from the dropdown box.
 1. Enter Bill date. The due date should auto-fill based on payment terms entered during vendor setup. If not, select the correct due date and update the vendor record after the bill has been entered and saved.
 1. Enter Bill number.
 1. Go to the "Expense and Items" tab below to enter the expense details.
@@ -381,7 +380,7 @@ Supplier Payment Accounts (SPAs) are required in order to pay suppliers from Cou
 There are four different ways that suppliers will be able to provide their payment information:
 
 - **Smart Onboarding Form**: Native Coupa capability within the Coupa Supplier Portal that will allow supplier to capture their banking information.
-- **SIM (Supplier Information Management) Form**: Whenever GitLab onboards a new supplier, as part of the External Form, there is a section to capture the vendor's remit to information, along with their bank account information. _(This is where the majority of GitLab suppliers will be providing their banking information)_.
+- **SIM (Supplier Information Management) Form**: Whenever GitLab onboards a new supplier, as part of the External Form, there is a section to capture the vendor's remit to information, along with their bank account information. *(This is where the majority of GitLab suppliers will be providing their banking information)*.
 - **Coupa Supplier Portal (CSP) Legal Entity Section**: Mostly used if a supplier is changing their bank account information or needs to make any updates. The vendor is able to manage that directly within their Coupa Supplier Portal profile and either add a new legal entity (which will be associated with a new bank account) or adjust an existing one.
 - **Invoicing Section**: If for some reason, a supplier is submitting their first invoice and they have not provided their banking information before they are creating their first invoice, that will create a new supplier payment account in Coupa.
 
@@ -400,7 +399,7 @@ For more information regarding how to set up SPAs or Coupa Pay, please check out
 #### Creating a Batch in Coupa
 
 - Only Invoices in the "Ready to Pay" status can be utilized to create a batch.
-- Invoices can be removed from payment by Coupa Pay using the slider button under "Actions" _(in case a supplier is selected for Coupa pay but need to be paid out of NetSuite, switch their payment method to ERP)_.
+- Invoices can be removed from payment by Coupa Pay using the slider button under "Actions" *(in case a supplier is selected for Coupa pay but need to be paid out of NetSuite, switch their payment method to ERP)*.
 - The "Pay from Account" (Company Payment Account or CPA) will be automatically defaulted based on the Chart Of Accounts. The CPA can be adjusted manually by selecting the dropdown.
   - The "Pay to Account" (Supplier Payment Account or SPA) will be defaulted based on the Remit-To entered on the invoice.
 
@@ -430,14 +429,14 @@ Coupa is available via Okta. To access the platform:
    - A new tab should open with your user logged in.
 
 {{% alert color="primary" %}}
-Please note that every month all Coupa access will be reviewed and users who haven't been active in a period of 90 days will have their access removed. _(Note that this number may vary depending on the license count for the current month)_
+Please note that every month all Coupa access will be reviewed and users who haven't been active in a period of 90 days will have their access removed. *(Note that this number may vary depending on the license count for the current month)*
 If you need to request access again, please reopen your initial Access Request issue and tag the Finance Systems Admins team using `@gitlab-com/business-technology/enterprise-apps/financeops` in a comment.
 {{% /alert %}}
 
 If your job function requires you to submit purchase requests in Coupa, follow the below steps:
 
 1. Open an [Access Request](https://gitlab.com/gitlab-com/team-member-epics/access-requests/-/issues/new) for Coupa using the `Individual_Bulk_Access_Request` template.
-1. In Step 2, in the _Justification for this access_ question, please describe:
+1. In Step 2, in the *Justification for this access* question, please describe:
    - What you need to buy.
    - What is the total cost of the purchase.
    - How often you will need to purchase it.
@@ -456,8 +455,8 @@ Please refer to GitLab's [Expense Policy](../expenses/) for further details.
 
 #### Processing Navan Reports
 
-1. Navan will auto sync and record expense reports into NetSuite once the report is "final approved". "Final approved" means it has been approved by the team member's manager and completed an audit review by an Accounts Payable analyst or our external contractor, Montgomery Pacific (Montpac).
-1. Accounts payable will do a daily check to ensure all reports which are "final approved" are successfully synced. If any errors arise, AP will work out the errors until the report syncs into NetSuite.
+1. Navan will auto sync and record expense reports into NetSuite once the report is "final approved".  "Final approved" means it has been approved by the team member's manager and completed an audit review by an Accounts Payable analyst or our external contractor, Montgomery Pacific (Montpac).
+1. Accounts payable will do a daily check to ensure all reports which are "final approved" are successfully synced.  If any errors arise, AP will work out the errors until the report syncs into NetSuite.
 
 #### Billable Expenses
 
@@ -466,25 +465,25 @@ Please refer to GitLab's [Expense Policy](../expenses/) for further details.
 #### Paying Navan Reports
 
 1. Team members in a US expense policy will be automatically reimbursed through Navan after their report is "final approved" within 1-4 business days.
-   - The team member must set up their bank account in Navan.
-   - Once an team member is reimbursed, Navan will auto sync the payment to the expense record to mark the report as reimbursed.
-   - This will feed into NetSuite to show the bill as fully paid as well.
+    - The team member must set up their bank account in Navan.
+    - Once an team member is reimbursed, Navan will auto sync the payment to the expense record to mark the report as reimbursed.
+    - This will feed into NetSuite to show the bill as fully paid as well.
 1. Team memebers in a country paid through PEO will also receive expense reimbursement through their same payroll PEO payments each month.
-   - **Please Note:** The timing of reimbursement can vary if you are being reimbursed directly from payroll, CXC, SafeGuard, Global PEO, Remote and/or iiPay.
-   - More information on the timing of payouts can be found [here](https://internal.gitlab.com/handbook/finance/expenses/#44-reimbursement-payout-timelines)
+    - **Please Note:**  The timing of reimbursement can vary if you are being reimbursed directly from payroll, CXC, SafeGuard, Global PEO, Remote and/or iiPay.
+    - More information on the timing of payouts can be found [here](https://internal.gitlab.com/handbook/finance/expenses/#44-reimbursement-payout-timelines)
 1. All non-US GitLab entities will be reimbursed through their respective payroll provider or paid directly through GitLab's Accounts Payable (AP) department with the normal weekly payment run.
-   - Expense report must have been "final approved" no later than EOD Tuesday of that same week.
-   - Any report "final approved" on Wednesday to Friday of that week will be reimbursed the following week.
-   - Once an employee is reimbursed, AP will create the payment in NetSuite against the record to close the report as paid.
-   - AP will manually mark the expense reports as "Reimbursed" in Navan once they are confirmed to the payroll provider or batched to Tipalti.
+    - Expense report must have been "final approved" no later than EOD Tuesday of that same week.
+    - Any report "final approved" on Wednesday to Friday of that week will be reimbursed the following week.
+    - Once an employee is reimbursed, AP will create the payment in NetSuite against the record to close the report as paid.
+    - AP will manually mark the expense reports as "Reimbursed" in Navan once they are confirmed to the payroll provider or batched to Tipalti.
 
 ##### Paying Navan Reports in Tipalti
 
 **Entites included: GmbH, BV, PTY LTD, Ireland, IT BV and GK.**
 
 1. AP will send the team member an auto generated email from Tipalti with instructions on how to onboard.
-   - Only after a team member onboards themselves in Tipalti will payments be issued. Payee profile will show as "Payable".
-   - Any team memebers hired after 2019-11-01 will be sent onboarding requests upon hire and/or upon first submission of an expense report.
+    - Only after a team member onboards themselves in Tipalti will payments be issued. Payee profile will show as "Payable".
+    - Any team memebers hired after 2019-11-01 will be sent onboarding requests upon hire and/or upon first submission of an expense report.
 
 **Further details on the Expense reimbursement process can be found [here](https://internal.gitlab.com/handbook/finance/expenses/#4-procedures)**
 
@@ -492,11 +491,11 @@ Please refer to GitLab's [Expense Policy](../expenses/) for further details.
 
 1. Average days to action <= 3 business days
 
-   Number of days from when an team member's manager approves report to when AP analyst does final approval for payment or responds to team member in Navan if there is a concern. (Approval for payment is not the reimbursement date.) This is calculated on a calendar month basis. The target for this is currently three business days.
+    Number of days from when an team member's manager approves report to when AP analyst does final approval for payment or responds to team member in Navan if there is a concern. (Approval for payment is not the reimbursement date.) This is calculated on a calendar month basis. The target for this is currently three business days.
 
 1. Time to get a new team member set up in Navan < 3 business days
 
-   Have new team member set up in Navan within 3 business days from team member start date.
+    Have new team member set up in Navan within 3 business days from team member start date.
 
 ### Travel and Expense Guidelines
 
@@ -515,11 +514,11 @@ Even if this causes a bit more disruption in the short term, it will help us ens
 
 In order to purchase goods and services on behalf of the company, you should first [consult the Signature Authorization Matrix](../authorization-matrix/) to determine the approval requirements. Note that this **does not** include travel expenses and other incidentals. These expenses should be self-funded then submitted for reimbursement within Navan, or in the case of independent contractors, included in invoices to the company (per the guidelines above).
 
-If further approval is not required, then proceed to the Procurement ["What are you buying" page](/handbook/finance/procurement/#the-procurement-process) for further instructions on the purchasing process at GitLab. Once those procedures are complete, have your vendor send their invoice to Accounts Payable: *ap@gitlab.com*. Most importantly, the team member making the purchase request is ultimately responsible for final review and approval of the invoices. Final review and approval are critical process controls that help ensure we do not make erroneous payments to vendors. All original invoices and payment receipts must be sent to Accounts Payable.
+If further approval is not required, then proceed to the Procurement ["What are you buying" page](/handbook/finance/procurement/#the-procurement-process) for further instructions on the purchasing process at GitLab. Once those procedures are complete, have your vendor send their invoice to Accounts Payable: *ap@gitlab.com*.  Most importantly, the team member making the purchase request is ultimately responsible for final review and approval of the invoices. Final review and approval are critical process controls that help ensure we do not make erroneous payments to vendors. All original invoices and payment receipts must be sent to Accounts Payable.
 
 ### Creation of Expense Tags
 
-If you would like to track spend for a particular campaign, project and/or event you can do that through expense tag, also known as classes in NetSuite. If you would like to request an expense tag/class to be set up please open [this tracker](https://docs.google.com/spreadsheets/d/1wBqvCvmou4afnb0p8lBXVvFmsl-j0IehS7GdfJybGzg/edit?usp=sharing) and enter the information required for the General Ledger (GL) team to create the tag.
+If you would like to track spend for a particular campaign, project and/or event you can do that through expense tag, also known as classes in NetSuite.  If you would like to request an expense tag/class to be set up please open [this tracker](https://docs.google.com/spreadsheets/d/1wBqvCvmou4afnb0p8lBXVvFmsl-j0IehS7GdfJybGzg/edit?usp=sharing) and enter the information required for the General Ledger (GL) team to create the tag.
 
 - The GL team will create the tags at the end of each day.
 - The tag is created in Netsuite and syncs with Navan and Coupa.
@@ -536,10 +535,10 @@ Navan will auto-sync any new "expense tags" on a daily basis, but if the Navan a
 
 **Import new Classes/Tags In Navan:**
 
-1. Go to the Admin page and click on the _Policies_ tab.
-1. Select a policy and find the _Connections_ subtab. The NetSuite connector is located on this page.
-1. Click the _Sync Now_ button for the NetSuite connector. The page will run a prompt showing sync status.
-1. Once the syncing process is complete, go to the _Tags_ subtab.
+1. Go to the Admin page and click on the *Policies* tab.
+1. Select a policy and find the *Connections* subtab. The NetSuite connector is located on this page.
+1. Click the *Sync Now* button for the NetSuite connector. The page will run a prompt showing sync status.
+1. Once the syncing process is complete, go to the *Tags* subtab.
 1. Search for the tag by name under classifications (i.e. the NetSuite profiles created in prior steps)
 
 ### Corporate Credit Cards
@@ -613,8 +612,8 @@ Once the information is captured in NetSuite FAM a depreciation schedule will po
 
 Assets will be disposed of if purchased by an employee upon termination (if approved by IT Ops) or if the item is no longer useful before the useful life.
 
-1. If a team member would like to purchase an asset from the company (i.e. a laptop), they would request through an issue to IT Ops and Accounting to obtain the amount to be paid. This is derived from original cost less accumulated depreciation. If an asset is purchased, Accounting will collect the funds and will book the appropriate accounting treatment to dispose of the asset.
-1. If an asset is no longer usable before the useful life has been reached the employee needs to submit an issue to IT Ops and Accounting to inform them. IT Ops will evaluate and if they deem the item is no longer useful, Accounting will book the appropriate accounting treatment to dispose of the asset.
+1. If a team member would like to purchase an asset from the company (i.e. a laptop), they would request through an issue to IT Ops and Accounting to obtain the amount to be paid. This is derived from original cost less accumulated depreciation.  If an asset is purchased, Accounting will collect the funds and will book the appropriate accounting treatment to dispose of the asset.
+1. If an asset is no longer usable before the useful life has been reached the employee needs to submit an issue to IT Ops and Accounting to inform them.  IT Ops will evaluate and if they deem the item is no longer useful, Accounting will book the appropriate accounting treatment to dispose of the asset.
 
 IT Ops will need to identify the asset and inform Accounting to properly dispose of the asset from NetSuite FAM.
 
@@ -636,11 +635,11 @@ Team Members should prioritize taking time off to refresh and recharge outside o
 
 **Purpose**
 
-The purpose of this policy is to establish the responsibility, authority and guidelines for the investment of operating surplus cash. Surplus cash is defined as those funds exceeding the operating requirements of the Company and not immediately required for working capital or near term financial obligations.
+The purpose of this policy is to establish the responsibility, authority and guidelines for the investment of operating surplus cash.  Surplus cash is defined as those funds exceeding the operating requirements of the Company and not immediately required for working capital or near term financial obligations.
 
 **Scope**
 
-This policy shall apply to the Company and all subsidiaries. This investment policy will be reviewed periodically to ensure that it remains consistent with the overall objectives of the Company and with current financial trends.
+This policy shall apply to the Company and all subsidiaries.  This investment policy will be reviewed periodically to ensure that it remains consistent with the overall objectives of the Company and with current financial trends.
 
 **Approved Brokerage Institutions**
 
@@ -657,7 +656,7 @@ The basic objectives of the Company's investment program are, in order of priori
 - Liquidity of investments that is sufficient to meet the Company's projected cash flow requirements and strategic needs.
 - Maximize after-tax market rates of return on invested funds that are consistent with the stated objectives herein, conservative risk tolerance and the Company's current tax position.
 - Maturity Limits
-- Individual security maturities should not exceed 24 months. The weighted average maturity of the portfolio shall not exceed 12 months. A maturity or effective maturity by definition shall include puts, announced calls or other structural features which will allow the Company to redeem the investments at a quantifiable price consistent with liquidity, safety and preservation of capital.
+- Individual security maturities should not exceed 24 months.  The weighted average maturity of the portfolio shall not exceed 12 months.  A maturity or effective maturity by definition shall include puts, announced calls or other structural features which will allow the Company to redeem the investments at a quantifiable price consistent with liquidity, safety and preservation of capital.
 
 **Eligible Investments**
 
@@ -695,7 +694,7 @@ This policy describes the methodology used to monitor and account for GitLab's p
 
 **Prepaid Expenses Defined**
 
-A [_Prepaid Expense_](https://www.investopedia.com/terms/p/prepaidexpense.asp?ad=dirN&qo=investopediaSiteSearch&qsrc=0&o=40186) arises when a cash disbursement is made for goods and services prior to realizing the associated benefits of the underlying goods and services. These transactions are recorded as assets until the goods and services are realized, at which point an expense is recorded. Our minimum threshold for recording prepaid expenses is [$5,000 USD](/handbook/total-rewards/compensation/#exchange-rates)
+A [*Prepaid Expense*](https://www.investopedia.com/terms/p/prepaidexpense.asp?ad=dirN&qo=investopediaSiteSearch&qsrc=0&o=40186) arises when a cash disbursement is made for goods and services prior to realizing the associated benefits of the underlying goods and services. These transactions are recorded as assets until the goods and services are realized, at which point an expense is recorded. Our minimum threshold for recording prepaid expenses is [$5,000 USD](/handbook/total-rewards/compensation/#exchange-rates)
 
 **Identification and Recording of Prepaid Expenses**
 
@@ -706,17 +705,17 @@ Once a purchase request makes it through the [company approval workflow](../proc
 1. **if an amount is equal or greater than $50,000 on a single item in one invoice, it can be capitalized if the prepayment time period spans across fiscal quarters**.
 1. Any **deposits** made for events in Marketing, Corporate or other departments of less than $5,000 USD will be recognized as an expense immediately on the day the invoice is received regardless of whether the event has taken place or not.
 
-   The $5,000 clip level normally applies per invoice or per item. However, situations may exist that would require exercising business judgement on a case by case basis (i.e. any clip level by total amount of purchase per vendor). Also, there are situations when each individual prepaid may not meet the clip level but as a whole, these prepayments are similar in nature and are purchased in a bulk and therefore, the total amount of all the prepaid should be combined and used to decide if the prepayment should be recorded. Any exceptions should be pre-approved by the Corporate Controller or PAO.
+    The $5,000 clip level normally applies per invoice or per item. However, situations may exist that would require exercising business judgement on a case by case basis (i.e. any clip level by total amount of purchase per vendor). Also, there are situations when each individual prepaid may not meet the clip level but as a whole, these prepayments are similar in nature and are purchased in a bulk and therefore, the total amount of all the prepaid should be combined and used to decide if the prepayment should be recorded. Any exceptions should be pre-approved by the Corporate Controller or PAO.
 
-   Amortization is recorded straight line based on a mid-month amortization method as follows:
-   If the first month of service begins on the 1st to the 15th of the month, a full month amortization will be recorded in the current month. If the first month of service begins on the 16th to the last day of the month, amortization will begin on the 1st day of the subsequent month.
+    Amortization is recorded straight line based on a mid-month amortization method as follows:
+    If the first month of service begins on the 1st to the 15th of the month, a full month amortization will be recorded in the current month.  If the first month of service begins on the 16th to the last day of the month, amortization will begin on the 1st day of the subsequent month.
 
-   Mid-Month Amortization Method does not apply to prepaid expenses with a monthly amortization equal to or greater than 50,000 USD or if the amortization if spread only over 1 period. If monthly amortization is equal to or more than 50,000 USD, the first month amortization will be calculated based on actual number of days where services were rendered.
+    Mid-Month Amortization Method does not apply to prepaid expenses with a monthly amortization equal to or greater than 50,000 USD or if the amortization if spread only over 1 period.  If monthly amortization is equal to or more than 50,000 USD, the first month amortization will be calculated based on actual number of days where services were rendered.
 
-   Prepaid Not Paid: For any prepaid expenses not processed for payment, an adjustment for "prepaid not paid" is posted to the respective prepaid expense account and AP manual adjustment account (GL Account 2001). A prepaid expense is not treated as an asset if a liability remains in the AP sub-ledger. Prepaid not paid adjustments are performed on a quarterly basis at minimum.
-   Any deposits paid which will be held for more than 12 months such as security deposits or deposits to retain consultants will be booked to Security & Other Deposits (GL Account 1620)
+    Prepaid Not Paid:  For any prepaid expenses not processed for payment, an adjustment for "prepaid not paid" is posted to the respective prepaid expense account and AP manual adjustment account (GL Account 2001).  A prepaid expense is not treated as an asset if a liability remains in the AP sub-ledger.  Prepaid not paid adjustments are performed on a quarterly basis at minimum.
+    Any deposits paid which will be held for more than 12 months such as security deposits or deposits to retain consultants will be booked to Security & Other Deposits (GL Account 1620)
 
-   Prepaid Bonuses with a Clawback will be recorded to Prepaid Bonus w/Clawback (GL Account 1152) and will be amortized in accordance with the bonus agreement terms, using the mid-month convention.
+    Prepaid Bonuses with a Clawback will be recorded to Prepaid Bonus w/Clawback (GL Account 1152) and will be amortized in accordance with the bonus agreement terms, using the mid-month convention.
 
 1. Finally, the balance is reviewed one last time when the Senior Accounting Manager performs a review of the financials prior to closing the period.
 
@@ -767,8 +766,8 @@ Factors that are considered in determining the time of recording accrued liabili
 
 The Finance team is responsible for having procedures in place to reconcile accounts monthly and for keeping documentation to support accrued liabilities. Payables and accrued liabilities are recorded at face value, plus or minus any applicable adjustments. In most cases, the payable amount can be determined from the vendor bill. If not, then the amount should be verified against any relevant documents before recording the liability. When actual values are not available, the recorded value should be based on best available estimates. Estimates should be based on current market price and experience/history.
 
-1. Legal Professional Fees: Monthly templates are e-mailed by the 1st to all legal firms requesting them to complete with all outstanding bills and unbilled services as of that month end (ex. e-mails are sent by April 1st requesting services as of March 31st). The responses from all legal firms are complied and reviewed with the VP of Legal - Commercial, IP & Compliance by the 5th, and accruals are made based on the responses and review. In addition, any potential legal contingencies are discussed during the monthly meeting with the VP of Legal and an accrual is recorded if the loss is deemed probable and the amount can be reasonably estimated.
-1. Tax and Audit Professional Fees: Similarly e-mails with the template are sent to the tax and audit firms and the tax responses are compiled and reviewed with the Director of Tax and the audit firm responses are reviewed with the Accounting and External Reporting Manager by the 5th and appropriate accruals are made based on the review.
+1. Legal Professional Fees:  Monthly templates are e-mailed by the 1st to all legal firms requesting them to complete with all outstanding bills and unbilled services as of that month end (ex. e-mails are sent by April 1st requesting services as of March 31st).  The responses from all legal firms are complied and reviewed with the VP of Legal - Commercial, IP & Compliance by the 5th, and accruals are made based on the responses and review.  In addition, any potential legal contingencies are discussed during the monthly meeting with the VP of Legal and an accrual is recorded if the loss is deemed probable and the amount can be reasonably estimated.
+1. Tax and Audit Professional Fees:  Similarly e-mails with the template are sent to the tax and audit firms and the tax responses are compiled and reviewed with the Director of Tax and the audit firm responses are reviewed with the Accounting and External Reporting Manager by the 5th and appropriate accruals are made based on the review.
 
 The Sr. Accounting Manager is responsible for performing an overall review of accrued liabilities, one to three business days after accounts payable closes each month, to help ensure that all expenses are captured accurately.
 
@@ -784,8 +783,8 @@ Foreign currency translation describes the method used in converting a foreign e
 
 Exchange rates used in the currency translation process vary across the three primary financial statement components:
 
-- **Assets and Liabilities:** Exchange rate between functional currency and reporting currency at period-end.
-- **Income Statement:** The average exchange rates during the period presented.
+- **Assets and Liabilities:**  Exchange rate between functional currency and reporting currency at period-end.
+- **Income Statement:**  The average exchange rates during the period presented.
 - **Equity:** The historical exchange rate at the date when entry is made to shareholder's equity. Changes in retained earnings are based on historical exchange rates of each period's income statement.
 
 **Transaction Risk vs Translation Risk**
@@ -812,7 +811,7 @@ This policy establishes GitLab's guidelines regarding the structure, responsibil
 
 **Purpose**
 
-This policy establishes formal responsibilities and accountabilities for how GitLab handles requests for new, modified or closed data elements on the COA. The Controller is responsible for all aspects of financial accounting and reporting, and governs the COA. All requests for new or modified (including closure/deactivation) COA segments, hierarchies, and configuration attributes are subject to approval by the Finance team.
+This policy establishes formal responsibilities and accountabilities for how GitLab handles requests for new, modified or closed data elements on the COA. The Controller is responsible for all aspects of financial accounting and reporting, and governs the COA.  All requests for new or modified (including closure/deactivation) COA segments, hierarchies, and configuration attributes are subject to approval by the Finance team.
 
 **Changes to the COA**
 
@@ -850,9 +849,9 @@ To establish guidelines for assessing, preparing and reviewing balance sheet acc
 
 **Policy**
 
-Account reconciliations are prepared and reviewed monthly or quarterly for each active balance sheet account at the natural account level based upon the risk rating assessed (see risk rating assessment below). Account reconciliations will be prepared consolidated in USD or by entity in the respective functional currency.
+Account reconciliations are prepared and reviewed monthly or quarterly for each active balance sheet account at the natural account level based upon the risk rating assessed (see risk rating assessment below).  Account reconciliations will be prepared consolidated in USD or by entity in the respective functional currency.
 
-Each month end close the Accounting Manager assigns each balance sheet account or groups of accounts to its respective preparer and reviewer using FloQast (Account Reconciliation Tool). The assignments are set once and will roll over into the next accounting period. The Accounting Manager will make changes to assignments as needed. The preparer and reviewers can not be the same person to ensure segregation of duties.
+Each month end close the Accounting Manager assigns each balance sheet account or groups of accounts to its respective preparer and reviewer using FloQast (Account Reconciliation Tool).  The assignments are set once and will roll over into the next accounting period.  The Accounting Manager will make changes to assignments as needed.  The preparer and reviewers can not be the same person to ensure segregation of duties.
 
 The balances from NetSuite will be auto synced into FloQast each period end so the preparers can prepare their recons based on the NetSuite ending balance for their respective assigned accounts.
 
@@ -877,9 +876,9 @@ If the balance changes after review, approval or auto sign-off the recon will be
 
 **Risk Rating Assessment**
 
-Once a year in the beginning of Q4, the Controller and/or CFO will review each active balance sheet account and rate it from High, Medium and Low. The risk level of each account is evaluated based both on the quantitative value (to determine materiality) and the qualitative factors listed below:
+Once a year in the beginning of Q4, the Controller and/or CFO will review each active balance sheet account and rate it from High, Medium and Low.  The risk level of each account is evaluated based both on the quantitative value (to determine materiality) and the qualitative factors listed below:
 
-- Level of judgement required: risk increases as level of judgement required increases
+- Level of judgement required:  risk increases as level of judgement required increases
 - routine/non-routine transactions: risk increases as amount of non-routine/non-standard processes required to record the activity increases
 - History of issues: risk increases as the number of audit-related adjustments, questions, restatements increases.
 - Complexity: risk increases due to business/system changes, new pronouncements, and new complex calculations that impact the balance sheet.

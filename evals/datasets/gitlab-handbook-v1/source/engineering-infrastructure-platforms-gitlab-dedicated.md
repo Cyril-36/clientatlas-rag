@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "GitLab Dedicated Group"
 ---
 
@@ -78,14 +77,14 @@ To engage with the GitLab Dedicated teams:
 
 ### Urgent Availability or Security Events
 
-In the case of a [Sev-1 or Sev-2 Incident](/handbook/engineering/infrastructure-platforms/incident-management/#severities), please _Page_ the GitLab Dedicated Engineer On Call. Further guidance on when to use this can be found [here](https://gitlab.com/gitlab-com/gl-infra/gitlab-dedicated/team/-/blob/main/runbooks/on-call.md#what-is-an-emergency).
+In the case of a [Sev-1 or Sev-2 Incident](/handbook/engineering/infrastructure-platforms/incident-management/#severities), please *Page* the GitLab Dedicated Engineer On Call. Further guidance on when to use this can be found [here](https://gitlab.com/gitlab-com/gl-infra/gitlab-dedicated/team/-/blob/main/runbooks/on-call.md#what-is-an-emergency).
 
 #### Dedicated for Commercial
 
 1. From any Slack channel, use `/inc escalate`:
    1. Under `On-Call Teams` select `dedicated EOC`
    1. Provide information on the report in the `Notification Message`
-   1. _Urgency_, _Priority_ and _Assign To_ should not be set
+   1. *Urgency*, *Priority* and *Assign To* should not be set
 
 #### Dedicated for Government
 
@@ -93,7 +92,7 @@ In the case of a [Sev-1 or Sev-2 Incident](/handbook/engineering/infrastructure-
    1. Impacted Service: `Dedicated US Public Sector Platform Service`
    1. Title: `GitLab Dedicated`
    1. Description: Provide information on the report, and how you can be contacted
-   1. _Urgency_, _Priority_ and _Assign To_ should not be set
+   1. *Urgency*, *Priority* and *Assign To* should not be set
 
 ### Escalation Policy
 
@@ -139,10 +138,10 @@ A PCL is manually enforced once the following requirements are met:
 
 The following dates are currently scheduled PCLs.
 
-| Platform             | Dates                                        | Type | Reason                                         |
-| -------------------- | -------------------------------------------- | ---- | ---------------------------------------------- |
-| Dedicated for Gov    | 2026-07-20 01:00 UTC -> 2026-07-27 01:00 UTC | Hard | 2026 R&D Summit (Low team member availability) |
-| Dedicated Commercial | 2026-07-20 01:00 UTC -> 2026-07-27 01:00 UTC | Hard | 2026 R&D Summit (Low team member availability) |
+| Platform                          | Dates                                        | Type   | Reason                                            |
+|-----------------------------------|----------------------------------------------|--------|---------------------------------------------------|
+| Dedicated for Gov                 | 2026-07-20 01:00 UTC -> 2026-07-27 01:00 UTC | Hard   | 2026 R&D Summit (Low team member availability)    |
+| Dedicated Commercial              | 2026-07-20 01:00 UTC -> 2026-07-27 01:00 UTC | Hard   | 2026 R&D Summit (Low team member availability)    |
 
 Times for the dates without a time specified begin at 09:00 UTC and end the next day at 09:00 UTC.
 
@@ -250,11 +249,11 @@ GitLab [confidentiality levels](/handbook/communication/confidentiality-levels/)
 
 When it is necessary to refer to a specific customer we use the following guidelines:
 
-| Use Case                               | Example                                                                    | Process                                                                                                                                                                                                                                                                                                                                                        |
-| -------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Internal Communication & Collaboration | Slack conversations, RFH (Request for Help) issues                         | <ul><li>Use the customer name</li></ul>                                                                                                                                                                                                                                                                                                                        |
-| Public Collaboration                   | Collaboration on issues, including SIRT issues, epics and recorded calls   | <ul><li>Avoid using the customer name publicly. Instead use internal notes, or provide an accessible internal link to aid the identification - remember that not everyone has access to Switchboard</li><li>If a customer name is mentioned on a recorded call the video should be set to Private and the reason included in the YouTube description</li></ul> |
-| Implementation Level                   | We need the ability to map a codename to a tenant_id within the tech stack | <ul><li>Use internal codenames for this use case.</li><li> Switchboard is the SSOT for internal codenames. </ul></li>                                                                                                                                                                                                                                          |
+| Use Case                               | Example                                                                    | Process                                                                                                                                                                                                                                                                                                                                                                     |
+|----------------------------------------|----------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Internal Communication & Collaboration | Slack conversations, RFH (Request for Help) issues | <ul><li>Use the customer name</li></ul> |
+| Public Collaboration | Collaboration on issues, including SIRT issues, epics and recorded calls   | <ul><li>Avoid using the customer name publicly. Instead use internal notes, or provide an accessible internal link to aid the identification - remember that not everyone has access to Switchboard</li><li>If a customer name is mentioned on a recorded call the video should be set to Private and the reason included in the YouTube description</li></ul> |
+| Implementation Level                   | We need the ability to map a codename to a tenant_id within the tech stack | <ul><li>Use internal codenames for this use case.</li><li> Switchboard is the SSOT for internal codenames. </ul></li>                                                                                                                                                                                                                                                     |
 
 ### GitLab Group Hierarchy
 
@@ -262,14 +261,14 @@ We use [GitLab Groups](https://docs.gitlab.com/ee/user/group/#groups) to logical
 The groups cover the following use-cases:
 
 1. GitLab Dedicated group membership: `@gitlab-dedicated`
-   - All permanent team-members in any of the GitLab Dedicated teams gain access to this GitLab group as part of onboarding
-   - Group mention should only be used in circumstances where the information shared is pertinent for all team members of the GitLab Dedicated group
+    - All permanent team-members in any of the GitLab Dedicated teams gain access to this GitLab group as part of onboarding
+    - Group mention should only be used in circumstances where the information shared is pertinent for all team members of the GitLab Dedicated group
 1. Individual team group membership: `@gitlab-dedicated/environment-automation`, `@gitlab-dedicated/switchboard`, `@gitlab-dedicated/uspubsec`, etc.
-   - All permanent team-members of individual teams gain access to their respective GitLab group as part of onboarding
-   - Group mention should be used when the information shared is pertinent to the respective team
+    - All permanent team-members of individual teams gain access to their respective GitLab group as part of onboarding
+    - Group mention should be used when the information shared is pertinent to the respective team
 1. Individual team GitLab Dedicated groups have two additional subgroups `maintainers` and `reviewers`, for example: `@gitlab-dedicated/switchboard/maintainers`
-   - `reviewers` GitLab group access is granted to permanent team-members, external contractors, team-members on borrow, and similar. This GitLab group type is used to distinguish users without merge rights. Initial reviews should be requested from this group, using the quick action, for example `/assign_reviewer @gitlab-dedicated/switchboard/reviewers`
-   - `maintainers` GitLab group is granted to permanent team-members only. This group has merge rights, and the group is granted access through [CODEOWNERS approval rules](https://docs.gitlab.com/ee/user/project/codeowners/#code-owners). Team members onboard into the `maintainer` subgroup after meeting the requirements defined in the [Dedicated Maintainer Training](https://gitlab.com/gitlab-com/gl-infra/gitlab-dedicated/team/-/blob/main/.gitlab/issue_templates/maintainer_training.md)(internal only)
+    - `reviewers` GitLab group access is granted to permanent team-members, external contractors, team-members on borrow, and similar. This GitLab group type is used to distinguish users without merge rights. Initial reviews should be requested from this group, using the quick action, for example `/assign_reviewer @gitlab-dedicated/switchboard/reviewers`
+    - `maintainers` GitLab group is granted to permanent team-members only. This group has merge rights, and the group is granted access through [CODEOWNERS approval rules](https://docs.gitlab.com/ee/user/project/codeowners/#code-owners). Team members onboard into the `maintainer` subgroup after meeting the requirements defined in the [Dedicated Maintainer Training](https://gitlab.com/gitlab-com/gl-infra/gitlab-dedicated/team/-/blob/main/.gitlab/issue_templates/maintainer_training.md)(internal only)
 
 ### Project Management
 
@@ -311,7 +310,7 @@ click I "https://gitlab.com/groups/gitlab-com/gl-infra/gitlab-dedicated/-/epics/
 click J "https://gitlab.com/groups/gitlab-com/gl-infra/gitlab-dedicated/-/epics/298"
 ```
 
-_Note_ If you are not seeing the diagram, make sure that you have accepted all cookies.
+*Note* If you are not seeing the diagram, make sure that you have accepted all cookies.
 
 #### Epic Owners
 
@@ -339,14 +338,14 @@ Each epic and child sub-epics must include the following:
 1. **Background**, including a problem statement, to provide context for people looking to understand the epic.
 1. **Exit criteria** for the specific goals of the epic.
 1. **Status yyyy-mm-dd** should be the final heading in the description.
-   1. This enables others who are interested in the epic to see the latest status without having to read through all comments or issues attached to the epic.
-   1. This heading is used to auto-generate the status information on the top-level epic.
+    1. This enables others who are interested in the epic to see the latest status without having to read through all comments or issues attached to the epic.
+    1. This heading is used to auto-generate the status information on the top-level epic.
 
 **Epic meta data**
 
 1. **Start date** is set to the expected start date, and updated to be the actual start date when the project begins.
 1. **Due date** is set to be the expected end date.
-   1. The date that a project actually ended is taken from the date that the epic was closed.
+    1. The date that a project actually ended is taken from the date that the epic was closed.
 
 Labels are described in the [epic label section](#epics-labels).
 
@@ -374,18 +373,18 @@ Dedicated team projects use an agile-like methodology.
 1. Team members should start Issues that are marked as ~"workflow-infra::Ready".
 1. GitLab is an asynchronous working environment, and as such, code change reviews may take time as reviewers are in other timezones. Team members are encouraged to review pending code reviews and then possibly start on a second task even if a task is not fully completed -- but only if they feel they have capacity. For example, during a review process awaiting final approval, team members could pick up another task to start working on. Regular Agile synchronous ceremonies (stand ups, retros, etc) are not done, but there will be occasional short 'team sync' calls in a week and activities like live troubleshooting or pairing are not forbidden.
 1. When starting a new task:
-   - Assign yourself to the issue and apply the label ~"workflow-infra::In Progress".
-   - Start off by collecting additional information that you may need, and ask questions on the issue to clarify the problem.
+    - Assign yourself to the issue and apply the label ~"workflow-infra::In Progress".
+    - Start off by collecting additional information that you may need, and ask questions on the issue to clarify the problem.
 1. When the task is in progress:
-   - Update the issue with your progress on a regular basis. Ideally daily.
-   - If the issue scope changes, update the issue description to reflect the change. Review the issue weight.
-   - Try to work iteratively.
-   - If you get stuck, leave a comment on the issue and highlight your comment in [Slack](https://gitlab.enterprise.slack.com/archives/C025LECQY0M)
+    - Update the issue with your progress on a regular basis. Ideally daily.
+    - If the issue scope changes, update the issue description to reflect the change. Review the issue weight.
+    - Try to work iteratively.
+    - If you get stuck, leave a comment on the issue and highlight your comment in [Slack](https://gitlab.enterprise.slack.com/archives/C025LECQY0M)
 1. When the change goes into review:
-   - Apply the ~"workflow-infra::Under Review" label to the issue
+    - Apply the ~"workflow-infra::Under Review" label to the issue
 1. If the issue becomes blocked:
-   - If one finds a task is blocked by another task, and work cannot continue, assign the ~"workflow-infra::Blocked" label to the task and consider picking up a different task while the task is blocked, such as the blocking task
-   - Be sure to use GitLab Issue Relationship to mark upstream blocking issues as such, and add a comment on the blocking issue so that subscribers to that issue can be notified that it's blocking downstream work
+    - If one finds a task is blocked by another task, and work cannot continue, assign the ~"workflow-infra::Blocked" label to the task and consider picking up a different task while the task is blocked, such as the blocking task
+    - Be sure to use GitLab Issue Relationship to mark upstream blocking issues as such, and add a comment on the blocking issue so that subscribers to that issue can be notified that it's blocking downstream work
 
 #### New Issue Checklist
 
@@ -423,15 +422,15 @@ The status for all work relating to GitLab Dedicated is maintained in the descri
 Both Engineering Cross-Functional DRIs should provide weekly updates for the DRI's epics according to following process, which allows alignment with [Project Management in Platforms](/handbook/engineering/infrastructure-platforms/project-management/#project-management-in-platforms):
 
 1. **By Thursday EoD (Friday 02:00 UTC)** the DRI for a project is expected to update the status block in the epic description to:
-   1. Format for weekly update: Should follow the [Epic status automation format](https://gitlab.com/gitlab-com/gl-infra/epic-issue-summaries/-/blob/master/lib/status_note/epic_updater.rb)
-   1. Brief update for each of these four areas:
-      1. Indicate project [Health Status by label](/handbook/engineering/infrastructure-platforms/gitlab-dedicated/#workflow-labels).
-      1. Briefly highlight project status.
-      1. Indicate progress items since the last update.
-      1. Indicate any project blockers.
-      1. Indicate planned next steps, or mitigations required to progress. This enables other engineers and other managers to have good information about projects in an asynchronous fashion.
-   1. If the DRI for a sub-epic is different than the epic DRI, the epic DRI is responsible for getting updates from the sub-epic DRI.
-   1. **Update Workflow and Health label** - After each status update, the Workflow label and Health label should be updated. See [Epic labels criteria](/handbook/engineering/infrastructure-platforms/gitlab-dedicated/#workflow-labels)
+    1. Format for weekly update: Should follow the [Epic status automation format](https://gitlab.com/gitlab-com/gl-infra/epic-issue-summaries/-/blob/master/lib/status_note/epic_updater.rb)
+    1. Brief update for each of these four areas:
+        1. Indicate project [Health Status by label](/handbook/engineering/infrastructure-platforms/gitlab-dedicated/#workflow-labels).
+        1. Briefly highlight project status.
+        1. Indicate progress items since the last update.
+        1. Indicate any project blockers.
+        1. Indicate planned next steps, or mitigations required to progress. This enables other engineers and other managers to have good information about projects in an asynchronous fashion.
+    1. If the DRI for a sub-epic is different than the epic DRI, the epic DRI is responsible for getting updates from the sub-epic DRI.
+    1. **Update Workflow and Health label** - After each status update, the Workflow label and Health label should be updated. See [Epic labels criteria](/handbook/engineering/infrastructure-platforms/gitlab-dedicated/#workflow-labels)
 
 1. **Top-Level Epic Status Update** [automation synthesizes updates from status section](/handbook/engineering/infrastructure-platforms/gitlab-dedicated/#status-update-automation) from description of active epics to provide initiative status in the status section in the description of the top-level initiative Epic.
 
@@ -460,7 +459,7 @@ Prior to the start of a new quarter, the team will spend time refining the Epic 
 - Link to high-level design
 - Estimated level of complexity
 
-While the above information is being added, the Epic will move from ![Triage](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-triage.png) to ![Proposal](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-proposal.png). Once the information has been finalized, the Epic will move to ![Ready](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-ready.png).
+While the above information is being added, the Epic will move from ![Triage](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-triage.png) to ![Proposal](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-proposal.png).  Once the information has been finalized, the Epic will move to ![Ready](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-ready.png).
 
 Having this set of refined epics will help us plan for the upcoming quarter and allow engineers to quickly get started on an Epic once it's ready to be picked up during the quarter.
 
@@ -523,13 +522,13 @@ GitLab Dedicated follows the same pattern for author/reviewer assignment as the 
 The process can be summarized as:
 
 1. The MR author will assign a reviewer and a maintainer to an MR that is ready for review.
-   - Check that pipelines are passing before requesting reviews.
-   - The MR author can choose who to assign for review. To spread workload and knowledge it is recommended to use the [Environment Automation Reviewer Roulette](https://gitlab-org.gitlab.io/gitlab-roulette/?currentProject=environment-automation).
-   - Unless otherwise explicitly noted in the MR description itself, Maintainers are expected to also merge the MR they just approved for efficiency. Add **This MR should be approved by all approvers, last approver should merge.** as the first line in MR description to state the intention clearly.
-   - If the change is a significant one, considering mentioning the appropriate group such as `@gitlab-dedicated/environment-automation` or `@gitlab-dedicated/switchboard` in the MR description to help with knowledge sharing.
+     - Check that pipelines are passing before requesting reviews.
+     - The MR author can choose who to assign for review. To spread workload and knowledge it is recommended to use the [Environment Automation Reviewer Roulette](https://gitlab-org.gitlab.io/gitlab-roulette/?currentProject=environment-automation).
+     - Unless otherwise explicitly noted in the MR description itself, Maintainers are expected to also merge the MR they just approved for efficiency. Add **This MR should be approved by all approvers, last approver should merge.** as the first line in MR description to state the intention clearly.
+     - If the change is a significant one, considering mentioning the appropriate group such as `@gitlab-dedicated/environment-automation` or `@gitlab-dedicated/switchboard` in the MR description to help with knowledge sharing.
 2. Reviewers will review the MR and leave comments with questions or comments.
-   - To help us keep projects moving, please respond to review requests within one working day, and aim to complete the review within two working days.
-   - If a reviewer is unable to meet the timelines, or has too many other review requests it's ok to ask someone else to take on the review.
+    - To help us keep projects moving, please respond to review requests within one working day, and aim to complete the review within two working days.
+    - If a reviewer is unable to meet the timelines, or has too many other review requests it's ok to ask someone else to take on the review.
 
 #### Resolving threads on a merge-request
 
@@ -583,29 +582,29 @@ In general, we want to see issues move from `workflow-infra::Triage` to `workflo
 
 The standard progression of workflow is from top to bottom in the table below:
 
-| State Label                                                                                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| ![Triage](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-triage.png)           | Default label added to issues created. Issues with this label need to be confirmed as work we would consider. If we don't want to consider the issue further, we mark it with `workflow-infra::Cancelled` and close it. If this issue does not need Product validation, and we are ready for implementation, issue is moved to `workflow-infra::Ready`. Otherwise, we move it to the next stage `workflow-infra::Proposal`.                                                                                              |
-| ![Proposal](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-proposal.png)       | In this stage, proposal is being created and put forward for review with the rest of the team. Issues in this stage are also a part of Product validation workflow. If there are no further questions or blockers, the issue is supposed to be sufficiently refined and ready for implementation and can be moved into `workflow-infra::Ready`. The epics that encapsulate the implementation work for customer facing features must have a Product Manager sign-off before they can be moved to `workflow-infra::Ready` |
-| ![Ready](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-ready.png)             | The issue is waiting to be picked up for work.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| ![In Progress](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-in_progress.png) | Issue is assigned to a DRI and work has started.                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| ![Done](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-done.png)               | Issue is updated with the outcome of the work that was done, and this label is applied and issue closed.                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| State Label | Description |
+| ----------- | ----------- |
+| ![Triage](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-triage.png) | Default label added to issues created. Issues with this label need to be confirmed as work we would consider. If we don't want to consider the issue further, we mark it with `workflow-infra::Cancelled` and close it. If this issue does not need Product validation, and we are ready for implementation, issue is moved to `workflow-infra::Ready`. Otherwise, we move it to the next stage `workflow-infra::Proposal`. |
+| ![Proposal](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-proposal.png) | In this stage, proposal is being created and put forward for review with the rest of the team. Issues in this stage are also a part of Product validation workflow. If there are no further questions or blockers, the issue is supposed to be sufficiently refined and ready for implementation and can be moved into `workflow-infra::Ready`. The epics that encapsulate the implementation work for customer facing features must have a Product Manager sign-off before they can be moved to `workflow-infra::Ready` |
+| ![Ready](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-ready.png) | The issue is waiting to be picked up for work. |
+| ![In Progress](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-in_progress.png) | Issue is assigned to a DRI and work has started. |
+| ![Done](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-done.png) | Issue is updated with the outcome of the work that was done, and this label is applied and issue closed. |
 
 There are three other workflow labels of importance:
 
-| State Label                                                                                     | Description                                                                                                                                                                                                                                                                                            |
-| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| ![Cancelled](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-cancelled.png) | Work in the issue is being abandoned due to external factors or decision to not resolve the issue. After applying this label, issue will be closed.                                                                                                                                                    |
-| ![Stalled](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-stalled.png)     | If no update has been provided in an issue for over a week, the issue will get this label. The team Engineering Manager is responsible for reviewing the status of the issue and helping it move along.                                                                                                |
-| ![Blocked](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-blocked.png)     | Work is blocked due external dependencies or other external factors. Where possible, a [blocking issue](https://docs.gitlab.com/ee/user/project/issues/related_issues.html) should also be set. After applying this label, issue will be regularly triaged by the team until the label can be removed. |
+| State Label | Description |
+| ----------- | ----------- |
+| ![Cancelled](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-cancelled.png) | Work in the issue is being abandoned due to external factors or decision to not resolve the issue. After applying this label, issue will be closed. |
+| ![Stalled](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-stalled.png) | If no update has been provided in an issue for over a week, the issue will get this label. The team Engineering Manager is responsible for reviewing the status of the issue and helping it move along. |
+| ![Blocked](/images/engineering/infrastructure-platforms/gitlab-dedicated/label-blocked.png) | Work is blocked due external dependencies or other external factors. Where possible, a [blocking issue](https://docs.gitlab.com/ee/user/project/issues/related_issues.html) should also be set. After applying this label, issue will be regularly triaged by the team until the label can be removed. |
 
 #### Support labels
 
 Scoped support labels are applied to the issues that are opened when a GitLab Support Engineer escalates a ticket for assistance using the ["request for help"](/handbook/support/workflows/how-to-get-help/#how-to-formally-request-help-from-the-gitlab-development-team) process. These requests are reviewed periodically by members of the GitLab Support team. The purpose of this review is to identify whether a request could have been deflected. These reviews primarily lead to updates to the [GitLab Dedicated Support workflows](/handbook/support/workflows/) and the [GitLab docs](https://docs.gitlab.com/).
 
-| State Label                              | Description                                                                                                                                                   |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `support::reviewed`                      | The `support::reviewed` label is applied when these issues have been reviewed and the review did not directly result in an issue or MR.                       |
+| State Label | Description |
+| ----------- | ----------- |
+| `support::reviewed` | The `support::reviewed` label is applied when these issues have been reviewed and the review did not directly result in an issue or MR. |
 | `support::reviewed-and-improvement-made` | The `support::reviewed-and-improvement-made` label is applied when an improvement has been made based on a review. Improvements include opened issues or MRs. |
 
 #### Component labels
@@ -620,8 +619,8 @@ Component labels with their description can be found [by searching prioritized l
 
 These scoped labels are intended to distinguish generic work to everything made for a specific cloud provider.
 
-| Cloud Provider Label                                                                         | Description                          |
-| -------------------------------------------------------------------------------------------- | ------------------------------------ |
+| Cloud Provider Label | Description |
+| ----------- | ----------- |
 | ![AWS](/images/engineering/infrastructure-platforms/gitlab-dedicated/cloud-provider-aws.png) | Amazon Cloud specific implementation |
 | ![AWS](/images/engineering/infrastructure-platforms/gitlab-dedicated/cloud-provider-gcp.png) | Google Cloud specific implementation |
 
@@ -629,8 +628,8 @@ These scoped labels are intended to distinguish generic work to everything made 
 
 Scoped workaround labels are intended to track temporary workarounds applied to GitLab Dedicated tenant instances that are supposed to be removed once a permanent fix is available. These labels need to be added to the follow-up issues that describe the implementation of the permanent fix.
 
-| Workaround label                                                                                          | Description                                                                        |
-| --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Workaround label | Description |
+| ----------- | ----------- |
 | ![workaround active](/images/engineering/infrastructure-platforms/gitlab-dedicated/workaround-active.png) | This label is applied to issues describing workarounds applied to tenant instances |
 
 ### Capacity Planning
@@ -643,7 +642,7 @@ in the event of a Capacity Planning shift overlapping with an on-call shift,
 consider swapping your capacity planning shift with another engineer
 to ensure both tasks receive the necessary attention.
 The goal is to give ourselves the best chance of resolving impending saturation events
-_before_ they become a customer-impacting incident
+*before* they become a customer-impacting incident
 It is based on statistical modeling and human interpretation,
 and is not expected to be perfect in every situation.
 Do your best,
@@ -678,16 +677,16 @@ as a high priority task that is second only to active incidents:
    - If evaluation requires non-trivial investigation over more than a day calendar time,
      label it `capacity-planning::investigate` and investigate when you have dealt with higher priority capacity planning issues
    - If you assess that it warrants active action in the near future and is not already `capacity-planning::in-progress`:
-     1. Label it `~capacity-planning::in-progress`,
-     1. Add or update the due date to next week, and
-     1. Create a remediation [issue](https://gitlab.com/gitlab-com/gl-infra/gitlab-dedicated/team/-/issues/new?issuable_template=saturation_risk)
-     - Take into consideration whether we have existing remediation options
-       (for example: performance-based overlays, or entire reference architecture upsizing)
-       or if we will need to add capabilities to handle the particular saturation problem.
-       Err on the side of raising an issue for further discussion;
-       we can always close it and return to monitoring status.
-     - Any permanent change to a Tenant's environment requires approval
-       from the PM. The remediation issue template has further details.
+      1. Label it `~capacity-planning::in-progress`,
+      1. Add or update the due date to next week, and
+      1. Create a remediation [issue](https://gitlab.com/gitlab-com/gl-infra/gitlab-dedicated/team/-/issues/new?issuable_template=saturation_risk)
+      - Take into consideration whether we have existing remediation options
+        (for example: performance-based overlays, or entire reference architecture upsizing)
+        or if we will need to add capabilities to handle the particular saturation problem.
+        Err on the side of raising an issue for further discussion;
+        we can always close it and return to monitoring status.
+      - Any permanent change to a Tenant's environment requires approval
+        from the PM. The remediation issue template has further details.
    - If it's in `capacity-planning::in-progress` check on the remediation issue and ensure it is making progress,
      and update the due-date to be 1 week in the future.
      If remediation has completed,
@@ -705,13 +704,13 @@ as a high priority task that is second only to active incidents:
    - If a metric is of a nature (perhaps for reasons specific to Dedicated)
      that predictions are consistently unusable across all customers for that metric,
      or if the prediction is plausibly useful but needs tuning:
-     1. Label it `capacity-planning::tune-model`,
-     1. Update the due-date to 2 weeks in the future,
-     1. Work on the tamland
-        [manifest](https://gitlab.com/gitlab-com/runbooks/-/blob/master/reference-architectures/get-hybrid/config/tamland/manifest.json)
+      1. Label it `capacity-planning::tune-model`,
+      1. Update the due-date to 2 weeks in the future,
+      1. Work on the tamland
+         [manifest](https://gitlab.com/gitlab-com/runbooks/-/blob/master/reference-architectures/get-hybrid/config/tamland/manifest.json)
         to exclude or tweak the specific saturation signal.
-        - The [Observability team](/handbook/engineering/infrastructure-platforms/production-engineering/observability/)
-          can offer advice on the finer details of the tamland configuration.
+         - The [Observability team](/handbook/engineering/infrastructure-platforms/production-engineering/observability/)
+        can offer advice on the finer details of the tamland configuration.
 1. Check that Tamland is [running](https://gitlab.com/gitlab-com/gl-infra/capacity-planning-trackers/gitlab-dedicated/-/pipeline_schedules).
    The pipeline should run successfuly every day.
    Investigate and fix any errors or failures.

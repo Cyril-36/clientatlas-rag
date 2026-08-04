@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "FedRAMP Vulnerability Deviation Request Procedure"
 ---
 
@@ -41,12 +40,12 @@ Vulnerabilities in-scope for FedRAMP get the `FedRAMP::Vulnerability` label appl
 
 ## Roles & Responsibilities
 
-| Role                                | Responsibility                                                                        |
-| ----------------------------------- | ------------------------------------------------------------------------------------- |
-| GitLab Team Members                 | Submit the completed DR using the appropriate GitLab issue template, provide evidence |
-| Security (Vulnerability Management) | Completes the technical review and approval of a DR                                   |
-| ISSO (Dedicated Compliance)         | Completes the compliance review of a DR and upgrades to POA&M if approved             |
-| Authorizing official (AO)           | Approves or denies the DR (as the ultimate decision maker)                            |
+| Role | Responsibility |
+| ------- | ------- |
+| GitLab Team Members | Submit the completed DR using the appropriate GitLab issue template, provide evidence |
+| Security (Vulnerability Management) | Completes the technical review and approval of a DR |
+| ISSO (Dedicated Compliance) | Completes the compliance review of a DR and upgrades to POA&M if approved |
+| Authorizing official (AO) | Approves or denies the DR (as the ultimate decision maker) |
 
 ## Procedure
 
@@ -95,14 +94,14 @@ For Vendor Dependency vulnerabilities, in which GitLab is dependent on a 3rd par
 
 ### Workflow Labels
 
-| Step | Description                                                                                                                                                  | Label applied to the Vulnerability Issue                                           | Label applied to the Deviation Request Issue                                                  |
-| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| 1    | Discover a deviation request is required for a FedRAMP-applicable vulnerability issue                                                                        | `FedRAMP::DR Status::Open`                                                         | n/a                                                                                           |
-| 2    | Submit a Deviation Request using the appropriate issue template for review by security engineer                                                              | _label remains unchanged_                                                          | `FedRAMP::DR Status::Ready for review` (_applied automatically using the issue templates_)    |
-| 3    | Security (Vulnerability Management team) performs a technical review of the vulnerability and classification/justification provided in the Deviation Request | If approved, _label remains unchanged_ or if denied, `FedRAMP::DR Status::Denied`  | If approved `FedRAMP::DR Status::Compliance review` or if denied `FedRAMP::DR Status::Denied` |
-| 4    | Security Compliance reviews and if approved, tracks vulnerability deviation on POA&M and discusses with Authorizing Official during next monthly meeting     | If approved _label remains unchanged_ or if denied `FedRAMP::DR Status::Denied`    | If approved `FedRAMP::DR Status::AO review`; If denied `FedRAMP::DR Status::Denied`           |
-| 5    | Security Compliance seeks Authorizing Official approval during next monthly meeting                                                                          | If approved `FedRAMP::DR Status::Approved`; If denied `FedRAMP::DR Status::Denied` | If approved `FedRAMP::DR Status::Approved`; If denied `FedRAMP::DR Status::Denied`            |
-| 6    | The DR may no longer be needed once a patch is made available and applied.                                                                                   | If remediated, close the issue and apply `FedRAMP::DR Status::Vuln Remediated`     | If remediated, close the issue and apply `FedRAMP::DR Status::Vuln Remediated`                |
+| Step | Description | Label applied to the Vulnerability Issue | Label applied to the Deviation Request Issue |
+| ------ | ------ | ------ | ------ |
+| 1 | Discover a deviation request is required for a FedRAMP-applicable vulnerability issue |  `FedRAMP::DR Status::Open` | n/a |
+| 2 | Submit a Deviation Request using the appropriate issue template for review by security engineer | *label remains unchanged* | `FedRAMP::DR Status::Ready for review` (*applied automatically using the issue templates*) |
+| 3 | Security (Vulnerability Management team) performs a technical review of the vulnerability and classification/justification provided in the Deviation Request | If approved, *label remains unchanged* or if denied, `FedRAMP::DR Status::Denied` | If approved `FedRAMP::DR Status::Compliance review` or if denied `FedRAMP::DR Status::Denied` |
+| 4 | Security Compliance reviews and if approved, tracks vulnerability deviation on POA&M and discusses with Authorizing Official during next monthly meeting | If approved *label remains unchanged* or if denied `FedRAMP::DR Status::Denied` | If approved `FedRAMP::DR Status::AO review`; If denied `FedRAMP::DR Status::Denied` |
+| 5 | Security Compliance seeks Authorizing Official approval during next monthly meeting | If approved `FedRAMP::DR Status::Approved`; If denied `FedRAMP::DR Status::Denied` | If approved `FedRAMP::DR Status::Approved`; If denied `FedRAMP::DR Status::Denied` |
+| 6 | The DR may no longer be needed once a patch is made available and applied. | If remediated, close the issue and apply `FedRAMP::DR Status::Vuln Remediated` | If remediated, close the issue and apply `FedRAMP::DR Status::Vuln Remediated` |
 
 **Vulnerability Issues should remain open unless the vulnerability has been remediated.** This allows Security Compliance to keep track of DRs that still impact the FedRAMP environment.
 

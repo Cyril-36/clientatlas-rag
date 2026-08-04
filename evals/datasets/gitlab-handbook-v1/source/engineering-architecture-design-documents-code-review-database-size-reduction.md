@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Code Review database size reduction for GitLab.com"
 status: proposed
 creation-date: "2026-04-15"
@@ -72,17 +71,17 @@ GitLab.com usage increases.
 The tables over 100 GB on GitLab.com owned by or closely related to Code Review,
 as of January 2026, are:
 
-| Table                                | Size     |
-| ------------------------------------ | -------- |
-| `merge_request_diff_commits`         | 7,875 GB |
-| `merge_request_diff_files`           | 3,290 GB |
-| `notes`                              | 3,156 GB |
-| `events`                             | 2,371 GB |
-| `merge_requests`                     | 787 GB   |
-| `merge_request_diffs`                | 451 GB   |
-| `note_diff_files`                    | 170 GB   |
-| `approval_merge_request_rules_users` | 160 GB   |
-| `merge_request_metrics`              | 140 GB   |
+| Table | Size |
+|---|---|
+| `merge_request_diff_commits` | 7,875 GB |
+| `merge_request_diff_files` | 3,290 GB |
+| `notes` | 3,156 GB |
+| `events` | 2,371 GB |
+| `merge_requests` | 787 GB |
+| `merge_request_diffs` | 451 GB |
+| `note_diff_files` | 170 GB |
+| `approval_merge_request_rules_users` | 160 GB |
+| `merge_request_metrics` | 140 GB |
 
 This document focuses on the remaining large tables after excluding the items
 listed in [Non-Goals](#non-goals) below: `notes`, `events`, `merge_requests`,
@@ -138,25 +137,25 @@ ahead of the position columns decomposition because it has a higher expected
 ceiling, but as a breaking change it requires navigating customer impact — we
 will adjust the order based on that assessment.
 
-| Opportunity                                             | Table                                                                           | Effort | Savings              |
-| ------------------------------------------------------- | ------------------------------------------------------------------------------- | ------ | -------------------- |
-| Clear `note_html` for stale MRs                         | `notes`                                                                         | Large  | 1,000 GB             |
-| Clear `description_html` and `title_html` for stale MRs | `merge_requests`                                                                | Large  | 150 GB               |
-| Decompose system notes                                  | `notes`                                                                         | Large  | 800 GB               |
-| Retention policy on `merge_request_diffs`               | `merge_request_diffs`, `merge_request_diff_commits`, `merge_request_diff_files` | Large  | TBD (expected large) |
-| Convert position columns to structured table            | `notes`                                                                         | Large  | 200 GB               |
-| **Subtotal**                                            |                                                                                 |        | **~2,150 GB + TBD**  |
+| Opportunity | Table | Effort | Savings |
+|---|---|---|---|
+| Clear `note_html` for stale MRs | `notes` | Large | 1,000 GB |
+| Clear `description_html` and `title_html` for stale MRs | `merge_requests` | Large | 150 GB |
+| Decompose system notes | `notes` | Large | 800 GB |
+| Retention policy on `merge_request_diffs` | `merge_request_diffs`, `merge_request_diff_commits`, `merge_request_diff_files` | Large | TBD (expected large) |
+| Convert position columns to structured table | `notes` | Large | 200 GB |
+| **Subtotal** | | | **~2,150 GB + TBD** |
 
 **Retention policy on `merge_request_diffs`.** Discussed in
-[issue #594843 (comment)](https://gitlab.com/gitlab-org/gitlab/-/issues/594843#note_3194219248).
-We expect savings to be large because a retention policy on
-`merge_request_diffs` would also reduce `merge_request_diff_commits` and
-`merge_request_diff_files`, but this overlaps with the separate epics already
-addressing those tables
-([epic &16385](https://gitlab.com/groups/gitlab-org/-/epics/16385) and
-[epic &11272](https://gitlab.com/groups/gitlab-org/-/epics/11272)) and needs
-to be coordinated there. A savings estimate should be produced as part of
-that coordination.
+  [issue #594843 (comment)](https://gitlab.com/gitlab-org/gitlab/-/issues/594843#note_3194219248).
+  We expect savings to be large because a retention policy on
+  `merge_request_diffs` would also reduce `merge_request_diff_commits` and
+  `merge_request_diff_files`, but this overlaps with the separate epics already
+  addressing those tables
+  ([epic &16385](https://gitlab.com/groups/gitlab-org/-/epics/16385) and
+  [epic &11272](https://gitlab.com/groups/gitlab-org/-/epics/11272)) and needs
+  to be coordinated there. A savings estimate should be produced as part of
+  that coordination.
 
 ### Small initiatives
 
@@ -166,21 +165,21 @@ large `notes` and `merge_requests` work. `merge_params` clearing is intentionall
 last among the `merge_requests` small items because it is the most
 behavior-sensitive of the group.
 
-| Opportunity                                         | Table                 | Effort | Savings     |
-| --------------------------------------------------- | --------------------- | ------ | ----------- |
-| Reclaim bloat (`pg_repack`)                         | `merge_requests`      | Small  | 123 GB      |
-| Convert SHA columns to `bytea`                      | `merge_request_diffs` | Small  | 78 GB       |
-| Convert integer columns to smaller types            | `merge_request_diffs` | Small  | 10 GB       |
-| Drop redundant noteable index                       | `notes`               | Small  | 63 GB       |
-| Drop `external_diff` column and index               | `merge_request_diffs` | Small  | 52 GB       |
-| Drop `updated_at` column                            | `events`              | Small  | 34 GB       |
-| Drop/convert `index_notes_on_line_code`             | `notes`               | Small  | 34 GB       |
-| Convert `index_notes_on_organization_id` to partial | `notes`               | Small  | 19 GB       |
-| Convert SHA columns to `bytea`                      | `merge_requests`      | Small  | 15 GB       |
-| Convert `merge_status` to `smallint`                | `merge_requests`      | Small  | 3.5 GB      |
-| Drop `assignee_id` column and index                 | `merge_requests`      | Small  | ~2.7 GB     |
-| Remove `merge_params` for merged MRs                | `merge_requests`      | Small  | 25 GB       |
-| **Subtotal**                                        |                       |        | **~459 GB** |
+| Opportunity | Table | Effort | Savings |
+|---|---|---|---|
+| Reclaim bloat (`pg_repack`) | `merge_requests` | Small | 123 GB |
+| Convert SHA columns to `bytea` | `merge_request_diffs` | Small | 78 GB |
+| Convert integer columns to smaller types | `merge_request_diffs` | Small | 10 GB |
+| Drop redundant noteable index | `notes` | Small | 63 GB |
+| Drop `external_diff` column and index | `merge_request_diffs` | Small | 52 GB |
+| Drop `updated_at` column | `events` | Small | 34 GB |
+| Drop/convert `index_notes_on_line_code` | `notes` | Small | 34 GB |
+| Convert `index_notes_on_organization_id` to partial | `notes` | Small | 19 GB |
+| Convert SHA columns to `bytea` | `merge_requests` | Small | 15 GB |
+| Convert `merge_status` to `smallint` | `merge_requests` | Small | 3.5 GB |
+| Drop `assignee_id` column and index | `merge_requests` | Small | ~2.7 GB |
+| Remove `merge_params` for merged MRs | `merge_requests` | Small | 25 GB |
+| **Subtotal** | | | **~459 GB** |
 
 **Combined total across both tracks: ~2,604 GB + TBD.**
 
@@ -190,13 +189,13 @@ The following opportunities were identified during the investigation but are
 not in scope for this design document. Each is documented here for visibility
 and future follow-up:
 
-| Opportunity                | Table    | Effort | Savings        |
-| -------------------------- | -------- | ------ | -------------- |
-| 90-day retention policy    | `events` | Large  | 1,800 GB       |
-| Partition `events` table   | `events` | Medium | 0 GB (enabler) |
-| Merge namespace columns    | `events` | Large  | 50 GB          |
-| Drop `st_diff` column      | `notes`  | Medium | 20 GB          |
-| Drop `confidential` column | `notes`  | Small  | ~0.1 GB        |
+| Opportunity | Table | Effort | Savings |
+|---|---|---|---|
+| 90-day retention policy | `events` | Large | 1,800 GB |
+| Partition `events` table | `events` | Medium | 0 GB (enabler) |
+| Merge namespace columns | `events` | Large | 50 GB |
+| Drop `st_diff` column | `notes` | Medium | 20 GB |
+| Drop `confidential` column | `notes` | Small | ~0.1 GB |
 
 These are out of scope for the following reasons:
 

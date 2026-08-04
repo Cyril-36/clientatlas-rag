@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Create:Source Code BE Team"
 description: The Create:Source Code BE team is responsible for all backend aspects of the product categories that fall under the Source Code group of the Create stage.
 ---
@@ -87,9 +86,9 @@ Weekly calls between the Product Manager and Engineering Managers (frontend and 
 #### Issue refinement
 
 1. Once we have validated the problem, product, UX, and engineering will collaborate to propose a solution and decide on what's technically feasible. The proposed solution may be shared with users to validate it solves the problem.
-   1. Issues that require design work are marked with `UX` and `workflow::ready for design`.
-   1. Issues in the design process are marked with `workflow::design`.
-   1. Once designs are ready and the proposed solution is viable then the label `workflow::planning breakdown` will be applied.
+    1. Issues that require design work are marked with `UX` and `workflow::ready for design`.
+    1. Issues in the design process are marked with `workflow::design`.
+    1. Once designs are ready and the proposed solution is viable then the label `workflow::planning breakdown` will be applied.
 1. Once we have confirmed the proposed solution is viable, we will move to break it down as much as possible. When issues are ready for this stage, PM will mark issues with `workflow::refinement` label to signal next step.
 1. EM will create a refinement issue ([example](https://gitlab.com/gitlab-com/create-stage/source-code-be/-/issues/249)) and distribute tasks labeled `workflow::refinement` among engineers.
 1. Engineers or EM will follow the checklist for assigned issues, work with PM, UX, and other engineering counterparts where necessary to address questions and concerns.
@@ -298,7 +297,7 @@ Application Security will be involved in our workflow at the same time that kick
 As a team we strive to be responsive and accommodating when we communicate. When consuming information, we use the following emoji to definition table as a shorthand glossary:
 
 | Emoji | Definition                                                                                                          |
-| ----- | ------------------------------------------------------------------------------------------------------------------- |
+|-------|---------------------------------------------------------------------------------------------------------------------|
 | 👀    | I'm looking at this now                                                                                             |
 | 🤔    | I need to think about this before responding                                                                        |
 | 📍    | I don't have time, will come back later                                                                             |
@@ -306,7 +305,7 @@ As a team we strive to be responsive and accommodating when we communicate. When
 | 👌    | I understand                                                                                                        |
 | 👍    | Agree (and often won't give additional comment)                                                                     |
 | ✅    | Task is complete                                                                                                    |
-| ⏭     | I've seen this but I don't think I'm the best person for the job. Ping me if no one else responds and you need help |
+| ⏭    | I've seen this but I don't think I'm the best person for the job. Ping me if no one else responds and you need help |
 
 ### Merge Request reviews
 
@@ -334,7 +333,7 @@ The Triage Report can be quite long, and it important to deal with it efficientl
 - If an uncontroversial problem with a clear solution, consider applying ~"Seeking community contributions"
 - If also an easier issue which might interest a newer community contributor, consider applying ~"quick win".
 - Apply ~"priority::3" ~"severity::3" if a bug with a workaround.
-- Anything causing data loss, severe performance impact or security apply a ~"severity::1" and ~"priority::1" or ~"priority::2" and assign to a team member.
+- Anything causing data loss, severe performance impact or security apply a ~"severity::1"  and ~"priority::1" or ~"priority::2" and assign to a team member.
 - Unassign yourself from the Triage Report
 
 ### Engineering cycle
@@ -389,7 +388,7 @@ The EM then applies the ~Deliverable label to each issue in the Release and assi
 
 Urgent issues are tentatively assigned to a release to ensure other teams have visibility.
 
-At this point the issues are _Candidate_ issues, and the milestone does not confirm that they will be definitely scheduled. Issues move from _Candidate_ status to confirmed during the [Issue selection](#issue-selection) process.
+At this point the issues are *Candidate* issues, and the milestone does not confirm that they will be definitely scheduled. Issues move from *Candidate* status to confirmed during the [Issue selection](#issue-selection) process.
 
 #### Key dates
 
@@ -397,7 +396,7 @@ At this point the issues are _Candidate_ issues, and the milestone does not conf
 | ------ | ------ | ------ |
 | The Monday of the week the milestone ends |**PM** creates planning board and pings EMs in the Planning Issue for review & weighting.<br><br> **EMs** calculate capacity, add to Planning Issue.<br><br>**PM** submits RPIs for reviews.|
 | Monday to Friday of the week the milestone ends |**EMs** & **ICs** add weights to issues in the planning board|
-| The Friday the milestone ends | **EMs** add ~Deliverable labels to issues so that they appear on the Build board _as a draft_<br><br>Release Post: **EMs**, **PMs**, and **PDs** contribute to MRs for Usability, Performance Improvements, and Bug Fixes|
+| The Friday the milestone ends | **EMs** add ~Deliverable labels to issues so that they appear on the Build board *as a draft*<br><br>Release Post: **EMs**, **PMs**, and **PDs** contribute to MRs for Usability, Performance Improvements, and Bug Fixes|
 | The Friday the milestone ends | **EMs** adjust ~Deliverable labels for slippage and make final assignments<br><br>**PMs** review final plan for milestone on Build board<br><br>**EMs** merge RPI MRs for features that have been merged.|
 | The third Thursday of the month | Release |
 
@@ -457,7 +456,7 @@ Approximately 5-10 business days before the start of a new release, the EM will 
 - Upcoming on-call slots
 - Potential time spent on another teams deliverables
 
-Availability is a percentage calculated by _(work days available / work days in release) * 100_.
+Availability is a percentage calculated by *(work days available / work days in release) * 100*.
 
 All individual contributors start with a "weight budget" of 10, meaning they are capable (based on historical data) of completing a maximum number of issues worth 10 weight points total (IE: 2 issues which are weighted at 5 and 5, or 10 issues weighted at 1 each, etc.) Then, based on their availability percentage, weight budgets are reduced individually. For example, if you are 80% available, your weight budget becomes 8.
 
@@ -546,8 +545,8 @@ controller actions performant (e.g. below our target speed index).
 
 Here are some Kibana visualizations that give a quick overview on how they perform:
 
-- [Create::Source Code: Controller Actions](<https://log.gprd.gitlab.net/app/kibana#/visualize/edit/32698f60-b145-11ea-bfe2-25f984e253f8?_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-7d%2Cto%3Anow))>)
-- [Create::Source Code: Endpoints](<https://log.gprd.gitlab.net/app/kibana#/visualize/edit/104d4bf0-a0d9-11ea-8cfd-8dcd98a55a1d?_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-7d%2Cto%3Anow))>)
+- [Create::Source Code: Controller Actions](https://log.gprd.gitlab.net/app/kibana#/visualize/edit/32698f60-b145-11ea-bfe2-25f984e253f8?_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-7d%2Cto%3Anow)))
+- [Create::Source Code: Endpoints](https://log.gprd.gitlab.net/app/kibana#/visualize/edit/104d4bf0-a0d9-11ea-8cfd-8dcd98a55a1d?_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-7d%2Cto%3Anow)))
 
 These tables are filtered by the endpoints and controller actions that the group
 handles and sorted by P90 (slowest first) for the last 7 days by default.

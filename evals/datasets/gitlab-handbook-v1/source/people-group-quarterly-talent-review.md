@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Quarterly Talent Review (QTR)
 description: "Overview of GitLab's internal quarterly talent review process."
 date: 2025-09-03

@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Identity and Access Management (IAM) v3"
 description: "The Security Identity team is leading the technical strategy and automation implementation of next-generation identity and access management (IAM), role-based access control (RBAC), and administrative access controls for internal GitLab systems, cloud infrastructure, and tech stack applications."
 ---
@@ -302,7 +301,7 @@ dmurphy:
   type: purple
   first_name: Dade
   last_name: Murphy
-  full_name: "Dade Murphy"
+  full_name: 'Dade Murphy'
   email: dmurphy@gitlab.com
   handle: dmurphy
   manager: klibby
@@ -318,20 +317,20 @@ dmurphy:
   gitlab_saas_username: z3r0c00l-example
   slack_id: UA1B2C3D4
   status: active
-  created_at_date: "YYYY-MM-DD"
-  created_at_timestamp: "YYYY-MM-DDTHH:MM:SS.000000Z"
+  created_at_date: 'YYYY-MM-DD'
+  created_at_timestamp: 'YYYY-MM-DDTHH:MM:SS.000000Z'
   created_at_age_days: 123
-  last_login_at_date: "YYYY-MM-DD"
-  last_login_at_timestamp: "YYYY-MM-DDTHH:MM:SS.000000Z"
+  last_login_at_date: 'YYYY-MM-DD'
+  last_login_at_timestamp: 'YYYY-MM-DDTHH:MM:SS.000000Z'
   last_login_at_age_days: 2
-  password_updated_at_date: "YYYY-MM-DD"
-  password_updated_at_timestamp: "YYYY-MM-DDTHH:MM:SS.000000Z"
+  password_updated_at_date: 'YYYY-MM-DD'
+  password_updated_at_timestamp: 'YYYY-MM-DDTHH:MM:SS.000000Z'
   password_updated_at_age_days: 123
-  profile_updated_at_date: "YYYY-MM-DD"
-  profile_updated_at_timestamp: "YYYY-MM-DDTHH:MM:SS.000000Z"
+  profile_updated_at_date: 'YYYY-MM-DD'
+  profile_updated_at_timestamp: 'YYYY-MM-DDTHH:MM:SS.000000Z'
   profile_updated_at_age_days: 123
-  status_updated_at_date: "YYYY-MM-DD"
-  status_updated_at_timestamp: "YYYY-MM-DDTHH:MM:SS.000000Z"
+  status_updated_at_date: 'YYYY-MM-DD'
+  status_updated_at_timestamp: 'YYYY-MM-DDTHH:MM:SS.000000Z'
   status_updated_at_age_days: 123
 ```
 

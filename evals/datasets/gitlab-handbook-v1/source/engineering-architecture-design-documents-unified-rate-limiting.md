@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Unified Rate Limiting Architecture"
 description: "Technical design for unifying application-level rate limiting through labkit in three phases: application unification, externalized configuration, and a dynamic external service."
 status: ongoing
@@ -65,7 +64,7 @@ to labkit with a set of rules, and gets back a result. Existing configuration
 (ApplicationSettings, env vars, hardcoded defaults) keeps working. The caller
 resolves its own configuration and passes it in.
 
-_Unlocks:_ one consistent way to define and observe limits across the
+*Unlocks:* one consistent way to define and observe limits across the
 application. Adding or changing a rule still takes a code change and a
 deployment, but every limit now behaves and is instrumented in the same way.
 Old limits are migrated, new limits automatically get the same benefit.
@@ -236,13 +235,13 @@ Each rule has:
 Each rule has an `action` that describes what it does. The result returned to
 the caller describes the outcome: what the caller should do.
 
-| Rule action | What it does                                 | Exceeded? | Result action | Terminating?               |
-| ----------- | -------------------------------------------- | --------- | ------------- | -------------------------- |
-| `limit`     | Count against the limit                      | No        | `allow`       | No — continue to next rule |
-| `limit`     | Count against the limit                      | Yes       | `block`       | Yes — stop evaluation      |
-| `log`       | Count against the limit (observability only) | No        | `allow`       | No — continue              |
-| `log`       | Count against the limit (observability only) | Yes       | `allow`       | No — continue              |
-| `skip`      | Don't count (bypass)                         | N/A       | `allow`       | Yes — stop evaluation      |
+| Rule action | What it does | Exceeded? | Result action | Terminating? |
+|---|---|---|---|---|
+| `limit` | Count against the limit | No | `allow` | No — continue to next rule |
+| `limit` | Count against the limit | Yes | `block` | Yes — stop evaluation |
+| `log` | Count against the limit (observability only) | No | `allow` | No — continue |
+| `log` | Count against the limit (observability only) | Yes | `allow` | No — continue |
+| `skip` | Don't count (bypass) | N/A | `allow` | Yes — stop evaluation |
 
 A terminating action stops rule evaluation. Non-terminating actions continue
 to the next matching rule.
@@ -377,13 +376,13 @@ Tracked in [#28852](https://gitlab.com/gitlab-com/gl-infra/production-engineerin
 **Prometheus metrics** — counter metrics are split across two granularities to
 cover non-terminating rule chains:
 
-| Metric                                              | Type           | Labels                                                 | Purpose                                                                          |
-| --------------------------------------------------- | -------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------- |
-| `gitlab_labkit_rate_limiter_calls_total`            | Counter        | `rate_limiter`, `result`                               | One increment per `check` call. Low cardinality; overall rate limiting health.   |
-| `gitlab_labkit_rate_limiter_rule_evaluations_total` | Counter        | `rate_limiter`, `rule`, `action`, `result`, `exceeded` | One increment per rule evaluated. Captures every rule in non-terminating chains. |
-| `gitlab_labkit_rate_limiter_errors_total`           | Counter        | `rate_limiter`                                         | Redis failure counter (fail-open observability).                                 |
-| `gitlab_labkit_rate_limiter_limit`                  | Gauge (`:max`) | `rate_limiter`, `rule`                                 | Configured threshold.                                                            |
-| `gitlab_labkit_rate_limiter_period_seconds`         | Gauge (`:max`) | `rate_limiter`, `rule`                                 | Configured period.                                                               |
+| Metric | Type | Labels | Purpose |
+|---|---|---|---|
+| `gitlab_labkit_rate_limiter_calls_total` | Counter | `rate_limiter`, `result` | One increment per `check` call. Low cardinality; overall rate limiting health. |
+| `gitlab_labkit_rate_limiter_rule_evaluations_total` | Counter | `rate_limiter`, `rule`, `action`, `result`, `exceeded` | One increment per rule evaluated. Captures every rule in non-terminating chains. |
+| `gitlab_labkit_rate_limiter_errors_total` | Counter | `rate_limiter` | Redis failure counter (fail-open observability). |
+| `gitlab_labkit_rate_limiter_limit` | Gauge (`:max`) | `rate_limiter`, `rule` | Configured threshold. |
+| `gitlab_labkit_rate_limiter_period_seconds` | Gauge (`:max`) | `rate_limiter`, `rule` | Configured period. |
 
 > **Implementation note:** The current labkit implementation only emits `gitlab_labkit_rate_limiter_calls_total` (with labels `rate_limiter`, `rule`, `action`), plus `errors_total` and the two gauges (implemented in [#28798](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/28798)). The split into per-limiter and per-rule-evaluation metrics ships together with the action model refinement ([#29052](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/29052)) as a coordinated breaking change.
 
@@ -462,7 +461,7 @@ design document: a protobuf schema defines the structure, with YAML as the
 serialization format. Because the schema is shared, the same files load the same
 way in `labkit-ruby`, `labkit-go`, and the services that consume them.
 
-_Unlocks:_ adding and changing rules through configuration. A rule change rolls
+*Unlocks:* adding and changing rules through configuration. A rule change rolls
 out without a full build and deploy of the application.
 
 ### 2.1 Two kinds of configuration
@@ -669,9 +668,9 @@ object, so equality and regex matching round-trip across YAML and both SDKs:
 
 ```yaml
 match:
-  root_namespace_plan: free # equality
+  root_namespace_plan: free                  # equality
   path:
-    regex: "^/api/v\\d+/projects" # regex
+    regex: "^/api/v\\d+/projects"            # regex
 ```
 
 When `rate_limits.yaml` above is loaded, the per-plan `pipelines_create` rules
@@ -752,7 +751,7 @@ An external service provides rate limit rules dynamically, based on the request
 identifier. This is how we get per-customer, per-tier, and per-namespace
 customization without maintaining static configuration files for each case.
 
-_Unlocks:_ different rules for different customers, and near-instant rollout of
+*Unlocks:* different rules for different customers, and near-instant rollout of
 a change without a deployment.
 
 ### 3.1 Service design
@@ -815,22 +814,22 @@ The external service can use them without changes to labkit itself.
 
 ## Key Design Decisions
 
-| Decision                                                                            | Rationale                                                                                                                                                                     | Reference                                                                                  |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Rule evaluation with non-terminating `:log`                                         | Shadow-testing new thresholds without disrupting enforcement                                                                                                                  | [#28890](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/28890) |
-| Action model: `limit`/`log`/`skip`                                                  | Clean separation of enforcement, observability, and bypass semantics                                                                                                          | [#29052](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/29052) |
-| Result `action` is the outcome; caller handles it                                   | Labkit is a library, not a framework — callers decide how to respond                                                                                                          | —                                                                                          |
-| `<anonymous>` sentinel for unauthenticated requests                                 | Avoid angle-bracket-free sentinel colliding with real usernames; enables rule-level auth/unauth distinction                                                                   | [#28852](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/28852) |
-| TTL-based fixed windows (vs. divmod clock-aligned)                                  | Pending decision — TTL is simpler and avoids boundary-burst, divmod matches current ApplicationRateLimiter                                                                    | [#28830](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/28830) |
-| Redis pool `.with` interface                                                        | Proper connection pool usage under Puma multi-threaded workers                                                                                                                | —                                                                                          |
-| 2 limiters for RackAttack (not 4)                                                   | Auth/unauth is a characteristic, not a limiter boundary; fewer flags; future-proof for external config                                                                        | [#28852](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/28852) |
-| Lua EVAL for Redis operations                                                       | Single round-trip for INCR + EXPIRE + TTL; atomic; less Ruby overhead                                                                                                         | [#28827](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/28827) |
-| Matcher object for pattern matching                                                 | YAML-compatible (explicit `{ regex: "..." }` type markers); cross-language                                                                                                    | [#28855](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/28855) |
-| Static Limiter objects replacing `rate_limits` hash                                 | Single source of truth; callables for DB-backed values; no per-request allocation                                                                                             | [#29054](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/29054) |
-| Prometheus gauge multiprocess mode `:max`                                           | Avoids N duplicate copies under Puma workers; all workers set the same configured value                                                                                       | [#28798](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/28798) |
-| Configuration evolution: callables → config file → external service                 | Backwards-compatible migration path; no breaking changes for self-managed at any phase                                                                                        | [#28853](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/28853) |
-| Web-UI rules stored in Redis, not the database                                      | Keeps click-ops for self-managed while taking the database off the hot path; reuses the Redis instance already used for counters; replaces app defaults with a Redis fallback | —                                                                                          |
-| Operators own the contract and global rules; service owners tune their own limiters | Teams get autonomy to manage limits for the services they are on-call for, with infrastructure input on cross-cutting changes; bypasses stay guardrailed                      | —                                                                                          |
+| Decision | Rationale | Reference |
+|---|---|---|
+| Rule evaluation with non-terminating `:log` | Shadow-testing new thresholds without disrupting enforcement | [#28890](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/28890) |
+| Action model: `limit`/`log`/`skip` | Clean separation of enforcement, observability, and bypass semantics | [#29052](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/29052) |
+| Result `action` is the outcome; caller handles it | Labkit is a library, not a framework — callers decide how to respond | — |
+| `<anonymous>` sentinel for unauthenticated requests | Avoid angle-bracket-free sentinel colliding with real usernames; enables rule-level auth/unauth distinction | [#28852](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/28852) |
+| TTL-based fixed windows (vs. divmod clock-aligned) | Pending decision — TTL is simpler and avoids boundary-burst, divmod matches current ApplicationRateLimiter | [#28830](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/28830) |
+| Redis pool `.with` interface | Proper connection pool usage under Puma multi-threaded workers | — |
+| 2 limiters for RackAttack (not 4) | Auth/unauth is a characteristic, not a limiter boundary; fewer flags; future-proof for external config | [#28852](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/28852) |
+| Lua EVAL for Redis operations | Single round-trip for INCR + EXPIRE + TTL; atomic; less Ruby overhead | [#28827](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/28827) |
+| Matcher object for pattern matching | YAML-compatible (explicit `{ regex: "..." }` type markers); cross-language | [#28855](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/28855) |
+| Static Limiter objects replacing `rate_limits` hash | Single source of truth; callables for DB-backed values; no per-request allocation | [#29054](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/29054) |
+| Prometheus gauge multiprocess mode `:max` | Avoids N duplicate copies under Puma workers; all workers set the same configured value | [#28798](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/28798) |
+| Configuration evolution: callables → config file → external service | Backwards-compatible migration path; no breaking changes for self-managed at any phase | [#28853](https://gitlab.com/gitlab-com/gl-infra/production-engineering/-/work_items/28853) |
+| Web-UI rules stored in Redis, not the database | Keeps click-ops for self-managed while taking the database off the hot path; reuses the Redis instance already used for counters; replaces app defaults with a Redis fallback | — |
+| Operators own the contract and global rules; service owners tune their own limiters | Teams get autonomy to manage limits for the services they are on-call for, with infrastructure input on cross-cutting changes; bypasses stay guardrailed | — |
 
 ## References
 

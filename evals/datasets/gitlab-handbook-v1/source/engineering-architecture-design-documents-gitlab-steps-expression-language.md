@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 owning-stage: "~devops::verify"
 title: "The CI Steps Expression Language"
 toc_hide: false
@@ -200,12 +199,13 @@ spec:
     echo_version:
       type: string
 ---
+
 build-job:
   run:
     - name: echo_step
-      step: gitlab.com/steps/echo@$[[inputs.echo_version]] # CI Component expression, evaluated when the pipeline is created
+      step: gitlab.com/steps/echo@$[[inputs.echo_version]]  # CI Component expression, evaluated when the pipeline is created
       inputs:
-        message: "Hello, ${{ remove_new_lines(jobs.CI_RUNNER_DESCRIPTION) }}" # CI Steps expression, evaluated during job execution
+        message: 'Hello, ${{ remove_new_lines(jobs.CI_RUNNER_DESCRIPTION) }}' # CI Steps expression, evaluated during job execution
 ```
 
 ## Specification
@@ -445,21 +445,21 @@ Examples:
 
 ```js
 // Single-quoted strings
-"Hello, world!";
-'It\'s a beautiful day'; // Escaped single quote
-"Path: C:\\Users\\Alice"; // Escaped backslashes
-'${{ "hello" }}'; // Treated literally, does not evaluate
+'Hello, world!'
+'It\'s a beautiful day'  // Escaped single quote
+'Path: C:\\Users\\Alice' // Escaped backslashes
+'${{ "hello" }}'         // Treated literally, does not evaluate
 
 // Double-quoted strings
-"Hello, world!";
-"She said, \"Hello!\""; // Escaped double quotes
-"Line 1\nLine 2\nLine 3"; // Newline characters
-"Name:\tJohn\nAge:\t30"; // Tab and newline
-"Alert\a\tBackspace\b"; // Special characters
+"Hello, world!"
+"She said, \"Hello!\""   // Escaped double quotes
+"Line 1\nLine 2\nLine 3" // Newline characters
+"Name:\tJohn\nAge:\t30"  // Tab and newline
+"Alert\a\tBackspace\b"   // Special characters
 
 // Template expressions
-"Hello, ${{ name }}!"; // Simple variable interpolation
-"Path: ${{ dir }}/${{ file }}"; // Multiple templates
+"Hello, ${{ name }}!"                                 // Simple variable interpolation
+"Path: ${{ dir }}/${{ file }}"                       // Multiple templates
 ```
 
 #### Types
@@ -497,7 +497,7 @@ This section describes which operations are valid between different types and th
 ##### Type compatibility table
 
 | Operation    | Valid Types     | Result Type | Notes                                |
-| ------------ | --------------- | ----------- | ------------------------------------ |
+|--------------|-----------------|-------------|--------------------------------------|
 | `+` (binary) | number + number | number      | Addition                             |
 | `+` (binary) | string + string | string      | Concatenation                        |
 | `-` (binary) | number - number | number      | Subtraction                          |
@@ -536,12 +536,12 @@ The `==` and `!=` operators compare values as follows:
 The comparison operators `<`, `<=`, `>`, and `>=` can compare any types. When comparing values:
 
 1. **Same type comparisons**:
-   - **numbers**: Numeric comparison
-   - **strings**: Lexicographic comparison (UTF-8 byte order)
-   - **booleans**: `false < true`
-   - **arrays**: Compares elements in order; an array with fewer items is less than an array with more items
-   - **objects**: Compares elements in sorted key order; an object with fewer items is less than an object with more items
-   - **null**: All null values are equal
+    - **numbers**: Numeric comparison
+    - **strings**: Lexicographic comparison (UTF-8 byte order)
+    - **booleans**: `false < true`
+    - **arrays**: Compares elements in order; an array with fewer items is less than an array with more items
+    - **objects**: Compares elements in sorted key order; an object with fewer items is less than an object with more items
+    - **null**: All null values are equal
 
 2. **Different type comparisons**:
 
@@ -557,11 +557,9 @@ The comparison operators `<`, `<=`, `>`, and `>=` can compare any types. When co
    For example:
 
    ```js
-   null < true; // true (null has order 0, boolean has order 1)
-   42 <
-     "hello" // true (number has order 2, string has order 3)
-     [(1, 2, 3)] >
-     "text"; // true (array has order 4, string has order 3)
+   null < true      // true (null has order 0, boolean has order 1)
+   42 < "hello"     // true (number has order 2, string has order 3)
+   [1,2,3] > "text" // true (array has order 4, string has order 3)
    ```
 
 ##### Short-circuit evaluation
@@ -585,11 +583,8 @@ Literal           = "null" | "true" | "false" | string_lit | number .
 Parentheses can be used to group expressions and override operator precedence:
 
 ```js
-2 +
-  3 *
-    4 // evaluates to 14
-    (2 + 3) *
-    4; // evaluates to 20
+2 + 3 * 4        // evaluates to 14
+(2 + 3) * 4      // evaluates to 20
 ```
 
 ##### Array literals
@@ -644,10 +639,10 @@ Property access with `.` requires an identifier. Computed property access with `
 Example:
 
 ```js
-obj.property;
-obj["property"];
-my_array[0];
-my_array[index];
+obj.property
+obj["property"]
+my_array[0]
+my_array[index]
 ```
 
 ##### Function calls
@@ -661,10 +656,10 @@ Call = "(" [ Expression { "," Expression } ] ")" .
 Example:
 
 ```js
-my_func();
-my_func(1, 2, 3);
-obj.method();
-my_array[0](); // if my_array[0] contains a function
+my_func()
+my_func(1, 2, 3)
+obj.method()
+my_array[0]()  // if my_array[0] contains a function
 ```
 
 ##### Unary operators
@@ -676,56 +671,56 @@ UnaryExpression = unary_op UnaryExpression | PostfixExpression .
 unary_op        = "+" | "-" | "!" .
 ```
 
-| Operator | Name        | Types  | Description                            |
-| -------- | ----------- | ------ | -------------------------------------- |
-| `+`      | unary plus  | number | numeric identity                       |
-| `-`      | unary minus | number | numeric negation                       |
-| `!`      | logical NOT | any    | logical negation (based on truthiness) |
+| Operator | Name | Types | Description |
+|----------|------|-------|-------------|
+| `+` | unary plus | number | numeric identity |
+| `-` | unary minus | number | numeric negation |
+| `!` | logical NOT | any | logical negation (based on truthiness) |
 
 ##### Binary operators
 
 Binary operators are left-associative and follow standard precedence rules.
 
-| Precedence | Operators                   | Associativity |
-| ---------- | --------------------------- | ------------- |
-| 5          | `*` `/` `%`                 | left          |
-| 4          | `+` `-`                     | left          |
-| 3          | `==` `!=` `<` `<=` `>` `>=` | left          |
-| 2          | `&&`                        | left          |
-| 1          | `\|\|`                      | left          |
+| Precedence | Operators | Associativity |
+|------------|-----------|---------------|
+| 5 | `*` `/` `%` | left |
+| 4 | `+` `-` | left |
+| 3 | `==` `!=` `<` `<=` `>` `>=` | left |
+| 2 | `&&` | left |
+| 1 | `\|\|` | left |
 
 ##### Arithmetic operators
 
-| Operator | Name           | Types           | Result |
-| -------- | -------------- | --------------- | ------ |
-| `+`      | addition       | number + number | number |
-| `+`      | concatenation  | string + string | string |
-| `-`      | subtraction    | number - number | number |
-| `*`      | multiplication | number * number | number |
-| `/`      | division       | number / number | number |
-| `%`      | modulo         | number % number | number |
+| Operator | Name | Types | Result |
+|----------|------|-------|--------|
+| `+` | addition | number + number | number |
+| `+` | concatenation | string + string | string |
+| `-` | subtraction | number - number | number |
+| `*` | multiplication | number * number | number |
+| `/` | division | number / number | number |
+| `%` | modulo | number % number | number |
 
 Note: Division by zero results in a runtime error. The `+` operator performs addition for numbers and concatenation for strings. No implicit type conversion occurs - `"hello" + 42` is an error.
 
 ##### Comparison operators
 
-| Operator | Name                  | Types      | Result  |
-| -------- | --------------------- | ---------- | ------- |
-| `==`     | equal                 | any == any | boolean |
-| `!=`     | not equal             | any != any | boolean |
-| `<`      | less than             | any < any  | boolean |
-| `<=`     | less than or equal    | any <= any | boolean |
-| `>`      | greater than          | any > any  | boolean |
-| `>=`     | greater than or equal | any >= any | boolean |
+| Operator | Name | Types | Result |
+|----------|------|-------|--------|
+| `==` | equal | any == any | boolean |
+| `!=` | not equal | any != any | boolean |
+| `<` | less than | any < any | boolean |
+| `<=` | less than or equal | any <= any | boolean |
+| `>` | greater than | any > any | boolean |
+| `>=` | greater than or equal | any >= any | boolean |
 
 Note: Comparison operators can compare values of any type. See [Comparison Semantics](#comparison-semantics) for details on how different types are compared.
 
 ##### Logical operators
 
-| Operator | Name        | Description                                        |
-| -------- | ----------- | -------------------------------------------------- |
-| `&&`     | logical AND | returns right operand if left is truthy, else left |
-| `\|\|`   | logical OR  | returns left operand if truthy, else right         |
+| Operator | Name | Description |
+|----------|------|-------------|
+| `&&` | logical AND | returns right operand if left is truthy, else left |
+| `\|\|` | logical OR | returns left operand if truthy, else right |
 
 Note: Logical operators use short-circuit evaluation and return the actual operand value, not a boolean.
 
@@ -734,15 +729,15 @@ Note: Logical operators use short-circuit evaluation and return the actual opera
 Examples:
 
 ```js
-"foo" && "bar"; // "bar" (returns right when left is truthy)
-null && "bar"; // null (returns left when left is falsy)
-"foo" || "bar"; // "foo" (returns left when left is truthy)
-false || "default"; // "default" (returns right when left is falsy)
+"foo" && "bar"     // "bar" (returns right when left is truthy)
+null && "bar"      // null (returns left when left is falsy)
+"foo" || "bar"     // "foo" (returns left when left is truthy)
+false || "default" // "default" (returns right when left is falsy)
 
 // Special || error handling
-obj.missing || "default"; // "default" (missing property treated as falsy)
-array[999] || "fallback"; // "fallback" (out of bounds treated as falsy)
-obj.exists || "default"; // obj.exists value
+obj.missing || "default"    // "default" (missing property treated as falsy)
+array[999] || "fallback"    // "fallback" (out of bounds treated as falsy)
+obj.exists || "default"     // obj.exists value
 ```
 
 ##### Template expressions

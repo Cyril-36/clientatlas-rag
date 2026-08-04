@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "GitLab Duo Workflow"
 status: ongoing
 creation-date: "2024-05-17"

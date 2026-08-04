@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Financial Planning & Analysis"
 description: "Welcome to the FP&A Team Handbook. Our missions is to maximize GitLab's long-term valuation by enabling e-group and FP&A to plan, prioritize, and execute effectively"
 ---
@@ -104,7 +103,7 @@ Key planning milestones are listed below. For a more detailed timeline and plann
 - 2024-12-12 Q3 Board Meeting: update planning progression and preview FY26 AOP
 - 2025-01-21 eGroup Meeting: update planning progression and Q4 Board Deck preview
 - 2025-02-12 eGroup ASYNC: FY26 AOP Final review
-- 2025-03-27 Q4 Board Meeting: Final Formal Approval of FY26 AOP
+- 2025-03-27 Q4 Board Meeting:  Final Formal Approval of FY26 AOP
 
 ## Long Range Outlook ("LRO")
 
@@ -166,7 +165,7 @@ For GitLab's top growth drivers and new products, drive and document alignment b
 - **Product plan** - what are product features to ship, by when? What is committed and what is at risk? What are competitive considerations? If there are phases, what is in scope for each phase?
 - **Pricing plan** - what is the pricing strategy, what are open decisions, what is the margin structure?
 - **Marketing plan** - how will product marketing and demand generation support the business plan.
-- **Sales plan** - what are the drivers of the sales plan? What is the quarterly Plan for bookings? What are assumed attach rates, penetration rates, adoption rates, where is there uncertainty? What is the field enablement plan?
+- **Sales plan** - what are the drivers of the sales plan? What is the quarterly Plan for  bookings? What are assumed attach rates, penetration rates, adoption rates, where is there uncertainty? What is the field enablement plan?
 - **Services plan** - if applicable, how can enhanced services improve sales and adoption?
 - **Operational plan** - what infrastructure do we need (fulfillment, IT, rev rec, legal, security, etc.)
 - **Financial plan** - gross margin and contribution to P&L, if applicable
@@ -217,7 +216,7 @@ GitLab's FP&A team participates in a rigorous monthly close process.
 
 #### Forecast at `FYyy-Qx`
 
-- **Purpose**: In a dynamic high-growth business, GitLab's needs may change through the year and we need a guidepost to hold business leaders accountable. We plan our expenses at a high level (e-group) and we expect this group to make prioritizations and trade-offs while remaining accountable against the plan parameters. By formally reforecasting quarterly, we can quickly evaluate and incorporate new initiatives into our forecasting model. That being said, we do follow an annual plan to set our goals and measurement for our top-level targets of revenue, profitability and expense management and ensure we continue to meet any public guidance previously communicated
+- **Purpose**: In a dynamic high-growth business, GitLab's needs may change through the year and we need a guidepost to hold business leaders accountable. We plan our expenses at a high level (e-group) and we expect this group to make prioritizations and trade-offs while remaining accountable against the plan parameters. By formally reforecasting quarterly, we can quickly evaluate and incorporate new initiatives into our forecasting model. That being said, we do follow an annual plan to set our goals and measurement for our top-level targets of revenue, profitability and expense management and ensure we continue to  meet any public guidance previously communicated
 - **What**: Forecast at `FYyy-Qx` is a dynamic assessment based on current expectations of financial performance. The (3+9), (6+6), and (9+3) quarterly forecasts include revenue driven by bookings and other key inputs and expenses driven by headcount and vendors.
 - **Governance**: The quarterly forecast is approved by the Head of FP&A and reviewed with the CFO. It is then reviewed with e-group and the board of directors. e-group will be held accountable to the quarterly forecast for expenses.
 
@@ -311,7 +310,7 @@ EVPs are held accountable to meet the budget in dollars that they are given. The
 - Discuss upcoming changes to financial processes that EVPs need to be aware of
 - Discuss upcoming changes to help Finance Business Partner update the rolling forecast
 - Discuss any budget lines that underspent and if money can be reallocated before quarter-end. Noting that converting program dollars to headcount is usually difficult as it impacts future periods.
-- At quarter end, review the upcoming quarter vs Plan for the Division and for each department on the quarter
+- At quarter end, review the upcoming  quarter vs Plan for the Division and for each department on the quarter
 
 Following the month-end close, the Finance Business Partners will create a variance deck and distribute department income statements to the related budget owners and the e-group members. Each department is then responsible for comparing these reports, which contain actual costs, to the budget. Departments, with guidance from the Finance Business Partners, should analyze their data and if necessary, discuss items of interest and take appropriate action. Any questions regarding the cost data should be discussed with the Finance Business Partner.
 
@@ -323,10 +322,10 @@ The close timeline for each quarter follows the timeline above for monthly close
 
 - **Overview**: We provide quarterly guidance on key metrics of the business. At the earnings call for the previously concluded quarter, we provide guidance for the following quarter and the full fiscal year. For example, at the Q1-FY23 earnings, we will provide guidance for Q2-FY23 and updated FY23 guidance. We report guidance based on dollar ranges (except for weighted average shares outstanding which is given as a share estimate).
 - We provide quarterly guidance on the following metrics:
-  1.  Revenue
-  1.  Non-GAAP Operating Income (NGOI)
-  1.  Non-GAAP Earnings Per Share (Non-GAAP EPS, or NGEPS)
-  1.  Weighted Average Shares Outstanding (WASO)
+   1. Revenue
+   1. Non-GAAP Operating Income (NGOI)
+   1. Non-GAAP Earnings Per Share (Non-GAAP EPS, or NGEPS)
+   1. Weighted Average Shares Outstanding (WASO)
 - **Cadence**: Following accounting close, the Corp team provides guidance proposals to the Head of FP&A for review. Following that review and any necessary iteration, the Corp team meets with the CFO and the Head of Investor Relations to review the guidance proposal, iterate, and finalize guidance figures.
 - **Deliverable**: The deliverable to the CFO and the Head of Investor Relations is a slide deck with the proposed guidance range, implied guidance for the following quarters, comparable company benchmarking, and sensitivity analyses. The guidance proposed is also included in the Audit Committee and Board of Director deck materials.
 
@@ -348,7 +347,6 @@ Financial Planning & Analysis (FP&A) team is the owner of SSOT for GitLab's **Hi
 
   - Headcount Forecast includes all approved positions in AOP (i.e. Active, Planned and Backfill positions)
   - Hiring Plan is subset of Headcount Forecast (i.e.Planned and Backfill positions only)
-
 - Hiring Plan is maintained by the Finance Business Partners (FBPs) and shared with Talent Acquisition (TA) team and Business Partners (BPs)
 - Finance owns the Hiring Plan to ensure there is only one Headcount Forecast and Hiring Plan for the business
 - Hiring Plan increases our predictability as a company and streamlines the hiring process
@@ -420,7 +418,7 @@ Position ID is a unique identifier and is the link between approved headcount an
 1. Formal approval to open role
    - When a requisition is opened in Greenhouse it is routed for approvals. The job approval requires approvals from Total Rewards, FP&A and Department Lead (VP+)
    - This allows the FBPs to check all details of the role and ensure consistency to SSOT Hiring Plan
-     - If role details in Greenhouse do not reconcile to Hiring Plan in Adaptive, FBP will reach out to both TA and HM to resolve discrepancies
+      - If role details in Greenhouse do not reconcile to Hiring Plan in Adaptive, FBP will reach out to both TA and HM to resolve discrepancies
    - FP&A is also a required approval on all job offers (before the role is officially filled). This approval allows FP&A to confirm details of the job offer and ensure reconciliation to Hiring Plan
 1. Run kick-off (aka Intake) with Hiring Manager
 
@@ -445,16 +443,16 @@ Backfill Positions include all positions created due to departure or termination
 
 1. Hiring Plan Approval of any Backfill Positions
    - While GitLab strongly believes that a HM should be able to backfill each role upon termination and/or departure, HM should check with his/her leadership to discuss and decide whether there are changes to the backfill role
-     - If changes are approved by leadership, please work with your FBPs to update details of the backfill positions.
-     - FBPs evaluate change and ensure neutral dollar impact from role change/update
-     - FBPs brief Corporate and request new/remove PID if applicable
-     - Upon final decision, FBPs enter details into Adaptive and update Hiring Plan
+      - If changes are approved by leadership, please work with your FBPs to update details of the backfill positions.
+      - FBPs evaluate change and ensure neutral dollar impact from role change/update
+      - FBPs brief Corporate and request new/remove PID if applicable
+      - Upon final decision, FBPs enter details into Adaptive and update Hiring Plan
 1. Requisition Release
    - Upon a resignation, Hiring Managers (HMs) submit official notice to Workday (WD)
-     - WD backfill notification will send to both TA and FBPs
-     - WD backfill notification will allow Recruiter to create a backfill issue
-     - All final decisions and details of the role(s) will be documented in the backfill issue
-     - Recruiter can create a requisition in Greenhouse and move to the next step of the process
+      - WD backfill notification will send to both TA and FBPs
+      - WD backfill notification will allow Recruiter to create a backfill issue
+      - All final decisions and details of the role(s) will be documented in the backfill issue
+      - Recruiter can create a requisition in Greenhouse and move to the next step of the process
 1. Hiring Manager create/review Job Family
 1. Open requisition in Greenhouse
 1. Formal approval to open role
@@ -539,7 +537,7 @@ Communication related to the interlock takes place in the #fpa-ta_headcount_fore
 
 The Finance Business Partners and Talent Acquisition Managers collaborate to provide the most current and 50/50 "most-realistic" view of headcount-related expenses. This is done through the interlock process in the headcount forecast template and is ultimately uploaded into the Planned Personnel sheet in Adaptive.
 
-The inputs loaded into Adaptive are then used to provide the CFO a weekly P&L snapshot in order to facilitate in-quarter spending decisions and ensure the company tracks vs. guidance and consensus expectations.
+The inputs loaded into Adaptive are then used to provide the CFO a weekly P&L snapshot in order to facilitate in-quarter spending decisions and ensure the company tracks vs.  guidance and consensus expectations.
 
 ---
 
@@ -548,7 +546,7 @@ The inputs loaded into Adaptive are then used to provide the CFO a weekly P&L sn
 1. The primary mechanism to ensure efficient spend of company assets is the [Procure to Pay](../procurement/) process, and specifically completion of the [vendor and contract approval workflow](../procurement/) prior to authorization. The procurement team or your finance business partner can assist with questions related to this process.
 
 1. The second mechanism is the budget vs actual review to determine reasons for variances vs plan. See the section on [Variance Meeting with CFO](#variance-meeting-with-cfo)
-   and [Variance Analysis](#variance-and-flux-analysis).
+ and [Variance Analysis](#variance-and-flux-analysis).
 
 ---
 
@@ -585,22 +583,22 @@ Adaptive Quarterly Roadmap
    - **WD-1:** Corporate FP&A locks Prelim Forecast version and shares detailed daily calendar with FBPs
    - **WD+1:** FBPs prepare prelim variance package and review with BPs (Async) to help the business prioritize the asks
    - **Acct Close +2:** Forecast pencils down
-     - Corporate FP&A and VP of Finance review Forecast prior to Final Forecast Lock
-     - Corporate FP&A provide Prelim Forecast vs. Final Forecast view to FBPs
+        - Corporate FP&A and VP of Finance review Forecast prior to Final Forecast Lock
+        - Corporate FP&A provide Prelim Forecast vs. Final Forecast view to FBPs
    - **Acct Close +3:** Final Forecast Lock, used for guidance, tax, etc.
    - **3 days prior to CFO Variance Review:** FBPs finalize prioritized RLOA list and submit to Corporate FP&A
    - **2 days prior to CFO Variance Review:** Corporate FPA creates a brief RLOA section (~2-3 slides) to include in CFO Variance Review package. RLOA section should include:
-     - P&L from Final Forecast Lock and RLOA summary
-     - Comparison of the functional expenses as a % of revenue after RLOA vs plan, guidance, and consensus
-     - Comparison of headcount requests against recruiting capacity
-     - Rationale for each request and Finance POV
+        - P&L from Final Forecast Lock and RLOA summary
+        - Comparison of the functional expenses as a % of revenue after RLOA vs plan, guidance, and consensus
+        - Comparison of headcount requests against recruiting capacity
+        - Rationale for each request and Finance POV
    - **At CFO Variance Meeting (typically third Thu):** FP&A team reviews RLOA proposal with CFO & VP of Finance. Discussion around:
-     - Incremental investments required from RLOA proposal
-     - Make recommendation to e-group thereafter
+        - Incremental investments required from RLOA proposal
+        - Make recommendation to e-group thereafter
    - **At e-group Review Meeting (typically Mon after CFO Variance Meeting),** CFO shares proposal for formal approval and inclusion into investor guidance
    - **After e-group Review Meeting,** FP&A team communicates approved incremental investments to functional leaders to begin execution
 
-   _Note: WD is defined as Working Days, which are Mondays through Fridays, excluding Federal holidays._
+   *Note: WD is defined as Working Days, which are Mondays through Fridays, excluding Federal holidays.*
 
 ### RLOA Timeline
 

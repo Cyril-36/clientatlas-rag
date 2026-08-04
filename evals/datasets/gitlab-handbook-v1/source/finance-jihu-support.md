@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "JiHu Support"
 description: "How the GitLab Inc team provides support to JiHu"
 ---
@@ -40,8 +39,8 @@ Process to be added below.
 
 ### R&D Roles
 
-| DRI                                       | Role            |
-| ----------------------------------------- | --------------- |
+| DRI | Role |
+| --- | --- |
 | [Jerome Ng](https://gitlab.com/jeromezng) | Engineering DRI |
 
 ### JiHu engineering contact
@@ -59,22 +58,22 @@ are still under the [gitlab-jh](https://gitlab.com/gitlab-jh/) group.
 To request access please reach out to [Kevin](https://gitlab.com/kevinchu) or
 [Mek](https://gitlab.com/meks) to provision.
 
-| GitLab Inc Project                                         | JiHu Project                                                              |
-| ---------------------------------------------------------- | ------------------------------------------------------------------------- |
-| <https://gitlab.com/gitlab-org/gitlab>                     | <https://jihulab.com/gitlab-cn/gitlab>                                    |
-| <https://gitlab.com/gitlab-org/license-gitlab-com>         | <https://gitlab.com/gitlab-jh/license-gitlab-cn> (private)                |
-| <https://gitlab.com/gitlab-org/customers-gitlab-com>       | <https://jihulab.com/jihulab/engineering/customers-jihulab-com> (private) |
-|                                                            | <https://gitlab.com/gitlab-jh/cookbook-customers-gitlab-com>              |
-| <https://gitlab.com/gitlab-services/version-gitlab-com>    | <https://gitlab.com/gitlab-jh/version-gitlab-cn>                          |
-| <https://gitlab.com/gitlab-org/omnibus-gitlab>             | <https://jihulab.com/gitlab-cn/omnibus-gitlab>                            |
-| <https://gitlab.com/gitlab-org/gitaly>                     | <https://jihulab.com/gitlab-cn/gitaly>                                    |
-| <https://gitlab.com/gitlab-org/gitlab-environment-toolkit> | <https://gitlab.com/gitlab-jh/gitlab-environment-toolkit>                 |
-| <https://gitlab.com/gitlab-org/build/CNG>                  | <https://jihulab.com/gitlab-cn/build/cng-images>                          |
-| <https://gitlab.com/gitlab-org/charts/gitlab>              | <https://jihulab.com/gitlab-cn/charts/gitlab>                             |
-| <https://gitlab.com/gitlab-org/gitlab-docs>                | <https://jihulab.com/gitlab-cn/gitlab-docs-cn>                            |
-| <https://gitlab.com/gitlab-org/gitlab-runner>              | <https://jihulab.com/gitlab-cn/gitlab-runner>                             |
-| <https://gitlab.com/gitlab-org/gitlab-svgs>                | <https://jihulab.com/gitlab-cn/gitlab-svgs>                               |
-| <https://gitlab.com/gitlab-org/gitlab-qa>                  | <https://jihulab.com/gitlab-cn/gitlab-qa>                                 |
+| GitLab Inc Project                                      | JiHu Project                                               |
+|---------------------------------------------------------|------------------------------------------------------------|
+| <https://gitlab.com/gitlab-org/gitlab>                    | <https://jihulab.com/gitlab-cn/gitlab>                       |
+| <https://gitlab.com/gitlab-org/license-gitlab-com>        | <https://gitlab.com/gitlab-jh/license-gitlab-cn> (private)   |
+| <https://gitlab.com/gitlab-org/customers-gitlab-com>      | <https://jihulab.com/jihulab/engineering/customers-jihulab-com> (private) |
+|                                                         | <https://gitlab.com/gitlab-jh/cookbook-customers-gitlab-com> |
+| <https://gitlab.com/gitlab-services/version-gitlab-com>   | <https://gitlab.com/gitlab-jh/version-gitlab-cn>             |
+| <https://gitlab.com/gitlab-org/omnibus-gitlab>            | <https://jihulab.com/gitlab-cn/omnibus-gitlab>               |
+| <https://gitlab.com/gitlab-org/gitaly>            | <https://jihulab.com/gitlab-cn/gitaly>               |
+| <https://gitlab.com/gitlab-org/gitlab-environment-toolkit> | <https://gitlab.com/gitlab-jh/gitlab-environment-toolkit>    |
+| <https://gitlab.com/gitlab-org/build/CNG>                 | <https://jihulab.com/gitlab-cn/build/cng-images>             |
+| <https://gitlab.com/gitlab-org/charts/gitlab>             | <https://jihulab.com/gitlab-cn/charts/gitlab>                |
+| <https://gitlab.com/gitlab-org/gitlab-docs>               | <https://jihulab.com/gitlab-cn/gitlab-docs-cn>           |
+| <https://gitlab.com/gitlab-org/gitlab-runner>             | <https://jihulab.com/gitlab-cn/gitlab-runner>                |
+| <https://gitlab.com/gitlab-org/gitlab-svgs>             | <https://jihulab.com/gitlab-cn/gitlab-svgs> |
+| <https://gitlab.com/gitlab-org/gitlab-qa> | <https://jihulab.com/gitlab-cn/gitlab-qa> |
 
 ### JiHu contribution process
 
@@ -164,7 +163,7 @@ If there is no clear design proposal yet, or there are conflicts with Pajamas or
 
 #### Milestone Product Planning Process with JiHu
 
-To facilitate collaboration and feedback, JiHu plans ahead of GitLab's milestone planning process to give GitLab product groups time to provide feedback ahead of implementation. The following will happen every milestone:
+To facilitate collaboration and feedback, JiHu plans ahead of GitLab's milestone  planning process to give GitLab product groups time to provide feedback ahead of implementation. The following will happen every milestone:
 
 1. JiHu will create a milestone planning issue in the [gitlab-jh-enablement project](https://gitlab.com/gitlab-jh/gitlab-jh-enablement), such as this [example](https://gitlab.com/gitlab-jh/gitlab-jh-enablement/-/issues/269). JiHu typically provides the plan 2 weeks before the 18th of the month.
 1. For any items which do not already have an issue in the GitLab.org project, the JiHu team creates an issue. If there is an existing issue, it is linked to from the milestone planning issue. This helps the GitLab product group track JiHu contributions in the same place where other day to day work is tracked.

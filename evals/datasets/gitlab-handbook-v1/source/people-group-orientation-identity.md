@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Gender and Sexual Orientation Identity Definitions and FAQ"
 description: "Gender and sexual identity definitions, frequently asked questions, and resources"
 ---
@@ -66,7 +65,7 @@ Transgender or "trans", is an umbrella term for people whose gender identity and
 
 There are many people who choose to socially identify as transgender, or "trans" and it is a big part of who they are. Many people are transgender and choose to keep it hidden, as they want to be known as the gender they feel most comfortable with.
 
-Some people may be visibly transgender. It is important that you do not address them by the gender and pronouns you _think_ they are based on physical appearance. If you are not sure, use gender-neutral pronouns (they/them).
+Some people may be visibly transgender. It is important that you do not address them by the gender and pronouns you *think* they are based on physical appearance. If you are not sure, use gender-neutral pronouns (they/them).
 
 ### Trans man
 
@@ -154,7 +153,7 @@ Often used as a term for someone who is gay, but more recently has become popula
 
 Some people also choose the labels 'queer' or 'fluid' as a way of expressing themselves by their own personal feelings.
 
-Make sure that you use queer as an _adjective_ and not as a noun. Good examples:
+Make sure that you use queer as an *adjective* and not as a noun. Good examples:
 
 - "Amy is a queer developer."
 - "Amy is queer."
@@ -163,7 +162,7 @@ But something like "Amy is **a** queer" is offensive.
 
 #### QUILTBAG
 
-QUILTBAG is a comprehensive, newer term that stands for queer and questioning, unsure, intersex, lesbian, transgender and two-spirit, bisexual, asexual and aromantic, and gay and genderqueer. It is a easier way to say LGBTQ+ as well as being a bit more inclusive. It was first coined in October 2006 by Sadie Lee in _Diva Magazine_.
+QUILTBAG is a comprehensive, newer term that stands for queer and questioning, unsure, intersex, lesbian, transgender and two-spirit, bisexual, asexual and aromantic, and gay and genderqueer. It is a easier way to say LGBTQ+ as well as being a bit more inclusive. It was first coined in October 2006 by Sadie Lee in *Diva Magazine*.
 
 ## Frequently Asked Questions
 

@@ -7,14 +7,13 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Visas"
 description: "Information on travel visas, visa letters, and immigration to the Netherlands. "
 ---
 
 ## Visa and Sponsorship Policy
 
-GitLab does **not** offer any form of work or study sponsorship anywhere in the world, other than our specific, internal [Netherlands](/handbook/people-group/visas/#right-to-immigrate-to-the-netherlands) process and support for highly skilled candidates in _certain_ countries, where a candidate is already based in that country. GitLab does **not** offer any form of support to transfer an existing work permit. During the [screening process](/handbook/hiring/interviewing/#what-to-expect-during-an-interview-with-a-recruiter), recruiters will ask applicants if they require any type of sponsorship or support.
+GitLab does **not** offer any form of work or study sponsorship anywhere in the world, other than our specific, internal [Netherlands](/handbook/people-group/visas/#right-to-immigrate-to-the-netherlands) process and support for highly skilled candidates in *certain* countries, where a candidate is already based in that country. GitLab does **not** offer any form of support to transfer an existing work permit. During the [screening process](/handbook/hiring/interviewing/#what-to-expect-during-an-interview-with-a-recruiter), recruiters will ask applicants if they require any type of sponsorship or support.
 
 For our purposes, visa sponsorship is defined as the requirement that a company or individual support a foreign national’s visa application. Sponsorship may be referred to by different terms depending on the country or visa, but any visa application or approval that is contingent on the company taking on certain obligations is considered synonymous with sponsorship.
 
@@ -83,7 +82,7 @@ You can expense (for approved GitLab/company events):
 - Cost of postage
 - Cost of applying for the [30% ruling](#30-ruling-in-the-netherlands)
 
-You can _not_ expense relocation costs or costs related to visas for work authorization.
+You can *not* expense relocation costs or costs related to visas for work authorization.
 
 Please note, that GitLab is only able to cover the costs of one VISA attempt. If your VISA request is rejected, team members are free to re-submit at their discretion and any additional costs will be need to be covered by the team member.
 Please refer to the [Global Travel and Expense Policy Handbook Page](https://internal.gitlab.com/handbook/finance/expenses/#visaspermitscovid-tests) for more information regarding the reimbursement.
@@ -106,10 +105,10 @@ Always **check the website of the Embassy of the Country you want to visit** loc
 
 ##### Timeline guide for visa applications
 
-_Please note that the below timeline is just a guide, and you should always check the guidance on the official website of the embassy for the country you are applying to before making your application or traveling to an interview._
+*Please note that the below timeline is just a guide, and you should always check the guidance on the official website of the embassy for the country you are applying to before making your application or traveling to an interview.*
 
 - **6 months beforehand**: make appointment at embassy, and start gathering all necessary paperwork, forms, certificates, pictures, etc.
-  - Sometimes you might call the embassy, and be told that you do not need to schedule an interview so far ahead of your trip. Don't take their word for it, since that advice is typically made with the "typical, best case" process in mind and for example in the case of the USA does not account for the possibility of a black hole "administrative processing" period. In other words, make sure you get an appointment as early as possible.
+  - Sometimes you might call the embassy, and be told that you do not need to schedule an interview so far ahead of your trip. Don't take their word for it, since that advice is typically made with the "typical, best case"  process in mind and for example in the case of the USA does not account for the possibility of a black hole "administrative processing" period. In other words, make sure you get an appointment as early as possible.
   - If the country where the embassy/consulate is located where you are going for your application is listed as anything other than "High Income" by the [World Bank's "Little Data Book"](https://openknowledge.worldbank.org/server/api/core/bitstreams/d95b0ca6-2626-5c2c-a6b6-b86acaa86789/content) then it is likely that the embassy/consulate there has a [high tendency to say "no" to visa applications](https://www.alllaw.com/articles/nolo/us-immigration/harder-get-visa-from-certain-countries.html). We recommend to engage the services of a local lawyer who is familiar with the embassy process to help check that your paperwork is in order, and to practice interview questions. You're also welcome to ask for support when you are in a "High Income" country. People Ops can help you with this.
 - **3 months beforehand** (or earlier if indicated by the embassy you are applying to): go to embassy for interview.
 - **2 months beforehand**: if you have not received your visa by now, contact your local lawyer again to see if anything can be done to expedite the process.
@@ -134,7 +133,7 @@ The IND (Dutch immigration services) in general take about 4 to 6 weeks' time to
 
 The [30% reimbursement ruling](https://www.iamsterdam.com/en/live-work-study/living/official-procedures/30-tax-ruling) (better known as the 30% ruling) is a tax advantage for highly skilled migrants moving to the Netherlands. This benefit, granted for five years, allows them to receive 30% of their employment income tax free. As an example, when your employment income is EUR 60,000; the 30% ruling ensures a net pay of EUR 18,000. The remainder of EUR 42,000 is subject to Dutch taxes. In addition, when being entitled to the 30% ruling you can exclude your savings from Dutch income tax (which can be beneficial once you have exercised your stock options).
 
-The 30% ruling is a mutual application filed by the employee and GitLab BV as the employer. During the onboarding procedure a [questionnaire](https://docs.google.com/document/d/1Ok6LS9T4P6tnPu2N6BDRDeveOYzd1ILpkbQRhl911w4/edit?ts=5caf1bca) is shared in order to gather the necessary information to file the application for the 30% ruling. People Ops shares the 30% ruling questionnaire and supporting documentation with HRSavvy (the company that supports GitLab with visas and payroll in the Netherlands). HR Savvy will subsequently apply for the 30% ruling. There are some conditions to be satisfied to be granted the 30% ruling.
+The 30% ruling is a mutual application filed by the employee and GitLab BV as the employer. During the onboarding procedure a [questionnaire](https://docs.google.com/document/d/1Ok6LS9T4P6tnPu2N6BDRDeveOYzd1ILpkbQRhl911w4/edit?ts=5caf1bca) is shared in order to gather the necessary information to file the application for the 30% ruling. People Ops shares the 30% ruling questionnaire and supporting documentation with  HRSavvy (the company that supports GitLab with visas and payroll in the Netherlands). HR Savvy will subsequently apply for the 30% ruling. There are some conditions to be satisfied to be granted the 30% ruling.
 
 1. The employee has to be hired as an employee.
 1. The employer and employee have to agree in writing that the 30% ruling is applicable (addendum to the employment agreement).
@@ -164,12 +163,12 @@ It is possible to make an appointment within 2 weeks.
 
 ### Right to Immigrate to the Netherlands
 
-If a team member wishes to immigrate and relocate to the Netherlands, they will need to first follow the [relocation process](/handbook/people-group/relocation/) and requirements and obtain approval to relocate. Once approved, team members will also need to pass the formal visa application process to qualify. The requirements are:
+If a team member wishes to immigrate and relocate to the Netherlands, they will need to first follow the [relocation process](/handbook/people-group/relocation/) and requirements and obtain approval to relocate.  Once approved, team members will also need to pass the formal visa application process to qualify. The requirements are:
 
 1. When determining compensation you must meet the Dutch salary requirement for [highly skilled migrants for 3 more years](https://ind.nl/en/required-amounts-income-requirements#Application_for_residence_permit_highly_skilled_migrant_and_European_Blue_Card)
-   - Note, that the Dutch government has a higher requirement for team members aged 30 and above. The age related wage requirement does not increase when reaching 30 if you already have an approved migrant visa (with the same employer).
-   - The following pay elements are not included in the salary criterion and can't be used to meet the mimimum salary requirement: Vacation allowance; the value of payment made in kind; Uncertain, non-regular pay elements (for example overtime allowances, variable boni and payments from funds).
-   - _Note: This calculation should be based on what GitLab **would** pay the team member in the Netherlands, **not** based on the team member's current salary._
+    - Note, that the Dutch government has a higher requirement for team members aged 30 and above. The age related wage requirement does not increase when reaching 30 if you already have an approved migrant visa (with the same employer).
+    - The following pay elements are not included in the salary criterion and can't be used to meet the mimimum salary requirement: Vacation allowance; the value of payment made in kind; Uncertain, non-regular pay elements (for example overtime allowances, variable boni and payments from funds).
+    - *Note: This calculation should be based on what GitLab **would** pay the team member in the Netherlands, **not** based on the team member's current salary.*
 1. You have been a team member at GitLab for one year.
 1. You are not on a Performance Improvement Plan (PIP).
 
@@ -210,7 +209,7 @@ Sid and Marin discuss the history of GitLab's right to immigrate to the Netherla
 
 GitLab may be able to offer employment agreements to highly skilled candidates seeking employment already in Ireland, who apply for, or already hold, a [Critical Skills Employment Permit](https://enterprise.gov.ie/en/what-we-do/workplace-and-skills/employment-permits/permit-types/critical-skills-employment-permit/), where the relevant role falls into a category listed on the [Critical Skills Occupations List](https://enterprise.gov.ie/en/what-we-do/workplace-and-skills/employment-permits/employment-permit-eligibility/highly-skilled-eligible-occupations-list/) or a salary threshold is exceeded.
 
-Please note: GitLab does not cover any costs for the application nor does it guarantee the issuance of the Critical Skills Employment Permit. The employment agreement offered will include the condition that the candidate will hold the sufficient right to work and if a permit is required that they will be able to obtain the permit. If the critical skills employment permit application is refused, the employment agreement would be rescinded. Permit holders may apply to the Irish Naturalisation and Immigration Service for permission to reside and work without the requirement for an employment permit upon completion of the Critical Skills Employment Permit's duration.
+Please note: GitLab does not cover any costs for the application nor does it guarantee the issuance of the Critical Skills Employment Permit.  The employment agreement offered will include the condition that the candidate will hold the sufficient right to work and if a permit is required that they will be able to obtain the permit.  If the critical skills employment permit application is refused, the employment agreement would be rescinded. Permit holders may apply to the Irish Naturalisation and Immigration Service for permission to reside and work without the requirement for an employment permit upon completion of the Critical Skills Employment Permit's duration.
 
 #### The eligibility criteria
 

@@ -7,13 +7,13 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 owning-stage: "~devops::tenant scale"
 title: 'Organizations ADR 011: Universal Onboarding Workflow'
 description: 'Defines the four-step universal onboarding workflow that moves a GitLab Organization from unconfirmed to confirmed to active across all deployment types, with steps auto-completing where they do not apply.'
 creation-date: "2026-05-04"
 authors: [ "@jblack" ]
 ---
+
 
 GitLab is introducing Organizations as a foundational primitive that plays three roles across the product. They're distinct, but they reinforce each other in practice.
 
@@ -65,15 +65,15 @@ Confirmation is an active, informed customer choice on every deployment type. Th
 
 ## Decision Summary
 
-| Decision                                                                                                    | Rationale                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The workflow is universal across deployment types                                                           | Every customer walks through all four steps. The shape doesn't change by deployment type; only whether a step requires action or just acknowledgment. Single-TLG SaaS and SM/Dedicated customers verify pre-populated content rather than reconcile it, but they still see it and consent to it. Every confirmed Org reaches that state by satisfying the same conditions.                                                                                                                           |
-| Purchase completes after Org confirmation, not before                                                       | Customers cannot reason about Org-level features without a confirmed Org boundary. Forcing purchase before confirmation creates billing records against an uncommitted structure.                                                                                                                                                                                                                                                                                                                    |
-| Subscription tier reconciliation is deferred                                                                | Billing remains TLG-anchored at launch. No Org-level billing mechanism exists yet. Forcing tier harmonization imposes financial or operational penalties on customers without a corresponding product benefit. This is a deliberate deferral pending a holistic Org-level billing strategy.                                                                                                                                                                                                          |
-| Subscription and contract reconciliation is not an Organizations deliverable                                | Organizations can surface decision points in the UI. The backend to execute contract merges, tier harmonization, and credit pool consolidation must be built and owned by Billing and Fulfillment.                                                                                                                                                                                                                                                                                                   |
-| Org owner designation lives in Step 3                                                                       | Customers designate the Org's owners on the entitlements surface where they also see what those owners will govern. v1 defers the designation surface to a future workstream paired with Admin Area readiness; in the interim the platform produces the initial owner set via TLG-owner auto-promotion during TLG transfer/backfill. Reassignment requests route through the help link to support until the Admin Area ships.                                                                        |
+| Decision | Rationale |
+|---|---|
+| The workflow is universal across deployment types | Every customer walks through all four steps. The shape doesn't change by deployment type; only whether a step requires action or just acknowledgment. Single-TLG SaaS and SM/Dedicated customers verify pre-populated content rather than reconcile it, but they still see it and consent to it. Every confirmed Org reaches that state by satisfying the same conditions. |
+| Purchase completes after Org confirmation, not before | Customers cannot reason about Org-level features without a confirmed Org boundary. Forcing purchase before confirmation creates billing records against an uncommitted structure. |
+| Subscription tier reconciliation is deferred | Billing remains TLG-anchored at launch. No Org-level billing mechanism exists yet. Forcing tier harmonization imposes financial or operational penalties on customers without a corresponding product benefit. This is a deliberate deferral pending a holistic Org-level billing strategy. |
+| Subscription and contract reconciliation is not an Organizations deliverable | Organizations can surface decision points in the UI. The backend to execute contract merges, tier harmonization, and credit pool consolidation must be built and owned by Billing and Fulfillment. |
+| Org owner designation lives in Step 3 | Customers designate the Org's owners on the entitlements surface where they also see what those owners will govern. v1 defers the designation surface to a future workstream paired with Admin Area readiness; in the interim the platform produces the initial owner set via TLG-owner auto-promotion during TLG transfer/backfill. Reassignment requests route through the help link to support until the Admin Area ships. |
 | SM and Dedicated Organizations walk through all four steps, with Steps 2 and 3 as read-only acknowledgments | The instance boundary is already the Org boundary and entitlements remain at the instance/license level, so Steps 2 and 3 are pre-populated by the platform. The customer still sees them. Step 2 shows the structural view of their instance (TLGs, groups, projects, namespaces); Step 3 shows the entitlements and the initial Org owner set, which is the existing instance admins, auto-promoted. The customer consents at Step 4 having seen what they're agreeing to. The action has no undo. |
-| No mid-flow state preservation                                                                              | If a customer abandons the workflow mid-flow, they restart at Step 1 on return. Target completion time is under 5 minutes, so re-entry friction is bounded. Avoiding state caching keeps the workflow stateless and engineering simpler; as customers opt in, the population not yet confirmed decreases, further reducing practical impact.                                                                                                                                                         |
+| No mid-flow state preservation | If a customer abandons the workflow mid-flow, they restart at Step 1 on return. Target completion time is under 5 minutes, so re-entry friction is bounded. Avoiding state caching keeps the workflow stateless and engineering simpler; as customers opt in, the population not yet confirmed decreases, further reducing practical impact. |
 
 ---
 
@@ -99,13 +99,13 @@ What changes based on Organization state is the path Step 1 hands the customer t
 
 If no Organization exists, Step 1 proceeds to Step 2 for the full reconciliation flow. If a backfill has already run and an unconfirmed Organization exists, Step 1 frames the situation and routes to Step 2 for review. All four steps run for every customer; what varies is the content and required interaction at Steps 2 and 3. Multi-TLG SaaS customers reconcile structure (Step 2) and review entitlements and the owner set (Step 3). Single-TLG SaaS customers verify pre-populated structure (Step 2) and review pre-populated entitlements and the owner set (Step 3). SM and Dedicated customers see a pre-populated structural view of their instance (Step 2) and a pre-populated entitlements view with the initial owner set (Step 3). Step 4 is the consolidated pre-confirmation checkpoint for every customer. If the Organization is already confirmed, onboarding is bypassed entirely.
 
-| Organization state at trigger         | Step 1 exit path                                                                                   |
-| ------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| No Organization exists                | Step 2 → Step 3 → Step 4                                                                           |
-| Unconfirmed Org exists, multiple TLGs | Step 2 (reconciliation) → Step 3 (review + designate owners) → Step 4                              |
-| Unconfirmed Org exists, single TLG    | Step 2 (structure verification) → Step 3 (review) → Step 4                                         |
-| Organization already confirmed        | Onboarding bypassed                                                                                |
-| SM or Dedicated                       | Step 2 (read-only structural review) → Step 3 (read-only entitlements + owner set review) → Step 4 |
+| Organization state at trigger | Step 1 exit path |
+|-------------------------------|------------------|
+| No Organization exists | Step 2 → Step 3 → Step 4 |
+| Unconfirmed Org exists, multiple TLGs | Step 2 (reconciliation) → Step 3 (review + designate owners) → Step 4 |
+| Unconfirmed Org exists, single TLG | Step 2 (structure verification) → Step 3 (review) → Step 4 |
+| Organization already confirmed | Onboarding bypassed |
+| SM or Dedicated | Step 2 (read-only structural review) → Step 3 (read-only entitlements + owner set review) → Step 4 |
 
 The content of Step 1 is not identical across the interactive paths. Feature-driven customers need efficient framing that gets them to the feature they purchased as quickly as responsible. Backfill customers need to understand why they are being asked to act on something GitLab created without their input. The orientation is always required; the messaging is context-specific.
 
@@ -267,19 +267,19 @@ sequenceDiagram
 
 The following dependencies affect multiple steps and must be resolved before the workflow can ship end-to-end.
 
-| Dependency                                                                                                                                                  | Owner                                           | Affects                                                  |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- | -------------------------------------------------------- |
-| State machine (unconfirmed / confirmed / active) implemented as first-class Org attribute                                                                   | Tenant Scale Engineering                        | Steps 1, 4                                               |
-| Purchase gate enforcement: Org-level features cannot be purchased against an unconfirmed Org                                                                | Fulfillment, AR team                            | Step 1                                                   |
-| Forward-compatible data model for organization_id assignments and TLG metadata                                                                              | Tenant Scale Engineering                        | Steps 2, 3                                               |
-| TLG mapping persistence timing: written on step 2 completion or only on step 4 confirmation                                                                 | Tenant Scale Engineering                        | Step 3                                                   |
-| Org scope summary data aggregation from existing namespace_ids                                                                                              | Tenant Scale Engineering                        | Step 3                                                   |
-| Atomic write guarantee for confirmed and timestamp fields                                                                                                   | Tenant Scale Engineering                        | Step 4                                                   |
-| Org merge tooling for post-confirmation restructuring                                                                                                       | Tenant Scale Engineering                        | Step 4                                                   |
-| Step 3 owner designation surface paired with Admin Area readiness; v1's TLG-promoted owner set must be editable when the designation surface ships          | Tenant Scale Engineering, Tenant Scale Product  | Step 3, Admin Area launch                                |
-| Help link routing and ticket pre-fill (Org ID, deployment type, current step, TLG mapping state)                                                            | Support, Tenant Scale UX                        | All interactive steps, especially Step 3                 |
-| Post-confirmation Org page with slug claiming/editing surface for Org Owners                                                                                | Tenant Scale Engineering, Tenant Scale UX       | Step 2 slug auto-generation, Step 4 confirmation outputs |
-| Onboarding flow telemetry: step-by-step progression, help link interactions, and silent abandonment (entered flow, did not use help link, did not complete) | Tenant Scale Product, Analytics Instrumentation | All interactive steps                                    |
+| Dependency | Owner | Affects |
+|---|---|---|
+| State machine (unconfirmed / confirmed / active) implemented as first-class Org attribute | Tenant Scale Engineering | Steps 1, 4 |
+| Purchase gate enforcement: Org-level features cannot be purchased against an unconfirmed Org | Fulfillment, AR team | Step 1 |
+| Forward-compatible data model for organization_id assignments and TLG metadata | Tenant Scale Engineering | Steps 2, 3 |
+| TLG mapping persistence timing: written on step 2 completion or only on step 4 confirmation | Tenant Scale Engineering | Step 3 |
+| Org scope summary data aggregation from existing namespace_ids | Tenant Scale Engineering | Step 3 |
+| Atomic write guarantee for confirmed and timestamp fields | Tenant Scale Engineering | Step 4 |
+| Org merge tooling for post-confirmation restructuring | Tenant Scale Engineering | Step 4 |
+| Step 3 owner designation surface paired with Admin Area readiness; v1's TLG-promoted owner set must be editable when the designation surface ships | Tenant Scale Engineering, Tenant Scale Product | Step 3, Admin Area launch |
+| Help link routing and ticket pre-fill (Org ID, deployment type, current step, TLG mapping state) | Support, Tenant Scale UX | All interactive steps, especially Step 3 |
+| Post-confirmation Org page with slug claiming/editing surface for Org Owners | Tenant Scale Engineering, Tenant Scale UX | Step 2 slug auto-generation, Step 4 confirmation outputs |
+| Onboarding flow telemetry: step-by-step progression, help link interactions, and silent abandonment (entered flow, did not use help link, did not complete) | Tenant Scale Product, Analytics Instrumentation | All interactive steps |
 
 ---
 
@@ -335,11 +335,11 @@ The following are explicitly not in scope for this workflow and are tracked sepa
 
 This ADR requires review and approval from the following before implementation begins on any step.
 
-| Reviewer                      | Area                                                                                                                                      | Required for     |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-| Tenant Scale Engineering Lead | Data model, state machine, atomic writes, forward compatibility                                                                           | All steps        |
-| UX and Technical Writing      | Orientation content, reconciliation wizard, entitlements summary screen with owner designation, help link affordance, confirmation screen | Steps 1, 2, 3, 4 |
-| AR Team                       | Entitlement scoping to organization_id, purchasing flow integration                                                                       | Step 3           |
+| Reviewer | Area | Required for |
+|---|---|---|
+| Tenant Scale Engineering Lead | Data model, state machine, atomic writes, forward compatibility | All steps |
+| UX and Technical Writing | Orientation content, reconciliation wizard, entitlements summary screen with owner designation, help link affordance, confirmation screen | Steps 1, 2, 3, 4 |
+| AR Team | Entitlement scoping to organization_id, purchasing flow integration | Step 3 |
 
 ---
 

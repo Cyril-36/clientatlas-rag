@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Pipeline data partitioning design"
 status: ongoing
 creation-date: "2022-05-31"
@@ -128,7 +127,7 @@ WITH tables AS (SELECT table_name FROM information_schema.tables WHERE table_nam
 See data from March 2022:
 
 | Table name              | Total size | Index size |
-| ----------------------- | ---------- | ---------- |
+|-------------------------|------------|------------|
 | `ci_builds`             | 3.5 TB     | 1 TB       |
 | `ci_builds_metadata`    | 1.8 TB     | 150 GB     |
 | `ci_job_artifacts`      | 600 GB     | 300 GB     |
@@ -833,14 +832,14 @@ DRIs:
 
 <!-- vale gitlab.Spelling = NO -->
 
-| Role                   | Who                                                                           |
-| ---------------------- | ----------------------------------------------------------------------------- |
-| Author                 | Grzegorz Bizon, Principal Engineer                                            |
-| Recommender            | Kamil Trzciński, Senior Distinguished Engineer                                |
-| Product Leadership     | Jackie Porter, Director of Product Management                                 |
-| Engineering Leadership | Caroline Simpson, Engineering Manager / Cheryl Li, Senior Engineering Manager |
-| Lead Engineer          | Marius Bobin, Senior Backend Engineer                                         |
-| Senior Engineer        | Maxime Orefice, Senior Backend Engineer                                       |
-| Senior Engineer        | Tianwen Chen, Senior Backend Engineer                                         |
+| Role                | Who                                            |
+|---------------------|------------------------------------------------|
+| Author              | Grzegorz Bizon, Principal Engineer             |
+| Recommender         | Kamil Trzciński, Senior Distinguished Engineer |
+| Product Leadership     | Jackie Porter, Director of Product Management         |
+| Engineering Leadership | Caroline Simpson, Engineering Manager / Cheryl Li, Senior Engineering Manager  |
+| Lead Engineer       | Marius Bobin, Senior Backend Engineer          |
+| Senior Engineer     | Maxime Orefice, Senior Backend Engineer        |
+| Senior Engineer     | Tianwen Chen, Senior Backend Engineer        |
 
 <!-- vale gitlab.Spelling = YES -->

@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Engaging with Security"
 ---
 
@@ -18,16 +17,16 @@ GitLab receives vulnerability reports by various pathways, including:
 - HackerOne bug bounty program
 - Reports or questions that come in from customers through Zendesk.
 - Issues opened on the public issue trackers. The security team can not review
-  all new issues and relies on everyone in the company to identify and label
-  issues as `~bug::vulnerability` and @-mention `@gitlab-com/gl-security/product-security/appsec` on issues.
+all new issues and relies on everyone in the company to identify and label
+issues as `~bug::vulnerability` and @-mention `@gitlab-com/gl-security/product-security/appsec` on issues.
 - Issues reported by automated security scanning tools
 
 For **any** reported vulnerability:
 
 - Open a confidential issue in the appropriate issue tracker as soon as a report
-  is verified. If the vulnerability was reported via a public issue, make the issue confidential.
-  If triage is delayed due to team availability, the delay should be communicated.
-- Add `~security` and `~bug::vulnerability` labels to the issue. Add the appropriate group label if known.
+is verified. If the vulnerability was reported via a public issue, make the issue confidential.
+If triage is delayed due to team availability, the delay should be communicated.
+- Add `~security` and `~bug::vulnerability` labels to the issue.  Add the appropriate group label if known.
 - Add the `~Weakness::CWE-XXX` label, where the `XXX` is the weakness related [CWE](https://cwe.mitre.org/data/index.html) ID.
 - An initial determination should be made as to severity and impact. Never **dismiss** a security report outright. Instead, follow up with the reporter, asking clarifying questions.
 - For next steps, see the process as it is detailed below for HackerOne reports, and adhere to the guidelines there for vulnerabilities reported in other ways as well in terms of frequency of communication and so forth.
@@ -49,7 +48,7 @@ See the [dedicated page](/handbook/security/product-security/security-platforms-
 
 We use CVE IDs to uniquely identify and publicly define vulnerabilities in our products. Since we publicly disclose all security vulnerabilities 90 days after a patch is released, CVE IDs must be obtained for each vulnerability impacting self-managed to be fixed. The earlier obtained the better, and it should be requested either during or immediately after a fix is prepared.
 
-We currently request CVEs [through our CVE project](https://about.gitlab.com/security/cve/). Keep in mind that some of our security releases contain _security related_ enhancements which may not have an associated [CWE](https://cwe.mitre.org/) or vulnerability. These particular issues are not required to obtain a CVE since there's no associated vulnerability.
+We currently request CVEs [through our CVE project](https://about.gitlab.com/security/cve/). Keep in mind that some of our security releases contain *security related* enhancements which may not have an associated [CWE](https://cwe.mitre.org/) or vulnerability. These particular issues are not required to obtain a CVE since there's no associated vulnerability.
 
 ### On Release Day
 
@@ -121,13 +120,13 @@ Use [the Vulnerability Disclosure issue template](https://gitlab.com/gitlab-org/
 New security issue should follow these guidelines when being created on `GitLab.com`:
 
 - Create new issues as `confidential` if unsure whether issue a potential
-  vulnerability or not. It is easier to make an issue that should have been
-  public open than to remediate an issue that should have been confidential.
-  Consider adding the `/confidential` quick action to a project issue template.
-- Always label as `~security` at a minimum. If you're reporting a vulnerability (or something you suspect may possibly be one) please use the [Vulnerability Disclosure](https://gitlab.com/gitlab-org/gitlab/-/issues/new?issuable_template=Vulnerability%20Disclosure) template while creating the issue. Otherwise, follow the steps here (with a security label).
+vulnerability or not. It is easier to make an issue that should have been
+public open than to remediate an issue that should have been confidential.
+Consider adding the `/confidential` quick action to a project issue template.
+- Always label as ``~security`` at a minimum. If you're reporting a vulnerability (or something you suspect may possibly be one) please use the [Vulnerability Disclosure](https://gitlab.com/gitlab-org/gitlab/-/issues/new?issuable_template=Vulnerability%20Disclosure) template while creating the issue. Otherwise, follow the steps here (with a security label).
 - Add any additional labels you know apply. Additional labels will be applied
-  by the security team and other engineering personnel, but it will help with
-  the triage process:
+by the security team and other engineering personnel, but it will help with
+the triage process:
   - [`~"type::bug"`, `~"type::maintenance"`, or `~"type::feature"` if appropriate](product-security/security-platforms-architecture/application-security/vulnerability-management/#vulnerability-vs-feature-vs-bug)
   - Team or DevOps lifecycle labels
   - `~customer` if issue is a result of a customer report
@@ -147,7 +146,7 @@ release.
 
 For review by the PSIRT, @ mention `@gitlab-com/gl-security/product-security/appsec/psirt-group`.
 
-For more _immediate_ attention, refer to [Engaging security on-call](/handbook/security/security-operations/sirt/engaging-security-on-call/).
+For more *immediate* attention, refer to [Engaging security on-call](/handbook/security/security-operations/sirt/engaging-security-on-call/).
 
 ### Severity and Priority Labels on `~security` Issues
 
@@ -203,13 +202,13 @@ problems that arise.
 
 **Product Managers** and **Engineering Managers** should follow the recommended guidance when scheduling`~security` Issues :
 
-| When a team is assigned an ___ | This is the expected response                                                                                                       |
-| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| S1                             | Disrupt your milestone and work on the ~"bug::vulnerability" and ~"FedRAMP::Vulnerability" security issue **right away**            |
-| S2                             | Disrupt your milestone and work on the ~"bug::vulnerability" and ~"FedRAMP::Vulnerability" security issue **right away**            |
-| S3                             | Begin working on the ~"bug::vulnerability" and ~"FedRAMP::Vulnerability" security issue at the beginning of the next Milestone      |
-| S4                             | Begin working on the ~"bug::vulnerability" and ~"FedRAMP::Vulnerability" security issue at least 2 Milestones prior to the due date |
-| S1,S2 or S3 that is blocked    | The team that owns the blocking issue, should disrupt their current milestone and work on the blocking issue **right away**         |
+| When a team is assigned an ___ | This is the expected response |
+| ------ | ------ |
+|     S1   |   Disrupt your milestone and work on the ~"bug::vulnerability" and ~"FedRAMP::Vulnerability" security issue **right away**     |
+|    S2    |  Disrupt your milestone and work on the ~"bug::vulnerability" and ~"FedRAMP::Vulnerability" security issue **right away**     |
+|      S3  |   Begin working on the ~"bug::vulnerability" and ~"FedRAMP::Vulnerability" security issue at the beginning of the next Milestone       |
+|       S4 |    Begin working on the ~"bug::vulnerability" and ~"FedRAMP::Vulnerability" security issue at least 2 Milestones prior to the due date    |
+| S1,S2 or S3 that is blocked | The team that owns the blocking issue, should disrupt their current milestone and work on the blocking issue **right away** |
 
 ### Reproducibility on `~security` Issues
 
@@ -251,7 +250,7 @@ The security engineer must:
 - Any additional labels, such as `~merge request`.
 - Mention the product manager for scheduling, such as `@pm for scheduling`.
 - The engineering team lead should be @ mentioned and followed up with when necessary as
-  noted below for different severity levels.
+noted below for different severity levels.
 
 The product manager will assign a `Milestone` that has been assigned a due
 date to communicate when work will be assigned to engineers. The `Due date`
@@ -262,7 +261,7 @@ technical or organizational, that prevents `~security` issues from being
 addressed as [our top priority](/handbook/engineering/workflow/#security-is-everyones-responsibility)
 should be escalated up the appropriate management chains.
 
-**Note that issues are not scheduled for a particular release unless the team leads add them to a release milestone _and_ they are assigned to a developer.**
+**Note that issues are not scheduled for a particular release unless the team leads add them to a release milestone *and* they are assigned to a developer.**
 
 Issues with an `severity::1` or `severity::2` rating should be immediately brought to the
 attention of the relevant engineering team leads and product managers by
@@ -279,7 +278,7 @@ that a patch will be ready prior to the next security release, but that
 should be the goal.
 
 Issues with an `severity::3` rating have a lower sense of urgency and are assigned a
-target of the next minor version. If a low-risk or low-impact vulnerability
+target of the next minor version.  If a low-risk or low-impact vulnerability
 is reported that would normally be rated `severity::3` but the reporter has
 provided a 30 day time window (or less) for disclosure the issue may be
 escalated to ensure that it is patched before disclosure.

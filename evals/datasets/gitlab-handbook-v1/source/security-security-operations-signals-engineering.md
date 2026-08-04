@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Signals Engineering Team (SET)
 ---
 
@@ -45,30 +44,30 @@ Providing Customer Value
 
 ### Team Members
 
-| Team Member                 | Role                                                                                                                         |
-| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| Matt Coons                  | [Senior Security Manager](/job-description-library/security/security-leadership/)                                            |
-| Harjeet Sharma              | [Principal Security Engineer, Signals Engineering](/job-description-library/security/security-engineer/#signals-engineering) |
-| Evan Baltman                | [Security Engineer, Signals Engineering](/job-description-library/security/security-engineer/#signals-engineering)           |
+| Team Member | Role |
+|---|---|
+| Matt Coons | [Senior Security Manager](/job-description-library/security/security-leadership/) |
+| Harjeet Sharma | [Principal Security Engineer, Signals Engineering](/job-description-library/security/security-engineer/#signals-engineering) |
+| Evan Baltman | [Security Engineer, Signals Engineering](/job-description-library/security/security-engineer/#signals-engineering) |
 | Shashi Priyatham Chitakodur | [Associate Security Engineer, Signals Engineering](/job-description-library/security/security-engineer/#signals-engineering) |
-| Joanna Rubi                 | [Senior Security Engineer, Signals Engineering](/job-description-library/security/security-engineer/#signals-engineering)    |
+| Joanna Rubi | [Senior Security Engineer, Signals Engineering](/job-description-library/security/security-engineer/#signals-engineering) |
 
 ### Our Stakeholders
 
 While Signals Engineering has dedicated engineers focussed on advancing projects and handling operational duties, there are a number of stakeholders both within the Security Division and beyond that Signals Engineering collaborate with to drive results.
 
-| Stakeholder            | Shared Responsiblities/Dependencies                     |
-| ---------------------- | ------------------------------------------------------- |
-| SIRT                   | Detection tuning, new detections, GUARD DaC framework   |
-| T&S                    | Omamori integration                                     |
-| Security Logging       | Security logging capabilities & collaboration           |
-| Threat Intel           | Threat driven detections, Top threat actor detections   |
-| GitLab Customers       | Consumer of customer facing detections                  |
-| Product team           | Collaboration to improve security signal capabilities   |
-| CorpSec                | Collaboration to collect signals from purchased tooling |
+| Stakeholder | Shared Responsiblities/Dependencies |
+|---|---|
+| SIRT | Detection tuning, new detections, GUARD DaC framework |
+| T&S | Omamori integration |
+| Security Logging | Security logging capabilities & collaboration |
+| Threat Intel | Threat driven detections, Top threat actor detections |
+| GitLab Customers | Consumer of customer facing detections |
+| Product team | Collaboration to improve security signal capabilities |
+| CorpSec | Collaboration to collect signals from purchased tooling |
 | Security Identity Team | Collaboration to collect signals from purchased tooling |
-| Red Team               | Collaboration to collect signals from purchased tooling |
-| Product Security       | Collaboration to collect signals from purchased tooling |
+| Red Team | Collaboration to collect signals from purchased tooling |
+| Product Security | Collaboration to collect signals from purchased tooling |
 
 ### Current Priorities
 

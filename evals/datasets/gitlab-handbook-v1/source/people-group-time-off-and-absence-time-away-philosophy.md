@@ -7,9 +7,8 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Time Away Philosophy
-description: On this page you will find GitLab’s philosophy to time away from work, communication guidelines, and information about Workday, our primary system for all time away management.
+description:  On this page you will find GitLab’s philosophy to time away from work, communication guidelines, and information about Workday, our primary system for all time away management. 
 ---
 
 ## GitLab's Philosophy to Time Away from Work
@@ -63,7 +62,7 @@ Returning from time away can feel overwhelming, but how you re-enter work is jus
 
 The way you return to work can determine how long the benefits of your time away last. A mindful transition helps you integrate rest and reflection into your ongoing work, rather than immediately negating those benefits.
 
-**Note:** _While this page focuses on our philosophy regarding time away, you can find detailed policies on all [Time Off types](/handbook/people-group/time-off-and-absence/time-off-types/) (Paid Time Off, Sick Time, etc.) and [Leave types](/handbook/people-group/time-off-and-absence/leave-types/) (Parental Leave, Sick Leave, etc.) in their respective handbook sections._
+**Note:** *While this page focuses on our philosophy regarding time away, you can find detailed policies on all [Time Off types](/handbook/people-group/time-off-and-absence/time-off-types/) (Paid Time Off, Sick Time, etc.) and [Leave types](/handbook/people-group/time-off-and-absence/leave-types/) (Parental Leave, Sick Leave, etc.) in their respective handbook sections.*
 
 ## Communicating (& Preparing for) Planned Time Away
 
@@ -79,7 +78,7 @@ It’s expected that you provide your manager and team members who may expect to
 
 In line with our value of transparency, communicate broadly when you will be away. This helps team members manage time efficiently, ensures projects don't slip through the cracks, and allows you to fully disconnect while away.
 
-_**Important Note:**_ Absence for 72 hours without notification could be deemed **job abandonment**.
+***Important Note:*** Absence for 72 hours without notification could be deemed **job abandonment**.
 
 {{% /details %}}
 

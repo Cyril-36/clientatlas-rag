@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "GitLab Application Security Inventory"
 description: "The AppSec Inventory is a private GitLab project to identify and track all projects, components, and dependencies that matter for AppSec"
 ---
@@ -30,28 +29,28 @@ That's why we need to categorize the projects created by GitLab team members, un
 To quickly identify the purpose and characteristics of a project, a strict categorization is necessary.
 The following categories can be used to decorate the projects we want to monitor.
 
-| Categories                     | Description                                                                                                                           |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `product`                      | Part of GitLab's software supply chain (i.e. used to build, package, release, deploy GitLab, or used as part of the product)          |
-| `library`                      | A library, package source, component (not necessarily a `product` one)                                                                |
-| `deploy`                       | Used to deploy GitLab.com                                                                                                             |
-| `website`                      | Deployed to a website (URL will be required)                                                                                          |
-| `api/service`                  |                                                                                                                                       |
-| `green/yellow/orange/red_data` | [Data classification standard](/handbook/security/policies_and_standards/data-classification-standard/)                               |
-| `3rdparty`                     | Interaction with 3rd parties                                                                                                          |
-| `demo/test/poc`                |                                                                                                                                       |
-| `temporary`                    | Temporary projects (should be removed at some point)                                                                                  |
-| `internal`                     | Available for GitLab team members only                                                                                                |
-| `external`                     | User facing                                                                                                                           |
-| `use_pat`                      | Personal Access Token being used                                                                                                      |
-| `marked_for_deletion`          | Project should be removed                                                                                                             |
-| `keep_private`                 | Should remain private indefinitely                                                                                                    |
-| `docs`                         | Used to generate documentation                                                                                                        |
-| `tooling`                      | Engineering tooling                                                                                                                   |
-| `container`                    | A Docker image is built                                                                                                               |
-| `fork`                         | Fork of another project (on gitlab.com or somewhere else)                                                                             |
-| `secrets_monitoring`           | Monitor secrets in groups (see this [confidential issue](https://gitlab.com/gitlab-com/gl-security/product-security/gib/-/issues/64)) |
-| `security_policy_project`      | [GitLab security policy projects](https://docs.gitlab.com/user/application_security/policies/#security-policy-project)                |
+| Categories | Description |
+| -------- | ----------- |
+| `product` | Part of GitLab's software supply chain (i.e. used to build, package, release, deploy GitLab, or used as part of the product) |
+| `library` | A library, package source, component (not necessarily a `product` one) |
+| `deploy` | Used to deploy GitLab.com |
+| `website` | Deployed to a website (URL will be required) |
+| `api/service` | |
+| `green/yellow/orange/red_data` | [Data classification standard](/handbook/security/policies_and_standards/data-classification-standard/) |
+| `3rdparty` | Interaction with 3rd parties |
+| `demo/test/poc` | |
+| `temporary` | Temporary projects (should be removed at some point) |
+| `internal` | Available for GitLab team members only |
+| `external` | User facing |
+| `use_pat` | Personal Access Token being used |
+| `marked_for_deletion` | Project should be removed |
+| `keep_private` | Should remain private indefinitely |
+| `docs` | Used to generate documentation |
+| `tooling` | Engineering tooling  |
+| `container` | A Docker image is built |
+| `fork` | Fork of another project (on gitlab.com or somewhere else) |
+| `secrets_monitoring` | Monitor secrets in groups (see this [confidential issue](https://gitlab.com/gitlab-com/gl-security/product-security/gib/-/issues/64)) |
+| `security_policy_project` | [GitLab security policy projects](https://docs.gitlab.com/user/application_security/policies/#security-policy-project) |
 
 ### Policies
 
@@ -87,8 +86,8 @@ Learn more with the [GitLab Inventory Builder Documentation](https://gitlab.com/
 1. Note the namespace of your project.
 1. Visit <https://gitlab.com/gitlab-com/gl-security/product-security/inventory/-/tree/main/data/>
 1. Navigate the folder structure to find your project's existing `properties.yml` file.
-   1. If your project does not exist, create a file at `data/your-namespace/your-project/properties.yml`.
-   1. Projects created in GitLab's namespaces are added automatically on a weekly basis.
+    1. If your project does not exist, create a file at `data/your-namespace/your-project/properties.yml`.
+    1. Projects created in GitLab's namespaces are added automatically on a weekly basis.
 1. Open a Merge Request that adds or updates the categories. Remember to "say why, not just what".
 
 ### Websites

@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 stage: core platform
 group: Tenant Scale
 title: 'Cells: Topology Service'
@@ -27,35 +26,35 @@ Topology Service, that can be deployed in many regions.
 
 1. **Technology.**
 
-   The Topology Service will be written in [Go](https://go.dev/)
-   and expose API over [gRPC](https://grpc.io/), and REST API.
+    The Topology Service will be written in [Go](https://go.dev/)
+    and expose API over [gRPC](https://grpc.io/), and REST API.
 
 1. **Cells aware.**
 
-   The Topology Service will contain a list of all Cells. The Topology Service
-   will monitor Cells health, and could pass this information down to Cells
-   itself or Routing Service. Whether the Cell is healthy will be determined
-   by various factors:
+    The Topology Service will contain a list of all Cells. The Topology Service
+    will monitor Cells health, and could pass this information down to Cells
+    itself or Routing Service. Whether the Cell is healthy will be determined
+    by various factors:
 
-   - Watchdog: last time Cell contacted,
-   - Failure rate: information gathered from the Routing Service
-   - Configuration: Cells explicitly marked as orphaned
+    - Watchdog: last time Cell contacted,
+    - Failure rate: information gathered from the Routing Service
+    - Configuration: Cells explicitly marked as orphaned
 
 1. **Cloud first.**
 
-   The Topology Service will be deployed in Cloud, and use Cloud managed services
-   to operate. Those services at later point could be extended with on-premise
-   equivalents if required.
+    The Topology Service will be deployed in Cloud, and use Cloud managed services
+    to operate. Those services at later point could be extended with on-premise
+    equivalents if required.
 
-   The Topology Service will be written using a dual dialect:
+    The Topology Service will be written using a dual dialect:
 
-   - GoogleSQL to run at scale for GitLab.com with Cloud Spanner
-   - PostgreSQL for use internally and later provide on-premise compatibility.
+    - GoogleSQL to run at scale for GitLab.com with Cloud Spanner
+    - PostgreSQL for use internally and later provide on-premise compatibility.
 
 1. **Small.**
 
-   The Topology Service due to its criticality in architecture will be limited to
-   provide only essential functions required for cluster to operate.
+    The Topology Service due to its criticality in architecture will be limited to
+    provide only essential functions required for cluster to operate.
 
 ## Requirements
 
@@ -158,9 +157,9 @@ flowchart TD
 - **Reserved**: Currently always `0`, reserved for 2 purposes.
   1. To increase the number of cells, if needed.
   1. To allow us to switch to a variant of ULID ID allocation in future without interfering with the existing IDs. Since
-     ULID based ID allocator will have the `timestamp` value in the most significant bits,
-     reserving only one bit would have been sufficient but
-     more bits are reserved to have the sequence bits at minimum.
+   ULID based ID allocator will have the `timestamp` value in the most significant bits,
+   reserving only one bit would have been sufficient but
+   more bits are reserved to have the sequence bits at minimum.
 - **Sequence**:
   - Legacy cell gets the first trillion IDs and each new instance will get 100 billion IDs each. See the [Sequence Saturation](#sequence-saturation) section for how we arrived at this number.
   - Excluding the legacy cell, this will support 1,441,141 cells (using 57 bits) in production.
@@ -219,7 +218,7 @@ skip_range_validation = true # For short lived cells, min 100 billion IDs valida
 1. **Database Preparation Stage**
 
    During cell provisioning, the database preparation consists of these steps, which
-   are automatically executed:
+are automatically executed:
 
    - Execute Ansible task to create the database as part of Instrumentor `configure` script
    - Execute `/scripts/db-migrate` script during Helm Chart installation
@@ -346,8 +345,8 @@ NOTE:
 
 - The above decision will support till [Cells 1.5](iterations/cells-1.5.md) but not [Cells 2.0](iterations/cells-2.0.md).
   - To support Cells 2.0 (i.e: allow moving organizations from
-    Cells to the Legacy Cell), we need all integer IDs in the Legacy Cell to be converted to `bigint`.
-    This effort is tracked in the epic [Convert all integer IDs to bigint in the primary cell (#15591)](https://gitlab.com/groups/gitlab-org/-/epics/15591).
+  Cells to the Legacy Cell), we need all integer IDs in the Legacy Cell to be converted to `bigint`.
+  This effort is tracked in the epic [Convert all integer IDs to bigint in the primary cell (#15591)](https://gitlab.com/groups/gitlab-org/-/epics/15591).
 
 More details on the decision taken and other solutions evaluated can be found [here](decisions/008_database_sequences.md).
 
@@ -813,9 +812,9 @@ sequenceDiagram
 The cons of using Spanners are:
 
 1. Vendor lock-in, our data will be hosted in a proprietary data.
-   - How to prevent this: Use generic SQL.
+    - How to prevent this: Use generic SQL.
 1. Not self-managed friendly, when we want to have Topology Service available for self-managed customers.
-   - How to prevent this: Support actual PostgreSQL as well. We will run this for local development by default for developers.
+    - How to prevent this: Support actual PostgreSQL as well. We will run this for local development by default for developers.
 1. Brand new data store we need to learn to operate/develop with.
 
 ### GoogleSQL vs PostgreSQL dialects
@@ -948,16 +947,16 @@ The state is stored in Cloud Spanner, configured as [multi-regional](./decisions
 
 #### Cloud Spanner Databases
 
-| Area                | Details                                                                                                   |
-| ------------------- | --------------------------------------------------------------------------------------------------------- |
-| Backup frequency    | Daily incremental backups with 90-day retention                                                           |
-| Storage             | Resides in the same instance as their source database and are replicated in the same geographic locations |
-| Encryption          | Backup data is encrypted in transit and at rest                                                           |
-| Retention           | 90 days for incremental backups, 36 hours for Point-in-Time Recovery (PITR)                               |
-| Loss prevention     | Multi-region configuration with automatic failover and geographic redundancy                              |
-| Location/redundancy | [Multi-region redundancy](./decisions/015_spanner_multiregional/) across 5 total regions (2xWriter)       |
-| Monitoring          | [WIP](https://gitlab.com/gitlab-com/gl-infra/tenant-scale/cells-infrastructure/team/-/issues/471)         |
-| Restore validation  | [WIP](https://gitlab.com/gitlab-com/gl-infra/tenant-scale/cells-infrastructure/team/-/issues/483)         |
+| Area                | Details                                                                                                           |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Backup frequency    | Daily incremental backups with 90-day retention                                                                   |
+| Storage             | Resides in the same instance as their source database and are replicated in the same geographic locations         |
+| Encryption          | Backup data is encrypted in transit and at rest                                                                   |
+| Retention           | 90 days for incremental backups, 36 hours for Point-in-Time Recovery (PITR)                                       |
+| Loss prevention     | Multi-region configuration with automatic failover and geographic redundancy                                      |
+| Location/redundancy | [Multi-region redundancy](./decisions/015_spanner_multiregional/) across 5 total regions (2xWriter)               |
+| Monitoring          | [WIP](https://gitlab.com/gitlab-com/gl-infra/tenant-scale/cells-infrastructure/team/-/issues/471)                 |
+| Restore validation  | [WIP](https://gitlab.com/gitlab-com/gl-infra/tenant-scale/cells-infrastructure/team/-/issues/483)                 |
 
 ### Point-in-Time Recovery (PITR)
 
@@ -983,13 +982,13 @@ We implement several layers of protection beyond backups:
 
 ## Recovery Scenarios
 
-| Scenario                        | Recovery Method       | RTO                                | RPO        |
-| ------------------------------- | --------------------- | ---------------------------------- | ---------- |
-| Logical corruption (< 36 hours) | PITR                  | Minutes                            | Seconds    |
-| Regional outage                 | Multi-region failover | < 1 minute                         | < 1 minute |
-| Logical corruption (> 36 hours) | Incremental backup    | ~1.5 hours including re-deployment | 24 hours   |
-| Multi-region disaster           | Multi-region failover | < 1 minute                         | < 1 minute |
-| Complete multi-region failure   | Backup restoration    | ~1.5 hours including re-deployment | 24 hours   |
+| Scenario | Recovery Method | RTO | RPO |
+|----------|----------------|-----|-----|
+| Logical corruption (< 36 hours) | PITR | Minutes | Seconds |
+| Regional outage | Multi-region failover | < 1 minute | < 1 minute |
+| Logical corruption (> 36 hours) | Incremental backup | ~1.5 hours including re-deployment | 24 hours |
+| Multi-region disaster | Multi-region failover | < 1 minute | < 1 minute |
+| Complete multi-region failure | Backup restoration | ~1.5 hours including re-deployment | 24 hours |
 
 ## Storage Considerations
 
@@ -1010,41 +1009,41 @@ Cloud Spanner uses Multi-Version Concurrency Control (MVCC), storing all version
 
 1. Does Topology Service implement all services for Cells 1.0?
 
-   No, for Cells 1.0 Topology Service will implement `ClaimService` and `ClassifyService` only.
-   Due to complexity the `SequenceService` will be implemented by the existing Cell of the cluster.
-   The reason is to reduce complexity of deployment: as we would only add a function to the first cell.
-   We would add new feature, but we would not change "First Cell" behavior. At later point
-   the Topology Service will take over that function from First Cell.
+    No, for Cells 1.0 Topology Service will implement `ClaimService` and `ClassifyService` only.
+    Due to complexity the `SequenceService` will be implemented by the existing Cell of the cluster.
+    The reason is to reduce complexity of deployment: as we would only add a function to the first cell.
+    We would add new feature, but we would not change "First Cell" behavior. At later point
+    the Topology Service will take over that function from First Cell.
 
 1. How we will push all existing claims from "First Cell" into Topology Service?
 
-   We would add `rake gitlab:cells:claims:create` task. Then we would configure First Cell
-   to use Topology Service, and execute the Rake task. That way First Cell would claim all new
-   records via Topology Service, and concurrently we would copy data over.
+    We would add `rake gitlab:cells:claims:create` task. Then we would configure First Cell
+    to use Topology Service, and execute the Rake task. That way First Cell would claim all new
+    records via Topology Service, and concurrently we would copy data over.
 
 1. How and where the Topology Service will be deployed?
 
-   We will use [Runway](../../../infrastructure-platforms/tools/runway/),
-   and configure Topology Service to use [Spanner](https://cloud.google.com/spanner) for data storage.
+    We will use [Runway](../../../infrastructure-platforms/tools/runway/),
+    and configure Topology Service to use [Spanner](https://cloud.google.com/spanner) for data storage.
 
 1. How Topology Service handle regions?
 
-   We anticipate that [Spanner](https://cloud.google.com/spanner) will provide regional database support,
-   with high-performance read access. In such case the Topology Service will be run in each region
-   connected to the same multi-write database. We anticipate one Topology Service deployment per-region
-   that might scale up to desired number of replicas / pods based on the load.
+    We anticipate that [Spanner](https://cloud.google.com/spanner) will provide regional database support,
+    with high-performance read access. In such case the Topology Service will be run in each region
+    connected to the same multi-write database. We anticipate one Topology Service deployment per-region
+    that might scale up to desired number of replicas / pods based on the load.
 
 1. Will Topology Service information be encrypted at runtime?
 
-   This is yet to be defined. However, Topology Service could encrypt customer sensitive information
-   allowing for the information to be decrypted by the Cell that did create that entry. Cells could
-   transfer encrypted/hashed information to Topology Service making the Topology Service to only store
-   metadata without the knowledge of information.
+    This is yet to be defined. However, Topology Service could encrypt customer sensitive information
+    allowing for the information to be decrypted by the Cell that did create that entry. Cells could
+    transfer encrypted/hashed information to Topology Service making the Topology Service to only store
+    metadata without the knowledge of information.
 
 1. Will Topology Service data to be encrypted at rest?
 
-   This is yet to be defined. Data is encrypted during transport (TLS/gRPC and HTTPS)
-   and at rest by Spanner.
+    This is yet to be defined. Data is encrypted during transport (TLS/gRPC and HTTPS)
+    and at rest by Spanner.
 
 ## Links
 

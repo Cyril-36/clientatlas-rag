@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "GitLab CD: Deployment Execution"
 status: proposed
 creation-date: "2026-03-25"
@@ -47,7 +46,7 @@ The workload definition — container arguments, resource limits, the manifests 
 
 ### Organizing principle
 
-GitLab CD decides _what version_ runs _where_ and _how it rolls out_. The reconciler is a dumb applier pinned to a specific commit. The user owns their repo, their Git workflow, their manifest structure. GitLab CD owns the deployment lifecycle.
+GitLab CD decides *what version* runs *where* and *how it rolls out*. The reconciler is a dumb applier pinned to a specific commit. The user owns their repo, their Git workflow, their manifest structure. GitLab CD owns the deployment lifecycle.
 
 ### Execution-relevant domain entities
 
@@ -121,7 +120,7 @@ The `workflow_id` is caller-chosen for idempotence. If KAS crashes between persi
 
 There is no generic YAML/JSON-to-`Starlark` compiler for the Beta. We don't translate intent into a target-specific program at create time.
 
-Instead, the driver ships one hand-written, target-specific `Starlark` workflow. It _interprets_ its inputs at runtime — the VersionSet, the Environment config, the Application-Environment config, and the pipeline config. The same `Starlark` runs for every Rollout that uses the Argo driver. It reads the configurations and acts. There is no per-Rollout code generation.
+Instead, the driver ships one hand-written, target-specific `Starlark` workflow. It *interprets* its inputs at runtime — the VersionSet, the Environment config, the Application-Environment config, and the pipeline config. The same `Starlark` runs for every Rollout that uses the Argo driver. It reads the configurations and acts. There is no per-Rollout code generation.
 
 This keeps the moving parts honest. A different deployment mechanism is a different driver with its own hand-written `Starlark` and its own config schemas — not a new compiler backend. Generic compilation is a possible future, not the Beta.
 
@@ -164,14 +163,14 @@ For the Beta there is exactly one driver — an Argo Rollouts driver — built b
 
 The driver's `Starlark` calls a small set of built-in CD Functions. These replace the old `cd.deploy.*` built-in Functions — there is no generic deploy interface and no go-plugin. For the Beta the Functions are Go, imported directly into GitLab Relay and run in-process. They are not gRPC, and there are no OCI or remote Functions yet — those are deferred. (See agent#883 and epic [&22116](https://gitlab.com/groups/gitlab-org/-/work_items/22116).)
 
-| Function        | Purpose                                                                                                                                |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `git.read_file` | Read a file from a Git repo at a ref — for example the Argo `Rollout` or `Application` manifest.                                       |
-| `git.commit`    | Commit file changes to a Git repo (update the GitOps repo to desired state). Returns the new SHA.                                      |
-| `argo.sync`     | Tell an Argo CD `Application` to sync to a specific SHA. Auto-sync is off; CD advances state SHA to SHA.                               |
-| `argo.promote`  | Advance an Argo `Rollout` past a pause/stop point. MUST be idempotent — stop points are identifiable so replay doesn't double-advance. |
-| `k8s.get`       | Fetch a Kubernetes object through `agentk`. The Beta uses a ~30s polling loop here.                                                    |
-| `k8s.watch`     | Push-based subscription to Kubernetes object events through `agentk`. Deferred behind `k8s.get` polling for the Beta.                  |
+| Function | Purpose |
+|---|---|
+| `git.read_file` | Read a file from a Git repo at a ref — for example the Argo `Rollout` or `Application` manifest. |
+| `git.commit` | Commit file changes to a Git repo (update the GitOps repo to desired state). Returns the new SHA. |
+| `argo.sync` | Tell an Argo CD `Application` to sync to a specific SHA. Auto-sync is off; CD advances state SHA to SHA. |
+| `argo.promote` | Advance an Argo `Rollout` past a pause/stop point. MUST be idempotent — stop points are identifiable so replay doesn't double-advance. |
+| `k8s.get` | Fetch a Kubernetes object through `agentk`. The Beta uses a ~30s polling loop here. |
+| `k8s.watch` | Push-based subscription to Kubernetes object events through `agentk`. Deferred behind `k8s.get` polling for the Beta. |
 
 `emit` rounds out the set — it publishes a CD domain event to the Events Platform. It is called through `run` for replay idempotence.
 
@@ -300,13 +299,13 @@ No migration, no downtime, no fighting with the reconciler. GitLab CD should emi
 
 ### What the user provides versus what GitLab generates
 
-| What                     | User provides                                                             | GitLab generates                                            |
-| ------------------------ | ------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| Argo CD Core             | Installed in cluster                                                      | —                                                           |
-| Argo Rollouts controller | Installed in cluster                                                      | —                                                           |
-| Argo CD `Application` CR | Manifest repo URL plus credentials plus file path                         | Created by the driver on first deploy                       |
-| Artifact sources         | Container name plus registry URL plus credentials                         | —                                                           |
-| Rollout strategy         | Canary steps, gates, rollback policy (the Application-Environment config) | `spec.strategy` YAML generated by the driver at deploy time |
+| What | User provides | GitLab generates |
+|---|---|---|
+| Argo CD Core | Installed in cluster | — |
+| Argo Rollouts controller | Installed in cluster | — |
+| Argo CD `Application` CR | Manifest repo URL plus credentials plus file path | Created by the driver on first deploy |
+| Artifact sources | Container name plus registry URL plus credentials | — |
+| Rollout strategy | Canary steps, gates, rollback policy (the Application-Environment config) | `spec.strategy` YAML generated by the driver at deploy time |
 
 Cluster prerequisites: a running `agentk` plus Argo CD Core and Argo Rollouts installed. Everything else flows through the driver.
 
@@ -534,7 +533,7 @@ For the Beta the deployment workflow polls the `Rollout` CR with `k8s.get` on a 
     "current_step_index": 1,
     "stable_rs": "abc123",
     "current_pod_hash": "def456",
-    "pause_conditions": [{ "reason": "CanaryPauseStep" }],
+    "pause_conditions": [{"reason": "CanaryPauseStep"}],
     "abort": false
   }
 }
@@ -546,11 +545,11 @@ Rollback is a new Rollout targeting a prior VersionSet. There is no rollback sta
 
 Rollback is distinct from abort. Abort stops the canary and leaves the Argo `Rollout` in `Degraded` with the new (failed) version still in spec. Rollback re-points desired state to a known-good VersionSet — the controller recognizes the stable template and immediately marks `Healthy`.
 
-| Operation | Mechanism                                                 | Result                                                      |
-| --------- | --------------------------------------------------------- | ----------------------------------------------------------- |
-| Abort     | Driver patches `status.abort: true`                       | `Degraded`. Stable RS serving. New version still in spec.   |
-| Rollback  | New Rollout with a prior VersionSet, committed and synced | `Healthy`. Controller detects stable template, skips steps. |
-| Retry     | Driver patches `status.abort: false`                      | Restarts canary from step 0 with same new version.          |
+| Operation | Mechanism | Result |
+|---|---|---|
+| Abort | Driver patches `status.abort: true` | `Degraded`. Stable RS serving. New version still in spec. |
+| Rollback | New Rollout with a prior VersionSet, committed and synced | `Healthy`. Controller detects stable template, skips steps. |
+| Retry | Driver patches `status.abort: false` | Restarts canary from step 0 with same new version. |
 
 Default rollback policy: a new rollback Rollout is created immediately on `Failed`, and after 30 minutes on `Degraded` (Services may be temporarily unstable at startup). Both configurable at the Application level.
 
@@ -570,30 +569,30 @@ All Functions run in GitLab Relay for the Beta — Go, imported in-process. They
 
 Once AutoFlow has Runner integration, any Function can be offloaded to a Runner environment. The workflow doesn't change — `run("argo.sync", ...)` works the same whether Relay executes it in-process or dispatches it to a Runner.
 
-| Function        | Runs in                  | Purpose                                                                 |
-| --------------- | ------------------------ | ----------------------------------------------------------------------- |
-| `emit`          | Relay -> Events Platform | Publish a CD domain event. Called through `run` for replay idempotence. |
-| `git.read_file` | Relay (in-process)       | Read a file from a Git repo at a ref.                                   |
-| `git.commit`    | Relay (in-process)       | Commit file changes to a Git repo. Returns the new SHA.                 |
-| `argo.sync`     | Relay -> `agentk`        | Sync an Argo CD `Application` to a specific SHA.                        |
-| `argo.promote`  | Relay -> `agentk`        | Advance an Argo `Rollout` past a pause/stop point. Idempotent.          |
-| `k8s.get`       | Relay -> `agentk`        | Fetch a Kubernetes object. Beta polls with this.                        |
-| `k8s.watch`     | Relay -> `agentk`        | Push subscription to Kubernetes object events. Deferred for the Beta.   |
+| Function | Runs in | Purpose |
+|---|---|---|
+| `emit` | Relay -> Events Platform | Publish a CD domain event. Called through `run` for replay idempotence. |
+| `git.read_file` | Relay (in-process) | Read a file from a Git repo at a ref. |
+| `git.commit` | Relay (in-process) | Commit file changes to a Git repo. Returns the new SHA. |
+| `argo.sync` | Relay -> `agentk` | Sync an Argo CD `Application` to a specific SHA. |
+| `argo.promote` | Relay -> `agentk` | Advance an Argo `Rollout` past a pause/stop point. Idempotent. |
+| `k8s.get` | Relay -> `agentk` | Fetch a Kubernetes object. Beta polls with this. |
+| `k8s.watch` | Relay -> `agentk` | Push subscription to Kubernetes object events. Deferred for the Beta. |
 
 ## What needs to be built
 
-| Component                              | Status      | Notes                                                                                                                                                                                                                                  |
-| -------------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| AutoFlow engine                        | Being built | Durable workflow with `run`, `sleep`, `wait_for_event`. [gitlab-org/cluster-integration/gitlab-agent#821](https://gitlab.com/gitlab-org/cluster-integration/gitlab-agent/-/work_items/821)                                             |
-| `AutoFlow.StartWorkflow` RPC           | New         | Imperative gRPC endpoint for Rails to submit the driver's `Starlark`.                                                                                                                                                                  |
-| Events Platform                        | In design   | CloudEvent bus through KAS. [gitlab-com/content-sites/handbook!18106](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/18106)                                                                                     |
-| Argo Rollouts Deploy Driver (Ruby gem) | New         | The manifest, the `Starlark` workflows (onboarding, app-env setup, deploy), and the Environment and Application-Environment config schemas. Built by Deployment Execution, imported by the monolith, kept separate from the CD models. |
-| CD tables in Rails                     | New         | See GitLab CD: Rails.                                                                                                                                                                                                                  |
-| CD Sidekiq workers                     | New         | Consume CD domain events from the Events Platform, update entity state in the CD tables.                                                                                                                                               |
-| `Gitlab::Kas::Client#start_workflow`   | New         | Rails-side gRPC client for `StartWorkflow`. Follows the pattern of `send_autoflow_event`.                                                                                                                                              |
-| Built-in CD Functions                  | New         | `git.read_file`, `git.commit`, `argo.sync`, `argo.promote`, `k8s.get` for the Beta; `k8s.watch` deferred. Go, in-process in Relay. [&22116](https://gitlab.com/groups/gitlab-org/-/work_items/22116)                                   |
-| `emit` Function                        | New         | Publish a CloudEvent to the Events Platform.                                                                                                                                                                                           |
-| `k8s.watch` push subscriptions         | Deferred    | Push interest from inside Relay, have `agentk` push events back, clean up on workflow exit. Replaces the Beta polling loop. @ash2k has confirmed this is feasible.                                                                     |
+| Component | Status | Notes |
+|---|---|---|
+| AutoFlow engine | Being built | Durable workflow with `run`, `sleep`, `wait_for_event`. [gitlab-org/cluster-integration/gitlab-agent#821](https://gitlab.com/gitlab-org/cluster-integration/gitlab-agent/-/work_items/821) |
+| `AutoFlow.StartWorkflow` RPC | New | Imperative gRPC endpoint for Rails to submit the driver's `Starlark`. |
+| Events Platform | In design | CloudEvent bus through KAS. [gitlab-com/content-sites/handbook!18106](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/18106) |
+| Argo Rollouts Deploy Driver (Ruby gem) | New | The manifest, the `Starlark` workflows (onboarding, app-env setup, deploy), and the Environment and Application-Environment config schemas. Built by Deployment Execution, imported by the monolith, kept separate from the CD models. |
+| CD tables in Rails | New | See GitLab CD: Rails. |
+| CD Sidekiq workers | New | Consume CD domain events from the Events Platform, update entity state in the CD tables. |
+| `Gitlab::Kas::Client#start_workflow` | New | Rails-side gRPC client for `StartWorkflow`. Follows the pattern of `send_autoflow_event`. |
+| Built-in CD Functions | New | `git.read_file`, `git.commit`, `argo.sync`, `argo.promote`, `k8s.get` for the Beta; `k8s.watch` deferred. Go, in-process in Relay. [&22116](https://gitlab.com/groups/gitlab-org/-/work_items/22116) |
+| `emit` Function | New | Publish a CloudEvent to the Events Platform. |
+| `k8s.watch` push subscriptions | Deferred | Push interest from inside Relay, have `agentk` push events back, clean up on workflow exit. Replaces the Beta polling loop. @ash2k has confirmed this is feasible. |
 
 ## Open questions
 

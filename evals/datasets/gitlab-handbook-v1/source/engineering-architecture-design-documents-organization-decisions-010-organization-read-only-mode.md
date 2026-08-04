@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 owning-stage: "~devops::tenant scale"
 title: 'Organizations ADR 010: Organization Read-Only Mode'
 description: 'Introduces a per-Organization read-only state used during cross-Cell migration and isolation enablement to block writes on the source Cell while allowing reads, with enforcement at the controller, REST API, GraphQL, GitAccess, container registry, LFS, and Sidekiq layers.'
@@ -69,7 +68,7 @@ resources owned by that Organization are denied.
 The state carries a `reason` (migration, isolation, incident, billing,
 legal) recorded for audit and observability. The reason is not surfaced
 to end users in banners or error responses; user-visible copy is generic
-(see _User-visible behavior_).
+(see *User-visible behavior*).
 
 The freeze applies to **org-owned data**: top-level groups, namespaces,
 projects, and the resources they contain.
@@ -87,9 +86,9 @@ lifecycle (`unconfirmed`, `confirmed`, `active`, `deletion_scheduled`,
   access, Container Registry, LFS), but in-flight org-scoped Sidekiq
   jobs are still allowed to finish, in-flight CI jobs are being
   cancelled, and the cutover readiness check is being evaluated. The
-  Organization is _intending_ to be read-only but has not yet drained.
+  Organization is *intending* to be read-only but has not yet drained.
 - `read_only` — the steady state, entered only after the readiness
-  contract in _Cutover readiness_ below has converged to zero for the
+  contract in *Cutover readiness* below has converged to zero for the
   required confirmation window.
 
 Transitions are restricted to
@@ -147,7 +146,7 @@ per-Organization read-only.
 ### Cutover readiness
 
 Cell-to-Cell Organization migration uses Organization Read-Only Mode as
-the _drain_ phase before data cutover. Because Redis is per-Cell and
+the *drain* phase before data cutover. Because Redis is per-Cell and
 is **not** copied to the destination Cell, any Sidekiq job sitting in
 source-Cell Redis at cutover is lost. Read-only therefore must drive the
 source Cell to a checkable, zero-in-flight state for the Organization
@@ -160,8 +159,8 @@ Organization on the source Cell, **all** of the following are true:
 2. No scheduled or retrying jobs target the Organization.
 3. No jobs targeting the Organization are in flight.
 4. No per-Organization cron entries target the Organization (cell-wide
-   cron entries do not count; their iteration is filtered, see _Sidekiq
-   jobs_).
+   cron entries do not count; their iteration is filtered, see *Sidekiq
+   jobs*).
 5. In-progress schema migrations and post-deploy migrations on the
    source Cell have finished, so the destination Cell receives a
    schema-consistent snapshot.
@@ -192,7 +191,7 @@ swap-routing steps in the
 [Organization Data Migration blueprint](../../organization-data-migration/_index.md).
 It is exposed as an admin endpoint and is not a hot path. Jobs are
 attributed to an Organization through the same Organization context
-that accompanies every job (see _Org-scoping rule_ below); the
+that accompanies every job (see *Org-scoping rule* below); the
 specifics live in
 [#594327](https://gitlab.com/gitlab-org/gitlab/-/work_items/594327).
 
@@ -211,7 +210,7 @@ write/read split is not always reflected in HTTP method, and many
 endpoints only know which Organization they belong to after controller
 logic has run). The controller / Grape / GraphQL / GitAccess layers
 already have, or can cheaply obtain, the resolved Organization, and are
-the canonical enforcement surface (see _Alternatives_).
+the canonical enforcement surface (see *Alternatives*).
 
 The rule per surface:
 
@@ -223,7 +222,7 @@ The rule per surface:
   patched these case-by-case with `Gitlab::Geo.secondary?` /
   `read_only?` guards or `SkipSecondary`-style worker concerns. New
   occurrences are expected; those guards should be unified with this
-  check, and the Sidekiq drain (see _Sidekiq jobs_) is the backstop
+  check, and the Sidekiq drain (see *Sidekiq jobs*) is the backstop
   when one slips through.
 - **REST API (Grape).** Reads allowed; non-`GET`/`HEAD` requests
   short-circuit when the current Organization is read-only.
@@ -239,7 +238,7 @@ The rule per surface:
 - **Git LFS.** Downloads allowed; uploads, locks, unlocks, and verify
   denied.
 - **Sidekiq.** Org-scoped workers drain; cron workers skip the
-  read-only Organization. See _Sidekiq jobs_ below for the rationale,
+  read-only Organization. See *Sidekiq jobs* below for the rationale,
   which is architecturally distinct from the other surfaces.
 - **Tokens, automation, integrations, webhooks.** Personal access
   tokens, group/project access tokens, deploy tokens, CI job tokens,
@@ -254,13 +253,13 @@ The rule per surface:
 Authentication endpoints (sign-in, sign-out, OAuth token issuance, JWT
 auth, SAML/SSO callbacks) remain available while the Organization is in
 `read_only_initialization` or `read_only`. Without this, users would be
-unable to obtain a session to _read_ the Organization's data, which
+unable to obtain a session to *read* the Organization's data, which
 defeats the purpose of allowing reads at all.
 
 This exemption is intentionally narrow and carries known residual risks
 that must be handled explicitly:
 
-- **Boundary.** The exemption applies to _authentication controllers_
+- **Boundary.** The exemption applies to *authentication controllers*
   (and their Grape equivalents for token endpoints), not to arbitrary
   writes that happen to occur on an authenticated request path. A write
   is exempt only if it is required to complete the authentication
@@ -274,14 +273,14 @@ that must be handled explicitly:
   Organization via `organization_id`, so writes to a `users` row
   **are** gated by that Organization's read-only state. The auth
   exemption splits these two cases:
-  - _Updates to an existing `users` row_ (`last_sign_in_at`,
+  - *Updates to an existing `users` row* (`last_sign_in_at`,
     `last_activity_on`, and equivalent per-request timestamps) on
     a user whose owning Organization is in
     `read_only_initialization` or `read_only` are **permitted**
     under the exemption, on the same justification as session and
     audit writes: the row already exists on the source Cell and
     the update is required to complete the sign-in itself.
-  - _Creating a brand new `users` row_ (first sign-in via SSO/SAML,
+  - *Creating a brand new `users` row* (first sign-in via SSO/SAML,
     JIT provisioning, or any other flow that would `INSERT` into
     `users`) while the owning Organization is in
     `read_only_initialization` or `read_only` is **not** exempt and
@@ -298,7 +297,6 @@ that must be handled explicitly:
   Cross-Org membership at the product level does not change the
   sharding ownership of the row itself, and therefore does not
   change either of the rules above.
-
 - **Cascading writes.** Some auth-time updates can cascade into
   org-owned state — for example, a write that triggers a Topology
   Service update (`user.cell = …`) during a Cell-to-Cell migration
@@ -331,7 +329,7 @@ Background jobs are the riskiest write surface because they run outside
 the HTTP cycle, and on Cell-to-Cell migration they have an additional
 constraint: Redis is per-Cell and is **not** migrated, so any job left in
 source-Cell Redis at cutover is lost. The policy is split by job source
-and detailed in _Policy_ below.
+and detailed in *Policy* below.
 
 #### Org-scoping rule
 
@@ -351,7 +349,7 @@ mechanism.
 This is also consistent with data isolation: for isolated
 Organizations — and isolation is a precondition for Cell-to-Cell
 migration — database queries are scoped to `Current.organization`,
-so the context Organization _is_ the Organization whose data the
+so the context Organization *is* the Organization whose data the
 worker can read and write. Scheduling a job that references another
 Organization's data is a scheduling bug, not a case the read-only
 design needs to resolve.
@@ -360,7 +358,7 @@ The rule:
 
 - **All workers executing with `Current.organization` available are
   org-scoped** to that Organization. The read-only state of that
-  Organization governs them per the _Policy_ below: during
+  Organization governs them per the *Policy* below: during
   `read_only_initialization` (the drain phase) queued and in-flight
   jobs run to completion, and once the Organization has reached
   `read_only` (steady state, after the drain has converged) workers
@@ -373,7 +371,7 @@ The rule:
   Organizations), so the same worker-side rule applies per iteration;
   this is tracked in
   [#599101](https://gitlab.com/gitlab-org/gitlab/-/work_items/599101)
-  and in the iteration-filter requirement in _Policy_ below.
+  and in the iteration-filter requirement in *Policy* below.
 
 One known gap must be closed for the context mechanism to be
 complete: jobs enqueued with only a project or namespace context do
@@ -427,7 +425,7 @@ partitioned tables). `BatchCleanerService` is the orchestrator that
 looks up the LFK definitions for each parent table; `CleanerService`
 is the per-table executor that builds and runs the actual
 `DELETE` / `UPDATE`. Conceptually the whole chain falls under the
-_cron workers skip the read-only Organization_ rule above: cascading
+*cron workers skip the read-only Organization* rule above: cascading
 deletes against rows belonging to a read-only Organization must not
 be applied during the drain.
 
@@ -446,7 +444,7 @@ LFK feature owners and is tracked alongside the broader
 LFK-after-cutover question below.
 
 The broader question of how LFK behaves once an Organization has
-_moved_ to a destination Cell (i.e., what happens to parent/child rows
+*moved* to a destination Cell (i.e., what happens to parent/child rows
 left on the source Cell, and how the LFK worker on each Cell should
 reason about that) is out of scope for this ADR. It is tracked in
 [gitlab-org/gitlab#535508](https://gitlab.com/gitlab-org/gitlab/-/work_items/535508)
@@ -524,7 +522,7 @@ tracked in [&20404](https://gitlab.com/groups/gitlab-org/-/epics/20404).
 
 Every skip, cancel, or filter event emits a structured log with
 `organization_id`, `worker` (class), and `jid`. The same data is what
-the _Cutover readiness_ endpoint reads from, so cutover decisions and
+the *Cutover readiness* endpoint reads from, so cutover decisions and
 steady-state observability share one signal.
 
 This Sidekiq policy is intentionally stricter than instance-wide
@@ -566,9 +564,9 @@ controllers, actions, and endpoints lives in
 - A persistent banner is displayed on every page rendered for the
   Organization, including group and project pages it owns. The copy is
   generic and does not reveal the internal reason or any infrastructure
-  detail (Cell, migration). For example: _"This Organization is
+  detail (Cell, migration). For example: *"This Organization is
   currently in read-only mode while essential maintenance is performed.
-  Reads will continue to work; please retry write operations shortly."_
+  Reads will continue to work; please retry write operations shortly."*
 - The banner reuses the same surface and Vue component pattern as the
   existing instance-wide Maintenance Mode banner, keyed off the
   Organization's `read_only?` state rather than the instance-wide flag.
@@ -579,8 +577,8 @@ controllers, actions, and endpoints lives in
   for time-bounded reasons, `403 Forbidden` for non-time-bounded
   reasons). The exact response body and status matrix are implementation
   details (see [#594327](https://gitlab.com/gitlab-org/gitlab/-/work_items/594327)).
-- Git pushes return an equivalent generic message: _"Git push is not
-  allowed because this Organization is currently in read-only mode."_
+- Git pushes return an equivalent generic message: *"Git push is not
+  allowed because this Organization is currently in read-only mode."*
 
 ### Auditability and observability
 
@@ -601,7 +599,7 @@ invalidate any caches via the existing `after_transition` hook.
   Organization-scoped, so rollout can proceed cohort-by-cohort.
 - On GitLab.com, enable first for internal/test Organizations, then
   expand alongside the existing Organizations rollout cohorts.
-- On Self-Managed and Dedicated, ship default-off (see _Consequences_).
+- On Self-Managed and Dedicated, ship default-off (see *Consequences*).
 
 ## Consequences
 
@@ -701,7 +699,7 @@ and blocks potentially mutating endpoints based on path patterns is
 fragile: GraphQL alone makes path/verb matching insufficient (one
 endpoint serves both queries and mutations, with the Organization in
 scope only knowable after parsing a potentially batched request body).
-See _Where it is enforced_ for the controller / Grape / GraphQL /
+See *Where it is enforced* for the controller / Grape / GraphQL /
 GitAccess approach used instead.
 
 ### 6. Top-level group read-only without an Organization state
@@ -735,7 +733,7 @@ It is rejected because:
 - Audit, observability, and the cutover-readiness contract all want a
   single, authoritative "is this Organization read-only right now?"
   signal. A derived state spreads that signal across N rows.
-- The state also needs to express _why_ the Organization is read-only
+- The state also needs to express *why* the Organization is read-only
   (migration, isolation, incident, billing, legal). That metadata
   belongs on the Organization, not on each namespace.
 

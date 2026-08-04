@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Configurable Work Item Types"
 status: ongoing
 creation-date: "2025-10-28"
@@ -261,11 +260,11 @@ The resolution query uses PostgreSQL `traversal_ids` with "closest ancestor wins
 
 Three independent visibility actions are available:
 
-| Action                             | Effect                                                                              | Storage                                            |
-| ---------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------- |
-| Control this namespace only        | Toggles type visibility for this namespace                                          | Single row in `work_item_type_visibilities`        |
-| Propagate to all existing children | Writes overrides for all descendant namespaces (clears conflicting descendant rows) | Single row with `propagate: true`                  |
-| Set defaults for new children      | Sets defaults for future child namespaces                                           | Single row in `work_item_type_visibility_defaults` |
+| Action | Effect | Storage |
+|---|---|---|
+| Control this namespace only | Toggles type visibility for this namespace | Single row in `work_item_type_visibilities` |
+| Propagate to all existing children | Writes overrides for all descendant namespaces (clears conflicting descendant rows) | Single row with `propagate: true` |
+| Set defaults for new children | Sets defaults for future child namespaces | Single row in `work_item_type_visibility_defaults` |
 
 The `workItemAvailabilityToggle` mutation enables or disables a specific type for a given namespace and exposes these actions through its scope argument.
 
@@ -296,12 +295,12 @@ Permission checks that historically keyed off base type predicates (for example 
 
 ## Permissions
 
-| Permission                         | Scope                         | Role (SaaS) | Role (Self-Managed)          | Purpose                                                                                                                                                                                                                                            |
-| ---------------------------------- | ----------------------------- | ----------- | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `create_work_item_type`            | Root group, organization      | Maintainer+ | Admin, or organization Owner | Create new custom types                                                                                                                                                                                                                            |
-| `update_work_item_type`            | Root group, organization      | Maintainer+ | Admin, or organization Owner | Update or convert types                                                                                                                                                                                                                            |
-| `update_work_item_type_visibility` | Root group, subgroup, project | Maintainer+ | Maintainer+                  | Toggle type visibility for a namespace                                                                                                                                                                                                             |
-| `configure_work_item_type`         | Subgroup, project             | Maintainer+ | Maintainer+                  | Access the work item type settings UI at subgroup and project level. Reserved as the entry point for future per-type configuration such as widget customization and hierarchy customization, which are inherited from the delegation source today. |
+| Permission | Scope | Role (SaaS) | Role (Self-Managed) | Purpose |
+|---|---|---|---|---|
+| `create_work_item_type` | Root group, organization | Maintainer+ | Admin, or organization Owner | Create new custom types |
+| `update_work_item_type` | Root group, organization | Maintainer+ | Admin, or organization Owner | Update or convert types |
+| `update_work_item_type_visibility` | Root group, subgroup, project | Maintainer+ | Maintainer+ | Toggle type visibility for a namespace |
+| `configure_work_item_type` | Subgroup, project | Maintainer+ | Maintainer+ | Access the work item type settings UI at subgroup and project level. Reserved as the entry point for future per-type configuration such as widget customization and hierarchy customization, which are inherited from the delegation source today. |
 
 The `WorkItems::TypesFramework::Custom::TypePolicy` delegates authorization to the parent namespace or organization and checks the licensed feature.
 
@@ -430,13 +429,13 @@ The function builds the config in two layers:
 1. **Base defaults** — a `DEFAULT_SETTINGS_CONFIG` object inside the function
    defines the full set of boolean visibility flags, permissions, and layout:
 
-   | Property                           | Type       | Purpose                                                                                   |
-   | ---------------------------------- | ---------- | ----------------------------------------------------------------------------------------- |
-   | `showWorkItemTypesSettings`        | `boolean`  | Show the configurable types section.                                                      |
-   | `showEnabledWorkItemTypesSettings` | `boolean`  | Show the enabled types section.                                                           |
-   | `showCustomFieldsSettings`         | `boolean`  | Show the custom fields section.                                                           |
-   | `showCustomStatusSettings`         | `boolean`  | Show the custom status section.                                                           |
-   | `workItemTypeSettingsPermissions`  | `string[]` | Permissions applied to configurable types (for example, `['edit', 'create', 'archive']`). |
+   | Property | Type | Purpose |
+   |---|---|---|
+   | `showWorkItemTypesSettings` | `boolean` | Show the configurable types section. |
+   | `showEnabledWorkItemTypesSettings` | `boolean` | Show the enabled types section. |
+   | `showCustomFieldsSettings` | `boolean` | Show the custom fields section. |
+   | `showCustomStatusSettings` | `boolean` | Show the custom status section. |
+   | `workItemTypeSettingsPermissions` | `string[]` | Permissions applied to configurable types (for example, `['edit', 'create', 'archive']`). |
 
 2. **Context-specific text** — two lookup maps (`configurableTypesSubtexts` and
    `enabledTypesSubtexts`) key descriptive strings by context. The factory
@@ -448,7 +447,7 @@ Consumers call the factory and then override any flags they need:
 ```js
 // Admin — disable sections not yet supported
 const config = {
-  ...getSettingsConfig("admin"),
+  ...getSettingsConfig('admin'),
   showEnabledWorkItemTypesSettings: false,
   showCustomFieldsSettings: false,
   showCustomStatusSettings: false,
@@ -456,7 +455,7 @@ const config = {
 
 // Subgroup — only the enabled types section
 const config = {
-  ...getSettingsConfig("subgroup"),
+  ...getSettingsConfig('subgroup'),
   showWorkItemTypesSettings: false,
   showEnabledWorkItemTypesSettings: true,
   showCustomFieldsSettings: false,
@@ -500,12 +499,12 @@ currently active in a given namespace.
 
 ## Context-Specific Behavior Matrix
 
-| Context        | Configurable Types Section | Enabled Types Section | Custom Fields | Custom Status |
-| -------------- | -------------------------- | --------------------- | ------------- | ------------- |
-| **Admin**      | Shown                      | Hidden                | Hidden        | Hidden        |
-| **Root Group** | Shown                      | Shown                 | Shown         | Shown         |
-| **Subgroup**   | Hidden                     | Shown                 | Hidden        | Hidden        |
-| **Project**    | Hidden                     | Shown                 | Hidden        | Hidden        |
+| Context | Configurable Types Section | Enabled Types Section | Custom Fields | Custom Status |
+|---|---|---|---|---|
+| **Admin** | Shown | Hidden | Hidden | Hidden |
+| **Root Group** | Shown | Shown | Shown | Shown |
+| **Subgroup** | Hidden | Shown | Hidden | Hidden |
+| **Project** | Hidden | Shown | Hidden | Hidden |
 
 ---
 
@@ -612,7 +611,7 @@ Depending on the context and requirement, we have separate combinations for both
    Any work item type should be able to link to any other type with relationships like "Blocked by / Blocks" and "Related to". This decision applies to linked items only, not child items (hierarchy).
 
 1. [We will delegate custom work item types to existing system-defined types](https://gitlab.com/gitlab-org/gitlab/-/issues/581932#note_2959381705),
-   postponing custom widget definition and hierarchy restriction table creation until users actually customize these features in future iterations.
+postponing custom widget definition and hierarchy restriction table creation until users actually customize these features in future iterations.
 
 1. All work item type configuration code should live in `ee/` since configurable work item types is a Premium and above feature.
 

@@ -7,12 +7,9 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: The GitLab Procurement Team
 ---
-
 <!-- markdownlint-disable MD051 -->
-
 ## What is Procurement?
 
 The Procurement team manages GitLab's [Supplier Lifecycle](#vendor-lifecycle-management) through the process of strategically vetting and selecting vendors, negotiating commercial terms, the purchasing of goods and services, and managing the renewal or vendor offboarding process.
@@ -38,13 +35,13 @@ Division alignment for spend over >$25k USD / year:
 Procurement is a cross-functional team that supports GitLab as a public company. We have four key objectives monitored in the following ways:
 
 1. Strategic partnerships with business stakeholders - meet on a quarterly basis to review new or renewing third party spend and supplier management opportunities
-   - Metric(s): Supplier segmentation tiers
+    - Metric(s): Supplier segmentation tiers
 1. Achieving annual cost avoidance (soft) savings and year over year (hard) savings
-   - Metric(s): **Soft Savings** (cost avoidance) is mitigating proposed cost increases or any negotiations for new purchases. **Hard Savings** (year over year) is a decrease in cost from last year and is only valid for renewals. This can include decreasing unit costs, removing users and/or scaling back services and scope
+    - Metric(s): **Soft Savings** (cost avoidance) is mitigating proposed cost increases or any negotiations for new purchases. **Hard Savings** (year over year) is a decrease in cost from last year and is only valid for renewals. This can include decreasing unit costs, removing users and/or scaling back services and scope
 1. [Third party risk management](#third-party-risk-management) and ensuring we are getting the best commercial terms with the least amount of risk for GitLab
-   - Metric(s): the number of active and new vendors each quarter, and reported and monitored via internal and external audit
+    - Metric(s): the number of active and new vendors each quarter, and reported and monitored via internal and external audit
 1. Responsible sourcing/purchasing and supplier diversity - managed through the Zip and Coupa onboarding and purchasing process
-   - Metric(s): [Zip SLAs](#review-steps-timeline-and-considerations) and diverse suppliers
+    - Metric(s): [Zip SLAs](#review-steps-timeline-and-considerations) and diverse suppliers
 
 ### Vendor Lifecycle Management
 
@@ -128,7 +125,7 @@ Anytime a group of suppliers are being evaluated for services/goods or a purchas
 
 1. Before agreeing to any business, legal and/or pricing terms with a supplier, whether in conversation or email
 1. Immediately when you receive a contract and/or quote for new and/or recurring business
-   - If you have received a contract from a supplier, tell them you will send to your procurement team for review
+    - If you have received a contract from a supplier, tell them you will send to your procurement team for review
 1. When evaluating a group of suppliers and/or starting the [RFP Process](https://internal.gitlab.com/handbook/finance/procurement/).
 1. If unsure where or when to begin, tag the @procurement_team in the #procurement slack channel for support. You can also reach out to your [Procurement Category Manager](#procurement-team-alignment) directly.
 
@@ -222,7 +219,7 @@ The amount of time for review and reaching execution is based on the details bel
 - **Marketing / Events:** Generally, requires the least amount of time to review as the obligations are standardized given the event in question and program provided. Details regarding events may include negotiations with regards to Force Majeure, cancellation (including penalty), and ensuring the terms align with those of the requesting GitLab team members.
 - **Data Processing Agreement (DPA)/Standard Contractual Clauses (SCCs):** Required when personal data is shared with, accesssed, or collected by the supplier on behalf of GitLab. DPA/SCCs are generally affixed to an agreement but may be required as a separate agreement upon the determination of Privacy (see the Privacy review process below).
 
-_Negotiation, Security, Privacy, and PeopleOps reviews are only required if the purchase request meets certain criteria, as described below. In the event two or more of these activities are required, they will happen in parallel to one another and Legal's review._
+*Negotiation, Security, Privacy, and PeopleOps reviews are only required if the purchase request meets certain criteria, as described below. In the event two or more of these activities are required, they will happen in parallel to one another and Legal's review.*
 
 #### 4.B. Negotiation: 12 days
 
@@ -403,5 +400,4 @@ The planning stages for events of this size should be completed at least 18-24 m
 - [Non-Disclosure Agreement (NDA)](/handbook/legal/nda/#)
 - [Charitable Contributions](charitable-contributions/)
 - [Non-Cost Related Agreements (Including Trials/Demos)](trial-agreement/)
-
 <!-- markdownlint-enable MD051 -->

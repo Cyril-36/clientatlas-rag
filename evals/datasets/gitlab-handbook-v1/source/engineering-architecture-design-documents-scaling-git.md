@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Scaling Git"
 description: "Architecture proposal for horizontally scaling Gitaly by decoupling compute from storage using object storage as the source of truth and a custom MVCC backend for Git."
 status: proposed
@@ -616,9 +615,34 @@ since they also exist in the same pool, in practice these artifacts are unlikely
 remain stable as repository histories evolve and thus not commonly shared
 amongst repositories in the deduplication network.
 
-### Routing and clustering
+### Clustering and routing
 
-WIP
+Gitaly nodes must operate in a cluster to facilitate horizontal scalability. The
+clustering and routing layer ensures that nodes are aware of their peers, and
+requests can be routed to a healthy node according to some criteria. This layer
+should be agnostic to the deployment environment, i.e. it should work as well in
+or outside of Kubernetes.
+
+Although nodes are stateless caches that can serve requests for any repository,
+doing so is suboptimal due to:
+
+- The overhead imposed by cache warming (i.e. downloading missing artifacts from
+  the durable storage) for repositories which the target node has not yet
+  served.
+- High local disk usage, since every node has an equal chance of serving every
+  repository at some point in its lifetime.
+
+Instead, the main goal of the router is ensuring that requests for a given
+repository remain "sticky" to a subset of nodes in the cluster. For example,
+requests for `repo-a` should always be directed to `gitaly-1` and `gitaly-4` so
+both nodes can maintain reasonably hot caches.
+
+The router is supported by a clustering layer which maintains the composition
+of the cluster, including the health of individual nodes. It will also enable
+the cluster to be resized without the need to reconfigure existing nodes.
+
+See the [Clustering and Routing](./clustering_routing.md) subpage for more
+information on the proposed implementation.
 
 ## Migration
 
@@ -766,8 +790,7 @@ These risks need to be addressed via early benchmarking.
 - Epic: gitlab-org&21711+
 - Git MVCC backend PoC: gitlab-org/git!551+
 - Gitaly integration PoC: gitlab-org/gitaly!8812+
-- Routing mechanism: gitlab-org/gitaly#7214+
-- Gitaly clustering and routing: gitlab-org&22205+
+- [Clustering and Routing](https://gitlab.com/groups/gitlab-org/-/work_items/22229)
 - Pooled MVCC artifacts: gitlab-org/gitaly#7250+
 - Garbage Collection: gitlab-org/gitaly#7249+
 - [MVCC backend threat model (internal)](https://gitlab.com/gitlab-com/gl-security/product-security/appsec/threat-models/-/blob/master/gitlab-org/gitaly/Next%20Gen%20Git.md)

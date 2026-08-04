@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Artifact Registry ADR 008: Content-Addressable Storage"
 owning-stage: "~devops::package"
 description: "Decision to use content-addressable storage"

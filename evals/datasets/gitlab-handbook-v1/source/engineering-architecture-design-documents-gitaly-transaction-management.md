@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Transaction management in Gitaly"
 status: ongoing
 creation-date: "2023-05-30"
@@ -128,7 +127,7 @@ Repositories:
 
 The logical data hierarchy looks as follows:
 
-```mermaid
+``` mermaid
 graph
   subgraph "Gitaly Node"
   G[Process] --> S1[Storage 1]

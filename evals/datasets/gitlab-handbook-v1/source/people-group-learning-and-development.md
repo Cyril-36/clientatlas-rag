@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Talent Development
 ---
 
@@ -17,15 +16,15 @@ title: Talent Development
 
 ### Purpose
 
-_Why we exist:_ GitLab Talent Development (commonly referred to as "Learning & Development") exists to enhance team member performance, expand capabilities, and further develop skills that make GitLab team members the top talent in the industry. We strive to foster a culture of continous growth so that GitLab remains a great place to work. Positive impact on team member experience leads to a positive impact on results, which leads to a positive impact on GitLab customers.
+*Why we exist:* GitLab Talent Development (commonly referred to as "Learning & Development") exists to enhance team member performance, expand capabilities, and further develop skills that make GitLab team members the top talent in the industry. We strive to foster a culture of continuous growth so that GitLab remains a great place to work. Positive impact on team member experience leads to a positive impact on results, which leads to a positive impact on GitLab customers.
 
 ### Vision
 
-_Where are we going:_ GitLab seeks to be recognized as a top organization for remote learning & development. We aim for a future where **everyone contributes** to a culture of curiosity.
+*Where are we going:* GitLab seeks to be recognized as a top organization for remote learning & development. We aim for a future where **everyone contributes** to a culture of curiosity.
 
 ### Mission
 
-_What we do:_ We empower individual contributors and equip leaders through self-service learning. We accomplish a culture of development by:
+*What we do:* We empower individual contributors and equip leaders through self-service learning. We accomplish a culture of development by:
 
 - Focusing on skill-based learning
 - Providing resources to improve career mobility
@@ -85,13 +84,13 @@ The Learning & Development team has a number of resources to help team members l
 
 The Learning and Development team is available to support GitLab teams in the following capacities. Requests will be evaluated as they come in based on team's capacity for support, business impact, correlation to company OKRs, and number of impacted users.
 
-| Support Model                                     | When to use this process                                                                                    |
-| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Creating a new learning pathway                   | Create a new learning pathway or course for any audience                                                    |
-| Uploading to company learning platform            | Add new or existing learning content to the LXP                                                             |
-| Integrating external content to learning platform | Add off-the-shelf learning from another provider                                                            |
-| Requesting content review                         | L&D review of your learning content for handbook first, adult learning theory, and bias for async alignment |
-| Requesting new content creation                   | You'd like the L&D team to **create** or **host** learning content for your team                            |
+| Support Model | When to use this process |
+| ----- | ----- |
+| Creating a new learning pathway | Create a new learning pathway or course for any audience |
+| Uploading to company learning platform | Add new or existing learning content to the LXP |
+| Integrating external content to learning platform | Add off-the-shelf learning from another provider |
+| Requesting content review | L&D review of your learning content for handbook first, adult learning theory, and bias for async alignment |
+| Requesting new content creation | You'd like the L&D team to **create** or **host** learning content for your team |
 
 We review and classify requests based on the scalability and possible organizational impact. Learning solutions that can be applied and used company-wide take priority. Our process includes:
 
@@ -107,22 +106,22 @@ We're formalizing a more structured process to engage with the team going forwar
 
 ### GitLab Product Training
 
-For in depth GitLab product training, check out the [Get Started with GitLab](https://university.gitlab.com/pages/getting-started) resources on GitLab University, and take a look at the various certifications available, which are freely accessibly for GitLab Team Members. The Talent Development team do not create learning content for product training. If you have any queries or requests for product training, please get in touch with the digital success team in the #digital-success Slack channel
+For in depth GitLab product training, check out the Get Started with GitLab resources on GitLab University, and take a look at the various certifications available, which are freely accessibly for GitLab Team Members. The Talent Development team do not create learning content for product training. If you have any queries or requests for product training, please get in touch with the digital success team in the #digital-success Slack channel
 
 ### Tools
 
 The L&D team frequently uses the following tools for creating and communicating learning opportunities at GitLab.
 
-| Tool                                               | Purpose                        |
-| -------------------------------------------------- | ------------------------------ |
-| [Powtoon](https://www.powtoon.com/)                | Video Creation                 |
-| [LucidChart](https://www.lucidchart.com/pages/)    | Interactive Diagrams           |
-| [Canva](https://www.canva.com/)                    | Image and infographic creation |
-| [Articulate/Rise 360](https://www.articulate.com/) | Course Authoring               |
+| Tool | Purpose |
+| ----- | -------- |
+| [Powtoon](https://www.powtoon.com/) | Video Creation |
+| [LucidChart](https://www.lucidchart.com/pages/) | Interactive Diagrams |
+| [Canva](https://www.canva.com/) | Image and infographic creation |
+| [Articulate/Rise 360](https://www.articulate.com/) | Course Authoring |
 
 #### Rise 360
 
-Rise 360 is an excellent tool for creating engaging, interactive elearning content that integrates seamlessly with our new LevelUp learning system. While LevelUp offers many great features, its interactive content authoring options can be somewhat limited, making Rise 360 a valuable complement for developing more dynamic and visually appealing courses. We maintain a small number of Rise 360 licenses that can be easily redistributed to team members based on project needs. If you're interested in creating a Rise course and would like access to our licenses, please reach out in #learninganddevelopment where our team can support your course development needs and help you get started.RetryClaude can make mistakes. Please double-check responses.
+Rise 360 is an excellent tool for creating engaging, interactive elearning content that integrates seamlessly with our new LevelUp learning system. While LevelUp offers many great features, its interactive content authoring options can be somewhat limited, making Rise 360 a valuable complement for developing more dynamic and visually appealing courses. We maintain a small number of Rise 360 licenses that can be easily redistributed to team members based on project needs. If you're interested in creating a Rise course and would like access to our licenses, please reach out in #learninganddevelopment where our team can support your course development needs and help you get started.
 
 ## Developing Learning Content
 
@@ -157,14 +156,14 @@ Adults learn differently in the workplace than in traditional learning environme
 
 ### Learning Delivery Methods - Definitions
 
-| Term                                   | Definition                                                                                                                                   | Duration     |
-| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| Instructor-Led Training (ILT)          | Practice of training and learning material between an instructor and learners. Face-to-face training (classroom training)                    | Varies       |
-| Virtual Instructor-Led Training (VILT) | Training that is delivered in a virtual environment (i.e. training in Zoom)                                                                  | 1 to 3 hours |
-| E-Learning                             | Learning based on traditional learning theories which takes place electronically, often via the Internet.                                    | Varies       |
-| Blended Learning                       | Training that uses multiple methods to teach the new information to learners. It can include ILTs, self-paced materials, VILT sessions, etc. | Varies       |
-| Webinar                                | A seminar conducted virtually to a large audience                                                                                            | 3+ hours     |
-| Workshop                               | Hands-on or virtual demos, problem solving, tutorials where team members engage in discussion and activity on a particular subject           | Varies       |
+| Term | Definition | Duration |
+| ------ | ------ | ------ |
+| Instructor-Led Training (ILT) | Practice of training and learning material between an instructor and learners. Face-to-face training (classroom training) | Varies |
+| Virtual Instructor-Led Training (VILT) | Training that is delivered in a virtual environment (i.e. training in Zoom)| 1 to 3 hours |
+| E-Learning | Learning based on traditional learning theories which takes place electronically, often via the Internet. | Varies |
+| Blended Learning | Training that uses multiple methods to teach the new information to learners. It can include ILTs, self-paced materials, VILT sessions, etc. | Varies |
+| Webinar | A seminar conducted virtually to a large audience | 3+ hours |
+| Workshop | Hands-on or virtual demos, problem solving, tutorials where team members engage in discussion and activity on a particular subject | Varies |
 
 ### Leveraging Content Partner Resources
 

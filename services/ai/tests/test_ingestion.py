@@ -16,7 +16,7 @@ from docx import Document as DocxDocument
 from fastapi.testclient import TestClient
 
 from app.embedding.provider import DeterministicProvider
-from app.ingestion.chunking import chunk_blocks, estimate_tokens
+from app.ingestion.chunking import EMBEDDING_WINDOW_TOKENS, chunk_blocks, estimate_tokens
 from app.ingestion.parsing import (
     DOCX_MEDIA_TYPE,
     PDF_MEDIA_TYPE,
@@ -311,3 +311,49 @@ class TestIngestionEndpoints:
         response = client.post("/v1/embed", json={"texts": ["x"] * 65})
 
         assert response.status_code == 422
+
+
+class TestEmbeddingWindowExposure:
+    """How much chunk text the encoder never sees.
+
+    all-MiniLM-L6-v2 reads the first 256 WordPiece tokens and silently discards
+    the rest, so a chunk longer than that is partly invisible to retrieval with
+    no error anywhere. EMBEDDING_WINDOW_TOKENS existed as documentation only;
+    this makes it load-bearing.
+
+    These record the current exposure rather than forbidding it. Chunks are cut
+    at heading boundaries, not at the encoder window, and a measured sweep showed
+    that resizing chunks to fit the window makes retrieval worse — so the
+    exposure is accepted, and this is what stops it growing unnoticed.
+    """
+
+    def test_the_window_constant_matches_the_model(self) -> None:
+        # If the model is ever swapped, this is the line that should fail first.
+        assert EMBEDDING_WINDOW_TOKENS == 256
+
+    def test_most_chunks_fit_inside_the_window(self) -> None:
+        blocks = [
+            ParsedBlock(
+                ordinal=i,
+                text=f"Sentence {i} about access policy. " * 4,
+                page_number=1,
+                heading_path=(f"Section {i // 5}",),
+            )
+            for i in range(1, 60)
+        ]
+
+        chunks = chunk_blocks(blocks)
+        over = [c for c in chunks if c.token_count > EMBEDDING_WINDOW_TOKENS]
+
+        # A majority fitting is the property that matters; the tail is known.
+        assert len(over) / len(chunks) < 0.5
+
+    def test_an_oversized_paragraph_is_not_split_and_is_known_to_truncate(self) -> None:
+        # A single block longer than the window cannot be split by a chunker that
+        # only groups whole blocks. Recorded here so the limitation is visible,
+        # rather than discovered later as a retrieval mystery.
+        huge = ParsedBlock(ordinal=1, text="word " * 900, page_number=1, heading_path=("H",))
+
+        [chunk] = chunk_blocks([huge])
+
+        assert chunk.token_count > EMBEDDING_WINDOW_TOKENS

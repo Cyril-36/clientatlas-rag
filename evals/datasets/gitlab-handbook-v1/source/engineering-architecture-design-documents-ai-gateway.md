@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "AI-gateway"
 status: ongoing
 creation-date: "2023-07-14"
@@ -111,7 +110,7 @@ The AI-Gateway API shall expose single-purpose endpoints responsible for providi
 
 The AI Gateway communication protocol shall only expect a rudimentary envelope that wraps all feature-specific dynamic information. The proposed architecture of the protocol allows the API endpoints to be version agnostic, and the AI-Gateway APIs compatible with multiple versions of GitLab(or other clients that use the gateway).
 
-**This means
+ **This means
 that all clients regardless of their versions use the same set of AI-Gateway API feature endpoints. The AI-gateway feature endpoints have to support different client versions, instead of creating multiple feature endpoints per different supported client versions**.
 
 We can however add a version to the path in case we do want to evolve
@@ -126,12 +125,12 @@ We also considered gRPC as a protocol for communication between
 GitLab instances, JSON API, and gRPC differ on these items:
 
 | gRPC                                                                                                                                                                    | REST + JSON                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
 | + Strict protocol definition that is easier to evolve versionless                                                                                                       | - No strict schema, so the implementation needs to take good care of supporting multiple versions |
 | + A new Ruby-gRPC server for vscode: likely faster because we can limit dependencies to load ([modular monolith](https://gitlab.com/gitlab-org/gitlab/-/issues/365293)) | - Existing Grape API for vscode: meaning slow boot time and unneeded resources loaded             |
 | + Bi-directional streaming                                                                                                                                              | - Straight forward way to stream requests and responses (could still be added)                    |
 | - A new Python-gRPC server: we don't have experience running gRPC-Python servers                                                                                        | + Existing Python fastapi server, already running for Code Suggestions to extend                  |
-| - Hard to pass on unknown messages from vscode through GitLab to ai-gateway                                                                                             | + Easier support for newer VS Code + newer AI-gateway, through old GitLab instance                |
+| - Hard to pass on unknown messages from vscode through GitLab to ai-gateway                                                                                             | + Easier support for newer VS Code + newer AI-gateway, through old GitLab instance                  |
 | - Unknown support for gRPC in other clients (vscode, jetbrains, other editors)                                                                                          | + Support in all external clients                                                                 |
 | - Possible protocol mismatch (VSCode --REST--> Rails --gRPC--> AI gateway)                                                                                              | + Same protocol across the stack                                                                  |
 
@@ -216,7 +215,7 @@ An example request according to the AI-Gateway component looks as follows:
       "type": "prompt",
       "metadata": {
         "source": "GitLab EE",
-        "version": "16.7.0-pre"
+        "version": "16.7.0-pre",
       },
       "payload": {
         "content": "...",
@@ -234,7 +233,7 @@ An example request according to the AI-Gateway component looks as follows:
         "source": "vscode",
         "version": "1.1.1"
       },
-      "payload": {
+       "payload": {
         "filename": "application.rb",
         "before_cursor": "require 'active_record/railtie'",
         "after_cursor": "\nrequire 'action_controller/railtie'",
@@ -254,12 +253,12 @@ Another example use case includes 2 versions of a prompt passed in the `prompt_c
 
 ```json
 {
-  "prompt_components": [
+  prompt_components: [
     {
       "type": "prompt",
       "metadata": {
         "source": "GitLab EE",
-        "version": "16.7.0-pre"
+        "version": "16.7.0-pre",
       },
       "payload": {
         "content": "You can fetch information about a resource called an issue...",
@@ -275,17 +274,18 @@ Another example use case includes 2 versions of a prompt passed in the `prompt_c
       "type": "prompt",
       "metadata": {
         "source": "GitLab EE",
-        "version": "16.7.0-pre"
+        "version": "16.7.0-pre",
       },
       "payload": {
         "content": "System: You can fetch information about a resource called an issue...\n\nHuman:",
         "params": {
-          "temperature": 0.2
+          "temperature": 0.2,
         },
         "model": "claude-2",
         "provider": "anthropic"
       }
     }
+
   ]
 }
 ```
@@ -313,7 +313,7 @@ POST /v3/code/completions
       "type": "prompt",
       "metadata": {
         "source": "GitLab EE",
-        "version": "16.7.0-pre"
+        "version": "16.7.0-pre",
       },
       "payload": {
         "content": "...",
@@ -331,7 +331,7 @@ POST /v3/code/completions
         "source": "vscode",
         "version": "1.1.1"
       },
-      "payload": {
+       "payload": {
         "filename": "application.rb",
         "before_cursor": "require 'active_record/railtie'",
         "after_cursor": "\nrequire 'action_controller/railtie'",

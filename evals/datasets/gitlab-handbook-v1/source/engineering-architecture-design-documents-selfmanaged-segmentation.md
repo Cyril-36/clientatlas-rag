@@ -7,18 +7,15 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Segmenting Self-Managed for a Cloud Native Future
 status: ongoing
 creation-date: "2025-06-24"
 authors: [ "@WarheadsSE" ]
 coaches: [ "@andrewn" ]
 dris: [ "@WarheadsSE", "@mbruemmer", "@mbursi", "@nolith" ]
-owning-stage: "~~devops::gitlab delivery"
-participating-stages: [~~"devops::analytics", ~"devops::ai-powered", ~"devops::software supply chain security", ~"devops::application security testing"]
-
+owning-stage: "~devops::gitlab delivery"
+participating-stages: [~"devops::analytics", ~"devops::ai-powered", ~"devops::software supply chain security", ~"devops::application security testing"]
 # Hides this page in the left sidebar. Recommended so we don't pollute it.
-
 toc_hide: true
 ---
 
@@ -131,7 +128,7 @@ See [Component Ownership Model](../../../infrastructure-platforms/production/com
 There are several topics that are related to, or intersect with those of this proposal.
 We intend to keep those separate, as they are important but not directly impacted by or impactful to this proposal.
 
-- Discussion of [air-gapped](<https://en.wikipedia.org/wiki/Air_gap_(networking)>) vs non-air-gapped environments.
+- Discussion of [air-gapped](https://en.wikipedia.org/wiki/Air_gap_(networking)) vs non-air-gapped environments.
 - Omnibus GitLab meta-packaging initiatives.
 - Per-component versioning, and tracking of aligned versions.
 - Discussions about new Premium/Ultimate components as separate paid SKUs are out of scope for this proposal.
@@ -156,13 +153,13 @@ and deploying the extended Advanced feature components into that.
 
 Segment the Self-Managed options into two distinct tiers of components, thus features:
 
-|                    | Self-Managed Foundation (SMF)                                                                                 | Self-Managed Advanced (SMA)                                                                                                             |
-| :----------------- | :------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------- |
-| Technology Base    | Operating system packages                                                                                     | Containerized cloud native deployment architecture.                                                                                     |
-| Target Customer    | CE/EE Free; Foundational feature set                                                                          | Free with technical skills for cloud native; Premium and Ultimate.                                                                      |
-| Target Environment | Traditional infrastructure (bare metal, VMs)                                                                  | Containerized infrastructure with Kubernetes, IaaS cloud (such as GCP, AWS) or on-prem. Driven by Helm and possibly Operator in future. |
-| Value Proposition  | Foundational product capabilities with essential features, existing Ultimate features available.              | Full access to all product capabilities, current and future, as well as significantly better scaling.                                   |
-| Feature Guarantee  | New Ultimate features are not guaranteed. Components required for new features may be unavailable in Omnibus. | All new Ultimate functionality guaranteed.                                                                                              |
+|    | Self-Managed Foundation (SMF) | Self-Managed Advanced (SMA) |
+| :- | :---------------------- | :-------------------------- |
+| Technology Base | Operating system packages | Containerized cloud native deployment architecture. |
+| Target Customer | CE/EE Free; Foundational feature set | Free with technical skills for cloud native; Premium and Ultimate. |
+| Target Environment | Traditional infrastructure (bare metal, VMs) | Containerized infrastructure with Kubernetes, IaaS cloud (such as GCP, AWS) or on-prem. Driven by Helm and possibly Operator in future. |
+| Value Proposition | Foundational product capabilities with essential features, existing Ultimate features available. | Full access to all product capabilities, current and future, as well as significantly better scaling. |
+| Feature Guarantee | New Ultimate features are not guaranteed. Components required for new features may be unavailable in Omnibus. | All new Ultimate functionality guaranteed. |
 
 It should be noted that no part of this proposal prevents features being added within existing components from being delivered to either tier.
 If a new feature requires no changes or additions to components, such as some combination of Rails, frontend, and Sidekiq jobs, there will be no blocking these rollouts.
@@ -628,14 +625,14 @@ Walking the decision tree, we get the following:
 Work to be done, progressing through [feature maturity](https://docs.gitlab.com/policy/development_stages_support/):
 
 1. Development
-   - Engage with the [Readiness Workflow](https://gitlab.com/gitlab-org/architecture/readiness#overview)
-   - An OpenBao container is made, with distroless UBI, and a FIPS build.
-   - An OpenBao Helm chart is made, consuming the new container.
+    - Engage with the [Readiness Workflow](https://gitlab.com/gitlab-org/architecture/readiness#overview)
+    - An OpenBao container is made, with distroless UBI, and a FIPS build.
+    - An OpenBao Helm chart is made, consuming the new container.
 1. Experimental
-   - Integrate the Helm chart with the [GitLab Helm chart](https://gitlab.com/gitlab-org/charts/gitlab) for GitLab.com to consume.
+    - Integrate the Helm chart with the [GitLab Helm chart](https://gitlab.com/gitlab-org/charts/gitlab) for GitLab.com to consume.
 1. Beta
-   - Integrate the configuration and provisioning with the [GitLab Environment Toolkit](https://gitlab.com/gitlab-org/gitlab-environment-toolkit)
-   - Coordinate with GitLab Dedicated teams to implement appropriate assessments and enablement within Dedicated, Cells, and USPubSec environments.
+    - Integrate the configuration and provisioning with the [GitLab Environment Toolkit](https://gitlab.com/gitlab-org/gitlab-environment-toolkit)
+    - Coordinate with GitLab Dedicated teams to implement appropriate assessments and enablement within Dedicated, Cells, and USPubSec environments.
 1. General Availability
 
 ## Impacts on Product Development

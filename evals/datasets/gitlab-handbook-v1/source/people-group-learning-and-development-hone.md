@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Hone Partnership
 ---
 
@@ -15,7 +14,7 @@ GitLab has partnered with [Hone](https://honehq.com/) to provide expanded profes
 
 ## Overview
 
-This partnership represents GitLab's commitment to scaling leadership and professional development across the organization. The partnership will be evaluated quarter over quarter to ensure it continues to meet our development needs. Currently we support memberships for all GitLab people managers, but interested ICs may also request a license, which will be made avaialable if capacity allows. More details on this below.
+This partnership represents GitLab's commitment to scaling leadership and professional development across the organization. The partnership will be evaluated quarter over quarter to ensure it continues to meet our development needs. Currently we support memberships for all GitLab people managers, but interested ICs may also request a license, which will be made available if capacity allows. More details on this below.
 
 Key features of this partnership include:
 
@@ -28,28 +27,11 @@ Key features of this partnership include:
 
 ### People Managers
 
-All GitLab people managers will receive unlimited access to the Hone platform for the year, starting February 13th, 2025. Managers will receive an access link to create their account and begin participating in sessions.
+All GitLab people managers receive unlimited access to the Hone platform for the year. Managers will receive an access link to create their account and begin participating in sessions.
 
 ### Individual Contributors
 
-We will provide available seats to ICs based on availability starting MARCH 3,2025. We'll share additional guidance on how to request access. For now, direct questions to the [#learninganddevelopment](https://gitlab.enterprise.slack.com/archives/CMRAWQ97W) slack channel.
-
-## GitLab Membership Programs
-
-As part of this partnership, we're running two targeted programs for all people leaders in 2025:
-
-### H1 Program (February - July 2025)
-
-Focus areas:
-
-1. Bridge Cultural Differences Across your Organization
-1. Communicate Powerfully Around Change
-
-Note: Session availability may vary. As demand increases, more sessions will become available. Spanning H1 allows enough time for all people leaders to find dates and times that work. Hone is aware of this H1 focus and will support accommodating session availability as needed. Each of these workshops is 60 minutes.
-
-### H2 Program (August - January 2025)
-
-Contingent on adoption, engagement, and feedback data; program content will be announced closer to the launch date.
+We provide available seats to ICs based on availability. We'll share additional guidance on how to request access. For now, direct questions to the [#learninganddevelopment](https://gitlab.enterprise.slack.com/archives/CMRAWQ97W) slack channel.
 
 ## Important Guidelines
 

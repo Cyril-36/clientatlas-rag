@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Reusable Rapid Diffs (RRD)"
 status: proposed
 creation-date: "2023-10-10"
@@ -35,13 +34,13 @@ All the diffs features related to this document are [listed on a dedicated page]
 [Rapid Diffs work](https://gitlab.com/groups/gitlab-org/-/epics/13236) is split into 3 stages and can be tracked in the following epics:
 
 1. [Stage 0 — foundation](https://gitlab.com/groups/gitlab-org/-/epics/13764):
-   - Have foundational components in place.
-   - Stream diffs on MR, commit and compare revisions pages.
+    - Have foundational components in place.
+    - Stream diffs on MR, commit and compare revisions pages.
 1. [Stage 1 — baseline features](https://gitlab.com/groups/gitlab-org/-/epics/13765):
-   - Most of the features are working (dicussions, navigation, review, etc.)
+    - Most of the features are working (dicussions, navigation, review, etc.)
 1. [Stage 2 — production ready](https://gitlab.com/groups/gitlab-org/-/epics/13767):
-   - Feature specs pass against Rapid Diffs
-   - Full accessibility compliance
+    - Feature specs pass against Rapid Diffs
+    - Full accessibility compliance
 
 ## Motivation
 
@@ -152,7 +151,6 @@ To measure our success, we need to set meaningful metrics. These metrics should 
       - The exceptions list should be addressed on a regular basis to determine the ongoing value of overflowing our budget.
 
 ---
-
 <sup>1</sup>: [The Performance Inequality Gap, 2023](https://infrequently.org/2022/12/performance-baseline-2023/)
 
 ### Fully Loaded improvement formula
@@ -200,9 +198,9 @@ we need to design an application architecture that:
 1. Can handle UI changes without making data access/format changes.
 1. Provides a hookable, inspectable API and avoids code coupling.
 1. Separates:
-   - State and application data.
-   - Application behavior and UI.
-   - Data access and network access.
+    - State and application data.
+    - Application behavior and UI.
+    - Data access and network access.
 
 ## Design and implementation details
 
@@ -529,12 +527,10 @@ Possible structure could include:
 
 ```html
 <table>
-  <caption class="gl-sr-only">
-    Changes for file index.js. 10 lines changed: 5 deleted, 5 added.
-  </caption>
+  <caption class="gl-sr-only">Changes for file index.js. 10 lines changed: 5 deleted, 5 added.</caption>
   <tr hidden>
-    <th>Original line number:</th>
-    <th>Diff line number:</th>
+    <th>Original line number: </th>
+    <th>Diff line number: </th>
     <th>Line change:</th>
   </tr>
   <tr>

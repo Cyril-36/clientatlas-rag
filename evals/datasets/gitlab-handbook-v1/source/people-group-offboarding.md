@@ -7,13 +7,10 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "GitLab Offboarding"
 description: "Offboarding Procedures for GitLab Team Members and Stakeholders"
 ---
-
 <!-- markdownlint-disable MD051 -->
-
 ## Offboarding Overview
 
 The offboarding process is facilitated by the People Operations team who collaborates throughout the process with various other stakeholders such as Team Member Relations, IT Operations and Payroll.
@@ -30,7 +27,7 @@ For payroll questions or outstanding expense claims, please reach out to either 
 
 For any other offboarding questions from active team members please reach out to People Operations via [HelpLab](https://helplab.gitlab.systems/esc?id=emp_taxonomy_topic&topic_id=897eb385478c069067429ee0026d432c) or send an email to `people_operations@gitlab.com` if your access has already been terminated.
 
-**Note:** If a termination date changes, please reach out to People Operations via HelpLab. The team will update Workday. The notice is used as supporting documentation of the change and is saved in the team members Workday record.
+**Note:** If a termination date changes, please reach out to People Operations via HelpLab. The team will update Workday.  The notice is used as supporting documentation of the change and is saved in the team members Workday record.
 
 ## Voluntary Terminations
 
@@ -38,7 +35,7 @@ For any other offboarding questions from active team members please reach out to
 
 1. **Team Member:** Please reach out to your Direct Manager prior to submitting your resignation particularly to discuss the handover process and the [communication plan](#communicating-departures) regarding your departure.
 1. **Team Member:** Review the documented [notice period](/handbook/people-group/contracts-probation-periods/#probation-period) for your location if applicable and factor in the notice period when submitting your resignation through Workday.
-1. **Team Member:** Compile your Letter of Resignation for uploading into Workday. If you are employed through a PEO or Third-Party Employer, send a copy of your resignation letter to the PEO contact as well.
+1. **Team Member:** Compile your Letter of Resignation for uploading into Workday.  If you are employed through a PEO or Third-Party Employer, send a copy of your resignation letter to the PEO contact as well.
 
 ### Resignation
 
@@ -46,7 +43,7 @@ For any other offboarding questions from active team members please reach out to
 1. **Team Member:** After your resignation is submitted in Workday, your manager will receive a request to complete your offboarding in Workday. Once your termination is complete, you can anticipate receiving your offboarding packet with information regarding your final pay, continued benefit offerings, and additional offboarding information such as returning your devices.
 1. **Team Member:** You should review the [Offboarding FAQ](/handbook/people-group/offboarding/faq) handbook page to address any questions you may have. If you have a question that is not on that page, please reach out to the People Operations Team using [HelpLab](https://helplab.gitlab.systems/esc?id=emp_taxonomy_topic&topic_id=897eb385478c069067429ee0026d432c). **Note: You will not see your offboarding issue prior to your departure as this is an issue used to deprovision access and is created once you are done working.**
 
-#### _**Country Specific Requirements for Resignation**_
+#### ***Country Specific Requirements for Resignation***
 
 #### Belgium
 
@@ -77,20 +74,20 @@ Team members the the PEO/EOR on UAE work visa's who resign, completes their cont
 1. **Manager:** If your team member completes a resignation in Workday, you will receive a prompt in your Workday inbox to terminate the team member by following the steps documented in the following [job aid](https://docs.google.com/document/d/1Fr1G1i1kssfADgDf3D6LbZHR8RZmWKZYDNV8AfduZ1c/edit). If a resignation was not submitted, you should initiate the termination by going to the departing team member's Workday Profile and selecting `Actions` followed by `Job Change` and finally `Terminate Employee`.
    - **Note**: Submitting the termination in Workday does not immediately terminate access. The offboarding issue, which is opened on the team members last day worked, initiates the deprovisioning process for terminated team members.
 1. **Manager:** You will be prompted to indicate whether the termination is regrettable or non-regrettable:
-   - Regrettable: The team member's departure has a negative impact on the company, its customers, its projects or the team. The team member was a consistent performer both in terms of results and behaviours, specifically upholding the GitLab values.
-   - Non-Regrettable: The team member has been not meeting expectations due to performance, conduct, culture or values misalignment and coaching has begun. The start of the coaching period - whether informal or formal, is indicated by the manager reaching out to either team member relations and/or their aligned People Business Partner.
+    - Regrettable: The team member's departure has a negative impact on the company, its customers, its projects or the team. The team member was a consistent performer both in terms of results and behaviours, specifically upholding the GitLab values.
+    - Non-Regrettable: The team member has been not meeting expectations due to performance, conduct, culture or values misalignment and coaching has begun. The start of the coaching period - whether informal or formal, is indicated by the manager reaching out to either team member relations and/or their aligned People Business Partner.
 1. **Manager:** Once the details about the team members departure have been finalized schedule time with the team member to plan the [departure announcement](#communicating-departures). Please reach out to your PBP if you need additional guidance.
-1. **People Business Partner:** You will receive a prompt in your Workday inbox to review the termination details submitted by the Manager and to close the position in Workday. If you are aligned with the details including the final date of employment click `Approve`. In the instance that you feel further discussion is required a sync with the Manager and/or Team Member should be arranged and the termination can be sent back for further review.
+1. **People Business Partner:** You will receive a prompt in your Workday inbox to review the termination details submitted by the Manager and to close the position in Workday. If you are aligned with the details including the final date of employment click `Approve`.  In the instance that you feel further discussion is required a sync with the Manager and/or Team Member should be arranged and the termination can be sent back for further review.
 1. **People Ops:** Once the transaction has been fully approved the team will receive a notification of the termination within the Workday Inbox.
 
 ### Offboarding
 
 1. **People Ops:** On the Last Day of Work as indicated in the Workday Termination Report at the [pre-determined time](/handbook/people-group/offboarding/offboarding_standards/#notice-of-offboarding) the Offboarding Parent and Child Cases will be created in HelpLab. All system owners will receive an email notifying them of the Child Case creation that team member access can be revoked.
 1. **Deprovisioners (Systems):** You will receive a Child Case in HelpLab to indicate that the team members access has been offboarded and you will need to remove them from your applications.
-   - Access to SOX Systems must be attended to with urgency
-   - All tasks should be completed within the 5 day SLA
-   - Action the task in the Child Case, and then close the case once completed signaling the completion of the access removal.
-   - Your Child Case will close automatically in 5 days.
+    - Access to SOX Systems must be attended to with urgency
+    - All tasks should be completed within the 5 day SLA
+    - Action the task in the Child Case, and then close the case once completed signaling the completion of the access removal.
+    - Your Child Case will close automatically in 5 days.
 
 ## Involuntary Terminations
 
@@ -102,29 +99,29 @@ Involuntary offboarding of any team member is never easy. We've created guidelin
 The manager and the team member should have walked through the guidelines on [underperformance](/handbook/leadership/underperformance/) before reaching this point.
 
 1. **Manager**: Reach out to the their TMR specialist for assistance.
-   - TMR will ask about what the performance issues have been, how they have been attempted to be addressed, and review all manager/team member documentation.
-   - Once the review has been completed and the decision has been made to offboard the team member, the manager should review the best timing for the involuntary offboarding call and termination date. We recommend to avoid scheduling a involuntary offboarding call while a team member is scheduled for any sensitive customer meetings or is on-call, per guidance below under Last working day.
-   - TMR will enter and approve the offboarding in Workday. Once entered, the relevant offboarding stakeholders will receive an alert via Workday reports or a Workday notification.
-   - TMR will work with IT in a separate Slack channel.
+    - TMR will ask about what the performance issues have been, how they have been attempted to be addressed, and review all manager/team member documentation.
+    - Once the review has been completed and the decision has been made to offboard the team member, the manager should review the best timing for the involuntary offboarding call and termination date. We recommend to avoid scheduling a involuntary offboarding call while a team member is scheduled for any sensitive customer meetings or is on-call, per guidance below under Last working day.
+    - TMR will enter and approve the offboarding in Workday. Once entered, the relevant offboarding stakeholders will receive an alert via Workday reports or a Workday notification.
+    - TMR will work with IT in a separate Slack channel.
 1. **TMR**: TMR will create a private Slack channel that will include the PBP, Manager, and Leader of the organization to review the offboarding and agreed upon offboarding date.
 1. **TMR**: If applicable, TMR will prepare the severance agreement in preparation for the call between the TMR specialist, Manager, and team member. Additional guidelines for the preparation of this agreement can be found below in the [Separation and Release of Claims Agreements](#separation-agreement) section. To determine whether or not a severance agreement is applicable, please refer to the `Severance Eligibility` guidelines accessible by PBPs, and Team Member Relations Specialist.
-1. **Manager**: Once the date and time is confirmed, the manager will schedule time with the team member and send the TMR specialist a _private and separate calendar invite_ with the Zoom details for the meeting with the team member to share the news of the offboarding.
+1. **Manager**: Once the date and time is confirmed, the manager will schedule time with the team member and send the TMR specialist a *private and separate calendar invite* with the Zoom details for the meeting with the team member to share the news of the offboarding.
 1. **Payroll**: If the team member is employed by a PEO/entity with statutory leave requirements, review if any time off needs to be paid on the last paycheck by looking in Workday in the `Time Off` section.
 1. **Payroll**: If the team member has a contract with a co-employer, the payroll lead will forward an email to the contact at the co-employer with the information surrounding the departing team members statutory leave etc.
 1. **TMR/Manager**: Discuss best mode of communicating the bad news to the team member. This discussion can happen via a private chat-channel, but it is best to be done via video.
 1. **TMR/Manager**: Decide who will handle which part of the conversation, and if desired, practice it.
-   - If needed the TMR will provide the manager with a script for the offboarding meeting.
-1. **TMR/Manager**: If the team member who is being terminated is a people manager, a _communication plan for the team_ regarding the departure should be in place before the offboarding proceeds. The communication plan should include: identification of an interim leader, (ideally) a scheduled meeting with the interim leader for the direct reports, a scheduled team call to announce the current manager's departure and the interim leadership, and finally an announcement in appropriate team channels to share with the wider team.
+    - If needed the TMR will provide the manager with a script for the offboarding meeting.
+1. **TMR/Manager**: If the team member who is being terminated is a people manager, a *communication plan for the team* regarding the departure should be in place before the offboarding proceeds. The communication plan should include: identification of an interim leader, (ideally) a scheduled meeting with the interim leader for the direct reports, a scheduled team call to announce the current manager's departure and the interim leadership, and finally an announcement in appropriate team channels to share with the wider team.
    - Important:
-     - Informing the team and answering questions should be the top priority.
-     - Departure announcements should not be made in the `#team-member-updates` Slack channel, opt for channels specific to your team or department
-     - In most cases, a team call can occur the same day of the offboarding.
-1. **TMR/Manager**: Decide what offboarding actions need to be taken _before_ the call (e.g. revoke admin permissions), or _during_ the call (e.g. revoke Slack and Gmail access), and which ones can wait until later. You can reference the [offboarding issue template](https://gitlab.com/gitlab-com/people-group/people-operations/employment-templates/-/blob/main/.gitlab/issue_templates/offboarding.md) for the full list of actions. This conversation should take place in the private Slack channel with PBP, Manager and Leader.
+      - Informing the team and answering questions should be the top priority.
+      - Departure announcements should not be made in the `#team-member-updates` Slack channel, opt for channels specific to your team or department
+      - In most cases, a team call can occur the same day of the offboarding. 
+1. **TMR/Manager**: Decide what offboarding actions need to be taken *before* the call (e.g. revoke admin permissions), or *during* the call (e.g. revoke Slack and Gmail access), and which ones can wait until later. You can reference the [offboarding issue template](https://gitlab.com/gitlab-com/people-group/people-operations/employment-templates/-/blob/main/.gitlab/issue_templates/offboarding.md) for the full list of actions. This conversation should take place in the private Slack channel with PBP, Manager and Leader.
 1. **TMR**: If the team member is a risk to the production environment, the TMR should privately reach out to the `Infrastructure Managers` to determine who will be available to assist with the offboarding. Once an infrastructure team member has been identified, they should be added to the private calendar invite sent to People Operations, Security, and Payroll to hold the time for the team member offboarding. Once the offboarding conversation starts the TMR will privately Slack the infrastructure contact the name of the team member to start the offboarding process.
 
 ### Facilitating the Call
 
-1. **Manager**: Deliver the bad news up-front, do not beat around the bush and prolong the inevitable pain for everyone involved. The Manager will make it clear that the decision is final, but will also explain what led to this decision and will point to the process that was followed to reach this decision. A sample leading sentence can be _"Thanks for joining the call, [team member name]. Unfortunately, the reason I wanted to speak with you is because we have decided that we have to let you go and end your employment / contract with GitLab because of xyz."_
+1. **Manager**: Deliver the bad news up-front, do not beat around the bush and prolong the inevitable pain for everyone involved. The Manager will make it clear that the decision is final, but will also explain what led to this decision and will point to the process that was followed to reach this decision. A sample leading sentence can be *"Thanks for joining the call, [team member name]. Unfortunately, the reason I wanted to speak with you is because we have decided that we have to let you go and end your employment / contract with GitLab because of xyz."*
 1. **Manager**: Hand the call over to the TMR to continue.
 1. **TMR**: The TMR will also make it clear that the decision is final, but also will genuinely listen to the team member's side of the story since there may be useful lessons in what they say for the rest of the team e.g. regarding hiring and vetting practices.
 1. **TMR**: Make sure to communicate the [practical points](#offboarding-points) from the offboarding memo outlined below.
@@ -144,11 +141,11 @@ The manager and the team member should have walked through the guidelines on [un
 
 1. **COBRA:** "Your benefits will cease on last day of the month you are eligible for Consolidated Omnibus Budget Reconciliation Act ("COBRA"), the carrier (Lumity) has been notified and the carrier will send out the paperwork to your home address on file".
 1. **PPACA:** "You may also be eligible under the Patient Protection and Affordable Care Act ("PPACA") for subsidized health care options via the marketplace.
-   If you are interested it is important that you sign up with the market place well before the 15th of the month to have coverage for the following month".
+If you are interested it is important that you sign up with the market place well before the 15th of the month to have coverage for the following month".
 1. **HIPAA:** " Under the Health Insurance Portability and Accountability Act of 1996 (HIPAA), if you need a certificate of credible coverage please download it from your current carrier's online portal or request it from People Ops".
 1. **Unemployment Insurance:** "It is up to your state's labor agency (in CA: EDD) to decide if you are eligible for unemployment insurance".
 1. **Keep GitLab Informed:** "If you move I want to be sure your W-2 gets to you at the end of the year.
-   You may also contact X at GitLab (provide phone number and email address) with any other questions that you may have" (consider inviting them to contact you at anytime for any reason).
+You may also contact X at GitLab (provide phone number and email address) with any other questions that you may have" (consider inviting them to contact you at anytime for any reason).
 
 ### Initiating an Involuntary Termination in Workday
 
@@ -167,7 +164,7 @@ If they are on "Garden Leave" they will still be active on payroll through the t
 
 As a manager, in collaboration with the Team Member Relations Specialist (TMR) and/or the People Business Partner (PBP), we recommend to avoid scheduling the involuntary offboarding call while a team member is scheduled for any sensitive customer meetings or is [on-call](/handbook/engineering/on-call/). If this is unavoidable, the manager is responsible for ensuring a transition/remediation plan.
 
-[People Engineering automations](https://gitlab.com/gitlab-com/people-group/peopleops-eng/employment-automation) will generate the offboarding issue at the end of the team member's last working day, as per notification from the Team Member Relations Specialist (TMR) and the People Business Partner (PBP). Once the `Last Working Day` or Garden leave expires the team member will be officially offboarded from GitLab. Prior to the offboarding issue and the overall process for the term listed below.
+[People Engineering automations](https://gitlab.com/gitlab-com/people-group/peopleops-eng/employment-automation) will generate the offboarding issue at the end of the team member's last working day, as per notification from the Team Member Relations Specialist (TMR) and the People Business Partner (PBP). Once the `Last Working Day` or Garden leave expires the team member will be officially offboarded from GitLab.  Prior to the offboarding issue and the overall process for the term listed below.
 
 #### Last Working Day for US Team Members
 
@@ -182,7 +179,7 @@ As written, it is applicable to US-based employees only.
 
 ### Separation and Release of Claims Agreements {#separation-agreement}
 
-Separation and Release of Claims Agreements _**do not**_ apply for all offboardings. To review in which cases they do/do not apply, please reference the `Severance Eligibility` document accessible by Team Member Relations team and PBPs. In the case that a severance agreement is applicable, the steps below should be followed:
+Separation and Release of Claims Agreements ***do not*** apply for all offboardings. To review in which cases they do/do not apply, please reference the `Severance Eligibility` document accessible by Team Member Relations team and PBPs. In the case that a severance agreement is applicable, the steps below should be followed:
 
 ### Severance Process for US-based Team Members
 
@@ -192,15 +189,15 @@ Separation and Release of Claims Agreements _**do not**_ apply for all offboardi
 1. **TMR**: The TMR Partner/Specialist will ping the stock team in the stock option section of the document.
 1. **TMR**: The TMR Partner/Specialist will share with the PBP and Legal for final review/approval.
 1. **TMR**: The TMR Partner/Specialist will stage the document in DocuSign for signatures. Please note that depending on the template used, team members have a limited amount of time to sign the Separation and Release of Claims Agreement.
-   - When staging the document for signatures, please note:
-     - Remember to send the document to the team member's _personal_ email address
-     - Select the `assign signature order` option in DocuSign to ensure the team member signs the document first
-     - All US (Inc.) severance agreements should be signed by Karen Iacobucci, VP, People Operations & Technology. If Karen is unavailable then Robert Allen, CPO will be responsible for signing.
-     - US (Federal LLC.) severance agreements need to be signed by an appropriate team member within the Federal Entity.
+    - When staging the document for signatures, please note:
+        - Remember to send the document to the team member's *personal* email address
+        - Select the `assign signature order` option in DocuSign to ensure the team member signs the document first
+        - All US (Inc.) severance agreements should be signed by Karen Iacobucci, VP, People Operations & Technology. If Karen is unavailable then Robert Allen, CPO will be responsible for signing.
+        - US (Federal LLC.) severance agreements need to be signed by an appropriate team member within the Federal Entity.
 1. **TMR**: When the signed document is received, the TMR should upload it to the team member's Workday Profile in the documents tab.
 1. **TMR**: As a final step, the TMR specialist will email the appropriate `uspayroll@gitlab` or `nonuspayroll@gitlab` and total rewards that the final severance agreement has been uploaded to the team members Workday Profile in the documents tab.
 
-_Important Notes:_
+*Important Notes:*
 
 - Separation pay is not paid until the ex-team member signs the document and the revocation period has passed.
 - We treat team members equally and therefore do not take tenure into consideration when determining separation pay unless legally required. We know that other companies sometimes gives higher separation pay to longer tenure. We think that a short tenure can be harder to explain to a next employer and with a shorter tenure you might have less stock option upside, maybe you have not even reached your vesting cliff.
@@ -249,7 +246,7 @@ Our goals in communicating offboardings is transparency, and to provide an oppor
 
 ### Voluntary Terminations
 
-1. We ask that all voluntary offboardings are announced in the appropriate team channels for stakeholder transparency and awareness.
+1. We ask that all voluntary offboardings are announced in the appropriate team channels for stakeholder transparency and awareness. 
 1. Team members and managers have the discretion to determine who shares the news of the team member's offboarding (I.E. team member or manager). Regardless of who shares, it is required that team members review offboarding messaging with their managers prior to sharing.
 
 Depending on the team members' role, timing of communication may vary (e.g. direct team, key stakeholders, etc.), and managers have discretion to determine who should be informed most immediately. The typical order followed for communicating departures is:
@@ -305,7 +302,7 @@ Managers should consider posting the message in their departmental channels as a
 ### What Do We Share?
 
 ```text
-I want to share that [team member's name] ([group] [role]) will be leaving GitLab, and [his/her/their] last day is (date of their last day). I would like to take this opportunity to thank (team member's name) for their contributions and wish them all the best for the future. If you have questions about tasks or projects that need to be picked up, please let me know. If you have questions or concerns, please bring them up with your manager.
+I want to share that [team member's name] ([group] [role]) will be leaving GitLab, and [his/her/their] last day is (date of their last day). I would like to take this opportunity to thank (team member's name) for their contributions and wish them all the best for the future. If you have questions about tasks or projects that need to be picked up, please let me know. If you have questions or concerns, please bring them up with your manager. 
 ```
 
 In some instances there will be no further clarification on why a team member has departed, if there are concerns you can address those with your manager.
@@ -325,7 +322,7 @@ To track all tool deprovisioning, please open an offboarding issue following the
 
 As part of offboarding, any GitLab property valued above 1,000 USD needs to be returned to GitLab.
 
-For laptops, please check and refer to the [Laptop Buyback Policy](/handbook/eta/corporate-it/end-user-services/laptop-management/laptop-offboarding-returns/#laptop-buybacks) which states that team members _may_, at GitLab's discretion, have the option to keep or buy back their existing laptops either when it gets refreshed for a new one, or when the team member is offboarding. However, the option to purchase or keep a laptop at no cost may be voided where the team member is involved in cases of investigation, misconduct, termination for cause of any violation of [GitLab's Code of Business Conduct & Ethics](https://ir.gitlab.com/governance/governance-documents/default.aspx), or other legal or security related inquiries.
+For laptops, please check and refer to the [Laptop Buyback Policy](/handbook/eta/corporate-it/end-user-services/laptop-management/laptop-offboarding-returns/#laptop-buybacks) which states that team members *may*, at GitLab's discretion, have the option to keep or buy back their existing laptops either when it gets refreshed for a new one, or when the team member is offboarding.  However, the option to purchase or keep a laptop at no cost may be voided where the team member is involved in cases of investigation, misconduct, termination for cause of any violation of [GitLab's Code of Business Conduct & Ethics](https://ir.gitlab.com/governance/governance-documents/default.aspx), or other legal or security related inquiries.
 
 To return your laptop to GitLab, please contact `gitlab-laptop-recovery@gitlab.com` immediately upon offboarding.
 
@@ -348,7 +345,7 @@ Within the Engineering division this is a **required process** because it causes
 
 1. How could this outcome have been avoided?
 1. Were there early signs that were missed?
-1. In retrospect, what questions should have been asked to bring awareness and ownership to performance issues e.g. _"How would you compare yourself relative to your peers"_? - people are surprisingly honest here.
+1. In retrospect, what questions should have been asked to bring awareness and ownership to performance issues e.g. *"How would you compare yourself relative to your peers"*? - people are surprisingly honest here.
 
 ## Unemployment Claims
 

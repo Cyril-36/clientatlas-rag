@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Growth and Development Fund
 description: A description of programs and resources for team members to access when using the G&D Fund.
 ---
@@ -238,5 +237,5 @@ Yes. If an opportunity spans more than one year, costs can be distributed across
 
 ## Links and resources
 
-- [Submit a new G&D request in HelpLab]
+- Submit a new G&D request in HelpLab
 - [Tax Impacts of Different Growth & Development Benefits](/handbook/people-group/learning-and-development/growth-and-development/tax/)

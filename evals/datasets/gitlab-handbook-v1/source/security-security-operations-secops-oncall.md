@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Security Operations On-Call Guide"
 description: " "
 weight: 30
@@ -44,7 +43,7 @@ SIRT times are reflected in the [SIRT Handoffs](https://calendar.google.com/cale
 
 ### SIRT Written Handoff
 
-_Incident issues are the SSoT for any incident. Be sure to include any significant incident updates within the incident summaries._
+*Incident issues are the SSoT for any incident. Be sure to include any significant incident updates within the incident summaries.*
 
 SIRT is using the self-developed tool [Handogotchi](https://www.tines.com/library/stories/1208015/?name=manage-shift-turnover-with-handogotchi) for written handover summaries. Handogotchi reminds the SIRT engineer on call to update incidents and add additional information one hour before handoff time. It will automatically send links to active incidents half an hour before handoff times.
 
@@ -56,7 +55,7 @@ For all incidents, we highly encourage pausing after no longer than one hour to 
 
 SIRT uses warm handoffs to clarify written handoffs and avoid misunderstandings in complex situations. They should take no more than 15 minutes. One person per region is required (outgoing and incoming).
 
-The outgoing region prepares the handoff as described in the section above. The incoming region should familiarize themselves with the written handoff before attending the meeting. _Team members should be prepared for warm handoff meetings, so that the meetings will be efficient, with a focus on open questions and clarifications._
+The outgoing region prepares the handoff as described in the section above. The incoming region should familiarize themselves with the written handoff before attending the meeting. *Team members should be prepared for warm handoff meetings, so that the meetings will be efficient, with a focus on open questions and clarifications.*
 
 Because the incidents are well documented, there is no written agenda for warm handoffs. All significant discussion points that come up must be immediately documented and corrected in the incident issue.
 

@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Virtual Card Guide for Accounts Payable"
 description: "Virtual Card Guide for Accounts Payable"
 ---

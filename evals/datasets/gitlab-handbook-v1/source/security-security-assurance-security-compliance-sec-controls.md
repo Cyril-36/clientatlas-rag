@@ -7,14 +7,11 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "GitLab Security Compliance Controls"
 controlled_document: true
 tags:
-
-- security_policy
-- security_policy_caplscsi
-
+  - security_policy
+  - security_policy_caplscsi
 ---
 
 {{< label name="Visibility: Audit" color="#E24329" >}}
@@ -118,26 +115,26 @@ The GitLab Control Framework is maintained in our GRC solution, GAS (GitLab Assu
 
 Through our analysis of industry frameworks and compliance requirements, we created custom control domains that organize controls into logical families aligned with GitLab's security program structure and operational model.
 
-| Abbreviation | Domain                                                   | Description                                                                                                                                                              |
-| ------------ | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| AAM          | Audit & Accountability Management                        | Controls for logging, monitoring, and maintaining audit trails of system activities                                                                                      |
-| AIM          | Artificial Intelligence Management                       | Controls specific to AI system development, deployment, and governance                                                                                                   |
-| ASM          | Asset Management                                         | Controls for identifying, tracking, and managing organizational assets                                                                                                   |
-| BCA          | Backups, Contingency, and Availability Management        | Controls for business continuity, disaster recovery, and system availability                                                                                             |
-| CHM          | Change Management                                        | Controls for managing changes to systems, applications, and infrastructure                                                                                               |
-| CSR          | Customer Security Relationship Management                | Controls for customer communication, transparency, and security commitments                                                                                              |
-| DPM          | Data Protection Management                               | Controls for protecting data confidentiality, integrity, and privacy                                                                                                     |
-| EPM          | Endpoint Management                                      | Controls for securing end-user devices and workstations                                                                                                                  |
-| GPM          | Governance & Program Management                          | Controls for security governance, policies, and program oversight                                                                                                        |
-| IAM          | Identity, Authentication, and Access Management          | Controls for user identity, authentication mechanisms, and access control                                                                                                |
-| INC          | Incident Management                                      | Controls for detecting, responding to, and recovering from security incidents                                                                                            |
-| ISM          | Infrastructure Security Management                       | Controls for network, server, and foundational infrastructure security                                                                                                   |
-| PSM          | People Security Management                               | Controls for personnel security, training, and awareness                                                                                                                 |
-| PAS          | Product and Application Security Management              | Controls for security capabilities built into the GitLab product that are dogfooded to secure GitLab's own development, such as branch protection code security scanning |
-| SDL          | Software Development & Acquisition Life Cycle Management | Controls for secure SDLC practices and third-party software acquisition                                                                                                  |
-| SRM          | Security Risk Management                                 | Controls for risk assessment, treatment, and management                                                                                                                  |
-| TPR          | Third Party Risk Management                              | Controls for managing security risks from vendors and suppliers                                                                                                          |
-| TVM          | Threat & Vulnerability Management                        | Controls for identifying and remediating security vulnerabilities                                                                                                        |
+| Abbreviation | Domain | Description |
+|--------------|--------|-------------|
+| AAM | Audit & Accountability Management | Controls for logging, monitoring, and maintaining audit trails of system activities |
+| AIM | Artificial Intelligence Management | Controls specific to AI system development, deployment, and governance |
+| ASM | Asset Management | Controls for identifying, tracking, and managing organizational assets |
+| BCA | Backups, Contingency, and Availability Management | Controls for business continuity, disaster recovery, and system availability |
+| CHM | Change Management | Controls for managing changes to systems, applications, and infrastructure |
+| CSR | Customer Security Relationship Management | Controls for customer communication, transparency, and security commitments |
+| DPM | Data Protection Management | Controls for protecting data confidentiality, integrity, and privacy |
+| EPM | Endpoint Management | Controls for securing end-user devices and workstations |
+| GPM | Governance & Program Management | Controls for security governance, policies, and program oversight |
+| IAM | Identity, Authentication, and Access Management | Controls for user identity, authentication mechanisms, and access control |
+| INC | Incident Management | Controls for detecting, responding to, and recovering from security incidents |
+| ISM | Infrastructure Security Management | Controls for network, server, and foundational infrastructure security |
+| PSM | People Security Management | Controls for personnel security, training, and awareness |
+| PAS | Product and Application Security Management | Controls for security capabilities built into the GitLab product that are dogfooded to secure GitLab's own development, such as branch protection code security scanning |
+| SDL | Software Development & Acquisition Life Cycle Management | Controls for secure SDLC practices and third-party software acquisition |
+| SRM | Security Risk Management | Controls for risk assessment, treatment, and management |
+| TPR | Third Party Risk Management | Controls for managing security risks from vendors and suppliers |
+| TVM | Threat & Vulnerability Management | Controls for identifying and remediating security vulnerabilities |
 
 #### GCF Control Fields
 
@@ -154,7 +151,6 @@ The GCF tracks the following fields for each control to provide context, enable 
   - **Level 1:** `[Domain]-[Number]` (Example: IAM-4)
   - **Level 2:** `[Domain]-[Number]-[Environment]` (Example: IAM-4-GitLab.com, IAM-4-Dedicated, IAM-4-Entity)
   - **Level 3:** `[Domain]-[Number]-[Environment]-[Asset]` (Example: IAM-4-GitLab.com-GCP, IAM-4-Entity-Okta)
-
 - Enables consistent tracking and referencing across the control hierarchy
 
 GitLab operates multiple product deployments (GitLab.com on GCP, GitLab Dedicated on AWS), and compliance requirements are typically scoped by product offering. The environment component in the Control ID differentiates between product-specific and organization-wide controls based on where customer data is maintained and managed. The asset component identifies the specific systems that comprise the product.
@@ -219,9 +215,9 @@ Note: "RBCT" is also used as an "environment" to help differentiate controls tha
 - Helps prioritize control testing and resource allocation based on risk and compliance drivers
 - Values:
 
-| Value      | Description                                                                                                                                                     |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `External` | Control is in-scope for external certifications and attestations                                                                                                |
+| Value | Description |
+|-------|-------------|
+| `External` | Control is in-scope for external certifications and attestations |
 | `Internal` | Control is risk-driven, either system-specific (based on data sensitivity or criticality) or addresses risks identified through organizational risk assessments |
 
 Internal control risk factors are defined through:
@@ -241,11 +237,11 @@ Internal control risk factors are defined through:
 - Describes how the control operates in practice
 - Values:
 
-| Value            | Description                                                   |
-| ---------------- | ------------------------------------------------------------- |
-| `Manual`         | Control is executed manually without automation               |
-| `Semi-Automated` | Control execution combines automated and manual activities    |
-| `Automated`      | Control is executed automatically without manual intervention |
+| Value | Description |
+|-------|-------------|
+| `Manual` | Control is executed manually without automation |
+| `Semi-Automated` | Control execution combines automated and manual activities |
+| `Automated` | Control is executed automatically without manual intervention |
 
 **Type**
 
@@ -253,14 +249,14 @@ Internal control risk factors are defined through:
 - Defines the control's role in the overall security program
 - Values:
 
-| Value            | Description                                                                         |
-| ---------------- | ----------------------------------------------------------------------------------- |
-| `Preventative`   | Control prevents security event or policy violations from occurring                 |
-| `Detective`      | Control detects security event, policy violations, or anomalies after they occur    |
-| `Corrective`     | Control corrects or remediates event identified through detective controls          |
-| `Recovery`       | Control restores systems or data to normal operations after an event                |
-| `Administrative` | Control consists of policies, procedures, or management activities                  |
-| `Compensating`   | Control provides alternative protection when primary controls cannot be implemented |
+| Value | Description |
+|-------|-------------|
+| `Preventative` | Control prevents security event or policy violations from occurring |
+| `Detective` | Control detects security event, policy violations, or anomalies after they occur |
+| `Corrective` | Control corrects or remediates event identified through detective controls |
+| `Recovery` | Control restores systems or data to normal operations after an event |
+| `Administrative` | Control consists of policies, procedures, or management activities |
+| `Compensating` | Control provides alternative protection when primary controls cannot be implemented |
 
 **Category**
 
@@ -268,15 +264,15 @@ Internal control risk factors are defined through:
 - - Enables identification of where a control applies: organization-wide, product-specific (GitLab.com or Dedicated), infrastructure-level, repository-level, etc.
 - Values:
 
-| Value                        | Description                                                                                                                   | Examples                                                                                                                                              |
-| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ELC - Administrative`       | Organization-wide policies, procedures, and administrative controls                                                           | Security policies, risk assessment processes, training programs, governance frameworks                                                                |
-| `ELC - Technical`            | Enterprise-wide technical controls deployed across all systems                                                                | SIEM/centralized logging & monitoring, enterprise antivirus, endpoint security agents                                                                 |
-| `SaaS - Administrative`      | Administrative controls for service delivery operations, where processes or ownership differ between GitLab.com and Dedicated | Customer data handling procedures, SLA management, service status notifications                                                                       |
-| `Technical - Asset`          | Foundational IT general controls that apply across multiple systems and contexts                                              | Access provisioning and deprovisioning, privileged access management, change management procedures, segregation of duties                             |
-| `Technical - Infrastructure` | Controls for network, servers, and foundational infrastructure                                                                | Firewalls, load balancers, network segmentation, time synchronization                                                                                 |
-| `Technical - Project/Repo`   | Controls within code repositories and development projects                                                                    | Branch protection rules, merge request approvals, code scanning                                                                                       |
-| `Technical - SaaS`           | Technical controls specific to delivery of GitLab.com or GitLab Dedicated services                                            | Multi-tenancy isolation, platform availability monitoring, backup replication, customer data segregation, GitLab.com-specific security configurations |
+| Value | Description | Examples |
+|-------|-------------|----------|
+| `ELC - Administrative` | Organization-wide policies, procedures, and administrative controls | Security policies, risk assessment processes, training programs, governance frameworks |
+| `ELC - Technical` | Enterprise-wide technical controls deployed across all systems | SIEM/centralized logging & monitoring, enterprise antivirus, endpoint security agents |
+| `SaaS - Administrative` | Administrative controls for service delivery operations, where processes or ownership differ between GitLab.com and Dedicated | Customer data handling procedures, SLA management, service status notifications |
+| `Technical - Asset` | Foundational IT general controls that apply across multiple systems and contexts | Access provisioning and deprovisioning, privileged access management, change management procedures, segregation of duties |
+| `Technical - Infrastructure` | Controls for network, servers, and foundational infrastructure | Firewalls, load balancers, network segmentation, time synchronization |
+| `Technical - Project/Repo` | Controls within code repositories and development projects | Branch protection rules, merge request approvals, code scanning |
+| `Technical - SaaS` | Technical controls specific to delivery of GitLab.com or GitLab Dedicated services | Multi-tenancy isolation, platform availability monitoring, backup replication, customer data segregation, GitLab.com-specific security configurations |
 
 **GitLab Platform**
 
@@ -291,11 +287,11 @@ Internal control risk factors are defined through:
 - Defines the control's position in the hierarchy from broad policy to specific implementation
 - Values:
 
-| Level     | Description                                                                                                                                                                             | Example                                                                                              |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `Level 1` | Single common control applied across the entire organization                                                                                                                            | Administrative access requires approval and is granted based on least privilege                      |
-| `Level 2` | Shared process that implements the control for entity-level operations or for a product offering (GitLab.com, Dedicated); all Level 2 controls are in-scope for external certifications | Admin access workflow for production infrastructure supporting GitLab.com                            |
-| `Level 3` | Most granular implementation of the control for a specific asset or component (multiple Level 3 controls can exist for each Level 2)                                                    | Admin access to PostgreSQL database; Admin access to Redis cache; Admin access to Kubernetes cluster |
+| Level     | Description | Example |
+|-----------|-------------|---------------------|
+| `Level 1` | Single common control applied across the entire organization | Administrative access requires approval and is granted based on least privilege |
+| `Level 2` | Shared process that implements the control for entity-level operations or for a product offering (GitLab.com, Dedicated); all Level 2 controls are in-scope for external certifications | Admin access workflow for production infrastructure supporting GitLab.com |
+| `Level 3` | Most granular implementation of the control for a specific asset or component (multiple Level 3 controls can exist for each Level 2) | Admin access to PostgreSQL database; Admin access to Redis cache; Admin access to Kubernetes cluster |
 
 <details>
 <summary><i>How Control Levels Work (click to expand)</i></summary>
@@ -357,14 +353,12 @@ graph TD
 - **Level 1 (1 control):** Organizational policy - defines WHAT must be done
 
   - Example: IAM-4 - "Administrator access is granted based on job roles and responsibilities and limited authorized personnel."
-
 - **Level 2 (Few controls):** Product/environment implementation - defines HOW it's done per offering
 
   - Example: IAM-4-GitLab.com - "Shared admin access process for systems supporting GitLab.com"
   - Example: IAM-4-Dedicated - "Shared admin access process for systems supporting Dedicated"
   - Example: IAM-4-Entity - "Shared admin access process for entity-level systems"
   - Note: All entity-level controls (ELC) are Level 2 controls
-
 - **Level 3 (Many controls):** Asset-specific configuration - WHERE it's actually enforced
 
   - Example: IAM-4-GitLab.com-GCP - "Admin access for GCP"
@@ -398,11 +392,11 @@ graph TD
 - Indicates automation maturity for continuous control monitoring (manual effort involved with testing)
 - Values:
 
-| Value             | Description                                                                      |
-| ----------------- | -------------------------------------------------------------------------------- |
-| `Manual`          | Control testing is performed manually without automation tools                   |
-| `Semi-Automated`  | Some aspects of control testing are automated while others require manual effort |
-| `Fully Automated` | Control testing is completely automated with no manual intervention required     |
+| Value | Description |
+|-------|-------------|
+| `Manual` | Control testing is performed manually without automation tools |
+| `Semi-Automated` | Some aspects of control testing are automated while others require manual effort |
+| `Fully Automated` | Control testing is completely automated with no manual intervention required |
 
 **Evidence Automation**
 
@@ -410,11 +404,11 @@ graph TD
 - Indicates automation maturity for audit evidence collection
 - Values:
 
-| Value             | Description                                                                          |
-| ----------------- | ------------------------------------------------------------------------------------ |
-| `Manual`          | Evidence collection is performed manually without automation tools                   |
-| `Semi-Automated`  | Some aspects of evidence collection are automated while others require manual effort |
-| `Fully Automated` | Evidence collection is completely automated with no manual intervention required     |
+| Value | Description |
+|-------|-------------|
+| `Manual` | Evidence collection is performed manually without automation tools |
+| `Semi-Automated` | Some aspects of evidence collection are automated while others require manual effort |
+| `Fully Automated` | Evidence collection is completely automated with no manual intervention required |
 
 **Assessment Frequency**
 
@@ -423,13 +417,13 @@ graph TD
 - Establishes continuous monitoring schedule based on control risk
 - Values:
 
-| Value       | Description                            | Typical Use Case                                                                |
-| ----------- | -------------------------------------- | ------------------------------------------------------------------------------- |
-| `3 Years`   | Control assessed every three years     | Low-risk controls such as policy-level controls or controls with minimal change |
-| `2 Years`   | Control assessed every two years       | Moderate-risk controls or controls with infrequent changes                      |
-| `Annually`  | Control assessed once per year         | Standard frequency for most controls                                            |
-| `Quarterly` | Control assessed every quarter         | High-risk controls or controls supporting critical systems                      |
-| `Ad-hoc`    | Control assessed on an as-needed basis | Event-driven controls or controls tested in response to incidents or changes    |
+| Value | Description | Typical Use Case |
+|-------|-------------|------------------|
+| `3 Years` | Control assessed every three years | Low-risk controls such as policy-level controls or controls with minimal change |
+| `2 Years` | Control assessed every two years | Moderate-risk controls or controls with infrequent changes |
+| `Annually` | Control assessed once per year | Standard frequency for most controls |
+| `Quarterly` | Control assessed every quarter | High-risk controls or controls supporting critical systems |
+| `Ad-hoc` | Control assessed on an as-needed basis | Event-driven controls or controls tested in response to incidents or changes |
 
 </details>
 

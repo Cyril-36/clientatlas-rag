@@ -7,14 +7,13 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Career Development and Mobility
 description: "Resources and direction for career development and mobility for all GitLab team members"
 ---
 
 ## What is Career Development
 
-Career development is the non-linear, lifelong growth process integrating learning, work, leisure, and change. It happens in all directions, including subject matter expertise, lateral growth to new teams, and linear growth through a job family. Use the recources on this page to navigate your career growth at GitLab.
+Career development is the non-linear, lifelong growth process integrating learning, work, leisure, and change. It happens in all directions, including subject matter expertise, lateral growth to new teams, and linear growth through a job family. Use the resources on this page to navigate your career growth at GitLab.
 
 ![infographic with examples of career growth at gitlab](/images/people-group/learning-and-development/career-development/non-linear.png)
 
@@ -58,8 +57,6 @@ Navigate to career development resources located throughout the GitLab handbook:
   <div>
     <a href="/handbook/people-group/learning-and-development/elevate-programs/" class="btn btn-primary" style="margin:5px;">Elevate</a>
     <a href="https://levelup.csod.com/ui/lms-learning-details/app/course/9ca2cbac-f6cb-4dd2-9462-94c899f64b7d" class="btn btn-primary" style="margin:5px;">Support your Team with Career Conversations Course</a>
-    <a href="https://gitlab.com/gitlab-com/www-gitlab-com/-/issues/13409" class="btn btn-primary" style="margin:5px;">Manager M Groups</a>
-    <a href="https://gitlab.com/gitlab-com/www-gitlab-com/-/issues/13409" class="btn btn-primary" style="margin:5px;">Manager M-Team Groups</a>
   </div>
 </div>
 
@@ -77,18 +74,18 @@ Navigate to career development resources located throughout the GitLab handbook:
 
 ## Roles and Responsibilities
 
-| Role                | Responsibilities                                                                                                                                                                                                                     |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Team Member Owned   | - Take charge of your own development and career<br/> - Close the skill gap for current and future positions <br/> - Seize development and stretch opportunities <br/> - Remember there are no promises or guarantees of a promotion |
-| Manager Facilitated | - Take time with team members to discuss their career aspirations <br/> - Listen and provide feedback, ideas and contacts <br/> - Make choices to support their development                                                          |
-| GitLab Supported    | - Communicate future direction and skills requirements <br/> - Provide information and tools when applicable <br/> - Communicate internal opportunities                                                                              |
+| Role | Responsibilities |
+| -------- | --------------- |
+| Team Member Owned | - Take charge of your own development and career<br/> - Close the skill gap for current and future positions <br/> - Seize development and stretch opportunities <br/> - Remember there are no promises or guarantees of a promotion |
+| Manager Facilitated| - Take time with team members to discuss their career aspirations <br/> - Listen and provide feedback, ideas and contacts <br/> - Make choices to support their development |
+| GitLab Supported | - Communicate future direction and skills requirements <br/> - Provide information and tools when applicable <br/> - Communicate internal opportunities |
 
 ### 70-20-10 Rule for Development
 
 <div style="width: 100%;"><div style="position: relative; padding-bottom: 75.93%; padding-top: 0; height: 0;"><iframe frameborder="0" width="400" height="350" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://view.genially.com/62fd2aa9021efd0018b7c8eb" type="text/html" allowscriptaccess="always" allowfullscreen="true" scrolling="yes" allownetworking="all"></iframe> </div> </div>
 
-1. 70% of your development should come from on-the-job and action learning. This can include development experiences like managing a project, serving on a cross-functional team, taking on a new task, job shadowing, job rotation, etc.
-1. 20% of your development should come from interactions with others. This includes having a mentor, being a mentor, coaching, participating in communities of practice, providing and receiving feedback, serving as a leader in your organization, etc.
+1. 70% of your development should come from on-the-job and action learning.  This can include development experiences like managing a project, serving on a cross-functional team, taking on a new task, job shadowing, job rotation, etc.
+1. 20% of your development should come from interactions with others.  This includes having a mentor, being a mentor, coaching, participating in communities of practice, providing and receiving feedback, serving as a leader in your organization, etc.
 1. 10% of your development should come from training, including classes, seminars, webinars, podcasts, reading, conferences, etc. GitLab offers a [growth and development fund](/handbook/people-group/learning-and-development/growth-and-development/) to help with this.
 
 ### Career Development versus Career Mobility
@@ -97,10 +94,10 @@ GitLab team members should not feel pressure to climb the career ladder. Skill d
 
 You are encouraged to learn and develop skills without pressure to in turn seek promotion. Team members will not be thought less of or penalized if they don't view promotion as a success measure. If you feel you are not being supported in this way, please reach out to People Operations or your People Business Partner.
 
-| Topic       | Definition                                                                                                                                                                               | Examples                                                                                                                                                        |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Development | Choosing and building a career path that accelerates professional growth.                                                                                                                | Learn new skills, complete a course, be a mentee.                                                                                                               |
-| Mobility    | Career mobility involves both lateral (promotions) and horizontal (transfers) movement along a career path. Mobility involves applying experience and skills as leverage for a new role. | Mentor to learn leadership skills with the intention of applying for a manager role; Complete a job shadow or internship and upskill to transfer to a new team. |
+| Topic | Definition | Examples |
+| ----- | ----- | ----- |
+| Development | Choosing and building a career path that accelerates professional growth. | Learn new skills, complete a course, be a mentee. |
+| Mobility | Career mobility involves both lateral (promotions) and horizontal (transfers) movement along a career path. Mobility involves applying experience and skills as leverage for a new role. | Mentor to learn leadership skills with the intention of applying for a manager role; Complete a job shadow or internship and upskill to transfer to a new team. |
 
 ## Document your Career Development
 
@@ -165,14 +162,14 @@ Epics are a great way to [transparently](/handbook/values/#transparency) and [ef
 
 ### CREDIT and Career Conversations
 
-| Value                               | Career Conversations Application                                                      |
-| ----------------------------------- | ------------------------------------------------------------------------------------- |
-| Collaboration                       | Growth is led by individuals and supported by managers.                               |
-| Results for Customers               | Growth increases engagement with work which drives greater results.                   |
-| Efficiency                          | Growth happens in the flow of work.                                                   |
-| Diversity, Inclusion, and Belonging | Our experiences influence career motivations and the support we need.                 |
-| Iteration                           | Motivation changes and promotes growth that is meaningful, interesting, and relevant. |
-| Transparency                        | Trust enables vulnerability and support in reaching true career goals.                |
+| Value | Career Conversations Application |
+| ----- | --------------- |
+| Collaboration | Growth is led by individuals and supported by managers.  |
+| Results for Customers | Growth increases engagement with work which drives greater results. |
+| Efficiency | Growth happens in the flow of work. |
+| Diversity, Inclusion, and Belonging | Our experiences influence career motivations and the support we need. |
+| Iteration | Motivation changes and promotes growth that is meaningful, interesting, and relevant. |
+| Transparency | Trust enables vulnerability and support in reaching true career goals. |
 
 ### Having Career Development Conversations with your Team
 
@@ -180,16 +177,16 @@ Take the [Support your team with Career Conversations course in Level Up](https:
 
 #### Manager responsibilities
 
-| During career conversations, managers: | Description                                                                                                 |
-| -------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Listen                                 | Understand career goals and unique challenges your team faces.                                              |
-| Are aware of bias                      | Recognize the power dynamic and unconscious bias that could be present.                                     |
-| Ask questions                          | Challenge and encourage your team to think critically about their career motivations and learning goals.    |
-| Surface resources                      | Share what you know, including internal and external resources, network connections, and suggested actions. |
-| Suggest iterations                     | Encourage reassessment of goals and adjustments as needed.                                                  |
-| Set expectations                       | Decide together the date of your next career conversations and the outcomes to achieve by that date.        |
+| During career conversations, managers: | Description |
+| ----- | ---------- |
+| Listen | Understand career goals and unique challenges your team faces. |
+| Are aware of bias | Recognize the power dynamic and unconscious bias that could be present. |
+| Ask questions | Challenge and encourage your team to think critically about their career motivations and learning goals. |
+| Surface resources | Share what you know, including internal and external resources, network connections, and suggested actions. |
+| Suggest iterations | Encourage reassessment of goals and adjustments as needed. |
+| Set expectations | Decide together the date of your next career conversations and the outcomes to achieve by that date. |
 
-#### Recomendations for Managers to support the learning of team members
+#### Recommendations for Managers to support the learning of team members
 
 Managers should support their direct reports with their professional development goals. Implement the following into a [1-1](/handbook/leadership/1-1/), team meeting, or async communication to support your team.
 
@@ -206,20 +203,20 @@ Managers should support their direct reports with their professional development
 1. How can you leverage your current skills and talents for your future aspirations?
 1. What skills or talents are missing to qualify you for your future aspirations?
 1. Does your feedback from others tell you anything about how feasible your aspirations are?
-1. Do you currently have the skills and talents needed for the future business needs? If not what can you do now to get ready?
+1. Do you currently have the skills and talents needed for the future business needs?  If not what can you do now to get ready?
 
 ### Inclusive Growth
 
 It's critical to understand how the diverse experiences and perspectives of individuals influence their approach to career growth. Without the right support, behaviors by team members [from underrepresented groups](/handbook/company/culture/inclusion/#examples-of-select-underrepresented-groups) might influence their growth. Consider how the following might influence growth on your team
 
-| Behavior                  | Example                                                                                                                                                                       |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Raised Hands              | Who opts in? Who doesn't? Who's your go to person for stretch projects? Lack of opting in might be influenced by imposter syndrome, not a lack of interest.                   |
-| Starting the Conversation | Who already set up career conversations with you? Who hasn't? Like opting in, this could indicate different expectations of growth rather than disinterest.                   |
-| Stretch Projects          | Share equitably across your team. Be aware of who got the last opportunity. Ask open and honestly about everyone's interests and capacity before allocating stretch projects. |
-| Beyond Work               | Consider the jobs we have outside of work. These responsibilities might influence our career growth but do not have to limit it.                                              |
-| Cultural                  | Career growth expectations vary around the world. Ask your team individually about their expectations rather than making assumptions based on your experience.                |
-| Bias                      | Biases that might especially be prevalent in career conversations could include past roles and companies, performance, and authority.                                         |
+| Behavior | Example |
+| ----- | --------------- |
+| Raised Hands | Who opts in? Who doesn't? Who's your go to person for stretch projects? Lack of opting in might be influenced by imposter syndrome, not a lack of interest. |
+| Starting the Conversation | Who already set up career conversations with you? Who hasn't? Like opting in, this could indicate different expectations of growth rather than disinterest. |
+| Stretch Projects | Share equitably across your team. Be aware of who got the last opportunity. Ask open and honestly about everyone's interests and capacity before allocating stretch projects. |
+| Beyond Work | Consider the jobs we have outside of work. These responsibilities might influence our career growth but do not have to limit it. |
+| Cultural|  Career growth expectations vary around the world. Ask your team individually about their expectations rather than making assumptions based on your experience. |
+| Bias | Biases that might especially be prevalent in career conversations could include past roles and companies, performance, and authority. |
 
 #### Career Mapping and Development {#career-mapping-and-development}
 

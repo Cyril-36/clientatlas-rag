@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Trials Ownership and Collaboration Framework
 description: "Conceptual ownership model and decision framework for trials work across Growth and Fulfillment/Monetization"
 ---
@@ -16,28 +15,28 @@ description: "Conceptual ownership model and decision framework for trials work 
 
 This page defines **who owns what** for trials work at GitLab, and how the teams involved collaborate. It covers both the conceptual ownership model (which team is accountable for which part of the trial experience) and the practical decision framework for contributing to shared codebases such as CustomersDot.
 
-Trials have always spanned multiple codebases (GitLab and CustomersDot) and serve multiple customer states (new prospects and existing paid customers). What has shifted over the years is _which team owns which part_, and for periods that sat clearly enough within a single team that a written model was unnecessary. That is no longer the case: ownership is split across Growth and Fulfillment/Monetization, and the trial codebase is being centralized under Fulfillment/Monetization so that all trial types — new and existing — live under one roof. This page makes those lines explicit.
+Trials have always spanned multiple codebases (GitLab and CustomersDot) and serve multiple customer states (new prospects and existing paid customers). What has shifted over the years is *which team owns which part*, and for periods that sat clearly enough within a single team that a written model was unnecessary. That is no longer the case: ownership is split across Growth and Fulfillment/Monetization, and the trial codebase is being centralized under Fulfillment/Monetization so that all trial types — new and existing — live under one roof. This page makes those lines explicit.
 
 This framework builds on the initiative to enable Growth's independence for trials work in CustomersDot (see [Epic #20063](https://gitlab.com/groups/gitlab-org/-/epics/20063)). The goal is to let Growth move quickly on the trial entry points it owns while Fulfillment/Monetization owns and sustains the underlying trial codebase, billing, and provisioning infrastructure.
 
 ## Conceptual Ownership Model
 
-Ownership is split along **what a team is accountable for**, not along a single repository. Two dimensions determine ownership: the _layer_ of the trial experience (entry point vs. codebase) and the _customer state_ (new prospect vs. existing paid customer).
+Ownership is split along **what a team is accountable for**, not along a single repository. Two dimensions determine ownership: the *layer* of the trial experience (entry point vs. codebase) and the *customer state* (new prospect vs. existing paid customer).
 
 ### Core principle: entry points vs. codebase
 
-| Area                   | Owner                      | What this includes                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| ---------------------- | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Trial entry points** | Growth                     | The surfaces that get a user _into_ a trial. In GitLab (the application): registration and trial sign-up flows, lead capture, in-product trial CTAs and upgrade prompts, trial-related experiments, onboarding, and the messaging around starting a trial. In CustomersDot: the **trial entry endpoint and its basic controller wiring** — the thin layer that receives a trial request and hands it off to the underlying trial systems. |
-| **Trial codebase**     | Fulfillment / Monetization | Everything deeper than the entry layer that _runs_ a trial once started: trial creation, entitlement, trial state and lifecycle, provisioning, billing integration, and the shared CustomersDot services and data that back all trial types.                                                                                                                                                                                              |
+| Area | Owner | What this includes |
+| --- | --- | --- |
+| **Trial entry points** | Growth | The surfaces that get a user *into* a trial. In GitLab (the application): registration and trial sign-up flows, lead capture, in-product trial CTAs and upgrade prompts, trial-related experiments, onboarding, and the messaging around starting a trial. In CustomersDot: the **trial entry endpoint and its basic controller wiring** — the thin layer that receives a trial request and hands it off to the underlying trial systems. |
+| **Trial codebase** | Fulfillment / Monetization | Everything deeper than the entry layer that *runs* a trial once started: trial creation, entitlement, trial state and lifecycle, provisioning, billing integration, and the shared CustomersDot services and data that back all trial types. |
 
 Growth is accountable for **turning interest into started trials**, including the thin CustomersDot entry layer that initiates a trial. Fulfillment/Monetization is accountable for **the trial actually working** once it has begun — the provisioning, entitlement, billing, and lifecycle systems behind the entry point — and for the long-term health of that code.
 
 The dividing line within CustomersDot is depth: Growth owns the trial **entry endpoint and basic controller**; the moment the request crosses into trial creation, provisioning, entitlement, billing, or shared services, it is Fulfillment/Monetization's. When in doubt about which side of that line a change sits on, use the [decision framework](#decision-framework) below.
 
-This ownership split applies to _building_ the entry layer. **Operational support, incidents, and on-call for all of CustomersDot — including the thin entry layer Growth may build or modify — remain with Fulfillment/Monetization** (see [Engineering excellence and sustaining ownership](#engineering-excellence-and-sustaining-ownership)).
+This ownership split applies to *building* the entry layer. **Operational support, incidents, and on-call for all of CustomersDot — including the thin entry layer Growth may build or modify — remain with Fulfillment/Monetization** (see [Engineering excellence and sustaining ownership](#engineering-excellence-and-sustaining-ownership)).
 
-Centralizing the deeper trial codebase under Fulfillment/Monetization means a single team owns the _implementation_ of all trial types — new prospect trials, paid-customer add-on/expansion trials, and any future trial variants — rather than spreading that ownership across teams. Trial _entitlements_ specifically fall under Fulfillment's Entitlements area, which supports entitlements for all trials.
+Centralizing the deeper trial codebase under Fulfillment/Monetization means a single team owns the *implementation* of all trial types — new prospect trials, paid-customer add-on/expansion trials, and any future trial variants — rather than spreading that ownership across teams. Trial *entitlements* specifically fall under Fulfillment's Entitlements area, which supports entitlements for all trials.
 
 ### Customer state: new prospect vs. existing paid customer
 
@@ -65,17 +64,17 @@ Practically:
 
 ### Trial request lifecycle: who owns each hop
 
-The clearest way to apply the model is to trace a trial request end to end. Ownership follows the **function** of each step (initiating the trial vs. fulfilling it), **not the repository the code lives in**. A useful tell: an outbound call _from GitLab to CustomersDot to start a trial_ is a Growth entry point, while an inbound call _from CustomersDot back into GitLab to provision the result_ is Fulfillment/Monetization, even though that provisioning code executes inside GitLab.
+The clearest way to apply the model is to trace a trial request end to end. Ownership follows the **function** of each step (initiating the trial vs. fulfilling it), **not the repository the code lives in**. A useful tell: an outbound call *from GitLab to CustomersDot to start a trial* is a Growth entry point, while an inbound call *from CustomersDot back into GitLab to provision the result* is Fulfillment/Monetization, even though that provisioning code executes inside GitLab.
 
-| #   | Step in the trial flow                                                                                                                             | Where the code runs   | Owner                        |
-| --- | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- | ---------------------------- |
-| 1   | Trial UI/UX — the trial form, CTAs, upgrade prompts, onboarding                                                                                    | GitLab                | **Growth**                   |
-| 2   | Building and sending the trial submission from GitLab to CustomersDot                                                                              | GitLab                | **Growth**                   |
-| 3   | Receiving the submission at the CustomersDot trial entry endpoint and basic controller (create/modify the initial submission handling and routing) | CustomersDot          | **Growth**                   |
-| 4   | Trial creation, eligibility enforcement, entitlement granting, and provisioning logic behind the entry point                                       | CustomersDot          | **Fulfillment/Monetization** |
-| 5   | Billing, subscription, and lifecycle handling for the trial                                                                                        | CustomersDot          | **Fulfillment/Monetization** |
-| 6   | The provisioning that reaches back into GitLab to update the namespace, licensing, and plan/add-on state                                           | GitLab                | **Fulfillment/Monetization** |
-| 7   | Operability and support for the whole flow — monitoring, alerting, incidents, on-call (not including GitLab entry layer)                           | GitLab + CustomersDot | **Fulfillment/Monetization** |
+| # | Step in the trial flow | Where the code runs | Owner |
+| --- | --- | --- | --- |
+| 1 | Trial UI/UX — the trial form, CTAs, upgrade prompts, onboarding | GitLab | **Growth** |
+| 2 | Building and sending the trial submission from GitLab to CustomersDot | GitLab | **Growth** |
+| 3 | Receiving the submission at the CustomersDot trial entry endpoint and basic controller (create/modify the initial submission handling and routing) | CustomersDot | **Growth** |
+| 4 | Trial creation, eligibility enforcement, entitlement granting, and provisioning logic behind the entry point | CustomersDot | **Fulfillment/Monetization** |
+| 5 | Billing, subscription, and lifecycle handling for the trial | CustomersDot | **Fulfillment/Monetization** |
+| 6 | The provisioning that reaches back into GitLab to update the namespace, licensing, and plan/add-on state | GitLab | **Fulfillment/Monetization** |
+| 7 | Operability and support for the whole flow — monitoring, alerting, incidents, on-call (not including GitLab entry layer) | GitLab + CustomersDot | **Fulfillment/Monetization** |
 
 In short: **Growth owns the UI/UX and the act of submitting a trial to CustomersDot (steps 1–3). Fulfillment/Monetization owns everything the submission triggers — creation, entitlement, billing, and the provisioning callback that updates the GitLab namespace/license (steps 4–6) — plus support for all of it (step 7).**
 
@@ -83,7 +82,7 @@ For end-to-end worked examples that combine the ownership call with the steps to
 
 ## Decision Framework
 
-The conceptual ownership model above defines _accountability_. This decision framework is its practical application for **contributing to shared codebases** (primarily CustomersDot): when Growth can contribute directly versus when it must engage Fulfillment/Monetization as the codebase owner. Even when Growth contributes directly, sustaining ownership of the merged code stays with Fulfillment/Monetization.
+The conceptual ownership model above defines *accountability*. This decision framework is its practical application for **contributing to shared codebases** (primarily CustomersDot): when Growth can contribute directly versus when it must engage Fulfillment/Monetization as the codebase owner. Even when Growth contributes directly, sustaining ownership of the merged code stays with Fulfillment/Monetization.
 
 ### Growth Contributes Independently
 
@@ -92,7 +91,7 @@ Growth team members can contribute directly for changes that are isolated to the
 **Examples of Growth-owned changes:**
 
 1. **Trial entry endpoint and basic controller**: Changes to the CustomersDot endpoint and basic controller that receive and route a trial request, as long as they do not change provisioning, entitlement, or billing behavior
-1. **Trial entry eligibility checks**: Entry-level gating of who can _start_ a trial (for example, domain restrictions, user attributes, or geographic limitations) at the entry point, distinct from how entitlements are granted downstream
+1. **Trial entry eligibility checks**: Entry-level gating of who can *start* a trial (for example, domain restrictions, user attributes, or geographic limitations) at the entry point, distinct from how entitlements are granted downstream
 1. **Trial UX and entry flow**: The trial sign-up flow, onboarding experience, and trial-to-paid conversion surfaces
 1. **Trial tracking and analytics**: Instrumentation, analytics events, or experiment tracking for trial entry and conversion behavior
 1. **Trial-entry messaging**: Copy, email templates, or in-app messaging related to starting a trial
@@ -235,14 +234,14 @@ These examples combine the **ownership call** (mapped to the [lifecycle steps](#
 
 These stay in Growth's domain because they're isolated to the entry layer and don't change provisioning, entitlement, or billing.
 
-**Trial duration or entry-eligibility experiment** — for example, testing a 30→60 day trial for a segment, or gating who can _start_ a trial by company size at the entry point.
+**Trial duration or entry-eligibility experiment** — for example, testing a 30→60 day trial for a segment, or gating who can *start* a trial by company size at the entry point.
 
-- **Owner:** Growth (steps 1–3). _Caveat:_ if a duration or eligibility rule must be **enforced during provisioning/entitlement**, that enforcement is step 4 → engage Fulfillment/Monetization. Eligibility that could affect sales/lead routing is a judgment call — consult first (see below).
+- **Owner:** Growth (steps 1–3). *Caveat:* if a duration or eligibility rule must be **enforced during provisioning/entitlement**, that enforcement is step 4 → engage Fulfillment/Monetization. Eligibility that could affect sales/lead routing is a judgment call — consult first (see below).
 - **What to do:** Create an issue with the experiment plan → implement the entry-layer change and analytics → post in [#s_fulfillment](https://gitlab.slack.com/channels/s_fulfillment) for awareness → request a Fulfillment/Monetization maintainer review for any CustomersDot change → deploy and monitor.
 
 **Add a field to the trial form and pass it to CustomersDot.**
 
-- **Owner:** Growth — GitLab UI + submission payload (steps 1–2) and the CustomersDot entry endpoint/controller that accepts it (step 3). If the field must _change how the trial is provisioned or entitled_, step 4 is involved → engage Fulfillment/Monetization.
+- **Owner:** Growth — GitLab UI + submission payload (steps 1–2) and the CustomersDot entry endpoint/controller that accepts it (step 3). If the field must *change how the trial is provisioned or entitled*, step 4 is involved → engage Fulfillment/Monetization.
 - **What to do:** Implement the form + submission change → extend the entry controller to accept the field → request maintainer review → if it influences provisioning, open a fulfillment-meta issue to coordinate step 4.
 
 **Add analytics/experiment tracking on trial start and conversion.**

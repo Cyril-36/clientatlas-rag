@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Composable GitLab Codebase"
 status: rejected
 creation-date: "2021-05-19"
@@ -116,7 +115,7 @@ Possible additional considerations to the disadvantages of Bounded Context:
 - The deep coupling can make it difficult to iterate and make minimal changes
 - Changes may have cascading effects that are difficult to isolate due to the vertical split
 
-## The Application Layers (*_horizontal_ split)
+## The Application Layers (**horizontal* split)
 
 While we continue leveraging **Bounded Contexts** in form of namespace separation that aids development and review process
 the **Application Layers** can provide a way to create a clean separation between different functional parts.
@@ -329,66 +328,66 @@ What was done?
 
 1. Introduce new Rails Engine for each application layer.
 
-   We created `engines` folder, which could contain different engines for each application layer we introduce in the future.
+    We created `engines` folder, which could contain different engines for each application layer we introduce in the future.
 
-   In the above PoCs we introduced the new Web Application Layer, located in `engines/web_engine` folder.
+    In the above PoCs we introduced the new Web Application Layer, located in `engines/web_engine` folder.
 
 1. Move all code and specs into `engines/web_engine/`
 
-   - We moved all GraphQL code and specs into `engines/web_engine/` without changing files itself
-   - We moved all Grape API and Controllers code into `engines/web_engine/` without changing files itself
+    - We moved all GraphQL code and specs into `engines/web_engine/` without changing files itself
+    - We moved all Grape API and Controllers code into `engines/web_engine/` without changing files itself
 
 1. Move gems to the `engines/web_engine/`
 
-   - We moved all GraphQL gems to the actual `web_engine` Gemfile
-   - We moved Grape API gem to the actual `web_engine` Gemfile
+    - We moved all GraphQL gems to the actual `web_engine` Gemfile
+    - We moved Grape API gem to the actual `web_engine` Gemfile
 
-   ```ruby
-   Gem::Specification.new do |spec|
-     spec.add_dependency 'apollo_upload_server'
-     spec.add_dependency 'graphql'
-     spec.add_dependency 'graphiql-rails'
+    ```ruby
+    Gem::Specification.new do |spec|
+      spec.add_dependency 'apollo_upload_server'
+      spec.add_dependency 'graphql'
+      spec.add_dependency 'graphiql-rails'
 
-     spec.add_dependency 'graphql-docs'
-     spec.add_dependency 'grape'
-   end
-   ```
+      spec.add_dependency 'graphql-docs'
+      spec.add_dependency 'grape'
+    end
+    ```
 
 1. Move routes to the `engines/web_engine/config/routes.rb` file
 
-   - We moved GraphQL routes to the `web_engine` routes.
-   - We moved API routes to the `web_engine` routes.
-   - We moved most of the controller routes to the `web_engine` routes.
+    - We moved GraphQL routes to the `web_engine` routes.
+    - We moved API routes to the `web_engine` routes.
+    - We moved most of the controller routes to the `web_engine` routes.
 
-   ```ruby
-   Rails.application.routes.draw do
-     post '/api/graphql', to: 'graphql#execute'
-     mount GraphiQL::Rails::Engine, at: '/-/graphql-explorer', graphql_path:
-     Gitlab::Utils.append_path(Gitlab.config.gitlab.relative_url_root, '/api/graphql')
+    ```ruby
+    Rails.application.routes.draw do
+      post '/api/graphql', to: 'graphql#execute'
+      mount GraphiQL::Rails::Engine, at: '/-/graphql-explorer', graphql_path:
+      Gitlab::Utils.append_path(Gitlab.config.gitlab.relative_url_root, '/api/graphql')
 
-     draw :api
+      draw :api
 
-     #...
-   end
-   ```
+      #...
+    end
+    ```
 
 1. Move initializers to the `engines/web_engine/config/initializers` folder
 
-   - We moved `graphql.rb` initializer to the `web_engine` initializers folder
-   - We moved `grape_patch.rb` and `graphe_validators` to the `web_engine` initializers folder
+    - We moved `graphql.rb` initializer to the `web_engine` initializers folder
+    - We moved `grape_patch.rb` and `graphe_validators` to the `web_engine` initializers folder
 
 1. Connect GitLab application with the WebEngine
 
-   In GitLab Gemfile.rb, add `web_engine` to the engines group
+    In GitLab Gemfile.rb, add `web_engine` to the engines group
 
-   ```ruby
-   # Gemfile
-   group :engines, :test do
-     gem 'web_engine', path: 'engines/web_engine'
-   end
-   ```
+    ```ruby
+    # Gemfile
+    group :engines, :test do
+      gem 'web_engine', path: 'engines/web_engine'
+    end
+    ```
 
-   Since the gem is inside :engines group, it is not automatically required by default.
+    Since the gem is inside :engines group, it is not automatically required by default.
 
 1. Configure GitLab when to load the engine.
 

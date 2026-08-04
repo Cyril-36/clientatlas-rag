@@ -7,14 +7,13 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Contracts, Background Screenings, Probation Periods & PIAA"
 description: "GitLab contract information and associated procedures."
 ---
 
 ## Contract Templates
 
-GitLab's Team Member contract templates are accessible (for reference) within GitLab only [(here)](https://internal.gitlab.com/handbook/people-group/people-operations/people-operations/employment_contracts/#employment-agreements). The DRI for all contract templates is the Legal, Employment team. Contracts are audited and updated on a regular basis. Any suggestions or requests for changes to employment templates should be made to the Legal, Employment team and will require approval from the VP of Legal, Employment. You can read [_how_ to connect with Legal, Employment](/handbook/legal/employment-law/#connect) in the Handbook.
+GitLab's Team Member contract templates are accessible (for reference) within GitLab only [(here)](https://internal.gitlab.com/handbook/people-group/people-operations/people-operations/employment_contracts/#employment-agreements). The DRI for all contract templates is the Legal, Employment team. Contracts are audited and updated on a regular basis. Any suggestions or requests for changes to employment templates should be made to the Legal, Employment team and will require approval from the VP of Legal, Employment. You can read [*how* to connect with Legal, Employment](/handbook/legal/employment-law/#connect) in the Handbook.
 
 ## Team Member's Individual Contracts
 
@@ -30,9 +29,9 @@ The Director, Talent Brand & Talent Acquisition Enablement will support a review
 1. The Associate Manager, Candidate Experience will assign the contract correction to a Candidate Experience Specialist, ideally to the same person, that created the already issued contract.
 1. If the change is payroll relevant The Candidate Experience Specialist makes total-rewards@ gitlab.com and uspayroll@ gitlab.com or nonuspayroll@ gitlab.com aware.
 1. The Candidate Experience Specialist creates a new corrected contract using above templates and adds the following sentence in: "This agreement is effective {Hire date} and supersedes the employment agreement dated {date of erroneous agreement}."
-   - Make a copy of the template and save it to the [working documents folder](https://drive.google.com/drive/folders/0B4eFM43gu7VPNUlKZEFtNGtSRk0?resourcekey=0-_qX_2OXbs71yJa3HZy0TAQ) on Google Drive to edit
+    - Make a copy of the template and save it to the [working documents folder](https://drive.google.com/drive/folders/0B4eFM43gu7VPNUlKZEFtNGtSRk0?resourcekey=0-_qX_2OXbs71yJa3HZy0TAQ) on Google Drive to edit
 1. The Candidate Experience Specialist creates a [Cover Letter](https://docs.google.com/document/d/1MygLnlmXs2KIUsQZ6jcENVoy4jDeuqij3XV3wQy11VY/edit) explaining the reason for the correction.
-   - Make a copy of the template and save it to the working documents folder on Google Drive to edit
+    - Make a copy of the template and save it to the working documents folder on Google Drive to edit
 1. Once the new contract and cover letter have been created, ping a Candidate Experience Specialist for auditing.
 1. Send the audited created documents and any additional details on the correction to Legal for review.
 1. Once approved by Legal stage the cover letter and new contract in DocuSign and send it for signature first to the [Company signatory](/handbook/hiring) and subsequently to the team member.
@@ -95,7 +94,7 @@ If an exception request is made to end a probation period early, this should be 
 
 ### Important steps during the Probation Period
 
-_**For Managers**_
+***For Managers***
 
 1. Managers are responsible for monitoring and specifically reviewing performance halfway through the probation period of their direct report.
 1. If **underperformance is an issue**, or there is any hesitation regarding the successful completion of a probation period, this should be discussed immediately with Team Member Relations.
@@ -103,7 +102,7 @@ _**For Managers**_
    - **Note:** For team members located in the Netherlands or Austria, the manager will receive an email from Workday, 14 days prior to the end of the probation period.
 1. The Hiring Manager will select the appropriate probation outcome in Workday based on the team member's performance. A helpful job aid can be found [here](https://docs.google.com/document/d/1NSIaigEqFnouax9s_NGB_nXGA1y_8zJB5aZUW63bvog/edit) on this process.
 
-_**For Team Members**_
+***For Team Members***
 
 1. If you have successfully passed your probation period, in addition to receiving the good news through your manager, you will also receive a probation period confirmation letter in Workday.
 1. In your inbox, you can review this letter and then select `Submit`. This letter will then be saved in your Workday documents for future reference if needed.
@@ -131,7 +130,7 @@ GitLab reminds these team members that their position with GitLab is their prima
 In order to honor the commitment team members make when they join GitLab, including protecting GitLab's confidential information, trade secrets, and other business interests while team members are engaged in outside activities, GitLab has adopted the following policies:
 Outside activities must not interfere with the team member's work performance or duties; or create an actual or apparent conflict of interest with GitLab. If outside activities lead to a team member's poor performance, abuse of leave policies, or other negative outcomes relating to their position, GitLab may discipline the team member, up to and including termination.
 In line with our core value of Transparency, prior to starting outside activities that could potentially interfere with their commitments to GitLab, team members must disclose it to their manager, as noted below. GitLab will not approve outside activities that compromise a team member's ability to perform their job effectively.
-Team members engaging in outside activities must comply with GitLab's Code of Business Conduct and Ethics, as well as all policies related to Conflicts of Interest, Confidentiality, Non-Competition during Employment, and the Protection of Confidential and Proprietary Information, where enforceable by applicable state or local law. Outside activities cannot involve or compete with products or services provided or under development by GitLab. Outside activities also cannot make use of any of GitLab's proprietary or confidential information, and team members cannot work in any capacity for any of GitLab's suppliers, customers, or competitors.
+Team members engaging in outside activities must comply with GitLab's Code of Business Conduct and Ethics, as well as all policies related to Conflicts of Interest, Confidentiality, Non-Competition during Employment, and the Protection of Confidential and Proprietary Information, where enforceable by applicable state or local law. Outside  activities cannot involve or compete with products or services provided or under development by GitLab. Outside activities also cannot make use of any of GitLab's proprietary or confidential information, and team members cannot work in any capacity for any of GitLab's suppliers, customers, or competitors.
 GitLab's [Internal Acceptable Use Policy](/handbook/legal/acceptable-use-policy/) permits limited personal use of GitLab-managed assets, subject to any conflicting statements contained in individual employment contracts. Subject to such limited personal use, team members may not use GitLab's facilities, equipment, supplies, IT systems (such as computers, networks, or email), time, trademarks, brand, or reputation in connection with any outside activities.
 This policy is not intended to restrict communications or actions protected or required by state, federal or other applicable law.
 
@@ -142,14 +141,14 @@ Before beginning outside employment, side projects, or other activities, whether
 #### Steps as a current candidate (actively engaged in the hiring process)
 
 1. At the reference stage, the Recruiter will ask the candidate to complete a form that asks them the following:
-   to disclose any outside employment, projects, or activities; and
-   any inventions or side projects that should be listed on the PIAA.
+to disclose any outside employment, projects, or activities; and
+any inventions or side projects that should be listed on the PIAA.
 1. If the candidate discloses outside employment, projects, or activities in the completed form, CES will notify the hiring manager for approval and copy in Team Member Relations at `teammemberrelations@gitlab.com` for visibility and review to ensure consistency in application.
-   **Information that will need to be provided to the hiring manager shall include:**
-   - Name of the outside employment, project, or activity
-   - GitLab clients who are involved in the project and scope of involvement (if applicable, please include tech stack used)
-   - Estimated time investment per week (in hours)
-   - Candidate's role in the outside employment, project, or activity
+**Information that will need to be provided to the hiring manager shall include:**
+    - Name of the outside employment, project, or activity
+    - GitLab clients who are involved in the project and scope of involvement (if applicable, please include tech stack used)
+    - Estimated time investment per week (in hours)
+    - Candidate's role in the outside employment, project, or activity
 1. Approval will follow the process set out for current team members. Any potential conflict of interest must be disclosed to and approved by the Chief Legal Officer in line with the Code of Business Conduct & Ethics.
 1. If the candidate entered No or None CES will continue processing the application.
 
@@ -170,7 +169,7 @@ Before beginning outside employment, side projects, or other activities, whether
 1. If the manager and Team Member Relations **approves**, they will then confirm this in the thread and add the applicable Director-level leader to the thread, for their review and approval. If the direct manager is also at a Director-level, they will add the next level leader (VP or C-level as appropriate) to the email thread for review and approval.
 1. If a decision by the manager and Team Member Relations is made to **deny**, the manager will relay this to the team member, and the Team Member Relations team will save any communicatio in the team member's Workday Documents folder.
 1. If the Director/next-level leader feels additional review and approval is needed, they will then add the next level leader (VP or C-level as appropriate) to the email thread. If this is not deemed necessary, the Director/next-level leader will respond indicating their approval.
-   _Note: A minimum of two leaders must review all outside projects up to the E-group leader. If the E-group leader is the next level manager, the E-group leader approval or denial is sufficient. Direct manager and Director-level are the usual levels. If the direct manager is at a Director-level, an additional level must approve or deny._
+*Note: A minimum of two leaders must review all outside projects up to the E-group leader. If the E-group leader is the next level manager, the E-group leader approval or denial is sufficient.  Direct manager and Director-level are the usual levels. If the direct manager is at a Director-level, an additional level must approve or deny.*
 1. If the next level leader (VP or C-level) and Team Member Relations team feels additional review and guidance is needed, they will add the Senior Director of Legal, Employment and any other relevant leader to the thread. Any potential conflict of interest must be disclosed to and approved by the Chief Legal Officer in line with the [Code of Business Conduct & Ethics](https://ir.gitlab.com/governance/governance-documents/default.aspx)
 1. If a decision is made to approve and all approvals are documented, the People Operations Team member will save the entire thread as a pdf to the team member's Workday Documents folder.
 1. The People Operations Team member will then respond confirming receipt and state that the entire thread has been saved in the team member's Workday profile.

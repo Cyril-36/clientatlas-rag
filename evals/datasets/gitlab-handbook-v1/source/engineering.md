@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Engineering
 ---
 
@@ -57,7 +56,7 @@ Work in the 40% time budget should be coordinated and prioritized by the Enginee
 
 ### Engineering Innovation
 
-Engineering Innovation is a new process geared toward individual or small-team collaboration that encourages engineers to explore new ideas and Proof-of-Concepts. These projects are typically lean, time-boxed, iterative, and designed to validate whether an idea has the potential to evolve into a viable experimental feature or product. See the [Innovation at GitLab Guide](./workflow/engineering-innovation.md).
+Engineering Innovation is a new process geared toward individual or small-team collaboration that encourages engineers to explore new ideas and Proof-of-Concepts. These projects are typically lean, time-boxed, iterative, and designed to validate whether an idea has the potential to evolve into a viable experimental feature or product.  See the [Innovation at GitLab Guide](./workflow/engineering-innovation.md).
 
 ### Technical Roadmaps
 
@@ -72,7 +71,7 @@ Some of the above examples for the 40% time budget can help in forming a long-te
   - Are you getting frequent requests for help in some area?
   - Is your team frequently missing their deliverable commitments? What would help?
   - Does your area have performance (slow endpoints, inconsistent responses, intermittent errors) or scalability (the feature or area as-is will not scale) concerns?
-  - Where do you see the biggest instability? Have you talked to operations and support about feedback for your area?
+  - Where do you see the biggest instability? Have you talked to operations and support about feedback for  your area?
   - Do you have application or rate limits in the right places?
   - Have you burned down your security, corrective action, and infradev issues?
   - Is your error budget green?
@@ -83,7 +82,7 @@ Some of the above examples for the 40% time budget can help in forming a long-te
   - Do you have adequate error handling and error codes that allows fast and easy diagnostics?
 - Gather data like this
   - Master:Broken issues
-  - ~"severity::1" and ~"severity::2" bugs
+  - ~"severity::1" and ~"severity::2"  bugs
   - Missed-Slo issues
   - Flaky test issues
   - ~"type::maintenance" issues
@@ -287,7 +286,7 @@ Each week teams from the engineering division report on incidents and key metric
    - P1 and P2 issues and other highlights from each GitLab platform are raised.
 1. Action Overview
    - Overdue S1/S2 [infradev issues](/handbook/engineering/workflow/#infradev) from each department
-     Include screenshots of the following graphs in the [agenda](https://docs.google.com/document/d/164hNObllaLWosG110-A0UouYlcaqOxbPpHATFD38_Gw/edit#heading=h.59wtcja0o8t7).
+    Include screenshots of the following graphs in the [agenda](https://docs.google.com/document/d/164hNObllaLWosG110-A0UouYlcaqOxbPpHATFD38_Gw/edit#heading=h.59wtcja0o8t7).
    - [Feature Change Locks](#feature-change-locks) - each team in an FCL provides an update
 1. Discussions and Deep Dives - specific cross-department discussions
 
@@ -313,15 +312,15 @@ The purpose is to foster a sense of ownership and accountability amongst our tea
 
 #### Timeline
 
-Rough guidance on timeline is provided here to set expectations and urgency for an FCL. We want to balance moving urgently with doing thoughtful important work to improve reliability. Note that as times shift we can adjust accordingly. The DRI of an FCL should pull in the timeline where possible.
+Rough guidance on timeline is provided here to set expectations and urgency for an FCL.  We want to balance moving urgently with doing thoughtful important work to improve reliability.  Note that as times shift we can adjust accordingly. The DRI of an FCL should pull in the timeline where possible.
 
-The following bulleted list provides a suggested timeline starting from incident to completion of the FCL. "Business day x" in this case refers to the x business day after the incident.
+The following bulleted list provides a suggested timeline starting from incident to completion of the FCL.  "Business day x" in this case refers to the x business day after the incident.
 
 - Day 0: Incident
 - Business day 1: open the FCL issue and begin planning. Request approval from VP of engineering if an FCL is not believed to be necessary.
 - Business day 2-3: planning time
-- Business days 2-9: complete planned work
-- Business days 10-11: closing ceremony, retrospective and report back to the Operational Excellence meeting
+- Business days 2-9:  complete planned work
+- Business days 10-11:  closing ceremony, retrospective and report back to the Operational Excellence meeting
 
 #### Activities
 
@@ -350,7 +349,7 @@ The team(s) must:
   - Links to the incident, original change, and slack channel
   - FCL Timeline
   - List of work items
-- Complete the written Incident Review as the first priority after the incident is resolved. The Incident Review must include completing all fields in the Incident Review section of the issue template. The incident issue should serve as the single source of truth for this information, unless a linked confidential issue is required. Completing it should create a common understanding of the problem space and set a shared direction for the work that needs to be completed.
+- Complete the written Incident Review as the first priority after the incident is resolved.  The Incident Review must include completing all fields in the Incident Review section of the issue template. The incident issue should serve as the single source of truth for this information, unless a linked confidential issue is required. Completing it should create a common understanding of the problem space and set a shared direction for the work that needs to be completed.
 - See that not only all procedures were followed but also how improvements to procedures could have prevented it
 - A work plan referencing all the Issues, Epics, and/or involved MRs must be created and used to identify the scope of work for the FCL. The work plan itself should be an Issue or Epic.
 - Daily - add an update comment in your FCL issue or epic using the template:
@@ -471,9 +470,9 @@ The DRI can use the [customer critical merge requests](https://docs.gitlab.com/e
 
 In most cases, a single engineer and maintainer review are adequate to handle a priority::1/severity::1 issue. However, some issues are highly difficult or complicated. Engineers should treat these issues with a high sense of urgency. For a complicated priority::1/severity::1 issue, multiple engineers should be assigned based on the level of complexity. The issue description should include the team member and their responsibilities.
 
-| Team Member     | Responsibility                                          |
-| --------------- | ------------------------------------------------------- |
-| `Team Member 1` | `Reproduce the Problem`                                 |
+| Team Member | Responsibility |
+| ----------- | -------------- |
+| `Team Member 1` | `Reproduce the Problem` |
 | `Team Member 2` | `Audit Code Base for other places where this may occur` |
 
 If we have cases where three or five or X people are needed, Engineering Managers should feel the freedom to execute on a plan quickly.

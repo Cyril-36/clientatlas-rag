@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Artifact Registry ADR 023: Code Structure and Enforcement"
 owning-stage: "~devops::package"
 description: "Go cmd/ + internal/ layout with package-per-feature organization and compiler-enforced boundaries for the Artifact Registry"
@@ -232,13 +231,13 @@ warrant sub-packages, the depguard config would need a targeted allow rule for t
 
 The following table shows what each enforcement mechanism catches:
 
-| Violation                                 | Enforcement            |
-| ----------------------------------------- | ---------------------- |
-| Format A imports Format B                 | depguard (CI)          |
-| Format imports raw SQL driver             | depguard (CI)          |
-| Shared infrastructure imports format code | depguard (CI)          |
-| External code imports internal package    | `internal/` (compiler) |
-| Circular dependency                       | Go compiler            |
+| Violation | Enforcement |
+|---|---|
+| Format A imports Format B | depguard (CI) |
+| Format imports raw SQL driver | depguard (CI) |
+| Shared infrastructure imports format code | depguard (CI) |
+| External code imports internal package | `internal/` (compiler) |
+| Circular dependency | Go compiler |
 
 The rejected candidates required 140-160+ lines of
 [go-arch-lint](https://github.com/fe3dback/go-arch-lint) configuration that must be updated for
@@ -317,28 +316,28 @@ implementations (five formats each).
 
 #### Measured Metrics at Five Formats
 
-| Metric                            | Go Native                          | Clean Arch                          | DDD + Hex                           |
-| --------------------------------- | ---------------------------------- | ----------------------------------- | ----------------------------------- |
-| Total .go files                   | 36                                 | 65                                  | ~81                                 |
-| Files per format (range)          | 2-6                                | 10-13                               | 13 (fixed)                          |
-| Composition root (main.go)        | 92 lines                           | ~205 lines                          | ~120 lines                          |
-| Enforcement config                | ~45 lines (depguard)               | ~140 lines (go-arch-lint)           | ~158 lines (go-arch-lint)           |
-| Shared interface files            | 12                                 | ~21                                 | ~28                                 |
-| Cross-cutting change (provenance) | 9 files / 7 packages               | 10 files / 8 packages               | 10 files / 7 packages               |
-| Format removal (Generic)          | 4 files deleted, 2 shared modified | 10 files deleted, 2 shared modified | 10 files deleted, 3 shared modified |
-| Parallel dev merge conflicts      | 2 files, ~16 lines                 | 2 files, mechanical                 | 2 files, ~49 lines                  |
-| Shared interface modifications    | 0 across all 5 formats             | 0 across all 5 formats              | 0 across all 5 formats              |
+| Metric | Go Native | Clean Arch | DDD + Hex |
+|---|---|---|---|
+| Total .go files | 36 | 65 | ~81 |
+| Files per format (range) | 2-6 | 10-13 | 13 (fixed) |
+| Composition root (main.go) | 92 lines | ~205 lines | ~120 lines |
+| Enforcement config | ~45 lines (depguard) | ~140 lines (go-arch-lint) | ~158 lines (go-arch-lint) |
+| Shared interface files | 12 | ~21 | ~28 |
+| Cross-cutting change (provenance) | 9 files / 7 packages | 10 files / 8 packages | 10 files / 7 packages |
+| Format removal (Generic) | 4 files deleted, 2 shared modified | 10 files deleted, 2 shared modified | 10 files deleted, 3 shared modified |
+| Parallel dev merge conflicts | 2 files, ~16 lines | 2 files, mechanical | 2 files, ~49 lines |
+| Shared interface modifications | 0 across all 5 formats | 0 across all 5 formats | 0 across all 5 formats |
 
 Handler file sizes varied with format complexity, not architecture. The underlying HTTP logic
 is the same regardless of project structure. Measured demo handler sizes by format:
 
-| Format complexity   | Handlers | Demo lines |
-| ------------------- | -------- | ---------- |
-| Simple (Generic)    | 10       | 300-350    |
-| Moderate (Debian)   | 14       | 480-530    |
-| Moderate (Maven)    | 17       | 570-725    |
-| Moderate-high (npm) | 21-27    | 580-920    |
-| Complex (OCI)       | 26       | 700-800    |
+| Format complexity | Handlers | Demo lines |
+|---|---|---|
+| Simple (Generic) | 10 | 300-350 |
+| Moderate (Debian) | 14 | 480-530 |
+| Moderate (Maven) | 17 | 570-725 |
+| Moderate-high (npm) | 21-27 | 580-920 |
+| Complex (OCI) | 26 | 700-800 |
 
 The ranges reflect variation across architectures. The Go Native layout had the largest handler
 files (797 lines for OCI, 916 for npm) because it co-locates all handler logic in a single file.
@@ -350,11 +349,11 @@ into separate files, producing smaller handler files but more total files.
 The most revealing metric is the overhead imposed on the simplest format (Generic, a blob
 upload/download API with 10 handlers):
 
-| Architecture | Files | Total lines | Overhead vs. Go Native  |
-| ------------ | ----- | ----------- | ----------------------- |
-| Go Native    | 4     | ~450        | baseline                |
-| Clean Arch   | 10    | 628         | +40% lines, +150% files |
-| DDD + Hex    | 10    | 760         | +69% lines, +150% files |
+| Architecture | Files | Total lines | Overhead vs. Go Native |
+|---|---|---|---|
+| Go Native | 4 | ~450 | baseline |
+| Clean Arch | 10 | 628 | +40% lines, +150% files |
+| DDD + Hex | 10 | 760 | +69% lines, +150% files |
 
 DDD + Hexagonal imposed 310 more lines of code than Go Native for the same functionality. That
 overhead consists of domain error sentinels, port interface definitions, application service
@@ -373,14 +372,14 @@ handler directory alone is 18,084 lines (a 2.3x test-to-code ratio).
 Using a conservative 2-2.5x multiplier for production implementation and assuming 15 formats of
 moderate complexity (Maven/Debian-like):
 
-| Metric                                 | Go Native              | Clean Arch                              | DDD + Hex                               |
-| -------------------------------------- | ---------------------- | --------------------------------------- | --------------------------------------- |
-| Total .go files (format + shared)      | ~98                    | ~180                                    | ~223                                    |
-| Per-format handler (production est.)   | 1,200-1,800 lines      | 1,200-1,800 lines                       | 1,200-1,800 lines                       |
-| Composition root                       | ~135 lines             | ~505 lines                              | ~400-450 lines                          |
-| Enforcement config                     | ~45 lines              | ~320 lines                              | ~278 lines                              |
-| Per-format config cost                 | 0 lines                | ~18 lines                               | ~12 lines                               |
-| Format addition: files created         | 2-6                    | 10-13                                   | 13                                      |
+| Metric | Go Native | Clean Arch | DDD + Hex |
+|---|---|---|---|
+| Total .go files (format + shared) | ~98 | ~180 | ~223 |
+| Per-format handler (production est.) | 1,200-1,800 lines | 1,200-1,800 lines | 1,200-1,800 lines |
+| Composition root | ~135 lines | ~505 lines | ~400-450 lines |
+| Enforcement config | ~45 lines | ~320 lines | ~278 lines |
+| Per-format config cost | 0 lines | ~18 lines | ~12 lines |
+| Format addition: files created | 2-6 | 10-13 | 13 |
 | Format addition: shared files modified | 1 (main.go, 3-5 lines) | 2 (main.go ~30 lines, config ~18 lines) | 2 (main.go ~14 lines, config ~12 lines) |
 
 The composition root in Clean Architecture grows at ~30 lines per format because each format
@@ -406,13 +405,13 @@ We estimated the input context by counting the files an agent must read (shared 
 composition root, enforcement config, and one reference format) and their character counts,
 then converting at ~4 characters per token:
 
-| Metric                 | Go Native | Clean Arch | DDD + Hex |
-| ---------------------- | --------- | ---------- | --------- |
-| Files to read          | 9         | 13         | 22        |
-| Total lines            | ~1,095    | ~1,317     | ~1,430    |
-| Estimated input tokens | ~8,900    | ~9,500     | ~11,700   |
-| Files to create        | 2-6       | 10-13      | 13        |
-| Shared files to modify | 1         | 2          | 2         |
+| Metric | Go Native | Clean Arch | DDD + Hex |
+|---|---|---|---|
+| Files to read | 9 | 13 | 22 |
+| Total lines | ~1,095 | ~1,317 | ~1,430 |
+| Estimated input tokens | ~8,900 | ~9,500 | ~11,700 |
+| Files to create | 2-6 | 10-13 | 13 |
+| Shared files to modify | 1 | 2 | 2 |
 
 The input token counts are closer across architectures than the file counts suggest, because the
 underlying format logic (the reference handler) dominates the token budget in all three. The
@@ -468,11 +467,11 @@ upload path. The file counts below come from retrospective analysis of the final
 from isolated commits. Actual diffs may surface additional files (test helpers, config changes)
 not captured here.
 
-| Architecture | Shared files changed            | Per-format files changed         | Total at 5 | Projected at 15 |
-| ------------ | ------------------------------- | -------------------------------- | ---------- | --------------- |
-| Go Native    | 4 (interface + 3 storage impls) | 1 per format                     | 9          | ~19             |
-| Clean Arch   | 4                               | 2 per format (usecase + adapter) | 14         | ~34             |
-| DDD + Hex    | 4                               | 1 per format                     | 9          | ~19             |
+| Architecture | Shared files changed | Per-format files changed | Total at 5 | Projected at 15 |
+|---|---|---|---|---|
+| Go Native | 4 (interface + 3 storage impls) | 1 per format | 9 | ~19 |
+| Clean Arch | 4 | 2 per format (usecase + adapter) | 14 | ~34 |
+| DDD + Hex | 4 | 1 per format | 9 | ~19 |
 
 The decomposed totals differ from the measured demo counts above (10 for Clean Arch, 10 for
 DDD + Hex) because the provenance change did not require usecase-layer changes in every Clean

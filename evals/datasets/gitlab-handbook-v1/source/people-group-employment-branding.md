@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Talent brand
 description: "Our ambitions as an employer, the steps we take to achieve and communicate those ambitions, and the measures in place to ensure we live up to them."
 twitter_image: '/images/tweets/all-remote.jpg'
@@ -52,15 +51,15 @@ As we build GitLab into one of the world's best workplaces, we will look to incr
 ### GitLab is a place where
 
 1. **Everyone can contribute**
-   - We've got big ambitions to make GitLab the [top AI-Powered DevSecOps platform](https://about.gitlab.com/solutions/devops-platform/) and need skilled contributors to get us there.
-   - Our [mission](/handbook/company/mission/) makes it clear that we believe in a world where everyone can contribute. We make that possible at GitLab by [running our operations](/handbook/people-group/) on our product. This means everything is read-write by default.
-   - We operate around the world. We welcome people of all backgrounds to contribute to our success and have built [DIB programs](/handbook/company/culture/inclusion/) and practices into all parts of our company.
+    - We've got big ambitions to make GitLab the [top AI-Powered DevSecOps platform](https://about.gitlab.com/solutions/devops-platform/) and need skilled contributors to get us there.
+    - Our [mission](/handbook/company/mission/) makes it clear that we believe in a world where everyone can contribute. We make that possible at GitLab by [running our operations](/handbook/people-group/) on our product. This means everything is read-write by default.
+    - We operate around the world. We welcome people of all backgrounds to contribute to our success and have built [DIB programs](/handbook/company/culture/inclusion/) and practices into all parts of our company.
 1. **Anyone can thrive**
-   - Building a company where anyone can thrive means putting in place the programs needed for our team members to manage their [health, wealth, and well-being](/handbook/total-rewards/benefits/) regardless of location.
-   - [Career development](/handbook/people-group/learning-and-development/career-development/), clarity in expectations by having defined performance indicators, [learning & development](/handbook/people-group/learning-and-development), and access to opportunity are all things that are top of mind as we grow GitLab.
+    - Building a company where anyone can thrive means putting in place the programs needed for our team members to manage their [health, wealth, and well-being](/handbook/total-rewards/benefits/) regardless of location.
+    - [Career development](/handbook/people-group/learning-and-development/career-development/), clarity in expectations by having defined performance indicators, [learning & development](/handbook/people-group/learning-and-development), and access to opportunity are all things that are top of mind as we grow GitLab.
 1. **We foster a values-led, remote culture**
-   - Our [CREDIT values](/handbook/values/) drive a culture that's built to operate in an all-remote environment.
-   - Our Handbook-led approach and async working style highlight our values-led, remote culture.
+    - Our [CREDIT values](/handbook/values/) drive a culture that's built to operate in an all-remote environment.
+    - Our Handbook-led approach and async working style highlight our values-led, remote culture.
 
 ## Key ways we bring this vision to life
 
@@ -124,9 +123,9 @@ As we create campaigns, post jobs, sponsor events, and attract top talent to Git
 **Whether you're looking to embed video in a job ad, or create an asset to leverage in outreach, team member spotlight videos are an excellent way to provide first-hand perspectives. With a partnership with [Cinebody](https://www.cinebody.com/), we're able to build video projects and collect team member sentiment in one central place.**
 
 - Send @cchiodo a Slack with more details about your video project including topic, use case, team members to include, and specific questions that featured team members will be answering. The recommended list of questions for a hiring manager video are included below:
-  1.  Provide a short explanation about the role you're hiring for. What would someone in this role do?
-  1.  Why is this role impactful to the organization? How is this role helping shape the state of our industry around DevSecOps and engineering/sales/product/G&A etc. (whatever team the role is on)?
-  1.  Why should candidates apply to this role and to GitLab? What is in it for them?
+   1. Provide a short explanation about the role you're hiring for. What would someone in this role do?
+   1. Why is this role impactful to the organization? How is this role helping shape the state of our industry around DevSecOps and engineering/sales/product/G&A etc. (whatever team the role is on)?
+   1. Why should candidates apply to this role and to GitLab? What is in it for them?
 - @cchiodo will create a project in Cinebody with the provided topic and questions. Once the project is built, @cchiodo will send the project PDF back to the requester to be shared with team members being featured
 - Once videos are finalized (as notified by @cchiodo), requester to create a video editing request in GitLab by using [this issue template](https://gitlab.com/gitlab-com/marketing/inbound-marketing/global-content/digital-production/-/issues/new), applying the video-editing-request template, and tagging @cchiodo in the issue
 - Asked to participate in a video? Learn more about what you can expect by scrolling to the bottom of [this page](/handbook/people-group/employment-branding/)
@@ -300,24 +299,24 @@ Collaboration from all teams and departments is welcome. To effectively manage r
 
 **Events**
 
-| **KPI**                          | **Definition and Measurement**                                                                                                                                                                                                                                                                   |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Number of Attendees              | The total number of attendees that attend an individual event/booth participation.<br><br>This is measured by: <br> - Number of Talent Community adds QR scans.<br> - Number of checked-in attendees.                                                                                            |
-| Conversion Rate                  | The percentage of individual event attendees that convert from Prospect to Qualified in Greenhouse.                                                                                                                                                                                              |
-| Quality of Candidates            | The percentage of attendees that convert from Qualified to Initial Interview.                                                                                                                                                                                                                    |
+| **KPI** | **Definition and Measurement** |
+| ------ | ------ |
+| Number of Attendees | The total number of attendees that attend an individual event/booth participation.<br><br>This is measured by: <br> - Number of Talent Community adds QR scans.<br> - Number of checked-in attendees.|
+| Conversion Rate | The percentage of individual event attendees that convert from Prospect to Qualified in Greenhouse. |
+| Quality of Candidates | The percentage of attendees that convert from Qualified to Initial Interview. |
 | Attendee Likelihood To Recommend | The likelihood that attendees would recommend attending a GitLab-hosted event to family, friends, and/or colleagues.<br><br>This is measured by post-event survey responses.<br> - Scores of 1-2 = Not Likely To Recommend<br> - Score of 3 = Passive<br> - Scores of 4-5 = Likely To Recommend. |
-| Cost of Engagement               | This is calculated as the total event/total # of attendees + digital reach.                                                                                                                                                                                                                      |
+| Cost of Engagement | This is calculated as the total event/total # of attendees + digital reach. |
 
 **Partnerships and Platforms**
 
-| **KPI**                      | **Definition and Measurement**                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Page Visitors and Viewers    | This is measured quarterly and annually for platforms.<br><br>Metrics pulled from the platform or provided by the partner.                                                                                                                                                                                                                                                                                                                             |
-| Job Applications             | Number of job applications received directly from the platform or partnership.<br><br>Metrics pulled from the platform or partner and from Greenhouse reporting. Ensure to include the platform as a source on Greenhouse.                                                                                                                                                                                                                             |
-| Hires                        | Number of hires made from prospects received directly from the platform or partnership or hires made influenced by the platform or partnership. _Influenced hires are those who viewed the GitLab page on the platform or partnership, but applied directly on our jobs page._<br><br>Metrics pulled from the platform or provided by the partner and from Greenhouse reporting. Ensure to include the platform/partnership as a source on Greenhouse. |
-| Conversion Rate              | % applications from the platform or partnership that turned into a hire.<br> - Applications received from platform or partnership divided by hires.                                                                                                                                                                                                                                                                                                    |
-| GitLab Team Members Featured | Number and names of GitLab team members featured on the platform or as a result of the partnership.                                                                                                                                                                                                                                                                                                                                                    |
-| Content                      | Number of and links to content published on the platform or as a result of the partnership.                                                                                                                                                                                                                                                                                                                                                            |
+| **KPI** | **Definition and Measurement** |
+| ------ | ------ |
+| Page Visitors and Viewers | This is measured quarterly and annually for platforms.<br><br>Metrics pulled from the platform or provided by the partner. |
+| Job Applications | Number of job applications received directly from the platform or partnership.<br><br>Metrics pulled from the platform or partner and from Greenhouse reporting. Ensure to include the platform as a source on Greenhouse. |
+| Hires | Number of hires made from prospects received directly from the platform or partnership or hires made influenced by the platform or partnership. *Influenced hires are those who viewed the GitLab page on the platform or partnership, but applied directly on our jobs page.*<br><br>Metrics pulled from the platform or provided by the partner and from Greenhouse reporting. Ensure to include the platform/partnership as a source on Greenhouse. |
+| Conversion Rate | % applications from the platform or partnership that turned into a hire.<br> - Applications received from platform or partnership divided by hires. |
+| GitLab Team Members Featured | Number and names of GitLab team members featured on the platform or as a result of the partnership. |
+| Content | Number of and links to content published on the platform or as a result of the partnership. |
 
 **FY26 Roster**
 

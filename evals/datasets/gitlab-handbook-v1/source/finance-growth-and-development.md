@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Finance Growth and Development
 ---
 
@@ -25,7 +24,7 @@ Finance Team Member on-boarding will include specific tasks and information to f
 - a view into the Finance Career Ladders and a view of the [Org Chart](https://comp-calculator.gitlab.net/org_chart)
 - a link to read GitLab's take on [Career Development](/handbook/people-group/learning-and-development/career-development/#what-is-career-development)
 - an overview of the mentorship programs, shadowing opportunities and [internship programs](/handbook/people-group/learning-and-development/internship-for-learning/)
-- links to the GitLab training tools available from the People group :[External Resources (with no cost)](/handbook/people-group/learning-and-development/self-paced-learning/) & [Internal Resources](/handbook/people-group/learning-and-development/)
+- links to the GitLab training tools available from the People group :[External Resources (with no cost)](/handbook/people-group/learning-and-development/self-paced-learning/) &  [Internal Resources](/handbook/people-group/learning-and-development/)
 
 **Work Style Assessment**
 

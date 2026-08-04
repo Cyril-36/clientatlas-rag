@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "People Analytics Data Governance"
 date: 2026-03-30
 ---
@@ -38,7 +37,7 @@ Data retention involve defining policies for storing and preserving data. It inc
 
 ## Data Governance at GitLab
 
-At GitLab, access to _all_ data in our warehouse is restricted to the Data Platform Team as the data custodians. Besides the data platform team, only Analytics Engineers and Data Analysts who have a business reason and are approved by the People Team, as the data owners, can access the People Data.
+At GitLab, access to *all* data in our warehouse is restricted to the Data Platform Team as the data custodians. Besides the data platform team, only Analytics Engineers and Data Analysts who have a business reason and are approved by the People Team, as the data owners, can access the People Data.
 
 Access to people data is processed through an access request, which is approved by the VP, People Operations and Technology before being provisioned.
 
@@ -57,7 +56,7 @@ When collecting and processing personal data related to people data analytics at
 
 - Where consent is the lawful basis
 
-Where Team Members have given clear consent to process their personal data for a _specific purpose_. Examples include: Gender, nationality, ethnicity, gender dropdown, pronouns, political affiliation, sexual orientation, religion, medical or health related info, trade union info, among others.
+Where Team Members have given clear consent to process their personal data for a *specific purpose*. Examples include: Gender, nationality, ethnicity, gender dropdown, pronouns, political affiliation, sexual orientation, religion, medical or health related info, trade union info, among others.
 
 When these fields are loaded into the warehouse, the Data Team uses a [type 1 Slowly Changing Dimension](/handbook/enterprise-data/platform/edw/#slowly-changing-dimensions--snapshots) because any change to the field is a withdrawal of consent for the use of that old value.
 
@@ -75,7 +74,7 @@ When these fields are loaded into the warehouse, the Data Team uses a [type 1 or
 
 ### Access to People Data in Business Intelligence Software
 
-As part of our data program, GitLab team members can have access to pre-built dashboards in Sisense. People Data is considered sensitive and it is therefore not readily available in Tableau by default. You can read more about this topic in our [Data Storage section](/handbook/enterprise-data/platform/#data-storage).
+As part of our data program,  GitLab team members can have access to pre-built dashboards in Sisense. People Data is considered sensitive and it is therefore not readily available in Tableau by default. You can read more about this topic in our [Data Storage section](/handbook/enterprise-data/platform/#data-storage).
 
 However, in the current business landscape, data is the key to unlock insights and make informed decisions. The same principle applies to people data, where people analytics plays a critical role in driving organizational success.
 

@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Yao Chew's README"
 description: "Learn more about working with Yao Chew, VP of Investor Relations"
 ---
@@ -23,7 +22,7 @@ In investing terms, I view this career stop as a levered long-only bet on GitLab
 ## My Personal Values
 
 1. **Humility** - I don’t need to be right all the time and I’m always learning. If there’s a valid viewpoint or issue you feel strongly about with data backing you up, I am happy to disagree and commit. Everyone has battles and wars to be fought at every level - focus on the wars
-1. **Intensity and Ownership** - Trust is priceless - the stakes in public markets are Very High. Things have to be right. There’s a common saying on Wall Street - there are Excuses people and Results people. We love Results people, but get them the right way. I will run through walls to get things done, and I expect the same of my teammates
+1. **Intensity and Ownership** - Trust is priceless - the stakes in public markets are Very High. Things have to be right. There’s a common saying on Wall Street - there are Excuses people and Results people. We love Results people, but get them the right way. I will run through walls  to get things done, and I expect the same of my teammates
 1. **Growth mindset** - I’m here to build skills and learn from you along the journey. I respect expertise, institutional knowledge and context; but always strive to find better, less painful, more optimal outcomes. Mistakes are made to help us learn, but reinforcement learning is done by not making the same mistake twice
 1. **Team Effort** - The success of my entire job is reliant on the output of the company. Our equity narrative is on each and every one of you to help write
 
@@ -49,18 +48,18 @@ In investing terms, I view this career stop as a levered long-only bet on GitLab
 1. I head up Investor Relations. I am the primary point of contact for public investors, craft and manage GitLab’s Equity Narrative, and handle a lot of our quarterly earnings and post earnings process
 
 1. My job is threefold - I have to:
-   - **Build Awareness** - There are more than 100 public software stocks. Why should anyone buy GitLab over Snowflake, Salesforce, Shopify, etc? What is compelling about our market position, our management team, our product, our competitive position in AI that people don’t understand? Why should the generalist investor who looks at every type of business be interested in this particular software stock?
-   - **Build Trust and Clarity** - What do we choose to disclose the financial and non financial metrics we disclose and what do they mean quarter to quarter? How do we operate as a business? What does the latest launch of Claude Sonnet mean for our product roadmap? The tech world is changing fast, competition is fierce, and everyone has an opinion. How do we codify our management behaviors, set the benchmarks internally and externally by which we want people to judge our success, and deliver (beat and raise) against them?
-   - **Be a Feedback Loop for GitLab** - Investors have a great birds eye view as they look at thousands of businesses and have perspectives on what’s changing, what’s good, and what’s bad. They are as wrong as often as they are right - but feedback is a gift. What lessons can I distill from the peanut gallery to help GitLab Do Better?
+    - **Build Awareness** - There are more than 100 public software stocks. Why should anyone buy GitLab over Snowflake, Salesforce, Shopify, etc? What is compelling about our market position, our management team, our product, our competitive position in AI that people don’t understand? Why should the generalist investor who looks at every type of business be interested in this particular software stock?
+    - **Build Trust and Clarity** - What do we choose to disclose the financial and non financial metrics we disclose and what do they mean quarter to quarter? How do we operate as a business? What does the latest launch of Claude Sonnet mean for our product roadmap? The tech world is changing fast, competition is fierce, and everyone has an opinion. How do we codify our management  behaviors, set the benchmarks internally and externally by which we want people to judge our success, and deliver (beat and raise) against them?
+    - **Be a Feedback Loop for GitLab** - Investors have a great birds eye view as they look at thousands of businesses and have perspectives on what’s changing, what’s good, and what’s bad. They are as wrong as often as they are right - but feedback is a gift. What lessons can I distill from the peanut gallery to help GitLab Do Better?
 
-1. In financial terms, if I do my job well, I will succeed in reducing GitLab’s cost of capital. Public and trusted is an amazing place to be for a business - it helps to attract talent, provides a currency from which to incent people and aid morale, and serves as a flywheel from which to compound business value
+1. In financial terms, if I do my job well, I will succeed in reducing GitLab’s cost of capital. Public and trusted is an amazing place to be for a business - it helps to attract talent, provides a currency from which to incent people and aid morale, and serves as a flywheel from which to  compound business value
 
 ## Communication Preferences
 
 1. Slack
 1. Email
 1. Meetings:
-   - Please contact Anita Mall, my EBA, if you need to schedule time on my calendar
+    - Please contact Anita Mall, my EBA, if you need to schedule time on my calendar
 1. Phone/text if absolutely necessary and urgent especially around earnings
 
 ## Expectations for leadership - What I need from you. What you will get from me
@@ -73,8 +72,8 @@ In investing terms, I view this career stop as a levered long-only bet on GitLab
 ## FAQs
 
 1. **Why is the stock up today?**
-   - More buyers than sellers. And Yao has been working very hard
+    - More buyers than sellers. And Yao has been working very hard
 1. **Why is the stock down today?**
-   - The market and our peers are moving in the same direction. Or the market’s gotten it wrong. Or we have more sellers than buyers
+    - The market and our peers are moving in the same direction. Or the market’s gotten it wrong. Or we have more sellers than buyers
 1. **Should I buy XYZ stock?**
-   - I am not a financial advisor. I can’t tell you what stocks will go up and down, if I could, I would be on a private island somewhere
+    - I am not a financial advisor. I can’t tell you what stocks will go up and down, if I could, I would be on a private island somewhere

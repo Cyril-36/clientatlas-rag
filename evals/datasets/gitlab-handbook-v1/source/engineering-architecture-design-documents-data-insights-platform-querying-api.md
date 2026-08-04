@@ -7,13 +7,9 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 # This is the title of your design document. Keep it short, simple, and descriptive. A
-
 # good title can help communicate what the design document is and should be considered
-
 # as part of any review.
-
 title: Data Insights Platform Querying API
 status: accepted
 creation-date: "2025-02-27"
@@ -22,9 +18,7 @@ coaches: [ "@ahegyi" ]
 dris: [ "@lfarina8", "@nicholasklick" ]
 owning-stage: "~group::platform insights"
 participating-stages: []
-
 # Hides this page in the left sidebar. Recommended so we don't pollute it.
-
 toc_hide: true
 ---
 
@@ -32,7 +26,6 @@ toc_hide: true
 <!-- vale gitlab.FutureTense = NO -->
 
 <!-- This renders the design document header on the detail page, so don't remove it-->
-
 {{< engineering/design-document-header >}}
 
 ## Summary

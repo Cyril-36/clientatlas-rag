@@ -7,24 +7,23 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Create
 description: >-
-The Create Stage is a group of teams including
-Code Review, Remote Development, and Source Code.
+  The Create Stage is a group of teams including
+  Code Review, Remote Development, and Source Code.
 ---
 
 ## Hello
 
 [We're the Create Stage](/handbook/engineering/devops/create/engineering-managers/) and we are a group of teams within the DevOps Department. We're comprised of three areas [within the GitLab product](/handbook/product/categories/#create-stage).
 
-| Team                                                                                 | Engineering Managers                                                                                                      |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
-| [Create Stage](/handbook/engineering/devops/create/)                                 | [André Luís](https://gitlab.com/andr3)                                                                                    |
-| [Create:Code Review](/handbook/engineering/devops/create/code-review/)               | [François Rosé](https://gitlab.com/francoisrose)                                                                          |
-| [Create:Source Code](/handbook/engineering/devops/create/source-code/)               | [Andre Richards](https://gitlab.com/andrevr) (Backend & Frontend)                                                         |
-| [Create:Import](/handbook/engineering/devops/create/import/)                         | [Thiago Figueiró](https://gitlab.com/thiagocsf) (Fullstack) — Reports to {{< manager-by-report-name "Thiago Figueiró" >}} |
-| [Create:Remote Development](/handbook/engineering/devops/create/remote-development/) | —                                                                                                                         |
+| Team | Engineering Managers |
+| ---- | -------------------- |
+| [Create Stage](/handbook/engineering/devops/create/) | [André Luís](https://gitlab.com/andr3) |
+| [Create:Code Review](/handbook/engineering/devops/create/code-review/) | [François Rosé](https://gitlab.com/francoisrose) |
+| [Create:Source Code](/handbook/engineering/devops/create/source-code/) | [Andre Richards](https://gitlab.com/andrevr) (Backend & Frontend) |
+| [Create:Import](/handbook/engineering/devops/create/import/) | [Thiago Figueiró](https://gitlab.com/thiagocsf) (Fullstack) — Reports to {{< manager-by-report-name "Thiago Figueiró" >}} |
+| [Create:Remote Development](/handbook/engineering/devops/create/remote-development/) | — |
 
 ## Mission
 
@@ -167,7 +166,7 @@ See [Decision-making process](/handbook/engineering/devops/create/decision-makin
 
 ## Templates
 
-We use templates in order to make our processes more transparent and efficient. Documenting practices once and reusing them often provides guidance and support throughout the stage.
+We use templates in order to make our processes more transparent and efficient.  Documenting practices once and reusing them often provides guidance and support throughout the stage.
 
 ## Create Stage Operational Dashboard
 
@@ -287,7 +286,7 @@ This approach allows for a well-rounded evaluation of an engineer's contribution
 Currently we set monthly expectations for the following metrics:
 
 - **Merge Request Rate**:
-  - When applied to a **group**: The numerator is the number of merge requests merged into a set of projects (see [notes below](#metrics_notes)). The denominator is the number of people in the group.
+  - When applied to a **group**: The numerator is the number of merge requests merged into a set of projects (see [notes below](#metrics_notes)).  The denominator is the number of people in the group.
   - When applied to an **individual**: It's the number of merge requests merged into a set of projects (see [notes below](#metrics_notes)).
 - **Reviews Rate**:
   - When applied to a **group**: The numerator is the number of code reviews given to merge requests that merged into a set of projects (see [notes below](#metrics_notes)) in a given period (usually a month). The denominator is the number of people in the group.
@@ -324,10 +323,10 @@ Note: **If you don't have access to Tableau,** reach out to your direct manager 
 
 ### Baseline targets for each job level
 
-In the table below, we outline the baseline numbers for each of the metrics related to the Seniority level. These numbers were derived from a collaboration with Engineering Managers in the stage. As outlined above, they are treated as _only one input_ into understanding the team health and individual workload patterns. **They are not treated as a complete measure of productivity or performance** but are set as a directional guide.
+In the table below, we outline the baseline numbers for each of the metrics related to the Seniority level. These numbers were derived from a collaboration with  Engineering Managers in the stage. As outlined above, they are treated as _only one input_ into understanding the team health and individual workload patterns.  **They are not treated as a complete measure of productivity or performance** but are set as a directional guide.
 
 | Metric      | Associate | Intermediate | Senior | Staff |
-| ----------- | --------- | ------------ | ------ | ----- |
+|-------------|-----------|--------------|--------|-------|
 | MR Rate     | 5         | 5            | 8      | 13    |
 | Review Rate | 3         | 10           | 16     | 16    |
 

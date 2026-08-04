@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Directly Responsible Individuals (DRI)
 description: "Directly Responsible Individuals (DRIs) at GitLab own particular projects, initiatives, or activity."
 ---

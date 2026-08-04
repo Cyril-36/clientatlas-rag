@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Anti-Harassment Policy"
 description: "Everyone at GitLab has a responsibility to prevent and stop harassment. Learn more about our Anti-harassment policy."
 ---
@@ -18,7 +17,7 @@ Per the stated [Roles & Responsibilities](/handbook/people-group/anti-harassment
 
 ## Introduction
 
-Everyone at GitLab has a responsibility to prevent and stop harassment. Working remotely means that the majority of our interactions are by video call or written communication, such as email or shared documents. The exceptions to this are team summits, attending conferences together, and local team meetups. No matter the method of communication, it is expected that everyone will contribute to an inclusive and collaborative working environment and respect each other at all times. Team member behavior is not limited to internal interactions with each other. Our Anti-harassment policy applies to GitLab team members interaction with customers, vendors and community members. Should you become aware of or witness any form of harassment or behavior that violates this policy or our [company values](/handbook/values/), please report the incident directly to the Chief People Officer, [Team Member Relations](/handbook/people-group/team-member-relations), or a [People Business Partner](/handbook/people-group/people-business-partners/#people-business-partner-alignments) immediately for thorough investigation.
+Everyone at GitLab has a responsibility to prevent and stop harassment. Working remotely means that the majority of our interactions are by video call or written communication, such as email or shared documents. The exceptions to this are team summits, attending conferences together, and local team meetups. No matter the method of communication, it is expected that everyone will contribute to an inclusive and collaborative working environment and respect each other at all times. Team member behavior is not limited to internal interactions with each other.  Our Anti-harassment policy applies to GitLab team members interaction with customers, vendors and community members. Should you become aware of or witness any form of harassment or behavior that violates this policy or our [company values](/handbook/values/), please report the incident directly to the Chief People Officer, [Team Member Relations](/handbook/people-group/team-member-relations), or a [People Business Partner](/handbook/people-group/people-business-partners/#people-business-partner-alignments) immediately for thorough investigation.
 
 ## Perspective
 
@@ -30,12 +29,12 @@ This policy applies to all team members of GitLab, whether contractor or employe
 
 ## Roles and Responsibilities
 
-| Role                                        | Responsibility                                                                 |
-| ------------------------------------------- | ------------------------------------------------------------------------------ |
-| GitLab Team Members                         | Responsible for following the requirements in these policies                   |
-| People Ops                                  | Responsible for implementing and executing these policies                      |
+| Role | Responsibility |
+|-----------|-----------|
+| GitLab Team Members | Responsible for following the requirements in these policies |
+| People Ops | Responsible for implementing and executing these policies |
 | Legal & People Ops Management (Code Owners) | Responsible for approving significant changes and exceptions to these policies |
-| Ethics & Compliance, Legal Ops              | Responsible for administrating related training                                |
+| Ethics & Compliance, Legal Ops | Responsible for administrating related training |
 
 ## Types of Harassment
 
@@ -93,12 +92,12 @@ If a threat is made against you or someone else that makes you or another team m
 1. Contact local law enforcement. Note the proper number to contact in your locality and whether the emergency, or non-emergency number should be called.
 1. Notify the People Operations Team via a HelpLab request. A private slack channel may then be opened with your People Business Partner, People Operations Team member, Team Member Relations, Manager, and the security team helping with the situation.
 1. The following steps may be taken based on the threat:
-   - Internal threat assessment
-   - Temporary accommodation (friends, family, hotel, etc.)
-   - Transportation to alternate location (stay with family/friends for example)
-   - Time off from work/LOA
-   - Personal Security Detail
-1. The above can be triggered by the People Operations Team, Manager, Team Member Relations, or People Business Partner based on their knowledge of the threat. Whenever it is safe to do so, please go through the normal permissions work flow, however if a threat is credible and potentially imminent, immediate action may be taken before the approvals have been put in place.
+    - Internal threat assessment
+    - Temporary accommodation (friends, family, hotel, etc.)
+    - Transportation to alternate location (stay with family/friends for example)
+    - Time off from work/LOA
+    - Personal Security Detail
+1. The above can be triggered by the People Operations Team, Manager, Team Member Relations, or People Business Partner based on their knowledge of the threat.  Whenever it is safe to do so, please go through the normal permissions work flow, however if a threat is credible and potentially imminent, immediate action may be taken before the approvals have been put in place.
 1. The Sr. Director of Security will advise when it is best to halt any of the above tasks.
 
 ## Reporting Alleged Harassment
@@ -222,26 +221,26 @@ The psychosocial intervention advisor will investigate further and provide a rep
 **Protection from Power Harassment**
 
 "Power harassment" is defined as any act by a person using his/her authority in the workplace, such as job position or human relationship with a team member, beyond the appropriate scope of business conduct, which causes such team member mental distress or physical pain or degradation of the working environment.
-The law defines power harassment as "remarks or behaviour by people taking advantage of their superior position that go beyond business necessity, thereby harming the workplace environment. GitLab expressly prohibits any behaviour toward team members that falls within the definition of power harassment.
+The law defines power harassment as "remarks or behaviour by people taking advantage of their superior position that go beyond business necessity, thereby harming the workplace environment.  GitLab expressly prohibits any behaviour toward team members that falls within the definition of power harassment.
 
-Depending on the individual, a person may feel dissatisfaction when given the instructions, advice, or guidance necessary in the ordinary course of business. In such cases where the actions are conducted within the scope of appropriate business practice, they should not fall under the category of power harassment. Examples of power harassment include, but may not be limited to:
+Depending on the individual, a person may feel dissatisfaction when given the instructions, advice, or guidance necessary in the ordinary course of business.  In such cases where the actions are conducted within the scope of appropriate business practice, they should not fall under the category of power harassment.  Examples of power harassment include, but may not be limited to:
 
 - assault or injury (physical abuse)
 - threats, defamation, insult or slander (mental abuse)
 - isolation, ostracization or neglect (cutting them off from human relationships)
-  forcing a team member to perform certain tasks, which are clearly unnecessary for the business or impossible to be performed or interrupting their normal duties (excessive work demands)
+forcing a team member to perform certain tasks, which are clearly unnecessary for the business or impossible to be performed or interrupting their normal duties (excessive work demands)
 - ordering a team member to perform menial tasks which are far below the team member's ability or experience and do not provide any work at all for the team member relevant to the business (insufficient work demands)
 - excessively inquiring into the private affairs of a team member (invasion of privacy)
 
-Team members who feel that they may have been subjected to power harassment may bring their complaints to their People Business Partner, who will engage the appropriate internal consultation services and respond to claims. GitLab is prohibited from dismissing or treating unfairly any team members who report harassment cases or cooperate in an investigation or consultation process.
+Team members who feel that they may have been subjected to power harassment may bring their complaints to their People Business Partner, who will engage the appropriate internal consultation services and respond to claims.  GitLab is prohibited from dismissing or treating unfairly any team members who report harassment cases or cooperate in an investigation or consultation process.
 
 **Prohibition of Sexual Harassment**
 
-Team members are prohibited from any activities that cause disadvantage or discomfort to other employees or that are damaging to the work environment by way of speech or behaviour of a sexual nature. GitLab shall take all necessary measures in managing employment to prevent sexual harassment at the workplace.
+Team members are prohibited from any activities that cause disadvantage or discomfort to other employees or that are damaging to the work environment by way of speech or behaviour of a sexual nature.  GitLab shall take all necessary measures in managing employment to prevent sexual harassment at the workplace.
 
 **Prohibition of Harassment Due to Pregnancy, Childbirth, Child Care Leave, or Family Care Leave**
 
-Team members are prohibited from any activities that are damaging to the work environment of other employees by way of speech or behaviour related to pregnancy, childbirth, etc., or use of systems or measures related to pregnancy, childbirth, child care, family care, etc. GitLab shall take necessary measures in managing employment to prevent harassment due to pregnancy, childbirth, child care leave, family care leave, etc. at the workplace.
+Team members are prohibited from any activities that are damaging to the work environment of other employees by way of speech or behaviour related to pregnancy, childbirth, etc., or use of systems or measures related to pregnancy, childbirth, child care, family care, etc.  GitLab shall take necessary measures in managing employment to prevent harassment due to pregnancy, childbirth, child care leave, family care leave, etc. at the workplace.
 
 **Prohibition of Any Other Forms of Harassment**
 
@@ -274,13 +273,13 @@ The Company is aware of and recognises the effect that bullying, harassment and 
 - "Contact Person" – Team Member Relations: teammemberrelations@gitlab.com
 - "Designated Person" - For each formal complaint that is reported through Lighthouse, a Designated Person will be appointed by the Company to deal with the specific issue.
 
-_Informal Procedure_
+*Informal Procedure*
 
 1. The Company is of the view that an informal approach to solving matters can often be effective. In the first instance, an attempt should be made to address an allegation of bullying, harassment and sexual harassment on an informal basis through the procedure set out below.
 1. If you believe you are being bullied, harassed or sexually harassed you should explain clearly to the alleged perpetrator(s) that you find the behaviour in question to be unacceptable. If you would find it difficult to approach the alleged perpetrator(s) directly, then you may seek the advice or assistance of Team Member Relations. You may then request the assistance of Team Member Relations in raising the issue with the alleged perpetrator(s). Any approach made by Team Member Relations on your behalf to the alleged perpetrator(s) will be on a confidential, non-confrontational basis and will seek to resolve the issue in an informal low-key manner.
 1. If you decide that it would not be appropriate for the Company to deal with your complaint under the informal procedure, or having done so you are not satisfied with the outcome, you should proceed to the Formal Procedure.
 
-_Formal procedure_
+*Formal procedure*
 
 1. To begin with, you should make a formal complaint in writing via Lighthouse, giving concrete examples of the alleged bullying, harassment and/or sexual harassment, the dates of any such incidents and details of witnesses, where possible. You may make your complaint anonymously if you wish.
 1. The alleged perpetrator(s) will then be notified in writing that an allegation of bullying, harassment and/or sexual harassment has been made against them. A meeting will be arranged at which the alleged perpetrator(s) will be told that they will be given a fair opportunity to respond to each and every allegation of bullying, harassment and/or sexual harassment and they will be given a copy of your written complaint together with a copy of this policy.
@@ -294,7 +293,7 @@ _Formal procedure_
 1. If the Company decides that the complaint is not well founded, a People group representative and applicable manager will formally meet with the complainant, again to determine an appropriate course of action. It may be that some kind of counselling or mediation session(s) is required between the complainant and the alleged perpetrator(s).
 1. Either party may appeal the findings of an investigation under this procedure by submitting, in writing, within 5 working days of the Company's decision in respect of the complaint outlining the reasons for the appeal. The appeal will be heard on the points raised and will not involve reinvestigation of the complaint.
 
-_Mediation_
+*Mediation*
 
 1. Mediation is an alternative method of resolving issues relating to bullying, harassment and sexual harassment. Mediation involves the parties seeking to arrive at a solution through mutual agreement, rather than through an investigation and decision.
 1. Mediation provides a confidential opportunity for the person who feels that they have been bullied, harassed or sexually harassed and the person(s) accused of carrying out this inappropriate behaviour to discuss the matter and to reach an agreement on their continuing working relationship.
@@ -329,7 +328,7 @@ Team members who reside in Massachusetts have the right to file a complaint to t
 
 ### Oregon Law Requirements
 
-_Nondisclosure or Nondisparagement Agreements_
+*Nondisclosure or Nondisparagement Agreements*
 
 Under this policy, a nondisclosure agreement is any agreement by which one or more parties agree not to discuss or disclose information regarding any complaint of work-related harassment, discrimination, or sexual assault.
 
@@ -341,7 +340,7 @@ The company will not require a team member to enter into any agreement if the pu
 
 A team member claiming to be aggrieved by discrimination, harassment, or sexual assault may, however, voluntarily request to enter into a settlement, separation, or severance agreement which contains a nondisclosure, nondisparagement, or no-rehire provision and will have at least seven days to revoke any such agreement.
 
-_Time Limitations_
+*Time Limitations*
 
 Nothing in this policy precludes any person from filing a formal grievance in accordance with a collective bargaining agreement [if applicable], the [Bureau of Labor and Industries' Civil Rights Division](https://www.oregon.gov/boli/civil-rights/Pages/default.aspx) 800 NE Oregon St., Suite 1045 Portland, OR 97232, tel: (971) 673-0761, TTY Relay 711, or the Equal Employment Opportunity Commission. Note that Oregon state law requires that any legal action taken on alleged discriminatory conduct (specifically that prohibited by ORS 659A.030, 659A.082 or 659A.112) commence no later than five years after the occurrence of the violation. Other applicable laws may have a shorter time limitation on filing.
 

@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Repository-Backed Authoring for the AI Catalog"
 status: proposed
 creation-date: "2026-04-22"
@@ -78,10 +77,10 @@ The AI Catalog would share patterns and concerns with the CI/CD Catalog, but not
 
 The following table summarizes how each item type is authored, queried, and read at runtime:
 
-| Item type                                                          | Definition source              | Queryable metadata     | Definition read from                  |
-| ------------------------------------------------------------------ | ------------------------------ | ---------------------- | ------------------------------------- |
-| **Custom items** (user-created, owned by projects)                 | YAML files in a git repository | PostgreSQL (unchanged) | Object Storage (unchanged)            |
-| **Foundational items** (GitLab-maintained, owned by organizations) | Fixtures (unchanged)           | PostgreSQL (unchanged) | In-memory Fixtures (partly unchanged) |
+| Item type | Definition source | Queryable metadata | Definition read from |
+| --- | --- | --- | --- |
+| **Custom items** (user-created, owned by projects) | YAML files in a git repository | PostgreSQL (unchanged) | Object Storage (unchanged) |
+| **Foundational items** (GitLab-maintained, owned by organizations) | Fixtures (unchanged) | PostgreSQL (unchanged) | In-memory Fixtures (partly unchanged) |
 
 ### What Moves to Repositories
 
@@ -265,7 +264,7 @@ The publish endpoint enforces several guardrails to ensure governance controls a
 1. **Validation before publish**: All definitions are validated against schemas and references are resolved before any records are created. A single validation failure halts the publish.
 1. **Exclusive lease lock**: Only one publish can run per project at a time, preventing race conditions.
 
-These guardrails mean that users are free to configure their CI rules to trigger publishing however they choose (on merge, on tag, on schedule, manually). The endpoint enforces _what_ gets published, not _when_.
+These guardrails mean that users are free to configure their CI rules to trigger publishing however they choose (on merge, on tag, on schedule, manually). The endpoint enforces *what* gets published, not *when*.
 
 The validate endpoint is intentionally less restrictive: it reads from the pipeline branch (not the default branch), requires only developer+ access, and can be called from any pipeline. This allows MR pipelines to validate proposed changes before merge.
 
@@ -500,23 +499,23 @@ sequenceDiagram
 
 When publishing, data for the PostgreSQL records would be mapped.
 
-| `ai_catalog_items` column | Source                                                                                                                                      |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`                    | YAML definition file                                                                                                                        |
-| `description`             | YAML definition file                                                                                                                        |
-| `item_type`               | YAML definition file (`type` property)                                                                                                      |
-| `public`                  | YAML definition file (`visibility` property)                                                                                                |
-| `project_id`              | The repository's project                                                                                                                    |
-| `organization_id`         | The project's organization                                                                                                                  |
-| `internal_id`             | YAML definition file (`id` property). Stable identifier used to map the definition YAML to the record, uniquely scoped to item and project. |
-| `verification_level`      | The project's namespace verified status                                                                                                     |
+| `ai_catalog_items` column | Source |
+| --- | --- |
+| `name` | YAML definition file |
+| `description` | YAML definition file |
+| `item_type` | YAML definition file (`type` property) |
+| `public` | YAML definition file (`visibility` property) |
+| `project_id` | The repository's project |
+| `organization_id` | The project's organization |
+| `internal_id` | YAML definition file (`id` property). Stable identifier used to map the definition YAML to the record, uniquely scoped to item and project. |
+| `verification_level` | The project's namespace verified status |
 
-| `ai_catalog_item_versions` column | Source                                                                                                                                          |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `version`                         | YAML definition file (optional, must be valid semver greater than current version). Defaults to a minor bump from the latest version if absent. |
-| `release_date`                    | Timestamp of the publish event when lifecycle becomes `released`                                                                                |
-| `commit_sha`                      | The SHA of the commit read from during the publish (stored for auditability, but not used)                                                      |
-| `created_by_id`                   | The job token user                                                                                                                              |
+| `ai_catalog_item_versions` column | Source |
+| --- | --- |
+| `version` | YAML definition file (optional, must be valid semver greater than current version). Defaults to a minor bump from the latest version if absent. |
+| `release_date` | Timestamp of the publish event when lifecycle becomes `released` |
+| `commit_sha` | The SHA of the commit read from during the publish (stored for auditability, but not used) |
+| `created_by_id` | The job token user |
 
 ### Foundational Items
 
@@ -617,14 +616,14 @@ catalog and be queryable through the same finders and GraphQL API.
 
 Add new columns to support repo-backed items:
 
-| Change                                                       | Detail                                                                                                                    |
-| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
-| New column: `project_settings.ai_catalog_publishing_enabled` | Boolean, default `false`. [Project-level opt-in](#why-a-project-setting) for publishing to the AI Catalog.                |
-| New column: `ai_catalog_items.source`                        | Enum: `database`, `repository`, `fixture`. Identifies where the item's definition originates from and how it is authored. |
-| New column: `ai_catalog_items.internal_id`                   | Stable identifier from YAML `id` field, unique within project                                                             |
-| New column: `ai_catalog_items.foundational_item_ref`         | Stable identifier mapping to fixture (generalizes `foundational_flow_reference`)                                          |
-| New column: `ai_catalog_item_versions.commit_sha`            | Repository SHA of item version at publish (stored for auditability, but not used)                                         |
-| New column: `ai_catalog_mcp_servers.internal_id`             | Immutable identifier for YAML references                                                                                  |
+| Change | Detail |
+| --- | --- |
+| New column: `project_settings.ai_catalog_publishing_enabled` | Boolean, default `false`. [Project-level opt-in](#why-a-project-setting) for publishing to the AI Catalog. |
+| New column: `ai_catalog_items.source` | Enum: `database`, `repository`, `fixture`. Identifies where the item's definition originates from and how it is authored. |
+| New column: `ai_catalog_items.internal_id` | Stable identifier from YAML `id` field, unique within project |
+| New column: `ai_catalog_items.foundational_item_ref` | Stable identifier mapping to fixture (generalizes `foundational_flow_reference`) |
+| New column: `ai_catalog_item_versions.commit_sha` | Repository SHA of item version at publish (stored for auditability, but not used) |
+| New column: `ai_catalog_mcp_servers.internal_id` | Immutable identifier for YAML references |
 
 **2. Agent YAML definition schema**
 

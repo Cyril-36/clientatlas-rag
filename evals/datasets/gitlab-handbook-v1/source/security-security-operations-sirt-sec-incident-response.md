@@ -7,16 +7,13 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Security Incident Response Guide"
 description: " "
 weight: 20
 controlled_document: true
 tags:
-
-- security_standard
-- security_standard_cpir
-
+  - security_standard
+  - security_standard_cpir
 ---
 
 {{< label name="Visibility: Audit" color="#E24329" >}}
@@ -41,10 +38,10 @@ SIRT will follow processes in the [Material Breach Determination internal handbo
 
 ## Roles & Responsibilities
 
-| Role                          | Responsibilities                                                               |
-| ----------------------------- | ------------------------------------------------------------------------------ |
-| GitLab Team Members           | Responsible for following the requirements in this procedure                   |
-| SIRT                          | Responsible for implementing and executing this procedure                      |
+| Role | Responsibilities |
+| ----- |------------|
+| GitLab Team Members | Responsible for following the requirements in this procedure |
+| SIRT | Responsible for implementing and executing this procedure |
 | SIRT Management (Code Owners) | Responsible for approving significant changes and exceptions to this procedure |
 
 ## Procedure
@@ -52,28 +49,28 @@ SIRT will follow processes in the [Material Breach Determination internal handbo
 ### Incident Response Process: this guide covers the following activities for all security incidents
 
 1. Detection
-   - The SIRT, other internal, or external entity identifies a Security or Privacy event or risk that may be the result of a potential exploitation of a Security Vulnerability or Weakness, or that may be the result of a misconfiguration, or an innocent error
-   - One of our Security detection controls identifies event(s) outside of the established security baseline
-   - A security issue is escalated into an incident out of an abudance of caution and to validate any assumptions
+    - The SIRT, other internal, or external entity identifies a Security or Privacy event or risk that may be the result of a potential exploitation of a Security Vulnerability or Weakness, or that may be the result of a misconfiguration, or an innocent error
+    - One of our Security detection controls identifies event(s) outside of the established security baseline
+    - A security issue is escalated into an incident out of an abudance of caution and to validate any assumptions
 1. Analysis
-   - SIRT determines whether the reported security or privacy event is in actuality security or a privacy event
-   - SIRT determines the incident severity and priority based on the following [incident classification](/handbook/security/security-operations/sirt/severity-matrix/) methodology
+    - SIRT determines whether the reported security or privacy event is in actuality security or a privacy event
+    - SIRT determines the incident severity and priority based on the following [incident classification](/handbook/security/security-operations/sirt/severity-matrix/) methodology
 1. Containment
-   - Prevent the spread of unauthorized or malicious use of the affected system or data
-   - Mitigates and eventualy fully remediates the root cause of the incident to prevent further damage or exposure
-   - SIRT may implement additional controls to minimize the damage as a result of the incident
-   - Determine if it is safe to continue operations with the affected system
-   - Permit or deny the operations of the affected system
+    - Prevent the spread of unauthorized or malicious use of the affected system or data
+    - Mitigates and eventualy fully remediates the root cause of the incident to prevent further damage or exposure
+    - SIRT may implement additional controls to minimize the damage as a result of the incident
+    - Determine if it is safe to continue operations with the affected system
+    - Permit or deny the operations of the affected system
 1. Eradication
-   - Components that have caused the security incident are eliminated
-   - Removal of the attackers' access to the environment or the targeted system
-   - Strengthen the controls surrounding the affected system
+    - Components that have caused the security incident are eliminated
+    - Removal of the attackers' access to the environment or the targeted system
+    - Strengthen the controls surrounding the affected system
 1. Recovery
-   - Represents the effort to restore the affected system's operations after the problem that gave rise to the incident has been corrected
-   - Implementation of additional monitoring controls
-   - Update the incident record with any relevant details
+    - Represents the effort to restore the affected system's operations after the problem that gave rise to the incident has been corrected
+    - Implementation of additional monitoring controls
+    - Update the incident record with any relevant details
 1. Post-Incident analysis and activities
-   - Retrospective and lessons learned activity
+    - Retrospective and lessons learned activity
 
 #### Leaked Secrets Incident Response Process
 

@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Plan"
 ---
 
@@ -142,7 +141,7 @@ By performing a review, Engineering Managers play a key role by ensuring the roa
 
 #### Roadmap Organization
 
-```mermaid
+``` mermaid
 graph TD;
   A["devops::plan"] --> B["group::*"];
   B --> C["Category:*"];
@@ -254,11 +253,11 @@ We feel it is important to document and communicate, that changing of any item's
 
 #### Active Quarter OKRs
 
-FY25-Q2 Stage-level Objectives are available [here](https://gitlab.com/gitlab-com/gitlab-OKRs/-/issues/?sort=created_date&state=opened&label_name%5B%5D=devops%3A%3Aplan&label_name%5B%5D=division%3A%3AEngineering&not%5Blabel_name%5D%5B%5D=group%3A%3A%2a&type%5B%5D=objective&milestone_title=FY25-Q2&first_page_size=20) (internal).
+FY25-Q2 Stage-level Objectives are available [here](https://gitlab.com/gitlab-com/gitlab-OKRs/-/issues/?sort=created_date&state=opened&label_name%5B%5D=devops%3A%3Aplan&label_name%5B%5D=division%3A%3AEngineering&amp;not%5Blabel_name%5D%5B%5D=group%3A%3A%2a&type%5B%5D=objective&milestone_title=FY25-Q2&first_page_size=20) (internal).
 
 #### Previous Quarter OKRs
 
-FY25-Q1 Stage-level Objectives all closed out between 74% and 88% and are available [here](https://gitlab.com/gitlab-com/gitlab-OKRs/-/issues/?sort=created_date&state=closed&label_name%5B%5D=devops%3A%3Aplan&label_name%5B%5D=division%3A%3AEngineering&not%5Blabel_name%5D%5B%5D=group%3A%3A%2a&type%5B%5D=objective&milestone_title=FY25-Q1&first_page_size=20) (internal).
+FY25-Q1 Stage-level Objectives all closed out between 74% and 88% and are available [here](https://gitlab.com/gitlab-com/gitlab-OKRs/-/issues/?sort=created_date&state=closed&label_name%5B%5D=devops%3A%3Aplan&label_name%5B%5D=division%3A%3AEngineering&amp;not%5Blabel_name%5D%5B%5D=group%3A%3A%2a&type%5B%5D=objective&milestone_title=FY25-Q1&first_page_size=20) (internal).
 
 #### Drafting OKRs using GitLab
 
@@ -479,7 +478,7 @@ After the quad decides the work item architecture is suitable, the Product Desig
 
 1. Design how existing widgets will be utilized, and any new widgets needed or if existing widgets could be abstracted to fit a new use case. For example: The Timeline widget for incidents was designed in isolation specific to the incident use case. It could be reworked slightly to support more use cases, such as objective or key result check-ins.
 1. Define how users will access this work item. Design how this work item will appear in existing views, such as lists, or any new views needed for this work item.
-   - Ensure new components and patterns are contributed back to Pajamas.
+    - Ensure new components and patterns are contributed back to Pajamas.
 1. Solution validation should be conducted as needed to ensure the workflow and usability meets the user needs.
 
 ##### Research Process for Work Items
@@ -509,28 +508,28 @@ The responsibility of the DRI is simply to ensure the issue is ready to be publi
 
 #### DRIs
 
-| Issue creation (auto) | DRI               |
-| --------------------- | ----------------- |
-| 2025-04-14            | John Hope         |
-| 2025-04-21            | John Hope         |
-| 2025-04-28            | Vladimir Shushlin |
-| 2025-05-05            | Donald Cook       |
-| 2025-05-12            | John Hope         |
-| 2025-05-19            | Vladimir Shushlin |
-| 2025-05-26            | Donald Cook       |
-| 2025-06-02            | John Hope         |
-| 2025-06-09            | Vladimir Shushlin |
-| 2025-06-16            | Donald Cook       |
-| 2025-06-23            | John Hope         |
-| 2025-06-30            | Vladimir Shushlin |
-| 2025-07-07            | Donald Cook       |
-| 2025-07-14            | John Hope         |
-| 2025-07-21            | Vladimir Shushlin |
-| 2025-07-28            | Donald Cook       |
-| 2025-08-04            | John Hope         |
-| 2025-08-11            | Vladimir Shushlin |
-| 2025-08-18            | Donald Cook       |
-| 2025-08-25            | John Hope         |
+| Issue creation (auto) | DRI |
+|---   | ---       |
+| 2025-04-14 | John Hope |
+| 2025-04-21 | John Hope |
+| 2025-04-28 | Vladimir Shushlin |
+| 2025-05-05 | Donald Cook |
+| 2025-05-12 | John Hope |
+| 2025-05-19 | Vladimir Shushlin |
+| 2025-05-26 | Donald Cook |
+| 2025-06-02 | John Hope |
+| 2025-06-09 | Vladimir Shushlin |
+| 2025-06-16 | Donald Cook |
+| 2025-06-23 | John Hope |
+| 2025-06-30 | Vladimir Shushlin |
+| 2025-07-07 | Donald Cook |
+| 2025-07-14 | John Hope |
+| 2025-07-21 | Vladimir Shushlin |
+| 2025-07-28 | Donald Cook |
+| 2025-08-04 | John Hope |
+| 2025-08-11 | Vladimir Shushlin |
+| 2025-08-18 | Donald Cook |
+| 2025-08-25 | John Hope |
 
 #### Links
 
@@ -682,10 +681,10 @@ Engineering team-members can shadow a product stable-counterpart. Shadowing sess
 1. Create a WIP MR to this page to update the table below, adding your name and issue link, and
 1. When your counterpart is assigned to the issue, add their name, remove WIP status and assign to your manager for review.
 
-| Month   | Engineering counterpart                                      | Product counterpart                                     | Issue link                                                             |
-| ------- | ------------------------------------------------------------ | ------------------------------------------------------- | ---------------------------------------------------------------------- |
-| 2020-07 | Charlie Ablett ([@cablett](https://gitlab.com/cablett))      | Keanon O'Keefe ([@kokeefe](https://gitlab.com/kokeefe)) | [gitlab-org/plan#118](https://gitlab.com/gitlab-org/plan/-/issues/118) |
-| 2020-10 | Jan Provaznik ([@jprovaznik](https://gitlab.com/jprovaznik)) | Gabe Weaver ([@gweaver](https://gitlab.com/gweaver))    | [gitlab-org/plan#185](https://gitlab.com/gitlab-org/plan/-/issues/185) |
+| Month | Engineering counterpart | Product counterpart | Issue link |
+| ----- | ----------------------- | ------------------- | ---------- |
+| 2020-07 | Charlie Ablett ([@cablett](https://gitlab.com/cablett)) | Keanon O'Keefe ([@kokeefe](https://gitlab.com/kokeefe)) | [gitlab-org/plan#118](https://gitlab.com/gitlab-org/plan/-/issues/118) |
+| 2020-10 | Jan Provaznik ([@jprovaznik](https://gitlab.com/jprovaznik)) | Gabe Weaver ([@gweaver](https://gitlab.com/gweaver)) | [gitlab-org/plan#185](https://gitlab.com/gitlab-org/plan/-/issues/185) |
 
 ### Speed Runs
 
@@ -703,11 +702,11 @@ Engineering team-members can shadow a product stable-counterpart. Shadowing sess
 
 We're tracking a number of issues that we believe could cause scalability problems in the future.
 
-| Type              | Description                                                                                                         | Estimated Timeline for Failure | Resolution Due Date | 12 Month Target                                                                                                                      | Issue                                                           | Status                                                                                                                                     |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------ | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| Redis Primary CPU | Unexpected load on the Shared State Redis instance caused by `SUBSCRIBE`, `UNSUBSCRIBE` and `PUBLISH` commands.     | Unknown                        | November 2023       | [150k Concurrent WebSocket Connections](https://gitlab.com/gitlab-com/www-gitlab-com/-/issues/11747#action-cable-websockets) at peak |                                                                 | <span style='border-radius:0.2em; font-weight:bold; padding-left:1em; padding-right:1em; color:white; background-color:green;'>Okay</span> |
-| Redis Memory      | Retention of Action Cable messages in Redis Shared State memory due to high numbers of and/or stalled/hung clients. | Unknown                        | November 2023       | [150k Concurrent WebSocket Connections](https://gitlab.com/gitlab-com/www-gitlab-com/-/issues/11747#action-cable-websockets) at peak | [#326364](https://gitlab.com/gitlab-org/gitlab/-/issues/326364) | <span style='border-radius:0.2em; font-weight:bold; padding-left:1em; padding-right:1em; color:white; background-color:green;'>Okay</span> |
-| Primary DB        | Scaling a combined 'Work Items' table consisting of all current issues, epics, requirements and test cases.         | Unknown                        | November 2024       | [50k Work Items](#work-items) created per day                                                                                        |                                                                 | <span style='border-radius:0.2em; font-weight:bold; padding-left:1em; padding-right:1em; color:white; background-color:green;'>Okay</span> |
+| Type | Description | Estimated Timeline for Failure | Resolution Due Date | 12 Month Target | Issue | Status |
+| ---- | ---          | ---                            | ---                | ---    | ---   | ---    |
+| Redis Primary CPU | Unexpected load on the Shared State Redis instance caused by `SUBSCRIBE`, `UNSUBSCRIBE` and `PUBLISH` commands. | Unknown | November 2023 | [150k Concurrent WebSocket Connections](https://gitlab.com/gitlab-com/www-gitlab-com/-/issues/11747#action-cable-websockets) at peak | | <span style='border-radius:0.2em; font-weight:bold; padding-left:1em; padding-right:1em; color:white; background-color:green;'>Okay</span> |
+| Redis Memory | Retention of Action Cable messages in Redis Shared State memory due to high numbers of and/or stalled/hung clients.  | Unknown | November 2023 | [150k Concurrent WebSocket Connections](https://gitlab.com/gitlab-com/www-gitlab-com/-/issues/11747#action-cable-websockets) at peak | [#326364](https://gitlab.com/gitlab-org/gitlab/-/issues/326364) | <span style='border-radius:0.2em; font-weight:bold; padding-left:1em; padding-right:1em; color:white; background-color:green;'>Okay</span> |
+| Primary DB | Scaling a combined 'Work Items' table consisting of all current issues, epics, requirements and test cases. | Unknown | November 2024 | [50k Work Items](#work-items) created per day| | <span style='border-radius:0.2em; font-weight:bold; padding-left:1em; padding-right:1em; color:white; background-color:green;'>Okay</span> |
 
 Note: Work is ongoing on [migration helpers](https://gitlab.com/gitlab-org/gitlab/-/issues/292874) to mitigate Int4 Primary Key Overflows. These will provide a standard way to resolve these issues.
 
@@ -715,13 +714,13 @@ Note: Work is ongoing on [migration helpers](https://gitlab.com/gitlab-org/gitla
 
 Some tables in our database have grown significantly and may pose scalability issues.
 
-| Table Name            | Current Size (Bytes) | Planned Mitigation Issue                             | Status                                                                                                                                         |
-| --------------------- | -------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| description_versions  | 424.2                | https://gitlab.com/gitlab-org/gitlab/-/issues/412704 | <span style='border-radius:0.2em; font-weight:bold; padding-left:1em; padding-right:1em; color:white; background-color:red;'>Critical</span>   |
-| issues                | 278.4                | https://gitlab.com/groups/gitlab-org/-/epics/10987   | <span style='border-radius:0.2em; font-weight:bold; padding-left:1em; padding-right:1em; color:white; background-color:orange;'>Warning</span> |
-| resource_label_events | 165.3                | https://gitlab.com/gitlab-org/gitlab/-/issues/412705 | <span style='border-radius:0.2em; font-weight:bold; padding-left:1em; padding-right:1em; color:white; background-color:orange;'>Warning</span> |
-| sent_notifications    | 508.1                | https://gitlab.com/gitlab-org/gitlab/-/issues/417233 | <span style='border-radius:0.2em; font-weight:bold; padding-left:1em; padding-right:1em; color:white; background-color:red;'>Critical</span>   |
-| system_note_metadata  | 173.5                |                                                      | <span style='border-radius:0.2em; font-weight:bold; padding-left:1em; padding-right:1em; color:white; background-color:yellow;'>Warning</span> |
+| Table Name            | Current Size (Bytes) | Planned Mitigation Issue                             | Status                                                                                                                                          |
+| --------------------- | -------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| description_versions  | 424.2                | https://gitlab.com/gitlab-org/gitlab/-/issues/412704 | <span style='border-radius:0.2em; font-weight:bold; padding-left:1em; padding-right:1em; color:white; background-color:red;'>Critical</span> |
+| issues                | 278.4                | https://gitlab.com/groups/gitlab-org/-/epics/10987   | <span style='border-radius:0.2em; font-weight:bold; padding-left:1em; padding-right:1em; color:white; background-color:orange;'>Warning</span>  |
+| resource_label_events | 165.3                | https://gitlab.com/gitlab-org/gitlab/-/issues/412705 | <span style='border-radius:0.2em; font-weight:bold; padding-left:1em; padding-right:1em; color:white; background-color:orange;'>Warning</span>  |
+| sent_notifications    | 508.1                | https://gitlab.com/gitlab-org/gitlab/-/issues/417233 | <span style='border-radius:0.2em; font-weight:bold; padding-left:1em; padding-right:1em; color:white; background-color:red;'>Critical</span> |
+| system_note_metadata  | 173.5                |                                                      | <span style='border-radius:0.2em; font-weight:bold; padding-left:1em; padding-right:1em; color:white; background-color:yellow;'>Warning</span>  |
 
 By continually monitoring these tables and applying the planned mitigations, we aim to maintain optimal performance and prevent any scalability issues.
 

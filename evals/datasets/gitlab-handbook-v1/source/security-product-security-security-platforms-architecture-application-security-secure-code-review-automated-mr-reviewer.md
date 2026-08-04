@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Automated MR Security Reviewer"
 description: "How to use the AppSec automated security review flow on merge requests at GitLab."
 ---
@@ -22,7 +21,7 @@ The flow is currently available for merge requests in `gitlab-org/gitlab` and ot
 
 The flow's source and full technical reference are maintained in the [appsec-security-mr-reviewer project](https://gitlab.com/components/agents-and-flows/appsec-security-mr-reviewer/).
 
-If you would like to have this flow enabled on your project, submit an MR in the [appsec-security-mr-reviewer project](https://gitlab.com/components/agents-and-flows/appsec-security-mr-reviewer/), adding your project to the `flow.yaml` file.
+If you would like to have this flow enabled on your project, submit an MR in the [appsec-security-mr-reviewer project](https://gitlab.com/components/agents-and-flows/appsec-security-mr-reviewer/), adding your project to the `flow.yaml` file. 
 
 ## How It Works
 
@@ -43,11 +42,11 @@ Mention the service account in a public comment on the MR to trigger a review:
 
 `@ai-appsec-security-mr-reviewer-<namespace> please review this MR for security issues`
 
-The service account username follows the pattern `@ai-appsec-security-mr-reviewer-<namespace>`, where `<namespace>` corresponds to the GitLab group the flow is deployed under.
+The service account username follows the pattern `@ai-appsec-security-mr-reviewer-<namespace>`, where `<namespace>` corresponds to the GitLab group the flow is deployed under. 
 
 When triggered, the flow immediately labels the MR `~security-mr-reviewer-flow-triggered` and posts a confirmation comment linking to the running job.
 
-**Note:** Using the wrong `<namespace>`, will cause the flow to not be triggered. When you begin typing `@ai-appsec....` a drop down should appear with the full name of the correct service account. If the service account does not appear in the drop down, the flow needs to be added to the project in which you are working.
+**Note:** Using the wrong `<namespace>`, will cause the flow to not be triggered. When you begin typing `@ai-appsec....` a drop down should appear with the full name of the correct service account.  If the service account does not appear in the drop down, the flow needs to be added to the project in which you are working.
 
 ### Automatically via CI
 

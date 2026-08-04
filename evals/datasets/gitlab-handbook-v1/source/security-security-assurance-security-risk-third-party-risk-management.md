@@ -7,14 +7,11 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Security Third Party Risk Management"
 controlled_document: true
 tags:
-
-- security_standard
-- security_standard_sasr
-
+  - security_standard
+  - security_standard_sasr
 ---
 
 {{< label name="Visibility: Audit" color="#E24329" >}}
@@ -36,18 +33,18 @@ GitLab's Security Third Party Risk Management (TPRM) Program helps guard against
 GitLab's Security TPRM program involves three components which are integrated into our [Procurement](/handbook/finance/procurement/) processes:
 
 1. Performing due diligence to ensure the third party implements safeguards to enforce data privacy and security
-   - This activity is performed via our Security Assessment Process. You can find an open source version of our TPRM Assessment Report template in our [Open Source Security Hub](https://gitlab.com/gitlab-security-oss/risk-mgmt/tprm-templates).
+    - This activity is performed via our Security Assessment Process. You can find an open source version of our TPRM Assessment Report template in our [Open Source Security Hub](https://gitlab.com/gitlab-security-oss/risk-mgmt/tprm-templates).
 1. [Contractually](/handbook/finance/procurement/#3-contracting) obligating the third party to implement these safeguards
 1. Monitoring third party safeguards and compliance with these contracted provisions
-   - Certain high risk Third Parties are reviewed annually while those posing lower risk are reviewed at intervals defined further within this document.
+    - Certain high risk Third Parties are reviewed annually while those posing lower risk are reviewed at intervals defined further within this document.
 
 ## Roles & Responsibilities
 
-| Role                                        | Responsibility                                                                                                                                                                                                                                                                                                                  |
-| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Security Risk Team                          | - Maintain a mechanism to intake and respond to TPRM Activities <br> - Assess Third Party inherent and residual security risk <br> Inform Business Owners of the result of TPRM assessments                                                                                                                                     |
-| Business or System Owner                    | - [Describe the nature of the Third Party Relationship](/handbook/finance/procurement/#step-2-submit-your-zip-request) <br> - Work with the Security Risk team to facilitate the TPRM review, to include remediation activities <br> - Ensure the responsiveness of the third party as part of the security review requirements |
-| Security Assurance Management (Code Owners) | - Responsible for approving significant changes and exceptions to this procedure                                                                                                                                                                                                                                                |
+| Role | Responsibility |
+| ------ | ------ |
+| Security Risk Team |  - Maintain a mechanism to intake and respond to TPRM Activities <br> - Assess Third Party inherent and residual security risk <br> Inform Business Owners of the result of TPRM assessments |
+| Business or System Owner |  - [Describe the nature of the Third Party Relationship](/handbook/finance/procurement/#step-2-submit-your-zip-request) <br> - Work with the Security Risk team to facilitate the TPRM review, to include remediation activities <br> - Ensure the responsiveness of the third party as part of the security review requirements |
+| Security Assurance Management (Code Owners) | - Responsible for approving significant changes and exceptions to this procedure |
 
 ### On-Call Rotation
 
@@ -59,16 +56,16 @@ For urgent requisitions or TPRM concerns requiring immediate attention, please r
 
 ## Frequently Asked Questions
 
-| Question                                                  | Answer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _What is the purpose of TPRM?_                            | Our procedures exist to support informed business decisions and mitigate exposure to the ever-evolving threat landscape. This is critical to maintain customer trust and prevent unauthorized data exposure.                                                                                                                                                                                                                                                                                            |
-| _What is my role?_                                        | Your primary role as a requestor is to help us understand what is being purchased and what data is shared. This helps us complete an accurate assessment efficiently to support your needs.                                                                                                                                                                                                                                                                                                             |
-| _You reviewed them last year, why are we doing it again?_ | Our assessments are valid for 12 months. After that, a new assessment is required before we can approve additional requisitions. A vendor's security environment and our compliance obligations are subject to change, thus continued oversight is necessary to stay aligned with evolving risks.                                                                                                                                                                                                       |
-| _Can you just approve and assess after?_                  | No. Introducing new vendors and systems prior to review can expose us to unforeseen security risks and compliance issues. If a request **must** proceed to address a critical business or customer need, approval may be granted via our [Security Notice process](/handbook/security/security-assurance/security-risk/third-party-risk-management/#tprm-security-notice-process).                                                                                                                      |
-| _Can this be expedited?_                                  | Our team can prioritize reviews within reason if a requisition is critical and time-sensitive, however the **best** way to expedite a review is to encourage the vendor to respond to our inquiries quickly. Urgent requests should be escalated to @Security-Risk in the #Procurement channel.                                                                                                                                                                                                         |
-| _How can I track review status?_                          | Updates will be provided via comments within the Zip requisition. Status updates may be requested there or within the #Procurement channel.                                                                                                                                                                                                                                                                                                                                                             |
-| _What if they fail the review?_                           | A [Security Notice](/handbook/security/security-assurance/security-risk/third-party-risk-management/#tprm-security-notice-process) will be opened to communicate deficiencies to relevant stakeholders and determine next steps to support the business need. New vendors that fail our TPRM review may be required to address any identified deficiencies before proceeding. For existing vendors, a remediation plan or offboarding plan may be required depending on the severity of the deficiency. |
-| _What triggers a TPRM Assessment?_                        | Funny you should ask...                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Question | Answer |
+| -------- | ------ |
+| *What is the purpose of TPRM?* | Our procedures exist to support informed business decisions and mitigate exposure to the ever-evolving threat landscape. This is critical to maintain customer trust and prevent unauthorized data exposure.|
+| *What is my role?* | Your primary role as a requestor is to help us understand what is being purchased and what data is shared. This helps us complete an accurate assessment efficiently to support your needs.|
+| *You reviewed them last year, why are we doing it again?* | Our assessments are valid for 12 months. After that, a new assessment is required before we can approve additional requisitions. A vendor's security environment and our compliance obligations are subject to change, thus continued oversight is necessary to stay aligned with evolving risks.|
+| *Can you just approve and assess after?* | No. Introducing new vendors and systems prior to review can expose us to unforeseen security risks and compliance issues. If a request **must** proceed to address a critical business or customer need, approval may be granted via our [Security Notice process](/handbook/security/security-assurance/security-risk/third-party-risk-management/#tprm-security-notice-process).|
+| *Can this be expedited?*  | Our team can prioritize reviews within reason if a requisition is critical and time-sensitive, however the **best** way to expedite a review is to encourage the vendor to respond to our inquiries quickly. Urgent requests should be escalated to @Security-Risk in the #Procurement channel.|
+| *How can I track review status?* | Updates will be provided via comments within the Zip requisition. Status updates may be requested there or within the #Procurement channel.|
+| *What if they fail the review?* | A [Security Notice](/handbook/security/security-assurance/security-risk/third-party-risk-management/#tprm-security-notice-process) will be opened to communicate deficiencies to relevant stakeholders and determine next steps to support the business need. New vendors that fail our TPRM review may be required to address any identified deficiencies before proceeding. For existing vendors, a remediation plan or offboarding plan may be required depending on the severity of the deficiency.|
+|*What triggers a TPRM Assessment?* | Funny you should ask...|
 
 ## What Triggers a TPRM Assessment?
 
@@ -99,7 +96,7 @@ When considering new software to address business needs and objectives, see belo
 - Does the vendor require an independent third party penetration test of their systems to identify and remediate vulnerabilities and weaknesses?
   - Security requires that vendors conduct annual independent penetration testing on all systems supporting their SaaS solution and attest to the remediation or mitigation of any high or critical findings posing a material threat to GitLab data.
 
-_Note: Proof of concept (Poc) and pilot software engagements may require the exchange of sensitive GitLab data and must adhere to the same evaluation of the vendor's security practices for new software requests. Security Risk recommends anonymizing sensitive GitLab data and ensuring contract language defines expectations and requirements around data security, [privacy considerations](/handbook/legal/privacy/), and [deletion of data](/handbook/finance/procurement/vendor-guidelines/vendor-agreement/#7-termination) after the PoC or pilot is complete._
+*Note: Proof of concept (Poc) and pilot software engagements may require the exchange of sensitive GitLab data and must adhere to the same evaluation of the vendor's security practices for new software requests. Security Risk recommends anonymizing sensitive GitLab data and ensuring contract language defines expectations and requirements around data security, [privacy considerations](/handbook/legal/privacy/), and [deletion of data](/handbook/finance/procurement/vendor-guidelines/vendor-agreement/#7-termination) after the PoC or pilot is complete.*
 
 </details>
 
@@ -123,15 +120,15 @@ See below for high level recommendations to leverage when evaluating professiona
 
 The following table defines the procedures followed by TPRM engineers for vendors accessing or being transmitted different [classifications of GitLab data](https://internal.gitlab.com/handbook/security/policies_and_standards/standards/data_classification/). The below procedures are initiated during the [Procurement](/handbook/finance/procurement/#the-procurement-process) process and are followed in all instances where applicable vendors have not been reviewed within the approval windows defined below. **Misalignment with [TPRM's Minimum Security Standards](#third-party-minimum-security-standards) may result in denial of a vendor requisition or issuance of a Security Notice.** If a Security Notice was documented at the time of the previous assessment, inquiry will be performed prior to requisition approval to determine the current status of the identified deficiencies. Depending on the nature of the deficiency, a new TPRM assessment may be required. Any updates will be documented within the Security Notice Issue.
 
-| Data<br>Classification                                                     | Request                                                                                                                                                                              | Supplemental<br>Questionnaire | Okta SSO? | New BIA /<br>Tech Stack Entry? | Bitsight<br>Review? | Evidence of Pen Testing |
-| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- | --------- | ------------------------------ | ------------------- | ----------------------- |
-| Red SaaS Systems                                                           | 3rd Party Attestation                                                                                                                                                                | Yes                           | Yes       | Yes                            | Yes                 | Yes                     |
-| Orange SaaS Systems or Locally Hosted/Installed Systems with Data Exchange | 3rd Party Attestation                                                                                                                                                                | Yes                           | Yes       | Yes                            | Yes                 | Yes                     |
-| Orange Individual Use Software*                                            | 3rd Party Attestation or [Self-Attestation](#standard-information-gathering-sig-questionnaire-for-vendor-self-attestation)                                                           | No                            | No        | No                             | Yes                 | No                      |
-| Orange Professional Services                                               | 3rd Party Attestation or [Prof Svcs SIG](https://docs.google.com/spreadsheets/d/1xiReZd5heUl5YVFCqPxEfXJIYlqtz_LS/edit?usp=drive_link&ouid=103289635706160914358&rtpof=true&sd=true) | N/A                           | N/A       | N/A                            | N/A                 | N/A                     |
-| Yellow/Green                                                               | N/A                                                                                                                                                                                  | N/A                           | N/A       | No                             | N/A                 | N/A                     |
+| Data<br>Classification | Request | Supplemental<br>Questionnaire | Okta SSO? | New BIA /<br>Tech Stack Entry? | Bitsight<br>Review? | Evidence of Pen Testing |
+| ------ | ------ |------ |------ |------ |------ | ------ |
+|Red SaaS Systems     |3rd Party Attestation |     Yes|          Yes |     Yes|    Yes | Yes |
+|Orange SaaS Systems or Locally Hosted/Installed Systems with Data Exchange| 3rd Party Attestation|     Yes|          Yes|     Yes|     Yes | Yes |
+| Orange Individual Use Software* | 3rd Party Attestation or [Self-Attestation](#standard-information-gathering-sig-questionnaire-for-vendor-self-attestation) | No | No | No | Yes | No|
+|Orange Professional Services | 3rd Party Attestation or [Prof Svcs SIG](https://docs.google.com/spreadsheets/d/1xiReZd5heUl5YVFCqPxEfXJIYlqtz_LS/edit?usp=drive_link&ouid=103289635706160914358&rtpof=true&sd=true)|          N/A|     N/A| N/A|   N/A | N/A|
+|Yellow/Green     | N/A |  N/A |  N/A |     No | N/A  | N/A  |
 
-_Professional Services vendors utilizing a web-facing application to collect and store GitLab sensitive data are generally treated as an Orange SaaS system._
+*Professional Services vendors utilizing a web-facing application to collect and store GitLab sensitive data are generally treated as an Orange SaaS system.*
 
 ## Procedures
 
@@ -196,12 +193,12 @@ TPRM procedures are guided by the vendor's Inherent and Residual Risk levels, wh
 
 **Inherent Risk** is the vendor's baseline risk level before accounting for mitigating controls required by GitLab's Third Party Risk Management Program. GitLab uses the [sensitivity of the data exchanged with the vendor](/handbook/security/policies_and_standards/data-classification-standard/#data-classification-levels) to establish the baseline risk level, which dictates our [TPRM assessment requirements](/handbook/security/security-assurance/security-risk/third-party-risk-management/#tprm-assessment-requirements)
 
-| Inherent Risk Level |   Data Classification   |
-| :-----------------: | :---------------------: |
-|      Critical       |           Red           |
-|        High         | Orange SaaS<sup>1</sup> |
-|       Medium        |   Orange<sup>2</sup>    |
-|         Low         |     Yellow / Green      |
+|Inherent Risk Level|Data Classification|
+|:---------:|:--------------:|
+|Critical|Red|
+|High|Orange SaaS<sup>1</sup>|
+|Medium|Orange<sup>2</sup>|
+|Low|Yellow / Green|
 
 <ol>
   <li> <i> Due to increased risk with vendor engagements providing cloud services (such as SaaS offerings), the inherent risk level has been elevated to account for emerging threats and vulnerabilities associated with these types of services. </i> </li>
@@ -212,12 +209,12 @@ TPRM procedures are guided by the vendor's Inherent and Residual Risk levels, wh
 
 Vendors that meet GitLab's security requirements will have residual risks levels as follows:
 
-| Inherent Risk Level | Residual Risk Level |
-| :-----------------: | :-----------------: |
-|      Critical       |        High         |
-|        High         |       Medium        |
-|       Medium        |         Low         |
-|         Low         |         Low         |
+|Inherent Risk Level| Residual Risk Level|
+|:---------:|:--------------:|
+|Critical|High|
+|High|Medium|
+|Medium|Low|
+|Low|Low|
 
 Vendors that fail to meet GitLab's Third Party Risk Assessment requirements will require a [Security Notice.](#tprm-security-notice-process)
 
@@ -251,7 +248,7 @@ GitLab obtains and reviews third-party attestations to provide assurance over th
 
 In the event that a vendor provides a valid ISO 27001 certificate but is unable to provide their SoA, we require the completion of a self-attestation such as a SIG or CAIQ to meet our assessment criteria and gain a better understanding of their security environment.
 
-_Be aware that ISO 27001 certificates include an expiration date. Once this date has passed, the certificate is no longer valid and should not be leveraged in our assessment._
+*Be aware that ISO 27001 certificates include an expiration date. Once this date has passed, the certificate is no longer valid and should not be leveraged in our assessment.*
 
 **SOC 2 Type 2:** The SOC 2 Type 2 report is the preferred attestation when assessing third party risk, as this report details the design of an organization's information system and how various forms of risk are addressed. This report not only details the controls in place within an organization, but it also includes independent validation of whether or not each of those controls functioned effectively during the audit period. This report should be reviewed to validate the following:
 
@@ -277,14 +274,14 @@ The Security Risk team obtains vendor SOC 2 reports during our reviews and deter
 
 {{% details summary="(Expand to view chart)" %}}
 
-| #   | CUEC                                          | Guidance                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Related [GCF Control(s)](/handbook/security/security-assurance/security-compliance/sec-controls/#gitlab-control-framework-gcf) |
-| --- | :-------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| 1   | Ensuring accuracy of data shared with vendor  | We should reduce the risk of [data quality problems](/handbook/enterprise-data/data-governance/data-quality/#types-of-data-quality-problems) which can arise when moving data from one system to another. This can be done by comparing source data to destination data. Queries used to generate the data should be reviewed to ensure things aren't filtered out inappropriately.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | SC-8                                                                                                                           |
-| 2   | Adding and removing access to the application | For new applications, the Tech Stack Add process should facilitate on-boarding applications into our [access request](/handbook/eta/corporate-it/end-user-services/access-requests/access-requests/) and [off-boarding](/handbook/business-technology/tech-stack-applications/#updating-the-offboarding-templates) processes. For existing applications, ensure that the processes mentioned above are followed for your application.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | AC-2                                                                                                                           |
-| 3   | Controlling access to our network             | We don't have a [traditional enterprise network](/handbook/security/product-security/security-platforms-architecture/security-architecture/zero-trust/#zero-trust). Integrating with [Okta](/handbook/eta/corporate-it/end-user-services/okta/#adding-new-applications-to-okta) should help ensure access to the application is gated behind multi-factor authentication and is accessible only through Okta.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | AC-17                                                                                                                          |
-| 4   | Reviewing access to the application           | Access Reviews are performed for Tier 1 and Tier 2 systems that are in scope for our [compliance and regulatory programs](/handbook/business-technology/tech-stack-applications/#compliance). System owners of Tier 1/2/3 systems that are not in scope for our compliance and regulatory program are highly encouraged to perform a minimum of an annual terminated access review for their owned systems using [this process](/handbook/security/security-assurance/security-compliance/access-reviews/) as a guide. Access reviews for Tier 4 systems are not required. To request an ad-hoc access review, create a request issue [here](https://gitlab.com/gitlab-com/gl-security/security-assurance/team-commercial-compliance/user-access-review/-/issues/new?issuable_template=Ad-Hoc%20User%20Access%20Review%20Request). Reminders of the periodic review can be set up as Google Calendar events on a shared calendar or an issue can be created on scheduled pipeline in GitLab. | AC-6                                                                                                                           |
-| 5   | Notify vendor of changes timely               | Work with the vendor to understand which changes need to be communicated. A common instance is when someone leaves a company that was considered a primary or secondary point of contact for the vendor or in the event of a security breach. Establish a process for documenting these scenarios, how they're communicated, and SLAs for doing so.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | SR-8                                                                                                                           |
-| 6   | Establishing disaster recovery procedures     | We should be prepared for an outage of the application. Would we be able to reproduce the data that isn't available due to the outage? Document a procedure for how we would respond to an outage of an application.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | CP-2                                                                                                                           |
+| # | CUEC | Guidance | Related [GCF Control(s)](/handbook/security/security-assurance/security-compliance/sec-controls/#gitlab-control-framework-gcf) |
+|---|:-----|:---------| -----------------------|
+|1|Ensuring accuracy of data shared with vendor|We should reduce the risk of [data quality problems](/handbook/enterprise-data/data-governance/data-quality/#types-of-data-quality-problems) which can arise when moving data from one system to another. This can be done by comparing source data to destination data. Queries used to generate the data should be reviewed to ensure things aren't filtered out inappropriately.| SC-8 |
+|2|Adding and removing access to the application|For new applications, the Tech Stack Add process should facilitate on-boarding applications into our [access request](/handbook/eta/corporate-it/end-user-services/access-requests/access-requests/) and [off-boarding](/handbook/business-technology/tech-stack-applications/#updating-the-offboarding-templates) processes. For existing applications, ensure that the processes mentioned above are followed for your application.| AC-2|
+|3|Controlling access to our network|We don't have a [traditional enterprise network](/handbook/security/product-security/security-platforms-architecture/security-architecture/zero-trust/#zero-trust). Integrating with [Okta](/handbook/eta/corporate-it/end-user-services/okta/#adding-new-applications-to-okta) should help ensure access to the application is gated behind multi-factor authentication and is accessible only through Okta.|AC-17|
+|4|Reviewing access to the application|Access Reviews are performed for Tier 1 and Tier 2 systems that are in scope for our [compliance and regulatory programs](/handbook/business-technology/tech-stack-applications/#compliance). System owners of Tier 1/2/3 systems that are not in scope for our compliance and regulatory program are highly encouraged to perform a minimum of an annual terminated access review for their owned systems using [this process](/handbook/security/security-assurance/security-compliance/access-reviews/) as a guide. Access reviews for Tier 4 systems are not required. To request an ad-hoc access review, create a request issue [here](https://gitlab.com/gitlab-com/gl-security/security-assurance/team-commercial-compliance/user-access-review/-/issues/new?issuable_template=Ad-Hoc%20User%20Access%20Review%20Request). Reminders of the periodic review can be set up as Google Calendar events on a shared calendar or an issue can be created on scheduled pipeline in GitLab.| AC-6 |
+|5|Notify vendor of changes timely|Work with the vendor to understand which changes need to be communicated. A common instance is when someone leaves a company that was considered a primary or secondary point of contact for the vendor or in the event of a security breach. Establish a process for documenting these scenarios, how they're communicated, and SLAs for doing so.| SR-8 |
+|6|Establishing disaster recovery procedures|We should be prepared for an outage of the application. Would we be able to reproduce the data that isn't available due to the outage? Document a procedure for how we would respond to an outage of an application.| CP-2 |
 
 {{% /details %}}
 
@@ -294,7 +291,7 @@ Questions regarding CUECs can be directed to the #security_help channel in Slack
 
 A self-attestation such as a [SIG questionnaire](https://sharedassessments.org/sig/), or equivalent document such as a CAIQ, is required if an individual-use software vendor is unable to provide a valid SOC 2 Type 2 report or an ISO 27001 certificate along with its Statement of Applicability. Red vendors or Orange SaaS vendors are required to provide a Third-Party Attestation as defined above. The SIG questionnaire is reviewed alongside the responses to our Security Questionnaire when assessing the maturity of a service organization's Security environment.
 
-Security Risk maintains multiple templated versions of the SIG questionnaire for use depending on the product or service being assessed, as some vendors may not have a SIG questionnaire or equivalent to provide. The SIG templates include instructions noting that we only require Inquiry responses within Columns D and E of the main questionnaire tab, as additional requests for information or documentation within the SIG are generally not required. Note that potential fringe cases _could_ exist wherein professional discretion may dictate the necessity for additional documentation requests to supplement vendor responses. Further, professional discretion should be applied when making decisions as to which version of the SIG questionnaire should be sent. For cases in which the level of review required is unclear, engineers are encouraged to discuss with the @Security-Risk team in the #Sec-Assurance-Team channel to come to a decision considering factors such as the services offered, data exchanged and the outcome of previous assessments.
+Security Risk maintains multiple templated versions of the SIG questionnaire for use depending on the product or service being assessed, as some vendors may not have a SIG questionnaire or equivalent to provide. The SIG templates include instructions noting that we only require Inquiry responses within Columns D and E of the main questionnaire tab, as additional requests for information or documentation within the SIG are generally not required. Note that potential fringe cases *could* exist wherein professional discretion may dictate the necessity for additional documentation requests to supplement vendor responses. Further, professional discretion should be applied when making decisions as to which version of the SIG questionnaire should be sent. For cases in which the level of review required is unclear, engineers are encouraged to discuss with the @Security-Risk team in the #Sec-Assurance-Team channel to come to a decision considering factors such as the services offered, data exchanged and the outcome of previous assessments.
 
 {{% details summary="SIG Lite Plus" %}}
 
@@ -322,12 +319,12 @@ Security Risk maintains multiple templated versions of the SIG questionnaire for
     - T. Threat Management
     - U. Server Security
     - V. Cloud Services (Full SIG Content)
-      {{% /details %}}
+{{% /details %}}
 
 {{% details summary="Professional Services SIG" %}}
 
 - [SIG Professional Services](https://docs.google.com/spreadsheets/d/1xiReZd5heUl5YVFCqPxEfXJIYlqtz_LS/edit?usp=drive_link&ouid=103289635706160914358&rtpof=true&sd=true)
-  - The Professional Services SIG Lite Plus questionnaire features a reduced scope and can be leveraged for scenarios in which an **Orange** vendor is only providing contracted services or services not otherwise resulting in the introduction of a system being transmitted sensitive GitLab data. In these cases it may not be necessary to perform a full-scope review of the vendor's Security environment, as many controls within the full SIG Lite questionnaire may not apply or present a material risk to GitLab data. **Please note this guidance applies only to Orange professional services providers. Service providers being granted access to Red data in the provision of services should be assessed utilizing the SIG Lite Plus questionnaire defined above due to the greater obligation for Data Security with these providers.**
+  - The Professional Services SIG Lite Plus questionnaire features a reduced scope and can be leveraged for scenarios in which an **Orange** vendor is only providing contracted services or services not otherwise resulting in the introduction of a system being transmitted sensitive GitLab data. In these cases it may not be necessary to perform a full-scope review of the vendor's Security environment, as many controls within the full SIG Lite questionnaire may not apply or present a material risk to GitLab data.  **Please note this guidance applies only to Orange professional services providers. Service providers being granted access to Red data in the provision of services should be assessed utilizing the SIG Lite Plus questionnaire defined above due to the greater obligation for Data Security with these providers.**
   - The following domains are included within the scope of the Professional Services SIG Lite Plus questionnaire.
     - D. Asset and Info Management
     - E. Human Resources Security (Full SIG Content)
@@ -346,7 +343,7 @@ Vendor responses documented within the SIG questionnaire should be reviewed in t
 
 Deficiencies identified that may present a material risk to GitLab data should be noted within the TPRM assessment report and presented to the Business Owner via the TPRM Security Notice Process detailed below.
 
-_SIG questionnaires (or equivalent) provided by a vendor **not** utilizing a GitLab-provided template should be reviewed to ensure they meet our due diligence standards. Domains not sufficiently addressed by a vendor-provided questionnaire should be identified, with additional inquiries performed to gain assurance over all in-scope domains._
+*SIG questionnaires (or equivalent) provided by a vendor **not** utilizing a GitLab-provided template should be reviewed to ensure they meet our due diligence standards. Domains not sufficiently addressed by a vendor-provided questionnaire should be identified, with additional inquiries performed to gain assurance over all in-scope domains.*
 {{% /details %}}
 
 ### Leveraging Bitsight
@@ -363,12 +360,12 @@ Assessors should [submit a Company Request](https://help.bitsighttech.com/hc/en-
 
 The Security Risk team has established approval windows dictating the lifecycle of our TPRM assessments and their reliance in approving requisitions, after which a new assessment must be completed prior to approval of subsequent requisitions to ensure continued adherence to GitLab's regulatory and due diligence requirements. These windows are defined in alignment with the nature of the requisition, sensitivity of data shared, and the Critical System Tier
 
-| Critical System Tier        | Assessment Scope | Approval Window |
-| --------------------------- | ---------------- | --------------- |
-| Tier 1 Mission Critical     | Full Scope       | 12 months       |
-| Tier 2 Business Critical    | Full Scope       | 12 months       |
-| Tier 3 Business Operational | Full Scope       | 24 months       |
-| Tier 4 Administrative       | Reduced Scope    | 24 months       |
+| Critical System Tier | Assessment Scope | Approval Window |
+| --- | --- | --- |
+| Tier 1 Mission Critical | Full Scope | 12 months |
+| Tier 2 Business Critical | Full Scope | 12 months |
+| Tier 3 Business Operational | Full Scope | 24 months |
+| Tier 4 Administrative | Reduced Scope | 24 months |
 
 Professional services providers or vendors otherwise accessing **Red** data are assessed in alignment with our Tier 1 Mission Critical requirements. Providers with access to **Orange** data are assessed in alignment with our Tier 3 Business Operational requirements.
 
@@ -392,7 +389,7 @@ Vendors occasionally implement changes between contracting cycles that could int
 
 ### TPRM Security Notice Process
 
-Deficiencies identified during TPRM and Post-Implementation Controls (PIC) reviews are reported to the Business Owner via a [TPRM Security Notice](https://gitlab.com/gitlab-com/gl-security/security-assurance/security-risk-team/third-party-vendor-security-management/-/issues/new?issuable_template=Security%20Notice%20%20Template) issue. This issue contains (1) background information pertinent to the vendor or requisition, (2) a description of the validations performed by the Security Risk team, and (3) a description of Security deficiencies and resulting risk that may be present to GitLab data shared with the vendor. A "worst case" scenario is included to portray the potential real-world impact of a security incident resulting from the risk. Where possible, TPRM will also include a recommendation for either mitigating or avoiding the identified risk. For deficiencies resulting from a failure in the design or operating effectiveness of a system's Security controls, a [Technical Security Validation](/handbook/security/security-assurance/security-risk/third-party-risk-management/#technical-security-validations) may be requested prior to stakeholder delivery to provide greater context within the Security Notice. These items are documented in order to support an informed decision by the Business Owner and other relevant parties.
+Deficiencies identified during TPRM and Post-Implementation Controls (PIC) reviews are reported to the Business Owner via a [TPRM Security Notice](https://gitlab.com/gitlab-com/gl-security/security-assurance/security-risk-team/third-party-vendor-security-management/-/issues/new?issuable_template=Security%20Notice%20%20Template) issue. This issue contains (1) background information pertinent to the vendor or requisition, (2) a description of the validations performed by the Security Risk team,  and (3) a description of Security deficiencies and resulting risk that may be present to GitLab data shared with the vendor. A "worst case" scenario is included to portray the potential real-world impact of a security incident resulting from the risk. Where possible, TPRM will also include a recommendation for either mitigating or avoiding the identified risk. For deficiencies resulting from a failure in the design or operating effectiveness of a system's Security controls, a [Technical Security Validation](/handbook/security/security-assurance/security-risk/third-party-risk-management/#technical-security-validations) may be requested prior to stakeholder delivery to provide greater context within the Security Notice. These items are documented in order to support an informed decision by the Business Owner and other relevant parties.
 
 #### Requisition Denial
 
@@ -456,7 +453,7 @@ Scoping for this activity is based on the below populations, and is finalized in
 
 Vendors within the above populations are assessed in alignment with our Red vendor assessment criteria. Deficiencies identified are reported to Business Owners in alignment with our TPRM Security Notice process.
 
-_Is there a vendor you'd like to see included in our annual assessment procedures? Reach out to @Security-Risk in the #Sec-Assurance channel._
+*Is there a vendor you'd like to see included in our annual assessment procedures? Reach out to @Security-Risk in the #Sec-Assurance channel.*
 
 #### Third Party Application Integrations
 
@@ -486,7 +483,7 @@ In specific instances, requirements for the performance or contents of TPRM revi
 
 1. For privacy-driven TPRM reviews, instances where GitLab **receives** personal data from a third party in a [Controller-to-Controller](/handbook/legal/privacy/#privacy-terms) transfer do not require a TPRM review. The Privacy team will classify the nature of the relationship as part of the Privacy assessment during the procurement process.
 1. Law Firms, Accountants and Auditors may receive data, including Red data, in a [Controller-to-Controller relationship](/handbook/legal/privacy/#privacy-terms), meaning these types of entities have direct obligations and standards for processing data under law. As such, these entities may be treated as Orange vendors.
-1. Instances where GitLab Team Members provide their own data to a third-party [Data Controller](/handbook/legal/privacy/#privacy-terms), in which the Team Member personally acknowledges the third-party's terms, may not require a TPRM assessment. Examples may include signing up for health, coaching or counseling benefits where GitLab only finances the service but does not send or receive data on behalf of Team Members and Team Members voluntarily decide to enter the program.
+1. Instances where GitLab Team Members provide their own data to a third-party [Data Controller](/handbook/legal/privacy/#privacy-terms), in which the Team Member personally acknowledges the third-party's terms, may not require a TPRM assessment.  Examples may include signing up for health, coaching or counseling benefits where GitLab only finances the service but does not send or receive data on behalf of Team Members and Team Members voluntarily decide to enter the program.
 1. Field Marketing events do not require the completion of a Security review as the gathering of contact information for GL Team Members and prospects is considered to be standard for the normal course of business for the Field Marketing team. Note that if the Field Marketing Team is commissioning the use of software to facilitate its operations or have hired a Vendor to collect data on behalf of GitLab, these vendors may be subject to TPRM review as they could be considered a [Data Processor](/handbook/legal/privacy/#privacy-terms)(see 1. above for more information). GitLab receiving event data from another organizer or GitLab sharing event data with other independent organizations and/or sponsors does not require a TPRM assessment.
 
 ## References

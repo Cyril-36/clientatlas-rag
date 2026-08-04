@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "The GitLab Tax Team"
 description: "The tax department is responsible for GitLab's overall tax strategy including all components of tax compliance, tax planning and accounting for income taxes. In addition, the tax department manages GitLab's statutory requirements including statutory audits, filing of entity-level financial information, transfer pricing, and ensuring intercompany transactions are recorded appropriately."
 ---

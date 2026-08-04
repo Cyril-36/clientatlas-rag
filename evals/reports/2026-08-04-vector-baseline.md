@@ -45,7 +45,7 @@ chunking are the problem, not the ranker.
 | | |
 | --- | --- |
 | Chunking, 18,640 paragraphs | 0.1 s |
-| Embedding, 5,393 chunks | 32.4 s (166 chunks/s, CPU, M2) |
+| Embedding, 5,393 chunks | 20-32 s (170-280 chunks/s, CPU, M2, varies by run) |
 
 Embedding dominates ingestion, as expected. At this rate a 200-page corpus
 indexes in about half a minute, which is comfortably inside what a background
@@ -80,9 +80,13 @@ Sibling merging was implemented and measured. Recall got worse at every setting:
 **The committed configuration is the best of everything tested.** Nothing in the
 sweep beats recall@5 0.77.
 
-Truncation explains the collapse at 650, but not the whole gap: nested at
-target 240 has a median of 254 estimated tokens, comfortably inside the window,
-and still loses to flat at 0.68 against 0.73. The remaining difference is the
+Truncation explains the collapse at 650, but probably not the whole gap: nested
+at target 240 has a median of 254 *estimated* tokens and still loses to flat,
+0.68 against 0.73. That estimate is words x 1.3, not a tokenizer count, so a
+median of 254 estimated sits near enough to the 256 limit that some of those
+chunks are certainly being truncated — it cannot be called comfortably inside.
+The honest statement is that truncation and topic-mixing are confounded here,
+and separating them would need a run measured with the real tokenizer. The remaining difference is the
 thing the heading rule was protecting in the first place — merging sibling
 sections mixes topics, and a chunk covering two subjects retrieves for queries
 about either and answers neither.
@@ -97,8 +101,20 @@ The change was reverted. Two things are worth keeping from the attempt:
   nothing. **Change one variable at a time, and re-run the baseline before
   believing a number.**
 
-recall@1 of 0.27 is stubborn across every configuration. That is the signal that
-the next gain comes from hybrid retrieval — keyword search and RRF — rather than
+The committed configuration has the best measured recall@5 and recall@10. It does
+not have the best recall@1: nested chunking reached 0.36 at target 120 and 0.41 at
+target 240, against 0.27 here. An earlier draft of this section claimed recall@1
+was invariant at 0.27, which contradicted the table directly above it.
+
+That trade is worth stating rather than hiding. recall@1 moving while recall@5 and
+recall@10 fall means nested chunking sometimes ranks a correct chunk first while
+losing correct chunks from the set entirely — the merged chunks are larger, so a
+hit covers more ground, but truncation drops whatever sits past 256 tokens. For a
+RAG system that assembles an evidence set of 6–8 chunks, recall@5 and recall@10
+are the metrics that decide what the generator can cite. recall@1 would matter more
+for a single-answer lookup, which this is not.
+
+The next gain comes from hybrid retrieval — keyword search and RRF — rather than
 from more chunking work.
 
 ---
@@ -141,10 +157,21 @@ Neither should be attempted without re-running this baseline afterwards.
 
 ```bash
 cd services/ai && uv sync --extra ml
-uv run pytest tests/test_eval_dataset.py -q
+
+# the table above
+uv run python ../../evals/measure_baseline.py gitlab-handbook-v1
+
+# the sibling-merge sweep in the correction
+uv run python ../../evals/measure_baseline.py gitlab-handbook-v1 --sweep
 ```
 
-The per-corpus figures above come from a brute-force scan over every chunk,
-which is only tractable because the corpus is small. Once retrieval exists this
-becomes an HNSW query and the numbers should be regenerated through it, since an
-approximate index does not return exactly what a full scan does.
+An earlier version of this section cited `pytest tests/test_eval_dataset.py`,
+which is hardcoded to `onboarding-v1` and prints 21 chunks — not the 5,393
+reported here. The sweep existed only as an untracked scratch file. Both are now
+in `evals/measure_baseline.py`, because a number nobody else can regenerate is
+not a measurement.
+
+The figures come from a brute-force scan over every chunk, which is only
+tractable at this corpus size. Once retrieval exists this becomes an HNSW query
+and the numbers must be regenerated through it, since an approximate index does
+not return exactly what a full scan does.

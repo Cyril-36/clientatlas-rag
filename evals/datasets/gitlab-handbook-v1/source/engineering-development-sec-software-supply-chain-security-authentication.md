@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Authentication Group"
 ---
 
@@ -146,15 +145,15 @@ However there are frequently instances where a review request primarily pertains
 
 - When working on an authentication feature, it's likely that we will have more than one DRI. That is an intentional choice to get faster reviews from that peer(s), and you are encouraged to utilize the peer(s) for reviews.
 - Similarly, when working on authentication features, the team can request reviews internally within the authentication team after checking the reviewer's availability. This should allow for faster review SLA as they will be more familiar with the domain. In such cases reviewers are requested to prioritize those requests over non-authentication changes that will likely take longer to setup or get context of.
-- You can, as always, and especially for non-time sensitive changes take advantage of the roulette. Not all authentication team members are familiar with all domains, and in such cases, they may redirect the request to another authentication team member or to the roulette. If you need help identifying domain experts for reviews, take a look at the DRI issue, ask in team slack or reach out to the EM.
+- You can, as always, and especially for non-time sensitive changes take advantage of the roulette. Not all authentication team members are familiar with all domains, and in such cases, they may  redirect the request to another authentication team member or to the roulette. If you need help identifying domain experts for reviews, take a look at the DRI issue, ask in team slack or reach out to the EM.
 
 For reviewers, it looks like the following:
 
-| Reviews                                   | Priority order | SLA for first review |
-| ----------------------------------------- | -------------- | -------------------- |
-| Reviews from ~group::authentication       | 1              | 24 hours             |
-| Review from other teams as domain experts | 2              | 48 hours             |
-| Other BE reviews                          | 3              | 48 hours             |
+| Reviews | Priority order | SLA for first review|
+| ------ | ------ | ------ |
+| Reviews from ~group::authentication | 1 | 24 hours |
+| Review from other teams as domain experts | 2 | 48 hours |
+| Other BE reviews | 3 | 48 hours |
 
 #### Planning
 
@@ -178,13 +177,13 @@ After the PM creates a [planning issue](https://gitlab.com/groups/gitlab-org/sof
 
 When estimating development work, please add the appropriate weight to the issue:
 
-| Weight | Description (Engineering)                                                                                                                                                                                                                                                                                     |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1      | The simplest possible change. We are confident there will be no side effects.                                                                                                                                                                                                                                 |
-| 2      | A simple change (minimal code changes), where we understand all of the requirements.                                                                                                                                                                                                                          |
-| 3      | A simple change, but the code footprint is bigger (e.g. lots of different files, or tests affected). The requirements are clear.                                                                                                                                                                              |
-| 5      | A more complex change that will impact multiple areas of the codebase, there may also be some refactoring involved. Requirements are understood but you feel there are likely to be some gaps along the way. We should challenge ourselves to break this issue into smaller pieces.                           |
-| 8      | A complex change, that will involve much of the codebase or will require lots of input from others to determine the requirements. These issues will often need further investigation or discovery before being `~"workflow::ready for development"` and we will likely benefit from multiple, smaller issues. |
+| Weight | Description (Engineering) |
+| ------ | ------ |
+| 1 | The simplest possible change. We are confident there will be no side effects. |
+| 2 | A simple change (minimal code changes), where we understand all of the requirements. |
+| 3 | A simple change, but the code footprint is bigger (e.g. lots of different files, or tests affected). The requirements are clear. |
+| 5 | A more complex change that will impact multiple areas of the codebase, there may also be some refactoring involved. Requirements are understood but you feel there are likely to be some gaps along the way. We should challenge ourselves to break this issue into smaller pieces. |
+| 8 | A complex change, that will involve much of the codebase or will require lots of input from others to determine the requirements. These issues will often need further investigation or discovery before being `~"workflow::ready for development"` and we will likely benefit from multiple, smaller issues. |
 
 We do not provide estimates greater than 8. If an issue is bigger, we will split the issue or reduce its scope.
 
@@ -273,15 +272,15 @@ You can read more about this process on the [handbook page](/handbook/product/pr
 
 ---
 
-Although we try to plan as described above, we understand that there is always a risk to the ideal ratios due to unexpected high priority security, infradev, and escalation issues.
+Although we try to plan as described above, we  understand that there is always a risk to the ideal ratios due to unexpected high priority security, infradev, and escalation issues.
 
 ### Meetings
 
 Although we have a bias for asynchronous communication, synchronous meetings are necessary and should adhere to our [communication guidelines](/handbook/communication/#video-calls). Some regular meetings for Authentication are:
 
-| Frequency | Meeting                                                                                                                     | DRI             | Attendees                      | Topics                                                                                                                            |
-| --------- | --------------------------------------------------------------------------------------------------------------------------- | --------------- | ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
-| Weekly    | [Group-level meeting](https://docs.google.com/document/d/1xbwj81Rv2RfomqoQxbMGTxWsxoYczYfIbh_q74meot8/edit) (internal only) | Product Manager | PM/EM/UX, optionally engineers | Discuss current or upcoming roadmap topics, bring epics/issues up for attention, provide a current status of priority initiatives |
+| Frequency | Meeting      | DRI    | Attendees |Topics                                                              |
+| ----- | ----- | ----- | ----- | ----- |
+| Weekly    | [Group-level meeting](https://docs.google.com/document/d/1xbwj81Rv2RfomqoQxbMGTxWsxoYczYfIbh_q74meot8/edit) (internal only)       | Product Manager | PM/EM/UX, optionally engineers | Discuss current or upcoming roadmap topics, bring epics/issues up for attention, provide a current status of priority initiatives |
 
 For one-off, topic specific meetings, please always consider recording these calls and sharing them (or taking notes in a [publicly available document](https://docs.google.com/document/d/1xbwj81Rv2RfomqoQxbMGTxWsxoYczYfIbh_q74meot8/edit)).
 

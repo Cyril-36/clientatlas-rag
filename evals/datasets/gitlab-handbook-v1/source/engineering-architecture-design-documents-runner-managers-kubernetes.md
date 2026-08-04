@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Runner Managers on Kubernetes
 status: proposed
 creation-date: "2025-12-01"
@@ -97,12 +96,12 @@ We use the GitLab Runner Helm chart for Kubernetes deployment. This is the indus
 
 **Evaluation:**
 
-| Method         | Kubernetes   | Maturity                | Adoption                | Dogfooding Value               | Notes                                                                         |
-| -------------- | ------------ | ----------------------- | ----------------------- | ------------------------------ | ----------------------------------------------------------------------------- |
-| **Helm Chart** | Native       | High                    | High                    | High - benefits most k8s users | Selected approach                                                             |
-| **Operator**   | Native       | Low                     | Low (OpenShift-focused) | Low - limited user base        | Less mature. Future consideration if custom autoscaling needed.               |
-| **GRIT**       | Via Operator | Medium (VMs), Low (k8s) | Low                     | Low - limited user base        | VM-first, not Kubernetes-native. No Docker Machine support.                   |
-| **Omnibus**    | No           | High                    | High (VMs)              | N/A - not k8s                  | Current approach. Manual deployment orchestration, no native rolling deploys. |
+| Method | Kubernetes | Maturity | Adoption | Dogfooding Value | Notes |
+|--------|------------|----------|----------|------------------|-------|
+| **Helm Chart** | Native | High | High | High - benefits most k8s users | Selected approach |
+| **Operator** | Native | Low | Low (OpenShift-focused) | Low - limited user base | Less mature. Future consideration if custom autoscaling needed. |
+| **GRIT** | Via Operator | Medium (VMs), Low (k8s) | Low | Low - limited user base | VM-first, not Kubernetes-native. No Docker Machine support. |
+| **Omnibus** | No | High | High (VMs) | N/A - not k8s | Current approach. Manual deployment orchestration, no native rolling deploys. |
 
 See the alternatives section below for detailed analysis.
 
@@ -342,7 +341,7 @@ ls ${MACHINE_STORAGE_PATH}/machines/ | xargs -n 1 -P ${parallel} docker-machine 
 
 This script only starts **after** the gitlab-runner process has finished processing all of it's assigned jobs, which could take anywhere between few minutes to few hours. It runs with a concurrency of 3, which is slow for high-capacity shards (e.g., 600 idle VMs on small-amd64 could take 20-30 minutes). When implementing the entrypoint wrapper, increase concurrency to reduce cleanup time.
 
-**Kubernetes limitation:** Unlike systemd's `ExecStopPost`, Kubernetes has no "post-mortem" hook. The `preStop` hook runs _before_ SIGQUIT is sent, not after. Once the container terminates (gracefully or via SIGKILL after grace period), there's no built-in mechanism to run cleanup commands.
+**Kubernetes limitation:** Unlike systemd's `ExecStopPost`, Kubernetes has no "post-mortem" hook. The `preStop` hook runs *before* SIGQUIT is sent, not after. Once the container terminates (gracefully or via SIGKILL after grace period), there's no built-in mechanism to run cleanup commands.
 
 **Kubernetes implementation options:**
 
@@ -424,27 +423,27 @@ Note: [ci-project-cleaner](https://ops.gitlab.net/gitlab-com/gl-infra/ci-project
 
 ### Current Shard Configuration
 
-| Shard                                | Executor            | Instance Type  | Concurrent | Limit | IdleCount | Runner Count | Privileged | MaxBuilds | DiskSize | Job Timeout |
-| ------------------------------------ | ------------------- | -------------- | ---------- | ----- | --------- | ------------ | ---------- | --------- | -------- | ----------- |
-| saas-linux-small-amd64               | docker+machine      | c2-standard-30 | 1200       | 1300  | 600       | 12           | true       | 1         | 30 GB    | 3h          |
-| saas-linux-medium-amd64              | docker+machine      | c2-standard-30 | 1200       | 1300  | 200       | 10           | true       | 1         | 50 GB    | 3h          |
-| saas-linux-large-amd64               | docker+machine      | c2-standard-30 | 1200       | 1300  | 125       | 10           | true       | 1         | 100 GB   | 3h          |
-| saas-linux-xlarge-amd64              | docker+machine      | c2-standard-30 | 375        | 1200  | 5         | 10           | true       | 1         | 200 GB   | 3h          |
-| saas-linux-2xlarge-amd64             | docker+machine      | c2-standard-30 | 187        | 1200  | 2         | 10           | true       | 1         | 200 GB   | 3h          |
-| saas-linux-small-arm64               | docker+machine      | c2-standard-30 | 220        | 220   | 40        | 6            | true       | 1         | 30 GB    | 3h          |
-| saas-linux-medium-arm64              | docker+machine      | c2-standard-30 | 375        | 1200  | 15        | 6            | true       | 1         | 50 GB    | 3h          |
-| saas-linux-large-arm64               | docker+machine      | c2-standard-30 | 375        | 1200  | 15        | 6            | true       | 1         | 100 GB   | 3h          |
-| saas-linux-medium-amd64-gpu-standard | docker+machine      | c2-standard-30 | 1200       | 1300  | 25        | 6            | true       | 1         | 50 GB    | 3h          |
-| private (gitlab-org, small)          | docker+machine      | n2d-standard-4 | 1980       | 1125  | 10        | 16           | true       | 40        | 100 GB   | 4h          |
-| private (gitlab-org, medium)         | docker+machine      | n2d-standard-4 | 1980       | 625   | 10        | 16           | true       | 40        | 100 GB   | 3h          |
-| private (gitlab-org, large)          | docker+machine      | n2d-standard-4 | 1980       | 100   | 10        | 16           | true       | 40        | 100 GB   | 3h          |
-| private (gitlab-com)                 | docker+machine      | n2d-standard-4 | 1980       | 150   | 10        | 16           | true       | 40        | 100 GB   | 2h          |
-| shared-gitlab-org                    | docker+machine      | n2d-standard-4 | 1200       | 900   | 15        | 12           | false      | 10        | 50 GB    | 1.5h        |
-| shared-gitlab-org (dind)             | docker+machine      | n2d-standard-4 | 1200       | 100   | 15        | 12           | true       | 1         | 50 GB    | 1.5h        |
-| tamland                              | docker              | n2d-standard-4 | 20         | 10    | -         | 1            | -          | -         | -        | -           |
-| saas-macos-medium-m1                 | instance (fleeting) | c2-standard-30 | 40         | 40    | -         | 4            | -          | -         | -        | 3h          |
-| saas-macos-large-m2pro               | instance (fleeting) | c2-standard-30 | 12         | 40    | -         | 4            | -          | -         | -        | 3h          |
-| saas-windows-medium-amd64            | custom (autoscaler) | n1-standard-4  | 100        | 100   | -         | 2            | -          | -         | -        | 2h          |
+| Shard | Executor | Instance Type | Concurrent | Limit | IdleCount | Runner Count | Privileged | MaxBuilds | DiskSize | Job Timeout |
+|-------|----------|---------------|------------|-------|-----------|--------------|------------|-----------|----------|-------------|
+| saas-linux-small-amd64 | docker+machine | c2-standard-30 | 1200 | 1300 | 600 | 12 | true | 1 | 30 GB | 3h |
+| saas-linux-medium-amd64 | docker+machine | c2-standard-30 | 1200 | 1300 | 200 | 10 | true | 1 | 50 GB | 3h |
+| saas-linux-large-amd64 | docker+machine | c2-standard-30 | 1200 | 1300 | 125 | 10 | true | 1 | 100 GB | 3h |
+| saas-linux-xlarge-amd64 | docker+machine | c2-standard-30 | 375 | 1200 | 5 | 10 | true | 1 | 200 GB | 3h |
+| saas-linux-2xlarge-amd64 | docker+machine | c2-standard-30 | 187 | 1200 | 2 | 10 | true | 1 | 200 GB | 3h |
+| saas-linux-small-arm64 | docker+machine | c2-standard-30 | 220 | 220 | 40 | 6 | true | 1 | 30 GB | 3h |
+| saas-linux-medium-arm64 | docker+machine | c2-standard-30 | 375 | 1200 | 15 | 6 | true | 1 | 50 GB | 3h |
+| saas-linux-large-arm64 | docker+machine | c2-standard-30 | 375 | 1200 | 15 | 6 | true | 1 | 100 GB | 3h |
+| saas-linux-medium-amd64-gpu-standard | docker+machine | c2-standard-30 | 1200 | 1300 | 25 | 6 | true | 1 | 50 GB | 3h |
+| private (gitlab-org, small) | docker+machine | n2d-standard-4 | 1980 | 1125 | 10 | 16 | true | 40 | 100 GB | 4h |
+| private (gitlab-org, medium) | docker+machine | n2d-standard-4 | 1980 | 625 | 10 | 16 | true | 40 | 100 GB | 3h |
+| private (gitlab-org, large) | docker+machine | n2d-standard-4 | 1980 | 100 | 10 | 16 | true | 40 | 100 GB | 3h |
+| private (gitlab-com) | docker+machine | n2d-standard-4 | 1980 | 150 | 10 | 16 | true | 40 | 100 GB | 2h |
+| shared-gitlab-org | docker+machine | n2d-standard-4 | 1200 | 900 | 15 | 12 | false | 10 | 50 GB | 1.5h |
+| shared-gitlab-org (dind) | docker+machine | n2d-standard-4 | 1200 | 100 | 15 | 12 | true | 1 | 50 GB | 1.5h |
+| tamland | docker | n2d-standard-4 | 20 | 10 | - | 1 | - | - | - | - |
+| saas-macos-medium-m1 | instance (fleeting) | c2-standard-30 | 40 | 40 | - | 4 | - | - | - | 3h |
+| saas-macos-large-m2pro | instance (fleeting) | c2-standard-30 | 12 | 40 | - | 4 | - | - | - | 3h |
+| saas-windows-medium-amd64 | custom (autoscaler) | n1-standard-4 | 100 | 100 | - | 2 | - | - | - | 2h |
 
 - **Executor**: Runner executor type (docker+machine, instance, custom)
 - **Concurrent** (gitlab-runner): Max simultaneous jobs per runner manager

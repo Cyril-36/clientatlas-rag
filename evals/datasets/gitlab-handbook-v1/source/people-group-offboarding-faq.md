@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "GitLab Offboarding FAQ"
 description: "Common Questions about the Offboarding Process"
 ---
@@ -26,7 +25,7 @@ Your access will be deactivated on your last day at 4pm (local time) on Monday-F
 
 ### Can I provide my own update in the Team Member Updates Slack Channel?
 
-Departing team members are encouraged to work with their Manager to compile and release an announcement in the #team-member-updates channel. This should only take place once there is complete alignment with your leadership around the timelines involved and the impacted team/stakeholders have been informed.
+Departing team members are encouraged to work with their Manager to compile and release an announcement in the #team-member-updates channel.  This should only take place once there is complete alignment with your leadership around the timelines involved and the impacted team/stakeholders have been informed.
 
 A guideline and template for managers has been provided in the [Communicating Departures Company-Wide](/handbook/people-group/offboarding#communicating-departures-company-wide) section of the Offboarding Guidelines which highlights options to add a little color to the announcement e.g. favourite contribution to the handbook in addition to outlining what [information should and should not](/handbook/people-group/offboarding#what-do-we-share).
 
@@ -126,7 +125,7 @@ All information is on the [Stock Options](/handbook/total-rewards/stock-options/
 
 Reminder: If you are a Designated Insider, while employed by GitLab, each team member is required to comply with the [Insider Trading Policy](https://drive.google.com/file/d/1yK4-L3nCEjVi14UwFfp9LNJzJNQdvvLB/view?usp=sharing), which among things, prohibits team members who are in possession of material non-public information (MNPI) from (i) trading in GitLab's stock or other securities on the basis of that MNPI or (ii) disclosing MNPI to someone else who trades on the basis of such MNPI. The Insider Trading Policy also applies to a team member's immediate family members and household members. In addition, as a Designated Insider and while employed at GitLab you are required to have pre-clearance before making any transactions in GitLab's stock or other securities.
 
-After you are officially no longer employed by GitLab, your trading account should be unrestricted. However, we recommend that you consider a 90 day "cooling off" period prior to trading in order to avoid any intentional or accidental violation of applicable securities laws. If, however, you are aware of or in possession of any MNPI when your employment or service relationship with GitLab ends, you may not trade (whether directly or indirectly) in GitLab's stock or other securities until that MNPI has become public or is no longer material. It is a violation of applicable securities laws to trade on MNPI.
+After you are officially no longer employed by GitLab, your trading account should be unrestricted. However, we recommend that you consider a 90 day "cooling off" period prior to trading in order to avoid any intentional or accidental violation of applicable securities laws. If, however, you are aware of or in possession of any MNPI when your employment or service relationship with GitLab ends, you may not trade (whether directly or indirectly) in GitLab's stock or other securities until that MNPI has become public or is no longer material.  It is a violation of applicable securities laws to trade on MNPI.
 
 If you decide to trade in GitLab's stock or other securities prior to the 90th day following the end of your employment or service relationship with GitLab, we suggest that you evaluate whether you have MNPI prior to trading.
 
@@ -162,7 +161,7 @@ Please see the [Offboarding HSA Section](/handbook/total-rewards/benefits/genera
 
 ## Canada
 
-If you are a Canada-based team member, your benefits will cease on your last day of work. There may be options to convert elements of your benefit plan to individual coverage, without medical questions. Please see the [Canada Benefits Handbook](/handbook/total-rewards/benefits/general-and-entity-benefits/canada-corp-benefits/) page for more information.
+If you are a Canada-based team member, your benefits will cease on your last day of work.  There may be options to convert elements of your benefit plan to individual coverage, without medical questions. Please see the [Canada Benefits Handbook](/handbook/total-rewards/benefits/general-and-entity-benefits/canada-corp-benefits/) page for more information.
 
 ## Spain
 

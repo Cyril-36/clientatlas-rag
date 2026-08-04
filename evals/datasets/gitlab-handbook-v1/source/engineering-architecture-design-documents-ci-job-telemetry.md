@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: CI Job Telemetry Reporting
 status: proposed
 creation-date: "2026-01-20"
@@ -76,16 +75,16 @@ This section summarizes the components required for CI Job Telemetry and their c
 
 ### Component availability
 
-| Component                           | Owner                            | Status                                                            | Timeline                                                                                                         | Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| ----------------------------------- | -------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| OTEL Collector                      | Observability                    | Production-ready                                                  | Available                                                                                                        | Standard OTEL Collector with [ClickHouse exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/clickhouseexporter) — writes to `otel_traces`. Uses [loadbalancing exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/loadbalancingexporter) for trace-ID-based routing at scale. A single deployment serves all telemetry; separate exporter pipelines write to different CH instances (see [design decision](#design-decisions)). |
-| ClickHouse instance (Observability) | Observability                    | Enabled                                                           | [Phase 1](#phase-1-mvc-gitlabcom-hosted-runners)                                                                 | Internal-only ClickHouse instance for operational dashboards and cross-service trace correlation ([MR](https://gitlab.com/gitlab-com/gl-infra/observability/clickhouse-cloud/-/merge_requests/102), merged 2026-02-12). Not exposed to end-users.                                                                                                                                                                                                                                                                       |
-| Feature negotiation + trace context | CI Platform                      | Not started                                                       | [Phase 1](#phase-1-mvc-gitlabcom-hosted-runners): ~1 week                                                        | Rails job payload changes: `features.tracing` ([&20945](https://gitlab.com/groups/gitlab-org/-/epics/20945))                                                                                                                                                                                                                                                                                                                                                                                                            |
-| Runner instrumentation              | Runner Core                      | [In progress](https://gitlab.com/groups/gitlab-org/-/epics/20633) | [Phase 1](#phase-1-mvc-gitlabcom-hosted-runners): ~3 weeks (basic instrumentation: ~1w, CI Functions spans: ~2w) | Collects telemetry spans, pushes to OTEL Collector with OIDC auth. Blocked on feature negotiation + trace context.                                                                                                                                                                                                                                                                                                                                                                                                      |
-| CI telemetry Materialized View      | CI Platform                      | Not started                                                       | [Phase 3](#phase-3-insights-layer)                                                                               | `ci_job_telemetry_traces` MV over auto-created `otel_traces` table ([schema](#clickhouse-schema)). Deferred until query patterns are established.                                                                                                                                                                                                                                                                                                                                                                       |
-| Rails lifecycle spans               | CI Platform / Pipeline Execution | Not started                                                       | [Phase 1](#phase-1-mvc-gitlabcom-hosted-runners)                                                                 | `job_lifecycle`, `job_pending`, `job_running` spans from Rails state machine ([Rails integration](#workstream-rails-integration)). Pulled into MVC for end-to-end visibility including Sidekiq/`PipelineProcessWorker` delays.                                                                                                                                                                                                                                                                                          |
-| Job Router telemetry                | Runner Core                      | Not started                                                       | [Phase 2](#phase-2-complete-telemetry-pipeline)                                                                  | Scheduling spans from KAS Job Router (`router_job_pending` through `router_job_running`) ([Job Router telemetry](#workstream-job-router-telemetry))                                                                                                                                                                                                                                                                                                                                                                     |
-| Authentication gateway              | TBD                              | Not started                                                       | [Phase 2](#phase-2-complete-telemetry-pipeline) (Beyond GitLab.com workstream)                                   | Long-term standard auth for all runners; replaces MVC's OIDC shortcut                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Component | Owner | Status | Timeline | Notes |
+|-----------|-------|--------|----------|-------|
+| OTEL Collector | Observability | Production-ready | Available | Standard OTEL Collector with [ClickHouse exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/clickhouseexporter) — writes to `otel_traces`. Uses [loadbalancing exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/loadbalancingexporter) for trace-ID-based routing at scale. A single deployment serves all telemetry; separate exporter pipelines write to different CH instances (see [design decision](#design-decisions)). |
+| ClickHouse instance (Observability) | Observability | Enabled | [Phase 1](#phase-1-mvc-gitlabcom-hosted-runners) | Internal-only ClickHouse instance for operational dashboards and cross-service trace correlation ([MR](https://gitlab.com/gitlab-com/gl-infra/observability/clickhouse-cloud/-/merge_requests/102), merged 2026-02-12). Not exposed to end-users. |
+| Feature negotiation + trace context | CI Platform | Not started | [Phase 1](#phase-1-mvc-gitlabcom-hosted-runners): ~1 week | Rails job payload changes: `features.tracing` ([&20945](https://gitlab.com/groups/gitlab-org/-/epics/20945)) |
+| Runner instrumentation | Runner Core | [In progress](https://gitlab.com/groups/gitlab-org/-/epics/20633) | [Phase 1](#phase-1-mvc-gitlabcom-hosted-runners): ~3 weeks (basic instrumentation: ~1w, CI Functions spans: ~2w) | Collects telemetry spans, pushes to OTEL Collector with OIDC auth. Blocked on feature negotiation + trace context. |
+| CI telemetry Materialized View | CI Platform | Not started | [Phase 3](#phase-3-insights-layer) | `ci_job_telemetry_traces` MV over auto-created `otel_traces` table ([schema](#clickhouse-schema)). Deferred until query patterns are established. |
+| Rails lifecycle spans | CI Platform / Pipeline Execution | Not started | [Phase 1](#phase-1-mvc-gitlabcom-hosted-runners) | `job_lifecycle`, `job_pending`, `job_running` spans from Rails state machine ([Rails integration](#workstream-rails-integration)). Pulled into MVC for end-to-end visibility including Sidekiq/`PipelineProcessWorker` delays. |
+| Job Router telemetry | Runner Core | Not started | [Phase 2](#phase-2-complete-telemetry-pipeline) | Scheduling spans from KAS Job Router (`router_job_pending` through `router_job_running`) ([Job Router telemetry](#workstream-job-router-telemetry)) |
+| Authentication gateway | TBD | Not started | [Phase 2](#phase-2-complete-telemetry-pipeline) (Beyond GitLab.com workstream) | Long-term standard auth for all runners; replaces MVC's OIDC shortcut |
 
 ### MVC timeline constraints
 
@@ -166,25 +165,25 @@ The following terms are used throughout this document. Implementation details (s
 ID maps to which OTEL concept) are defined here once to keep the rest of the document
 resilient to future changes.
 
-| Term                          | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **OTLP**                      | [OpenTelemetry Protocol](https://opentelemetry.io/docs/specs/otel/protocol/); the wire format used by all components (Runner, Rails, Job Router) to export spans to the OTEL Collector over HTTP or gRPC.                                                                                                                                                                                                                                                                                                                                               |
-| **Span**                      | A single timed operation within a trace, identified by a unique **Span ID** (randomly generated 64-bit value). Child spans reference their parent through `parent_span_id`, forming a tree.                                                                                                                                                                                                                                                                                                                                                             |
-| **CI Function**               | A discrete, timed operation within a CI job — built-in stages (`pull_image`, `restore_cache`, `upload_artifacts`, `step_script`), and future declarative [steps](https://docs.gitlab.com/ci/steps/). Each CI Function is represented as a span under the job's parent span.                                                                                                                                                                                                                                                                             |
-| **Pipeline trace**            | All spans sharing the same Trace ID, representing a CI pipeline hierarchy's execution. There is no explicit pipeline root span — jobs are top-level spans grouped by a shared Trace ID. Not to be confused with an OTEL "trace" resource — this is simply the collection of spans that share the same Trace ID.                                                                                                                                                                                                                                         |
-| **Trace ID**                  | A 128-bit identifier that groups all spans for a pipeline hierarchy. Deterministically derived from the **root** pipeline ID (see [trace context initialization](#multi-source-trace-coordination)). All jobs across parent and child pipelines share this value.                                                                                                                                                                                                                                                                                       |
-| **Job span**                  | A span representing a single job's execution lifecycle. In the root pipeline, job spans are root-level spans (no parent). In child pipelines, job spans are children of the trigger (bridge) job's span. The Rails `job_lifecycle` span serves as the job span, with the Runner's `job_execution` span nested under it.                                                                                                                                                                                                                                 |
-| **Parent span ID**            | The span ID passed to the Runner in the job payload (`span_parent_id`) so it can parent its `job_execution` span under the correct Rails span. Contains the `job_running` span's ID (deterministically derived from the job ID). For child pipeline jobs, the `job_lifecycle` span itself is a child of the trigger (bridge) job's span.                                                                                                                                                                                                                |
-| **`features.tracing`**        | A unified object in the `/api/v4/jobs/request` response that combines feature negotiation, trace context, and endpoint configuration. Its presence signals that telemetry is enabled; it always contains `trace_id` (pipeline), `span_parent_id` (the Rails `job_running` span ID for this job), and `otel_endpoints` (array of endpoint objects with URL and optional auth configuration; single entry for MVC, see [future work](#future-work-byo-otlp-endpoints) for a potential second entry). See [job payload changes](#job-payload-changes).     |
-| **`ServiceName`**             | The OTEL [service name](https://opentelemetry.io/docs/specs/semconv/resource/#service) resource attribute identifying the emitting component (for example, `gitlab-ci-runner`, `gitlab-ci-job-router`, `gitlab-ci-rails`). Used to filter and route spans into domain-specific Materialized Views.                                                                                                                                                                                                                                                      |
-| **Resource attributes**       | OTLP resource-level key-value pairs describing the entity producing telemetry (for example, `ci.pipeline.id`, `ci.job.id`, `ci.project.id`, `ci.pipeline.source`). Stored in `otel_traces.ResourceAttributes`. Stable per TracerProvider instance — in this design, per job.                                                                                                                                                                                                                                                                            |
-| **Span attributes**           | OTLP span-level key-value pairs describing a specific operation (for example, cache key, artifact name, transfer bytes). Stored in `otel_traces.SpanAttributes` and denormalized into typed columns in `ci_job_telemetry_traces`.                                                                                                                                                                                                                                                                                                                       |
-| **`traversal_path`**          | A denormalized namespace hierarchy key (for example, `0/…/group_id/project_id/`) computed at insert time through a ClickHouse dictionary lookup, enabling efficient org/group/project-level aggregation queries.                                                                                                                                                                                                                                                                                                                                        |
-| **OTEL Collector**            | An [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/) instance that receives, processes, and exports spans to ClickHouse. A single deployment serves all telemetry sources, with separate exporter pipelines per ClickHouse instance (see [design decision](#design-decisions)). Managed by the Observability team.                                                                                                                                                                                                                    |
-| **`otel_traces`**             | The service-agnostic ClickHouse table where the OTEL Collector writes raw spans. Follows the standard OTEL schema and is shared across all instrumented services.                                                                                                                                                                                                                                                                                                                                                                                       |
-| **`ci_job_telemetry_traces`** | ([Phase 3](#phase-3-insights-layer)) A ClickHouse [Materialized View](https://clickhouse.com/docs/en/sql-reference/statements/create/view#materialized-view) that projects CI-specific columns from `otel_traces` into a query-optimized schema. Fires on insert into `otel_traces`, filtering by `ServiceName`. This is the primary table queried by the [query layer](https://gitlab.com/gitlab-org/gitlab/-/issues/590589).                                                                                                                          |
-| **Job Router**                | The [KAS](https://docs.gitlab.com/ee/administration/clusters/kas/) module responsible for CI job scheduling and runner assignment. Emits routing spans (`router_job_pending` through `router_job_running`) in [Phase 2](#phase-2-complete-telemetry-pipeline).                                                                                                                                                                                                                                                                                          |
-| **Capability fingerprint**    | A stable hash that uniquely identifies all factors determining job-runner compatibility: tags, runner type (instance/group/project), protected status, and project access. Runners sharing the same fingerprint can handle the same set of jobs. Defined in the [Runner Job Router architecture](/handbook/engineering/architecture/design-documents/runner_job_router/). Included as a span attribute in the MVC (Rails workstream), enabling telemetry queries like "which capability groups have slow cache restores?" or per-capability-group SLOs. |
+| Term | Definition |
+|------|-----------|
+| **OTLP** | [OpenTelemetry Protocol](https://opentelemetry.io/docs/specs/otel/protocol/); the wire format used by all components (Runner, Rails, Job Router) to export spans to the OTEL Collector over HTTP or gRPC. |
+| **Span** | A single timed operation within a trace, identified by a unique **Span ID** (randomly generated 64-bit value). Child spans reference their parent through `parent_span_id`, forming a tree. |
+| **CI Function** | A discrete, timed operation within a CI job — built-in stages (`pull_image`, `restore_cache`, `upload_artifacts`, `step_script`), and future declarative [steps](https://docs.gitlab.com/ci/steps/). Each CI Function is represented as a span under the job's parent span. |
+| **Pipeline trace** | All spans sharing the same Trace ID, representing a CI pipeline hierarchy's execution. There is no explicit pipeline root span — jobs are top-level spans grouped by a shared Trace ID. Not to be confused with an OTEL "trace" resource — this is simply the collection of spans that share the same Trace ID. |
+| **Trace ID** | A 128-bit identifier that groups all spans for a pipeline hierarchy. Deterministically derived from the **root** pipeline ID (see [trace context initialization](#multi-source-trace-coordination)). All jobs across parent and child pipelines share this value. |
+| **Job span** | A span representing a single job's execution lifecycle. In the root pipeline, job spans are root-level spans (no parent). In child pipelines, job spans are children of the trigger (bridge) job's span. The Rails `job_lifecycle` span serves as the job span, with the Runner's `job_execution` span nested under it. |
+| **Parent span ID** | The span ID passed to the Runner in the job payload (`span_parent_id`) so it can parent its `job_execution` span under the correct Rails span. Contains the `job_running` span's ID (deterministically derived from the job ID). For child pipeline jobs, the `job_lifecycle` span itself is a child of the trigger (bridge) job's span. |
+| **`features.tracing`** | A unified object in the `/api/v4/jobs/request` response that combines feature negotiation, trace context, and endpoint configuration. Its presence signals that telemetry is enabled; it always contains `trace_id` (pipeline), `span_parent_id` (the Rails `job_running` span ID for this job), and `otel_endpoints` (array of endpoint objects with URL and optional auth configuration; single entry for MVC, see [future work](#future-work-byo-otlp-endpoints) for a potential second entry). See [job payload changes](#job-payload-changes). |
+| **`ServiceName`** | The OTEL [service name](https://opentelemetry.io/docs/specs/semconv/resource/#service) resource attribute identifying the emitting component (for example, `gitlab-ci-runner`, `gitlab-ci-job-router`, `gitlab-ci-rails`). Used to filter and route spans into domain-specific Materialized Views. |
+| **Resource attributes** | OTLP resource-level key-value pairs describing the entity producing telemetry (for example, `ci.pipeline.id`, `ci.job.id`, `ci.project.id`, `ci.pipeline.source`). Stored in `otel_traces.ResourceAttributes`. Stable per TracerProvider instance — in this design, per job. |
+| **Span attributes** | OTLP span-level key-value pairs describing a specific operation (for example, cache key, artifact name, transfer bytes). Stored in `otel_traces.SpanAttributes` and denormalized into typed columns in `ci_job_telemetry_traces`. |
+| **`traversal_path`** | A denormalized namespace hierarchy key (for example, `0/…/group_id/project_id/`) computed at insert time through a ClickHouse dictionary lookup, enabling efficient org/group/project-level aggregation queries. |
+| **OTEL Collector** | An [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/) instance that receives, processes, and exports spans to ClickHouse. A single deployment serves all telemetry sources, with separate exporter pipelines per ClickHouse instance (see [design decision](#design-decisions)). Managed by the Observability team. |
+| **`otel_traces`** | The service-agnostic ClickHouse table where the OTEL Collector writes raw spans. Follows the standard OTEL schema and is shared across all instrumented services. |
+| **`ci_job_telemetry_traces`** | ([Phase 3](#phase-3-insights-layer)) A ClickHouse [Materialized View](https://clickhouse.com/docs/en/sql-reference/statements/create/view#materialized-view) that projects CI-specific columns from `otel_traces` into a query-optimized schema. Fires on insert into `otel_traces`, filtering by `ServiceName`. This is the primary table queried by the [query layer](https://gitlab.com/gitlab-org/gitlab/-/issues/590589). |
+| **Job Router** | The [KAS](https://docs.gitlab.com/ee/administration/clusters/kas/) module responsible for CI job scheduling and runner assignment. Emits routing spans (`router_job_pending` through `router_job_running`) in [Phase 2](#phase-2-complete-telemetry-pipeline). |
+| **Capability fingerprint** | A stable hash that uniquely identifies all factors determining job-runner compatibility: tags, runner type (instance/group/project), protected status, and project access. Runners sharing the same fingerprint can handle the same set of jobs. Defined in the [Runner Job Router architecture](/handbook/engineering/architecture/design-documents/runner_job_router/). Included as a span attribute in the MVC (Rails workstream), enabling telemetry queries like "which capability groups have slow cache restores?" or per-capability-group SLOs. |
 
 ## Proposal
 
@@ -405,17 +404,17 @@ user-facing features. Multiple workstreams can proceed **in parallel** within th
 
 This initiative requires coordination across multiple teams. MVC work items can proceed in parallel once the design is approved:
 
-| Team/Domain                     | Responsibility                                                                                                                                                                                                        | Blocking                           | Status                |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | --------------------- |
-| **Runner Core** (Verify)        | [Instrument Runner to collect and push telemetry spans](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3022842795) using standard OTEL exporter                                     | Yes (MVC)                          | Design phase          |
-| **TBD**                         | [Authentication gateway](#token-based-authentication-gateway) (token validation, OTEL forwarding) — standard auth for all runners (Phase 2, Beyond GitLab.com workstream); MVC uses OIDC as interim shortcut          | No (Phase 2)                       | Not started           |
-| **CI Platform** (Verify)        | [Rails auth endpoint](#token-based-authentication-gateway) (`POST /api/v4/internal/ci/telemetry/auth`)                                                                                                                | Post-MVC                           | Not started (~1 week) |
-| **Observability**               | ClickHouse instance hosting `otel_traces` (auto-created by the OTEL Collector) on the [Observability ClickHouse instance](https://gitlab.com/gitlab-com/gl-infra/observability/clickhouse-cloud/-/merge_requests/102) | Yes (MVC)                          | Coordination needed   |
-| **CI Platform** (Verify)        | `ci_job_telemetry_traces` Materialized View ([schema](#clickhouse-schema))                                                                                                                                            | [Phase 3](#phase-3-insights-layer) | Not started           |
-| **Pipeline Execution** (Verify) | [Rails job lifecycle telemetry](#workstream-rails-integration)                                                                                                                                                        | Yes (MVC)                          | Not started           |
-| **Runner Core** (Verify)        | [Job Router telemetry integration](#workstream-job-router-telemetry)                                                                                                                                                  | No (Phase 2)                       | Future                |
-| **Observability**               | OTEL Collector deployment and management ([collaboration path](#relationship-to-gitlab-observability)); potential integration with GitLab Observability tracing infrastructure                                        | Yes (MVC)                          | Coordination needed   |
-| **Distribution**                | [Self-Managed/Dedicated packaging](#self-managed-and-dedicated-instances)                                                                                                                                             | No (Phase 2)                       | Future                |
+| Team/Domain                      | Responsibility                                                                                                                                                          | Blocking     | Status                   |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------------------------ |
+| **Runner Core** (Verify)         | [Instrument Runner to collect and push telemetry spans](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3022842795) using standard OTEL exporter | Yes (MVC)    | Design phase             |
+| **TBD**                          | [Authentication gateway](#token-based-authentication-gateway) (token validation, OTEL forwarding) — standard auth for all runners (Phase 2, Beyond GitLab.com workstream); MVC uses OIDC as interim shortcut | No (Phase 2) | Not started              |
+| **CI Platform** (Verify)         | [Rails auth endpoint](#token-based-authentication-gateway) (`POST /api/v4/internal/ci/telemetry/auth`)                                                                    | Post-MVC     | Not started (~1 week)    |
+| **Observability**                | ClickHouse instance hosting `otel_traces` (auto-created by the OTEL Collector) on the [Observability ClickHouse instance](https://gitlab.com/gitlab-com/gl-infra/observability/clickhouse-cloud/-/merge_requests/102) | Yes (MVC)    | Coordination needed      |
+| **CI Platform** (Verify)         | `ci_job_telemetry_traces` Materialized View ([schema](#clickhouse-schema)) | [Phase 3](#phase-3-insights-layer) | Not started              |
+| **Pipeline Execution** (Verify)  | [Rails job lifecycle telemetry](#workstream-rails-integration)                                                                                                           | Yes (MVC)    | Not started              |
+| **Runner Core** (Verify)         | [Job Router telemetry integration](#workstream-job-router-telemetry)                                                                                                     | No (Phase 2) | Future                   |
+| **Observability**                | OTEL Collector deployment and management ([collaboration path](#relationship-to-gitlab-observability)); potential integration with GitLab Observability tracing infrastructure | Yes (MVC)    | Coordination needed      |
+| **Distribution**                 | [Self-Managed/Dedicated packaging](#self-managed-and-dedicated-instances)                                                                                                | No (Phase 2) | Future                   |
 
 **Notes**:
 
@@ -431,7 +430,6 @@ This initiative requires coordination across multiple teams. MVC work items can 
     this instance through `ClickHouse::Client`. Different retention and sampling policies apply.
 
   The OTEL Collector uses separate exporter pipelines per instance (see [design decision](#design-decisions)).
-
 - **Observability collaboration**: The Observability team is building distributed tracing infrastructure for all GitLab
   services (see [epic 1517](https://gitlab.com/groups/gitlab-com/gl-infra/-/epics/1517)). They may provide the OTEL Collector
   deployment and ClickHouse hosting as part of their `tenant-observability-stack`. See [Relationship to GitLab Observability](#relationship-to-gitlab-observability).
@@ -447,32 +445,32 @@ This initiative requires coordination across multiple teams. MVC work items can 
 
 ### Assumptions
 
-| Parameter                     | Value              | Notes                                                                                             |
-| ----------------------------- | ------------------ | ------------------------------------------------------------------------------------------------- |
-| Jobs per day                  | 7,200,000          | GitLab.com estimate                                                                               |
-| Spans per job                 | 8                  | Average (not all jobs have all stages)                                                            |
-| Bytes per span (uncompressed) | ~500               | Fixed columns + variable metadata                                                                 |
-| Compression ratio             | ~3x                | LZ4 compression                                                                                   |
-| Bytes per span (compressed)   | ~170               | After compression                                                                                 |
-| Retention period              | 30 days (post-MVC) | MVC uses 3-day retention (matching current Observability CH); extend to at least 30 days post-MVC |
+| Parameter | Value | Notes |
+|-----------|-------|-------|
+| Jobs per day | 7,200,000 | GitLab.com estimate |
+| Spans per job | 8 | Average (not all jobs have all stages) |
+| Bytes per span (uncompressed) | ~500 | Fixed columns + variable metadata |
+| Compression ratio | ~3x | LZ4 compression |
+| Bytes per span (compressed) | ~170 | After compression |
+| Retention period | 30 days (post-MVC) | MVC uses 3-day retention (matching current Observability CH); extend to at least 30 days post-MVC |
 
 ### Storage calculation
 
-| Metric        | Calculation         | Result          |
-| ------------- | ------------------- | --------------- |
-| Daily spans   | 7.2M jobs × 8 spans | 57.6M spans/day |
-| Daily storage | 57.6M × 170 bytes   | ~9.8 GB/day     |
-| Total storage | 9.8 GB × 30 days    | **~294 GB**     |
+| Metric | Calculation | Result |
+|--------|-------------|--------|
+| Daily spans | 7.2M jobs × 8 spans | 57.6M spans/day |
+| Daily storage | 57.6M × 170 bytes | ~9.8 GB/day |
+| Total storage | 9.8 GB × 30 days | **~294 GB** |
 
 ### Cost breakdown
 
-| Component          | Estimate  | Notes                                               |
-| ------------------ | --------- | --------------------------------------------------- |
-| ClickHouse storage | ~$7/month | 294 GB at $22/TB/month                              |
-| Ingestion compute  | Shared    | OTEL Collector (autoscaled)                         |
-| Query compute      | Shared    | Existing ClickHouse instance                        |
-| Data ingress       | Free      | Runners, OTEL Collector, and ClickHouse all on GCP  |
-| Data egress        | ~$1/month | 30 GB inter-region at $0.036/GB (dashboard queries) |
+| Component | Estimate | Notes |
+|-----------|----------|-------|
+| ClickHouse storage | ~$7/month | 294 GB at $22/TB/month |
+| Ingestion compute | Shared | OTEL Collector (autoscaled) |
+| Query compute | Shared | Existing ClickHouse instance |
+| Data ingress | Free | Runners, OTEL Collector, and ClickHouse all on GCP |
+| Data egress | ~$1/month | 30 GB inter-region at $0.036/GB (dashboard queries) |
 
 Cost assumes CI telemetry shares the [Observability team's ClickHouse instance](https://gitlab.com/gitlab-com/gl-infra/observability/clickhouse-cloud/-/merge_requests/102), so incremental cost is storage and egress only.
 See [pricing calculator](https://clickhouse.com/pricing?plan=enterprise&provider=gcp&region=gcp-us-east1&useCase=observability&hours=24&computeMinSize=8&computeMaxSize=8&replicas=3&storage=300GB&storageCompressed=true&backupFrequency=24&backupRetention=30&estimateBackup=true&fullBackup=300GB&incrementalBackup=10GB&transfers[0][type]=inter-region&transfers[0][value]=30GB&transfers[0][region]=gcp-us-central1) for detailed assumptions (ClickHouse Cloud Enterprise, GCP).
@@ -540,12 +538,12 @@ can be kept as a preferred standard rather than replaced by the gateway
 
 **Authentication responsibility by path**:
 
-| Path                                           | Auth Handler                       | Backend Coupling | Notes                                                                      |
-| ---------------------------------------------- | ---------------------------------- | ---------------- | -------------------------------------------------------------------------- |
-| Runner → OTEL Collector (GitLab.com)           | OIDC / workload identity           | None             | Standard OTEL auth extension; no custom proxy needed                       |
-| Runner → Auth Gateway → Backend (self-managed) | Token-based gateway                | None             | Gateway validates runner/job tokens, forwards to backend as trusted source |
-| Job Router → Backend                           | Internal trust (workload identity) | None             | Job Router runs within GitLab infrastructure                               |
-| Rails → Backend                                | Internal trust (workload identity) | None             | Rails runs within GitLab infrastructure                                    |
+| Path | Auth Handler | Backend Coupling | Notes |
+|------|--------------|------------------|-------|
+| Runner → OTEL Collector (GitLab.com) | OIDC / workload identity | None | Standard OTEL auth extension; no custom proxy needed |
+| Runner → Auth Gateway → Backend (self-managed) | Token-based gateway | None | Gateway validates runner/job tokens, forwards to backend as trusted source |
+| Job Router → Backend | Internal trust (workload identity) | None | Job Router runs within GitLab infrastructure |
+| Rails → Backend | Internal trust (workload identity) | None | Rails runs within GitLab infrastructure |
 
 This design keeps the telemetry backend decoupled from the CI/CD domain. On GitLab.com, workload
 identity provides zero-trust authentication without custom components. For self-managed, the
@@ -584,7 +582,7 @@ is a span with:
   - Extended: function-specific attributes (see [Metadata attributes by function type](#metadata-attributes-by-function-type))
 
 NOTE: The `ci.resource.*` attributes describe the **CI Function's target resource** (cache, artifact, image, repository) — not the OTLP
-[Resource](https://opentelemetry.io/docs/concepts/resources/) concept, which describes the _entity producing telemetry_ and is captured
+[Resource](https://opentelemetry.io/docs/concepts/resources/) concept, which describes the *entity producing telemetry* and is captured
 in `ResourceAttributes` (for example, `ci.project.id`, `ci.runner.id`).
 
 Example OTLP span for a cache restore operation in job `12345` (JSON representation):
@@ -654,14 +652,14 @@ If function authors want to emit custom metrics, the step-runner will provide a 
 
 In addition to the core columns, functions report extended attributes stored in the `metadata` JSON field:
 
-| Function             | Transfer columns           | Metadata attributes                                |
-| -------------------- | -------------------------- | -------------------------------------------------- |
-| `pull_image`         | `rx_bytes` = image size    | -                                                  |
-| `get_sources`        | `rx_bytes` = data pulled   | `ci.git.depth`, `ci.git.filter`, `ci.git.strategy` |
-| `restore_cache`      | `rx_bytes` = cache size    | -                                                  |
-| `archive_cache`      | `tx_bytes` = cache size    | -                                                  |
-| `download_artifacts` | `rx_bytes` = artifact size | `ci.artifact.type`                                 |
-| `upload_artifacts`   | `tx_bytes` = artifact size | `ci.artifact.type`                                 |
+| Function             | Transfer columns            | Metadata attributes                                |
+| -------------------- | --------------------------- | -------------------------------------------------- |
+| `pull_image`         | `rx_bytes` = image size     | -                                                  |
+| `get_sources`        | `rx_bytes` = data pulled    | `ci.git.depth`, `ci.git.filter`, `ci.git.strategy` |
+| `restore_cache`      | `rx_bytes` = cache size     | -                                                  |
+| `archive_cache`      | `tx_bytes` = cache size     | -                                                  |
+| `download_artifacts` | `rx_bytes` = artifact size  | `ci.artifact.type`                                 |
+| `upload_artifacts`   | `tx_bytes` = artifact size  | `ci.artifact.type`                                 |
 
 Attribute descriptions:
 
@@ -992,75 +990,71 @@ Each streamed span results in a ClickHouse row.
 
 ```json
 {
-  "resourceSpans": [
-    {
-      "resource": {
-        "attributes": [
-          { "key": "ci.pipeline.id", "value": { "intValue": "12345" } },
-          { "key": "ci.pipeline.source", "value": { "stringValue": "push" } },
-          { "key": "ci.job.id", "value": { "intValue": "67890" } },
-          { "key": "ci.project.id", "value": { "intValue": "11111" } },
-          { "key": "ci.runner.id", "value": { "intValue": "1001" } },
-          { "key": "ci.runner_manager.system_xid", "value": { "stringValue": "r_vMRp4ZzJkLy2" } }
-        ]
-      },
-      "scopeSpans": [
+  "resourceSpans": [{
+    "resource": {
+      "attributes": [
+        { "key": "ci.pipeline.id", "value": { "intValue": "12345" } },
+        { "key": "ci.pipeline.source", "value": { "stringValue": "push" } },
+        { "key": "ci.job.id", "value": { "intValue": "67890" } },
+        { "key": "ci.project.id", "value": { "intValue": "11111" } },
+        { "key": "ci.runner.id", "value": { "intValue": "1001" } },
+        { "key": "ci.runner_manager.system_xid", "value": { "stringValue": "r_vMRp4ZzJkLy2" } }
+      ]
+    },
+    "scopeSpans": [{
+      "spans": [
         {
-          "spans": [
-            {
-              "name": "restore_cache",
-              "traceId": "00000000000000000000000000003039",
-              "spanId": "EEE19B7EC3C1B174",
-              "parentSpanId": "DDD19B7EC3C1B173",
-              "startTimeUnixNano": "1736690408900000000",
-              "endTimeUnixNano": "1736690412100000000",
-              "attributes": [
-                { "key": "ci.resource.type", "value": { "stringValue": "cache" } },
-                { "key": "ci.resource.key", "value": { "stringValue": "ruby-gems-a1b2c3d4" } },
-                { "key": "ci.resource.operation", "value": { "stringValue": "restore" } },
-                { "key": "ci.resource.hit", "value": { "boolValue": true } }
-              ]
-            },
-            {
-              "name": "step_script",
-              "traceId": "00000000000000000000000000003039",
-              "spanId": "FFF19B7EC3C1B175",
-              "parentSpanId": "DDD19B7EC3C1B173",
-              "startTimeUnixNano": "1736690412100000000",
-              "endTimeUnixNano": "1736690532100000000",
-              "attributes": []
-            },
-            {
-              "name": "upload_artifacts",
-              "traceId": "00000000000000000000000000003039",
-              "spanId": "AAA19B7EC3C1B176",
-              "parentSpanId": "DDD19B7EC3C1B173",
-              "startTimeUnixNano": "1736690532100000000",
-              "endTimeUnixNano": "1736690535600000000",
-              "attributes": [
-                { "key": "ci.resource.type", "value": { "stringValue": "artifact" } },
-                { "key": "ci.resource.key", "value": { "stringValue": "junit-report" } },
-                { "key": "ci.resource.operation", "value": { "stringValue": "upload" } }
-              ]
-            },
-            {
-              "name": "upload_artifacts",
-              "traceId": "00000000000000000000000000003039",
-              "spanId": "BBB19B7EC3C1B177",
-              "parentSpanId": "DDD19B7EC3C1B173",
-              "startTimeUnixNano": "1736690535600000000",
-              "endTimeUnixNano": "1736690538200000000",
-              "attributes": [
-                { "key": "ci.resource.type", "value": { "stringValue": "artifact" } },
-                { "key": "ci.resource.key", "value": { "stringValue": "coverage-html" } },
-                { "key": "ci.resource.operation", "value": { "stringValue": "upload" } }
-              ]
-            }
+          "name": "restore_cache",
+          "traceId": "00000000000000000000000000003039",
+          "spanId": "EEE19B7EC3C1B174",
+          "parentSpanId": "DDD19B7EC3C1B173",
+          "startTimeUnixNano": "1736690408900000000",
+          "endTimeUnixNano": "1736690412100000000",
+          "attributes": [
+            { "key": "ci.resource.type", "value": { "stringValue": "cache" } },
+            { "key": "ci.resource.key", "value": { "stringValue": "ruby-gems-a1b2c3d4" } },
+            { "key": "ci.resource.operation", "value": { "stringValue": "restore" } },
+            { "key": "ci.resource.hit", "value": { "boolValue": true } }
+          ]
+        },
+        {
+          "name": "step_script",
+          "traceId": "00000000000000000000000000003039",
+          "spanId": "FFF19B7EC3C1B175",
+          "parentSpanId": "DDD19B7EC3C1B173",
+          "startTimeUnixNano": "1736690412100000000",
+          "endTimeUnixNano": "1736690532100000000",
+          "attributes": []
+        },
+        {
+          "name": "upload_artifacts",
+          "traceId": "00000000000000000000000000003039",
+          "spanId": "AAA19B7EC3C1B176",
+          "parentSpanId": "DDD19B7EC3C1B173",
+          "startTimeUnixNano": "1736690532100000000",
+          "endTimeUnixNano": "1736690535600000000",
+          "attributes": [
+            { "key": "ci.resource.type", "value": { "stringValue": "artifact" } },
+            { "key": "ci.resource.key", "value": { "stringValue": "junit-report" } },
+            { "key": "ci.resource.operation", "value": { "stringValue": "upload" } }
+          ]
+        },
+        {
+          "name": "upload_artifacts",
+          "traceId": "00000000000000000000000000003039",
+          "spanId": "BBB19B7EC3C1B177",
+          "parentSpanId": "DDD19B7EC3C1B173",
+          "startTimeUnixNano": "1736690535600000000",
+          "endTimeUnixNano": "1736690538200000000",
+          "attributes": [
+            { "key": "ci.resource.type", "value": { "stringValue": "artifact" } },
+            { "key": "ci.resource.key", "value": { "stringValue": "coverage-html" } },
+            { "key": "ci.resource.operation", "value": { "stringValue": "upload" } }
           ]
         }
       ]
-    }
-  ]
+    }]
+  }]
 }
 ```
 
@@ -1091,12 +1085,12 @@ At insert time, the [`ci_job_telemetry_traces_mv`](#clickhouse-schema) Materiali
 `ServiceName IN ('gitlab-ci-runner', 'gitlab-ci-job-router', 'gitlab-ci-rails')` and extracts denormalized columns from the `Map` attributes. For the spans
 above, the MV produces:
 
-| `build_id` | `span_name`        | `status_code`       | `duration_ns` | `retry_count` | `resource_type` | `resource_key`       | `resource_hit` |
-| ---------- | ------------------ | ------------------- | ------------- | ------------- | --------------- | -------------------- | -------------- |
-| 67890      | `restore_cache`    | `STATUS_CODE_OK`    | 3200000000    | 0             | `cache`         | `ruby-gems-a1b2c3d4` | `true`         |
-| 67890      | `step_script`      | `STATUS_CODE_OK`    | 120000000000  | 0             |                 |                      |                |
-| 67890      | `upload_artifacts` | `STATUS_CODE_OK`    | 3500000000    | 0             | `artifact`      | `junit-report`       |                |
-| 67890      | `upload_artifacts` | `STATUS_CODE_ERROR` | 2600000000    | 2             | `artifact`      | `coverage-html`      |                |
+| `build_id` | `span_name`        | `status_code`     | `duration_ns`  | `retry_count` | `resource_type` | `resource_key`       | `resource_hit` |
+| ---------- | ------------------ | ------------ | -------------- | ------------- | --------------- | -------------------- | -------------- |
+| 67890      | `restore_cache`    | `STATUS_CODE_OK`    | 3200000000     | 0             | `cache`         | `ruby-gems-a1b2c3d4` | `true`         |
+| 67890      | `step_script`      | `STATUS_CODE_OK`    | 120000000000   | 0             |                 |                      |                |
+| 67890      | `upload_artifacts` | `STATUS_CODE_OK`    | 3500000000     | 0             | `artifact`      | `junit-report`       |                |
+| 67890      | `upload_artifacts` | `STATUS_CODE_ERROR` | 2600000000     | 2             | `artifact`      | `coverage-html`      |                |
 
 The MV handles all field extraction (see the [`SELECT` definition](#clickhouse-schema) for the complete mapping).
 The `traversal_path` column is computed by the Materialized View's `SELECT` expression,
@@ -1159,7 +1153,7 @@ This diagram shows the MVC scenario (Runner telemetry + Rails lifecycle spans). 
 #### Coordinating span IDs across Rails request boundaries
 
 `span_parent_id` ships in the job payload, but the Rails `job_running` span it points to
-does not exist until the `pending → running` transition fires _after_ the payload has been
+does not exist until the `pending → running` transition fires *after* the payload has been
 sent. Rails must commit to a span ID before the span exists and have the OTel SDK later
 emit a span with that exact ID. The SDK's `start_span` API does not accept a span ID
 argument — a custom [`IdGenerator`](https://github.com/open-telemetry/opentelemetry-ruby/blob/opentelemetry-sdk%2Fv1.11.0/sdk/lib/opentelemetry/sdk/trace/tracer_provider.rb#L145)
@@ -1233,11 +1227,11 @@ CI job telemetry. This is the contract between Rails and Runner:
 
 ```
 
-| Field            | Type                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| ---------------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `trace_id`       | String (32-char hex) | The [Trace ID](#key-definitions) derived from the **root** pipeline ID. All jobs across the pipeline hierarchy (parent and child pipelines) share this value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `span_parent_id` | String (16-char hex) | The span ID of the Rails `job_running` span for this job. The Runner uses this to parent its `job_execution` span under the `job_running` span, producing the hierarchy: `job_lifecycle` → `job_running` → `job_execution`. For child pipeline jobs, the `job_lifecycle` span itself is a child of the trigger (bridge) job's span.                                                                                                                                                                                                                                                                                                                                               |
-| `otel_endpoints` | Array of Object      | OTEL Collector endpoint configurations. Each object contains a `url` (endpoint URL whose scheme determines the transport protocol — `https://` for OTLP/HTTP, `grpcs://` for OTLP/gRPC) and an optional `auth` object. For MVC, this contains a single entry: GitLab's Collector (from a Rails application setting). The Runner configures one OTLP exporter per entry (HTTP or gRPC based on the URL scheme). When `auth` is absent, the Runner exports without authentication. See [endpoint auth schema](#endpoint-auth-schema) for field details. A [future extension](#future-work-byo-otlp-endpoints) may add a second entry for customer-configured BYO OTLP destinations. |
+| Field | Type | Description |
+|-------|------|-------------|
+| `trace_id` | String (32-char hex) | The [Trace ID](#key-definitions) derived from the **root** pipeline ID. All jobs across the pipeline hierarchy (parent and child pipelines) share this value. |
+| `span_parent_id` | String (16-char hex) | The span ID of the Rails `job_running` span for this job. The Runner uses this to parent its `job_execution` span under the `job_running` span, producing the hierarchy: `job_lifecycle` → `job_running` → `job_execution`. For child pipeline jobs, the `job_lifecycle` span itself is a child of the trigger (bridge) job's span. |
+| `otel_endpoints` | Array of Object | OTEL Collector endpoint configurations. Each object contains a `url` (endpoint URL whose scheme determines the transport protocol — `https://` for OTLP/HTTP, `grpcs://` for OTLP/gRPC) and an optional `auth` object. For MVC, this contains a single entry: GitLab's Collector (from a Rails application setting). The Runner configures one OTLP exporter per entry (HTTP or gRPC based on the URL scheme). When `auth` is absent, the Runner exports without authentication. See [endpoint auth schema](#endpoint-auth-schema) for field details. A [future extension](#future-work-byo-otlp-endpoints) may add a second entry for customer-configured BYO OTLP destinations. |
 
 **Semantics:**
 
@@ -1253,16 +1247,16 @@ CI job telemetry. This is the contract between Rails and Runner:
 
 Each entry in `otel_endpoints` is an object with the following fields:
 
-| Field       | Type             | Description                                                                                                                                                                                     |
-| ----------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `url`       | String (URL)     | OTLP endpoint URL. Required. The URL scheme determines the transport protocol: `https://` or `http://` for OTLP/HTTP, `grpcs://` or `grpc://` for OTLP/gRPC. GitLab's Collector uses OTLP/HTTP. |
-| `auth`      | Object, optional | Authentication configuration. When absent, the Runner exports without authentication. Contains a `type` discriminator and a type-specific sub-object with the same name.                        |
-| `auth.type` | String           | Authentication type. Determines which sub-object contains the configuration. The Runner ignores endpoint entries with an unrecognized `auth.type`.                                              |
+| Field | Type | Description |
+|-------|------|-------------|
+| `url` | String (URL) | OTLP endpoint URL. Required. The URL scheme determines the transport protocol: `https://` or `http://` for OTLP/HTTP, `grpcs://` or `grpc://` for OTLP/gRPC. GitLab's Collector uses OTLP/HTTP. |
+| `auth` | Object, optional | Authentication configuration. When absent, the Runner exports without authentication. Contains a `type` discriminator and a type-specific sub-object with the same name. |
+| `auth.type` | String | Authentication type. Determines which sub-object contains the configuration. The Runner ignores endpoint entries with an unrecognized `auth.type`. |
 
 **Supported auth types:**
 
-| `type` value           | Sub-object                  | Description                                                                                                                                                                                                                                                                                          |
-| ---------------------- | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type` value | Sub-object | Description |
+|-------------|------------|-------------|
 | `http_bearer_gcp_oidc` | `auth.http_bearer_gcp_oidc` | Runner fetches a [GCE instance identity token](https://cloud.google.com/compute/docs/instances/verifying-instance-identity#request_signature) from the local metadata server and attaches it as `Authorization: Bearer <token>` on OTLP requests. Only works on GCE VMs (GitLab.com hosted runners). |
 
 Future auth types (not yet implemented):
@@ -1281,8 +1275,8 @@ credentials.
 
 **`http_bearer_gcp_oidc` fields:**
 
-| Field      | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                              |
-| ---------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Field | Type | Description |
+|-------|------|-------------|
 | `audience` | String | The `audience` claim to request when fetching the identity token from the [GCE metadata server](https://cloud.google.com/compute/docs/instances/verifying-instance-identity#request_signature). The OTEL Collector's [`oidcauth` extension](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/oidcauthextension) validates this value matches the expected audience. |
 
 The Runner caches the fetched token and refreshes it before expiry. Token fetch failures are
@@ -1312,13 +1306,13 @@ Telemetry is strictly best-effort — it must never cause a job to fail, slow do
 change behavior. The OTEL SDK (through LabKit) provides built-in resilience, and the Runner
 adds additional safeguards:
 
-| Scenario                     | Runner behavior                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Collector unreachable**    | The OTLP exporter retries transient errors with [exponential backoff and jitter](https://opentelemetry.io/docs/specs/otel/protocol/exporter/#retry). Unrecoverable export errors are [reported to the global `otel.ErrorHandler`](https://opentelemetry.io/docs/specs/otel/error-handling/#configuring-error-handlers), which the Runner uses to increment Prometheus counters. Job execution proceeds normally.                                                                                                                                           |
-| **Sustained outage**         | Spans buffer in the [`BatchSpanProcessor`](https://opentelemetry.io/docs/specs/otel/trace/sdk/#batching-processor) queue (bounded by [`MaxQueueSize`](https://pkg.go.dev/go.opentelemetry.io/otel/sdk/trace#BatchSpanProcessorOptions), default 2048). When the queue is full, **new** spans are dropped on enqueue (not oldest). The Runner detects drops through the [`otel.ErrorHandler`](https://opentelemetry.io/docs/specs/otel/error-handling/#configuring-error-handlers) and increments the `ci_telemetry_spans_dropped_total` Prometheus metric. |
-| **Post-job flush timeout**   | Runner calls [`TracerProvider.Shutdown(ctx)`](https://opentelemetry.io/docs/specs/otel/trace/sdk/#shutdown) with a deadline (default: 30 seconds). Shutdown [reports whether it succeeded, failed, or timed out](https://opentelemetry.io/docs/specs/otel/trace/sdk/#shutdown). Undelivered spans are dropped and a warning is logged.                                                                                                                                                                                                                     |
-| **Malformed/rejected spans** | Collector returns `400 Bad Request` (a non-transient error per the [OTLP spec](https://opentelemetry.io/docs/specs/otlp/#failures-1)). The OTLP exporter does not retry; the error is reported to [`otel.ErrorHandler`](https://opentelemetry.io/docs/specs/otel/error-handling/#configuring-error-handlers).                                                                                                                                                                                                                                              |
-| **Auth failure (401/403)**   | Runner logs the error and disables telemetry export for the remainder of the job. Job proceeds normally.                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Scenario | Runner behavior |
+|----------|----------------|
+| **Collector unreachable** | The OTLP exporter retries transient errors with [exponential backoff and jitter](https://opentelemetry.io/docs/specs/otel/protocol/exporter/#retry). Unrecoverable export errors are [reported to the global `otel.ErrorHandler`](https://opentelemetry.io/docs/specs/otel/error-handling/#configuring-error-handlers), which the Runner uses to increment Prometheus counters. Job execution proceeds normally. |
+| **Sustained outage** | Spans buffer in the [`BatchSpanProcessor`](https://opentelemetry.io/docs/specs/otel/trace/sdk/#batching-processor) queue (bounded by [`MaxQueueSize`](https://pkg.go.dev/go.opentelemetry.io/otel/sdk/trace#BatchSpanProcessorOptions), default 2048). When the queue is full, **new** spans are dropped on enqueue (not oldest). The Runner detects drops through the [`otel.ErrorHandler`](https://opentelemetry.io/docs/specs/otel/error-handling/#configuring-error-handlers) and increments the `ci_telemetry_spans_dropped_total` Prometheus metric. |
+| **Post-job flush timeout** | Runner calls [`TracerProvider.Shutdown(ctx)`](https://opentelemetry.io/docs/specs/otel/trace/sdk/#shutdown) with a deadline (default: 30 seconds). Shutdown [reports whether it succeeded, failed, or timed out](https://opentelemetry.io/docs/specs/otel/trace/sdk/#shutdown). Undelivered spans are dropped and a warning is logged. |
+| **Malformed/rejected spans** | Collector returns `400 Bad Request` (a non-transient error per the [OTLP spec](https://opentelemetry.io/docs/specs/otlp/#failures-1)). The OTLP exporter does not retry; the error is reported to [`otel.ErrorHandler`](https://opentelemetry.io/docs/specs/otel/error-handling/#configuring-error-handlers). |
+| **Auth failure (401/403)** | Runner logs the error and disables telemetry export for the remainder of the job. Job proceeds normally. |
 
 **Design principles**:
 
@@ -1490,19 +1484,19 @@ This section analyzes security considerations for the telemetry endpoint.
 
 ### Assets
 
-| Asset            | Description                                                  | Sensitivity                               |
-| ---------------- | ------------------------------------------------------------ | ----------------------------------------- |
-| Telemetry data   | Timing and metadata for CI Functions                         | Low - operational metrics, no secrets     |
+| Asset           | Description                                              | Sensitivity                           |
+| --------------- | -------------------------------------------------------- | ------------------------------------- |
+| Telemetry data  | Timing and metadata for CI Functions                     | Low - operational metrics, no secrets |
 | Auth credentials | OIDC tokens (GitLab.com) or runner/job tokens (self-managed) | High - grants telemetry submission access |
-| ClickHouse data  | Aggregated telemetry across projects                         | Medium - could reveal usage patterns      |
+| ClickHouse data | Aggregated telemetry across projects                     | Medium - could reveal usage patterns  |
 
 ### Threat actors
 
-| Actor                     | Capability                          | Motivation                        |
-| ------------------------- | ----------------------------------- | --------------------------------- |
-| Malicious Runner operator | Controls Runner infrastructure      | Data exfiltration, resource abuse |
-| Compromised job           | Code execution within job container | Lateral movement, data injection  |
-| External attacker         | Network access to GitLab API        | DoS, data manipulation            |
+| Actor                     | Capability                          | Motivation                         |
+| ------------------------- | ----------------------------------- | ---------------------------------- |
+| Malicious Runner operator | Controls Runner infrastructure      | Data exfiltration, resource abuse  |
+| Compromised job           | Code execution within job container | Lateral movement, data injection   |
+| External attacker         | Network access to GitLab API        | DoS, data manipulation             |
 
 ### Threats and mitigations
 
@@ -1592,14 +1586,14 @@ span loss, defeating the near-real-time ingestion goal.
 
 ### Security controls summary
 
-| Control          | Implementation                                                                        |
-| ---------------- | ------------------------------------------------------------------------------------- |
+| Control          | Implementation                           |
+| ---------------- | ---------------------------------------- |
 | Authentication   | OIDC/workload identity (MVC); CI job and runner token through auth gateway (post-MVC) |
-| Authorization    | Runner-to-job assignment verification                                                 |
-| Input validation | Schema validation, allowlists                                                         |
-| Rate limiting    | Per-stream rate limit, max spans per job                                              |
-| Size limiting    | 4 KB per span, 1000 spans max per job                                                 |
-| Data isolation   | Project-scoped queries in ClickHouse                                                  |
+| Authorization    | Runner-to-job assignment verification    |
+| Input validation | Schema validation, allowlists            |
+| Rate limiting    | Per-stream rate limit, max spans per job |
+| Size limiting    | 4 KB per span, 1000 spans max per job    |
+| Data isolation   | Project-scoped queries in ClickHouse     |
 
 ## Relationship to GitLab Observability
 
@@ -1608,13 +1602,13 @@ for monitoring applications and infrastructure. This CI job telemetry work is **
 
 ### How they relate
 
-| Aspect              | GitLab Observability                          | CI Job Telemetry                               |
-| ------------------- | --------------------------------------------- | ---------------------------------------------- |
-| **Focus**           | Pipeline and job traces/metrics               | End-to-end job lifecycle telemetry             |
-| **Data source**     | Rails (post-completion export)                | Multi-source: Runner, Job Router, Rails        |
-| **Instrumentation** | Opt-in with `GITLAB_OBSERVABILITY_EXPORT` var | Automatic (built into GitLab components)       |
-| **Granularity**     | Job-level timing from Rails perspective       | Sub-job spans (cache, artifacts, git, scripts) |
-| **Data access**     | SigNoz UI (embedded iframe)                   | Direct ClickHouse queries, GitLab APIs         |
+| Aspect              | GitLab Observability                          | CI Job Telemetry                                   |
+| ------------------- | --------------------------------------------- | -------------------------------------------------- |
+| **Focus**           | Pipeline and job traces/metrics               | End-to-end job lifecycle telemetry                 |
+| **Data source**     | Rails (post-completion export)                | Multi-source: Runner, Job Router, Rails             |
+| **Instrumentation** | Opt-in with `GITLAB_OBSERVABILITY_EXPORT` var | Automatic (built into GitLab components)           |
+| **Granularity**     | Job-level timing from Rails perspective       | Sub-job spans (cache, artifacts, git, scripts)     |
+| **Data access**     | SigNoz UI (embedded iframe)                   | Direct ClickHouse queries, GitLab APIs             |
 
 ### Complementary value
 
@@ -1961,12 +1955,12 @@ The `router_job_running` span nests under the Rails `job_running` span, alongsid
 The MVC targets GitLab.com hosted runners, where both the OTEL Collector and
 ClickHouse are centrally operated. Three deployment tiers define the progression:
 
-| Tier                                      | Runners                                | Infrastructure                    | Auth                                                            | Phase                                                                   |
-| ----------------------------------------- | -------------------------------------- | --------------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| **(a1) GitLab internal runners**          | GitLab-managed (`gitlab-org` projects) | Centrally operated Collector + CH | OIDC / workload identity                                        | [Phase 1](#phase-1-mvc-gitlabcom-hosted-runners) (MVC)                  |
-| **(a2) All GitLab.com Hosted Runners**    | GitLab-managed (all customer projects) | Centrally operated Collector + CH | OIDC / workload identity                                        | [Phase 1](#phase-1-mvc-gitlabcom-hosted-runners) (after MVC validation) |
-| **(b) Self-hosted runners on GitLab.com** | Customer-managed                       | Centrally operated Collector + CH | [Token-based auth gateway](#token-based-authentication-gateway) | [Phase 2](#phase-2-complete-telemetry-pipeline)                         |
-| **(c) Self-Managed / Dedicated**          | Customer-managed                       | Customer-deployed Collector + CH  | Token-based auth gateway                                        | [Phase 2](#phase-2-complete-telemetry-pipeline)                         |
+| Tier | Runners | Infrastructure | Auth | Phase |
+|------|---------|----------------|------|-------|
+| **(a1) GitLab internal runners** | GitLab-managed (`gitlab-org` projects) | Centrally operated Collector + CH | OIDC / workload identity | [Phase 1](#phase-1-mvc-gitlabcom-hosted-runners) (MVC) |
+| **(a2) All GitLab.com Hosted Runners** | GitLab-managed (all customer projects) | Centrally operated Collector + CH | OIDC / workload identity | [Phase 1](#phase-1-mvc-gitlabcom-hosted-runners) (after MVC validation) |
+| **(b) Self-hosted runners on GitLab.com** | Customer-managed | Centrally operated Collector + CH | [Token-based auth gateway](#token-based-authentication-gateway) | [Phase 2](#phase-2-complete-telemetry-pipeline) |
+| **(c) Self-Managed / Dedicated** | Customer-managed | Customer-deployed Collector + CH | Token-based auth gateway | [Phase 2](#phase-2-complete-telemetry-pipeline) |
 
 Tiers (a1) and (a2) are turnkey — no customer deployment needed; the only difference is
 ingestion volume. Tier (b) requires the auth gateway
@@ -2015,11 +2009,11 @@ installable component rather than bundling it into GitLab itself, avoiding licen
 **Data topology**: Each deployment type has its own isolated ClickHouse instance — telemetry data does not
 cross deployment boundaries:
 
-| Deployment   | OTEL Collector      | ClickHouse                                                                  | Data Isolation                            |
-| ------------ | ------------------- | --------------------------------------------------------------------------- | ----------------------------------------- |
-| GitLab.com   | Shared instance     | Observability CH (internal, MVC); production CH (customer-facing, post-MVC) | Per-organization through `traversal_path` |
-| Dedicated    | Per-tenant instance | Per-tenant                                                                  | Full tenant isolation                     |
-| Self-Managed | Customer-deployed   | Customer-deployed                                                           | Full instance isolation                   |
+| Deployment | OTEL Collector | ClickHouse | Data Isolation |
+|------------|----------------|------------|----------------|
+| GitLab.com | Shared instance | Observability CH (internal, MVC); production CH (customer-facing, post-MVC) | Per-organization through `traversal_path` |
+| Dedicated | Per-tenant instance | Per-tenant | Full tenant isolation |
+| Self-Managed | Customer-deployed | Customer-deployed | Full instance isolation |
 
 **Deployment approach** (planned — none of this infrastructure exists yet;
 [discussion](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3128539895)):
@@ -2031,7 +2025,7 @@ cross deployment boundaries:
   `k8s-monitoring-stack` Helm chart. For Omnibus deployments,
   [OAK (Omnibus Alternative Kit)](/handbook/engineering/architecture/design-documents/selfmanaged_segmentation/)
   provides an alternative delivery path. In both cases, the component would be **disabled by default**
-  and enabled through configuration.
+   and enabled through configuration.
 
 #### Beyond-MVP challenges
 
@@ -2090,12 +2084,12 @@ for the data trust model.
 - **Request headers**:
   - Runner token header (identifies the runner)
   - Job token header (JWT format — CI platform is migrating from
-    `ci_builds.token_encrypted` to JWTs). Job ID is extracted from the JWT payload.
+     `ci_builds.token_encrypted` to JWTs). Job ID is extracted from the JWT payload.
 - **Response**:
   - `200 OK` on success, with JSON body `{ "trace_id": "<expected_trace_id>" }` and
-    `Cache-Control: private, max-age=<seconds>` header indicating how long the gateway can
-    cache the authentication result for this token pair. The `trace_id` is used by the gateway
-    to validate that all spans in subsequent OTLP requests belong to the authenticated job's pipeline.
+     `Cache-Control: private, max-age=<seconds>` header indicating how long the gateway can
+     cache the authentication result for this token pair. The `trace_id` is used by the gateway
+     to validate that all spans in subsequent OTLP requests belong to the authenticated job's pipeline.
   - `401 Unauthorized` if tokens are invalid or job was not executed by this runner
 - **Validation**: Decode the job JWT, verify the job was/is being executed by the runner identified by the
   runner token.
@@ -2168,11 +2162,11 @@ three-layer integration:
 
 **Example use cases**:
 
-- _"Why is my pipeline slow?"_ → Duo queries telemetry to identify the slowest stages and suggests optimizations
-- _"How can I improve my cache hit rate?"_ → Duo analyzes cache patterns and recommends key adjustments
-- _"What changed since last week?"_ → Duo compares telemetry across time ranges to identify regressions
-- _"Which projects have the worst artifact upload times?"_ → Duo aggregates across projects for organizational insights
-- _"Which teams are over-provisioning their runner resources?"_ → Duo analyzes resource requests vs. utilization to identify cost optimization opportunities
+- *"Why is my pipeline slow?"* → Duo queries telemetry to identify the slowest stages and suggests optimizations
+- *"How can I improve my cache hit rate?"* → Duo analyzes cache patterns and recommends key adjustments
+- *"What changed since last week?"* → Duo compares telemetry across time ranges to identify regressions
+- *"Which projects have the worst artifact upload times?"* → Duo aggregates across projects for organizational insights
+- *"Which teams are over-provisioning their runner resources?"* → Duo analyzes resource requests vs. utilization to identify cost optimization opportunities
 
 **Implementation path**:
 
@@ -2269,26 +2263,26 @@ handle ~57.6M span inserts/day (~670 spans/second sustained, with peak bursts si
 
 The following questions have been resolved during design review:
 
-| Decision                                  | Resolution                                                                                 | Rationale                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **CI Function limit per job**             | No limit for MVC                                                                           | CI Functions map to existing build stages which are already unbounded. Monitor in production and introduce limits only if needed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| **Authentication approach**               | OIDC/workload identity (MVC); token-based auth gateway (self-managed/Dedicated)            | MVC uses OIDC/workload identity for GitLab.com hosted runners. Token-based auth gateway is planned for self-managed runners where OIDC is not available. Once self-managed auth is worked out, revisit whether OIDC can be kept as a preferred standard. ([discussion](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3078583475), [follow-up](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3079360806), [OIDC preference](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3128555041))                                                                                                                                                                                                                                               |
-| **Auth gateway for self-managed**         | Telemetry unavailable if auth gateway not deployed                                         | Phase 2 (Beyond GitLab.com workstream) scope. Auth gateway must be included in Self-Managed/Dedicated deployment. Once worked out, revisit whether OIDC can replace the gateway if self-managed instances can issue OIDC tokens.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| **Self-managed Collector requirement**    | Ship an OTEL Collector for in-product features                                             | In-product CI telemetry features (GraphQL, GLQL, Duo) on self-managed require an OTEL Collector to ingest spans into ClickHouse. Distributed through the Observability team's [Tenant Observability Stack](https://gitlab-com.gitlab.io/gl-infra/terraform-modules/observability/tenant-observability-stack/) (`k8s-monitoring-stack` Helm chart) or [OAK](/handbook/engineering/architecture/design-documents/selfmanaged_segmentation/) for Omnibus. Disabled by default, enabled through configuration.                                                                                                                                                                                                                                                                                                                                   |
-| **OTEL Collector endpoint configuration** | Rails application setting, sent in `features.tracing.otel_endpoints`                       | GitLab's Collector endpoint is a Rails application setting, passed to the Runner per-job in `otel_endpoints` as a structured object carrying URL and [per-endpoint auth configuration](#endpoint-auth-schema). No static runner-side configuration (`config.toml`) is needed — the feature works automatically based on runner version and namespace plan. A [future extension](#future-work-byo-otlp-endpoints) may add a second entry for customer-configured BYO OTLP destinations. ([discussion](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3112980648))                                                                                                                                                                                                                                           |
-| **`otel_endpoints` schema**               | Array of objects with `url` + typed `auth`                                                 | Implementation feedback surfaced that different deployment targets require different auth mechanisms (GCE metadata OIDC for hosted runners, AWS/Azure OIDC for other clouds). Each endpoint object carries a `type`-discriminated `auth` sub-object. Auth types are **platform-specific** (e.g., `http_bearer_gcp_oidc`) rather than generic (e.g., "fetch token from arbitrary URL") to limit the attack surface — the Runner hardcodes the token acquisition mechanism and Rails only passes minimal parameters like `audience`. The `type` field ensures extensibility for future auth schemes without breaking the schema. ([initial discussion](https://gitlab.com/gitlab-org/gitlab-runner/-/work_items/39231#note_3145356104), [security refinement](https://gitlab.com/gitlab-org/gitlab-runner/-/work_items/39231#note_3181758475)) |
-| **Endpoint URL scheme**                   | Standard schemes (`https://`, `grpcs://`, etc.)                                            | The `url` field uses standard URL schemes to signal the transport protocol: `https://`/`http://` for OTLP/HTTP, `grpcs://`/`grpc://` for OTLP/gRPC. This is more intuitive than LabKit's `otlp`/`otlps` convention. The Runner selects the appropriate exporter (HTTP or gRPC) based on the scheme. gRPC support enables future [BYO OTLP endpoints](#future-work-byo-otlp-endpoints) where customers may prefer gRPC. ([discussion](https://gitlab.com/gitlab-org/gitlab-runner/-/work_items/39231#note_3181758475))                                                                                                                                                                                                                                                                                                                        |
-| **Sampling location**                     | Rails-side deterministic head sampling (MVC); Collector-side as additional layer (Stage 2) | Rails uses a global application setting (`ci_job_telemetry_sampling_rate`) + deterministic hash of the root pipeline ID to decide whether a pipeline is sampled. The Runner uses `AlwaysOn` SDK sampling — if `features.tracing` is present, it instruments everything. The Collector receives only pre-sampled traces in MVC. This avoids overwhelming the Collector, ensures per-pipeline consistency (all jobs in a pipeline hierarchy get the same sampling decision), and keeps sampling control centralized in Rails. Collector-side sampling is layered on in Stage 2 for finer control per exporter pipeline. ([original rationale](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3109467086), [clarification](https://gitlab.com/gitlab-org/gitlab-runner/-/work_items/39231#note_3164573891))   |
-| **Runner SDK sampler**                    | `AlwaysOn`, overriding LabKit default                                                      | LabKit's new OTEL integration ([v2/trace](https://gitlab.com/gitlab-org/labkit/-/merge_requests/280)) defaults to `TraceIDRatioBased(0.01)` (1% client-side sampling). The Runner must explicitly set `SampleRate: 1.0` (`AlwaysSample()`) to ensure all spans for sampled jobs are exported. Sampling decisions belong to Rails, not the SDK.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| **Capability fingerprint as metadata**    | Yes, include in MVC (Rails workstream)                                                     | Available in job payload, enables valuable queries like "which capability groups have slow cache restores?"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| **ClickHouse instance**                   | Observability team's instance (MVC)                                                        | The [Observability team's ClickHouse instance](https://gitlab.com/gitlab-com/gl-infra/observability/clickhouse-cloud/-/merge_requests/102) hosts the `otel_traces` table; the OTEL Collector writes to it directly. This instance is for **internal/operational use only** (Grafana dashboards, Observability team queries) and is not exposed to end-users. ([discussion](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3078667261))                                                                                                                                                                                                                                                                                                                                                                     |
-| **Telemetry coverage measurement**        | Use Service Ping                                                                           | Report ratio of jobs with telemetry spans vs total jobs completed in a given period.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| **Memory management for spans**           | Non-issue with OTEL SDK batching                                                           | OTEL SDK batches spans (default 5-second intervals or max count) and exports them. Spans are not accumulated indefinitely in memory.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| **Resource usage metrics**                | Yes, post-MVC using "span filters"                                                         | Collected by step-runner through Platform Services plugins; environment-specific (Docker API, Kubernetes Metrics Server, `/proc` parsing). See [Step-runner telemetry integration](#step-runner-telemetry-integration).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| **Authentication grace period TTL**       | Fixed at 60 seconds, not configurable                                                      | Allows buffered spans to flush after job completion. Uses `Ci::JobAuthFinder` with grace period parameter for expired JWTs ([discussion](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3069246489)).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| **Clock synchronization**                 | Trust durations and parent-child relationships                                             | CI Functions can be delegated to step runners on different hosts with clock drift. Based on [Jaeger prior art](https://github.com/jaegertracing/jaeger/issues/722):<br/>• Trust durations from monotonic clocks<br/>• Use `trace_id`/`span_id`/`parent_span_id` for hierarchy, not timestamp ordering<br/>• Accept visual oddities in trace UIs<br/>• Leverage backend clock skew adjusters                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| **OTEL Collector fan-out**                | Same OTEL deployment, separate exporter pipeline per CH instance                           | A single OTEL Collector deployment serves all telemetry. Separate exporter pipelines within that deployment write to different ClickHouse instances with independent filters, sampling, and retention policies. The Observability CH instance receives the full stream for internal dashboards; the production CH instance receives a filtered/sampled subset for customer-facing features (GraphQL, GLQL, Duo). The Observability team operates the shared Collector deployment; each exporter pipeline is configured by its consuming team. ([discussion](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3112470636))                                                                                                                                                                                    |
-| **ClickHouse instance for Rails queries** | Production CH (post-MVC)                                                                   | Post-MVC (Phase 3, [Data consumable by users](#workstream-data-consumable-by-users) workstream), the Collector's production-CH exporter pipeline writes a filtered/sampled subset of `ci_job_telemetry_traces` to the main production CH instance. Rails queries this data through `ClickHouse::Client` for GraphQL/GLQL. Different retention and sampling policies apply per instance. ([discussion](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3112470636))                                                                                                                                                                                                                                                                                                                                          |
+| Decision | Resolution | Rationale |
+|----------|------------|-----------|
+| **CI Function limit per job** | No limit for MVC | CI Functions map to existing build stages which are already unbounded. Monitor in production and introduce limits only if needed. |
+| **Authentication approach** | OIDC/workload identity (MVC); token-based auth gateway (self-managed/Dedicated) | MVC uses OIDC/workload identity for GitLab.com hosted runners. Token-based auth gateway is planned for self-managed runners where OIDC is not available. Once self-managed auth is worked out, revisit whether OIDC can be kept as a preferred standard. ([discussion](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3078583475), [follow-up](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3079360806), [OIDC preference](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3128555041)) |
+| **Auth gateway for self-managed** | Telemetry unavailable if auth gateway not deployed | Phase 2 (Beyond GitLab.com workstream) scope. Auth gateway must be included in Self-Managed/Dedicated deployment. Once worked out, revisit whether OIDC can replace the gateway if self-managed instances can issue OIDC tokens. |
+| **Self-managed Collector requirement** | Ship an OTEL Collector for in-product features | In-product CI telemetry features (GraphQL, GLQL, Duo) on self-managed require an OTEL Collector to ingest spans into ClickHouse. Distributed through the Observability team's [Tenant Observability Stack](https://gitlab-com.gitlab.io/gl-infra/terraform-modules/observability/tenant-observability-stack/) (`k8s-monitoring-stack` Helm chart) or [OAK](/handbook/engineering/architecture/design-documents/selfmanaged_segmentation/) for Omnibus. Disabled by default, enabled through configuration. |
+| **OTEL Collector endpoint configuration** | Rails application setting, sent in `features.tracing.otel_endpoints` | GitLab's Collector endpoint is a Rails application setting, passed to the Runner per-job in `otel_endpoints` as a structured object carrying URL and [per-endpoint auth configuration](#endpoint-auth-schema). No static runner-side configuration (`config.toml`) is needed — the feature works automatically based on runner version and namespace plan. A [future extension](#future-work-byo-otlp-endpoints) may add a second entry for customer-configured BYO OTLP destinations. ([discussion](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3112980648)) |
+| **`otel_endpoints` schema** | Array of objects with `url` + typed `auth` | Implementation feedback surfaced that different deployment targets require different auth mechanisms (GCE metadata OIDC for hosted runners, AWS/Azure OIDC for other clouds). Each endpoint object carries a `type`-discriminated `auth` sub-object. Auth types are **platform-specific** (e.g., `http_bearer_gcp_oidc`) rather than generic (e.g., "fetch token from arbitrary URL") to limit the attack surface — the Runner hardcodes the token acquisition mechanism and Rails only passes minimal parameters like `audience`. The `type` field ensures extensibility for future auth schemes without breaking the schema. ([initial discussion](https://gitlab.com/gitlab-org/gitlab-runner/-/work_items/39231#note_3145356104), [security refinement](https://gitlab.com/gitlab-org/gitlab-runner/-/work_items/39231#note_3181758475)) |
+| **Endpoint URL scheme** | Standard schemes (`https://`, `grpcs://`, etc.) | The `url` field uses standard URL schemes to signal the transport protocol: `https://`/`http://` for OTLP/HTTP, `grpcs://`/`grpc://` for OTLP/gRPC. This is more intuitive than LabKit's `otlp`/`otlps` convention. The Runner selects the appropriate exporter (HTTP or gRPC) based on the scheme. gRPC support enables future [BYO OTLP endpoints](#future-work-byo-otlp-endpoints) where customers may prefer gRPC. ([discussion](https://gitlab.com/gitlab-org/gitlab-runner/-/work_items/39231#note_3181758475)) |
+| **Sampling location** | Rails-side deterministic head sampling (MVC); Collector-side as additional layer (Stage 2) | Rails uses a global application setting (`ci_job_telemetry_sampling_rate`) + deterministic hash of the root pipeline ID to decide whether a pipeline is sampled. The Runner uses `AlwaysOn` SDK sampling — if `features.tracing` is present, it instruments everything. The Collector receives only pre-sampled traces in MVC. This avoids overwhelming the Collector, ensures per-pipeline consistency (all jobs in a pipeline hierarchy get the same sampling decision), and keeps sampling control centralized in Rails. Collector-side sampling is layered on in Stage 2 for finer control per exporter pipeline. ([original rationale](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3109467086), [clarification](https://gitlab.com/gitlab-org/gitlab-runner/-/work_items/39231#note_3164573891)) |
+| **Runner SDK sampler** | `AlwaysOn`, overriding LabKit default | LabKit's new OTEL integration ([v2/trace](https://gitlab.com/gitlab-org/labkit/-/merge_requests/280)) defaults to `TraceIDRatioBased(0.01)` (1% client-side sampling). The Runner must explicitly set `SampleRate: 1.0` (`AlwaysSample()`) to ensure all spans for sampled jobs are exported. Sampling decisions belong to Rails, not the SDK. |
+| **Capability fingerprint as metadata** | Yes, include in MVC (Rails workstream) | Available in job payload, enables valuable queries like "which capability groups have slow cache restores?" |
+| **ClickHouse instance** | Observability team's instance (MVC) | The [Observability team's ClickHouse instance](https://gitlab.com/gitlab-com/gl-infra/observability/clickhouse-cloud/-/merge_requests/102) hosts the `otel_traces` table; the OTEL Collector writes to it directly. This instance is for **internal/operational use only** (Grafana dashboards, Observability team queries) and is not exposed to end-users. ([discussion](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3078667261)) |
+| **Telemetry coverage measurement** | Use Service Ping | Report ratio of jobs with telemetry spans vs total jobs completed in a given period. |
+| **Memory management for spans** | Non-issue with OTEL SDK batching | OTEL SDK batches spans (default 5-second intervals or max count) and exports them. Spans are not accumulated indefinitely in memory. |
+| **Resource usage metrics** | Yes, post-MVC using "span filters" | Collected by step-runner through Platform Services plugins; environment-specific (Docker API, Kubernetes Metrics Server, `/proc` parsing). See [Step-runner telemetry integration](#step-runner-telemetry-integration). |
+| **Authentication grace period TTL** | Fixed at 60 seconds, not configurable | Allows buffered spans to flush after job completion. Uses `Ci::JobAuthFinder` with grace period parameter for expired JWTs ([discussion](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3069246489)). |
+| **Clock synchronization** | Trust durations and parent-child relationships | CI Functions can be delegated to step runners on different hosts with clock drift. Based on [Jaeger prior art](https://github.com/jaegertracing/jaeger/issues/722):<br/>• Trust durations from monotonic clocks<br/>• Use `trace_id`/`span_id`/`parent_span_id` for hierarchy, not timestamp ordering<br/>• Accept visual oddities in trace UIs<br/>• Leverage backend clock skew adjusters |
+| **OTEL Collector fan-out** | Same OTEL deployment, separate exporter pipeline per CH instance | A single OTEL Collector deployment serves all telemetry. Separate exporter pipelines within that deployment write to different ClickHouse instances with independent filters, sampling, and retention policies. The Observability CH instance receives the full stream for internal dashboards; the production CH instance receives a filtered/sampled subset for customer-facing features (GraphQL, GLQL, Duo). The Observability team operates the shared Collector deployment; each exporter pipeline is configured by its consuming team. ([discussion](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3112470636)) |
+| **ClickHouse instance for Rails queries** | Production CH (post-MVC) | Post-MVC (Phase 3, [Data consumable by users](#workstream-data-consumable-by-users) workstream), the Collector's production-CH exporter pipeline writes a filtered/sampled subset of `ci_job_telemetry_traces` to the main production CH instance. Rails queries this data through `ClickHouse::Client` for GraphQL/GLQL. Different retention and sampling policies apply per instance. ([discussion](https://gitlab.com/gitlab-com/content-sites/handbook/-/merge_requests/17980#note_3112470636)) |
 
 ## Open Questions
 
@@ -2334,7 +2328,7 @@ LabKit's default sampler, the lack of `ParentBased` wrapping could cause incompl
    [stores the most frequently used paths as native sub-columns](https://clickhouse.com/docs/sql-reference/data-types/newjson#handling-paths-with-shared-data-structure), is only
    [production-ready from **ClickHouse v25.3**](https://clickhouse.com/docs/sql-reference/data-types/newjson).
    A schema difference for GitLab.com only is feasible short-term; CH 25 as the minimum version is
-   targeted for GitLab 19.0. This aligns with the Self-Managed/Dedicated deployment timeline (Phase 2, Beyond GitLab.com workstream),
+    targeted for GitLab 19.0. This aligns with the Self-Managed/Dedicated deployment timeline (Phase 2, Beyond GitLab.com workstream),
    which is not expected before GitLab 19.0.
 
 ### Observability

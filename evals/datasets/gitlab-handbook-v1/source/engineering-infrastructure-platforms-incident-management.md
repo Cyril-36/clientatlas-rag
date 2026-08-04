@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Incident Management
 ---
 
@@ -108,11 +107,11 @@ Understanding this distinction helps clarify who does what during incidents and 
 
 Clear delineation of responsibilities is important during an incident. Quick resolution requires focus and a clear hierarchy for delegation of tasks. Preventing overlaps and ensuring a proper order of operations is vital to mitigation.
 
-| **Role**                                                    | **Description**                                                                                                                                                                                            | **When Needed**                                                                                                                                                                           |
-| ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [**Incident Lead**](./roles/incident-lead.html)             | The owner of the incident who is responsible for the coordination of the incident response and will drive the incident to resolution. The Incident Lead should always be assigned the role in incident.io. | All incidents require an Incident Lead, which must be set purposefully per-incident. More information on choosing an Incident Lead can be found in the [workflow section](#incident-lead) |
-| [**Incident Responder**](./roles/incident-responder.html)   | Performs technical investigation and mitigation. Responsible for the actual troubleshooting and resolving of the technical issues causing the incident.                                                    | All incidents                                                                                                                                                                             |
-| [**Communications Lead**](./roles/communications-lead.html) | Disseminates information to stakeholders and customers across multiple media. Manages external communications and status updates.                                                                          | S1/S2 incidents or when significant communication is required                                                                                                                             |
+| **Role** | **Description** | **When Needed** |
+| ---- | ----------- | ---- |
+| [**Incident Lead**](./roles/incident-lead.html) | The owner of the incident who is responsible for the coordination of the incident response and will drive the incident to resolution. The Incident Lead should always be assigned the role in incident.io. | All incidents require an Incident Lead, which must be set purposefully per-incident. More information on choosing an Incident Lead can be found in the [workflow section](#incident-lead) |
+| [**Incident Responder**](./roles/incident-responder.html) | Performs technical investigation and mitigation. Responsible for the actual troubleshooting and resolving of the technical issues causing the incident. | All incidents |
+| [**Communications Lead**](./roles/communications-lead.html) | Disseminates information to stakeholders and customers across multiple media. Manages external communications and status updates. | S1/S2 incidents or when significant communication is required |
 
 ## Response Teams
 
@@ -128,10 +127,10 @@ Below is a summary of the on-call rotations that support incident resolution:
 
 On-Call rotations notified by automated systems:
 
-| **Team**                            | **Primary Role**                                      | **Function**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | **Environment** | **Who?**                                                                                                               |
-| ----------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| **Engineer On Call (EOC)**          | [Incident Responder](./roles/incident-responder.html) | Primarily serves as the initial Incident Responder to automated alerting, and GitLab.com escalations - expectations for the role are in the [Handbook for oncall](/handbook/engineering/infrastructure-platforms/incident-management/on-call/#general-expectations-for-on-call). The checklist for the EOC is in our [runbooks](https://gitlab.com/gitlab-com/runbooks/blob/master/on-call/checklists/eoc.md). There are runbooks designed to help EOC troubleshoot a broad range of issues - in the case where the runbooks are insufficient, the EOC will escalate by [engaging the Incident Manager and CMOC](#how-to-engage-response-teams). | GitLab.com      | Generally an SRE and can declare an incident. Part of the "GitLab.com Production EOC" on call schedule in incident.io. |
-| **Incident Manager On Call (IMOC)** | [Incident Lead](./roles/incident-lead.html)           | Provides tactical coordination and leadership during complex incidents                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | GitLab.com      | Rotation in [incident.io](https://app.incident.io/gitlab/on-call/schedules/01K77XZFD7X7E3W8T6GDVMKAFF)                 |
+| **Team** | **Primary Role** | **Function** | **Environment** | **Who?** |
+| ---- | ---- | ----------- | ---- | ---- |
+| **Engineer On Call (EOC)** | [Incident Responder](./roles/incident-responder.html)| Primarily serves as the initial Incident Responder to automated alerting, and GitLab.com escalations - expectations for the role are in the [Handbook for oncall](/handbook/engineering/infrastructure-platforms/incident-management/on-call/#general-expectations-for-on-call). The checklist for the EOC is in our [runbooks](https://gitlab.com/gitlab-com/runbooks/blob/master/on-call/checklists/eoc.md). There are runbooks designed to help EOC troubleshoot a broad range of issues - in the case where the runbooks are insufficient, the EOC will escalate by [engaging the Incident Manager and CMOC](#how-to-engage-response-teams). | GitLab.com | Generally an SRE and can declare an incident. Part of the "GitLab.com Production EOC" on call schedule in incident.io. |
+| **Incident Manager On Call (IMOC)** |[Incident Lead](./roles/incident-lead.html) | Provides tactical coordination and leadership during complex incidents | GitLab.com | Rotation in [incident.io](https://app.incident.io/gitlab/on-call/schedules/01K77XZFD7X7E3W8T6GDVMKAFF) |
 
 In low severity incidents, paged individuals may play multiple roles. For example, in an S4 incident the EOC may both perform the duties of the Incident Lead and Incident Responder. As severity increases, it becomes more important to have single individuals playing these roles; individuals in [Tier 2](#tier-2) will need to be paged.
 
@@ -139,21 +138,21 @@ In low severity incidents, paged individuals may play multiple roles. For exampl
 
 On-Call rotations notified by a human:
 
-| **Team**                                  | **Role(s)**                                             | **Function**                                                                             | **Environment**        | **Who?**                                                                                                                     |
-| ----------------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| **Communications Manager On Call (CMOC)** | [Communications Lead](./roles/communications-lead.html) | Staffs the Communications Manager role                                                   | All environments       | Generally a member of the support team at GitLab.                                                                            |
-| **Infrastructure Leadership**             | n/a                                                     | Provides escalation support for high severity incidents, including keeping #cto updated. | All environments       | A Staff+ or EM in the Infrastructure, Platform department.                                                                   |
-| **Subject Matter Expert (Tier 2 SME)**    | [Incident Responder](./roles/incident-responder.html)   | Engineers with specific knowledge who can be brought in to support during incidents      | GitLab.com / Dedicated | [Engineers with specific knowledge](/handbook/engineering/infrastructure-platforms/incident-management/tier2-escalations.md) |
+| **Team** | **Role(s)** | **Function** | **Environment** | **Who?** |
+| ---- | ---- | ----------- | ---- | ---- |
+| **Communications Manager On Call (CMOC)** | [Communications Lead](./roles/communications-lead.html) | Staffs the Communications Manager role | All environments | Generally a member of the support team at GitLab. |
+| **Infrastructure Leadership** | n/a | Provides escalation support for high severity incidents, including keeping #cto updated. | All environments | A Staff+ or EM in the Infrastructure, Platform department. |
+| **Subject Matter Expert (Tier 2 SME)**| [Incident Responder](./roles/incident-responder.html) |  Engineers with specific knowledge who can be brought in to support during incidents | GitLab.com / Dedicated | [Engineers with specific knowledge](/handbook/engineering/infrastructure-platforms/incident-management/tier2-escalations.md) |
 
 ## Role-Team Mapping
 
 This table shows which teams typically fulfill which roles during incident response:
 
-| **Role**            | **Primary Team(s)**                                                      | **Alternative Team(s)**                         |
-| ------------------- | ------------------------------------------------------------------------ | ----------------------------------------------- |
-| Incident Lead       | Varies by incident type (see [Incident Lead](./roles/incident-lead.html) | EOC, IMOC, Product Engineers                    |
-| Incident Responder  | EOC                                                                      | Product Engineers, Other Subject Matter Experts |
-| Communications Lead | CMOC                                                                     | N/A                                             |
+| **Role** | **Primary Team(s)** | **Alternative Team(s)** |
+| ---- | ---- | ---- |
+| Incident Lead | Varies by incident type (see [Incident Lead](./roles/incident-lead.html) | EOC, IMOC, Product Engineers |
+| Incident Responder | EOC | Product Engineers, Other Subject Matter Experts |
+| Communications Lead | CMOC | N/A |
 
 ## Detailed Role Responsibilities
 
@@ -272,14 +271,14 @@ Delivery leadership can be reached via PagerDuty. See the [Release Management Es
 ### Incident Mitigation Methods - EOC/Incident Manager
 
 1. If wider user impact has been established during an S1 or S2 incident, as EOC you have the authority - without requiring further permission - to [Block Users](https://docs.gitlab.com/ee/administration/moderate_users.html#block-a-user) as needed in order to mitigate the incident. Make sure to follow [Support guidelines regarding `Admin Notes`](../../../support/workflows/admin_note/#adding-the-note), leaving a note that contains a link to the incident, and any further notes explaining why the user is being blocked.
-   1. If users are blocked, then further follow-up will be required. This can either take place during the incident, or after it has been mitigated, depending on time-constraints.
-      1. If the activity on the account is considered [abusive](/handbook/security/security-operations/trustandsafety/abuse-on-gitlab-com/#abuse-categories)), report the user to [Trust and Safety](/handbook/security/security-operations/trustandsafety/#gitlab-team-members-can-reach-trust-and-safety-via) so that the account can be permanently blocked and cleaned-up. Depending on the nature of the event, the EOC may also consider reaching out to the SIRT team.
-      1. If not, [open a related confidential incident issue and assign it to CMOC](https://gitlab.com/gitlab-com/gl-infra/production/-/issues/new?issuable_template=confidential_incident_data) to reach out to the user, explaining why we had to block their account temporarily.
-      1. If the EOC is unable to determine whether the user's traffic was malicious or not, please engage the [SIRT](/handbook/security/security-operations/sirt/) team to carry out an investigation.
-      1. Once the account no longer needs to remain blocked to mitigate the incident, IMOC decides whether to unblock it, based on EOC's confirmation that mitigation is holding and the triggering behavior is understood and will not recur.
-         1. Do not unblock while abuse is suspected or maliciousness is unclear; those cases stay blocked pending [Trust and Safety](/handbook/security/security-operations/trustandsafety/#gitlab-team-members-can-reach-trust-and-safety-via) or [SIRT](/handbook/security/security-operations/sirt/) review.
-         1. Before access is restored, CMOC should reach out to the user, or have a notice ready.
-         1. Once approved, an admin-capable responder (typically EOC) executes the unblock and updates the admin note with the approver, executor, date, and rationale.
+    1. If users are blocked, then further follow-up will be required. This can either take place during the incident, or after it has been mitigated, depending on time-constraints.
+        1. If the activity on the account is considered [abusive](/handbook/security/security-operations/trustandsafety/abuse-on-gitlab-com/#abuse-categories)), report the user to [Trust and Safety](/handbook/security/security-operations/trustandsafety/#gitlab-team-members-can-reach-trust-and-safety-via) so that the account can be permanently blocked and cleaned-up. Depending on the nature of the event, the EOC may also consider reaching out to the SIRT team.
+        1. If not, [open a related confidential incident issue and assign it to CMOC](https://gitlab.com/gitlab-com/gl-infra/production/-/issues/new?issuable_template=confidential_incident_data) to reach out to the user, explaining why we had to block their account temporarily.
+        1. If the EOC is unable to determine whether the user's traffic was malicious or not, please engage the [SIRT](/handbook/security/security-operations/sirt/) team to carry out an investigation.
+        1. Once the account no longer needs to remain blocked to mitigate the incident, IMOC decides whether to unblock it, based on EOC's confirmation that mitigation is holding and the triggering behavior is understood and will not recur.
+            1. Do not unblock while abuse is suspected or maliciousness is unclear; those cases stay blocked pending [Trust and Safety](/handbook/security/security-operations/trustandsafety/#gitlab-team-members-can-reach-trust-and-safety-via) or [SIRT](/handbook/security/security-operations/sirt/) review.
+            1. Before access is restored, CMOC should reach out to the user, or have a notice ready.
+            1. Once approved, an admin-capable responder (typically EOC) executes the unblock and updates the admin note with the approver, executor, date, and rationale.
 
 ### When to Engage an Incident Manager?
 
@@ -303,7 +302,7 @@ When there are multiple incidents and you decide that additional incident manage
 
 ### Weekend Escalations
 
-EOCs are responsible for responding to alerts even on the weekends. Time should not be spent mitigating the incident _unless_ it is a `~severity::1` or `~severity::2`. Mitigation for `~severity::3` and `~severity::4` incidents can occur during normal business hours, Monday-Friday. If you have any questions on this please reach out to an [Infrastructure Engineering Manager](https://gitlab.com/gitlab-com/gl-infra/managers).
+EOCs are responsible for responding to alerts even on the weekends.  Time should not be spent mitigating the incident _unless_ it is a `~severity::1` or `~severity::2`.  Mitigation for `~severity::3` and `~severity::4` incidents can occur during normal business hours, Monday-Friday.  If you have any questions on this please reach out to an [Infrastructure Engineering Manager](https://gitlab.com/gitlab-com/gl-infra/managers).
 
 If a `~severity::3` and `~severity::4` occurs multiple times and requires weekend work, the multiple incidents should be combined into a single `severity::2` incident.
 If assistance is needed to determine severity, EOCs and Incident Managers are encouraged to contact Infrastructure Leadership via `/inc escalate`
@@ -330,10 +329,10 @@ If during an incident, you need to engage the Incident Responder (EOC), IMOC, or
 - Use the `/inc escalate` command in Slack, select the correct team from the `Oncall team` drop down menu based on the team below,
 
 | Team to Page | Service Name |
-| ------------ | ------------ |
-| dotcom EOC   | dotcom EOC   |
-| dotcom IMOC  | dotcom IMOC  |
-| CMOC         | dotcom CMOC  |
+| ----- | ----- |
+| dotcom EOC | dotcom EOC |
+| dotcom IMOC | dotcom IMOC |
+| CMOC | dotcom CMOC |
 
 ### Incidents requiring direct customer interaction
 
@@ -390,12 +389,12 @@ For more details see the [infradev process](/handbook/product/product-processes/
   - Can not be promptly implemented (time-bounded).
 - Examples: (taken from several best-practices Postmortem pages)
 
-| Badly worded                                                                 | Better                                                                                                                 |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Fix the issue that caused the outage                                         | (Specific) Handle invalid postal code in user address form input safely                                                |
-| Investigate monitoring for this scenario                                     | (Actionable) Add alerting for all cases where this service returns >1% errors                                          |
-| Make sure engineer checks that database schema can be parsed before updating | (Bounded) Add automated presubmit check for schema changes                                                             |
-| Improve architecture to be more reliable                                     | (Time-bounded and specific) Add a redundant node to ensure we no longer have a single point of failure for the service |
+| Badly worded | Better |
+| ------------ | ------ |
+| Fix the issue that caused the outage | (Specific) Handle invalid postal code in user address form input safely |
+| Investigate monitoring for this scenario | (Actionable) Add alerting for all cases where this service returns >1% errors |
+| Make sure engineer checks that database schema can be parsed before updating | (Bounded) Add automated presubmit check for schema changes |
+| Improve architecture to be more reliable | (Time-bounded and specific) Add a redundant node to ensure we no longer have a single point of failure for the service |
 
 ## Runbooks
 
@@ -432,13 +431,13 @@ Reporting high severity bugs via this process is the preferred path so that we c
 ![Incident Declaration Slack window](/images/engineering/infrastructure/incident-management/incident-declare-slack.png)
 _Incident Declaration Slack window_
 
-| Field              | Description                                                                                                                                                                                                               |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Name               | Give a short description of what is happening. If you'd like to, you can leave it blank and change it later                                                                                                               |
-| Incident Type      | Select the appropriate incident type: GitLab.com, Dedicated, SIRT, or Gameday depending on the service affected                                                                                                           |
-| Initial status     | Choose "Active incident" if you've confirmed there's a problem and you'd like to investigate it right away, or "Triage a problem" for initial investigation                                                               |
-| Severity           | If unsure about the severity, but you are seeing a large amount of customer impact, please select S1 or S2. More details here: [Incident Severity](#incident-severity). The EOC is only paged automatically for S1 or S2. |
-| Summary (optional) | Provide your current understanding of what happened in the incident and the impact it had. It's fine to go into detail here                                                                                               |
+| Field | Description |
+| ----- | ----------- |
+| Name | Give a short description of what is happening. If you'd like to, you can leave it blank and change it later |
+| Incident Type | Select the appropriate incident type: GitLab.com, Dedicated, SIRT, or Gameday depending on the service affected  |
+| Initial status | Choose "Active incident" if you've confirmed there's a problem and you'd like to investigate it right away, or "Triage a problem" for initial investigation |
+| Severity | If unsure about the severity, but you are seeing a large amount of customer impact, please select S1 or S2. More details here: [Incident Severity](#incident-severity). The EOC is only paged automatically for S1 or S2. |
+| Summary (optional) | Provide your current understanding of what happened in the incident and the impact it had. It's fine to go into detail here |
 
 ![Incident Declaration Results](/images/engineering/infrastructure/incident-management/incident-declare-results.png)
 
@@ -458,30 +457,30 @@ Outage and Degraded Performance incidents occur when:
 
 ![degraded and outage](/images/handbook/engineering/infrastructure-platforms/incident-management/SLI-degraded-outage.png)
 
-In both cases of Degraded or Outage, once an event has elapsed the 5 minutes, the Engineer on Call and the Incident Manager should engage the CMOC to help with external communications. All incidents with a total duration of more than 5 minutes should be publicly communicated as quickly as possible (including "blip" incidents), and within 1 hour of the incident occurring.
+In both cases of Degraded or Outage, once an event has elapsed the 5 minutes, the Engineer on Call and the Incident Manager should engage the CMOC to help with external communications.  All incidents with a total duration of more than 5 minutes should be publicly communicated as quickly as possible (including "blip" incidents), and within 1 hour of the incident occurring.
 
 SLOs are documented in the [runbooks/rules](https://gitlab.com/gitlab-com/runbooks/blob/master/rules/service_apdex_slo.yml)
 
 To check if we are Degraded or Disrupted for GitLab.com, we look at these graphs:
 
 1. Web Service
-   - [Error Ratio](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=8&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=web&var-stage=main&var-sigma=2)
-   - [Apdex](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=web&var-stage=main&var-sigma=2&fullscreen&panelId=7)
+    - [Error Ratio](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=8&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=web&var-stage=main&var-sigma=2)
+    - [Apdex](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=web&var-stage=main&var-sigma=2&fullscreen&panelId=7)
 1. API Service
-   - [Error Ratio](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=8&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=api&var-stage=main&var-sigma=2)
-   - [Apdex](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=7&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=api&var-stage=main&var-sigma=2)
+    - [Error Ratio](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=8&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=api&var-stage=main&var-sigma=2)
+    - [Apdex](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=7&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=api&var-stage=main&var-sigma=2)
 1. Git service(public facing git interactions)
-   - [Error Ratio](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=8&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=git&var-stage=main&var-sigma=2)
-   - [Apdex](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=7&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=git&var-stage=main&var-sigma=2)
+    - [Error Ratio](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=8&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=git&var-stage=main&var-sigma=2)
+    - [Apdex](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=7&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=git&var-stage=main&var-sigma=2)
 1. GitLab Pages service
-   - [Error Ratio](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=8&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=pages&var-stage=main&var-sigma=2)
-   - [Apdex](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=7&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=pages&var-stage=main&var-sigma=2)
+    - [Error Ratio](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=8&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=pages&var-stage=main&var-sigma=2)
+    - [Apdex](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=7&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=pages&var-stage=main&var-sigma=2)
 1. Registry service
-   - [Error Ratio](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=8&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=registry&var-stage=main&var-sigma=2)
-   - [Apdex](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=7&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=registry&var-stage=main&var-sigma=2)
+    - [Error Ratio](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=8&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=registry&var-stage=main&var-sigma=2)
+    - [Apdex](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=7&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=registry&var-stage=main&var-sigma=2)
 1. Sidekiq
-   - [Error Ratio](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=sidekiq&var-stage=main&var-sigma=2&fullscreen&panelId=8)
-   - [Apdex](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=7&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=sidekiq&var-stage=main&var-sigma=2)
+    - [Error Ratio](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=sidekiq&var-stage=main&var-sigma=2&fullscreen&panelId=8)
+    - [Apdex](https://dashboards.gitlab.net/d/general-service/service-platform-metrics?orgId=1&fullscreen&panelId=7&var-PROMETHEUS_DS=Global&var-environment=gprd&var-type=sidekiq&var-stage=main&var-sigma=2)
 
 A Partial Service Disruption is when only part of the GitLab.com services or infrastructure is experiencing an incident. Examples of partial service disruptions are instances where GitLab.com is operating normally except there are:
 
@@ -545,38 +544,38 @@ In some cases, we may choose not to post to status.io, the following are example
 
 Definitions and rules for transitioning state and status are as follows.
 
-| **State**     | **Definition**                                                                                                                                                                                                                                                                                                                                                 |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Investigating | The incident has just been discovered and there is not yet a clear understanding of the impact or cause. If an incident remains in this state for longer than 30 minutes after the EOC has engaged, the incident should be escalated to the Incident Manager On Call.                                                                                          |
-| Active        | The incident is in progress and has not yet been mitigated. **Note:** Incidents should not be left in an `Active` state once the impact has been mitigated                                                                                                                                                                                                     |
-| Identified    | The cause of the incident is believed to have been identified and **a step to mitigate has been planned and agreed upon**.                                                                                                                                                                                                                                     |
-| Monitoring    | The step has been executed and metrics are being watched to ensure that we're operating at a baseline. If there is a clear understanding of the specific mitigation leading to resolution and high confidence in the fact that the impact will not recur it is preferable to skip this state.                                                                  |
-| Resolved      | The impact of the incident has been mitigated and status is again Operational. Once resolved the incident can be [marked for review](/handbook/engineering/infrastructure-platforms/incident-review/#incident-review-process) and [Corrective Actions](/handbook/engineering/infrastructure-platforms/incident-management/#corrective-actions) can be defined. |
+| **State** | **Definition** |
+| ----- | ---------- |
+| Investigating | The incident has just been discovered and there is not yet a clear understanding of the impact or cause. If an incident remains in this state for longer than 30 minutes after the EOC has engaged, the incident should be escalated to the Incident Manager On Call. |
+| Active | The incident is in progress and has not yet been mitigated.  **Note:** Incidents should not be left in an `Active` state once the impact has been mitigated |
+| Identified | The cause of the incident is believed to have been identified and **a step to mitigate has been planned and agreed upon**. |
+| Monitoring | The step has been executed and metrics are being watched to ensure that we're operating at a baseline. If there is a clear understanding of the specific mitigation leading to resolution and high confidence in the fact that the impact will not recur it is preferable to skip this state. |
+| Resolved | The impact of the incident has been mitigated and status is again Operational. Once resolved the incident can be [marked for review](/handbook/engineering/infrastructure-platforms/incident-review/#incident-review-process) and [Corrective Actions](/handbook/engineering/infrastructure-platforms/incident-management/#corrective-actions) can be defined.|
 
 Status can be set independent of state. The only time these must align is when an issues is
 
-| **Status**                 | **Definition**                                                                                                                                                            |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Operational                | The default status before an incident is opened and after an incident has been resolved. All systems are operating normally.                                              |
-| Degraded Performance       | Users are impacted intermittently, but the impact is not observed in metrics, nor reported, to be widespread or systemic.                                                 |
+| **Status** | **Definition** |
+| ------ | ---------- |
+| Operational | The default status before an incident is opened and after an incident has been resolved. All systems are operating normally. |
+| Degraded Performance | Users are impacted intermittently, but the impact is not observed in metrics, nor reported, to be widespread or systemic. |
 | Partial Service Disruption | Users are impacted at a rate that violates our SLO. The Incident Manager On Call must be engaged and monitoring to resolution is required to last longer than 30 minutes. |
-| Service Disruption         | This is an outage. The Incident Manager On Call must be engaged.                                                                                                          |
-| Security Issue             | A security vulnerability has been declared public and the security team has requested that it be published on the status page.                                            |
+| Service Disruption | This is an outage. The Incident Manager On Call must be engaged. |
+| Security Issue | A security vulnerability has been declared public and the security team has requested that it be published on the status page. |
 
 ## Severities
 
 ### Incident Severity
 
-Incident severity should be assigned at the beginning of an incident to ensure proper response across the organization. Incident severity should be determined based on the information that is available **at the time**. Severities can and should be adjusted as more information becomes available. The severity level reflects the maximum impact the incident had and should remain in that level even after the incident was mitigated or resolved. **If either the Customer Impact OR the GitLab Impact criteria is met, the Severity for that row should be assigned.**
+Incident severity should be assigned at the beginning of an incident to ensure proper response across the organization.  Incident severity should be determined based on the information that is available **at the time**.  Severities can and should be adjusted as more information becomes available. The severity level reflects the maximum impact the incident had and should remain in that level even after the incident was mitigated or resolved. **If either the Customer Impact OR the GitLab Impact criteria is met, the Severity for that row should be assigned.**
 
 Incident Managers and Engineers On-Call can use the following table as a guide for assigning incident severity.
 
-| Severity                | Impact                                                                                                                                                                                                                                                                                                                                                                                                   | GitLab Response                                                              | Examples                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Severity:1 **Critical** | **Customer Impact:** <br> Very high impact on users: their customers or business outputs will be impacted <br><br> **OR** <br><br> **GitLab Impact:** <br> Probable or severe damage to the business: <br> Dedicated: <br> - Severe disruption to scale and operability in Dedicated fleet <br> OR <br> - High attrition risk of escalated customers in Dedicated with visible impact (small or large) . | Immediate all-hands response                                                 | - Customer-facing service is down <br> - Confirmed data breach or exposure of red/orange data <br> - Customer data loss <br> - Low-complexity, validated exploit scenario to GitLab’s platform or supply chain. <br> - Critical RCE that is actively exploited or that is unpatched, reachable, and has no exploitability telemetry <br> - Critical vulnerability that has public exposure (press, customers, 0-day by researcher) <br> - External actor controls a highly privileged GitLab service account <br> - Dedicated business impact: Blocked ability to change or scale fleet in an automated way, high accumulation of version drift and manual operations <br> - Dedicated business impact: Saturation of response capacity, degraded response quality to critical customers, especially high risk escalated customers <br> - Risk of missing the monthly self-managed minor or major release |
-| Severity:2 **High**     | **Customer Impact:** <br> Significant impact on users: their internal operations will be disrupted <br><br> **OR** <br><br>**GitLab Impact:** <br> Possible or elevated damage to the business: <br> Dedicated : <br> - Fleet rollout blocked by fixes for more than a week <br> OR <br> - High attrition risk of escalated customers in Dedicated without visible product impact                        | Assigned resources, cross-team coordination, and regular stakeholder updates | - Customer-facing service is unavailable for some customers<br> - Core functionality is significantly impacted<br> - Privilege escalation scenarios requiring account compromise or insider-threat motive and knowledge<br>- High severity vulnerability with evidence of exploitation OR high press attention<br>- Suspected unauthorized access into sensitive GitLab systems<br>- Malware detection in GitLab's cloud infrastructure                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| Severity:3 **Medium**   | **Customer Impact:** <br> Moderate impact on users: their internal operations may be hampered <br><br> **OR** <br><br> **GitLab Impact:** <br> Unlikely or mild damage to the business                                                                                                                                                                                                                   | Resources are diverted to address beyond normal operating procedures         | - Slight performance degradation<br>- Non-critical features not performing optimally<br>- Commodity malware detection in non-critical systems                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Severity:4 **Low**      | **Customer Impact:**: <br> Low impact on users: their internal operations may be altered <br><br> **OR** <br><br> **GitLab Impact:** Minimal damage to the business                                                                                                                                                                                                                                      | Issue is resolved following standard procedures                              | - An inconvenience to customers, workaround available<br>- Usable performance degradation<br>- GitLab security policy violations that do not impact red/orange data                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Severity | Impact | GitLab Response | Examples |
+|--------|-------------|-------------|---------------------|
+| Severity:1 **Critical** | **Customer Impact:** <br> Very high impact on users: their customers or business outputs will be impacted <br><br> **OR** <br><br> **GitLab Impact:** <br> Probable or severe damage to the business: <br> Dedicated: <br>    - Severe disruption to scale and operability in Dedicated fleet <br>      OR <br>      - High attrition risk of escalated customers in Dedicated with visible impact (small or large) . |Immediate all-hands response | - Customer-facing service is down <br> - Confirmed data breach or exposure of red/orange data <br> - Customer data loss <br> - Low-complexity, validated exploit scenario to GitLab’s platform or supply chain. <br> - Critical RCE that is actively exploited or that is unpatched, reachable, and has no exploitability telemetry <br> - Critical vulnerability that has public exposure (press, customers, 0-day by researcher) <br> - External actor controls a highly privileged GitLab service account <br> - Dedicated business impact: Blocked ability to change or scale fleet in an automated way, high accumulation of version drift and manual operations <br> - Dedicated business impact: Saturation of response capacity, degraded response quality to critical customers, especially high risk escalated customers <br> - Risk of missing the monthly self-managed minor or major release |
+| Severity:2 **High** | **Customer Impact:** <br> Significant impact on users: their internal operations will be disrupted <br><br> **OR** <br><br>**GitLab Impact:** <br> Possible or elevated damage to the business: <br> Dedicated : <br> - Fleet rollout blocked by fixes for more than a week <br> OR <br>  - High attrition risk of escalated customers in Dedicated without visible product impact | Assigned resources, cross-team coordination, and regular stakeholder updates | - Customer-facing service is unavailable for some customers<br> - Core functionality is significantly impacted<br> - Privilege escalation scenarios requiring account compromise or insider-threat motive and knowledge<br>- High severity vulnerability with evidence of exploitation OR high press attention<br>- Suspected unauthorized access into sensitive GitLab systems<br>- Malware detection in GitLab's cloud infrastructure |
+| Severity:3 **Medium** | **Customer Impact:** <br> Moderate impact on users: their internal operations may be hampered <br><br> **OR** <br><br> **GitLab Impact:** <br> Unlikely or mild damage to the business | Resources are diverted to address beyond normal operating procedures | - Slight performance degradation<br>- Non-critical features not performing optimally<br>- Commodity malware detection in non-critical systems  |
+| Severity:4 **Low** | **Customer Impact:**: <br> Low impact on users: their internal operations may be altered <br><br> **OR** <br><br> **GitLab Impact:** Minimal damage to the business | Issue is resolved following standard procedures | - An inconvenience to customers, workaround available<br>- Usable performance degradation<br>- GitLab security policy violations that do not impact red/orange data  |
 
 ### Alert Severities
 
@@ -625,21 +624,21 @@ However, we do have incident.io set some labels based on the state of the incide
 
 #### Workflow Labeling
 
-| **Label**              | **Workflow State**                                                                                                                                                                                                                     |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `~Incident::Active`    | Indicates that the incident labeled is active and ongoing. Initial severity is assigned when it is opened. This will be set when the incident is set to `Active -> Investigating` or `Active -> Fixing`                                |
-| `~Incident::Mitigated` | Indicates that the incident has been mitigated. This label is applied if the incident status is set to `Active -> Monitoring`                                                                                                          |
-| `~Incident::Resolved`  | Indicates that SRE engagement with the incident has ended and the condition that triggered the alert has been resolved. This will be applied when the incident is in the "Post-incident" or "Closed" stages of the incident lifecycle. |
+| **Label** | **Workflow State** |
+| ----- | -------------- |
+| `~Incident::Active` | Indicates that the incident labeled is active and ongoing. Initial severity is assigned when it is opened. This will be set when the incident is set to `Active -> Investigating` or `Active -> Fixing` |
+| `~Incident::Mitigated` | Indicates that the incident has been mitigated. This label is applied if the incident status is set to `Active -> Monitoring` |
+| `~Incident::Resolved` | Indicates that SRE engagement with the incident has ended and the condition that triggered the alert has been resolved. This will be applied when the incident is in the "Post-incident" or "Closed" stages of the incident lifecycle. |
 
 #### Other Incident Labels
 
 These labels are added to incident issues as a mechanism to add metadata for the purposes of metrics and tracking.
 
-| **Label**                           | **Purpose**                                                                                                                                                                                                                                                            |
-| ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `~incident` (automatically applied) | Label used for metrics tracking and immediate identification of incident issues.                                                                                                                                                                                       |
-| `~blocks deployments`               | Indicates that if the incident is active, it will be a blocker for deployments. This label is set when the custom field "Blocks Deployments" in incident.io is set to yes. It is automatically applied to `~severity::1` and `~severity::2` incidents.                 |
-| `~blocks feature-flags`             | Indicates that while the incident is active, it will be a blocker for changes to feature flags. This label is set when the custom field "Blocks Deployments" in incident.io is set to yes. It is automatically applied to `~severity::1` and `~severity::2` incidents. |
+| **Label** | **Purpose** |
+| ----- | ------- |
+| `~incident` (automatically applied) | Label used for metrics tracking and immediate identification of incident issues. |
+| `~blocks deployments` | Indicates that if the incident is active, it will be a blocker for deployments. This label is set when the custom field "Blocks Deployments" in incident.io is set to yes. It is automatically applied to `~severity::1` and `~severity::2` incidents. |
+| `~blocks feature-flags` | Indicates that while the incident is active, it will be a blocker for changes to feature flags. This label is set when the custom field "Blocks Deployments" in incident.io is set to yes. It is automatically applied to `~severity::1` and `~severity::2` incidents. |
 
 ### Duplicates
 
@@ -673,7 +672,7 @@ A near miss, "near hit", or "close call" is an unplanned event that has the pote
 In the United States, the Aviation Safety Reporting System has been collecting reports
 of close calls since 1976. Due to near miss observations and other technological improvements,
 the rate of fatal accidents has dropped about 65 percent.
-[source](<https://en.wikipedia.org/wiki/Near_miss_(safety)>)
+[source](https://en.wikipedia.org/wiki/Near_miss_(safety))
 
 As [John Allspaw states](https://qz.com/504661/why-etsy-engineers-send-company-wide-emails-confessing-mistakes-they-made):
 

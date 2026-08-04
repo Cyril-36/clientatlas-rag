@@ -7,11 +7,9 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Okta-Workday Sync"
 description: "Unidirectional user lifecycle integration between Workday and Okta"
 ---
-
 ## General
 
 The Okta-Workday integration is a one-way sync where Workday is the authoritative source of truth (profile source) for user identities, and Okta acts as the downstream identity platform (IdP).
@@ -325,16 +323,16 @@ flowchart TD
     F --> G[Assign to Workday<br/>Profile Source App]
     G --> H[Activate User]
     H --> I[Creation Phase Complete]
-
+    
     subgraph Optional["Optional - External to Sync"]
         J[Group Assignment Rules]
         K[Downstream Provisioning]
         L[Policy Assignment]
         M[Additional Automation]
     end
-
+    
     H -.->|May Trigger| Optional
-
+    
     style Optional fill:none,stroke:#999,stroke-dasharray: 5 5
 ```
 

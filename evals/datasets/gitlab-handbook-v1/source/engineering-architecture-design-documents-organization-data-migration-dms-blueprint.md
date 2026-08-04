@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Organization Data Migration: DMS blueprint"
 status: proposed
 creation-date: "2025-01-15"
@@ -336,8 +335,8 @@ First, we run row count validation on both source and target:
 
 ```sql
 -- Row count validation (run on both source and target)
-SELECT schemaname, relname, n_live_tup
-FROM pg_stat_user_tables
+SELECT schemaname, relname, n_live_tup 
+FROM pg_stat_user_tables 
 ORDER BY n_live_tup DESC;
 ```
 
@@ -347,7 +346,7 @@ For large tables, we run checksum validation to ensure the data wasn't corrupted
 
 ```sql
 -- Checksum validation (sample large tables)
-SELECT md5(string_agg(md5(t::text), ''))
+SELECT md5(string_agg(md5(t::text), '')) 
 FROM (SELECT * FROM table_name ORDER BY id LIMIT 100000) t;
 ```
 

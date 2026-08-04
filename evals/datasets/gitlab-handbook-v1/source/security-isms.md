@@ -7,14 +7,11 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Information Security and Artificial Intelligence Management System"
 controlled_document: true
 tags:
-
-- security_policy
-- security_policy_caplscsi
-
+  - security_policy
+  - security_policy_caplscsi
 ---
 
 {{< label name="Visibility: Audit" color="#E24329" >}}
@@ -102,19 +99,19 @@ This management system governs GitLab security operations. Interested parties in
 
 ## Management System Roles and Responsibilities
 
-| Role                                   | Responsibility                                                                                                                                                                                                                                                                                                                                                    |
-| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ISMS & AIMS Council                    | Oversight, implementation and continual improvement of the management system                                                                                                                                                                                                                                                                                      |
-| Chief Information Security Officer     | Executive sponsor of the management system; coordinate, promote and improve information security                                                                                                                                                                                                                                                                  |
-| Security Management (Code Owners)      | Owner of the management system responsible for approving significant changes and exceptions of the management system                                                                                                                                                                                                                                              |
-| Security Assurance                     | Reporting on the performance of the information security management system to top management; security risk assessments and treatment; continuous monitoring and auditing; customer assurance activities; security awareness program; security governance activities                                                                                              |
-| Product Security                       | Manage third party penetration and bug bounty programs; provide input to the software development lifecycle; manage application vulnerability program; administer security champions program; maintain application security tools; identify security risks; infrastructure vulnerability program; maintain infrastructure security tools; identify security risks |
-| Security Operations                    | Monitor, manage and report on security incidents; monitor compliance with security policies through technical tools; identify security risks; monitor and respond to abuse of SaaS subscriptions                                                                                                                                                                  |
-| Corporate Security                     | Manage identity and access management, role based access control, admin access                                                                                                                                                                                                                                                                                    |
-| Duo Product Management                 | Monitor performance of AI system; maintain AI system; identify AI risks; evaluation of the performance of AI model providers                                                                                                                                                                                                                                      |
-| Legal                                  | Responsible for AI governance; third-party contracts; privacy reviews                                                                                                                                                                                                                                                                                             |
-| Other management system business units | Implement, operate and/or administer information security requirements; remediate information security findings; collaborate with the Security department                                                                                                                                                                                                         |
-| All GitLab Team Members                | Awareness of responsibilities as it relates to information security; adherence to information security controlled documents; reporting of suspected security violations                                                                                                                                                                                           |
+| Role | Responsibility |
+| --- | --- |
+| ISMS & AIMS Council | Oversight, implementation and continual improvement of the management system |
+| Chief Information Security Officer | Executive sponsor of the management system; coordinate, promote and improve information security |
+| Security Management (Code Owners) | Owner of the management system responsible for approving significant changes and exceptions of the management system |
+| Security Assurance | Reporting on the performance of the information security management system to top management; security risk assessments and treatment; continuous monitoring and auditing; customer assurance activities; security awareness program; security governance activities |
+| Product Security | Manage third party penetration and bug bounty programs; provide input to the software development lifecycle; manage application vulnerability program; administer security champions program; maintain application security tools; identify security risks; infrastructure vulnerability program; maintain infrastructure security tools; identify security risks |
+| Security Operations | Monitor, manage and report on security incidents; monitor compliance with security policies through technical tools; identify security risks; monitor and respond to abuse of SaaS subscriptions |
+| Corporate Security | Manage identity and access management, role based access control, admin access |
+| Duo Product Management| Monitor performance of AI system; maintain AI system; identify AI risks; evaluation of the performance of AI model providers |
+| Legal| Responsible for AI governance; third-party contracts; privacy reviews|
+| Other management system business units | Implement, operate and/or administer information security requirements; remediate information security findings; collaborate with the Security department |
+| All GitLab Team Members | Awareness of responsibilities as it relates to information security; adherence to information security controlled documents; reporting of suspected security violations |
 
 ## Implementation Manual Procedure
 

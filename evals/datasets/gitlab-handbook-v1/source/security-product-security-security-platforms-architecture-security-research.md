@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Security Research"
 description: "The Security Research team contributes to the Security Vision and Mission through projects that focus on identifying, quantifying, and developing solutions for complex security risks facing GitLab and its users."
 ---
@@ -135,9 +134,9 @@ The general prioritization order is (from highest to lowest priority):
 
 - Projects in the [Product Integration](#product-integration) stage.
 - Projects in the [GitLab-internal Adoption](#gitlab-internal-adoption)
-  stage.
+stage.
 - Projects aligned with top risk areas as identified by our internal risk
-  assessment.
+assessment.
 
 Once a new project has been prioritized, it will follow the project completion
 criteria as defined below.
@@ -197,11 +196,11 @@ Exit criteria:
 
 - Project plan completed.
 
-| Project Goal          | Idea validation                                          | Internal Adoption                                                               | Product Integration                                              |
-| --------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| Completion Criteria   | Research question answered                               | <ul><li> Detection capabilities developed </li><li> Process improved </li></ul> | <ul><li> Risk mitigated </li><li> Vulnerability fixed </li></ul> |
-| Deliverables          | <ul><li>PoC</li><li>Talk, Blog Post, Tech Note</li></ul> | <ul><li>Code, Infra, Software Service</li><li>Handbook MR</li></ul>             | <ul><li>Code, Infra, Software Service</li><li>Docs MR</li></ul>  |
-| Timeframe (Estimates) | 1-2 quarters                                             | 2-3 quarters                                                                    | 3-4 quarters                                                     |
+| Project Goal | Idea validation | Internal Adoption | Product Integration |
+| ---      | ---      | ---      | ---    |
+| Completion Criteria   | Research question answered   | <ul><li> Detection capabilities developed </li><li> Process improved  </li></ul>   | <ul><li> Risk mitigated </li><li> Vulnerability fixed </li></ul> |
+| Deliverables   |  <ul><li>PoC</li><li>Talk, Blog Post, Tech Note</li></ul>  |  <ul><li>Code, Infra, Software Service</li><li>Handbook MR</li></ul>  | <ul><li>Code, Infra, Software Service</li><li>Docs MR</li></ul>  |
+| Timeframe (Estimates)| 1-2 quarters | 2-3 quarters | 3-4 quarters |
 
 #### Communicating Results
 
@@ -222,31 +221,31 @@ Security division, based on the risks and priorities of the business. The list
 is meant to be stable, but not static.
 
 - `Security Focus::Cloud and Infrastructure Security` - Related to the
-  secure configuration and use of company production and non-production
-  cloud and infrastructure environments.
+secure configuration and use of company production and non-production
+cloud and infrastructure environments.
 - `Security Focus::Data Security Governance` - Related to the controls,
-  processes, and policies concerning the protection of the data trusted to the
-  company.
+processes, and policies concerning the protection of the data trusted to the
+company.
 - `Security Focus::Identity and Access Management` - Related to authentication
-  and authorization to business services and data.
+and authorization to business services and data.
 - `Security Focus::Supply-chain Security` - Related to the establishment of
-  trust in 3rd party code, data, and services necessary for the business.
+trust in 3rd party code, data, and services necessary for the business.
 - `Security Focus::Other` - Related to anything not fitting into the four main focus areas.
 
 #### Project Goal labels
 
 [`~Project Goal::`](https://gitlab.com/groups/gitlab-com/gl-security/security-research/-/labels?search=Project+Goal&subscribed=)
-labels are used to communicate the high-level goal of a project.
+ labels are used to communicate the high-level goal of a project.
 
 - `Project Goal::Risk Identification & Quantification` - The project aims to identify,
-  quantify, and communicate risk(s).
+quantify, and communicate risk(s).
 - `Project Goal::Risk Mitigation` - The project aims to reduce or eliminate
-  a particular risk.
+a particular risk.
 - `Project Goal::Team Maturity::Processes` - The project aims to mature team
-  processes and improve understanding of how the team works.
+processes and improve understanding of how the team works.
 - `Project Goal::Team Maturity::Technical Growth` - The project aims to grow
-  the team's understanding of a technical area. The focus is on learning which
-  can be applied in future projects.
+the team's understanding of a technical area. The focus is on learning which
+can be applied in future projects.
 
 ### Current and Past Research Projects
 
@@ -294,7 +293,7 @@ When a project from this list gets assessed the spot on the list will be filled 
 
 #### Documentation
 
-Every project and relevant artifacts will be documented internally in the [sec-research](https://gitlab.com/gitlab-com/gl-security/security-research/sec-research/) repository while the project is ongoing. This repository should be the SSOT for any results and will contain the raw artifacts, write-ups and any PoCs if applicable.
+Every project and relevant artifacts will be documented internally in the  [sec-research](https://gitlab.com/gitlab-com/gl-security/security-research/sec-research/) repository while the project is ongoing. This repository should be the SSOT for any results and will contain the raw artifacts, write-ups and any PoCs if applicable.
 
 Once the project is concluded and any security issues identified are closed, public facing documentation will be published in the [Threat Management tech notes](https://gitlab.com/gitlab-com/gl-security/security-operations/redteam/redteam-public/red-team-tech-notes) repository. Where applicable, blog posts containing in-depth technical background on the research will be created in collaboration with the External Security Communications team.
 

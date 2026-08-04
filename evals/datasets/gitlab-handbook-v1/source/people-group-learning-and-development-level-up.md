@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: LevelUp
 ---
 
@@ -21,11 +20,11 @@ Learning today goes way beyond self-paced content, webinars, and documents. GitL
 
 With the launch of LevelUp, it's important to note that LevelUp and GitLab University are now **two completely separate platforms**, each with a different purpose and audience.
 
-|                     | GitLab University                                      | LevelUp                                                                                                            |
-| ------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| **Target Audience** | Designed for educating customers and community members | Designed for educating internal team members                                                                       |
-| **Platform**        | Runs on ThoughtIndustries Learning System              | Runs on Cornerstone Talent Experience Platform                                                                     |
-| **Training Type**   | Delivers external-facing product training              | Delivers internal training for team members - including product, professional development, and compliance training |
+| | GitLab University | LevelUp |
+|---|---|---|
+| **Target Audience** | Designed for educating customers and community members | Designed for educating internal team members |
+| **Platform** | Runs on ThoughtIndustries Learning System | Runs on Cornerstone Talent Experience Platform |
+| **Training Type** | Delivers external-facing product training | Delivers internal training for team members - including product, professional development, and compliance training |
 
 ## Benefits and Features
 
@@ -70,7 +69,6 @@ LevelUp integrates with several content partners to provide you with a wide rang
 - **O'Reilly** - Technical books, videos, and learning paths
 - **Hone** - Live training and coaching sessions, including our Elevate leadership program
 - **Masterclass** - Expert-taught courses on leadership, creativity, and more
-- **BizLibrary** - Business skills and soft skills training
 - **Google Cloud Skills Boost** - Hands-on Google Cloud training with labs and certifications
 
 To request access to any of these platforms, use Lumos or contact the Talent Development team in **#learninganddevelopment**.
@@ -94,12 +92,12 @@ There are several ways to create and share learning content in LevelUp:
 
 ### When to Use Each Approach
 
-| Method              | Best For                                                                                 | Complexity |
-| ------------------- | ---------------------------------------------------------------------------------------- | ---------- |
-| **SmartCards**      | Quick, simple content sharing; linking to existing resources                             | Low        |
-| **Pathways**        | Curated collections of related content; structured learning programs                     | Medium     |
-| **Journeys**        | Complex, multi-phase learning experiences; leadership programs                           | High       |
-| **Articulate Rise** | Formal courses with completion tracking; large group assignments; interactive e-learning | High       |
+| Method | Best For | Complexity |
+|--------|----------|------------|
+| **SmartCards** | Quick, simple content sharing; linking to existing resources | Low |
+| **Pathways** | Curated collections of related content; structured learning programs | Medium |
+| **Journeys** | Complex, multi-phase learning experiences; leadership programs | High |
+| **Articulate Rise** | Formal courses with completion tracking; large group assignments; interactive e-learning | High |
 
 ---
 
@@ -225,9 +223,6 @@ If you're working with a content partner or vendor that offers integration capab
 - O'Reilly
 - Hone
 - Masterclass
-- BizLibrary
-- CyberU
-- MadeCraft
 - Google Cloud Skills Boost
 
 **How to request an integration:**
@@ -468,15 +463,15 @@ A: Request access through Lumos
 
 **Q: I found a bug or something isn't working properly in LevelUp. Who should I tell?**
 
-A: Please share any technical issues or feature feedback in the #learninganddevelopment Slack channel. The team monitors this regularly and will address reported issues.
+A: Please share any technical issues or feature feedback in the #learninganddevelopment Slack channel, or submit a ticket through HelpLab. The team monitors both regularly and will address reported issues.
 
 **Q: I have a question about how something works in LevelUp. Where can I get help?**
 
-A: Ask in the #learninganddevelopment Slack channel.
+A: Ask in the #learninganddevelopment Slack channel, or open a HelpLab ticket for the Talent Development team.
 
 **Q: I received a notification about compliance training, but I can't find the course. What should I do?**
 
-A: First, check your **Assigned Learning** section on your LevelUp dashboard. If you still can't find it, check your System Transcript to confirm whether you've already completed it. If neither of those helps, contact the Talent Development team in #learninganddevelopment with details about the training you're looking for.
+A: First, check your **Assigned Learning** section on your LevelUp dashboard. If you still can't find it, check your System Transcript to confirm whether you've already completed it. If neither of those helps, contact the Talent Development team in #learninganddevelopment or via HelpLab with details about the training you're looking for.
 
 ---
 
@@ -506,4 +501,4 @@ A: All team members can create SmartCards in LevelUp. To create Pathways or Jour
 
 ## Getting Help
 
-For questions, feedback, or support with LevelUp, reach out in the **#learninganddevelopment** Slack channel. The Talent Development team is here to support your learning journey and help you make the most of LevelUp's capabilities.
+For questions, feedback, or support with LevelUp, reach out in the **#learninganddevelopment** Slack channel or submit a request through **HelpLab**. The Talent Development team is here to support your learning journey and help you make the most of LevelUp's capabilities.

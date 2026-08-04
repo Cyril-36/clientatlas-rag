@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Compliance Group"
 ---
 
@@ -169,12 +168,12 @@ We plan in monthly cycles in accordance with our [Product Development Timeline](
 
 Our priorities should follow [overall guidance for Product](/handbook/product/product-processes/cross-functional-prioritization/). This should be reflected in the priority label for scheduled issues:
 
-| Priority    | Description                                                                                                                                                                                              | Probability of shipping in milestone |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-| priority::1 | **Urgent**: top priority for achieving in the given milestone. These issues are the most important goals for a release and should be worked on first; some may be time-critical or unblock dependencies. | ~100%                                |
-| priority::2 | **High**: important issues that have significant positive impact to the business or technical debt. Important, but not time-critical or blocking others.                                                 | ~75%                                 |
-| priority::3 | **Normal**: incremental improvements to existing features. These are important iterations, but deemed non-critical.                                                                                      | ~50%                                 |
-| priority::4 | **Low**: stretch issues that are acceptable to postpone into a future release.                                                                                                                           | ~25%                                 |
+| Priority | Description | Probability of shipping in milestone |
+| ------ | ------ | ------ |
+| priority::1 | **Urgent**: top priority for achieving in the given milestone. These issues are the most important goals for a release and should be worked on first; some may be time-critical or unblock dependencies. | ~100% |
+| priority::2 | **High**: important issues that have significant positive impact to the business or technical debt. Important, but not time-critical or blocking others.  | ~75% |
+| priority::3 | **Normal**: incremental improvements to existing features. These are important iterations, but deemed non-critical. | ~50% |
+| priority::4 | **Low**: stretch issues that are acceptable to postpone into a future release. | ~25% |
 
 ### Weekly Progress Updates
 
@@ -247,14 +246,14 @@ Issues without a weight should be assigned the `workflow::planning breakdown` la
 
 When estimating development work, please assign an issue an appropriate weight:
 
-| Weight | Description (Engineering)                                                                                                                                                                                                                                                                                  |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1      | The simplest possible change. We are confident there will be no side effects.                                                                                                                                                                                                                              |
-| 2      | A simple change (minimal code changes), where we understand all of the requirements.                                                                                                                                                                                                                       |
-| 3      | A simple change, but the code footprint is bigger (e.g. lots of different files, or tests affected). The requirements are clear.                                                                                                                                                                           |
-| 5      | A more complex change that will impact multiple areas of the codebase, there may also be some refactoring involved. Requirements are understood but you feel there are likely to be some gaps along the way. We should challenge ourselves to break this issue in to smaller pieces.                       |
-| 8      | A complex change, that will involve much of the codebase or will require lots of input from others to determine the requirements. These issues will often need further investigation or discovery before being `workflow::ready for development` and we will likely benefit from multiple, smaller issues. |
-| 13     | A significant change that may have dependencies (other teams or third-parties) and we likely still don't understand all of the requirements. It's unlikely we would commit to this in a milestone, and the preference would be to further clarify requirements and/or break in to smaller Issues.          |
+| Weight | Description (Engineering) |
+| ------ | ------ |
+| 1 | The simplest possible change. We are confident there will be no side effects. |
+| 2 | A simple change (minimal code changes), where we understand all of the requirements. |
+| 3 | A simple change, but the code footprint is bigger (e.g. lots of different files, or tests affected). The requirements are clear. |
+| 5 | A more complex change that will impact multiple areas of the codebase, there may also be some refactoring involved. Requirements are understood but you feel there are likely to be some gaps along the way. We should challenge ourselves to break this issue in to smaller pieces. |
+| 8 | A complex change, that will involve much of the codebase or will require lots of input from others to determine the requirements. These issues will often need further investigation or discovery before being `workflow::ready for development` and we will likely benefit from multiple, smaller issues. |
+| 13 | A significant change that may have dependencies (other teams or third-parties) and we likely still don't understand all of the requirements. It's unlikely we would commit to this in a milestone, and the preference would be to further clarify requirements and/or break in to smaller Issues. |
 
 As part of estimation, if you feel the issue is in an appropriate state for an engineer to start working on it, please add the `workflow::ready for development` label. Alternatively, if there are still requirements to be defined or questions to be answered that you feel an engineer won't be able to easily resolve, please add the `workflow::blocked` label. Issues with the `workflow::blocked` label will appear in their own column on our planning board, making it clear that they need further attention. When applying the `workflow::blocked` label, please make sure to leave a comment and ping the [DRI](/handbook/people-group/directly-responsible-individuals/) on the blocked issue and/or link the blocking issue to raise visibility.
 
@@ -281,14 +280,14 @@ The following is an example of an implementation approach from [https://gitlab.c
 
 1. Add new field to `ee/app/services/ee/groups/update_service.rb:117`
 1. Update `ee/app/services/ee/namespace_settings/update_service.rb` to support more than just one setting
-1. _(if feature flag enabled)_ Update the `Projects::CreateService` and `Groups::CreateService` to update newly created projects and sub-groups with the main groups setting
-1. _(if feature flag enabled)_ Update the Groups API to show the settings value
+1. *(if feature flag enabled)* Update the `Projects::CreateService` and `Groups::CreateService` to update newly created projects and sub-groups with the main groups setting
+1. *(if feature flag enabled)* Update the Groups API to show the settings value
 1. Tests tests and more tests :muscle:
    - In particular, cover both happy and unhappy paths, and consider tests for scenarios that could result in false positives or negatives
 
 ~frontend
 
-1. _(if feature flag enabled)_ Add new `Merge request approvals` section to Groups general settings
+1. *(if feature flag enabled)* Add new `Merge request approvals` section to Groups general settings
 1. Create new Vue app to render the contents of the section
 1. Create new setting and submission process to save the value
 1. Tests tests and more tests :muscle:
@@ -302,6 +301,7 @@ The following is an example of an implementation approach from [https://gitlab.c
 ~quality
 
 1. Add new group-level end-to-end test based on existing project-level end-to-end test (include the path to the existing test eg `path/to/existing_test`)
+
 ```
 
 The [DRI](/handbook/people-group/directly-responsible-individuals/) will ping a relevant counterpart (Quality, UX, etc) and domain expert (database, backend, frontend) before moving the issue to `workflow::scheduling`. This gives the domain expert the opportunity to approve the implementation plan or raise any potential pitfalls or concerns before work begins.
@@ -343,8 +343,8 @@ In some cases it may be appropriate for the MR author to verify the change thems
 **Verifier: the engineer verifying the issue on .com/production (not the MR author)**
 
 1. Verifier: documents findings by commenting on the verification thread on the issue.
-1. Verifier: opens new issues ~"type::bug" or ~"type::feature" based on fiindings.
-   1. Verifier: sets the severity and/or priority based on [priority](/handbook/product-development/how-we-work/issue-triage/#priority)/[severity](/handbook/product-development/how-we-work/issue-triage/#severity-slos) triage process and the issue type (~"type::bug" or ~"type::feature").
+1. Verifier: opens new issues ~"type::bug"  or ~"type::feature" based on fiindings.
+   1. Verifier: sets the severity and/or priority based on [priority](/handbook/product-development/how-we-work/issue-triage/#priority)/[severity](/handbook/product-development/how-we-work/issue-triage/#severity-slos) triage process and the issue type (~"type::bug"  or ~"type::feature").
    1. ~"severity::1" / ~"severity::2" to be pulled directly into the milestone with comment added to ping(`@`) the engineering manager.
 1. Verifier: assigns the MR author to newly opened issues.
 1. Verifier: closes the issue and unassigns themself. The issue will automatically get the `~workflow::complete` label added.
@@ -371,10 +371,10 @@ release notes section or use a `release post item::` label.
 
 Although we have a bias for asynchronous communication, synchronous meetings are necessary and should adhere to our [communication guidelines](/handbook/communication/#video-calls). Some regular meetings that take place in Compliance are:
 
-| Frequency                                       | Meeting             | DRI                 | Possible topics                                                                  |
-| ----------------------------------------------- | ------------------- | ------------------- | -------------------------------------------------------------------------------- |
-| Weekly (alternating between APAC/EMEA and AMER) | Group-level meeting | Engineering Manager | Ensure current release is on track by walking the board, unblock specific issues |
-| Monthly                                         | Planning meeting    | Product Manager     | See [Planning](#milestone-planning) section                                      |
+| Frequency | Meeting                              | DRI         | Possible topics                                                                                        |
+|-----------|--------------------------------------|-------------|--------------------------------------------------------------------------------------------------------|
+| Weekly (alternating between APAC/EMEA and AMER)    | Group-level meeting                  | Engineering Manager | Ensure current release is on track by walking the board, unblock specific issues                       |
+| Monthly   | Planning meeting                    | Product Manager         | See [Planning](#milestone-planning) section |
 
 For one-off, topic specific meetings, please always consider recording these calls and sharing them (or taking notes in a publicly available document).
 

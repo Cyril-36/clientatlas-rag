@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Iterate on the design of object pools"
 status: proposed
 creation-date: "2023-03-30"
@@ -334,15 +333,15 @@ We looked at different embedded databases and their tradeoffs.
 The following table contrasts the performance of BadgerDB (key-value) and SQLite
 (relational) for the queries Gitaly will now have to answer for.
 
-| Query                                       | BadgerDB                                                                                                                        | SQLite                                                                              |
-| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| **"List all members in pool X"**            | Prefix scan `pool:{poolID}:member:*` on the forward index with keys `pool:{poolID}:member:{forkID} -> (empty)` — O(n) iteration | `SELECT fork_id FROM pool_members WHERE pool_id = ?` — O(log n) with index          |
-| **"Which pool is fork Y in?"**              | Reverse index `fork:{forkID} -> {poolID}` — must maintain 2 keys per relationship                                               | `SELECT pool_id FROM pool_members WHERE fork_id = ?` — O(log n), single table       |
-| **"Which upstream does pool X belong to?"** | Lookup `pool:{poolID}:upstream` — O(1) but separate key to maintain                                                             | `SELECT upstream FROM pools WHERE pool_id = ?` — O(log n), stored with pool record  |
-| **"How many members in pool X?"**           | Must store/maintain `pool:{poolID}:count` separately, risk of desync                                                            | `SELECT COUNT(*) FROM pool_members WHERE pool_id = ?` — always accurate             |
-| **"Can I delete pool X?" (count = 0)**      | Lookup `pool:{poolID}:count`, an extra key that needs to be in sync whenever membership changes in the pool                     | `SELECT COUNT(*) FROM pool_members WHERE pool_id = ?` — always accurate, real-time  |
-| **"Add a member"**                          | Must update 3 keys atomically (member key, reverse lookup, count). Still O(1) for each operation                                | Single `INSERT` into `pool_members`. O(log n) single INSERT with index maintenance. |
-| **"Remove a member"**                       | Must delete 2 keys atomically, update count                                                                                     | Single `DELETE` from `pool_members`. O(log n) single DELETE with index maintenance  |
+| Query | BadgerDB | SQLite |
+| ------- | ---------- | -------- |
+| **"List all members in pool X"** | Prefix scan `pool:{poolID}:member:*` on the forward index with keys `pool:{poolID}:member:{forkID} -> (empty)` — O(n) iteration | `SELECT fork_id FROM pool_members WHERE pool_id = ?` — O(log n) with index |
+| **"Which pool is fork Y in?"** | Reverse index `fork:{forkID} -> {poolID}` — must maintain 2 keys per relationship | `SELECT pool_id FROM pool_members WHERE fork_id = ?` — O(log n), single table |
+| **"Which upstream does pool X belong to?"** | Lookup `pool:{poolID}:upstream` — O(1) but separate key to maintain | `SELECT upstream FROM pools WHERE pool_id = ?` — O(log n), stored with pool record |
+| **"How many members in pool X?"** | Must store/maintain `pool:{poolID}:count` separately, risk of desync | `SELECT COUNT(*) FROM pool_members WHERE pool_id = ?` — always accurate |
+| **"Can I delete pool X?" (count = 0)** | Lookup `pool:{poolID}:count`, an extra key that needs to be in sync whenever membership changes in the pool | `SELECT COUNT(*) FROM pool_members WHERE pool_id = ?` — always accurate, real-time |
+| **"Add a member"** | Must update 3 keys atomically (member key, reverse lookup, count). Still O(1) for each operation | Single `INSERT` into `pool_members`. O(log n) single INSERT with index maintenance. |
+| **"Remove a member"** | Must delete 2 keys atomically, update count | Single `DELETE` from `pool_members`. O(log n) single DELETE with index maintenance |
 
 SQLite is favorable because:
 
@@ -624,8 +623,8 @@ Migration towards the object deduplication network-based architecture involves
 a lot of small steps:
 
 1. Introduce internal Rails API such as `object_pool_members` to let Gitaly
-   query object pool membership including finding the upstream repository of a
-   pool. Also allows us to discover current pool relationships managed by Rails.
+query object pool membership including finding the upstream repository of a
+pool. Also allows us to discover current pool relationships managed by Rails.
 1. `CreateFork()` starts automatically linking against preexisting object
    pools. This allows fast forking and removes the notion of object pools for
    callers when creating a fork.
@@ -659,7 +658,7 @@ a lot of small steps:
    public API.
 1. Implement orphaned pool cleanup. Add mechanism to detect and clean up pools that exist on disk but have no members recorded in Gitaly's metadata store. Historically we have had issues with out of sync object pools with what's on disk and what was recorded in the rails database. This would a final step to rectify out-of-sync issues.
 1. Simplify Gitaly's RPC interface to abstract away object pool complexities from Rails.
-   Deprecate RPCs like `CreateFork`, `LinkRepositoryToObjectPool`, `CreateObjectPool`, `DisconnectGitAlternates` and replace it with:
+Deprecate RPCs like `CreateFork`, `LinkRepositoryToObjectPool`, `CreateObjectPool`, `DisconnectGitAlternates` and replace it with:
 
 - `CreateRepository` - modifying the request to include a hint on whether to handle object pool deduplication
 
@@ -887,7 +886,7 @@ It has a number of downsides though:
 - Repositories can now have different states, where some of the
   repositories are allowed to prune objects and others aren't. This introduces a
   source of uncertainty and makes it easy to accidentally delete objects in a
-  repository and thus corrupt its forks.
+ repository and thus corrupt its forks.
 
 - When upstream repositories go private we must stop updating objects which are
   supposed to be deduplicated across members of the fork network. This means

@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: PREP Performance Metrics Guide
 ---
 
@@ -122,21 +121,21 @@ graph TD
 
 ## Understanding Your Service's SLIs
 
-| Decision Tree Output            | Guide Section                                                       | Key Metrics                           |
-| ------------------------------- | ------------------------------------------------------------------- | ------------------------------------- |
-| Rails Request SLI (web.jsonnet) | [HTTP Request SLIs](#http-request-slis-rails-request-graphql-query) | Latency (p95, p99), Error Rate        |
-| Rails Request SLI (api.jsonnet) | [HTTP Request SLIs](#http-request-slis-rails-request-graphql-query) | Latency (p95, p99), Error Rate        |
-| GraphQL Query SLI (api.jsonnet) | [HTTP Request SLIs](#http-request-slis-rails-request-graphql-query) | Query Latency (p95, p99), Error Rate  |
-| Sidekiq Execution SLI           | [Sidekiq Job SLIs](#sidekiq-job-slis-execution--queueing)           | Execution Duration, Resource Usage    |
-| Database Transaction SLI        | [Database Transaction SLI](#database-transaction-sli)               | Transaction Duration, Connection Pool |
-| Global Search SLI               | [Global Search SLI](#global-search-sli)                             | Search Latency, Index Size            |
-| LLM Operation SLI               | [AI/LLM Operation SLIs](#aillm-operation-slis)                      | TTFT, Completion Latency              |
+| Decision Tree Output | Guide Section | Key Metrics |
+| --- | --- | --- |
+| Rails Request SLI (web.jsonnet) | [HTTP Request SLIs](#http-request-slis-rails-request-graphql-query) | Latency (p95, p99), Error Rate |
+| Rails Request SLI (api.jsonnet) | [HTTP Request SLIs](#http-request-slis-rails-request-graphql-query) | Latency (p95, p99), Error Rate |
+| GraphQL Query SLI (api.jsonnet) | [HTTP Request SLIs](#http-request-slis-rails-request-graphql-query) | Query Latency (p95, p99), Error Rate |
+| Sidekiq Execution SLI | [Sidekiq Job SLIs](#sidekiq-job-slis-execution--queueing) | Execution Duration, Resource Usage |
+| Database Transaction SLI | [Database Transaction SLI](#database-transaction-sli) | Transaction Duration, Connection Pool |
+| Global Search SLI | [Global Search SLI](#global-search-sli) | Search Latency, Index Size |
+| LLM Operation SLI | [AI/LLM Operation SLIs](#aillm-operation-slis) | TTFT, Completion Latency |
 
 ## Metrics Selection Guide
 
 Once you've identified which service your feature maps to, use the appropriate section below to understand what the production SLI measures and what underlying metrics you should gather during PREP testing.
 
-**Key Principle:** Production SLIs are designed to detect degradation in a live system. PREP testing focuses on the _underlying measurements_ that prove your feature won't cause that degradation. We're not trying to replicate production SLO thresholds; we're measuring the fundamental performance characteristics that indicate readiness.
+**Key Principle:** Production SLIs are designed to detect degradation in a live system. PREP testing focuses on the *underlying measurements* that prove your feature won't cause that degradation. We're not trying to replicate production SLO thresholds; we're measuring the fundamental performance characteristics that indicate readiness.
 
 **Note on Thresholds:** The production values shown in each section are reference points to understand what's acceptable in production. Your test environment won't match production exactly, but these help you understand the performance characteristics that matter. Use them as context when interpreting your test results.
 
@@ -160,7 +159,7 @@ The metrics catalog is organized in two layers:
 
 - Defines reusable SLI templates with descriptions and significant labels
 - Examples: `rails_request`, `global_search`, `sidekiq_execution`, `llm_completion`
-- These are the _conceptual_ definitions of what each SLI measures, but not the actual thresholds
+- These are the *conceptual* definitions of what each SLI measures, but not the actual thresholds
 
 **Layer 2: Service Implementations** ([`metrics-catalog/services/*.jsonnet`](https://gitlab.com/gitlab-com/runbooks/-/tree/master/metrics-catalog/services))
 
@@ -644,5 +643,5 @@ Make sure to include any variances or new metrics used.
 - [Self-Service Performance Regression Testing](self-service-performance-regression-testing.md) - Related testing guidance
 - [GitLab Performance Testing Tool Selection Guide](performance-tools.md) - Selection process for performance tools
 - [Sitespeed Runway](https://gitlab.com/gitlab-org/quality/sitespeed-runway) - [SiteSpeed](https://www.sitespeed.io/) wrapper which measures frontend performance in browsers
-- [GitLab Component Performance Tool](https://gitlab.com/gitlab-org/quality/component-performance-testing) - [k6](https://grafana.com/docs/k6/latest/) wrapper which leverages containerization and automated testing to provide insights on individual component performance.
+- [GitLab Component Performance Tool](https://gitlab.com/gitlab-org/quality/component-performance-testing) -  [k6](https://grafana.com/docs/k6/latest/) wrapper which leverages containerization and automated testing to provide insights on individual component performance.
 - [GitLab Performance Tool](https://gitlab.com/gitlab-org/quality/performance) - [k6](https://grafana.com/docs/k6/latest/) wrapper to provide performance testing of any GitLab instance.

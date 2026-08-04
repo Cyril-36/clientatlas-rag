@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Okta Configuration Management"
 description: "The Okta repository is used for managing configuration-as-code for any actions that can be performed in the Admin UI. This moves all day-to-day administrative actions and global configuration into state management with MR approval rules and CI/CD automation."
 ---
@@ -65,7 +64,7 @@ end
 The global settings and policies are managed in respective folders that are managed by the Identity kingdom.
 
 | Configuration File        | CODEOWNERS                                    |
-| ------------------------- | --------------------------------------------- |
+|---------------------------|-----------------------------------------------|
 | `admins/{handle}.tf`      | `sec_identity_eng`                            |
 | `policies/{namespace}.tf` | (2 Approvals) `sec_identity_eng` `sec_leader` |
 | `settings/{namespace}.tf` | (2 Approvals) `sec_identity_eng` `sec_leader` |
@@ -77,7 +76,7 @@ GitLab's tech stack has hundreds of applications that are managed by a variety o
 The `apps` directory has a nested directory structure based on our [Identity Kingdoms](/handbook/security/identity/kingdoms) to accommodate different compliance requirements. Each application that the Kingdom owns has it's own file that specifies the application configuration and the Okta groups that are assigned to the application.
 
 | Configuration File                  | CODEOWNERS                                                |
-| ----------------------------------- | --------------------------------------------------------- |
+|-------------------------------------|-----------------------------------------------------------|
 | `apps/identity/{app_name}.tf`       | `sec_identity_eng`                                        |
 | `apps/business_sox/{app_name}.tf`   | `it_ops_leader`                                           |
 | `apps/business_stack/{app_name}.tf` | Per-file based on tech stack business and technical owner |
@@ -149,7 +148,7 @@ If additional users need access, there are several approaches:
 
 This provides improved maintenance since the division and department leaders or their delegate (ex. Executive Business Administrator) centrally manage the policies for organization unit groups and which roles are members.
 
-Since the _users_ that are attached to each group are managed by `accessctl` policies and REST API calls (not Terraform), the changes to Terraform state management are far and few between which simplifies auditability.
+Since the *users* that are attached to each group are managed by `accessctl` policies and REST API calls (not Terraform), the changes to Terraform state management are far and few between which simplifies auditability.
 
 ## Administrative User Access
 

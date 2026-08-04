@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Security Logging"
 description: "Security Logging supports and develops GitLab's security log ingestion platform."
 ---
@@ -33,12 +32,12 @@ Further details can be found in the [job family description](/job-description-li
 
 ### Team Members
 
-|                                          |                                                                                      |
-| ---------------------------------------- | ------------------------------------------------------------------------------------ |
-| Daryn Wilkinson                          | [Manager, Security Engineering](/job-description-library/security/security-logging/) |
-| Hiroki Suezawa                           | [Staff Security Engineer](/job-description-library/security/security-logging/)       |
-| Senior Engineer 1 (redacted for privacy) | [Senior Security Engineer](/job-description-library/security/security-logging/)      |
-| Senior Engineer 2 (redacted for privacy) | [Senior Security Engineer](/job-description-library/security/security-logging/)      |
+| | |
+|---|---|
+|Daryn Wilkinson|[Manager, Security Engineering](/job-description-library/security/security-logging/)|
+|Hiroki Suezawa|[Staff Security Engineer](/job-description-library/security/security-logging/)|
+|Senior Engineer 1 (redacted for privacy)|[Senior Security Engineer](/job-description-library/security/security-logging/)|
+|Senior Engineer 2 (redacted for privacy)|[Senior Security Engineer](/job-description-library/security/security-logging/)|
 
 ## Core Responsibilities
 

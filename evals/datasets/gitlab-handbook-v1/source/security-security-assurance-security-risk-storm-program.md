@@ -7,14 +7,11 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Security and Technology Operational Risk Management (STORM) Program & Procedures"
 controlled_document: true
 tags:
-
-- security_standard
-- security_standard_ra
-
+  - security_standard
+  - security_standard_ra
 ---
 
 {{< label name="Visibility: Audit" color="#E24329" >}}
@@ -41,12 +38,12 @@ The scope of the STORM program is limited to operational, technology-agnostic ri
 
 A risk governance structure has been put in place to outline the overall roles and responsibilities of individuals as it relates to STORM. The current governance structure is:
 
-| Role                  | Responsibility                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Executive Risk Owner  | - Accountable for driving treatment for one or more of GitLab's Top 5 Security Risks <br>- Responsible for identifying one or more Risk Owners. Security Risk recommends identifying at least one Risk Owner per department involved in risk treatment <br>- Responsible for approving the long-term risk treatment plan including the creation of KRs to associated treatment milestones identified by Risk Owners and the Security Risk Team <br>- Note that most Executive Risk Owners will be CEO + 2 (Senior Director or VP-level) and will be responsible for cross-department collaboration to drive risk reduction over time                                                                                                                                                                                                                               |
-| Risk Owners           | - Responsible for the creation of a long-term risk treatment plan including treatment milestones meant to reduce residual risk over time <br>- Accountable for executing risk treatment activities <br>- Responsible for collaborating with the Security Risk Team to ensure associated risk(s) and treatment status are reported periodically <br>- Note that most Risk Owners will be CEO + 3 (Senior Manager or Director level)                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| Security Risk Manager | This role is assigned per risk to a specific Security Risk team member. Expectations include:<br>- Maintains knowledge on the history, current-state, and direction of their risk<br>- Works with the risk owner or owners to ensure the risk status and treatment is documented<br>- Identifies, monitors, and participates in associated issues/MRs/epics/working groups that are relevant to their assigned risk<br>- Validates remediation activities<br>- Maps risks to relevant <a href="/handbook/security/security-assurance/security-compliance/sec-controls/#gitlab-control-framework-gcf">GCF controls</a>, Security Compliance Tier 3 Observations, and other observations noted from security-impacting assessments (internal-only) <br>- Collaborates with Executive Risk Owner and Risk Owners to create and monitor long-term risk treatment plans |
-| Security Risk Team    | - Coordinates and executes STORM procedures including establishing risk appetite and conducting risk assessments<br>- Maintains the risk register to ensure accuracy and currency<br>- Acts in a Program Management capacity to support the tracking of risk treatment activities<br>- Coordinates peer validation testing after all risk remediation activities have been completed <br>- Periodically reports on the status of security and technology operational risks <br> - Provides management level oversight of the STORM program, including continuing reviews of GitLab's Risk Register and acts as a point of escalation as needed <br>- Responsible for approving significant changes and exceptions to this procedure                                                                                                                                |
+| Role | Responsibility |
+| ------ | ------ |
+| Executive Risk Owner | - Accountable for driving treatment for one or more of GitLab's Top 5 Security Risks <br>- Responsible for identifying one or more Risk Owners. Security Risk recommends identifying at least one Risk Owner per department involved in risk treatment <br>- Responsible for approving the long-term risk treatment plan including the creation of KRs to associated treatment milestones identified by Risk Owners and the Security Risk Team <br>- Note that most Executive Risk Owners will be CEO + 2 (Senior Director or VP-level) and will be responsible for cross-department collaboration to drive risk reduction over time |
+| Risk Owners |  - Responsible for the creation of a long-term risk treatment plan including treatment milestones meant to reduce  residual risk over time <br>- Accountable for executing risk treatment activities <br>- Responsible for collaborating with the Security Risk Team to ensure associated risk(s) and treatment status are reported periodically <br>- Note that most Risk Owners will be CEO + 3 (Senior Manager or Director level) |
+| Security Risk Manager | This role is assigned per risk to a specific Security Risk team member. Expectations include:<br>- Maintains knowledge on the history, current-state, and direction of their risk<br>- Works with the risk owner or owners to ensure the risk status and treatment is documented<br>- Identifies, monitors, and participates in associated issues/MRs/epics/working groups that are relevant to their assigned risk<br>- Validates remediation activities<br>- Maps risks to relevant <a href="/handbook/security/security-assurance/security-compliance/sec-controls/#gitlab-control-framework-gcf">GCF controls</a>, Security Compliance Tier 3 Observations, and other observations noted from security-impacting assessments (internal-only) <br>- Collaborates with Executive Risk Owner and Risk Owners to create and monitor long-term risk treatment plans|
+| Security Risk Team | - Coordinates and executes STORM procedures including establishing risk appetite and conducting risk assessments<br>- Maintains the risk register to ensure accuracy and currency<br>- Acts in a Program Management capacity to support the tracking of risk treatment activities<br>- Coordinates peer validation testing after all risk remediation activities have been completed <br>- Periodically reports on the status of security and technology operational risks <br> - Provides management level oversight of the STORM program, including continuing reviews of GitLab's Risk Register and acts as a point of escalation as needed <br>- Responsible for approving significant changes and exceptions to this procedure|
 
 ## STORM Procedures
 
@@ -65,22 +62,22 @@ GitLab's security risk appetite is determined based on the total average priorit
 
 GitLab utilizes the following risk appetite matrix:
 
-| RISK APPETITE<br>APPROACH               | RISK SEEKING                                                                                                           | RISK RECEPTIVE                                                                                                                                     | RISK NEUTRAL                                                                                                 | RISK AVERSE                                                                                                                                                           |
-| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **RISK TAKING vs**<br>**RISK TRANSFER** | Aggressive risk<br>taking is justified                                                                                 | Seek opportunities to transfer risks<br>with pre-existing vendors as applicable<br>(for example, don't bring in a new vendor to<br>transfer risks) | Take a balanced approach to<br>risk taking vs risk transferring                                              | Exercise caution and accept as little<br>risk as possible by identifying risk<br>transfer solutions                                                                   |
-| **ORGANIZATIONAL**<br>**OBJECTIVES**    | Willing to accept a large negative<br>impact to the organization to pursue<br>opportunities that align with objectives | Willing to accept some negative impact<br>(for example, LOW risks) to pursue opportunities<br>that align with objectives                           | The potential for a negative impact<br>vs objectives are given equal<br>consideration when making a decision | The potential for a negative impact vs<br>objectives are given equal consideration<br>when making a decision                                                          |
-| **RISK RESPONSE**<br>**APPROACH**       | All risks are acceptable as long<br>as they do not impact our legal<br>and regulatory obligations                      | Determine risk response options to<br>help accept or reduce risk levels<br>through internal initiatives                                            | Risk remediation is favored over<br>risk acceptance                                                          | Risks that cannot be effectively<br>treated or transferred are avoided                                                                                                |
-| **RISK RESPONSE**<br>**DRIVERS**        | No response action required for risks<br>unless they may represent a<br>contract or regulatory violation               | Risk response actions take into<br>consideration cost effectiveness,<br>management priorities, and return<br>on investment                         | Risk response actions emphasize the<br>impact to security over the impact<br>to strategic objectives         | Risk response actions are always taken,<br>regardless of cost effectiveness,<br>management priorities, return on investment,<br>and overall organizational objectives |
+| RISK APPETITE<br>APPROACH | RISK SEEKING | RISK RECEPTIVE | RISK NEUTRAL | RISK AVERSE |
+| ---- | ---- | ---- | ---- | ---- |
+| **RISK TAKING vs**<br>**RISK TRANSFER** | Aggressive risk<br>taking is justified | Seek opportunities to transfer risks<br>with pre-existing vendors as applicable<br>(for example, don't bring in a new vendor to<br>transfer risks) | Take a balanced approach to<br>risk taking vs risk transferring | Exercise caution and accept as little<br>risk as possible by identifying risk<br>transfer solutions |
+| **ORGANIZATIONAL**<br>**OBJECTIVES** | Willing to accept a large negative<br>impact to the organization to pursue<br>opportunities that align with objectives | Willing to accept some negative impact<br>(for example, LOW risks) to pursue opportunities<br>that align with objectives | The potential for a negative impact<br>vs objectives are given equal<br>consideration when making a decision | The potential for a negative impact vs<br>objectives are given equal consideration<br>when making a decision |
+| **RISK RESPONSE**<br>**APPROACH** | All risks are acceptable as long<br>as they do not impact our legal<br>and regulatory obligations | Determine risk response options to<br>help accept or reduce risk levels<br>through internal initiatives | Risk remediation is favored over<br>risk acceptance | Risks that cannot be effectively<br>treated or transferred are avoided |
+| **RISK RESPONSE**<br>**DRIVERS** | No response action required for risks<br>unless they may represent a<br>contract or regulatory violation | Risk response actions take into<br>consideration cost effectiveness,<br>management priorities, and return<br>on investment | Risk response actions emphasize the<br>impact to security over the impact<br>to strategic objectives | Risk response actions are always taken,<br>regardless of cost effectiveness,<br>management priorities, return on investment,<br>and overall organizational objectives |
 
-_GitLab's Risk Appetite Matrix was formed through consideration of guidance set forth in NIST's [SP 800-39](https://csrc.nist.gov/pubs/sp/800/39/final) and [SP 800-30 Rev. 1](https://csrc.nist.gov/pubs/sp/800/30/r1/final)._
+*GitLab's Risk Appetite Matrix was formed through consideration of guidance set forth in NIST's [SP 800-39](https://csrc.nist.gov/pubs/sp/800/39/final) and [SP 800-30 Rev. 1](https://csrc.nist.gov/pubs/sp/800/30/r1/final).*
 
 #### Translating GitLab's Security Risk Appetite to Risk Tolerance
 
 Our risk appetite is translated to a tolerance which defines a range in which a [risk score value](#risk-factors-and-risk-scoring) is tolerable and does not require remediation or a risk acceptance, that is, the risk response will be set to "monitor". Risk scores can range from 1 (lowest) to 30 (highest). The range is defined per Risk Appetite in the table below:
 
-| Risk Averse | Risk Neutral | Risk Receptive | Risk Seeking |
-| :---------: | :----------: | :------------: | :----------: |
-|     1-5     |     1-10     |     11-15      |    16-20     |
+|Risk Averse|Risk Neutral|Risk Receptive|Risk Seeking|
+|:---------:|:---------:|:---------:|:---------:|
+|1-5|1-10|11-15|16-20|
 
 Risk scores above 20 (High or Critical risk rating) are considered too risky to be considered within tolerance. In other words, risks that are rated High and Critical must be treated. Current and past risk appetites by year can be found in our [internal handbook](https://internal.gitlab.com/handbook/security/security-assurance/#historical-and-current-record-of-gitlabs-security-risk-appetite).
 
@@ -103,16 +100,16 @@ In order to effectively identify, manage, and treat operational risks, GitLab ha
 
 #### Example Threat Sources and Events Considered
 
-|    Threat Source    | Example Threat Events                                                                                                                                                                                                                                                                                                                       |
-| :-----------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|   **Adversarial**   | Fraud and theft, insider threat, malicious hacker, and malicious code                                                                                                                                                                                                                                                                       |
+| Threat Source | Example Threat Events |
+| :-----------: | --------------------- |
+| **Adversarial** | Fraud and theft, insider threat, malicious hacker, and malicious code |
 | **Non-Adversarial** | Errors and omission, loss of physical and infrastructure support (for example, a natural disaster), exposure of sensitive information, changes to systems used to support the business, AI model degradation or bias, changes to external environments supporting GitLab, changes to GitLab's business model, or even changes in leadership |
 
 #### Risk Drafting Guidance
 
 STORM Program considerations include both risks (what might happen) and observations (what has happened/non-compliance).
 
-When drafting a risk, start with a risk statement. This will represent the title of the Risk in our GRC system and is an attempt to condense the risk into a single sentence. In the spirit of [low-context communication](/teamops/decision-velocity/#low-context-communication), avoid using single words or short phrases for the risk statement (ex. Supply Chain). As we largely deal with negative risks (vs. positive risks/opportunities), starting the statement with negative language like "Failure to", "Inadequate", "Incomplete", "Lack of", etc. is appropriate, but not required. As risks represent what might happen, use "may" before describing the negative effect it _may_ have on the confidentiality, integrity, availability, security, and privacy of GitLab data. Example: _Inadequate physical security controls may result in the loss of GitLab/Customer data and physical assets._ The risk description should contain details related to the assets/resources at risk, the event that may occur, the source that would trigger the event (root cause), and the consequence (impact/loss) [source](https://www.srmam.com/post/how-to-write-a-risk-statement).
+When drafting a risk, start with a risk statement. This will represent the title of the Risk in our GRC system and is an attempt to condense the risk into a single sentence. In the spirit of [low-context communication](/teamops/decision-velocity/#low-context-communication), avoid using single words or short phrases for the risk statement (ex. Supply Chain). As we largely deal with negative risks (vs. positive risks/opportunities), starting the statement with negative language like "Failure to", "Inadequate", "Incomplete", "Lack of", etc. is appropriate, but not required. As risks represent what might happen, use "may" before describing the negative effect it *may* have on the confidentiality, integrity, availability, security, and privacy of GitLab data. Example: *Inadequate physical security controls may result in the loss of GitLab/Customer data and physical assets.* The risk description should contain details related to the assets/resources at risk, the event that may occur, the source that would trigger the event (root cause), and the consequence (impact/loss) [source](https://www.srmam.com/post/how-to-write-a-risk-statement).
 
 #### Risk Factors and Risk Scoring
 
@@ -122,32 +119,31 @@ To score each risk, we leverage a formula based on the Likelihood of the risk ev
 
 ##### Determining Likelihood of initiation of a threat event
 
-| Qualitative <br> Score | Risk Level | Scoring Guidelines                                         |
-| :--------------------: | :--------: | ---------------------------------------------------------- |
-|           6            |  CRITICAL  | No expertise required to initiate a threat event           |
-|           5            | VERY HIGH  | Low level of expertise required to initiate a threat event |
-|           4            |    HIGH    | Some expertise required to initiate a threat event         |
-|           3            |   MEDIUM   | Difficult to initiate a threat event, even with expertise  |
-|           2            |    LOW     | Requires significant expertise to initiate a threat event  |
-|           1            |  VERY LOW  | Theoretically impossible to initiate a threat event        |
+| Qualitative <br> Score | Risk Level | Scoring Guidelines |
+| :--------------------: | :--------: | ------------------ |
+| 6 | CRITICAL | No expertise required to initiate a threat event |
+| 5 | VERY HIGH | Low level of expertise required to initiate a threat event   |
+| 4 | HIGH | Some expertise required to initiate a threat event           |
+| 3 | MEDIUM  | Difficult to initiate a threat event, even with expertise    |
+| 2 | LOW  | Requires significant expertise to initiate a threat event    |
+| 1 | VERY LOW  | Theoretically impossible to initiate a threat event |
 
 ##### Determining the impact of a threat event
 
-| IMPACT<br>SCORE | Organizational Output<br>(time, quality, resources)   | Brand<br>Reputation                                                                                | Business<br>Continuity                                                                                               | Customers &<br>Stakeholders                               | Legal &<br>Regulatory                                             | Financial                             |
-| :-------------: | ----------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------- |
-|  VERY LOW (1)   | Organizational output is<br>impacted by less than 20% | Limited to reputational damage<br>with no more than one customer<br>within a fiscal period         | Outages of non-critical systems<br>that impact GitLab team members                                                   | Impact is limited to one<br>customer and/or stakeholder   | Breach of company policy<br>occurring once in a fiscal<br>period  | Loss up to $999                       |
-|     LOW (2)     | Organizational output is<br>impacted by 30% - 40%     | Confined to a limited number of<br>parties (for example, specific customers)<br>and not publicized | Outages which result in the inability<br>of GitLab to continue sales and finance<br>operations longer than 72+ hours | Impact is limited to 2-3<br>customers and/or stakeholders | Breach of company policy<br>twice within a fiscal period          | Loss between $1,000<br>and $9,999     |
-|   MEDIUM (3)    | Organizational output is<br>impacted by 40% - 50%     | Public domain publicity but limited<br>to industry channels and not the<br>broader public          | Outages that impact GitLab's<br>ability to do business across 3+<br>departments                                      | Impact is limited to 4-5<br>customers and/or stakeholders | Breach of a regulatory and/or<br>contractual obligation           | Loss between $10,000<br>and $499,999  |
-|    HIGH (4)     | Organizational output is<br>impacted by 50% - 75%     | Wide-spread publicity but limited<br>parties are impacted                                          | Outages that result in the loss of<br>availability of GitLab for customers<br>for less than 4 hours                  | Major impact to many<br>customers and/or stakeholders     | Regulatory censure and/or action<br>taken against GitLab          | Loss between $500,000<br>and $999,999 |
-|  VERY HIGH (5)  | Organizational output is<br>impacted by 75% or more   | Widely publicized                                                                                  | Outages that result in the loss of<br>availability of GitLab for customers<br>for 4+ hours                           | Major impact to all<br>customers and/or stakeholders      | Public regulatory fines and/or major<br>litigation against GitLab | Loss of $1,000,000+                   |
+| IMPACT<br>SCORE | Organizational Output<br>(time, quality, resources) | Brand<br>Reputation | Business<br>Continuity | Customers &<br>Stakeholders | Legal &<br>Regulatory | Financial |
+| :---------------: | ------------- | --- | -------- | ---------- | ----------- | ------- |
+| VERY LOW (1) | Organizational output is<br>impacted by less than 20% | Limited to reputational damage<br>with no more than one customer<br>within a fiscal period | Outages of non-critical systems<br>that impact GitLab team members | Impact is limited to one<br>customer and/or stakeholder | Breach of company policy<br>occurring once in a fiscal<br>period  | Loss up to $999   |
+| LOW (2) | Organizational output is<br>impacted by 30% - 40% | Confined to a limited number of<br>parties (for example, specific customers)<br>and not publicized | Outages which result in the inability<br>of GitLab to continue sales and finance<br>operations longer than 72+ hours | Impact is limited to 2-3<br>customers and/or stakeholders | Breach of company policy<br>twice within a fiscal period | Loss between $1,000<br>and $9,999 |
+| MEDIUM (3) | Organizational output is<br>impacted by 40% - 50% | Public domain publicity but limited<br>to industry channels and not the<br>broader public | Outages that impact GitLab's<br>ability to do business across 3+<br>departments | Impact is limited to 4-5<br>customers and/or stakeholders | Breach of a regulatory and/or<br>contractual obligation | Loss between $10,000<br>and $499,999  |
+| HIGH (4) | Organizational output is<br>impacted by 50% - 75% | Wide-spread publicity but limited<br>parties are impacted  | Outages that result in the loss of<br>availability of GitLab for customers<br>for less than 4 hours | Major impact to many<br>customers and/or stakeholders | Regulatory censure and/or action<br>taken against GitLab | Loss between $500,000<br>and $999,999 |
+| VERY HIGH (5) | Organizational output is<br>impacted by 75% or more | Widely publicized | Outages that result in the loss of<br>availability of GitLab for customers<br>for 4+ hours | Major impact to all<br>customers and/or stakeholders | Public regulatory fines and/or major<br>litigation against GitLab | Loss of $1,000,000+ |
 
 To arrive at a final impact score, the impact score of all impact categories is averaged.
 
 #### Determining Inherent Risk vs Residual Risk
 
-- Inherent Risk is the risk _before_ considering any existing mitigations in place, such as existing controls, internal processes/procedures, etc. and is determined by the following formula:
-
-  > `Inherent Risk = Likelihood x Impact`
+- Inherent Risk is the risk *before* considering any existing mitigations in place, such as existing controls, internal processes/procedures, etc. and is determined by the following formula:
+   > `Inherent Risk = Likelihood x Impact`
 
 - Residual risk is calculated in the same manner as inherent risk, but the likelihood and impact is reassessed based on the known existing controls, processes/procedures, etc. that reduce/mitigate the risk.
 
@@ -155,12 +151,12 @@ To arrive at a final impact score, the impact score of all impact categories is 
 
 Once the Inherent and Residual risk score is determined, the following table can be used to determine if a risk is considered Low, Medium, High, or Critical:
 
-| Risk Rating | Risk Score Range |
-| :---------: | :--------------: |
-|     Low     |       1-10       |
-|   Medium    |      11-20       |
-|    High     |      21-25       |
-|  Critical   |      26-30       |
+|Risk Rating|Risk Score Range|
+|:---------:|:--------------:|
+|Low|1-10|
+|Medium|11-20|
+|High|21-25|
+|Critical|26-30|
 
 These ratings represent labels for communication purposes rather than what is or is not acceptable. To determine what is an acceptable risk, please refer to [risk tolerances](#translating-gitlabs-security-risk-appetite-to-risk-tolerance).
 
@@ -172,11 +168,11 @@ There may be times that risks are identified outside of traditional risk assessm
 
 For each risk identified, a formal risk response decision is made to determine how GitLab will handle the risk. As part of the risk response procedures, the Risk Owner will make a determination on whether or not to accept a risk or pursue remediation based on our [Risk Appetite and Tolerances](#establishing-risk-appetite-and-tolerance). Treatment plans will be reviewed by the Security Risk Manager or delegate and approval captured within a comment in the GRC application or associated GitLab issue.
 
-|  RESPONSE<br>OPTION  | DEFINITION                                                                                                                                                                                                                                                                                                                             |
-| :------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RESPONSE<br>OPTION  | DEFINITION |
+| :-----------------: | ------------------------------------------- |
 | Monitor (do nothing) | The risk score falls within our [risk tolerance levels](#translating-gitlabs-security-risk-appetite-to-risk-tolerance) and no additional actions are required at this time. Risks that have been treated, resulting in a risk score that is within the risk tolerance level will be given the status of Monitor within our GRC system. |
-|  Remediate the Risk  | The risk is not within our risk tolerance. Complete a risk remediation plan to remediate the risk through: Sharing the risk (identify and implement solutions to share the risk with other parties), Reducing the likelihood of occurrence, and/or Reducing the level of impact to GitLab                                              |
-|   Accept the Risk    | The risk is not within our risk tolerance. Accept or take the risk without executing a remediation plan because the cost to pursue remediation is higher than the potential benefit.                                                                                                                                                   |
+| Remediate the Risk   | The risk is not within our risk tolerance. Complete a risk remediation plan to remediate the risk through: Sharing the risk (identify and implement solutions to share the risk with other parties), Reducing the likelihood of occurrence, and/or Reducing the level of impact to GitLab |
+| Accept the Risk | The risk is not within our risk tolerance. Accept or take the risk without executing a remediation plan because the cost to pursue remediation is higher than the potential benefit. |
 
 The risk object in the GRC application will be updated to reflect the agreed upon risk response. If "Remediate the Risk" is selected, the Risk Owner will execute a Risk Treatment Plan. The documented plan and status of the risk treatment will be captured within the GRC application as well. See below for more information about risk response options.
 
@@ -201,10 +197,10 @@ If the risk treatment plan is executed and results in a downgrading of the resid
 
 In the cases where a risk owner has opted to pursue a risk acceptance, the following approvals will be required based on risk rating that was assigned to the risk undergoing a risk acceptance:
 
-| Risk Level  | Approval Level Required                                  |
-| ----------- | -------------------------------------------------------- |
-| CRITICAL    | Risk Owner + VP Level Approval* + E-group Level Approval |
-| HIGH/MEDIUM | Risk Owner + VP Level Approval*                          |
+|Risk Level|Approval Level Required|
+|-----|-----|
+|CRITICAL|Risk Owner + VP Level Approval* + E-group Level Approval|
+|HIGH/MEDIUM|Risk Owner + VP Level Approval*|
 
 `*` If the Risk Owner is a VP, no additional VP level approval is required
 

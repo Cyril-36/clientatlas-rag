@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Tips for Submitting a Zip Request
 ---
 
@@ -86,7 +85,7 @@ Max duration for this worker is 24 months, with a 3 month break. End date must b
    - Confirm you have internal approval from FP&A and your management to hire a contingent worker and that this role is (i) not currently being performed by a GitLab Employee or (ii) there is not an open headcount position for this role.
    - If the Contingent Worker requires access to Okta and/or core GitLab core applications, a GitLab laptop must be issued followed by a Zip approval from IT Ops validating laptop issuance.
    - If the Contingent Worker requires GitLab equipment (i.e. access to Orange or Red data), which will require a [Security Review](/handbook/finance/procurement/#4c-security-review-4-14-days), the Zip purchase requisition will need to be submitted 10 days in advance of the normal approval [timeline](/handbook/finance/procurement/#review-steps-timeline-and-considerations) to account for ordering and shipping of the equipment. [Certain locations](https://gitlab.com/gitlab-com/www-gitlab-com/-/merge_requests/127746#note_1497241068) will require IT Approval before providing the equipment. If you are unsure if the IC will require GitLab equipment, please contact IT via the Compass app in Slack (type "Compass" in the top search bar to find it) or it-help@gitlab.com.
-     - Lead times start once the purchase requisition has been fully approved and the PO is released. Please account for this time and the [Zip approval times](/handbook/finance/procurement/#review-steps-timeline-and-considerations) to determine how far in advance your Zip Request needs to be submitted prior to the IC's start date.
+      - Lead times start once the purchase requisition has been fully approved and the PO is released. Please account for this time and the [Zip approval times](/handbook/finance/procurement/#review-steps-timeline-and-considerations) to determine how far in advance your Zip Request needs to be submitted prior to the IC's start date.
 
 1. Open Zip to submit your request for a contingent worker by selecting "New Request" and then "Request a Purchase - Contingent Worker or Consultancy Services"
 
@@ -151,8 +150,8 @@ Max duration for this worker is 24 months, with a 3 month break. End date must b
 1. Vendor Name and Primary Contact
    - If an existing vendor or you are unsure, start typing the vendor name in Zip. If vendor exists, Zip will populate it in the dropdown. You can then select the existing Primary Vendor Contact or select 'Add new contact' and complete the contact information
    - If New Vendor:
-     - Review the [Vendor Selection Process](/handbook/finance/procurement/#1-rfp-and-vendor-selection) and the [RFP guidelines](https://internal.gitlab.com/handbook/finance/procurement/) or reach out to your Procurement Category Manager if you have questions or need support
-     - If this supplier is not already in our system, you will need to click the "add new" option once you type in the supplier name. Please be sure to fill in all details so that the Procurement team can complete the [New Vendor Onboarding step](/handbook/finance/procurement/#4-vendor-onboarding). While we use Zip internally now, Coupa will still be the tool used to pay our suppliers.
+      - Review the [Vendor Selection Process](/handbook/finance/procurement/#1-rfp-and-vendor-selection) and the [RFP guidelines](https://internal.gitlab.com/handbook/finance/procurement/) or reach out to your Procurement Category Manager if you have questions or need support
+      - If this supplier is not already in our system, you will need to click the "add new" option once you type in the supplier name. Please be sure to fill in all details so that the Procurement team can complete the [New Vendor Onboarding step](/handbook/finance/procurement/#4-vendor-onboarding). While we use Zip internally now, Coupa will still be the tool used to pay our suppliers.
 1. Spend Information
    - Provide all of the spend details including required budget amount, contract term, and line item details.
    - The Line Item Breakdown should match the line items on the Order Form/Contract and should be entered separately for each year of the contract if a multi-year term.
@@ -167,9 +166,9 @@ Max duration for this worker is 24 months, with a 3 month break. End date must b
    - **TIP:** To increase speed of approval, send your supplier contact GitLab's [DPA/SCCs](https://docs.google.com/document/d/1MXluQhBlLtRqD854SdsbjtLMnqVwCcqx/edit) for review right away. For the DPA, please inform the supplier contact that Schedule 1 and Schedule 3 must be completed by the supplier. Also alert them to the request from GitLab's Security Risk Team for security completion and Zip for privacy review completion. Let them know review and approval can't begin without these pieces.
 1. Documents & Surveys:
    - For any software renewal/add-on that is based on usage (e.g. user quantities), a usage report is required for Procurement's review. This can be uploaded in the Documents section under 'Please attach any additional files for reference' at the end of the request process.
-     - Based on the usage report, Procurement will review the request to increase, decrease, or hold quantities flat.
+      - Based on the usage report, Procurement will review the request to increase, decrease, or hold quantities flat.
    - Upload any contracts and/or quotes you've received.
-     - Draft contracts are okay. Make note of any terms and/or pricing still being finalized- this can be done in the Comments section once you submit your request.
+      - Draft contracts are okay. Make note of any terms and/or pricing still being finalized- this can be done in the Comments section once you submit your request.
 
 ## Zip Change Requests
 

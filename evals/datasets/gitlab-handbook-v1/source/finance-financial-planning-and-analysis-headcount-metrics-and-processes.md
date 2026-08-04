@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Headcount Metrics and Processes"
 description: "Public Company Headcount Metrics and Processes"
 ---
@@ -27,7 +26,7 @@ description: "Public Company Headcount Metrics and Processes"
 1. Decrease by: <ins>Total Attrition<ins> applied to the previous quarter's ending headcount
    - Component 1 - <ins>Known Attrition<ins>: Remove any known attrites from prior period Ending Headcount
    - Component 2 - <ins>Forecasted Attrition<ins>: Using a 5% hypothetical quarterly attrition assumption for example purposes, back into the Forecasted Attrition assumption (e.g., if 3% is already Known Attrition, then adjust the Forecasted Attrition input to 2% to reflect the remaining portion expected to churn)
-     - If attrition is more/less than expected in M1 and/or M2 of the quarter, the Forecasted Attrition Assumption is adjusted to solve back to the hypothetical 5% Total Attrition for the quarter
+      - If attrition is more/less than expected in M1 and/or M2 of the quarter, the Forecasted Attrition Assumption is adjusted to solve back to the hypothetical 5% Total Attrition for the quarter
 1. Decrease by: <ins>Internal Hires<ins> in period
 1. Example – Q1 Ending Headcount → Q2 Ending Headcount:
    - 100 Q1 Ending Headcount
@@ -36,8 +35,8 @@ description: "Public Company Headcount Metrics and Processes"
    - Increase by: 0 Attrition Backfills (filled in following quarter)
    - Decrease by: 1 Known Attrites
    - Decrease by: 4 Forecasted Attrites (solve)
-     - 100 Q1 Ending Headcount * 5% hypothetical quarterly attrition = 5 Total Attrites
-     - 5 Total Attrites - 1 Known Attrite = 4 Forecasted Attrites
+      - 100 Q1 Ending Headcount * 5% hypothetical quarterly attrition = 5 Total Attrites
+      - 5 Total Attrites - 1 Known Attrite = 4 Forecasted Attrites
    - = 114 Q2 Ending Headcount
 
 1. Each period, FP&A and TA will align on the Ending Headcount figure as part of the quarterly forecast lock.
@@ -46,7 +45,7 @@ description: "Public Company Headcount Metrics and Processes"
 
 1. **Total Starts**: Team members who have started their employment, accepted an offer, or are expected to start their employment within a specified period including Attrition Backfills.
    - <ins>Total Starts</ins> = <ins>Actual Starts</ins> + <ins>Total Future Starts</ins>, where:
-     - <ins>Total Future Starts</ins> = <ins>Known Future Starts</ins> + <ins>Forecasted Future Starts</ins>.
+      - <ins>Total Future Starts</ins> = <ins>Known Future Starts</ins> + <ins>Forecasted Future Starts</ins>.
    - **Total Net New Starts**: <ins>Total Starts</ins> excluding <ins>Internal Hires</ins>.
    - **Total Gross Starts**: <ins>Total Starts</ins> including <ins>Internal Hires</ins>.
 
@@ -62,22 +61,22 @@ description: "Public Company Headcount Metrics and Processes"
    - **Total Gross Future Starts**: Total Starts including Internal Hires.
 
 1. **Known Future Starts**: Team members who have accepted offers to start employment, but have not yet started, within a specified period including Attrition Backfills.
-   - **Net New Known Future Starts**: Known Starts excluding Internal Hires.
-   - **Gross Known Future Starts**: Known Starts including Internal Hires.
+      - **Net New Known Future Starts**: Known Starts excluding Internal Hires.
+      - **Gross Known Future Starts**: Known Starts including Internal Hires.
 
 1. **Forecasted Future Starts**: Team members who are expected to begin day one of their employment at GitLab within a specified period but have not accepted an offer (i.e., must not be counted as a Known Future Start) including Attrition Backfills. Forecasted Future Starts includes Offers Outstanding.
-   - **Net New Forecasted Future Starts**: Future Starts excluding Internal Hires.
-   - **Gross Forecasted Future Starts**: Future Starts including Internal Hires.
+      - **Net New Forecasted Future Starts**: Future Starts excluding Internal Hires.
+      - **Gross Forecasted Future Starts**: Future Starts including Internal Hires.
 
 1. **Offers Outstanding**: Candidates who have received, but not accepted, Offers with Start Dates within a specified period including Attrition Backfills.
-   - **Net New Offers Outstanding**: Offers Outstanding excluding Internal Hires.
-   - **Gross Offers Outstanding**: Offers Outstanding including Internal Hires.
+      - **Net New Offers Outstanding**: Offers Outstanding excluding Internal Hires.
+      - **Gross Offers Outstanding**: Offers Outstanding including Internal Hires.
 
 1. **Attrition Backfills**: Roles previously occupied by a team member that GitLab plans to fill again (either via an external candidate or Internal Hire).
 
 1. **Attrition/Attrites**: Team members who end their GitLab employment (i.e., not including Internal Hires) within a specified period.
-   - **Known Attrition**: Team members who have given notice of their employment termination within a specified period.
-   - **Forecasted Attrition**: Attrition related to team members expected to terminate employment within a specific period. Known attrition plus Forecasted Attrition adds to the full attrition assumption for the period.
+     - **Known Attrition**: Team members who have given notice of their employment termination within a specified period.
+     - **Forecasted Attrition**: Attrition related to team members expected to terminate employment within a specific period. Known attrition plus Forecasted Attrition adds to the full attrition assumption for the period.
 
 1. **Internal Hires**: Team members who change roles within GitLab via promotion, lateral movement, etc. within a specified period. To be counted as Internal Hires (including via promotion), team members must accept an offer for an open Greenhouse requisition.
 
@@ -93,12 +92,12 @@ description: "Public Company Headcount Metrics and Processes"
 
    - Offers are estimated based on Total Gross Starts within current and future periods. An average (based on analysis of historical data) of Offer to Start timing is applied to forecasted monthly Total Gross Starts in order to back into the estimated Offers needed to achieve the specified Total Gross Starts amount.
    - Example of Offers estimate for November assuming straight-line Offer to Start timing
-     - Hypothetical November Total Gross Starts: 100
-     - Month0 Average _November Total Gross Starts: 25%_ 100 = 25
-     - Month-1 Average _October Total Gross Starts: 25%_ 100 = 25
-     - Month-2 Average _September Total Gross Starts: 25%_ 100 = 25
-     - Month-3 Average _August Total Gross Starts: 25%_ 100 = 25
-     - = 100 Total Offers in preceding four months needed to achieve November Total Gross Starts
+      - Hypothetical November Total Gross Starts: 100
+      - Month0 Average *November Total Gross Starts: 25%* 100 = 25
+      - Month-1 Average *October Total Gross Starts: 25%* 100 = 25
+      - Month-2 Average *September Total Gross Starts: 25%* 100 = 25
+      - Month-3 Average *August Total Gross Starts: 25%* 100 = 25
+      - = 100 Total Offers in preceding four months needed to achieve November Total Gross Starts
 
 1. **Planned Personnel Sheet**: The Planned Personnel Sheet is housed in Adaptive and reflects Gross Future Starts (i.e., includes roles that will eventually be filled via Internal Hires).
 

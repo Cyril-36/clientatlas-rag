@@ -7,10 +7,8 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: "Application Security Review Process"
 ---
-
 <!-- markdownlint-disable MD052 -->
 
 This page details the application security review process for appsec engineers.
@@ -133,7 +131,7 @@ The process is the same for appsec engineers adding something to the backlog
 or for team members requesting a review for a GitLab feature:
 
 1. Create an issue in the [Appsec Reviews issue tracker](https://gitlab.com/gitlab-com/gl-security/product-security/appsec/appsec-reviews/issues) using the [Appsec Review template](https://gitlab.com/gitlab-com/gl-security/product-security/appsec/appsec-reviews/-/issues/new?issueable_tempalte=AppSec%20Review)
-   1. Set the title to a unique name for the feature
+    1. Set the title to a unique name for the feature
 1. Follow the description in the template
 
 ### Assigning Priority
@@ -146,12 +144,12 @@ It can always be adjusted given feedback from other team members.
 
 Guidelines for Priority (Not comprehensive, please build upon)
 
-| Priority    | Criteria                                                                    |
-| ----------- | --------------------------------------------------------------------------- |
-| priority::1 | Red data, AuthN/AuthZ, Crypto, Single severity::1, Repeat severity::2 vulns |
-| priority::2 | Orange data, Single severity::2 vulns                                       |
-| priority::3 | Yellow data                                                                 |
-| priority::4 | Only standard secure practices necessary                                    |
+| Priority | Criteria |
+|----------|----------|
+| priority::1       | Red data, AuthN/AuthZ, Crypto, Single severity::1, Repeat severity::2 vulns |
+| priority::2       | Orange data, Single severity::2 vulns |
+| priority::3       | Yellow data |
+| priority::4       | Only standard secure practices necessary |
 
 ### Including Threat Modeling in the review
 
@@ -185,7 +183,7 @@ This short questionnaire below should help you in quickly deciding if you should
 If the change is doing one or more of the following:
 
 1. Processing, storing, or transferring any kind of [RED or ORANGE data](/handbook/security/policies_and_standards/data-classification-standard/)
-1. If your changes have a goal which requires a **cryptographic function** such as: confidentiality, integrity, authentication, or non-repudiation, it _should_ be reviewed by the [application security team](https://gitlab.com/gitlab-com/gl-security/product-security/appsec).
+1. If your changes have a goal which requires a **cryptographic function** such as: confidentiality, integrity, authentication, or non-repudiation, it *should* be reviewed by the [application security team](https://gitlab.com/gitlab-com/gl-security/product-security/appsec).
 1. Deployment of a customer facing application into a new environment
 1. Changes to an existing security control
 1. Modification of any pipeline security checks or scans
@@ -225,7 +223,7 @@ Some use cases of this are for epics, milestones, reviewing for a common securit
 
 ### Is security approval required to progress?
 
-No, code changes do _not_ require security approval to progress. Non-blocking reviews enables the freedom for our code to keep shipping fast, and it closer aligns with our values of [iteration and efficiency](/handbook/values/#iteration). They operate more as guardrails instead of a gate.
+No, code changes do *not* require security approval to progress. Non-blocking reviews enables the freedom for our code to keep shipping fast, and it closer aligns with our values of [iteration and efficiency](/handbook/values/#iteration). They operate more as guardrails instead of a gate.
 
 ### What should I provide when requesting a security review?
 

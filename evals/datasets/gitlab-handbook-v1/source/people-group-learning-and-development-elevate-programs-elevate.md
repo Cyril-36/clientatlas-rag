@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: Elevate
 ---
 
@@ -19,7 +18,7 @@ The handbook provides guidance on GitLab [leadership competencies](/handbook/peo
 
 ### Goal
 
-In FY26, 85% of GitLab managers will complete Elevate.
+Our goal is for the vast majority of GitLab managers to complete Elevate each fiscal year.
 
 ## What team members are saying about Elevate
 
@@ -88,13 +87,13 @@ When the program begins, you'll be added to a Slack group that includes all memb
 
 It's a requirement to make up missed sessions to ensure that you're learning each new skill and moving through the program in the appropriate order. Please make every effort to attend live sessions as scheduled. If you miss a session, you'll have the option to schedule into a 'Membership' session in the Hone platform. We'll share more details on this process soon.
 
-We're committed to working with you to find a solution that let's you successfully complete Elevate. If you must miss one live session for personal reasons, you need approval from your manager. Additional missed sessions will result in an incomplete Elevate status.
+We're committed to working with you to find a solution that lets you successfully complete Elevate. If you must miss one live session for personal reasons, you need approval from your manager. Additional missed sessions will result in an incomplete Elevate status.
 
 ### I'm over capacity and feel like I may need to opt out of the training, what should I do?
 
 We want to try to support all people leaders to go through the program in its entirety - if you're feeling like it's too much to balance with your other work, as a first port of call please speak to your manager and explore options for how you can be supported to continue. If your manager is supportive of you leaving the program, please let one of the Talent Development team know. The Talent Development team will then speak to your People Business Partner to notify them of your leaving the program, and explore any final options to support you in continuing.
 
-Team members who leave the program part way through will still need to complete it in it's entirety in the future, but the point of re-entry will be reviewed on a case by case basis.
+Team members who leave the program part way through will still need to complete it in its entirety in the future, but the point of re-entry will be reviewed on a case by case basis.
 
 ### How often will this program run?
 
@@ -102,7 +101,7 @@ We currently plan for a new group of ~50 people leaders to start this program ev
 
 ### Is there opportunity to participate in the program if I am an aspiring manager?
 
-We've launched the ElevatePrep program in Q1 of FY26, specifically designed for GitLab individual contributors (ICs) who would like to one day step into a people management role or lead multifaceted, cross-functional projects more effectively. ElevatePrep lays the foundation for strong professional skills that support a variety of goals.
+We offer the ElevatePrep program, specifically designed for GitLab individual contributors (ICs) who would like to one day step into a people management role or lead multifaceted, cross-functional projects more effectively. ElevatePrep lays the foundation for strong professional skills that support a variety of goals.
 
 Please reach out to the Talent and Development team in the #learninganddevelopment if you wish to be considered for the next round. We'll be sharing more details on the program soon.
 

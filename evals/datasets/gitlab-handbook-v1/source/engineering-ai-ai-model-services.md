@@ -7,7 +7,6 @@ license: CC BY-SA 4.0
 ---
 
 ---
-
 title: AI Model Services Group
 description: "The AI Model Services group owns GitLab Duo's customer-facing model operations/intelligence layer, which models are available and how they're selected, the health and connectivity of the customer experience, and the gateway service surface (prompts, internal events, and AIGW billing)."
 ---
@@ -30,12 +29,12 @@ The group is organised into three functional teams. Each functional team owns it
 
 Owns which models are available and how they're chosen, across `.com` and self-hosted.
 
-| Scope            |                                                                                   |
-| ---------------- | --------------------------------------------------------------------------------- |
-| Model lifecycle  | Model additions/removals across Customer Zero,`.com`, Self-Managed, and Dedicated |
-| Selection Engine | Unit Primitives, large/small models, agents                                       |
-| Selection UI     | Customer zero, SaaS, Self-Managed, Dedicated                                      |
-| Supporting       | Prompts, evals, and docs for newly added models                                   |
+| Scope | |
+| --- | --- |
+| Model lifecycle | Model additions/removals across Customer Zero,`.com`, Self-Managed, and Dedicated |
+| Selection Engine | Unit Primitives, large/small models, agents |
+| Selection UI | Customer zero, SaaS, Self-Managed, Dedicated |
+| Supporting | Prompts, evals, and docs for newly added models |
 
 Evaluation results from Model Evaluation Infra feed selection decisions through a shared review cadence between the two groups (see [What falls outside our scope](#what-falls-outside-our-scope)).
 
@@ -43,25 +42,25 @@ Evaluation results from Model Evaluation Infra feed selection decisions through 
 
 Owns the diagnostic surface and the wider class of customer-facing setup and connectivity issues.
 
-| Scope            |                                                                                                                               |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| Diagnostics      | Duo Health Check diagnostic surface                                                                                           |
-| Setup & config   | Customer setup and configuration                                                                                              |
-| Connectivity     | Connectivity across GitLab / AIGW / Models / DWS                                                                              |
-| Operations       | Debugging, version drift, and related support escalations                                                                     |
+| Scope | |
+| --- | --- |
+| Diagnostics | Duo Health Check diagnostic surface |
+| Setup & config | Customer setup and configuration |
+| Connectivity | Connectivity across GitLab / AIGW / Models / DWS |
+| Operations | Debugging, version drift, and related support escalations |
 | LLMOps Expanding | Monitoring, observability, and tracking LLM performance, identifying errors, and optimizing models connectivity down the line |
 
-"Health" is deliberately broad: it covers the diagnostic surface _and_ the failure modes those diagnostics are meant to surface, so the people building the diagnostics are the same people fielding the issues.
+"Health" is deliberately broad: it covers the diagnostic surface *and* the failure modes those diagnostics are meant to surface, so the people building the diagnostics are the same people fielding the issues.
 
 ### Gateway Services
 
 Owns the event-driven surfaces that sit on top of the gateway, prompts flowing in, telemetry flowing through, and billing/credit events flowing out.
 
-| Scope           |                                                                                                                                           |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| Prompt Registry | Prompt management on the gateway                                                                                                          |
-| Telemetry       | Internal events and tracking                                                                                                              |
-| AIGW billing    | The AIGW side of billing, metering and billing events for self-hosted billing, SaaS billing, on-demand credits, and AWS Marketplace flows |
+| Scope | |
+| --- | --- |
+| Prompt Registry | Prompt management on the gateway |
+| Telemetry | Internal events and tracking |
+| AIGW billing | The AIGW side of billing, metering and billing events for self-hosted billing, SaaS billing, on-demand credits, and AWS Marketplace flows |
 
 > **Billing boundary:** Gateway Services owns the **AIGW side** of billing (metering and billing events). The purchasing and subscription side, buying, plan management, is owned by the **Fulfillment** team.
 > **Instrumentation boundary:** Analytics Instrumentation owns the tooling, internal events (Snowplow), billing-events tooling, and Service Ping collection. We own the domain-specific events, billing events, and metrics for the gateway/AIGW surface and instrument them using that tooling.
@@ -76,30 +75,30 @@ Owns the event-driven surfaces that sit on top of the gateway, prompts flowing i
 
 **Staff Engineer (cross-team):** Manoj M J, contributes across functional teams, taking on initiatives wherever they're most needed.
 
-| Functional team       | Members                                        |
-| --------------------- | ---------------------------------------------- |
-| Model Selection       | Julie Huang; Manoj M J (supporting)            |
+| Functional team | Members |
+| --- | --- |
+| Model Selection | Julie Huang; Manoj M J (supporting) |
 | Health & Connectivity | Cindy Halim, Newick Lee; Manoj M J (main team) |
-| Gateway Services      | Patrick Cyiza; Manoj M J (supporting)          |
+| Gateway Services | Patrick Cyiza; Manoj M J (supporting) |
 
 ### Stable Counterparts
 
 The following members of other functional teams are our stable counterparts:
 
-| **Name**     | **Role**                                                                       |
-| ------------ | ------------------------------------------------------------------------------ |
+| **Name** | **Role** |
+| --- | --- |
 | Jordan Janes | [Principal Product Manager](/job-description-library/product/product-manager/) |
 
 ## What falls outside our scope
 
 To make boundaries clear for teams inside and outside the org, the following areas are owned by counterpart teams. When work touches these areas, loop in the listed owner.
 
-| Area                                                                   | Owner                                                                                                    | Relationship to AI Model Services                                                                           |
-| ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Subscription purchase / buying flows, plan management                  | Fulfillment                                                                                              | Counterpart for Gateway Services. We own AIGW-side billing/metering; they own purchasing and subscriptions. |
-| Product analytics tooling & instrumentation                            | [Analytics Instrumentation](/handbook/engineering/data-engineering/analytics/analytics-instrumentation/) | Counterpart for Gateway Services. We use their tooling for internal events and tracking.                    |
-| Raw gateway infrastructure, routing, streaming, self-hosted AIGW       | AI Platform Engineering (Duo Service Infra)                                                              | They own the gateway as infrastructure; we own the customer-visible service surface that runs on top of it. |
-| Model evaluation infrastructure, CEF as a service, benchmark pipelines | AI Platform Engineering (Model Evaluation Infra)                                                         | They run and maintain evaluation infra; we consume the results to drive model selection.                    |
+| Area | Owner | Relationship to AI Model Services |
+| --- | --- | --- |
+| Subscription purchase / buying flows, plan management | Fulfillment | Counterpart for Gateway Services. We own AIGW-side billing/metering; they own purchasing and subscriptions. |
+| Product analytics tooling & instrumentation | [Analytics Instrumentation](/handbook/engineering/data-engineering/analytics/analytics-instrumentation/) | Counterpart for Gateway Services. We use their tooling for internal events and tracking. |
+| Raw gateway infrastructure, routing, streaming, self-hosted AIGW | AI Platform Engineering (Duo Service Infra) | They own the gateway as infrastructure; we own the customer-visible service surface that runs on top of it. |
+| Model evaluation infrastructure, CEF as a service, benchmark pipelines | AI Platform Engineering (Model Evaluation Infra) | They run and maintain evaluation infra; we consume the results to drive model selection. |
 
 ## How to reach us
 
@@ -117,7 +116,7 @@ Issues owned by the AI Model Services group should have these labels, as appropr
 - `~"category:model selection"`
 - `~"category:health & connectivity"`
 - `~"category:health & connectivity"`
-  In addition, issues should contain the relevant `~type:` and subtype labels.
+In addition, issues should contain the relevant `~type:` and subtype labels.
 
 ## How we work
 
@@ -202,12 +201,12 @@ We resist the pressure to add new models or configurations until the existing on
 
 ### Cadence
 
-| Activity                                   | Frequency      | Owner                          |
-| ------------------------------------------ | -------------- | ------------------------------ |
-| Weekly sync (review blockers, assign DRIs) | Weekly         | EM                             |
-| Status update on planning issue            | Weekly (async) | Each active DRI                |
-| Triage of new RFHs / escalations           | Ongoing        | Triage DRI per functional team |
-| Retrospective on process health            | Monthly        | Team                           |
+| Activity | Frequency | Owner |
+| --- | --- | --- |
+| Weekly sync (review blockers, assign DRIs) | Weekly | EM |
+| Status update on planning issue | Weekly (async) | Each active DRI |
+| Triage of new RFHs / escalations | Ongoing | Triage DRI per functional team |
+| Retrospective on process health | Monthly | Team |
 
 ## Scoping work using Epics and Tech Leads
 
@@ -268,12 +267,12 @@ A weight is assigned to each issue as an estimate of work to close it. A weight 
 
 All workflow statuses in the [Product Development Flow](/handbook/product-development/how-we-work/product-development-flow/) are valid. The [Next 1-3](https://gitlab.com/groups/gitlab-org/-/boards/7472817?milestone_title=Next%201-3%20releases&label_name[]=group%3A%3Acustom%20models) and [Next 4-6 milestones](https://gitlab.com/groups/gitlab-org/-/boards/7472821?milestone_title=Next%204-6%20releases&label_name[]=group%3A%3Acustom%20models) boards house issues which need refinement or are ready to be worked on.
 
-| Board               | Filters                                                | Columns                                                                                                                                                     |
-| ------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Planning Board      | Milestone, `~group::ai model services`                 | `~type::bug`, `~type::maintenance`, `~type::feature`                                                                                                        |
-| Build Board         | Milestone, `~group::ai model services`, `~Deliverable` | `~workflow::ready for development`, `~workflow::in dev`, `~workflow::in review`, `~workflow::awaiting security release`, `~workflow::blocked`               |
-| Next 1-3 Milestones | `%Next 1-3 Milestones`                                 | `~workflow::problem validation`, `~workflow::design`, `~workflow::solution validation`, `~workflow::planning breakdown`, `~workflow::ready for development` |
-| Next 4-6 Milestones | `%Next 4-6 Milestones`                                 | Same as Next 1-3 Milestones                                                                                                                                 |
+| Board | Filters | Columns |
+| --- | --- | --- |
+| Planning Board | Milestone, `~group::ai model services` | `~type::bug`, `~type::maintenance`, `~type::feature` |
+| Build Board | Milestone, `~group::ai model services`, `~Deliverable` | `~workflow::ready for development`, `~workflow::in dev`, `~workflow::in review`, `~workflow::awaiting security release`, `~workflow::blocked` |
+| Next 1-3 Milestones | `%Next 1-3 Milestones` | `~workflow::problem validation`, `~workflow::design`, `~workflow::solution validation`, `~workflow::planning breakdown`, `~workflow::ready for development` |
+| Next 4-6 Milestones | `%Next 4-6 Milestones` | Same as Next 1-3 Milestones |
 
 ### Issue Milestones
 
