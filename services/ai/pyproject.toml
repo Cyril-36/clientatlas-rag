@@ -8,6 +8,17 @@ dependencies = [
     "uvicorn[standard]>=0.32.0",
     "pydantic>=2.9.0",
     "pydantic-settings>=2.6.0",
+    "pymupdf>=1.24.0",
+    "python-docx>=1.1.0",
+]
+
+# sentence-transformers pulls torch, which is roughly two gigabytes. Keeping it
+# out of the default dependency set means CI, the test suite and a first clone
+# stay fast; the deterministic embedding provider covers everything that does
+# not need real vectors. Install with `uv sync --extra ml` to embed for real.
+[project.optional-dependencies]
+ml = [
+    "sentence-transformers>=3.0.0",
 ]
 
 [dependency-groups]
@@ -46,6 +57,13 @@ warn_unreachable = true
 warn_unused_ignores = true
 disallow_any_generics = true
 files = ["app", "tests"]
+
+# PyMuPDF ships no py.typed marker, and sentence-transformers is an optional
+# extra that is absent in the default environment. Neither is a type error in
+# our code, and neither should be able to mask one.
+[[tool.mypy.overrides]]
+module = ["fitz.*", "sentence_transformers.*"]
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

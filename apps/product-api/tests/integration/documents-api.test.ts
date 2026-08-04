@@ -1,5 +1,8 @@
 import { randomUUID } from "node:crypto";
 
+import * as schema from "@clientatlas/database/schema";
+import { eq } from "drizzle-orm";
+
 import { afterAll, afterEach, beforeAll, describe, expect, it } from "vitest";
 
 import {
@@ -11,6 +14,7 @@ import {
   POST as uploadDocument,
 } from "@/app/api/workspaces/[workspaceId]/documents/route";
 import { getRuntimeSql } from "@/lib/database/client";
+import { withTenantContext } from "@/lib/database/tenant";
 import { resetServerEnvForTests } from "@/lib/env";
 
 import { createTenant, truncateTenantTables, type Tenant } from "./helpers/fixtures";
@@ -142,6 +146,24 @@ describe("uploading", () => {
     expect(body.status).toBe("queued");
     expect(body.originalFilename).toBe("handbook.pdf");
     expect(body.byteSize).toBe(PDF_BYTES.length);
+
+    await deleteDocument(plainRequest(alpha.token, "DELETE"), documentParams(body.id));
+  });
+
+  it("enqueues an ingestion job in the same transaction", async () => {
+    // Enqueuing after the commit would leave a document stuck at `queued` for
+    // ever if the process died in between, and nothing would notice.
+    const { body } = await upload(alpha, alpha.workspaceId);
+
+    const jobs = await withTenantContext(alpha.claims, (tx) =>
+      tx
+        .select({ status: schema.ingestionJobs.status })
+        .from(schema.ingestionJobs)
+        .where(eq(schema.ingestionJobs.documentId, body.id)),
+    );
+
+    expect(jobs).toHaveLength(1);
+    expect(jobs[0]?.status).toBe("queued");
 
     await deleteDocument(plainRequest(alpha.token, "DELETE"), documentParams(body.id));
   });

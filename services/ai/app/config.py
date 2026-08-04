@@ -29,6 +29,12 @@ class Settings(BaseSettings):
     embedding_model: str = EMBEDDING_MODEL
     embedding_dimensions: int = EMBEDDING_DIMENSIONS
 
+    # "minilm" loads the real model; "deterministic" produces correctly shaped
+    # but meaningless vectors for tests and CI. The response reports whichever
+    # actually ran, and the Node contract pins the model name to a literal — so
+    # deterministic vectors are refused rather than silently stored.
+    embedding_provider: Literal["minilm", "deterministic"] = "minilm"
+
     # Ollama runs natively on the host rather than in Docker: a Linux container
     # on Apple Silicon gets no GPU access and would fall back to CPU inference.
     ollama_base_url: str = "http://localhost:11434"

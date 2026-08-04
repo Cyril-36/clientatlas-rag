@@ -64,6 +64,13 @@
       "when": 1785795922314,
       "tag": "0008_ingestion_rls_and_indexes",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1785826321015,
+      "tag": "0009_worker_document_access",
+      "breakpoints": true
     }
   ]
 }

@@ -74,11 +74,9 @@ beforeAll(async () => {
     throw new Error("WORKER_DATABASE_URL is not set.");
   }
 
+  // No SET ROLE: privileges are granted directly to clientatlas_worker and its
+  // policies target that role, so every pooled connection already has them.
   worker = postgres(url, { max: 5, onnotice: () => {} });
-  // The worker role is NOINHERIT, so it must assume its granted role. Unlike a
-  // user request there are no claims to set — the worker's policies are keyed
-  // on the role itself, not on a JWT subject.
-  await worker`set role clientatlas_worker`;
 });
 
 beforeEach(async () => {

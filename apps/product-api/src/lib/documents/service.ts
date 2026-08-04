@@ -128,6 +128,16 @@ export async function createDocument(
       uploadedBy: context.claims.sub,
     });
 
+    // Enqueued in the same transaction as the version it refers to, so a
+    // document can never exist without the job that would index it. Enqueuing
+    // afterwards would leave a document stuck at `queued` for ever if the
+    // process died in between, and nothing would ever notice.
+    await tx.insert(schema.ingestionJobs).values({
+      organizationId: workspace.organizationId,
+      documentId,
+      documentVersionId: versionId,
+    });
+
     return { storagePath, organizationId: workspace.organizationId };
   });
 

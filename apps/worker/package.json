@@ -1,0 +1,29 @@
+{
+  "name": "@clientatlas/worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@clientatlas/contracts": "workspace:*",
+    "@clientatlas/database": "workspace:*",
+    "@supabase/supabase-js": "^2.112.0",
+    "drizzle-orm": "^0.45.2",
+    "postgres": "^3.4.7",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@clientatlas/config": "workspace:*",
+    "@types/node": "^20.19.9",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./process-job": "./src/process-job.ts"
+  }
+}

@@ -1,4 +1,4 @@
-import type { SupportedMediaType } from "@clientatlas/contracts";
+import { DOCUMENTS_BUCKET, type SupportedMediaType } from "@clientatlas/contracts";
 
 /**
  * Object paths for the `documents` bucket.
@@ -13,7 +13,8 @@ import type { SupportedMediaType } from "@clientatlas/contracts";
  * question of escaping but of never interpolating untrusted text at all.
  */
 
-export const DOCUMENTS_BUCKET = "documents";
+// Re-exported so callers of this module do not need two imports.
+export { DOCUMENTS_BUCKET };
 
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 
