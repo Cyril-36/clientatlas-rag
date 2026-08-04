@@ -1,0 +1,364 @@
+{
+  "version": "gitlab-handbook-v1",
+  "corpus": "gitlab-handbook-v1",
+  "questions": [
+    {
+      "id": "g01",
+      "category": "factual",
+      "question": "When does an incident's duration require public communication?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "engineering-infrastructure-platforms-incident-management",
+          "mustContain": "All incidents with a total duration of more than 5 minutes should be publicly communicated as quickly as possible"
+        }
+      ],
+      "notes": "Tests retrieval of a duration threshold rather than a generic incident keyword."
+    },
+    {
+      "id": "g02",
+      "category": "factual",
+      "question": "What remediation SLA applies to a vulnerability with a CVSSv3 score of 8.2?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "security-product-security-vulnerability-management-sla",
+          "mustContain": "7.0-8.9 (High) | `~severity::2` | `~priority::2` | N/A | 30 day SLA"
+        }
+      ],
+      "notes": "Requires mapping a numeric score to the correct severity band and SLA."
+    },
+    {
+      "id": "g03",
+      "category": "factual",
+      "question": "At what expense amount must a US team member submit a receipt?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "finance-expenses",
+          "mustContain": "US Team Members are required to only submit receipts for any expenses over $50 USD."
+        }
+      ],
+      "notes": "Tests a regional exception and a monetary threshold."
+    },
+    {
+      "id": "g04",
+      "category": "factual",
+      "question": "When does a sick absence become a leave of absence?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "people-group-time-off-and-absence-time-off-types",
+          "mustContain": "Sick absences that are 6 days or longer are considered a **leave of absence**."
+        }
+      ],
+      "notes": "Tests retrieval of the six-day condition in the time-off policy."
+    },
+    {
+      "id": "g05",
+      "category": "factual",
+      "question": "How is a change categorized if it will cause downtime in Production?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "engineering-infrastructure-platforms-change-management",
+          "mustContain": "If a change is going to cause downtime to the Production environment, it is always categorized a `C1`."
+        }
+      ],
+      "notes": "Requires applying the downtime condition to the criticality rule."
+    },
+    {
+      "id": "g06",
+      "category": "factual",
+      "question": "How should a system containing several data types be classified?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "security-policies-and-standards-data-classification-standard",
+          "mustContain": "the system should be classified at the highest data classification level of the data being stored"
+        }
+      ],
+      "notes": "Checks retrieval of the rule for combined data types."
+    },
+    {
+      "id": "g07",
+      "category": "factual",
+      "question": "When does planned PTO require special permission?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "people-group-time-off-and-absence-time-off-types",
+          "mustContain": "for time off exceeding 25 consecutive calendar days (including weekends and holidays), special permission is required"
+        }
+      ],
+      "notes": "Tests a threshold whose count includes weekends and holidays."
+    },
+    {
+      "id": "g08",
+      "category": "factual",
+      "question": "Can an expense more than 90 days old still be reimbursed, and under what condition?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "finance-expenses",
+          "mustContain": "Expense claims over 90 days from purchase date will not be reimbursed unless approved by the Manager."
+        }
+      ],
+      "notes": "Requires retrieving both the rule and its manager-approval exception."
+    },
+    {
+      "id": "g09",
+      "category": "factual",
+      "question": "Who can declare an incident resolved?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "engineering-infrastructure-platforms-incident-management",
+          "mustContain": "only the owner of the incident can declare an incident resolved"
+        }
+      ],
+      "notes": "Tests a precise incident ownership responsibility."
+    },
+    {
+      "id": "g10",
+      "category": "factual",
+      "question": "What is the normal completion deadline for offboarding deprovisioning tasks?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "people-group-offboarding-offboarding-standards",
+          "mustContain": "all tasks expected to be completed within 5 working days"
+        }
+      ],
+      "notes": "Checks the operational deadline in the offboarding standard."
+    },
+    {
+      "id": "g11",
+      "category": "multi_document",
+      "question": "For a High non-FedRAMP dependency vulnerability, what is the baseline remediation SLA and what relief is appropriate when the vendor delays the fix?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "security-product-security-vulnerability-management-sla",
+          "mustContain": "7.0-8.9 (High) | `~severity::2` | `~priority::2` | N/A | 30 day SLA"
+        },
+        {
+          "document": "security-product-security-vulnerability-management-sla-exceptions",
+          "mustContain": "An exception to extend the SLA is appropriate in this case."
+        }
+      ],
+      "notes": "Combines the baseline severity SLA with the separate exception procedure for delayed vendor fixes."
+    },
+    {
+      "id": "g12",
+      "category": "multi_document",
+      "question": "What approvals are needed for a $2,000 conference registration and its business-critical travel?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "people-group-learning-and-development-growth-and-development",
+          "mustContain": "Manager + VP approval: $1,000.01 - $10,000"
+        },
+        {
+          "document": "finance-expenses",
+          "mustContain": "Team Members must receive Manager approval for any proposed business critical trips."
+        }
+      ],
+      "notes": "Requires the G&D cost tier and the separate travel-policy approval rule."
+    },
+    {
+      "id": "g13",
+      "category": "multi_document",
+      "question": "When are offboarding cases created, and how long do departments normally have to finish their tasks?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "people-group-offboarding",
+          "mustContain": "the Offboarding Parent and Child Cases will be created in HelpLab."
+        },
+        {
+          "document": "people-group-offboarding-offboarding-standards",
+          "mustContain": "all tasks expected to be completed within 5 working days"
+        }
+      ],
+      "notes": "Joins the workflow trigger on the general page to the deadline in the standards page."
+    },
+    {
+      "id": "g14",
+      "category": "multi_document",
+      "question": "Which two special rules apply when planning scheduled maintenance classified as C1?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "engineering-infrastructure-platforms-change-management",
+          "mustContain": "planned infrastructure changes - require a minimum 2-week lead time"
+        },
+        {
+          "document": "engineering-infrastructure-platforms-incident-management",
+          "mustContain": "Scheduled maintenance that is a `C1` should be treated as an undeclared incident."
+        }
+      ],
+      "notes": "Combines the change-planning lead time with the incident-management treatment."
+    },
+    {
+      "id": "g15",
+      "category": "multi_document",
+      "question": "How should an access token be classified, and what storage precaution applies when using it from a command line?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "security-policies-and-standards-data-classification-standard",
+          "mustContain": "derive their classification from the highest classification of the data they protect."
+        },
+        {
+          "document": "security-password-guidelines",
+          "mustContain": "Avoid storing secrets in unencrypted files or using them directly on the CLI."
+        }
+      ],
+      "notes": "Requires both the data-classification rule and the separate operational storage guidance."
+    },
+    {
+      "id": "g16",
+      "category": "ambiguous",
+      "question": "What can the term SLA refer to in this handbook?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "engineering-infrastructure-platforms-gitlab-dedicated",
+          "mustContain": "Availability SLA commitments to the customer"
+        },
+        {
+          "document": "security-product-security-vulnerability-management-sla",
+          "mustContain": "track the time from detection to remediation and fix availability for vulnerability findings"
+        }
+      ],
+      "notes": "Captures SLA as a customer availability commitment and as an internal vulnerability-remediation timeframe."
+    },
+    {
+      "id": "g17",
+      "category": "ambiguous",
+      "question": "What responsibilities can an owner have in incident management and data classification?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "engineering-infrastructure-platforms-incident-management",
+          "mustContain": "only the owner of the incident can declare an incident resolved"
+        },
+        {
+          "document": "security-policies-and-standards-data-classification-standard",
+          "mustContain": "Data Owners shall determine the classification of data in accordance with this standard."
+        }
+      ],
+      "notes": "Distinguishes ownership of an incident from ownership of a data type."
+    },
+    {
+      "id": "g18",
+      "category": "ambiguous",
+      "question": "What are the two meanings of Critical in the incident and vulnerability severity schemes?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "engineering-infrastructure-platforms-incident-management",
+          "mustContain": "Severity:1 **Critical** | **Customer Impact:**"
+        },
+        {
+          "document": "security-product-security-vulnerability-management-sla",
+          "mustContain": "9.0-10.0 (Critical) | `~severity::1` | `~priority::1`"
+        }
+      ],
+      "notes": "Separates an operational incident impact level from a CVSS vulnerability score band."
+    },
+    {
+      "id": "g19",
+      "category": "missing",
+      "question": "What reimbursement rate per kilometer applies to bicycle travel on company business?",
+      "answerable": false,
+      "expected": [],
+      "notes": "The expense material discusses travel and mileage but gives no bicycle-per-kilometer rate; the whole corpus was searched."
+    },
+    {
+      "id": "g20",
+      "category": "missing",
+      "question": "Which courier must an offboarding team member in India use to return a GitLab laptop?",
+      "answerable": false,
+      "expected": [],
+      "notes": "The offboarding pages require laptop return and provide a contact address but specify no India courier; the whole corpus was searched."
+    },
+    {
+      "id": "g21",
+      "category": "missing",
+      "question": "How many failed WebAuthn attempts cause an Okta account lockout?",
+      "answerable": false,
+      "expected": [],
+      "notes": "Authentication methods are documented, but no failed-attempt lockout threshold appears anywhere in the corpus."
+    },
+    {
+      "id": "g22",
+      "category": "missing",
+      "question": "How many days are incident Slack channel messages retained?",
+      "answerable": false,
+      "expected": [],
+      "notes": "Incident channels and communication are covered, but no message-retention duration appears in the whole corpus."
+    },
+    {
+      "id": "g23",
+      "category": "missing",
+      "question": "What fixed maximum price in Indian rupees applies specifically to an ergonomic office chair?",
+      "answerable": false,
+      "expected": [],
+      "notes": "The expense policy covers chairs and a general home-office allowance but contains no chair-specific INR cap; the whole corpus was searched."
+    },
+    {
+      "id": "g24",
+      "category": "citation_correctness",
+      "question": "Is SMS recommended as a second authentication factor?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "security-password-guidelines",
+          "mustContain": "If any systems provide an option to use SMS text as a second factor, this is highly discouraged."
+        }
+      ],
+      "notes": "Negative answer with a single, tightly scoped source passage."
+    },
+    {
+      "id": "g25",
+      "category": "citation_correctness",
+      "question": "Are phones reimbursable from the home-office equipment allowance?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "finance-expenses",
+          "mustContain": "the following items are not reimbursable: Phones, watches, smart speakers"
+        }
+      ],
+      "notes": "Negative answer designed to catch a citation to the adjacent list of allowed equipment."
+    },
+    {
+      "id": "g26",
+      "category": "citation_correctness",
+      "question": "May a team member substitute PTO for sick time?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "people-group-time-off-and-absence-time-off-types",
+          "mustContain": "Team members are not allowed to substitute PTO for sick time."
+        }
+      ],
+      "notes": "Negative answer that must cite the explicit prohibition rather than the general flexible-PTO language."
+    },
+    {
+      "id": "g27",
+      "category": "citation_correctness",
+      "question": "Can team members purchase home-office equipment from private sellers?",
+      "answerable": true,
+      "expected": [
+        {
+          "document": "finance-expenses",
+          "mustContain": "Purchasing from Private Sellers (e.g. either new or used equipment) is allowed."
+        }
+      ],
+      "notes": "Short positive fact placed near multiple reimbursement restrictions, testing precise citation selection."
+    }
+  ]
+}

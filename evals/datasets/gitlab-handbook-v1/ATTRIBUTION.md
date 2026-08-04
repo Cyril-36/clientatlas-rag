@@ -1,0 +1,212 @@
+# Attribution
+
+This dataset contains material from the GitLab Handbook, sourced from:
+https://gitlab.com/gitlab-com/content-sites/handbook (the `content/handbook/` directory).
+
+The source material is licensed under the CC BY-SA 4.0 licence. It was retrieved on 2026-08-04.
+The source text is unmodified. This derivative dataset is redistributed under the same CC BY-SA 4.0 licence.
+
+Licence: https://creativecommons.org/licenses/by-sa/4.0/
+
+## Included pages
+
+- **Engineering** (`engineering`): https://handbook.gitlab.com/handbook/engineering/
+- **AI Model Services Group** (`engineering-ai-ai-model-services`): https://handbook.gitlab.com/handbook/engineering/ai/ai-model-services/
+- **Activation Engine** (`engineering-architecture-design-documents-activation-engine`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/activation_engine/
+- **Repository-Backed Authoring for the AI Catalog** (`engineering-architecture-design-documents-ai-catalog-repository-authoring`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/ai_catalog_repository_authoring/
+- **AI-gateway** (`engineering-architecture-design-documents-ai-gateway`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/ai_gateway/
+- **AI Panel** (`engineering-architecture-design-documents-ai-panel`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/ai_panel/
+- **Artifact Registry** (`engineering-architecture-design-documents-artifact-registry`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/artifact_registry/
+- **Artifact Registry and Organizations interface agreement** (`engineering-architecture-design-documents-artifact-registry-agreements-organizations`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/artifact_registry/agreements/organizations/
+- **Artifact Registry ADR 007: Database Schema** (`engineering-architecture-design-documents-artifact-registry-decisions-007-database-schema`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/artifact_registry/decisions/007_database_schema/
+- **Artifact Registry ADR 008: Content-Addressable Storage** (`engineering-architecture-design-documents-artifact-registry-decisions-008-content-addressable-storage`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/artifact_registry/decisions/008_content_addressable_storage/
+- **Artifact Registry ADR 009: API Design** (`engineering-architecture-design-documents-artifact-registry-decisions-009-api-design`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/artifact_registry/decisions/009_api_design/
+- **Artifact Registry ADR 021: Authorization** (`engineering-architecture-design-documents-artifact-registry-decisions-021-authorization`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/artifact_registry/decisions/021_authorization/
+- **Artifact Registry ADR 023: Code Structure and Enforcement** (`engineering-architecture-design-documents-artifact-registry-decisions-023-code-structure-and-enforcement`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/artifact_registry/decisions/023_code_structure_and_enforcement/
+- **Migrate audit event streaming to NATS-based event delivery** (`engineering-architecture-design-documents-audit-events-streaming-using-nats`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/audit_events_streaming_using_nats/
+- **AutoDevOps v2** (`engineering-architecture-design-documents-autodevops-v2`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/autodevops_v2/
+- **Backup and Restore GitLab** (`engineering-architecture-design-documents-backup-and-restore`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/backup_and_restore/
+- **End-to-End Testing with Playwright in the Customers Portal** (`engineering-architecture-design-documents-cdot-e2e-tests`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/cdot_e2e_tests/
+- **Cells: Goals** (`engineering-architecture-design-documents-cells-goals`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/cells/goals/
+- **Cells: HTTP Routing Service** (`engineering-architecture-design-documents-cells-http-routing-service`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/cells/http_routing_service/
+- **Application Deployment with a Cellular Architecture** (`engineering-architecture-design-documents-cells-infrastructure-deployments`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/cells/infrastructure/deployments/
+- **Database Platform** (`engineering-architecture-design-documents-cells-infrastructure-postgresql`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/cells/infrastructure/postgresql/
+- **Cells: 1.0** (`engineering-architecture-design-documents-cells-iterations-cells-1-0`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/cells/iterations/cells-1.0/
+- **Cells: Topology Service** (`engineering-architecture-design-documents-cells-topology-service`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/cells/topology_service/
+- **Topology Service Transactional Behavior** (`engineering-architecture-design-documents-cells-topology-service-transactional-behavior`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/cells/topology_service_transactional_behavior/
+- **Pipeline data partitioning design** (`engineering-architecture-design-documents-ci-data-decay-pipeline-partitioning`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/ci_data_decay/pipeline_partitioning/
+- **CI Job Telemetry Reporting** (`engineering-architecture-design-documents-ci-job-telemetry`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/ci_job_telemetry/
+- **Code Review database size reduction for GitLab.com** (`engineering-architecture-design-documents-code-review-database-size-reduction`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/code_review_database_size_reduction/
+- **Use Zoekt For code search** (`engineering-architecture-design-documents-code-search-with-zoekt`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/code_search_with_zoekt/
+- **Composable GitLab Codebase** (`engineering-architecture-design-documents-composable-codebase-using-rails-engines`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/composable_codebase_using_rails_engines/
+- **Configurable Work Item Types** (`engineering-architecture-design-documents-configurable-work-item-types`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/configurable_work_item_types/
+- **Data Insights Platform Querying API** (`engineering-architecture-design-documents-data-insights-platform-querying-api`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/data_insights_platform_querying_api/
+- **GitLab Duo Workflow** (`engineering-architecture-design-documents-duo-workflow`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/duo_workflow/
+- **Feature Gates - A framework for feature rollout and access control** (`engineering-architecture-design-documents-feature-gates`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/feature_gates/
+- **Transaction management in Gitaly** (`engineering-architecture-design-documents-gitaly-transaction-management`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/gitaly_transaction_management/
+- **GitLab CD: Deployment Execution** (`engineering-architecture-design-documents-gitlab-cd-cd-execution`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/gitlab_cd/cd_execution/
+- **GitLab CD: Rails** (`engineering-architecture-design-documents-gitlab-cd-rails`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/gitlab_cd/rails/
+- **GitLab Data Exploration and Querying Architecture** (`engineering-architecture-design-documents-gitlab-data-exploration`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/gitlab_data_exploration/
+- **Introducing a Messaging Layer to the GitLab Application** (`engineering-architecture-design-documents-gitlab-messaging-layer`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/gitlab_messaging_layer/
+- **The CI Steps Expression Language** (`engineering-architecture-design-documents-gitlab-steps-expression-language`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/gitlab_steps/expression-language/
+- **Group and Project Operations ADR 003: State Propagation Model** (`engineering-architecture-design-documents-group-and-project-operations-and-state-management-decisions-003-state-propagation-model`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/group_and_project_operations_and_state_management/decisions/003_state_propagation_model/
+- **Iterate on the design of object pools** (`engineering-architecture-design-documents-object-pools`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/object_pools/
+- **Organization Data Migration: DMS blueprint** (`engineering-architecture-design-documents-organization-data-migration-dms-blueprint`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/organization-data-migration/dms-blueprint/
+- **Organizations ADR 010: Organization Read-Only Mode** (`engineering-architecture-design-documents-organization-decisions-010-organization-read-only-mode`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/organization/decisions/010_organization_read_only_mode/
+- **Organizations ADR 011: Universal Onboarding Workflow** (`engineering-architecture-design-documents-organization-decisions-011-onboarding`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/organization/decisions/011_onboarding/
+- **Pipelines Table Redesign and GraphQL Migration** (`engineering-architecture-design-documents-pipelines-table-redesign`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/pipelines_table_redesign/
+- **Security Policies v2: Database-First Policy Management** (`engineering-architecture-design-documents-policies-v2`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/policies_v2/
+- **Reusable Rapid Diffs (RRD)** (`engineering-architecture-design-documents-rapid-diffs`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/rapid_diffs/
+- **Runner Managers on Kubernetes** (`engineering-architecture-design-documents-runner-managers-kubernetes`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/runner_managers_kubernetes/
+- **Next GitLab Runner Token Architecture** (`engineering-architecture-design-documents-runner-tokens`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/runner_tokens/
+- **Scaling Git** (`engineering-architecture-design-documents-scaling-git`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/scaling-git/
+- **GitLab Secrets Manager** (`engineering-architecture-design-documents-secret-manager`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/secret_manager/
+- **GitLab Secrets Manager ADR 008: Redesigning secrets manager without a Rails database table** (`engineering-architecture-design-documents-secret-manager-decisions-008-no-database`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/secret_manager/decisions/008_no_database/
+- **Segmenting Self-Managed for a Cloud Native Future** (`engineering-architecture-design-documents-selfmanaged-segmentation`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/selfmanaged_segmentation/
+- **Siphon** (`engineering-architecture-design-documents-siphon`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/siphon/
+- **Teams** (`engineering-architecture-design-documents-teams`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/teams/
+- **Theseus Platform Vision** (`engineering-architecture-design-documents-theseus-platform-vision`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/theseus_platform_vision/
+- **Unified Rate Limiting Architecture** (`engineering-architecture-design-documents-unified-rate-limiting`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/unified_rate_limiting/
+- **Configurable Work Item Statuses** (`engineering-architecture-design-documents-work-items-custom-status`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/work_items_custom_status/
+- **Work Item Framework Engineering Vision** (`engineering-architecture-design-documents-work-items-framework-vision`): https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/work_items_framework_vision/
+- **Engineering Career Development** (`engineering-careers`): https://handbook.gitlab.com/handbook/engineering/careers/
+- **Optimize Group** (`engineering-data-engineering-analytics-optimize`): https://handbook.gitlab.com/handbook/engineering/data-engineering/analytics/optimize/
+- **Fulfillment Utilization Team** (`engineering-development-fulfillment-utilization`): https://handbook.gitlab.com/handbook/engineering/development/fulfillment/utilization/
+- **Trials Ownership and Collaboration Framework** (`engineering-development-growth-trials-ownership`): https://handbook.gitlab.com/handbook/engineering/development/growth/trials-ownership/
+- **Data model for Dependencies Information** (`engineering-development-sec-secure-tech-docs-data-model-for-dependencies-information`): https://handbook.gitlab.com/handbook/engineering/development/sec/secure/tech-docs/data-model-for-dependencies-information/
+- **Security Risk Management, Security Insights** (`engineering-development-sec-security-risk-management-security-insights`): https://handbook.gitlab.com/handbook/engineering/development/sec/security-risk-management/security-insights/
+- **Authentication Group** (`engineering-development-sec-software-supply-chain-security-authentication`): https://handbook.gitlab.com/handbook/engineering/development/sec/software-supply-chain-security/authentication/
+- **Compliance Group** (`engineering-development-sec-software-supply-chain-security-compliance`): https://handbook.gitlab.com/handbook/engineering/development/sec/software-supply-chain-security/compliance/
+- **Create** (`engineering-devops-create`): https://handbook.gitlab.com/handbook/engineering/devops/create/
+- **Create:Remote Development Group** (`engineering-devops-create-remote-development`): https://handbook.gitlab.com/handbook/engineering/devops/create/remote-development/
+- **Create:Source Code BE Team** (`engineering-devops-create-source-code-backend`): https://handbook.gitlab.com/handbook/engineering/devops/create/source-code/backend/
+- **Plan** (`engineering-devops-plan`): https://handbook.gitlab.com/handbook/engineering/devops/plan/
+- **Environments Group** (`engineering-devops-runner-environments`): https://handbook.gitlab.com/handbook/engineering/devops/runner/environments/
+- **Change Management** (`engineering-infrastructure-platforms-change-management`): https://handbook.gitlab.com/handbook/engineering/infrastructure-platforms/change-management/
+- **Triage Operations** (`engineering-infrastructure-platforms-developer-experience-triage-operations`): https://handbook.gitlab.com/handbook/engineering/infrastructure-platforms/developer-experience/triage-operations/
+- **GitLab Dedicated Group** (`engineering-infrastructure-platforms-gitlab-dedicated`): https://handbook.gitlab.com/handbook/engineering/infrastructure-platforms/gitlab-dedicated/
+- **Release & Deploy group** (`engineering-infrastructure-platforms-gitlab-delivery-delivery`): https://handbook.gitlab.com/handbook/engineering/infrastructure-platforms/gitlab-delivery/delivery/
+- **Incident Management** (`engineering-infrastructure-platforms-incident-management`): https://handbook.gitlab.com/handbook/engineering/infrastructure-platforms/incident-management/
+- **Component Ownership Model** (`engineering-infrastructure-platforms-production-component-ownership-model`): https://handbook.gitlab.com/handbook/engineering/infrastructure-platforms/production/component-ownership-model/
+- **Geo and Disaster Recovery - Planning** (`engineering-infrastructure-platforms-tenant-scale-geo-process`): https://handbook.gitlab.com/handbook/engineering/infrastructure-platforms/tenant-scale/geo/process/
+- **PREP Performance Metrics Guide** (`engineering-testing-prep-performance-metrics`): https://handbook.gitlab.com/handbook/engineering/testing/prep-performance-metrics/
+- **Finance** (`finance`): https://handbook.gitlab.com/handbook/finance/
+- **Accounting and Reporting** (`finance-accounting`): https://handbook.gitlab.com/handbook/finance/accounting/
+- **Navan Purchasing Card** (`finance-accounts-payable-corp-credit-cards`): https://handbook.gitlab.com/handbook/finance/accounts-payable/corp-credit-cards/
+- **Virtual Card Guide for Accounts Payable** (`finance-accounts-payable-coupa-virtual-card-guide-for-accounts-payable`): https://handbook.gitlab.com/handbook/finance/accounts-payable/coupa-virtual-card-guide-for-accounts-payable/
+- **Committee Composition** (`finance-committee-composition`): https://handbook.gitlab.com/handbook/finance/committee-composition/
+- **Global Travel and Expense Policy** (`finance-expenses`): https://handbook.gitlab.com/handbook/finance/expenses/
+- **Financial Planning & Analysis** (`finance-financial-planning-and-analysis`): https://handbook.gitlab.com/handbook/finance/financial-planning-and-analysis/
+- **Adaptive Insights** (`finance-financial-planning-and-analysis-adaptive-insights`): https://handbook.gitlab.com/handbook/finance/financial-planning-and-analysis/adaptive-insights/
+- **Headcount Metrics and Processes** (`finance-financial-planning-and-analysis-headcount-metrics-and-processes`): https://handbook.gitlab.com/handbook/finance/financial-planning-and-analysis/headcount-metrics-and-processes/
+- **Finance Growth and Development** (`finance-growth-and-development`): https://handbook.gitlab.com/handbook/finance/growth-and-development/
+- **CFO Shadow Program** (`finance-growth-and-development-cfo-shadow-program`): https://handbook.gitlab.com/handbook/finance/growth-and-development/cfo-shadow-program/
+- **Finance Mentorship Program** (`finance-growth-and-development-mentorship`): https://handbook.gitlab.com/handbook/finance/growth-and-development/mentorship/
+- **Investor Relations** (`finance-investor-relations`): https://handbook.gitlab.com/handbook/finance/investor-relations/
+- **JiHu Support** (`finance-jihu-support`): https://handbook.gitlab.com/handbook/finance/jihu-support/
+- **JiHu guidelines for database changes** (`finance-jihu-support-jihu-database-change-process`): https://handbook.gitlab.com/handbook/finance/jihu-support/jihu-database-change-process/
+- **Release Certification** (`finance-jihu-support-release-certification`): https://handbook.gitlab.com/handbook/finance/jihu-support/release-certification/
+- **The GitLab Procurement Team** (`finance-procurement`): https://handbook.gitlab.com/handbook/finance/procurement/
+- **Contingent Worker Policy** (`finance-procurement-contingent-worker-policy`): https://handbook.gitlab.com/handbook/finance/procurement/contingent-worker-policy/
+- **Coupa FAQ** (`finance-procurement-coupa-faq`): https://handbook.gitlab.com/handbook/finance/procurement/coupa-faq/
+- **Tips for Submitting a Zip Request** (`finance-procurement-tips-for-submitting-a-zip-request`): https://handbook.gitlab.com/handbook/finance/procurement/tips-for-submitting-a-zip-request/
+- **Legacy Vendor Terms and Conditions v1** (`finance-procurement-vendor-guidelines-legacy-vendor-agreement-v1`): https://handbook.gitlab.com/handbook/finance/procurement/vendor-guidelines/legacy-vendor-agreement-v1/
+- **MUTUAL NON-DISCLOSURE AGREEMENT** (`finance-procurement-vendor-guidelines-mutual-non-disclosure-agreement`): https://handbook.gitlab.com/handbook/finance/procurement/vendor-guidelines/mutual-non-disclosure-agreement/
+- **PURCHASE ORDER TERMS AND CONDITIONS** (`finance-procurement-vendor-guidelines-po-terms`): https://handbook.gitlab.com/handbook/finance/procurement/vendor-guidelines/po-terms/
+- **Vendor Terms and Conditions** (`finance-procurement-vendor-guidelines-vendor-agreement`): https://handbook.gitlab.com/handbook/finance/procurement/vendor-guidelines/vendor-agreement/
+- **GitLab Vendor Security Addendum** (`finance-procurement-vendor-guidelines-vendor-security-addendum`): https://handbook.gitlab.com/handbook/finance/procurement/vendor-guidelines/vendor-security-addendum/
+- **Jessica Ross - CFO - READ ME** (`finance-readmes-jessica-ross`): https://handbook.gitlab.com/handbook/finance/readmes/jessica-ross/
+- **Simon Mundy's README** (`finance-readmes-simon-mundy`): https://handbook.gitlab.com/handbook/finance/readmes/simon-mundy/
+- **Yao Chew's README** (`finance-readmes-yao-chew`): https://handbook.gitlab.com/handbook/finance/readmes/yao-chew/
+- **The GitLab Tax Team** (`finance-tax`): https://handbook.gitlab.com/handbook/finance/tax/
+- **Sponsored Travel** (`finance-travel-sponsored`): https://handbook.gitlab.com/handbook/finance/travel/sponsored/
+- **360 Feedback** (`people-group-360-feedback`): https://handbook.gitlab.com/handbook/people-group/360-feedback/
+- **GitLab Internal Acceptable Use Policy** (`people-group-acceptable-use-policy`): https://handbook.gitlab.com/handbook/people-group/acceptable-use-policy/
+- **Anti-Harassment Policy** (`people-group-anti-harassment`): https://handbook.gitlab.com/handbook/people-group/anti-harassment/
+- **New Hires, Celebrations and Significant Life Events** (`people-group-celebrations`): https://handbook.gitlab.com/handbook/people-group/celebrations/
+- **Contracts, Background Screenings, Probation Periods & PIAA** (`people-group-contracts-probation-periods`): https://handbook.gitlab.com/handbook/people-group/contracts-probation-periods/
+- **Directly Responsible Individuals (DRI)** (`people-group-directly-responsible-individuals`): https://handbook.gitlab.com/handbook/people-group/directly-responsible-individuals/
+- **Talent brand** (`people-group-employment-branding`): https://handbook.gitlab.com/handbook/people-group/employment-branding/
+- **People communications & team member engagement** (`people-group-employment-branding-people-communications`): https://handbook.gitlab.com/handbook/people-group/employment-branding/people-communications/
+- **Employment Solutions - Overview** (`people-group-employment-solutions`): https://handbook.gitlab.com/handbook/people-group/employment-solutions/
+- **Engagement Surveys and Employer Awards** (`people-group-engagement`): https://handbook.gitlab.com/handbook/people-group/engagement/
+- **TaNewKi Tips** (`people-group-general-onboarding-tanewki-tips`): https://handbook.gitlab.com/handbook/people-group/general-onboarding/tanewki-tips/
+- **Talent Development** (`people-group-learning-and-development`): https://handbook.gitlab.com/handbook/people-group/learning-and-development/
+- **Career Development and Mobility** (`people-group-learning-and-development-career-development`): https://handbook.gitlab.com/handbook/people-group/learning-and-development/career-development/
+- **ElevatePrep** (`people-group-learning-and-development-elevate-programs-elevate-prep`): https://handbook.gitlab.com/handbook/people-group/learning-and-development/elevate-programs/elevate-prep/
+- **Elevate** (`people-group-learning-and-development-elevate-programs-elevate`): https://handbook.gitlab.com/handbook/people-group/learning-and-development/elevate-programs/elevate/
+- **Elevate+** (`people-group-learning-and-development-elevate-programs-elevateplus`): https://handbook.gitlab.com/handbook/people-group/learning-and-development/elevate-programs/elevateplus/
+- **Growth and Development Fund** (`people-group-learning-and-development-growth-and-development`): https://handbook.gitlab.com/handbook/people-group/learning-and-development/growth-and-development/
+- **Tax Impacts of Different Growth & Development Benefits** (`people-group-learning-and-development-growth-and-development-tax`): https://handbook.gitlab.com/handbook/people-group/learning-and-development/growth-and-development/tax/
+- **Hone Partnership** (`people-group-learning-and-development-hone`): https://handbook.gitlab.com/handbook/people-group/learning-and-development/hone/
+- **Internship for Learning** (`people-group-learning-and-development-internship-for-learning`): https://handbook.gitlab.com/handbook/people-group/learning-and-development/internship-for-learning/
+- **LevelUp** (`people-group-learning-and-development-level-up`): https://handbook.gitlab.com/handbook/people-group/learning-and-development/level-up/
+- **GitLab Offboarding** (`people-group-offboarding`): https://handbook.gitlab.com/handbook/people-group/offboarding/
+- **GitLab Offboarding FAQ** (`people-group-offboarding-faq`): https://handbook.gitlab.com/handbook/people-group/offboarding/faq/
+- **GitLab Offboarding Standards** (`people-group-offboarding-offboarding-standards`): https://handbook.gitlab.com/handbook/people-group/offboarding/offboarding_standards/
+- **Organizational Change Management** (`people-group-organizational-change-management`): https://handbook.gitlab.com/handbook/people-group/organizational-change-management/
+- **Gender and Sexual Orientation Identity Definitions and FAQ** (`people-group-orientation-identity`): https://handbook.gitlab.com/handbook/people-group/orientation-identity/
+- **GitLab People Operations Team** (`people-group-people-operations`): https://handbook.gitlab.com/handbook/people-group/people-operations/
+- **People Analytics Data Governance** (`people-group-people-ops-tech-analytics-people-analytics-data-governance`): https://handbook.gitlab.com/handbook/people-group/people-ops-tech-analytics/people-analytics/data-governance/
+- **Data Guide to People Data Analysis** (`people-group-people-ops-tech-analytics-people-analytics-data-guide`): https://handbook.gitlab.com/handbook/people-group/people-ops-tech-analytics/people-analytics/data-guide/
+- **People Analytics Office Hours** (`people-group-people-ops-tech-analytics-people-analytics-office-hours`): https://handbook.gitlab.com/handbook/people-group/people-ops-tech-analytics/people-analytics/office-hours/
+- **People Analytics Survey Support** (`people-group-people-ops-tech-analytics-people-analytics-survey-support`): https://handbook.gitlab.com/handbook/people-group/people-ops-tech-analytics/people-analytics/survey-support/
+- **Promotions and Transfers** (`people-group-promotions-transfers`): https://handbook.gitlab.com/handbook/people-group/promotions-transfers/
+- **Pronoun Guidance and Information** (`people-group-pronouns`): https://handbook.gitlab.com/handbook/people-group/pronouns/
+- **Quarterly Talent Review (QTR)** (`people-group-quarterly-talent-review`): https://handbook.gitlab.com/handbook/people-group/quarterly-talent-review/
+- **Relocation** (`people-group-relocation`): https://handbook.gitlab.com/handbook/people-group/relocation/
+- **Talent Assessment** (`people-group-talent-assessment`): https://handbook.gitlab.com/handbook/people-group/talent-assessment/
+- **Leave Types** (`people-group-time-off-and-absence-leave-types`): https://handbook.gitlab.com/handbook/people-group/time-off-and-absence/leave-types/
+- **Time Away Philosophy** (`people-group-time-off-and-absence-time-away-philosophy`): https://handbook.gitlab.com/handbook/people-group/time-off-and-absence/time-away-philosophy/
+- **Time Off Types** (`people-group-time-off-and-absence-time-off-types`): https://handbook.gitlab.com/handbook/people-group/time-off-and-absence/time-off-types/
+- **Visas** (`people-group-visas`): https://handbook.gitlab.com/handbook/people-group/visas/
+- **Corporate Security USB Device Encryption Guide** (`security-corporate-support-usb-encryption`): https://handbook.gitlab.com/handbook/security/corporate/support/usb-encryption/
+- **Linux Desktop OS Setup Guide** (`security-corporate-systems-linux-setup`): https://handbook.gitlab.com/handbook/security/corporate/systems/linux/setup/
+- **Okta App Nomenclature** (`security-corporate-systems-okta-app-nomenclature`): https://handbook.gitlab.com/handbook/security/corporate/systems/okta/app/nomenclature/
+- **Okta Group Nomenclature** (`security-corporate-systems-okta-group-nomenclature`): https://handbook.gitlab.com/handbook/security/corporate/systems/okta/group/nomenclature/
+- **Okta-Workday Sync** (`security-corporate-systems-okta-okta-workday`): https://handbook.gitlab.com/handbook/security/corporate/systems/okta/okta-workday/
+- **Yubikey Self-Service Purchasing Guide** (`security-corporate-systems-yubikey-purchasing`): https://handbook.gitlab.com/handbook/security/corporate/systems/yubikey/purchasing/
+- **Engaging with Security** (`security-engaging-with-security`): https://handbook.gitlab.com/handbook/security/engaging-with-security/
+- **Setting up external secret storage with Vault** (`security-external-secret-storage`): https://handbook.gitlab.com/handbook/security/external-secret-storage/
+- **Identity and Access Management (IAM) v3** (`security-identity`): https://handbook.gitlab.com/handbook/security/identity/
+- **Okta Configuration Management** (`security-identity-gitops-okta`): https://handbook.gitlab.com/handbook/security/identity/gitops/okta/
+- **Identity Infrastructure Management** (`security-identity-infrastructure`): https://handbook.gitlab.com/handbook/security/identity/infrastructure/
+- **Identity Platform** (`security-identity-platform`): https://handbook.gitlab.com/handbook/security/identity/platform/
+- **Security Internship** (`security-internship`): https://handbook.gitlab.com/handbook/security/internship/
+- **Information Security and Artificial Intelligence Management System** (`security-isms`): https://handbook.gitlab.com/handbook/security/isms/
+- **GitLab Password Guidelines** (`security-password-guidelines`): https://handbook.gitlab.com/handbook/security/password-guidelines/
+- **GitLab Data Classification Standard** (`security-policies-and-standards-data-classification-standard`): https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/
+- **Records Retention & Disposal** (`security-policies-and-standards-records-retention-deletion`): https://handbook.gitlab.com/handbook/security/policies_and_standards/records-retention-deletion/
+- **GitLab Token Management Standard** (`security-policies-and-standards-token-management-standard`): https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/
+- **HackerOne Process** (`security-product-security-psirt-runbooks-hackerone-process`): https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/hackerone-process/
+- **Application Security Review Process** (`security-product-security-security-platforms-architecture-application-security-appsec-reviews`): https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/
+- **GitLab Application Security Inventory** (`security-product-security-security-platforms-architecture-application-security-inventory`): https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/inventory/
+- **Application Security - Capacity Indicators, Classifications, and Workflows** (`security-product-security-security-platforms-architecture-application-security-metrics-capacity`): https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/metrics/capacity/
+- **Reproducible Vulnerabilities** (`security-product-security-security-platforms-architecture-application-security-reproducible-vulnerabilities`): https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/reproducible-vulnerabilities/
+- **Automated MR Security Reviewer** (`security-product-security-security-platforms-architecture-application-security-secure-code-review-automated-mr-reviewer`): https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/secure-code-review/automated-mr-reviewer/
+- **Threat Modeling** (`security-product-security-security-platforms-architecture-application-security-threat-modeling`): https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/threat-modeling/
+- **Threat Modeling HowTo** (`security-product-security-security-platforms-architecture-application-security-threat-modeling-howto`): https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/threat-modeling/howto/
+- **Product Security Engineering** (`security-product-security-security-platforms-architecture-product-security-engineering`): https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/product-security-engineering/
+- **Product Security Risk Register** (`security-product-security-security-platforms-architecture-risk-register`): https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/risk-register/
+- **ProdSec to Product Process** (`security-product-security-security-platforms-architecture-security-interlock-prodsec-to-product-workflow`): https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-interlock/prodsec-to-product-workflow/
+- **Security Research** (`security-product-security-security-platforms-architecture-security-research`): https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-research/
+- **Security Review Framework** (`security-product-security-security-review-framework`): https://handbook.gitlab.com/handbook/security/product-security/security-review-framework/
+- **Vulnerability Management Code Review and Development Standard** (`security-product-security-vulnerability-management-development-and-code-review`): https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/development-and-code-review/
+- **Infrastructure Vulnerability Management Procedure** (`security-product-security-vulnerability-management-infrastructure-vulnerability-procedure`): https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/infrastructure-vulnerability-procedure/
+- **SLA exceptions** (`security-product-security-vulnerability-management-sla-exceptions`): https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/sla-exceptions/
+- **Vulnerability Resolution SLAs** (`security-product-security-vulnerability-management-sla`): https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/sla/
+- **Phishing Program** (`security-security-assurance-governance-phishing`): https://handbook.gitlab.com/handbook/security/security-assurance/governance/phishing/
+- **Security Assurance Automation** (`security-security-assurance-governance-security-assurance-automation`): https://handbook.gitlab.com/handbook/security/security-assurance/governance/security-assurance-automation/
+- **Observation Management Procedure** (`security-security-assurance-observation-management-procedure`): https://handbook.gitlab.com/handbook/security/security-assurance/observation-management-procedure/
+- **Access Review Procedure** (`security-security-assurance-security-compliance-access-reviews`): https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/access-reviews/
+- **Automated Evidence Collection and Control Testing** (`security-security-assurance-security-compliance-automated-control-testing`): https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/automated-control-testing/
+- **FedRAMP Vulnerability Deviation Request Procedure** (`security-security-assurance-security-compliance-poam-deviation-request-procedure`): https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/poam-deviation-request-procedure/
+- **GitLab Security Compliance Controls** (`security-security-assurance-security-compliance-sec-controls`): https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/
+- **Security and Technology Operational Risk Management (STORM) Program & Procedures** (`security-security-assurance-security-risk-storm-program`): https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/storm-program/
+- **Security Third Party Risk Management** (`security-security-assurance-security-risk-third-party-risk-management`): https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/
+- **Unified Security Risk Management (USRM) Program** (`security-security-observations-risk-management`): https://handbook.gitlab.com/handbook/security/security-observations-risk-management/
+- **Security Operations On-Call Guide** (`security-security-operations-secops-oncall`): https://handbook.gitlab.com/handbook/security/security-operations/secops-oncall/
+- **Security Logging** (`security-security-operations-security-logging`): https://handbook.gitlab.com/handbook/security/security-operations/security-logging/
+- **Signals Engineering Team (SET)** (`security-security-operations-signals-engineering`): https://handbook.gitlab.com/handbook/security/security-operations/signals-engineering/
+- **Security Incident Response Guide** (`security-security-operations-sirt-sec-incident-response`): https://handbook.gitlab.com/handbook/security/security-operations/sirt/sec-incident-response/
+- **Security Incident Communications Plan** (`security-security-operations-sirt-security-incident-communication-plan`): https://handbook.gitlab.com/handbook/security/security-operations/sirt/security-incident-communication-plan/

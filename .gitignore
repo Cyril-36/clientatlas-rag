@@ -36,9 +36,10 @@ logs/
 .cache/
 models/
 
-# evaluation output is generated; datasets and expectations are versioned
-evals/reports/*
-!evals/reports/.gitkeep
+# Generated evaluation output is not versioned, but written reports are:
+# a baseline nobody can read later is not a baseline.
+evals/reports/*.json
+evals/reports/*.csv
 
 # os / editor
 .DS_Store
