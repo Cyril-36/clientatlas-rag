@@ -24,7 +24,26 @@ heading-bounded chunker at its defaults (target 650, max 800, overlap 100).
 | recall@1 | 0.92 | **0.27** |
 | recall@5 | 1.00 | **0.77** |
 | recall@10 | — | **0.82** |
+| complete@1 | — | **0.18** |
+| complete@5 | — | **0.45** |
+| complete@10 | — | **0.55** |
 | MRR@100 | — | **0.451** |
+
+**`recall@k` and `complete@k` are different questions, and the gap between them
+is the honest headline.** `recall@k` counts a question correct when *any*
+expected passage reaches the top k — the standard retrieval measure, and what
+the sweep compares on. `complete@k` requires *every* expected passage.
+
+Eight of the 22 scored questions need evidence from more than one document, and
+for those the two diverge sharply: recall@5 0.77 against complete@5 0.45. Nearly
+half the questions that "pass" recall@5 are missing part of what they need.
+
+That distinction matters more here than in a search product. A search result
+that surfaces one of two relevant pages is useful. An answer that cites one of
+the two documents a question requires is not half right — it is wrong, and wrong
+in the way that reads most confident. An earlier version of this report leaned on
+recall@5 while describing what the generator could cite; only complete@k supports
+that reading.
 
 The authored corpus is too small for its numbers to mean anything — top-5 covers
 almost a quarter of every chunk in it, so recall@5 reads 1.00 regardless of what
@@ -109,10 +128,12 @@ was invariant at 0.27, which contradicted the table directly above it.
 That trade is worth stating rather than hiding. recall@1 moving while recall@5 and
 recall@10 fall means nested chunking sometimes ranks a correct chunk first while
 losing correct chunks from the set entirely — the merged chunks are larger, so a
-hit covers more ground, but truncation drops whatever sits past 256 tokens. For a
-RAG system that assembles an evidence set of 6–8 chunks, recall@5 and recall@10
-are the metrics that decide what the generator can cite. recall@1 would matter more
-for a single-answer lookup, which this is not.
+hit covers more ground, but truncation drops whatever sits past 256 tokens.
+
+The sweep compares on recall only, so it does not settle whether sibling merging
+helps or hurts *evidence completeness*. It was rejected on recall@5 and recall@10,
+which is a sufficient reason, but not the whole picture. Re-running the sweep with
+complete@k would be the way to close that.
 
 The next gain comes from hybrid retrieval — keyword search and RRF — rather than
 from more chunking work.
@@ -165,11 +186,17 @@ uv run python ../../evals/measure_baseline.py gitlab-handbook-v1
 uv run python ../../evals/measure_baseline.py gitlab-handbook-v1 --sweep
 ```
 
-An earlier version of this section cited `pytest tests/test_eval_dataset.py`,
-which is hardcoded to `onboarding-v1` and prints 21 chunks — not the 5,393
-reported here. The sweep existed only as an untracked scratch file. Both are now
-in `evals/measure_baseline.py`, because a number nobody else can regenerate is
-not a measurement.
+Two earlier attempts at this section were wrong. The first cited
+`pytest tests/test_eval_dataset.py`, which is hardcoded to `onboarding-v1` and
+prints 21 chunks rather than 5,393. The second tracked a sweep script that could
+not reproduce its own table: the sibling-merge logic the "nested" rows depend on
+had been reverted from the chunker, so those four rows came out byte-identical to
+the flat ones.
+
+The rejected variant now lives inside `measure_baseline.py`, and only there — a
+table that justifies rejecting a design is worthless if nobody can re-run it, and
+production code should not carry an implementation that measurement has already
+rejected. All eight rows reproduce.
 
 The figures come from a brute-force scan over every chunk, which is only
 tractable at this corpus size. Once retrieval exists this becomes an HNSW query
