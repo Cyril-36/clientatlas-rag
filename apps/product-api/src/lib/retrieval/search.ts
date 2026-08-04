@@ -113,7 +113,7 @@ async function keywordCandidates(
       and d.status = 'ready'
       and c.content_tsv @@ websearch_to_tsquery('english', ${query})
     order by ts_rank_cd(c.content_tsv, websearch_to_tsquery('english', ${query})) desc,
-             c.id
+             d.title, c.ordinal
     limit ${limit}
   `);
 
@@ -144,7 +144,7 @@ async function vectorCandidates(
       and d.status = 'ready'
       and c.embedding is not null
     order by c.embedding <=> ${literal}::vector,
-             c.id
+             d.title, c.ordinal
     limit ${limit}
   `);
 
@@ -200,7 +200,20 @@ export async function hybridSearch(
   const fused = fuse([keyword, vector]);
 
   return Array.from(fused.values())
-    .sort((a, b) => b.score - a.score || a.row.chunk_id.localeCompare(b.row.chunk_id))
+    .sort(
+      (a, b) =>
+        b.score - a.score ||
+        // Tie-break on content identity, never on chunk_id. Equal RRF scores are
+        // common — any chunk found by a single search at a given rank ties with
+        // every other such chunk — and chunk_id is a UUID minted at insert time.
+        // Ordering ties by it made recall@1 depend on which UUIDs a particular
+        // load happened to generate: three runs of the same corpus produced
+        // 0.27, 0.32 and 0.36 while every other measure stayed identical.
+        // (documentTitle, ordinal) is derived from the corpus and survives a
+        // re-load.
+        a.row.document_title.localeCompare(b.row.document_title) ||
+        a.row.ordinal - b.row.ordinal,
+    )
     .slice(0, limit)
     .map(({ row, score, ranks }) => ({
       chunkId: row.chunk_id,

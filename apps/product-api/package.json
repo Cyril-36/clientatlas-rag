@@ -10,7 +10,8 @@
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "test:integration": "vitest run --config vitest.integration.config.ts",
-    "test:integration:db": "vitest run --config vitest.integration.config.ts tests/integration/tenancy.test.ts"
+    "test:integration:db": "vitest run --config vitest.integration.config.ts tests/integration/tenancy.test.ts",
+    "measure:retrieval": "vitest run --config vitest.measure.config.ts"
   },
   "dependencies": {
     "@clientatlas/contracts": "workspace:*",
