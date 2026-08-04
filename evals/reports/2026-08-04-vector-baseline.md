@@ -51,6 +51,58 @@ Embedding dominates ingestion, as expected. At this rate a 200-page corpus
 indexes in about half a minute, which is comfortably inside what a background
 worker can absorb.
 
+## CORRECTION, same day — the "defect" below was a misdiagnosis
+
+The section that follows is left unedited because it is what the next change was
+based on, and deleting it would hide why that change was attempted. **Do not act
+on it.** It is wrong, and a measured sweep shows why.
+
+`all-MiniLM-L6-v2` has a **256-token sequence window**. Anything past it is
+silently discarded before the model sees the text — a 500-word chunk loses 49%
+of itself. So `DEFAULT_TARGET_TOKENS = 650` is not a target the system should
+ever hit. It is a ceiling that heading boundaries reach first, and the median of
+116 was the chunker landing near the encoder's usable range, not failing to
+reach a goal.
+
+Sibling merging was implemented and measured. Recall got worse at every setting:
+
+| heading paths | target | chunks | median tokens | recall@1 | recall@5 | recall@10 |
+| ------------- | ------ | ------ | ------------- | -------- | -------- | --------- |
+| flat (current) | 120 | 10,397 | 105 | 0.27 | 0.55 | 0.73 |
+| flat (current) | 180 | 8,091 | 124 | 0.27 | 0.68 | 0.77 |
+| flat (current) | 240 | 6,950 | 126 | 0.27 | 0.73 | 0.82 |
+| **flat (current)** | **650** | **5,393** | **116** | **0.27** | **0.77** | **0.82** |
+| nested + sibling merge | 120 | 9,463 | 131 | 0.36 | 0.55 | 0.68 |
+| nested + sibling merge | 180 | 6,322 | 195 | 0.23 | 0.64 | 0.77 |
+| nested + sibling merge | 240 | 4,726 | 254 | 0.41 | 0.68 | 0.73 |
+| nested + sibling merge | 650 | 1,594 | 670 | 0.14 | **0.50** | 0.68 |
+
+**The committed configuration is the best of everything tested.** Nothing in the
+sweep beats recall@5 0.77.
+
+Truncation explains the collapse at 650, but not the whole gap: nested at
+target 240 has a median of 254 estimated tokens, comfortably inside the window,
+and still loses to flat at 0.68 against 0.73. The remaining difference is the
+thing the heading rule was protecting in the first place — merging sibling
+sections mixes topics, and a chunk covering two subjects retrieves for queries
+about either and answers neither.
+
+The change was reverted. Two things are worth keeping from the attempt:
+
+- **The 256-token window is the real constraint**, and it was missing from this
+  report. Any future chunking work is bounded by it.
+- The measurement harness was changed in the same step as the chunker, which
+  made the before/after incomparable, and it collapsed the authored corpus from
+  21 chunks to 7 — where top-5 is 71% of everything and the printed 0.92 means
+  nothing. **Change one variable at a time, and re-run the baseline before
+  believing a number.**
+
+recall@1 of 0.27 is stubborn across every configuration. That is the signal that
+the next gain comes from hybrid retrieval — keyword search and RRF — rather than
+from more chunking work.
+
+---
+
 ## The defect this surfaced
 
 Chunk sizes are far below target:

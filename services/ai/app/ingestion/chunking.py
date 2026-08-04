@@ -19,9 +19,22 @@ from app.ingestion.parsing import ParsedBlock
 # MiniLM uses WordPiece, which splits some words into several tokens. Counting
 # whitespace-separated words and scaling is an approximation, deliberately: an
 # exact count would need the model's tokenizer, which would drag the optional
-# ML dependency into the chunker and into CI. Being ~30% out on a soft limit
-# costs nothing; the embedding model truncates at its own window regardless.
+# ML dependency into the chunker and into CI.
 TOKENS_PER_WORD = 1.3
+
+# These are ceilings, not goals, and on real documents they are rarely reached:
+# a heading boundary almost always flushes a chunk first. Measured median chunk
+# size on a 200-page corpus is 116 tokens against the 650 below.
+#
+# That is not a bug, and raising the floor to "fill" chunks makes retrieval
+# worse. all-MiniLM-L6-v2 reads only the first 256 WordPiece tokens of any
+# input and silently discards the rest, so a chunk built to 650 loses most of
+# itself before it is ever embedded. A measured sweep of this — sibling-section
+# merging at four different targets — lost to the values below at every setting,
+# and collapsed recall@5 from 0.77 to 0.50 at 650.
+#
+# See evals/reports/2026-08-04-vector-baseline.md before changing these.
+EMBEDDING_WINDOW_TOKENS = 256
 
 DEFAULT_TARGET_TOKENS = 650
 DEFAULT_MAX_TOKENS = 800
