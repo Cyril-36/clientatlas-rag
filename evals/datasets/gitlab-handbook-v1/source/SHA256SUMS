@@ -1,12 +1,24 @@
-# SHA-256 of every source page, as retrieved from upstream and verified
-# byte-identical against gitlab-com/content-sites/handbook commit a2af0b1d.
+# SHA-256 of every source page, pinning the state of this directory.
 #
-# These files are reproduced verbatim under CC BY-SA 4.0, and the attribution
-# claims they are unmodified. That claim is only worth something if something
-# checks it. Two different formatters have already rewritten them in place —
-# Prettier across all 200 files, then ruff 0.16 inside a fenced Python block —
-# and both times the damage was invisible in review. tests/test_eval_dataset.py
-# verifies this manifest, so a third one fails the build instead.
+# What this is: a snapshot, checked against itself. Each digest covers the
+# complete local file — a ClientAtlas front-matter block (slug, source URL,
+# retrieval date, licence) followed by the upstream body. Verifying it proves
+# nothing has changed since the manifest was written. It does not compare
+# anything against GitLab, and re-running it will not detect a bad snapshot.
+#
+# The independent check is a separate, past event: the 200 bodies were compared
+# byte-for-byte against gitlab-com/content-sites/handbook commit `a2af0b1d`
+# after the Prettier damage was reverted, and matched. This manifest was
+# written from that verified state, so it pins it — but the pin inherits the
+# verification, it does not repeat it. To re-establish provenance, diff the
+# bodies against upstream again.
+#
+# Why it exists: two formatters have silently rewritten these files, Prettier
+# across all 200 and later ruff 0.16 inside a fenced Python block, and both
+# times review missed it. Configuration now excludes this directory from both,
+# and `services/ai/tests/test_eval_dataset.py` verifies these digests so a
+# third one fails the build rather than quietly falsifying the CC BY-SA
+# attribution.
 #
 #     shasum -a 256 -c SHA256SUMS
 8a31dd34c6fe547bb132ebc964b6e973696433698fcf08ee489cea0a0537f02a  engineering-ai-ai-model-services.md

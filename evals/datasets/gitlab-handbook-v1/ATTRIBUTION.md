@@ -6,11 +6,18 @@ https://gitlab.com/gitlab-com/content-sites/handbook (the `content/handbook/` di
 The source material is licensed under the CC BY-SA 4.0 licence. It was retrieved on 2026-08-04
 from commit `a2af0b1d`. This derivative dataset is redistributed under the same CC BY-SA 4.0 licence.
 
-The source text is unmodified, and that is checked rather than asserted: `source/SHA256SUMS`
-records the digest of every page as retrieved, and `services/ai/tests/test_eval_dataset.py`
-fails the build if any of them changes. The check exists because the claim has been falsified
-twice by formatters run over the repository — restore a modified page rather than updating the
-manifest.
+Each file under `source/` is a ClientAtlas front-matter block — slug, source URL, retrieval
+date, licence — followed by the upstream body reproduced unmodified.
+
+The bodies were verified byte-for-byte against commit `a2af0b1d`. `source/SHA256SUMS` then
+recorded a digest of every file in that state, and `services/ai/tests/test_eval_dataset.py`
+fails the build if one changes. Be clear about which of those does what: the digests pin the
+snapshot against later modification, and inherit the upstream comparison rather than repeating
+it. Verifying them proves the files have not changed since; it does not re-check them against
+GitLab. To re-establish that, diff the bodies against upstream again.
+
+The pin exists because two formatters have silently rewritten these files. Restore a modified
+page from upstream rather than updating the manifest, which would only pin the damage.
 
 Licence: https://creativecommons.org/licenses/by-sa/4.0/
 

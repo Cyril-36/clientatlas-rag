@@ -294,6 +294,25 @@ describe("hybrid retrieval over a seeded corpus", () => {
       totals["hybrid"]![10]!.any,
       "hybrid lost to an exact vector-only scan",
     ).toBeGreaterThanOrEqual(totals["vector (exact)"]![10]!.any);
+
+    // Completeness, held to the same bar as recall.
+    //
+    // The report leads on complete@10, and until now nothing enforced it: a
+    // change could have halved the number of questions whose *whole* evidence
+    // set was retrieved while recall@10 — which needs only one expected passage
+    // — stayed flat and the suite stayed green. Every question with a single
+    // expectation counts identically in both, so the gap between them is
+    // exactly the multi-passage questions, which are the ones a citation-
+    // checked answer depends on.
+    expect(
+      totals["hybrid"]![10]!.all,
+      "hybrid returned complete evidence for fewer questions than vector-only",
+    ).toBeGreaterThanOrEqual(totals["vector"]![10]!.all);
+
+    expect(
+      totals["hybrid"]![10]!.all,
+      "hybrid returned complete evidence for fewer questions than an exact vector-only scan",
+    ).toBeGreaterThanOrEqual(totals["vector (exact)"]![10]!.all);
   });
 
   it("scopes results to the caller's tenant", async () => {

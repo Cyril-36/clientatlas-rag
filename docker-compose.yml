@@ -2,7 +2,14 @@ name: clientatlas
 
 services:
   postgres:
-    image: pgvector/pgvector:pg17
+    # Pinned, and pinned to a pgvector version rather than just a PostgreSQL
+    # one. Retrieval requires pgvector 0.8+ for `hnsw.iterative_scan` — without
+    # it an HNSW scan behind a tenant filter silently returns short pages — and
+    # the floating `pg17` tag would have let a rebuild land on anything.
+    # 0.8.2 is what the Supabase local stack ships, so both development paths
+    # run the same extension rather than diverging quietly.
+    # A migration refuses to run below 0.8.0, so a wrong image fails loudly.
+    image: pgvector/pgvector:0.8.2-pg17
     container_name: clientatlas-postgres
     restart: unless-stopped
     environment:

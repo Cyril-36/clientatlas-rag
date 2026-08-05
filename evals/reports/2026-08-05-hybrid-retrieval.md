@@ -31,7 +31,16 @@ The last row is the same vector query with `enable_indexscan` off — an exact
 scan of the same rows. It is there because "hybrid beats vector" is a weak claim
 if hybrid's vector arm was running approximately and the comparison carried the
 same handicap. It does not: hybrid at 0.86 / 0.59 beats an exact vector-only
-scan at 0.82 / 0.55, and the measurement asserts that rather than printing it.
+scan at 0.82 / 0.55.
+
+**Both numbers are asserted, not just printed.** Recall@10 and complete@10 are
+each held against vector-only and against the exact scan, four assertions. For
+a while only recall was: a change could have halved the number of questions
+whose *whole* evidence set was retrieved while recall@10 — satisfied by any one
+expected passage — stayed flat and the suite stayed green. Since the report
+leads on complete@10, that was the measure most worth protecting and the one
+left unprotected. The gap between the two columns is exactly the multi-passage
+questions, which are the ones a citation-checked answer depends on.
 
 **Which numbers reproduce, and which do not.** The forced-exact row is
 deterministic: 0.27 / 0.77 / 0.82 / 0.45 / 0.55 on every load and every run,
@@ -186,6 +195,38 @@ an incremental sort on top of the index scan, which assumes its input *is*
 sorted by distance. Feeding it relaxed output yields an order that is neither
 the index's nor sorted. RRF scores by rank position, so an order the planner has
 quietly mangled costs more than two points of agreement.
+
+### The setting does not enforce itself
+
+That one line makes pgvector 0.8 a hard requirement, and the obvious assumption
+about what happens without it is wrong. It would be comfortable to think an
+older pgvector rejects an unknown setting and fails loudly. Checked against the
+server rather than assumed, it does not:
+
+pgvector registers its settings when its shared library loads, and that happens
+on first use of a vector operation, not at connection time. Until then
+PostgreSQL treats any `hnsw.*` name as an unvalidated placeholder.
+`vectorCandidates` issues its `set local` *before* the query — precisely that
+window — so on an older server the SET succeeds, the library then loads, and
+PostgreSQL answers with `WARNING: invalid configuration parameter name
+"hnsw.iterative_scan", removing it` and drops it. A warning on a connection
+nobody reads, and a short page of results. Later transactions on that same
+connection *do* raise, because the prefix is reserved once the library is
+loaded, so the symptom is not even consistent.
+
+So the floor is enforced where it cannot be bypassed:
+
+- a migration that refuses to run below pgvector 0.8.0, comparing versions as
+  integer arrays so that 0.10.0 is not judged older than 0.8.0;
+- the same check in the compose container's init SQL, since the two
+  initialisation paths share no files;
+- `/api/health/ready`, which reports `vectorSearch: false` and 503s — for a
+  database restored or repointed under a running deployment without migrations
+  being re-applied;
+- a pinned image, `pgvector/pgvector:0.8.2-pg17` rather than the floating
+  `pg17` tag, matching what the Supabase local stack ships;
+- an integration test that sets the GUC in the same order retrieval does, runs
+  a vector operation, and checks what survived.
 
 What this does **not** fix: `max_scan_tuples` is a cap, so a small enough tenant
 in a large enough table will still come up short. Iterative scan defers the

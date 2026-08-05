@@ -241,15 +241,27 @@ class TestValidator:
 
 
 class TestSourceProvenance:
-    """The verbatim source pages, checked against the checksums they arrived with.
+    """The source pages, pinned to the snapshot recorded in SHA256SUMS.
 
-    `evals/datasets/*/source` holds pages reproduced unmodified under CC BY-SA
-    4.0, and the attribution says so. That claim has been falsified twice, both
-    times by a formatter nobody pointed at the dataset on purpose: Prettier
-    rewrote all 200 files, and later ruff 0.16 — which formats Python inside
-    Markdown code fences — rewrote quote characters inside one. Both are now
-    excluded by configuration, but configuration is a promise and this is a
-    check. A third formatter, or a well-meant manual edit, fails here.
+    What this proves, precisely: that nothing in `evals/datasets/*/source` has
+    changed since the manifest was written. Each digest covers the whole local
+    file, which is a ClientAtlas front-matter block followed by the upstream
+    body, and it is compared against a manifest living in the same directory.
+    That makes this tamper-evidence, not provenance — it cannot tell whether
+    the snapshot matched GitLab in the first place, and re-running it never
+    will.
+
+    Provenance rests on a separate, earlier act: the 200 bodies were diffed
+    against gitlab-com/content-sites/handbook commit `a2af0b1d` and matched.
+    The manifest was written from that state, so it holds that verification in
+    place rather than repeating it.
+
+    Worth having anyway, because the failure it catches has happened twice.
+    Prettier rewrote all 200 files, and later ruff 0.16 — which formats Python
+    inside Markdown code fences — rewrote quote characters inside one. Both
+    times review missed it, and both times the CC BY-SA attribution's
+    "unmodified" claim became false. Configuration now excludes the directory
+    from both formatters; configuration is a promise, and this is a check.
     """
 
     def manifests(self) -> list[Path]:
@@ -292,7 +304,8 @@ class TestSourceProvenance:
             ]
 
             assert not modified, (
-                f"source pages modified since they were retrieved: {modified}. "
-                "These are redistributed verbatim under CC BY-SA 4.0 — restore "
-                "them rather than updating the manifest."
+                f"source pages changed since the manifest was written: {modified}. "
+                "The bodies are redistributed verbatim under CC BY-SA 4.0 — restore "
+                "them from upstream rather than updating the manifest, which would "
+                "only pin the damage."
             )

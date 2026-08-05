@@ -148,6 +148,16 @@ async function keywordCandidates(
  *
  * `set local`, so it lasts exactly as long as the surrounding tenant
  * transaction and cannot leak into the next request on a pooled connection.
+ *
+ * This line is not self-enforcing, which is why the floor is a migration.
+ * pgvector registers its settings when its library loads — on first use of a
+ * vector operation, not at connection time — so this SET lands in the window
+ * where PostgreSQL still treats `hnsw.*` as an unvalidated placeholder. On a
+ * server older than 0.8 it therefore succeeds, and PostgreSQL then discards it
+ * with a warning when the library loads. The requirement is enforced by
+ * `supabase/migrations/20260805000000_clientatlas_pgvector_minimum.sql`, by
+ * `/api/health/ready`, and by an integration test that sets it in this order
+ * and checks what survived.
  */
 async function vectorCandidates(
   tx: TenantTransaction,
