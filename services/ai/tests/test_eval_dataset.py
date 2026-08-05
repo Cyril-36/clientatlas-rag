@@ -20,6 +20,7 @@ not a gate.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import sys
 from importlib.util import find_spec
@@ -31,7 +32,8 @@ import pytest
 from app.ingestion.chunking import chunk_blocks
 from app.ingestion.parsing import ParsedBlock
 
-DATASET = Path(__file__).resolve().parents[3] / "evals" / "datasets" / "onboarding-v1"
+ROOT = Path(__file__).resolve().parents[3]
+DATASET = ROOT / "evals" / "datasets" / "onboarding-v1"
 
 HAS_ML = find_spec("sentence_transformers") is not None
 
@@ -221,19 +223,76 @@ class TestValidator:
     def test_every_dataset_validates(self) -> None:
         import subprocess
 
-        root = Path(__file__).resolve().parents[3]
         datasets = sorted(
-            path.parent for path in (root / "evals" / "datasets").glob("*/corpus.json")
+            path.parent for path in (ROOT / "evals" / "datasets").glob("*/corpus.json")
         )
 
         assert datasets, "no datasets found"
 
         for dataset in datasets:
             result = subprocess.run(
-                [sys.executable, str(root / "evals" / "validate_dataset.py"), str(dataset)],
+                [sys.executable, str(ROOT / "evals" / "validate_dataset.py"), str(dataset)],
                 capture_output=True,
                 text=True,
                 check=False,
             )
 
             assert result.returncode == 0, f"{dataset.name} failed validation:\n{result.stdout}"
+
+
+class TestSourceProvenance:
+    """The verbatim source pages, checked against the checksums they arrived with.
+
+    `evals/datasets/*/source` holds pages reproduced unmodified under CC BY-SA
+    4.0, and the attribution says so. That claim has been falsified twice, both
+    times by a formatter nobody pointed at the dataset on purpose: Prettier
+    rewrote all 200 files, and later ruff 0.16 — which formats Python inside
+    Markdown code fences — rewrote quote characters inside one. Both are now
+    excluded by configuration, but configuration is a promise and this is a
+    check. A third formatter, or a well-meant manual edit, fails here.
+    """
+
+    def manifests(self) -> list[Path]:
+        return sorted((ROOT / "evals" / "datasets").glob("*/source/SHA256SUMS"))
+
+    def test_there_is_a_manifest_for_every_source_tree(self) -> None:
+        # Without this, deleting a manifest would silently disable the check
+        # below rather than failing it.
+        trees = sorted(
+            path for path in (ROOT / "evals" / "datasets").glob("*/source") if path.is_dir()
+        )
+        assert trees, "no source trees found"
+
+        for tree in trees:
+            assert (tree / "SHA256SUMS").exists(), f"{tree} has no SHA256SUMS"
+
+    def test_every_source_file_matches_its_recorded_checksum(self) -> None:
+        for manifest in self.manifests():
+            recorded: dict[str, str] = {}
+
+            for line in manifest.read_text(encoding="utf-8").splitlines():
+                if not line.strip() or line.startswith("#"):
+                    continue
+                digest, name = line.split(maxsplit=1)
+                recorded[name.strip()] = digest
+
+            assert recorded, f"{manifest} lists no files"
+
+            present = {path.name for path in manifest.parent.glob("*.md")}
+            assert present == set(recorded), (
+                f"{manifest.parent} does not match its manifest: "
+                f"added {sorted(present - set(recorded))}, "
+                f"missing {sorted(set(recorded) - present)}"
+            )
+
+            modified = [
+                name
+                for name, digest in recorded.items()
+                if hashlib.sha256((manifest.parent / name).read_bytes()).hexdigest() != digest
+            ]
+
+            assert not modified, (
+                f"source pages modified since they were retrieved: {modified}. "
+                "These are redistributed verbatim under CC BY-SA 4.0 — restore "
+                "them rather than updating the manifest."
+            )

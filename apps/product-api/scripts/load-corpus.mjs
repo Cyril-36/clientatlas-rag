@@ -61,8 +61,17 @@ const workspaceId = randomUUID();
 
 try {
   await sql.begin(async (tx) => {
-    // A fresh tenant per load, so repeated runs cannot accumulate into each
-    // other and quietly change the corpus being measured.
+    // A fresh tenant per load. That keeps the *contents* of the measured
+    // corpus identical across runs — a second load cannot add rows to the
+    // workspace the first one created.
+    //
+    // It does not make repeated loads independent, and the earlier comment
+    // here claimed it did. Every load leaves its tenant behind, so the table
+    // keeps growing, and PostgreSQL chooses a plan from the size of the whole
+    // table rather than one tenant's slice of it. Two loads of this corpus were
+    // enough to move the vector query from an exact scan to the HNSW index and
+    // change measured recall. The count printed at the end says how much of the
+    // table is not yours, because that is the part that moves the numbers.
     await tx`insert into profiles (id, email, display_name)
              values (${userId}, ${`eval-${userId.slice(0, 8)}@example.test`}, 'eval')`;
     await tx`insert into organizations (id, name, slug)
@@ -104,6 +113,11 @@ try {
     select count(*)::int as count from document_chunks where workspace_id = ${workspaceId}
   `;
 
+  const [{ total, tenants }] = await sql`
+    select count(*)::int as total, count(distinct workspace_id)::int as tenants
+    from document_chunks
+  `;
+
   writeFileSync(
     path.join(REPO, "evals", "reports", `${dataset}-seed.json`),
     JSON.stringify({
@@ -116,7 +130,21 @@ try {
     }),
   );
 
-  process.stdout.write(`loaded ${count} chunks into workspace ${workspaceId}\n`);
+  process.stdout.write(
+    `loaded ${count} chunks into workspace ${workspaceId}\n` +
+      `document_chunks now holds ${total} rows across ${tenants} workspace(s)\n`,
+  );
+
+  if (tenants > 1) {
+    process.stdout.write(
+      `\n${total - count} of those rows belong to earlier loads. The planner sizes\n` +
+        "its choice on the whole table, so a measurement taken now is not\n" +
+        "comparable to one taken against a single tenant. Either keep the\n" +
+        "comparison within one state of this table, or clear the earlier\n" +
+        "tenants first:\n\n" +
+        "  delete from organizations where slug like 'eval-%';\n",
+    );
+  }
 } finally {
   await sql.end({ timeout: 5 });
 }

@@ -19,9 +19,6 @@ sibling-merge rule fire; without it every heading path is one deep and the rule
 never applies. The sweep is how the sibling-merge proposal was rejected.
 """
 
-# This is a reporting CLI; printing numbers for a human is the whole job.
-# ruff: noqa: T201
-
 from __future__ import annotations
 
 import argparse

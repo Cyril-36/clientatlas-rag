@@ -43,9 +43,7 @@ def document_texts(corpus: dict[str, Any]) -> dict[str, str]:
 
     for document in corpus["documents"]:
         parts = [
-            paragraph
-            for section in document["sections"]
-            for paragraph in section["paragraphs"]
+            paragraph for section in document["sections"] for paragraph in section["paragraphs"]
         ]
         texts[document["slug"]] = "\n".join(parts)
 
@@ -111,13 +109,14 @@ def validate(directory: Path) -> tuple[list[str], list[str], dict[str, int]]:
             if len(matches) > 1:
                 errors.append(
                     f"{qid}: anchor appears in {len(matches)} documents "
-                    f"({', '.join(sorted(matches))}), so it identifies no single passage: {anchor!r}"
+                    f"({', '.join(sorted(matches))}), so it identifies no single "
+                    f"passage: {anchor!r}"
                 )
 
             if not ANCHOR_MIN <= len(anchor) <= ANCHOR_MAX:
                 warnings.append(
                     f"{qid}: anchor is {len(anchor)} characters, outside the "
-                    f"{ANCHOR_MIN}–{ANCHOR_MAX} guidance: {anchor!r}"
+                    f"{ANCHOR_MIN}-{ANCHOR_MAX} guidance: {anchor!r}"
                 )
 
     counts = Counter(question["category"] for question in questions)
@@ -131,7 +130,8 @@ def validate(directory: Path) -> tuple[list[str], list[str], dict[str, int]]:
     minimum_documents = corpus.get("minDocuments")
     if minimum_documents and len(corpus["documents"]) < minimum_documents:
         errors.append(
-            f"corpus has {len(corpus['documents'])} documents, expected at least {minimum_documents}"
+            f"corpus has {len(corpus['documents'])} documents, "
+            f"expected at least {minimum_documents}"
         )
 
     minimum_paragraphs = corpus.get("minParagraphs")

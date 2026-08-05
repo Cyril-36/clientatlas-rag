@@ -113,11 +113,18 @@ jobs:
       - name: Install
         run: uv sync --all-groups --frozen
 
+      # Run from the repository root, not from services/ai. `evals/` is Python
+      # too, and it sits outside every package, so a service-scoped run never
+      # looked at it — three scripts had accumulated lint failures that nothing
+      # could have reported. The root ruff.toml extends this service's rules so
+      # there is still one place where they are decided.
       - name: Format
-        run: uv run ruff format --check .
+        working-directory: ${{ github.workspace }}
+        run: uv run --project services/ai ruff format --check .
 
       - name: Lint
-        run: uv run ruff check .
+        working-directory: ${{ github.workspace }}
+        run: uv run --project services/ai ruff check .
 
       - name: Type check
         run: uv run mypy

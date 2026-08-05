@@ -120,12 +120,43 @@ async function keywordCandidates(
   return Array.from(rows as Iterable<CandidateRow>);
 }
 
+/**
+ * Vector search, with the setting that makes an ANN index safe to use behind a
+ * tenant filter.
+ *
+ * `document_chunks` holds every tenant's rows and every query carries
+ * `where workspace_id = $1`. An HNSW scan walks the index in distance order and
+ * discards rows that fail that filter, and by default it stops after
+ * `ef_search` candidates whether or not enough of them survived. A tenant
+ * holding a small share of the table therefore gets a short page and no error —
+ * measured on this corpus, a workspace holding 3.6% of the rows got back a mean
+ * 0.07 of the passages an exact scan would return, and every one of 22 queries
+ * came back with fewer than 20 rows. Nothing fails; retrieval just quietly
+ * stops finding things, and the smaller the tenant the worse it is.
+ *
+ * pgvector 0.8's iterative scan keeps pulling candidates until the limit is
+ * satisfied, capped by `hnsw.max_scan_tuples` (20,000 by default). It restores
+ * that same 3.6% case to 0.95 and full pages.
+ *
+ * `strict_order` rather than `relaxed_order`, which measured 2-3 points higher.
+ * Relaxed order returns rows only approximately sorted by distance while still
+ * presenting itself to the planner as ordered, and the plan for this query puts
+ * an incremental sort on top of the index scan — that sort assumes its input is
+ * sorted by distance, so feeding it relaxed output produces an order that is
+ * neither. RRF scores by rank position, so an order the planner has quietly
+ * mangled is worth more than two points of agreement.
+ *
+ * `set local`, so it lasts exactly as long as the surrounding tenant
+ * transaction and cannot leak into the next request on a pooled connection.
+ */
 async function vectorCandidates(
   tx: TenantTransaction,
   workspaceId: string,
   embedding: number[],
   limit: number,
 ): Promise<CandidateRow[]> {
+  await tx.execute(sql`set local hnsw.iterative_scan = strict_order`);
+
   // Serialised as a pgvector literal. The column is `vector(384)`, so a wrong
   // width is rejected by the database rather than silently compared.
   const literal = JSON.stringify(embedding);

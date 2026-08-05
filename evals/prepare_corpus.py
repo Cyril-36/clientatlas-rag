@@ -27,14 +27,11 @@ Query vectors are written alongside, so measurement needs neither the AI service
 nor the model.
 """
 
-# ruff: noqa: T201
-
 from __future__ import annotations
 
 import json
 import sys
 import time
-import uuid
 from pathlib import Path
 from typing import Any
 

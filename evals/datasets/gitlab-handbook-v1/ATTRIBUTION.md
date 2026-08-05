@@ -3,8 +3,14 @@
 This dataset contains material from the GitLab Handbook, sourced from:
 https://gitlab.com/gitlab-com/content-sites/handbook (the `content/handbook/` directory).
 
-The source material is licensed under the CC BY-SA 4.0 licence. It was retrieved on 2026-08-04.
-The source text is unmodified. This derivative dataset is redistributed under the same CC BY-SA 4.0 licence.
+The source material is licensed under the CC BY-SA 4.0 licence. It was retrieved on 2026-08-04
+from commit `a2af0b1d`. This derivative dataset is redistributed under the same CC BY-SA 4.0 licence.
+
+The source text is unmodified, and that is checked rather than asserted: `source/SHA256SUMS`
+records the digest of every page as retrieved, and `services/ai/tests/test_eval_dataset.py`
+fails the build if any of them changes. The check exists because the claim has been falsified
+twice by formatters run over the repository — restore a modified page rather than updating the
+manifest.
 
 Licence: https://creativecommons.org/licenses/by-sa/4.0/
 

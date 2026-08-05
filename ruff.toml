@@ -1,0 +1,25 @@
+# Ruff configuration for the repository root.
+#
+# The Python that matters most lives in `services/ai`, and its settings are in
+# that package's pyproject.toml. But `evals/` is Python too, and it sits outside
+# any package, so ruff's hierarchical discovery gave it whatever configuration
+# happened to be nearest the working directory — which in practice meant it was
+# never linted at all. Three scripts accumulated an unused import, two long
+# lines and an ambiguous dash before anyone noticed, because nothing looked.
+#
+# This file extends the service's settings rather than restating them, so there
+# is still one place where the rule set is decided.
+extend = "services/ai/pyproject.toml"
+
+# Ruff 0.16 formats Python inside fenced code blocks in Markdown, and the
+# evaluation datasets hold 200 GitLab Handbook pages reproduced verbatim under
+# CC BY-SA 4.0. Running the formatter over them rewrote quotes inside a code
+# fence and made the attribution's "unmodified" claim false — the second time a
+# formatter has done this to these files. Prettier is held off them by
+# .prettierignore for the same reason.
+extend-exclude = ["evals/datasets/*/source"]
+
+[lint.per-file-ignores]
+# T201: these are command-line scripts whose entire output is numbers and
+# errors for a human to read. A logger would be worse.
+"evals/*.py" = ["T201"]
