@@ -39,6 +39,14 @@ const serverEnvSchema = z
 
     SUPABASE_JWT_ISSUER: optional(z.string().min(1)),
     SUPABASE_JWT_AUDIENCE: z.string().min(1).default("authenticated"),
+
+    /**
+     * The model service. It holds no database access, so this is the only path
+     * by which tenant content reaches it — which is the reason it defaults to
+     * loopback rather than to nothing: a misconfiguration should fail to
+     * connect locally, not quietly point somewhere else.
+     */
+    AI_SERVICE_URL: z.string().url().default("http://127.0.0.1:8000"),
   })
   .refine((env) => Boolean(env.SUPABASE_JWT_SECRET) !== Boolean(env.SUPABASE_JWKS_URL), {
     message:

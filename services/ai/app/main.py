@@ -5,7 +5,7 @@ from __future__ import annotations
 from fastapi import FastAPI
 
 from app import __version__
-from app.api import health, ingestion, metrics
+from app.api import generation, health, ingestion, metrics
 
 
 def create_app() -> FastAPI:
@@ -25,6 +25,7 @@ def create_app() -> FastAPI:
 
     app.include_router(health.router)
     app.include_router(ingestion.router)
+    app.include_router(generation.router)
     app.include_router(metrics.router)
 
     return app
