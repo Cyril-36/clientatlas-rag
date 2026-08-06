@@ -6,15 +6,26 @@ import { errorResponse } from "@/lib/http/responses";
 /**
  * Ask a question of a workspace, and stream a grounded answer back.
  *
- * Server-sent events rather than a JSON response, because an answer takes
- * seconds and a reader watching words appear is looking at progress rather
- * than at a spinner that might mean anything.
+ * Server-sent events, but **not** progressive rendering, and the difference is
+ * worth stating because the two usually come together.
+ *
+ * Citation validity is a property of the finished answer: whether a `[7]` was
+ * invented cannot be known until the sentence containing it exists. So tokens
+ * are withheld until the whole answer has passed validation, and a reader sees
+ * nothing and then everything. That is slower to look at and it is the only
+ * honest option — an abstention that arrives after the ungrounded paragraph has
+ * already been displayed has not withheld anything.
+ *
+ * The transport stays SSE anyway: it carries the terminal frame that says which
+ * of the three outcomes happened, it keeps the connection open across a
+ * generation that takes seconds without a client-side timeout guess, and it is
+ * what a future incremental design would need. Nothing here promises words
+ * appearing as they are written, and a client should not render a progress
+ * animation implying it.
  *
  * The frames are the caller's contract: `token` frames for an answer that has
  * already passed citation validation, then exactly one terminal frame — `done`
- * with resolved citations, `abstained` with a reason, or `error`. Validation is
- * deliberately before the first token reaches the caller; otherwise a final
- * abstention would arrive after the ungrounded answer had already been shown.
+ * with resolved citations, `abstained` with a reason, or `error`.
  */
 
 interface RouteParams {

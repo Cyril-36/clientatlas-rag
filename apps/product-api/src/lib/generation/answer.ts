@@ -18,13 +18,21 @@ import type { VerifiedClaims } from "@/lib/auth/claims";
  * interface can already produce.
  */
 
-/** What the caller sees, one frame at a time. Token frames are emitted only after validation. */
+/**
+ * What the caller sees, one frame at a time. Token frames are emitted only
+ * after validation.
+ *
+ * `done` carries no `unresolved` field, and its absence is the contract. An
+ * answer citing anything that was not supplied is abstained on below, so the
+ * field could only ever have been an empty array — a value a client author
+ * would reasonably write a branch for, and that branch would be dead. Invented
+ * citations are reported on the `abstained` frame, where they actually happen.
+ */
 export type AnswerEvent =
   | { readonly type: "token"; readonly text: string }
   | {
       readonly type: "done";
       readonly citations: ReturnType<typeof validateCitations>["citations"];
-      readonly unresolved: number[];
     }
   | { readonly type: "abstained"; readonly reason: string }
   | { readonly type: "error"; readonly code: string; readonly message: string };
@@ -126,11 +134,18 @@ export async function* answer(
   const validated = validateCitations(pieces.join(""), evidence);
 
   if (validated.unresolved.length > 0) {
+    // The ordinals are named rather than summarised. This is the signal that a
+    // model or a prompt has gone wrong, and "cited a passage that was not
+    // supplied" gives an operator reading a log nothing to go on, while
+    // "cited [7], and 8 passages were supplied" is immediately diagnosable.
+    const invented = validated.unresolved.map((ordinal) => `[${ordinal}]`).join(", ");
+
     yield {
       type: "abstained",
       reason:
-        "The answer cited a passage that was not supplied from this workspace. It has been " +
-        "withheld rather than shown with an invented source.",
+        `The answer cited ${invented}, which was not among the ${evidence.length} passages ` +
+        "supplied from this workspace. It has been withheld rather than shown with an " +
+        "invented source.",
     };
     return;
   }
@@ -149,7 +164,7 @@ export async function* answer(
     yield { type: "token", text };
   }
 
-  yield { type: "done", citations: validated.citations, unresolved: [] };
+  yield { type: "done", citations: validated.citations };
 }
 
 /**

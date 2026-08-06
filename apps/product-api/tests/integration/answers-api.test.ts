@@ -414,9 +414,12 @@ describe("POST /api/workspaces/:workspaceId/answers", () => {
 
     expect(tokens.length).toBeGreaterThan(1);
     expect(tokens.map((event) => event.text).join("")).toContain("within 30 days");
+    // No `unresolved` on a `done` frame, asserted rather than assumed. Any
+    // invented citation abstains, so the field could only ever be empty, and a
+    // client author who saw it declared would write a branch that never runs.
+    expect(terminal).not.toHaveProperty("unresolved");
     expect(terminal).toMatchObject({
       type: "done",
-      unresolved: [],
       citations: [
         {
           ordinal: 1,
@@ -479,6 +482,11 @@ describe("POST /api/workspaces/:workspaceId/answers", () => {
     expect(streamed.some((event) => event.type === "token")).toBe(false);
     expect(streamed.some((event) => event.type === "done")).toBe(false);
     expect(streamed.at(-1)).toMatchObject({ type: "abstained" });
+
+    // The reason names the ordinal. An operator reading this in a log needs to
+    // know *what* the model invented, not merely that it invented something,
+    // and the count of supplied passages is what makes [7] obviously wrong.
+    expect((streamed.at(-1) as { reason: string }).reason).toContain("[7]");
   });
 
   it("rejects an unauthenticated request before contacting the model service", async () => {
