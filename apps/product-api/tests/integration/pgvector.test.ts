@@ -1,3 +1,10 @@
+import { readdirSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+import process from "node:process";
+
+import postgres from "postgres";
 import { afterAll, describe, expect, it } from "vitest";
 
 import { getRuntimeSql } from "@/lib/database/client";
@@ -12,10 +19,41 @@ import { isSupportedPgvector, MINIMUM_PGVECTOR } from "@/lib/database/pgvector";
  * announce itself — every other test here would pass while retrieval silently
  * returned a fraction of the evidence.
  *
- * Three separate things are checked, because they can drift apart: what the
- * server has installed, whether the migration that enforces the floor is
- * present, and whether the setting the code depends on actually exists.
+ * Three separate things, because they drift apart: what the server has
+ * installed, whether the migrations that enforce that are actually applied to
+ * this database, and whether the setting the code depends on behaves.
+ *
+ * The middle one was claimed before it was checked. An earlier version of this
+ * file said it verified "migration presence" while only evaluating the
+ * comparison expression against literals — which a database that had never run
+ * the migration passes happily, and one did: the local stack had been started
+ * before the file existed and carried no record of it.
  */
+
+const MIGRATIONS = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "../../../../supabase/migrations",
+);
+
+/**
+ * A connection as `clientatlas_test`, which is the only role granted read
+ * access to `supabase_migrations.schema_migrations` — see `supabase/seed.sql`.
+ *
+ * The runtime role deliberately cannot see it, and that is not an obstacle to
+ * work around: nothing a request does has any business knowing which
+ * migrations exist. Asking with the runtime credential is how the first
+ * attempt at this test failed, and the right answer was to ask as the role
+ * whose whole purpose is to inspect the database under test.
+ */
+function migrationSql(): ReturnType<typeof postgres> {
+  const url = process.env["TEST_DATABASE_URL"];
+
+  if (!url) {
+    throw new Error("TEST_DATABASE_URL is not set; it carries the clientatlas_test credential");
+  }
+
+  return postgres(url, { max: 1, onnotice: () => {} });
+}
 
 afterAll(async () => {
   await getRuntimeSql().end({ timeout: 5 });
@@ -71,6 +109,50 @@ describe("pgvector", () => {
       "hnsw.iterative_scan did not survive the extension loading — this server " +
         "silently discards it, and retrieval will return short pages",
     ).toBe("strict_order");
+  });
+
+  it("has every migration in the repository actually applied", async () => {
+    // Written against the directory rather than against one version string, so
+    // the next migration added is covered without anyone remembering to come
+    // back here. The failure this catches is a database that predates a
+    // migration file — which is what "it works on my machine" looks like when
+    // the machine was set up before the guard was written.
+    const expected = readdirSync(MIGRATIONS)
+      .filter((name) => name.endsWith(".sql"))
+      .map((name) => name.split("_")[0]!)
+      .sort();
+
+    expect(expected.length, `no migrations found in ${MIGRATIONS}`).toBeGreaterThan(0);
+
+    const sql = migrationSql();
+    const rows = await sql<{ version: string }[]>`
+      select version from supabase_migrations.schema_migrations
+    `.finally(() => sql.end({ timeout: 5 }));
+
+    const applied = new Set(rows.map((row) => row.version));
+    const missing = expected.filter((version) => !applied.has(version));
+
+    expect(
+      missing,
+      `migrations present in the repository but not applied to this database: ${missing.join(", ")}. ` +
+        "Run `supabase migration up` (or `supabase db reset` for a clean rebuild).",
+    ).toEqual([]);
+  });
+
+  it("has the pgvector floor enforced by an applied migration, not just by a file", async () => {
+    // The specific one this suite exists for, named rather than counted, so a
+    // failure says which guarantee is missing rather than that a number moved.
+    const sql = migrationSql();
+    const rows = await sql<{ name: string }[]>`
+      select name from supabase_migrations.schema_migrations
+      where version = '20260805000000'
+    `.finally(() => sql.end({ timeout: 5 }));
+
+    expect(
+      rows[0]?.name,
+      "the pgvector minimum-version migration has never run against this database, " +
+        "so nothing here has actually rejected an old pgvector",
+    ).toBe("clientatlas_pgvector_minimum");
   });
 
   it("refuses to accept a version below the floor", async () => {

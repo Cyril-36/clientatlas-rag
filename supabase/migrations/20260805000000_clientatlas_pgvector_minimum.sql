@@ -28,6 +28,15 @@
 -- That is why the floor is enforced here, in the database, rather than left to
 -- a line of application code to notice.
 --
+-- One consequence of a migration whose entire body is a validation: it leaves
+-- nothing behind. It raises, or it does nothing at all, so no table, column or
+-- function can be inspected afterwards to tell whether it ever ran. The row in
+-- `supabase_migrations.schema_migrations` is the only evidence, which is why
+-- `apps/product-api/tests/integration/pgvector.test.ts` reads that table and
+-- why `supabase/seed.sql` grants the test role access to it. Without that, a
+-- database that had never applied this file passed the whole suite — which is
+-- exactly what happened.
+--
 -- `CREATE EXTENSION IF NOT EXISTS vector` in the previous migration does not
 -- cover it: on a server whose available pgvector is older, that succeeds and
 -- installs the old version.
