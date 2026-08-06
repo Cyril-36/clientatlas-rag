@@ -18,7 +18,7 @@ import type { VerifiedClaims } from "@/lib/auth/claims";
  * interface can already produce.
  */
 
-/** What the caller sees, one frame at a time. */
+/** What the caller sees, one frame at a time. Token frames are emitted only after validation. */
 export type AnswerEvent =
   | { readonly type: "token"; readonly text: string }
   | {
@@ -76,6 +76,11 @@ export async function* answer(
     return;
   }
 
+  // Buffered on purpose. Citation validity is a property of the completed
+  // answer, so forwarding tokens as the model produces them would let an
+  // invented citation reach the caller before the terminal abstention could
+  // withdraw it. The response is still delivered as SSE token frames, but no
+  // answer text crosses this boundary until the whole answer has passed.
   const pieces: string[] = [];
 
   try {
@@ -89,7 +94,6 @@ export async function* answer(
       switch (event.type) {
         case "token":
           pieces.push(event.text);
-          yield { type: "token", text: event.text };
           break;
 
         case "abstained":
@@ -121,6 +125,16 @@ export async function* answer(
 
   const validated = validateCitations(pieces.join(""), evidence);
 
+  if (validated.unresolved.length > 0) {
+    yield {
+      type: "abstained",
+      reason:
+        "The answer cited a passage that was not supplied from this workspace. It has been " +
+        "withheld rather than shown with an invented source.",
+    };
+    return;
+  }
+
   if (validated.ungrounded) {
     yield {
       type: "abstained",
@@ -131,7 +145,11 @@ export async function* answer(
     return;
   }
 
-  yield { type: "done", citations: validated.citations, unresolved: validated.unresolved };
+  for (const text of pieces) {
+    yield { type: "token", text };
+  }
+
+  yield { type: "done", citations: validated.citations, unresolved: [] };
 }
 
 /**

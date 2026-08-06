@@ -10,11 +10,11 @@ import { errorResponse } from "@/lib/http/responses";
  * seconds and a reader watching words appear is looking at progress rather
  * than at a spinner that might mean anything.
  *
- * The frames are the caller's contract: `token` while the answer is written,
- * then exactly one terminal frame — `done` with resolved citations,
- * `abstained` with a reason, or `error`. There is no fourth outcome, and in
- * particular there is no frame carrying an answer whose citations did not
- * resolve.
+ * The frames are the caller's contract: `token` frames for an answer that has
+ * already passed citation validation, then exactly one terminal frame — `done`
+ * with resolved citations, `abstained` with a reason, or `error`. Validation is
+ * deliberately before the first token reaches the caller; otherwise a final
+ * abstention would arrive after the ungrounded answer had already been shown.
  */
 
 interface RouteParams {

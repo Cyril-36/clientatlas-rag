@@ -142,13 +142,8 @@ jobs:
     env:
       MIGRATION_DATABASE_URL: postgresql://clientatlas_migration:local_migration_only@127.0.0.1:54322/postgres
       RUNTIME_DATABASE_URL: postgresql://clientatlas_runtime:local_runtime_only@127.0.0.1:54322/postgres
+      WORKER_DATABASE_URL: postgresql://clientatlas_worker:local_worker_only@127.0.0.1:54322/postgres
       TEST_DATABASE_URL: postgresql://clientatlas_test:local_test_only@127.0.0.1:54322/postgres
-      NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:54321
-      # The Supabase local-stack defaults. Published in Supabase's own docs,
-      # identical on every machine, and reach nothing but loopback.
-      NEXT_PUBLIC_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0
-      SUPABASE_SERVICE_ROLE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU
-      SUPABASE_JWT_SECRET: super-secret-jwt-token-with-at-least-32-characters-long
 
     steps:
       - uses: actions/checkout@v4
@@ -171,6 +166,22 @@ jobs:
       # (local role passwords) as part of starting up.
       - name: Start Supabase
         run: supabase start
+
+      # Use credentials emitted by the stack this job actually started. Newer
+      # local stacks generate a different JWT secret, so the old published demo
+      # tokens can be correctly shaped and still fail every Auth request.
+      - name: Read local Supabase credentials
+        run: |
+          supabase status -o json \
+            | jq -r 'to_entries[] | select(.key == "API_URL" or .key == "ANON_KEY" or .key == "SERVICE_ROLE_KEY" or .key == "JWT_SECRET") | "\(.key)=\(.value)"' \
+            >> "$GITHUB_ENV"
+
+      - name: Configure application Auth environment
+        run: |
+          echo "NEXT_PUBLIC_SUPABASE_URL=$API_URL" >> "$GITHUB_ENV"
+          echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$ANON_KEY" >> "$GITHUB_ENV"
+          echo "SUPABASE_SERVICE_ROLE_KEY=$SERVICE_ROLE_KEY" >> "$GITHUB_ENV"
+          echo "SUPABASE_JWT_SECRET=$JWT_SECRET" >> "$GITHUB_ENV"
 
       - name: Apply tenant schema
         run: pnpm --filter @clientatlas/database run db:migrate
