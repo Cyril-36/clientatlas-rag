@@ -107,11 +107,16 @@ def main() -> int:
             chunk["embedding"] = vectors[cursor]
             cursor += 1
 
-    scored = [
-        q
-        for q in questions["questions"]
-        if q["answerable"] and q["expected"] and not q.get("askAsNonMember")
-    ]
+    # Every question a signed-in member could ask, answerable or not.
+    #
+    # The unanswerable ones were excluded here until the abstention threshold
+    # needed measuring, and excluding them made a whole class of behaviour
+    # invisible: a question the corpus cannot answer is exactly the case a
+    # confidence floor exists to catch, and it cannot be tuned against a set
+    # that contains none. Recall is still computed only over the questions
+    # carrying expected evidence — that filter moved to the consumer, where it
+    # belongs, rather than deciding here what may be measured later.
+    scored = [q for q in questions["questions"] if not q.get("askAsNonMember")]
     query_vectors = provider.embed([q["question"] for q in scored])
 
     print(f"embedded in {time.time() - started:.1f}s")
@@ -128,6 +133,7 @@ def main() -> int:
                         "id": q["id"],
                         "question": q["question"],
                         "category": q["category"],
+                        "answerable": q["answerable"],
                         "expected": q["expected"],
                         "embedding": vector,
                     }

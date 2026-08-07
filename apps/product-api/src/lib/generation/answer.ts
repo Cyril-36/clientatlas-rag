@@ -75,6 +75,23 @@ export async function* answer(
   // Nothing retrieved means nothing to ground an answer in, and the model is
   // not asked. Sending it an empty evidence list and hoping it declines would
   // be paying for a request whose best possible outcome is this message.
+  //
+  // There is deliberately no score threshold above this, and the plan called
+  // for one. It was measured instead of assumed and it does not exist: over the
+  // labelled corpus, no floor on the fused score, on cosine similarity or on
+  // ts_rank_cd separates answerable questions from unanswerable ones. Refusing
+  // all five unanswerable questions costs fifteen of the twenty-two answerable
+  // ones at best. RRF cannot work in principle, since it scores rank position
+  // and throws magnitude away; similarity fails in practice, because a question
+  // about a topic the corpus discusses but never answers scores like one it
+  // answers outright.
+  //
+  // What replaces it is the generator reading the passages and declining —
+  // measured at 5/5 refusals for one lost answer with a real model. Before
+  // adding a threshold here, read
+  // evals/reports/2026-08-07-abstention-and-injection.md and re-run
+  // scripts/measure-threshold.mjs; a number that looks prudent would refuse one
+  // unanswerable question in five and quietly lose answerable ones.
   if (evidence.length === 0) {
     yield {
       type: "abstained",
