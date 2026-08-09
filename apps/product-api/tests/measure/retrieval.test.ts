@@ -41,6 +41,23 @@ interface SeedQuestion {
   embedding: number[];
 }
 
+/**
+ * Questions that can be scored, which is not all of them.
+ *
+ * The prepared corpus carries the unanswerable questions too, because the
+ * abstention work needs them. They must not enter recall or completeness, and
+ * the way they corrupt completeness is quiet: `expected` is empty, so
+ * `hits.every(Boolean)` is vacuously true and every unanswerable question
+ * counts as perfectly complete while counting as a recall miss. Measured on
+ * this corpus that moved complete@10 from 0.59 to 0.67 and recall@10 from 0.86
+ * to 0.70 — both wrong, in opposite directions, from the same cause.
+ *
+ * Caught the first time the measurement ran in CI. It had been running locally
+ * against a seed file prepared before the unanswerable questions were added.
+ */
+const scorable = (questions: SeedQuestion[]): SeedQuestion[] =>
+  questions.filter((question) => question.expected.length > 0);
+
 interface Seed {
   userId: string;
   workspaceId: string;
@@ -86,6 +103,29 @@ describe("hybrid retrieval over a seeded corpus", () => {
       `workspace ${seed!.workspaceId} has no chunks — the seed file is stale. Re-load the corpus.`,
     ).toBeGreaterThan(0);
     expect(count).toBe(seed!.chunks);
+  });
+
+  it("scores only the questions that carry expected evidence", async () => {
+    // The guard on the metric itself.
+    //
+    // The seed carries unanswerable questions, which the abstention work needs.
+    // Scoring them silently corrupts both measures in opposite directions: with
+    // `expected` empty, `hits.every(Boolean)` is vacuously true, so every
+    // unanswerable question counts as perfect completeness and as a recall
+    // miss. That is not a visible failure — it is a plausible-looking table.
+    //
+    // Asserting the split rather than the filter, so the check survives a
+    // rewrite of how the filter is expressed.
+    const total = seed!.questions.length;
+    const scored = scorable(seed!.questions);
+
+    expect(scored.length).toBeGreaterThan(0);
+    expect(scored.every((question) => question.expected.length > 0)).toBe(true);
+    expect(
+      total - scored.length,
+      "the seed carries no unanswerable questions, so either the dataset or " +
+        "prepare_corpus.py changed and the abstention measurement has nothing to work with",
+    ).toBeGreaterThan(0);
   });
 
   it("runs vector search with iterative scan enabled", async () => {
@@ -183,7 +223,7 @@ describe("hybrid retrieval over a seeded corpus", () => {
         ? "HNSW (approximate)"
         : "exact scan";
 
-      for (const question of seed!.questions) {
+      for (const question of scorable(seed!.questions)) {
         const hybrid = await hybridSearch(tx, {
           workspaceId: seed!.workspaceId,
           query: question.question,
@@ -244,7 +284,7 @@ describe("hybrid retrieval over a seeded corpus", () => {
       await tx.execute(sql`set local enable_indexscan = off`);
       await tx.execute(sql`set local enable_bitmapscan = off`);
 
-      for (const question of seed!.questions) {
+      for (const question of scorable(seed!.questions)) {
         const rows = Array.from(
           (await tx.execute<{ document_title: string; content: string }>(sql`
             select d.title as document_title, c.content as content
@@ -260,7 +300,7 @@ describe("hybrid retrieval over a seeded corpus", () => {
       }
     });
 
-    const n = seed!.questions.length;
+    const n = scorable(seed!.questions).length;
     const pct = (x: number) => (x / n).toFixed(2);
 
     console.log(
