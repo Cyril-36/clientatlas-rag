@@ -1,0 +1,49 @@
+# Secret scanning configuration.
+#
+# The default rules are kept in full and extended, not replaced. The only
+# change is one path allowlist, and it is narrow on purpose.
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = """
+evals/datasets/*/source holds third-party documentation reproduced verbatim
+under CC BY-SA 4.0 — 200 pages of the GitLab Handbook, used as an evaluation
+corpus.
+
+The findings there are all documentation examples: `curl -H "Authorization:
+<token>"` in an API runbook, and a sentence describing the shape a GitLab
+Runner token takes. They are GitLab's published docs. They are not credentials,
+they are not ours, and they grant access to nothing.
+
+Two reasons this is an allowlist rather than an edit. The files must stay
+byte-identical to what was retrieved — services/ai/tests/test_eval_dataset.py
+verifies them against source/SHA256SUMS, and the attribution claims they are
+unmodified, so redacting a line would falsify that claim to silence a scanner.
+And a corpus of real documents is the point of the dataset: real documents
+contain exactly this kind of text, and a retrieval system that could only be
+tested against corpora with no code samples in them would be tested against
+nothing realistic.
+
+Scoped to that directory alone. Every line of application code, configuration,
+migration and CI file is still scanned by the full default rule set.
+"""
+paths = ['''evals/datasets/[^/]+/source/.*\.md$''']
+
+# The Supabase local-stack demo tokens.
+#
+# Matched by their payload rather than by file, so the exemption is as narrow
+# as the fact it encodes: a JWT whose claims begin {"iss":"supabase-demo" is
+# the anon/service_role pair Supabase publishes in its own documentation. They
+# are byte-identical on every machine that has ever run `supabase start`, they
+# are signed with a secret that is equally public, and they authenticate to
+# nothing but 127.0.0.1.
+#
+# They appear in .env.example, where an example needs a value that works, and
+# in the history of .github/workflows/ci.yml, where CI used them before it
+# learned to read credentials from the stack it starts.
+#
+# Any other JWT — including a real Supabase project token, which carries a
+# different issuer — still fails the scan.
+regexes = ['''eyJpc3MiOiJzdXBhYmFzZS1kZW1v''']
