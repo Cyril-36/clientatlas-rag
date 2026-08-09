@@ -424,7 +424,12 @@ describe("POST /api/workspaces/:workspaceId/answers", () => {
     const tokens = streamed.filter((event) => event.type === "token");
     const terminal = streamed.at(-1);
 
-    expect(tokens.length).toBeGreaterThan(1);
+    // The answer text, not the number of frames it arrived in. Frame count used
+    // to stand in for "streaming happened"; it stopped meaning that when
+    // citation validation forced the answer to be buffered and checked before
+    // any of it is sent, and it now also depends on whether reasoning was
+    // stripped. What the caller actually depends on is the content.
+    expect(tokens.length).toBeGreaterThan(0);
     expect(tokens.map((event) => event.text).join("")).toContain("within 30 days");
     // No `unresolved` on a `done` frame, asserted rather than assumed. Any
     // invented citation abstains, so the field could only ever be empty, and a

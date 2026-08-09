@@ -88,34 +88,44 @@ export async function* parseEventStream(
 export async function* generate(options: GenerateOptions): AsyncGenerator<GenerationEvent> {
   const env = getServerEnv();
 
-  const response = await fetch(`${env.AI_SERVICE_URL}/v1/generate`, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    signal: options.signal,
-    body: JSON.stringify({
-      question: options.question,
-      evidence: options.evidence.map((item) => ({
-        ordinal: item.ordinal,
-        chunkId: item.chunkId,
-        // The text is sent from here rather than held by the model service,
-        // which stores nothing between requests and has no way to look a chunk
-        // up. It is also why this call is the only place tenant content
-        // crosses the boundary, and why the provider policy is enforced on
-        // both sides of it.
-        text: options.texts.get(item.chunkId) ?? "",
-        documentTitle: item.documentTitle,
-        pageNumber: item.pageNumber,
-      })),
-      policy: {
-        provider: options.provider ?? "local-ollama",
-        requireCitations: true,
-        // Never set from a request. A hosted provider is a decision about
-        // where a tenant's documents are allowed to travel, and it is not one
-        // an HTTP caller gets to make.
-        allowHostedProvider: false,
-      },
-    }),
-  });
+  let response: Response;
+
+  try {
+    response = await fetch(`${env.AI_SERVICE_URL}/v1/generate`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      signal: options.signal,
+      body: JSON.stringify({
+        question: options.question,
+        evidence: options.evidence.map((item) => ({
+          ordinal: item.ordinal,
+          chunkId: item.chunkId,
+          // The text is sent from here rather than held by the model service,
+          // which stores nothing between requests and has no way to look a chunk
+          // up. It is also why this call is the only place tenant content
+          // crosses the boundary, and why the provider policy is enforced on
+          // both sides of it.
+          text: options.texts.get(item.chunkId) ?? "",
+          documentTitle: item.documentTitle,
+          pageNumber: item.pageNumber,
+        })),
+        policy: {
+          provider: options.provider ?? "local-ollama",
+          requireCitations: true,
+          // Never set from a request. A hosted provider is a decision about
+          // where a tenant's documents are allowed to travel, and it is not one
+          // an HTTP caller gets to make.
+          allowHostedProvider: false,
+        },
+      }),
+    });
+  } catch (error) {
+    if (error instanceof GenerationServiceError) throw error;
+    throw new GenerationServiceError(
+      `the model service at ${env.AI_SERVICE_URL} could not be reached: ` +
+        `${error instanceof Error ? error.message : "unknown error"}`,
+    );
+  }
 
   if (!response.ok || !response.body) {
     throw new GenerationServiceError(
@@ -139,12 +149,26 @@ export async function* generate(options: GenerateOptions): AsyncGenerator<Genera
 export async function embedQuestion(question: string, signal?: AbortSignal): Promise<number[]> {
   const env = getServerEnv();
 
-  const response = await fetch(`${env.AI_SERVICE_URL}/v1/embed`, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    ...(signal ? { signal } : {}),
-    body: JSON.stringify({ texts: [question] }),
-  });
+  // A dead model service throws `TypeError: fetch failed`, not something this
+  // module defined. Unwrapped, that propagates as an unhandled error and the
+  // caller returns 500 — telling an operator "internal error" when the truth is
+  // "the thing this depends on is not running", which is both less useful and
+  // the wrong status code.
+  let response: Response;
+
+  try {
+    response = await fetch(`${env.AI_SERVICE_URL}/v1/embed`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      ...(signal ? { signal } : {}),
+      body: JSON.stringify({ texts: [question] }),
+    });
+  } catch (error) {
+    throw new GenerationServiceError(
+      `the model service at ${env.AI_SERVICE_URL} could not be reached: ` +
+        `${error instanceof Error ? error.message : "unknown error"}`,
+    );
+  }
 
   if (!response.ok) {
     throw new GenerationServiceError(`the model service returned ${response.status} for /v1/embed`);

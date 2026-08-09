@@ -66,6 +66,33 @@ async function retrieve(claims: VerifiedClaims, options: AnswerOptions): Promise
   };
 }
 
+/**
+ * Strip a reasoning model's private thinking from an answer.
+ *
+ * Models like qwen3 emit chain-of-thought wrapped in `<think>…</think>` before
+ * the answer proper. Two separate problems, and the second is the serious one.
+ *
+ * A reader should not see it: it is the model talking to itself, it is longer
+ * than the answer, and it frequently contains discarded reasoning that reads
+ * like an assertion.
+ *
+ * And it must not count as evidence of grounding. Reasoning routinely mentions
+ * `[1]` while deciding what to cite, so validating the raw text would let an
+ * answer that cites nothing pass because its *thinking* referred to a passage.
+ * The citation gate is the product's central promise; it has to run on what the
+ * reader is actually shown.
+ *
+ * Unclosed tags are treated as running to the end. A truncated answer — hit
+ * token limit mid-thought — is all reasoning and no answer, and the right
+ * outcome is an abstention, which is what an empty result produces downstream.
+ */
+export function withoutReasoning(text: string): string {
+  return text
+    .replace(/<think>[\s\S]*?<\/think>/gi, "")
+    .replace(/<think>[\s\S]*$/i, "")
+    .trim();
+}
+
 export async function* answer(
   claims: VerifiedClaims,
   options: AnswerOptions,
@@ -148,7 +175,9 @@ export async function* answer(
     return;
   }
 
-  const validated = validateCitations(pieces.join(""), evidence);
+  // Validated against the answer as shown, not as generated.
+  const answerText = withoutReasoning(pieces.join(""));
+  const validated = validateCitations(answerText, evidence);
 
   if (validated.unresolved.length > 0) {
     // The ordinals are named rather than summarised. This is the signal that a
@@ -167,6 +196,16 @@ export async function* answer(
     return;
   }
 
+  if (answerText.length === 0) {
+    yield {
+      type: "abstained",
+      reason:
+        "The model produced no answer outside its own reasoning, so there is nothing " +
+        "that can be shown or checked.",
+    };
+    return;
+  }
+
   if (validated.ungrounded) {
     yield {
       type: "abstained",
@@ -177,9 +216,10 @@ export async function* answer(
     return;
   }
 
-  for (const text of pieces) {
-    yield { type: "token", text };
-  }
+  // The cleaned text, in one frame. Replaying the original pieces would put
+  // the reasoning back on the reader's screen after it had been excluded from
+  // the check — showing something the guarantee does not cover.
+  yield { type: "token", text: answerText };
 
   yield { type: "done", citations: validated.citations };
 }

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { toEvidence, validateCitations, type EvidenceItem } from "@/lib/generation/citations";
+import { withoutReasoning } from "@/lib/generation/answer";
 import type { RetrievedChunk } from "@/lib/retrieval/search";
 
 function evidence(count: number): EvidenceItem[] {
@@ -118,5 +119,39 @@ describe("validateCitations", () => {
     const result = validateCitations("Both agree [1][3].", evidence(3));
 
     expect(result.citations.map((c) => c.ordinal)).toEqual([1, 3]);
+  });
+});
+
+describe("withoutReasoning", () => {
+  it("removes a reasoning block", () => {
+    expect(withoutReasoning("<think>weighing it up</think>\nThe deadline is 30 days [1].")).toBe(
+      "The deadline is 30 days [1].",
+    );
+  });
+
+  it("removes an unclosed reasoning block that ran to the end", () => {
+    // A truncated answer is all thinking and no answer. Leaving the fragment
+    // would show a reader the model's half-finished deliberation as prose.
+    expect(withoutReasoning("<think>still deciding and then the tokens ran out")).toBe("");
+  });
+
+  it("keeps a citation that appears in the answer", () => {
+    expect(withoutReasoning("<think>maybe [2]?</think>Filed within 30 days [1].")).toContain("[1]");
+  });
+
+  it("drops a citation that appears only in the reasoning", () => {
+    // The hole this closes. Reasoning routinely mentions ordinals while
+    // deciding what to cite; counting those would let an answer with no
+    // citation at all pass the grounding check because its thinking had one.
+    const cleaned = withoutReasoning(
+      "<think>passage [1] looks right</think>The deadline is 30 days.",
+    );
+
+    expect(cleaned).not.toContain("[1]");
+    expect(validateCitations(cleaned, evidence(3)).ungrounded).toBe(true);
+  });
+
+  it("leaves an answer with no reasoning untouched", () => {
+    expect(withoutReasoning("Filed within 30 days [1].")).toBe("Filed within 30 days [1].");
   });
 });
