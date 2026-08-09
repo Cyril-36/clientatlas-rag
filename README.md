@@ -7,12 +7,21 @@ with every claim traceable to the page it came from, or no answer at all.
 Built to run end to end at zero mandatory cost, with tenant isolation enforced
 by the database rather than by application code.
 
-> **Status: Milestone 2 of 10 — authentication and tenancy.**
-> The workspace, both services, the local database and CI are in place, and
-> tenant isolation is enforced by PostgreSQL row-level security with a
-> 24-test cross-tenant suite proving it. There is no document upload and no
-> retrieval yet. This README describes what exists today; sections marked _(Mn)_
-> describe what the milestone that introduces them will add.
+> **Status: Milestone 5 of 10 — retrieval, grounded answers, evaluation.**
+>
+> Working end to end over HTTP: document upload with tenant-scoped storage,
+> ingestion into chunks and embeddings, hybrid retrieval, and a streamed answer
+> endpoint that withholds anything it cannot cite. Tenant isolation is enforced
+> by PostgreSQL row-level security, and 95 integration tests run against a real
+> Supabase stack in CI.
+>
+> **There is no browser interface.** Everything below is reachable over the API
+> with a Supabase access token; the homepage is a placeholder and sign-in is a
+> `curl` away, not a form. That is the next thing to build.
+>
+> Retrieval quality is measured rather than asserted — see
+> [`evals/reports/`](evals/reports/). Sections marked _(Mn)_ describe what a
+> later milestone will add.
 
 ## Why it is built this way
 
@@ -46,7 +55,16 @@ a silent upload.
 **An answer without evidence is not an answer.** Citations are validated after
 generation, against the evidence actually placed in the context. A citation that
 does not resolve, or resolves outside the workspace, invalidates the answer and
-the system abstains instead. _(M5)_
+the system abstains instead — and because validity is a property of the finished
+answer, tokens are withheld until it has passed, rather than streamed and then
+retracted.
+
+The confidence threshold the plan called for was measured and **not** built: no
+floor on the fused score, on cosine similarity or on `ts_rank_cd` separates
+answerable questions from unanswerable ones on the evaluation corpus. Refusal is
+semantic instead — the generator reads the passages and declines. Measured with
+a real model: 5/5 unanswerable questions refused, 21/22 answerable answered.
+[The measurement](evals/reports/2026-08-07-abstention-and-injection.md).
 
 ## Architecture
 
@@ -161,9 +179,10 @@ Logs never contain document text, prompts, access tokens, JWTs or API keys.
 | --------- | --------------------------------------------------------- | ------- |
 | M1        | Monorepo, both services, local database, CI               | Done    |
 | M2        | Roles, organisations, workspaces, RLS, claims helper      | Done    |
-| M3        | PDF/DOCX upload, signed URLs, storage policies            | Next    |
-| M4        | Job queue, worker, parsing, chunking, embeddings          | Planned |
-| M5        | Hybrid retrieval, streamed answers, citations, abstention | Planned |
+| M3        | PDF/DOCX upload, signed URLs, storage policies            | Done    |
+| M4        | Job queue, worker, parsing, chunking, embeddings          | Done    |
+| M5        | Hybrid retrieval, streamed answers, citations, abstention | Done    |
+| —         | Browser UI and sign-in                                    | Next    |
 | M6        | Onboarding brief, FAQ, action plan, readiness report      | Planned |
 | M7        | Google Drive import via Picker with `drive.file`          | Planned |
 | M8        | Evaluation suite, OpenTelemetry, Grafana                  | Planned |

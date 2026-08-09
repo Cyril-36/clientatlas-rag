@@ -1,0 +1,27 @@
+# Findings accepted individually, by fingerprint.
+#
+# Each line is commit:file:rule:line for one specific finding. They are all
+# inside evals/datasets/gitlab-handbook-v1/source — 200 GitLab Handbook pages
+# reproduced verbatim under CC BY-SA 4.0 as an evaluation corpus — and they are
+# all documentation examples: `curl -H "Authorization: <token>"` in an API
+# runbook, and two lines describing the shape a GitLab Runner token takes.
+# GitLab's published docs. Not credentials, not ours, granting access to
+# nothing.
+#
+# Why fingerprints and not a path rule. The first version of this exemption
+# allowlisted every Markdown file under every dataset source directory, which
+# would have silently swallowed a genuine secret added there later. These six
+# lines accept six known findings and nothing else; a seventh fails the build.
+#
+# The files cannot be edited to remove the matches. test_eval_dataset.py
+# verifies them against source/SHA256SUMS and the attribution states they are
+# unmodified, so redacting a line to quiet a scanner would falsify that claim.
+# The fingerprints are stable for the same reason: those files are immutable by
+# design, so their commits, paths and line numbers do not move.
+
+a82a94cdc67ee7ece3a9a7b7399180c10bf5d9ff:evals/datasets/gitlab-handbook-v1/source/engineering-architecture-design-documents-cells-iterations-cells-1-0.md:generic-api-key:517
+a82a94cdc67ee7ece3a9a7b7399180c10bf5d9ff:evals/datasets/gitlab-handbook-v1/source/security-product-security-psirt-runbooks-hackerone-process.md:curl-auth-header:270
+9b8d030e12ed524fafb49e3762ac3ce17f956300:evals/datasets/gitlab-handbook-v1/source/engineering-architecture-design-documents-cells-iterations-cells-1-0.md:generic-api-key:518
+9b8d030e12ed524fafb49e3762ac3ce17f956300:evals/datasets/gitlab-handbook-v1/source/security-product-security-psirt-runbooks-hackerone-process.md:curl-auth-header:264
+9b8d030e12ed524fafb49e3762ac3ce17f956300:evals/datasets/gitlab-handbook-v1/source/security-product-security-psirt-runbooks-hackerone-process.md:curl-auth-header:265
+9b8d030e12ed524fafb49e3762ac3ce17f956300:evals/datasets/gitlab-handbook-v1/source/security-product-security-psirt-runbooks-hackerone-process.md:curl-auth-header:271

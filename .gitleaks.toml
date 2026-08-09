@@ -8,28 +8,16 @@ useDefault = true
 
 [allowlist]
 description = """
-evals/datasets/*/source holds third-party documentation reproduced verbatim
-under CC BY-SA 4.0 — 200 pages of the GitLab Handbook, used as an evaluation
-corpus.
+One exemption, and it is content-based rather than path-based.
 
-The findings there are all documentation examples: `curl -H "Authorization:
-<token>"` in an API runbook, and a sentence describing the shape a GitLab
-Runner token takes. They are GitLab's published docs. They are not credentials,
-they are not ours, and they grant access to nothing.
-
-Two reasons this is an allowlist rather than an edit. The files must stay
-byte-identical to what was retrieved — services/ai/tests/test_eval_dataset.py
-verifies them against source/SHA256SUMS, and the attribution claims they are
-unmodified, so redacting a line would falsify that claim to silence a scanner.
-And a corpus of real documents is the point of the dataset: real documents
-contain exactly this kind of text, and a retrieval system that could only be
-tested against corpora with no code samples in them would be tested against
-nothing realistic.
-
-Scoped to that directory alone. Every line of application code, configuration,
-migration and CI file is still scanned by the full default rule set.
+The GitLab Handbook corpus under evals/datasets/*/source also produces
+findings — documentation examples in third-party text that cannot be edited,
+since the provenance manifest pins those files byte for byte. Those are accepted
+individually by fingerprint in .gitleaksignore, six of them, so a seventh
+finding in the same directory still fails the build. An earlier version of this
+file allowlisted the whole directory by path, which would have swallowed a real
+secret added there later.
 """
-paths = ['''evals/datasets/[^/]+/source/.*\.md$''']
 
 # The Supabase local-stack demo tokens.
 #

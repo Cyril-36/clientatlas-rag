@@ -23,10 +23,28 @@ jobs:
           # still a leaked key.
           fetch-depth: 0
 
-      - name: Scan for committed secrets
+      # The action picks its own --log-opts from the event type, and on a push
+      # after the first it passes `-1`: one commit. A green run then proves
+      # nothing about history, which is exactly what a secret scan is for. It is
+      # kept for its pull-request diff behaviour and its SARIF upload, and the
+      # full-history guarantee is made explicitly below rather than assumed.
+      - name: Scan the pushed range
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install gitleaks
+        run: |
+          version=8.24.3
+          curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${version}/gitleaks_${version}_linux_x64.tar.gz" \
+            | tar -xz -C /usr/local/bin gitleaks
+          gitleaks version
+
+      # Every commit reachable from any ref, stated as an argument so the scope
+      # is visible in the log rather than inferred from the event. A key that was
+      # committed and later removed is still a leaked key.
+      - name: Scan the entire history
+        run: gitleaks detect --redact --no-banner --log-opts=--all --exit-code 2
 
   audit:
     name: Dependency audit
@@ -132,7 +150,7 @@ jobs:
       - name: Test
         run: uv run pytest
   integration:
-    name: Tenant and storage isolation
+    name: Isolation and retrieval
     runs-on: ubuntu-latest
 
     # Runs the real Supabase stack rather than a bare PostgreSQL container.
@@ -197,6 +215,40 @@ jobs:
 
       - name: Integration tests
         run: pnpm --filter @clientatlas/product-api run test:integration
+
+      # Retrieval quality, gated rather than merely reported.
+      #
+      # `measure:retrieval` runs under its own vitest config and was therefore
+      # invoked by nothing in CI: recall and evidence completeness could regress
+      # to zero while every job stayed green. It asserts that fusion beats its
+      # own vector half and beats an exact vector-only scan, on both recall@10
+      # and complete@10, so a change that quietly breaks ranking fails here.
+      #
+      # It runs after the integration suite on purpose. Those tests truncate
+      # `organizations ... cascade` and destroy any seeded corpus, so the corpus
+      # is loaded afterwards; the measurement fails loudly on an absent or empty
+      # one rather than passing at 0 >= 0.
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          cache-dependency-glob: services/ai/uv.lock
+
+      # The real MiniLM, not the deterministic provider. Deterministic vectors
+      # are correctly shaped and meaningless, so a recall number measured with
+      # them would be noise presented as a gate.
+      - name: Install the embedding model dependencies
+        working-directory: services/ai
+        run: uv sync --all-groups --extra ml --frozen
+
+      - name: Prepare the evaluation corpus
+        working-directory: services/ai
+        run: uv run python ../../evals/prepare_corpus.py gitlab-handbook-v1
+
+      - name: Load the corpus
+        run: pnpm --filter @clientatlas/product-api exec node scripts/load-corpus.mjs gitlab-handbook-v1
+
+      - name: Measure retrieval
+        run: pnpm --filter @clientatlas/product-api run measure:retrieval
 
       - name: Supabase logs on failure
         if: failure()
