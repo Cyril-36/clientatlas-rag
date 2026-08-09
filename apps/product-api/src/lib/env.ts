@@ -47,6 +47,22 @@ const serverEnvSchema = z
      * connect locally, not quietly point somewhere else.
      */
     AI_SERVICE_URL: z.string().url().default("http://127.0.0.1:8000"),
+
+    /**
+     * Supabase Auth, used by the sign-in route to exchange a password for
+     * tokens and to refresh them. Public values: the anon key is meant to be
+     * shipped to browsers, and here it never leaves the server anyway.
+     */
+    NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1),
+
+    /**
+     * This site's own origin, used to reject cross-site state-changing
+     * requests. Optional because the request's own Host covers local
+     * development; set it in any deployment behind a proxy, where Host is
+     * attacker-influenceable and should not be the only answer.
+     */
+    APP_ORIGIN: optional(z.string().url()),
   })
   .refine((env) => Boolean(env.SUPABASE_JWT_SECRET) !== Boolean(env.SUPABASE_JWKS_URL), {
     message:

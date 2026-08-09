@@ -2,6 +2,12 @@ import { randomUUID } from "node:crypto";
 
 import { bearerTokenFrom, InvalidTokenError, verifyAccessToken } from "@/lib/auth/claims";
 import type { VerifiedClaims } from "@/lib/auth/claims";
+import {
+  ACCESS_COOKIE,
+  assertSameOrigin,
+  cookieFrom,
+  CrossSiteRequestError,
+} from "@/lib/auth/session";
 import { getServerEnv } from "@/lib/env";
 
 import { errorResponse } from "./responses";
@@ -44,10 +50,38 @@ export async function withAuthenticatedRequest(
     );
   }
 
-  const token = bearerTokenFrom(request.headers.get("authorization"));
+  // Cross-site protection before authentication, and before any work.
+  //
+  // Cookies are ambient authority: the browser attaches them to a form post
+  // from any site. `SameSite=Lax` already stops that, and this is the second
+  // lock — enforced here rather than per route, because a route that forgets it
+  // is a CSRF hole, and the only reliable way to not forget is to make it
+  // impossible to reach a handler without passing.
+  try {
+    assertSameOrigin(request);
+  } catch (error: unknown) {
+    if (error instanceof CrossSiteRequestError) {
+      return errorResponse(
+        "FORBIDDEN",
+        "This request did not originate from this site.",
+        requestId,
+      );
+    }
+    throw error;
+  }
+
+  // A browser session first, then a bearer token.
+  //
+  // The cookie is how the UI authenticates and how a browser must: it is
+  // `HttpOnly`, so no script on the page can read it, which matters in a
+  // product that renders text from documents its tenants uploaded. The bearer
+  // header stays supported for API clients and for the integration suite, and
+  // carries no CSRF exposure because nothing attaches it automatically.
+  const token =
+    cookieFrom(request, ACCESS_COOKIE) ?? bearerTokenFrom(request.headers.get("authorization"));
 
   if (!token) {
-    return errorResponse("UNAUTHENTICATED", "A bearer access token is required.", requestId);
+    return errorResponse("UNAUTHENTICATED", "Sign in, or send a bearer access token.", requestId);
   }
 
   let claims: VerifiedClaims;
