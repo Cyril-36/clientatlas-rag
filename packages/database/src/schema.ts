@@ -5,6 +5,7 @@ import {
   foreignKey,
   index,
   integer,
+  jsonb,
   pgEnum,
   pgTable,
   text,
@@ -317,8 +318,155 @@ export const documentChunks = pgTable(
 );
 
 export type Profile = typeof profiles.$inferSelect;
+/* -------------------------------------------------------------------------- */
+/* Generated artifacts                                                        */
+/* -------------------------------------------------------------------------- */
+
+export const artifactKind = pgEnum("artifact_kind", [
+  "readiness_report",
+  "onboarding_brief",
+  "faq",
+  "action_plan",
+]);
+
+/**
+ * A generated document that belongs to a workspace.
+ *
+ * The row itself carries almost nothing: a kind, a title, and which version is
+ * current. Everything a reader sees lives in `artifact_versions`, because an
+ * artifact whose content could be edited in place would make every citation
+ * ever shown unverifiable — the evidence rows point at a version, and a version
+ * that can change is not evidence of anything.
+ */
+export const artifacts = pgTable(
+  "artifacts",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    organizationId: uuid("organization_id")
+      .notNull()
+      .references(() => organizations.id, { onDelete: "cascade" }),
+    workspaceId: uuid("workspace_id").notNull(),
+    kind: artifactKind("kind").notNull(),
+    title: text("title").notNull(),
+    /**
+     * Which version is shown. Nullable only between inserting the artifact and
+     * its first version, which happens inside one transaction.
+     */
+    currentVersionId: uuid("current_version_id"),
+    ...timestamps,
+  },
+  (table) => [
+    // The same composite reference the documents table uses, and for the same
+    // reason: a cross-tenant parent is rejected by the database before any
+    // policy is consulted.
+    foreignKey({
+      columns: [table.workspaceId, table.organizationId],
+      foreignColumns: [workspaces.id, workspaces.organizationId],
+      name: "artifacts_workspace_org_fk",
+    }).onDelete("cascade"),
+    index("artifacts_workspace_kind_idx").on(table.workspaceId, table.kind),
+    unique("artifacts_id_org_key").on(table.id, table.organizationId),
+  ],
+);
+
+/**
+ * One immutable revision of an artifact.
+ *
+ * Editing appends. There is no `updated_at` and no UPDATE policy, so a version
+ * a citation refers to cannot become a different version later — the same rule
+ * `document_versions` follows, for the same reason.
+ *
+ * `sections` is structured JSON rather than prose: a section is the unit that
+ * carries evidence, and a wall of markdown cannot say which sentence rested on
+ * which passage.
+ */
+export const artifactVersions = pgTable(
+  "artifact_versions",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    organizationId: uuid("organization_id")
+      .notNull()
+      .references(() => organizations.id, { onDelete: "cascade" }),
+    artifactId: uuid("artifact_id").notNull(),
+    versionNumber: integer("version_number").notNull(),
+    /** `{ sections: [{ key, heading, body, ... }] }`, validated by contract. */
+    sections: jsonb("sections").notNull(),
+    /**
+     * Who wrote this revision: the generator, or a person editing it. Kept so a
+     * reader can tell a machine's claim from a human's, which matters most
+     * where the two disagree.
+     */
+    authoredBy: uuid("authored_by").references(() => profiles.id, { onDelete: "set null" }),
+    generated: boolean("generated").notNull().default(true),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.artifactId, table.organizationId],
+      foreignColumns: [artifacts.id, artifacts.organizationId],
+      name: "artifact_versions_artifact_org_fk",
+    }).onDelete("cascade"),
+    unique("artifact_versions_artifact_number_key").on(table.artifactId, table.versionNumber),
+    unique("artifact_versions_id_org_key").on(table.id, table.organizationId),
+    index("artifact_versions_artifact_idx").on(table.artifactId),
+  ],
+);
+
+/**
+ * The passage one section of one version rested on.
+ *
+ * This is what makes a generated artifact checkable rather than merely
+ * plausible. It points at a chunk, and the chunk points at a document version,
+ * so "where did this come from" resolves all the way down to bytes that cannot
+ * have changed since.
+ *
+ * `chunkId` is deliberately not a foreign key with `cascade`: re-indexing a
+ * document replaces its chunks, and an artifact must not silently lose its
+ * evidence because the corpus was rebuilt. The reference is recorded and
+ * resolved at read time, which lets the reader be told "this citation refers to
+ * a passage that no longer exists" rather than shown a report that quietly has
+ * fewer sources than it was written with.
+ */
+export const artifactEvidence = pgTable(
+  "artifact_evidence",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    organizationId: uuid("organization_id")
+      .notNull()
+      .references(() => organizations.id, { onDelete: "cascade" }),
+    artifactVersionId: uuid("artifact_version_id").notNull(),
+    /** Which section of the version this supports. */
+    sectionKey: text("section_key").notNull(),
+    /** The number shown to a reader, contiguous from 1 within a section. */
+    ordinal: integer("ordinal").notNull(),
+    chunkId: uuid("chunk_id").notNull(),
+    documentId: uuid("document_id").notNull(),
+    /** Snapshotted, so a citation still reads correctly if the chunk is gone. */
+    documentTitle: text("document_title").notNull(),
+    pageNumber: integer("page_number"),
+    quote: text("quote").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.artifactVersionId, table.organizationId],
+      foreignColumns: [artifactVersions.id, artifactVersions.organizationId],
+      name: "artifact_evidence_version_org_fk",
+    }).onDelete("cascade"),
+    unique("artifact_evidence_section_ordinal_key").on(
+      table.artifactVersionId,
+      table.sectionKey,
+      table.ordinal,
+    ),
+    index("artifact_evidence_version_idx").on(table.artifactVersionId),
+  ],
+);
+
 export type Organization = typeof organizations.$inferSelect;
 export type OrganizationMember = typeof organizationMembers.$inferSelect;
 export type Workspace = typeof workspaces.$inferSelect;
 export type Document = typeof documents.$inferSelect;
 export type DocumentVersion = typeof documentVersions.$inferSelect;
+export type Artifact = typeof artifacts.$inferSelect;
+export type ArtifactVersion = typeof artifactVersions.$inferSelect;
+export type ArtifactEvidence = typeof artifactEvidence.$inferSelect;
