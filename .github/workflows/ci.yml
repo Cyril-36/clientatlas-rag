@@ -260,7 +260,26 @@ jobs:
       - name: Install Playwright browsers
         run: pnpm --filter @clientatlas/product-api exec playwright install --with-deps chromium
 
+      # The model service, which the answer path needs for embeddings even when
+      # generation is deterministic. It is already installed above for the
+      # retrieval measurement.
+      - name: Start the model service
+        working-directory: services/ai
+        run: |
+          uv run uvicorn app.main:app --host 127.0.0.1 --port 8000 &
+          for _ in $(seq 1 60); do
+            curl -sf http://127.0.0.1:8000/health/live && break
+            sleep 2
+          done
+          curl -sf http://127.0.0.1:8000/health/live
+
       - name: Browser tests
+        env:
+          # There is no Ollama here and an 8B model on a shared runner would be
+          # minutes per answer. The deterministic provider is a supported
+          # provider, not a stub, so the citation gate and abstention are still
+          # exercised on the real code path.
+          GENERATION_PROVIDER: deterministic-demo
         run: pnpm --filter @clientatlas/product-api run test:e2e
 
       # Kept whether or not the run passed, because a flake that vanishes is a

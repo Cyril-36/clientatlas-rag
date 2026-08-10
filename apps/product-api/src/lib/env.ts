@@ -49,6 +49,18 @@ const serverEnvSchema = z
     AI_SERVICE_URL: z.string().url().default("http://127.0.0.1:8000"),
 
     /**
+     * Which generator answers questions.
+     *
+     * `local-ollama` is the real one and the default. `deterministic-demo` is
+     * extractive, model-free and named in the contract — it exists so the whole
+     * streaming, citation and abstention path can be exercised where an 8B
+     * model is not available, which is every CI runner. It must never serve a
+     * real question, and the default being the real provider is what stops it
+     * doing so by omission.
+     */
+    GENERATION_PROVIDER: z.enum(["local-ollama", "deterministic-demo"]).default("local-ollama"),
+
+    /**
      * Supabase Auth, used by the sign-in route to exchange a password for
      * tokens and to refresh them. Public values: the anon key is meant to be
      * shipped to browsers, and here it never leaves the server anyway.

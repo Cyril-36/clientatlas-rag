@@ -110,7 +110,7 @@ export async function* generate(options: GenerateOptions): AsyncGenerator<Genera
           pageNumber: item.pageNumber,
         })),
         policy: {
-          provider: options.provider ?? "local-ollama",
+          provider: options.provider ?? env.GENERATION_PROVIDER,
           requireCitations: true,
           // Never set from a request. A hosted provider is a decision about
           // where a tenant's documents are allowed to travel, and it is not one

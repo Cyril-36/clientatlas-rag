@@ -15,9 +15,13 @@ by the database rather than by application code.
 > by PostgreSQL row-level security, and 95 integration tests run against a real
 > Supabase stack in CI.
 >
-> **There is no browser interface.** Everything below is reachable over the API
-> with a Supabase access token; the homepage is a placeholder and sign-in is a
-> `curl` away, not a form. That is the next thing to build.
+> A minimal browser interface lives at `/workspace`: sign in, pick a workspace,
+> upload with ingestion status, ask, and read an answer whose citations open the
+> document they came from. Sessions are Supabase tokens in `HttpOnly` cookies
+> behind a same-origin backend-for-frontend — the page never holds a credential
+> — and seven Playwright tests drive the whole flow, including that a second
+> signed-in user can reach none of the first one's workspace, documents, answer
+> or citation.
 >
 > Retrieval quality is measured rather than asserted — see
 > [`evals/reports/`](evals/reports/). Sections marked _(Mn)_ describe what a
@@ -141,17 +145,18 @@ A compose profile exists for hosts with no native install:
 
 ## Commands
 
-| Command                                                       | Effect                                            |
-| ------------------------------------------------------------- | ------------------------------------------------- |
-| `pnpm dev`                                                    | Next.js development server                        |
-| `pnpm lint`                                                   | ESLint across the workspace                       |
-| `pnpm typecheck`                                              | `tsc --noEmit` across every package               |
-| `pnpm test`                                                   | Unit tests — no database needed                   |
-| `pnpm build`                                                  | Next.js production build                          |
-| `pnpm format`                                                 | Prettier, write                                   |
-| `pnpm --filter @clientatlas/database run db:generate`         | Generate a migration from the schema              |
-| `pnpm --filter @clientatlas/database run db:migrate`          | Apply migrations as `clientatlas_migration`       |
-| `pnpm --filter @clientatlas/product-api run test:integration` | Cross-tenant isolation suite — needs the database |
+| Command                                                       | Effect                                               |
+| ------------------------------------------------------------- | ---------------------------------------------------- |
+| `pnpm dev`                                                    | Next.js development server                           |
+| `pnpm lint`                                                   | ESLint across the workspace                          |
+| `pnpm typecheck`                                              | `tsc --noEmit` across every package                  |
+| `pnpm test`                                                   | Unit tests — no database needed                      |
+| `pnpm build`                                                  | Next.js production build                             |
+| `pnpm format`                                                 | Prettier, write                                      |
+| `pnpm --filter @clientatlas/database run db:generate`         | Generate a migration from the schema                 |
+| `pnpm --filter @clientatlas/database run db:migrate`          | Apply migrations as `clientatlas_migration`          |
+| `pnpm --filter @clientatlas/product-api run test:integration` | Cross-tenant isolation suite — needs the database    |
+| `pnpm --filter @clientatlas/product-api run test:e2e`         | Browser tests — needs Supabase and the model service |
 
 From `services/ai`:
 
@@ -182,8 +187,8 @@ Logs never contain document text, prompts, access tokens, JWTs or API keys.
 | M3        | PDF/DOCX upload, signed URLs, storage policies            | Done    |
 | M4        | Job queue, worker, parsing, chunking, embeddings          | Done    |
 | M5        | Hybrid retrieval, streamed answers, citations, abstention | Done    |
-| —         | Browser UI and sign-in                                    | Next    |
-| M6        | Onboarding brief, FAQ, action plan, readiness report      | Planned |
+| —         | Browser UI and sign-in                                    | Done    |
+| M6        | Onboarding brief, FAQ, action plan, readiness report      | Next    |
 | M7        | Google Drive import via Picker with `drive.file`          | Planned |
 | M8        | Evaluation suite, OpenTelemetry, Grafana                  | Planned |
 | M9        | Synthetic read-only public demo                           | Planned |

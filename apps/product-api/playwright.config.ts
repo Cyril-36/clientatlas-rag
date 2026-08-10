@@ -63,6 +63,11 @@ export default defineConfig({
       SUPABASE_JWKS_URL: "http://127.0.0.1:54321/auth/v1/.well-known/jwks.json",
       SUPABASE_JWT_SECRET: "",
       APP_ORIGIN: "http://127.0.0.1:3100",
+      // No 8B model on a CI runner. The deterministic provider is extractive
+      // and predictable, so the browser still exercises retrieval, the citation
+      // gate and abstention — with an answer the test can predict instead of a
+      // five-minute wait for one it cannot.
+      GENERATION_PROVIDER: process.env["GENERATION_PROVIDER"] ?? "local-ollama",
     },
   },
 });
