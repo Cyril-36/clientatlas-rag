@@ -250,6 +250,32 @@ jobs:
       - name: Measure retrieval
         run: pnpm --filter @clientatlas/product-api run measure:retrieval
 
+      # The browser, against a JWKS-configured server of its own.
+      #
+      # The suite above mints HS256 tokens by hand — that is how it produces
+      # expired, forged and wrong-role tokens Supabase would never issue — and
+      # the verifier accepts one key family at a time. Those two needs do not
+      # conflict; they just cannot share a process, so Playwright starts its own
+      # with SUPABASE_JWKS_URL set and signs in for real.
+      - name: Install Playwright browsers
+        run: pnpm --filter @clientatlas/product-api exec playwright install --with-deps chromium
+
+      - name: Browser tests
+        run: pnpm --filter @clientatlas/product-api run test:e2e
+
+      # Kept whether or not the run passed, because a flake that vanishes is a
+      # flake nobody fixes. Traces and video are only written on failure.
+      - name: Browser test artefacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            apps/product-api/playwright-report/
+            apps/product-api/test-results/
+          retention-days: 7
+          if-no-files-found: ignore
+
       - name: Supabase logs on failure
         if: failure()
         run: supabase status || true

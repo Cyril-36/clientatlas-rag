@@ -11,7 +11,9 @@
     "test": "vitest run",
     "test:integration": "vitest run --config vitest.integration.config.ts",
     "test:integration:db": "vitest run --config vitest.integration.config.ts tests/integration/tenancy.test.ts",
-    "measure:retrieval": "vitest run --config vitest.measure.config.ts"
+    "measure:retrieval": "vitest run --config vitest.measure.config.ts",
+    "start:e2e": "next build && next start --port 3100",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@clientatlas/contracts": "workspace:*",
@@ -26,6 +28,8 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@clientatlas/worker": "workspace:*",
+    "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -34,7 +38,6 @@
     "eslint-config-next": "16.3.0",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "^3.2.4",
-    "@clientatlas/worker": "workspace:*"
+    "vitest": "^3.2.4"
   }
 }
