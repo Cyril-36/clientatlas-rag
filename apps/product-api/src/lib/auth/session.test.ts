@@ -169,3 +169,31 @@ describe("assertSameOrigin", () => {
     ).toThrow(CrossSiteRequestError);
   });
 });
+
+describe("assertSameOrigin with APP_ORIGIN configured", () => {
+  it("ignores the request's Host once an origin is configured", () => {
+    // The point of the setting. `Host` is attacker-controlled behind a careless
+    // proxy, so accepting it *alongside* an explicit configuration made the
+    // configuration decorative — a deployment that had declared its origin
+    // still trusted whatever a forged header claimed.
+    const request = new Request("https://clientatlas.example/api/x", {
+      method: "POST",
+      headers: { origin: "https://attacker.test", host: "attacker.test" },
+    });
+
+    expect(() => assertSameOrigin(request)).toThrow(CrossSiteRequestError);
+  });
+
+  it("falls back to the request's Host when no origin is configured", () => {
+    // Development, where ports move and there is no proxy to lie about them.
+    delete process.env["APP_ORIGIN"];
+    resetServerEnvForTests();
+
+    const request = new Request("http://localhost:3001/api/x", {
+      method: "POST",
+      headers: { origin: "http://localhost:3001", host: "localhost:3001" },
+    });
+
+    expect(() => assertSameOrigin(request)).not.toThrow();
+  });
+});

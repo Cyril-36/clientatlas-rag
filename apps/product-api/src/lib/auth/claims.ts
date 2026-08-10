@@ -28,11 +28,29 @@ const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3
 
 let remoteJwks: JWTVerifyGetKey | undefined;
 
-function getKeyMaterial(): Uint8Array | JWTVerifyGetKey {
+interface Verifier {
+  readonly key: Uint8Array | JWTVerifyGetKey;
+  /**
+   * Only the algorithms the configured key material can actually verify.
+   *
+   * Listing all three regardless — which this did — is the classic JWT
+   * confusion setup in miniature. A symmetric secret is bytes; an attacker who
+   * learns the *public* half of an asymmetric pair can sign `HS256` with it and
+   * a verifier that accepts both families will happily check that signature
+   * using the public key as an HMAC secret. Neither key type here can be
+   * abused that way if the accepted list never spans both.
+   */
+  readonly algorithms: string[];
+}
+
+function getVerifier(): Verifier {
   const env = getServerEnv();
 
   if (env.SUPABASE_JWT_SECRET) {
-    return new TextEncoder().encode(env.SUPABASE_JWT_SECRET);
+    return {
+      key: new TextEncoder().encode(env.SUPABASE_JWT_SECRET),
+      algorithms: ["HS256"],
+    };
   }
 
   if (!env.SUPABASE_JWKS_URL) {
@@ -40,7 +58,7 @@ function getKeyMaterial(): Uint8Array | JWTVerifyGetKey {
   }
 
   remoteJwks ??= createRemoteJWKSet(new URL(env.SUPABASE_JWKS_URL));
-  return remoteJwks;
+  return { key: remoteJwks, algorithms: ["ES256", "RS256"] };
 }
 
 /**
@@ -66,12 +84,12 @@ export async function verifyAccessToken(token: string): Promise<VerifiedClaims> 
   let payload;
 
   try {
-    const result = await jwtVerify(token, getKeyMaterial(), {
+    const verifier = getVerifier();
+
+    const result = await jwtVerify(token, verifier.key, {
       audience: env.SUPABASE_JWT_AUDIENCE,
       ...(env.SUPABASE_JWT_ISSUER ? { issuer: env.SUPABASE_JWT_ISSUER } : {}),
-      // HS256 for the project secret, ES256/RS256 for JWKS. Pinning the list
-      // prevents an `alg` the verifier did not intend to support.
-      algorithms: ["HS256", "ES256", "RS256"],
+      algorithms: verifier.algorithms,
     });
     payload = result.payload;
   } catch (error: unknown) {

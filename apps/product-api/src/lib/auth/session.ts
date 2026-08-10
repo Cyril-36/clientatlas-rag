@@ -150,16 +150,21 @@ export function assertSameOrigin(request: Request): void {
 }
 
 function allowedOrigins(request: Request): Set<string> {
-  const allowed = new Set<string>();
-
   const configured = getServerEnv().APP_ORIGIN;
-  if (configured) allowed.add(configured);
 
-  // The request's own host, so a developer on a different port than the
-  // configured one is not locked out. `Host` is attacker-influenceable behind a
-  // careless proxy, which is why the configured origin exists and should be set
-  // in any deployment that matters.
+  // Configured wins outright. Accepting the request's own `Host` *alongside* an
+  // explicit setting made the setting decorative: `Host` is attacker-controlled
+  // behind a careless proxy, so a deployment that had carefully declared its
+  // origin still accepted whatever a forged header claimed. Setting APP_ORIGIN
+  // now narrows the check rather than merely adding to it.
+  if (configured) return new Set([configured]);
+
+  // Unset, so fall back to the request's own host. This is development, where
+  // ports move and there is no proxy to lie about them. Production should set
+  // APP_ORIGIN, and the .env.example says so.
+  const allowed = new Set<string>();
   const host = request.headers.get("host");
+
   if (host) {
     allowed.add(`http://${host}`);
     allowed.add(`https://${host}`);
